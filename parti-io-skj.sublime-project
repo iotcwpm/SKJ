@@ -1,0 +1,15 @@
+{
+	"folders":
+	[
+		{
+			"follow_symlinks": true,
+			"path": "~/Trophia/Code/parti-io-skj"
+		}
+	],
+	"settings":
+    {
+          "sublimegdb_workingdir": "${folder:${project_path:test}}",
+          // NOTE: You MUST provide --interpreter=mi for the plugin to work
+          "sublimegdb_commandline": "gdb --interpreter=mi ./test"
+    }
+}
