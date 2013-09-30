@@ -33,7 +33,7 @@ nc = within(nc,{
     ))
 
     # Assign to a quarter
-    Quarter = NA
+    Quarter = 1
 })
 
 # Aggregate by OM areas, methods, years and quarters
@@ -48,4 +48,4 @@ ggplot(sums) +
 
 # Rename columns and output
 names(sums) = c('area','method','year','quarter','catch')
-write.table(sums,file='processed-data/nominal-catch.txt',row.names=F,quote=F,sep='\t')
+write.table(sums,file='processed-data/nominal-catches.txt',row.names=F,quote=F,sep='\t')
