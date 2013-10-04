@@ -1,0 +1,6 @@
+#Ignore generated file
+index.html
+
+# Ignore the published directory (only there for publishing to Github Pages)
+published
+

@@ -1,0 +1,7 @@
+#Ignore generated Doxyfile
+Doxyfile
+
+#Ignore build directorys
+html
+xml
+latex

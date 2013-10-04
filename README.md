@@ -6,6 +6,10 @@
 
 `ioskj` is still under active development. It requires several third party C++ libraries and a modern C++ compiler which supports the C++11 standard. At this stage we do not recommend trying to compile it yourself. As the model matures we intend to make it available as precompiled executables for Windows and Linux and/or a package for R.
 
+## Documentation
+
+Documentation is at http://trophia.github.io/ioskj/
+
 ## Organisation
 
 ### C++ files
@@ -23,3 +27,6 @@ The main C++ files are:
 
 The `data` folder includes R and Python scripts for processing source data. See the documentation in those files for more details. The resulting, processed data is outputted to the folder `data\processed-data`.
 
+### `docs` folder
+
+The `docs` folder includes hand written documentation and a Doxygen project for automatically generating documentation from C++ source code/

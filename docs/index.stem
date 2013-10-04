@@ -1,0 +1,138 @@
+h1 ioskj: a simulation model of the Indian Ocean skipjack tuna fishery
+
+p.note
+    This documentation is a draft under active development. 
+    Throughout this documents notes like this one indicate potential changes or refinements to the model.
+    Separate documentation, generated from the model's C++ source code, is also
+    
+    a[href="doxygen/html/index.html"] available.
+
+section
+    h2#introduction Introduction
+
+section
+    h2#symbols Symbols
+
+    p The following convention is used for assigning symbols for the model: Greek lower case letters (e.g. `alpha`) for model parameters, Roman capital letters (e.g. `N`) for arrays of model variables, and Roman lower case letters for array subscripts (e.g. `N_{r,a,s}`). This means that in some instances model parameters are given different symbols that usual.
+
+    p The table below lists and briefly describes each model symbol and provides a link to the section in this document where they are more fully detailed
+
+    table
+        tr
+            td
+                a[href="#dimensions"] Dimensions
+        tr
+            td `r`
+            td Region subscript
+        tr
+            td `w`
+            td West region
+        tr
+            td `m`
+            td Maldives region
+        tr
+            td `e`
+            td East region
+        tr
+            td `a`
+            td Age subscript
+        tr
+            td `s`
+            td Size subscript
+        tr
+            td 
+
+
+        tr
+            td Numbers
+        tr
+            td `N_{r,a,s}`
+            td Number of fish in region `r` of age `a` and size `s`
+        tr
+            td 
+
+
+        tr
+            td 
+                a[href="#recruitment"] Recruitment
+        tr
+            td `R_{r,s}`
+            td Number of fish recruiting to age 0 in region `r` at size `s`
+        tr
+            td `eta`
+            td Steepness of the stock-recruitment relationship
+        tr
+            td `sigma`
+            td Standard deviation of stock-recruitment deviations
+        tr
+            td `vartheta_{s}`
+            td Proportion of recruits at size `s`
+        tr
+            td 
+
+
+        tr
+            td 
+                a[href="#natural-mortality"] Natural mortality
+        tr
+            td `S`
+            td Survival from natural mortality
+        tr
+            td `rho`
+            td Instantaeous rate of natural mortality (usually given the symbol `M`)
+        tr
+            td 
+
+
+        tr
+            td 
+                a[href="#growth"] Growth
+        tr
+            td `G_{dot(s),s}`
+            td Size transition matrix of the proportion of fish growing from size `dot(s)` to size `s` in one quarter
+        tr
+            td 
+
+            
+        tr
+            td 
+                a[href="#movement"] Movement
+        tr
+            td `M_{dot(r),r}`
+            td Movement transition of the proportion of fish moving from region `dot(r)` to region `r` in one quarter
+
+
+section
+    h2#dimensions Dimensions
+
+    p There are several model dimensions that are used to partition both the fish population and fishing catches.
+
+    h3 Region
+
+        There are three regions, West (`w`), Maldives (`m`) and East (`e`).
+
+        p.note The term "region" is used over "area" becausing using the latter would confound the `a` subscript which is also used for age.
+
+
+section
+    h2#numbers Numbers
+
+    p.equation
+        `N_{r,a,s} = sum_{dot(r) in {w,m,e},dot(s)=0...S}( dot(N)_{dot(r),a,dot(s)} G_{dot(s),s} M_{dot(r),r} S )`
+
+section
+    h2#recruitment Recruitment
+
+    p.note
+        Currently, recruitment is pooled across all areas and divided equally. This could be changed via a recruitment
+        dispersal matrix.
+
+
+section
+    h2#natural-mortality Natural mortality
+
+    p.equation `S = e^-rho`
+
+    p.note Natural mortality could be vary by region and or age.
+
+
