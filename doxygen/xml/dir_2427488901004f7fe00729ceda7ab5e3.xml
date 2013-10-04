@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="dir_2427488901004f7fe00729ceda7ab5e3" kind="dir">
+    <compoundname>estimation</compoundname>
+    <innerdir refid="dir_0f91099102747f00b86bff4a1d2b0163">mcmc</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/"/>
+  </compounddef>
+</doxygen>

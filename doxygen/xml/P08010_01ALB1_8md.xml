@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="P08010_01ALB1_8md" kind="file">
+    <compoundname>P08010 ALB1.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal">Title:<sp/>P08010:<sp/>Relative<sp/>abundance<sp/>of<sp/>troll-caught<sp/>albacore</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">Principal<sp/>Investigator:</highlight></codeline>
+<codeline lineno="6"><highlight class="normal">Terese<sp/>Kendrick</highlight></codeline>
+<codeline lineno="7"><highlight class="normal">Researchers:</highlight></codeline>
+<codeline lineno="8"><highlight class="normal">Nokome<sp/>Bentley</highlight></codeline>
+<codeline lineno="9"><highlight class="normal">Adam<sp/>Langley</highlight></codeline>
+<codeline lineno="10"><highlight class="normal">Status:</highlight></codeline>
+<codeline lineno="11"><highlight class="normal">Completed</highlight></codeline>
+<codeline lineno="12"><highlight class="normal">Trophia<sp/>has<sp/>been<sp/>contracted<sp/>by<sp/>the<sp/>New<sp/>Zealand<sp/>Ministry<sp/>of<sp/>Fisheries<sp/>(MFish)<sp/>to<sp/>determine<sp/>the<sp/>relative<sp/>abundance<sp/>of<sp/>juvenile<sp/>albacore<sp/>(Thunnus<sp/>alalunga)<sp/>in<sp/>New<sp/>Zealand<sp/>fisheries<sp/>waters.<sp/>.<sp/>The<sp/>specific<sp/>objectives<sp/>for<sp/>this<sp/>project<sp/>include:</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal">1.<sp/><sp/>To<sp/>update<sp/>standardised<sp/>CPUE<sp/>for<sp/>the<sp/>west<sp/>coast<sp/>albacore<sp/>troll<sp/>fishery<sp/>using<sp/>data<sp/>up<sp/>to<sp/>the<sp/>end<sp/>of<sp/>the<sp/>2007-08<sp/>fishing<sp/><ref refid="namespaceIOSKJ_1a3b0e8207040c0b0617bab01f6f23cb7d" kindref="member">year</ref>.</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal">Albacore<sp/>caught<sp/>by<sp/>troll<sp/>in<sp/>New<sp/>Zealand<sp/>waters<sp/>are<sp/>juveniles<sp/>of<sp/>a<sp/>single<sp/>South<sp/>Pacific<sp/>Ocean<sp/>stock<sp/>that<sp/>ranges<sp/>from<sp/>the<sp/>equator<sp/>to<sp/>about<sp/>45oS.<sp/><sp/>These<sp/>small<sp/>fish<sp/>(about<sp/>5kg)<sp/>are<sp/>available<sp/>to<sp/>troll<sp/>in<sp/>the<sp/>New<sp/>Zealand<sp/>EEZ<sp/>mainly<sp/>off<sp/>the<sp/>west<sp/>coast<sp/>of<sp/>the<sp/>North<sp/>and<sp/>South<sp/>Islands<sp/>during<sp/>the<sp/>summer<sp/>months<sp/>and<sp/>provide<sp/>some<sp/>of<sp/>the<sp/>only<sp/>information<sp/>on<sp/>recruitment<sp/>to<sp/>the<sp/>wider<sp/>South<sp/>Pacific<sp/>stock.</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="18"><highlight class="normal">New<sp/>Zealand<sp/>has<sp/>been<sp/>undertaking<sp/>annual<sp/>catch<sp/>sampling<sp/>of<sp/>the<sp/>troll<sp/>fishery<sp/>since<sp/>1996/97<sp/>and<sp/>while<sp/>that<sp/>programme<sp/>is<sp/>useful<sp/>for<sp/>evaluating<sp/>relative<sp/>strength<sp/>of<sp/>the<sp/>three<sp/>cohorts<sp/>commonly<sp/>present,<sp/>it<sp/>is<sp/>less<sp/>useful<sp/>for<sp/>estimating<sp/>longer<sp/>term<sp/>trends<sp/>in<sp/>recruitment<sp/>without<sp/>reference<sp/>to<sp/>some<sp/>measure<sp/>of<sp/>relative<sp/>abundance.<sp/><sp/></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="20"><highlight class="normal">Availability<sp/>of<sp/>juvenile<sp/>albacore<sp/>to<sp/>this<sp/>fishery<sp/>will<sp/>depend<sp/>on<sp/>many<sp/>factors<sp/>both<sp/>within<sp/>and<sp/>outside<sp/>of<sp/>the<sp/>New<sp/>Zealand<sp/>EEZ<sp/>including<sp/>wider<sp/>ecological<sp/>effects<sp/>that<sp/>would<sp/>be<sp/>confounded<sp/>with<sp/><ref refid="namespaceIOSKJ_1a3b0e8207040c0b0617bab01f6f23cb7d" kindref="member">year</ref><sp/>effect<sp/>in<sp/>any<sp/>standardised<sp/>analysis<sp/>of<sp/>abundance<sp/>given<sp/>the<sp/>small<sp/>spatial<sp/>and<sp/>temporal<sp/>window<sp/>in<sp/>which<sp/>the<sp/>New<sp/>Zealand<sp/>data<sp/>are<sp/>collected.</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="22"><highlight class="normal">Within<sp/>the<sp/>New<sp/>Zealand<sp/>EEZ,<sp/>catch<sp/>rates<sp/>are<sp/>determined<sp/>by<sp/>the<sp/>ability<sp/>of<sp/><ref refid="namespacesettings_1af01f7bd57cf8d5e8ff4cf2030661c66d" kindref="member">vessels</ref><sp/>to<sp/>follow<sp/>the<sp/>migratory<sp/>patterns<sp/>of<sp/>albacore,<sp/>and<sp/>their<sp/>ability<sp/>to<sp/>expend<sp/>effective<sp/>effort,<sp/>that<sp/>is,<sp/>coincident<sp/>with<sp/>the<sp/>habitat<sp/>preferences<sp/>(temperature,<sp/>depth<sp/>etc.)<sp/>of<sp/>juvenile<sp/>albacore.<sp/>It<sp/>is<sp/>not<sp/>surprising<sp/>if<sp/>there<sp/>is<sp/>little<sp/>contrast<sp/>in<sp/>the<sp/>environmental<sp/>variables<sp/>associated<sp/>with<sp/>fishing.<sp/>As<sp/>such,<sp/>the<sp/>emphasis<sp/>of<sp/>standardisation<sp/>should<sp/>be<sp/>on<sp/>accounting<sp/>for<sp/>any<sp/>systematic<sp/>changes<sp/>in<sp/>fishing<sp/>practice<sp/>that<sp/>might<sp/>mask<sp/>the<sp/>signal<sp/>of<sp/>availability<sp/>of<sp/>the<sp/>stock<sp/>to<sp/>NZ<sp/>waters.</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="25"><highlight class="normal">This<sp/>work<sp/>is<sp/>funded<sp/>by<sp/>MFish<sp/>project<sp/>ALB2008/02</highlight></codeline>
+    </programlisting>
+    <location file="/home/nbentley/Trophia/Code/www/src/projects/P08010 ALB1.md"/>
+  </compounddef>
+</doxygen>

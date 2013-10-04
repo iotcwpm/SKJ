@@ -1,0 +1,190 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="classtangagroomer_1_1checks__fishing__event_1_1FEEFO" kind="class" prot="public">
+    <compoundname>tangagroomer::checks_fishing_event::FEEFO</compoundname>
+    <basecompoundref refid="classtangagroomer_1_1checks__fishing__event_1_1FE" prot="public" virt="non-virtual">tangagroomer.checks_fishing_event.FE</basecompoundref>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classtangagroomer_1_1checks__fishing__event_1_1FEEFO_1a28efd3df847c3b89f6a09d560098d9bf" prot="public" static="yes" mutable="no">
+        <type>string</type>
+        <definition>string tangagroomer.checks_fishing_event.FEEFO::brief</definition>
+        <argsstring></argsstring>
+        <name>brief</name>
+        <initializer>= &apos;Outliers for effort fields&apos;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_fishing_event.py" line="288" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_fishing_event.py" bodystart="288" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtangagroomer_1_1checks__fishing__event_1_1FEEFO_1a0e968b40008b5b218ed701af85ca911c" prot="public" static="yes" mutable="no">
+        <type>string</type>
+        <definition>string tangagroomer.checks_fishing_event.FEEFO::desc</definition>
+        <argsstring></argsstring>
+        <name>desc</name>
+        <initializer>= &apos;&apos;&apos;
+        (Starr D.2.4): &quot;Operate grooming procedure on effort fields by method of capture and form type to truncate outlier values.&quot;
+&apos;&apos;&apos;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_fishing_event.py" line="289" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_fishing_event.py" bodystart="289" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtangagroomer_1_1checks__fishing__event_1_1FEEFO_1aaadf306a40ea23cf1b05b46457893168" prot="public" static="yes" mutable="no">
+        <type>string</type>
+        <definition>string tangagroomer.checks_fishing_event.FEEFO::column</definition>
+        <argsstring></argsstring>
+        <name>column</name>
+        <initializer>= &apos;various&apos;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_fishing_event.py" line="292" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_fishing_event.py" bodystart="292" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtangagroomer_1_1checks__fishing__event_1_1FEEFO_1af86e60824600d7c14865a8e634f23533" prot="public" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int tangagroomer.checks_fishing_event.FEEFO::events</definition>
+        <argsstring></argsstring>
+        <name>events</name>
+        <initializer>= 10000</initializer>
+        <briefdescription>
+<para>The minimum number of events that a primary_method/form_type must have to be considered. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_fishing_event.py" line="294" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_fishing_event.py" bodystart="294" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtangagroomer_1_1checks__fishing__event_1_1FEEFO_1a422dd26b104b00d7cb95a8b0d4395752" prot="public" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int tangagroomer.checks_fishing_event.FEEFO::notnulls</definition>
+        <argsstring></argsstring>
+        <name>notnulls</name>
+        <initializer>= 80</initializer>
+        <briefdescription>
+<para>The percentage of events where the field is not null that a primary_method/form_type must have to be considered. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_fishing_event.py" line="296" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_fishing_event.py" bodystart="296" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtangagroomer_1_1checks__fishing__event_1_1FEEFO_1ac90088e580b75ffdc8fcad545bf55590" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def tangagroomer.checks_fishing_event.FEEFO.do</definition>
+        <argsstring></argsstring>
+        <name>do</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_fishing_event.py" line="298" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_fishing_event.py" bodystart="298" bodyend="433"/>
+      </memberdef>
+      <memberdef kind="function" id="classtangagroomer_1_1checks__fishing__event_1_1FEEFO_1aa50d3b9dd9b0abd6ff8e9ad67a356de2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def tangagroomer.checks_fishing_event.FEEFO.summarise</definition>
+        <argsstring></argsstring>
+        <name>summarise</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_fishing_event.py" line="434" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_fishing_event.py" bodystart="434" bodyend="488"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="128">
+        <label>tangagroomer.checks_fishing_event.FE</label>
+        <link refid="classtangagroomer_1_1checks__fishing__event_1_1FE"/>
+        <childnode refid="129" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="127">
+        <label>tangagroomer.checks_fishing_event.FEEFO</label>
+        <link refid="classtangagroomer_1_1checks__fishing__event_1_1FEEFO"/>
+        <childnode refid="128" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="129">
+        <label>tangagroomer.check.Check</label>
+        <link refid="classtangagroomer_1_1check_1_1Check"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="133">
+        <label>string</label>
+      </node>
+      <node id="131">
+        <label>tangagroomer.checks_fishing_event.FE</label>
+        <link refid="classtangagroomer_1_1checks__fishing__event_1_1FE"/>
+        <childnode refid="132" relation="public-inheritance">
+        </childnode>
+        <childnode refid="133" relation="usage">
+          <edgelabel>table</edgelabel>
+        </childnode>
+      </node>
+      <node id="130">
+        <label>tangagroomer.checks_fishing_event.FEEFO</label>
+        <link refid="classtangagroomer_1_1checks__fishing__event_1_1FEEFO"/>
+        <childnode refid="131" relation="public-inheritance">
+        </childnode>
+        <childnode refid="133" relation="usage">
+          <edgelabel>desc</edgelabel>
+          <edgelabel>column</edgelabel>
+          <edgelabel>brief</edgelabel>
+        </childnode>
+      </node>
+      <node id="132">
+        <label>tangagroomer.check.Check</label>
+        <link refid="classtangagroomer_1_1check_1_1Check"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_fishing_event.py" line="287" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_fishing_event.py" bodystart="287" bodyend="488"/>
+    <listofallmembers>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a36e4525d47865671846c9a0219a2bcb2" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FEEFO</scope><name>apply</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1ac9a962f590f51d6d50bd81c6afee81c8" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FEEFO</scope><name>applyAll</name></member>
+      <member refid="classtangagroomer_1_1checks__fishing__event_1_1FEEFO_1a28efd3df847c3b89f6a09d560098d9bf" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FEEFO</scope><name>brief</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a58991e0dd0e97e9578396e9048e89842" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FEEFO</scope><name>change</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a73732d1d3f3cde589eec2c33c6867557" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FEEFO</scope><name>clause</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1aee237860ccf5830b720da9e19b641cda" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FEEFO</scope><name>code</name></member>
+      <member refid="classtangagroomer_1_1checks__fishing__event_1_1FEEFO_1aaadf306a40ea23cf1b05b46457893168" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FEEFO</scope><name>column</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a1c68e6bbd01a5b9dbe834a1e2da92c3b" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FEEFO</scope><name>dataset</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a48bb57fdbd589dbef0a23128cdf85b41" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FEEFO</scope><name>db</name></member>
+      <member refid="classtangagroomer_1_1checks__fishing__event_1_1FEEFO_1a0e968b40008b5b218ed701af85ca911c" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FEEFO</scope><name>desc</name></member>
+      <member refid="classtangagroomer_1_1checks__fishing__event_1_1FEEFO_1ac90088e580b75ffdc8fcad545bf55590" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FEEFO</scope><name>do</name></member>
+      <member refid="classtangagroomer_1_1checks__fishing__event_1_1FEEFO_1af86e60824600d7c14865a8e634f23533" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FEEFO</scope><name>events</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1ae4bab42cb9c9f2f8388c7310b5166458" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FEEFO</scope><name>filename</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1aa1f73b4e49f59491ee3ed5ecf126b524" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FEEFO</scope><name>fishing_years</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a815714fcb0ead30679fca7e82ede9294" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FEEFO</scope><name>flag</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a9398218abb4e0bbfcb5813da99b707d7" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FEEFO</scope><name>histogram</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a248c19018845f81d7afa5b7c2a78fba0" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FEEFO</scope><name>List</name></member>
+      <member refid="classtangagroomer_1_1checks__fishing__event_1_1FEEFO_1a422dd26b104b00d7cb95a8b0d4395752" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FEEFO</scope><name>notnulls</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a4a7bd550d553a6ef8432a726847486c3" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FEEFO</scope><name>quantiles</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1aa8ccd798cee5d3e61dc783cbf501352e" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FEEFO</scope><name>report</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a3b5976b1ad785be57e0c5a1a1ded9060" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FEEFO</scope><name>scatterplot</name></member>
+      <member refid="classtangagroomer_1_1checks__fishing__event_1_1FEEFO_1aa50d3b9dd9b0abd6ff8e9ad67a356de2" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FEEFO</scope><name>summarise</name></member>
+      <member refid="classtangagroomer_1_1checks__fishing__event_1_1FE_1a452f1f1132d5f246faffb072a452c9f2" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FEEFO</scope><name>table</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a76dc47c04b683cacf202468e1c8fc7ad" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FEEFO</scope><name>value</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a2e347e6485a4c668a629ad4dc021d4d6" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FEEFO</scope><name>view</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1ad733559ce56183efd768b55ffbce3274" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FEEFO</scope><name>viewAll</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a1f6a7df7df2a85c427a9bf618cb121f9" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FEEFO</scope><name>visible</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

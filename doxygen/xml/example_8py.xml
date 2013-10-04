@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="example_8py" kind="file">
+    <compoundname>example.py</compoundname>
+    <innernamespace refid="namespacetangagroomer_1_1example">tangagroomer::example</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1" refid="namespacetangagroomer_1_1example" refkind="compound"><highlight class="keyword">import</highlight><highlight class="normal"><sp/>sys;<sp/>sys.path.append(</highlight><highlight class="stringliteral">&apos;/Trophia/Tanga/Groomer/&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">from</highlight><highlight class="normal"><sp/><ref refid="namespacetangagroomer_1_1dataset" kindref="compound">tangagroomer.dataset</ref><sp/></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>Dataset</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">dataset<sp/>=<sp/><ref refid="classtangagroomer_1_1dataset_1_1Dataset" kindref="compound">Dataset</ref>(</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>client<sp/>=<sp/></highlight><highlight class="stringliteral">&apos;New<sp/>Zealand<sp/>Ministry<sp/>of<sp/>Fisheries&apos;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>project<sp/>=<sp/></highlight><highlight class="stringliteral">&apos;INS2009/03<sp/>:<sp/>Characterization<sp/>of<sp/>FMA<sp/>2<sp/>fisheries&apos;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>begin<sp/>=<sp/></highlight><highlight class="stringliteral">&apos;01<sp/>Oct<sp/>1989&apos;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>end<sp/>=<sp/></highlight><highlight class="stringliteral">&apos;01<sp/>Oct<sp/>2009&apos;</highlight><highlight class="normal">,</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>species<sp/>=<sp/>[</highlight><highlight class="stringliteral">&apos;BNS&apos;</highlight><highlight class="normal">],</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fishstocks<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&apos;BNS&apos;</highlight><highlight class="normal">:[</highlight><highlight class="stringliteral">&apos;BNS2&apos;</highlight><highlight class="normal">],</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>},</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>statareas<sp/>=<sp/>[</highlight><highlight class="stringliteral">&apos;%03d&apos;</highlight><highlight class="normal">%stat<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>stat<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>range(11,20)+range(201,207)],</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>methods<sp/>=<sp/>[],</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>targets<sp/>=<sp/>[]</highlight></codeline>
+<codeline lineno="18"><highlight class="normal">)</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">#dataset.prerequest()</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">#dataset.request()</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal">dataset.load()</highlight></codeline>
+<codeline lineno="22"><highlight class="normal">dataset.groom()</highlight></codeline>
+<codeline lineno="23"><highlight class="normal">dataset.allocate()</highlight></codeline>
+<codeline lineno="24"><highlight class="normal">dataset.augment()</highlight></codeline>
+<codeline lineno="25"><highlight class="normal">dataset.simplify()</highlight></codeline>
+<codeline lineno="26"><highlight class="normal">dataset.summarize()</highlight></codeline>
+    </programlisting>
+    <location file="/home/nbentley/Trophia/Code/tangagroomer/example.py"/>
+  </compounddef>
+</doxygen>

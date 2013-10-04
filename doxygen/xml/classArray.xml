@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="classArray" kind="class" prot="public">
+    <compoundname>Array</compoundname>
+    <derivedcompoundref refid="classFisl_1_1Population_1_1Models_1_1Aged" prot="public" virt="non-virtual">Fisl::Population::Models::Aged&lt; ages, Real, Cached&lt; VonBert, ages &gt;, Cached&lt; Power, ages &gt;, Cached&lt; Logistic, ages &gt;, int, Rate &gt;</derivedcompoundref>
+    <includes refid="array_8hpp" local="no">array.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>class Type</type>
+        <defval>double</defval>
+      </param>
+      <param>
+        <type>int</type>
+        <declname>Dimension1</declname>
+        <defname>Dimension1</defname>
+        <defval>0</defval>
+      </param>
+      <param>
+        <type>int</type>
+        <declname>Dimension2</declname>
+        <defname>Dimension2</defname>
+        <defval>0</defval>
+      </param>
+      <param>
+        <type>int</type>
+        <declname>Dimension3</declname>
+        <defname>Dimension3</defname>
+        <defval>0</defval>
+      </param>
+      <param>
+        <type>int</type>
+        <declname>Dimension4</declname>
+        <defname>Dimension4</defname>
+        <defval>0</defval>
+      </param>
+      <param>
+        <type>int</type>
+        <declname>Dimension5</declname>
+        <defname>Dimension5</defname>
+        <defval>0</defval>
+      </param>
+    </templateparamlist>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="8">
+        <label>Array&lt; Type, Dimension1, Dimension2, Dimension3, Dimension4, Dimension5 &gt;</label>
+        <link refid="classArray"/>
+      </node>
+      <node id="9">
+        <label>Aged&lt; ages, Real, Cached&lt; VonBert, ages &gt;, Cached&lt; Power, ages &gt;, Cached&lt; Logistic, ages &gt;, int, Rate &gt;</label>
+        <link refid="classFisl_1_1Population_1_1Models_1_1Aged"/>
+        <childnode refid="8" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/array.hpp" line="8" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/array.hpp" bodystart="8" bodyend="-1"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="structFisl_1_1Population_1_1Recruitment_1_1Priors_1_1SteepnessHe2006_1_1Parameters" kind="struct" prot="public">
+    <compoundname>Fisl::Population::Recruitment::Priors::SteepnessHe2006::Parameters</compoundname>
+    <includes refid="steepness-he-others-2006_8hpp" local="no">steepness-he-others-2006.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structFisl_1_1Population_1_1Recruitment_1_1Priors_1_1SteepnessHe2006_1_1Parameters_1a203eae7d4cd20a723cb95e22fb52a861" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Fisl::Population::Recruitment::Priors::SteepnessHe2006::Parameters::Omega1</definition>
+        <argsstring></argsstring>
+        <name>Omega1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/priors/steepness-he-others-2006.hpp" line="23" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/priors/steepness-he-others-2006.hpp" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structFisl_1_1Population_1_1Recruitment_1_1Priors_1_1SteepnessHe2006_1_1Parameters_1a04cc1d78e7ebcf68a3360a99674e7ee1" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Fisl::Population::Recruitment::Priors::SteepnessHe2006::Parameters::Omega2</definition>
+        <argsstring></argsstring>
+        <name>Omega2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/priors/steepness-he-others-2006.hpp" line="24" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/priors/steepness-he-others-2006.hpp" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structFisl_1_1Population_1_1Recruitment_1_1Priors_1_1SteepnessHe2006_1_1Parameters_1ae26faf18d1cfce14448a0655054f8bdc" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Fisl::Population::Recruitment::Priors::SteepnessHe2006::Parameters::Omega3</definition>
+        <argsstring></argsstring>
+        <name>Omega3</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/priors/steepness-he-others-2006.hpp" line="25" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/priors/steepness-he-others-2006.hpp" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/priors/steepness-he-others-2006.hpp" line="22" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/priors/steepness-he-others-2006.hpp" bodystart="22" bodyend="26"/>
+    <listofallmembers>
+      <member refid="structFisl_1_1Population_1_1Recruitment_1_1Priors_1_1SteepnessHe2006_1_1Parameters_1a203eae7d4cd20a723cb95e22fb52a861" prot="public" virt="non-virtual"><scope>Fisl::Population::Recruitment::Priors::SteepnessHe2006::Parameters</scope><name>Omega1</name></member>
+      <member refid="structFisl_1_1Population_1_1Recruitment_1_1Priors_1_1SteepnessHe2006_1_1Parameters_1a04cc1d78e7ebcf68a3360a99674e7ee1" prot="public" virt="non-virtual"><scope>Fisl::Population::Recruitment::Priors::SteepnessHe2006::Parameters</scope><name>Omega2</name></member>
+      <member refid="structFisl_1_1Population_1_1Recruitment_1_1Priors_1_1SteepnessHe2006_1_1Parameters_1ae26faf18d1cfce14448a0655054f8bdc" prot="public" virt="non-virtual"><scope>Fisl::Population::Recruitment::Priors::SteepnessHe2006::Parameters</scope><name>Omega3</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

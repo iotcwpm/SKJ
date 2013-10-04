@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="dir_8430ca4899dee1a404f32a51c4160368" kind="dir">
+    <compoundname>models</compoundname>
+    <innerfile refid="model_8cxx">model.cxx</innerfile>
+    <innerfile refid="model_8hpp">model.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/models/"/>
+  </compounddef>
+</doxygen>

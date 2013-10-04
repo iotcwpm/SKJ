@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="dir_c674041edfb5337c1b568c9c4f1948c4" kind="dir">
+    <compoundname>recruitment</compoundname>
+    <innerdir refid="dir_a788e26dc2451b2fb2391d4395de9966">priors</innerdir>
+    <innerfile refid="beverton-holt_8cxx">beverton-holt.cxx</innerfile>
+    <innerfile refid="beverton-holt_8hpp">beverton-holt.hpp</innerfile>
+    <innerfile refid="stochastic_8hpp">stochastic.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/"/>
+  </compounddef>
+</doxygen>

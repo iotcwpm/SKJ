@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="namespaceFisl_1_1Monitoring" kind="namespace">
+    <compoundname>Fisl::Monitoring</compoundname>
+    <innernamespace refid="namespaceFisl_1_1Monitoring_1_1Composition">Fisl::Monitoring::Composition</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/monitoring/composition/composition.hpp" line="4"/>
+  </compounddef>
+</doxygen>

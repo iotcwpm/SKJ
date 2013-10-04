@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="dir_8700b48f3a49f4fe7baa102f2f16a1f3" kind="dir">
+    <compoundname>population</compoundname>
+    <innerdir refid="dir_082b94fc48075437a420b8f783a80677">growth</innerdir>
+    <innerdir refid="dir_4e22db0b6edbd74246077a9f2030bed2">maturity</innerdir>
+    <innerdir refid="dir_8430ca4899dee1a404f32a51c4160368">models</innerdir>
+    <innerdir refid="dir_f05106eddfe5cc8e44d55f6218eedf40">morphometry</innerdir>
+    <innerdir refid="dir_08f75512ae9cce54882ef17faa2838d3">mortality</innerdir>
+    <innerdir refid="dir_c674041edfb5337c1b568c9c4f1948c4">recruitment</innerdir>
+    <innerdir refid="dir_211dc3525cd838aee8f895718c493ca8">structure</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/"/>
+  </compounddef>
+</doxygen>

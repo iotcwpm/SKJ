@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="classtangagroomer_1_1checks__landing_1_1LADUP" kind="class" prot="public">
+    <compoundname>tangagroomer::checks_landing::LADUP</compoundname>
+    <basecompoundref refid="classtangagroomer_1_1checks__landing_1_1LA" prot="public" virt="non-virtual">tangagroomer.checks_landing.LA</basecompoundref>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classtangagroomer_1_1checks__landing_1_1LADUP_1a7bb93e517fe34ba29019406a4267c58b" prot="public" static="yes" mutable="no">
+        <type></type>
+        <definition>tangagroomer.checks_landing.LADUP::drop</definition>
+        <argsstring></argsstring>
+        <name>drop</name>
+        <initializer>= True</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" line="284" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" bodystart="284" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtangagroomer_1_1checks__landing_1_1LADUP_1a50c73638fd460fbc3093f0f7b2b8a35a" prot="public" static="yes" mutable="no">
+        <type>string</type>
+        <definition>string tangagroomer.checks_landing.LADUP::brief</definition>
+        <argsstring></argsstring>
+        <name>brief</name>
+        <initializer>= &apos;Landing duplicated on CLR form&apos;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" line="285" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" bodystart="285" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtangagroomer_1_1checks__landing_1_1LADUP_1a0d8b22858b09a3b2c8e7f6e5c75cc4bf" prot="public" static="yes" mutable="no">
+        <type>list</type>
+        <definition>list tangagroomer.checks_landing.LADUP::columns</definition>
+        <argsstring></argsstring>
+        <name>columns</name>
+        <initializer>= [&apos;vessel_key&apos;,&apos;landing_datetime&apos;,&apos;fishstock_code&apos;,&apos;state_code&apos;,&apos;destination_type&apos;,&apos;unit_type&apos;,&apos;unit_num&apos;,&apos;unit_weight&apos;,&apos;green_weight&apos;]</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" line="286" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" bodystart="286" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtangagroomer_1_1checks__landing_1_1LADUP_1ad93bcbe85585519a87618d1227f0607c" prot="public" static="yes" mutable="no">
+        <type>string</type>
+        <definition>string tangagroomer.checks_landing.LADUP::desc</definition>
+        <argsstring></argsstring>
+        <name>desc</name>
+        <initializer>= &apos;&apos;&apos;(Starr D.1.2): &quot;Look for duplicate landings on multiple (CELR and CLR) forms. Keep only a single version if determined that the records are duplicated&quot;
+If the following fields are duplicated across form types then <ref refid="classtangagroomer_1_1checks__landing_1_1LADUP_1a7bb93e517fe34ba29019406a4267c58b" kindref="member">drop</ref> all but the CEL record: %s  Do this after state_code, destination_type etc have been fixed up.&apos;&apos;&apos;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" line="287" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" bodystart="287" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtangagroomer_1_1checks__landing_1_1LADUP_1a43c428a40479213d29f3c4d4386500c9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def tangagroomer.checks_landing.LADUP.do</definition>
+        <argsstring></argsstring>
+        <name>do</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" line="289" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" bodystart="289" bodyend="297"/>
+      </memberdef>
+      <memberdef kind="function" id="classtangagroomer_1_1checks__landing_1_1LADUP_1ac0cf780b4ec3159a198a2c31cc578964" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def tangagroomer.checks_landing.LADUP.summarise</definition>
+        <argsstring></argsstring>
+        <name>summarise</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" line="298" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" bodystart="298" bodyend="305"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="372">
+        <label>tangagroomer.checks_landing.LA</label>
+        <link refid="classtangagroomer_1_1checks__landing_1_1LA"/>
+        <childnode refid="373" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="373">
+        <label>tangagroomer.check.Check</label>
+        <link refid="classtangagroomer_1_1check_1_1Check"/>
+      </node>
+      <node id="371">
+        <label>tangagroomer.checks_landing.LADUP</label>
+        <link refid="classtangagroomer_1_1checks__landing_1_1LADUP"/>
+        <childnode refid="372" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="377">
+        <label>string</label>
+      </node>
+      <node id="375">
+        <label>tangagroomer.checks_landing.LA</label>
+        <link refid="classtangagroomer_1_1checks__landing_1_1LA"/>
+        <childnode refid="376" relation="public-inheritance">
+        </childnode>
+        <childnode refid="377" relation="usage">
+          <edgelabel>table</edgelabel>
+        </childnode>
+      </node>
+      <node id="376">
+        <label>tangagroomer.check.Check</label>
+        <link refid="classtangagroomer_1_1check_1_1Check"/>
+      </node>
+      <node id="374">
+        <label>tangagroomer.checks_landing.LADUP</label>
+        <link refid="classtangagroomer_1_1checks__landing_1_1LADUP"/>
+        <childnode refid="375" relation="public-inheritance">
+        </childnode>
+        <childnode refid="377" relation="usage">
+          <edgelabel>desc</edgelabel>
+          <edgelabel>brief</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" line="283" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" bodystart="283" bodyend="307"/>
+    <listofallmembers>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a36e4525d47865671846c9a0219a2bcb2" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADUP</scope><name>apply</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1ac9a962f590f51d6d50bd81c6afee81c8" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADUP</scope><name>applyAll</name></member>
+      <member refid="classtangagroomer_1_1checks__landing_1_1LADUP_1a50c73638fd460fbc3093f0f7b2b8a35a" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADUP</scope><name>brief</name></member>
+      <member refid="classtangagroomer_1_1checks__landing_1_1LA_1a88b64a2ce2eb032755e2a29ae95128ba" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADUP</scope><name>change</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a73732d1d3f3cde589eec2c33c6867557" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADUP</scope><name>clause</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1aee237860ccf5830b720da9e19b641cda" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADUP</scope><name>code</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a7ffea959f622ed29351beace07624f80" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADUP</scope><name>column</name></member>
+      <member refid="classtangagroomer_1_1checks__landing_1_1LADUP_1a0d8b22858b09a3b2c8e7f6e5c75cc4bf" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADUP</scope><name>columns</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a1c68e6bbd01a5b9dbe834a1e2da92c3b" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADUP</scope><name>dataset</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a48bb57fdbd589dbef0a23128cdf85b41" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADUP</scope><name>db</name></member>
+      <member refid="classtangagroomer_1_1checks__landing_1_1LADUP_1ad93bcbe85585519a87618d1227f0607c" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADUP</scope><name>desc</name></member>
+      <member refid="classtangagroomer_1_1checks__landing_1_1LADUP_1a43c428a40479213d29f3c4d4386500c9" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADUP</scope><name>do</name></member>
+      <member refid="classtangagroomer_1_1checks__landing_1_1LADUP_1a7bb93e517fe34ba29019406a4267c58b" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADUP</scope><name>drop</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1ae4bab42cb9c9f2f8388c7310b5166458" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADUP</scope><name>filename</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1aa1f73b4e49f59491ee3ed5ecf126b524" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADUP</scope><name>fishing_years</name></member>
+      <member refid="classtangagroomer_1_1checks__landing_1_1LA_1a4407a779f4b33899cf036950aeb0117d" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADUP</scope><name>flag</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a9398218abb4e0bbfcb5813da99b707d7" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADUP</scope><name>histogram</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a248c19018845f81d7afa5b7c2a78fba0" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADUP</scope><name>List</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a4a7bd550d553a6ef8432a726847486c3" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADUP</scope><name>quantiles</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1aa8ccd798cee5d3e61dc783cbf501352e" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADUP</scope><name>report</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a3b5976b1ad785be57e0c5a1a1ded9060" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADUP</scope><name>scatterplot</name></member>
+      <member refid="classtangagroomer_1_1checks__landing_1_1LADUP_1ac0cf780b4ec3159a198a2c31cc578964" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADUP</scope><name>summarise</name></member>
+      <member refid="classtangagroomer_1_1checks__landing_1_1LA_1a1c2b29ff19d1c74615f05a20f6b5b7a5" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADUP</scope><name>table</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a76dc47c04b683cacf202468e1c8fc7ad" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADUP</scope><name>value</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a2e347e6485a4c668a629ad4dc021d4d6" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADUP</scope><name>view</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1ad733559ce56183efd768b55ffbce3274" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADUP</scope><name>viewAll</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a1f6a7df7df2a85c427a9bf618cb121f9" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADUP</scope><name>visible</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,155 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="classFisl_1_1Population_1_1Models_1_1Sexed" kind="class" prot="public">
+    <compoundname>Fisl::Population::Models::Sexed</compoundname>
+    <includes refid="model_8hpp" local="no">model.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>class</type>
+        <declname>Type</declname>
+        <defname>Type</defname>
+      </param>
+      <param>
+        <type>class</type>
+        <declname>Recruitment</declname>
+        <defname>Recruitment</defname>
+        <defval><ref refid="classFisl_1_1Population_1_1Recruitment_1_1BevertonHolt" kindref="compound">Population::Recruitment::BevertonHolt</ref></defval>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classFisl_1_1Population_1_1Models_1_1Sexed_1ac2039528a97f8640c4bfcd3bd1062b85" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Fisl::Population::Models::Sexed&lt; Type, Recruitment &gt;::proportion_</definition>
+        <argsstring></argsstring>
+        <name>proportion_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/models/model.hpp" line="89" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/models/model.hpp" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classFisl_1_1Population_1_1Models_1_1Sexed_1ac060ae7c4f8957553762434a1307e799" prot="public" static="no" mutable="no">
+        <type>Type</type>
+        <definition>Type Fisl::Population::Models::Sexed&lt; Type, Recruitment &gt;::males</definition>
+        <argsstring></argsstring>
+        <name>males</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/models/model.hpp" line="92" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/models/model.hpp" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classFisl_1_1Population_1_1Models_1_1Sexed_1a8f90ba66c36a7e586fc2789d3ecdbd71" prot="public" static="no" mutable="no">
+        <type>Type</type>
+        <definition>Type Fisl::Population::Models::Sexed&lt; Type, Recruitment &gt;::females</definition>
+        <argsstring></argsstring>
+        <name>females</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/models/model.hpp" line="93" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/models/model.hpp" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classFisl_1_1Population_1_1Models_1_1Sexed_1ae00995d828f776fab74c88564a43355a" prot="public" static="no" mutable="no">
+        <type>Recruitment</type>
+        <definition>Recruitment Fisl::Population::Models::Sexed&lt; Type, Recruitment &gt;::recruitment</definition>
+        <argsstring></argsstring>
+        <name>recruitment</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/models/model.hpp" line="95" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/models/model.hpp" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classFisl_1_1Population_1_1Models_1_1Sexed_1a5d56d1a9838bf2f639c51f0ecec6cce6" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Fisl::Population::Models::Sexed&lt; Type, Recruitment &gt;::recruits</definition>
+        <argsstring></argsstring>
+        <name>recruits</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/models/model.hpp" line="97" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/models/model.hpp" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classFisl_1_1Population_1_1Models_1_1Sexed_1ac9d099568339ea971e872905ab55b86e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Fisl::Population::Models::Sexed&lt; Type, Recruitment &gt;::proportion</definition>
+        <argsstring>(void) const </argsstring>
+        <name>proportion</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/models/model.hpp" line="99" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/models/model.hpp" bodystart="99" bodyend="101"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Population_1_1Models_1_1Sexed_1adf7d607c99f6bb55a58460561c96ccfb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classFisl_1_1Population_1_1Models_1_1Sexed" kindref="compound">Sexed</ref> &amp;</type>
+        <definition>Sexed&amp; Fisl::Population::Models::Sexed&lt; Type, Recruitment &gt;::proportion</definition>
+        <argsstring>(const double &amp;p)</argsstring>
+        <name>proportion</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/models/model.hpp" line="103" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/models/model.hpp" bodystart="103" bodyend="106"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Population_1_1Models_1_1Sexed_1a538d7eba6f5d865bb9c236a5c6013a2d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classFisl_1_1Population_1_1Models_1_1Sexed" kindref="compound">Sexed</ref> &amp;</type>
+        <definition>Sexed&amp; Fisl::Population::Models::Sexed&lt; Type, Recruitment &gt;::ageing</definition>
+        <argsstring>(void)</argsstring>
+        <name>ageing</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/models/model.hpp" line="108" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/models/model.hpp" bodystart="108" bodyend="114"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/models/model.hpp" line="87" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/models/model.hpp" bodystart="87" bodyend="115"/>
+    <listofallmembers>
+      <member refid="classFisl_1_1Population_1_1Models_1_1Sexed_1a538d7eba6f5d865bb9c236a5c6013a2d" prot="public" virt="non-virtual"><scope>Fisl::Population::Models::Sexed</scope><name>ageing</name></member>
+      <member refid="classFisl_1_1Population_1_1Models_1_1Sexed_1a8f90ba66c36a7e586fc2789d3ecdbd71" prot="public" virt="non-virtual"><scope>Fisl::Population::Models::Sexed</scope><name>females</name></member>
+      <member refid="classFisl_1_1Population_1_1Models_1_1Sexed_1ac060ae7c4f8957553762434a1307e799" prot="public" virt="non-virtual"><scope>Fisl::Population::Models::Sexed</scope><name>males</name></member>
+      <member refid="classFisl_1_1Population_1_1Models_1_1Sexed_1ac9d099568339ea971e872905ab55b86e" prot="public" virt="non-virtual"><scope>Fisl::Population::Models::Sexed</scope><name>proportion</name></member>
+      <member refid="classFisl_1_1Population_1_1Models_1_1Sexed_1adf7d607c99f6bb55a58460561c96ccfb" prot="public" virt="non-virtual"><scope>Fisl::Population::Models::Sexed</scope><name>proportion</name></member>
+      <member refid="classFisl_1_1Population_1_1Models_1_1Sexed_1ac2039528a97f8640c4bfcd3bd1062b85" prot="private" virt="non-virtual"><scope>Fisl::Population::Models::Sexed</scope><name>proportion_</name></member>
+      <member refid="classFisl_1_1Population_1_1Models_1_1Sexed_1ae00995d828f776fab74c88564a43355a" prot="public" virt="non-virtual"><scope>Fisl::Population::Models::Sexed</scope><name>recruitment</name></member>
+      <member refid="classFisl_1_1Population_1_1Models_1_1Sexed_1a5d56d1a9838bf2f639c51f0ecec6cce6" prot="public" virt="non-virtual"><scope>Fisl::Population::Models::Sexed</scope><name>recruits</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

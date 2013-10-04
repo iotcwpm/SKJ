@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="classFisl_1_1Management_1_1Procedures_1_1Evaluation" kind="class" prot="public">
+    <compoundname>Fisl::Management::Procedures::Evaluation</compoundname>
+    <derivedcompoundref refid="classMPE" prot="public" virt="non-virtual">MPE</derivedcompoundref>
+    <includes refid="evaluation_8hpp" local="no">evaluation.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>class</type>
+        <declname>Derived</declname>
+        <defname>Derived</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classFisl_1_1Management_1_1Procedures_1_1Evaluation_1a08cc12febb79bed4dd814ca7d8b268b8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int Fisl::Management::Procedures::Evaluation&lt; Derived &gt;::run</definition>
+        <argsstring>(void)</argsstring>
+        <name>run</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/management/procedures/evaluation.hpp" line="11" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/management/procedures/evaluation.hpp" bodystart="11" bodyend="16"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="40">
+        <label>MPE&lt; MPE &gt;</label>
+        <link refid="classMPE"/>
+        <childnode refid="39" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>Fisl::Management::Procedures::Evaluation&lt; Derived &gt;</label>
+        <link refid="classFisl_1_1Management_1_1Procedures_1_1Evaluation"/>
+      </node>
+    </inheritancegraph>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/management/procedures/evaluation.hpp" line="8" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/management/procedures/evaluation.hpp" bodystart="8" bodyend="17"/>
+    <listofallmembers>
+      <member refid="classFisl_1_1Management_1_1Procedures_1_1Evaluation_1a08cc12febb79bed4dd814ca7d8b268b8" prot="public" virt="non-virtual"><scope>Fisl::Management::Procedures::Evaluation</scope><name>run</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

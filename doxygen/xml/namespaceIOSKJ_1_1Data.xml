@@ -1,0 +1,169 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="namespaceIOSKJ_1_1Data" kind="namespace">
+    <compoundname>IOSKJ::Data</compoundname>
+    <innerclass refid="classIOSKJ_1_1Data_1_1NominalCatch" prot="public">IOSKJ::Data::NominalCatch</innerclass>
+    <innerclass refid="classIOSKJ_1_1Data_1_1MaldivePlCpue" prot="public">IOSKJ::Data::MaldivePlCpue</innerclass>
+    <innerclass refid="classIOSKJ_1_1Data_1_1WestPsCpue" prot="public">IOSKJ::Data::WestPsCpue</innerclass>
+    <innerclass refid="classIOSKJ_1_1Data_1_1SizeFrequency" prot="public">IOSKJ::Data::SizeFrequency</innerclass>
+    <innerclass refid="classIOSKJ_1_1Data_1_1ZEstimate" prot="public">IOSKJ::Data::ZEstimate</innerclass>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="namespaceIOSKJ_1_1Data_1a9cd81d06a7a948f143ca210a96d85819" prot="public" static="no" mutable="no">
+        <type>std::array&lt; <ref refid="classIOSKJ_1_1Data_1_1NominalCatch" kindref="compound">NominalCatch</ref>, 760 &gt;</type>
+        <definition>std::array&lt;NominalCatch,760&gt; IOSKJ::Data::NominalCatches</definition>
+        <argsstring></argsstring>
+        <name>NominalCatches</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/ioskj/data.hpp" line="25" column="1" bodyfile="/home/nbentley/Trophia/Code/ioskj/data.hpp" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceIOSKJ_1_1Data_1aea7fd6fab3c11094602cafe79f23a445" prot="public" static="no" mutable="no">
+        <type>std::array&lt; <ref refid="classIOSKJ_1_1Data_1_1MaldivePlCpue" kindref="compound">MaldivePlCpue</ref>, 32 &gt;</type>
+        <definition>std::array&lt;MaldivePlCpue,32&gt; IOSKJ::Data::MaldivePlCpues</definition>
+        <argsstring></argsstring>
+        <name>MaldivePlCpues</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/ioskj/data.hpp" line="41" column="1" bodyfile="/home/nbentley/Trophia/Code/ioskj/data.hpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceIOSKJ_1_1Data_1a008fb3bddc8e4ce50072bcb0178da6f9" prot="public" static="no" mutable="no">
+        <type>std::array&lt; <ref refid="classIOSKJ_1_1Data_1_1WestPsCpue" kindref="compound">WestPsCpue</ref>, 20 &gt;</type>
+        <definition>std::array&lt;WestPsCpue,20&gt; IOSKJ::Data::WestPsCpues</definition>
+        <argsstring></argsstring>
+        <name>WestPsCpues</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/ioskj/data.hpp" line="56" column="1" bodyfile="/home/nbentley/Trophia/Code/ioskj/data.hpp" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceIOSKJ_1_1Data_1a377f4ad39951f25db44ec73e11acd551" prot="public" static="no" mutable="no">
+        <type>std::array&lt; <ref refid="classIOSKJ_1_1Data_1_1SizeFrequency" kindref="compound">SizeFrequency</ref>, 531 &gt;</type>
+        <definition>std::array&lt;SizeFrequency,531&gt; IOSKJ::Data::SizeFrequencies</definition>
+        <argsstring></argsstring>
+        <name>SizeFrequencies</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/ioskj/data.hpp" line="79" column="1" bodyfile="/home/nbentley/Trophia/Code/ioskj/data.hpp" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="namespaceIOSKJ_1_1Data_1a5562d1caf3e797813ff3964c4b427b14" prot="public" static="no" mutable="no">
+        <type>std::array&lt; <ref refid="classIOSKJ_1_1Data_1_1ZEstimate" kindref="compound">ZEstimate</ref>, 16 &gt;</type>
+        <definition>std::array&lt;ZEstimate,16&gt; IOSKJ::Data::ZEstimates</definition>
+        <argsstring></argsstring>
+        <name>ZEstimates</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/ioskj/data.hpp" line="106" column="1" bodyfile="/home/nbentley/Trophia/Code/ioskj/data.hpp" bodystart="106" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespaceIOSKJ_1_1Data_1a611a3fc908eb0721b073c0aff8cefd18" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Series</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void IOSKJ::Data::read</definition>
+        <argsstring>(Series &amp;series, const std::string &amp;filename)</argsstring>
+        <name>read</name>
+        <param>
+          <type>Series &amp;</type>
+          <declname>series</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/ioskj/data.hpp" line="111" column="1" bodyfile="/home/nbentley/Trophia/Code/ioskj/data.hpp" bodystart="111" bodyend="116"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceIOSKJ_1_1Data_1a39856bcb85ebbe5db047c1b8cca8c20e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class Series</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void IOSKJ::Data::write</definition>
+        <argsstring>(Series &amp;series, const std::string &amp;filename)</argsstring>
+        <name>write</name>
+        <param>
+          <type>Series &amp;</type>
+          <declname>series</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>filename</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/ioskj/data.hpp" line="121" column="1" bodyfile="/home/nbentley/Trophia/Code/ioskj/data.hpp" bodystart="121" bodyend="127"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceIOSKJ_1_1Data_1a2bd9c19db31c625352c778823256518a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void IOSKJ::Data::startup</definition>
+        <argsstring>(void)</argsstring>
+        <name>startup</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/ioskj/data.hpp" line="129" column="1" bodyfile="/home/nbentley/Trophia/Code/ioskj/data.hpp" bodystart="129" bodyend="135"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceIOSKJ_1_1Data_1a45f1d4042a7109b396d81608ed40c8eb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void IOSKJ::Data::shutdown</definition>
+        <argsstring>(void)</argsstring>
+        <name>shutdown</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/ioskj/data.hpp" line="137" column="1" bodyfile="/home/nbentley/Trophia/Code/ioskj/data.hpp" bodystart="137" bodyend="143"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/nbentley/Trophia/Code/ioskj/data.hpp" line="7" column="1"/>
+  </compounddef>
+</doxygen>

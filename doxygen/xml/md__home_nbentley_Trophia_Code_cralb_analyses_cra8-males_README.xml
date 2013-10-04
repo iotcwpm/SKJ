@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="md__home_nbentley_Trophia_Code_cralb_analyses_cra8-males_README" kind="page">
+    <compoundname>md__home_nbentley_Trophia_Code_cralb_analyses_cra8-males_README</compoundname>
+    <title>Analysis of the proportion of males in CRA 8</title>
+    <detaileddescription>
+<para>This analysis was done i nresponse to the following email request from Dary Sykes, NZRLIC 2013-08-22: <verbatim>    Hi Nokome
+
+    We have received a request from the CRA 8 Management Committee for some additional analysis of CRA 8 Logbook data as follows:
+
+    Is it possible to get a calculation from the CRA 8 2012/13 logbook data of the amount of males kept (numbers of males retained) as a percentage of the total number of lobsters that were kept (numbers of males and females retained).
+
+    The Annual Summary shows the percentages of each sex that were caught.
+
+    The Committee notes that the percentage of males caught has dropped considerably over the last few years but an analysis of the percentage of males kept from the total number of lobsters kept may be quite different.
+
+    Are you able to run that query and get data back to me by early next week??
+
+    Daryl</verbatim> </para>    </detaileddescription>
+  </compounddef>
+</doxygen>

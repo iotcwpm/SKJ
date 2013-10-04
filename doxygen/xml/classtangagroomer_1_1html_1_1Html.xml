@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="classtangagroomer_1_1html_1_1Html" kind="class" prot="public">
+    <compoundname>tangagroomer::html::Html</compoundname>
+    <derivedcompoundref refid="classtangagroomer_1_1html_1_1FAR" prot="public" virt="non-virtual">tangagroomer.html.FAR</derivedcompoundref>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classtangagroomer_1_1html_1_1Html_1a28cce315977f1895ad6f446cb841e894" prot="public" static="yes" mutable="no">
+        <type>string</type>
+        <definition>string tangagroomer.html.Html::stylesheet</definition>
+        <argsstring></argsstring>
+        <name>stylesheet</name>
+        <initializer>= &apos;&apos;&apos;
+        body {
+                font: 11pt &quot;Times New Roman&quot;,Georgia,serif;
+                text-align: justify; 
+                width: 16cm;
+        }
+        p.title, h1, h2, h3, h4 {
+                font: 11pt Arial,sans-serif;
+                font-weight:bold;
+        }
+        p.caption {
+                font-weight:bold;
+                text-align:left;
+        }
+        table {
+                width:95%;
+        }
+        td {
+                font-size: 10pt;
+        }
+        table .left {
+                text-align:left;
+        }
+        table .right {
+                text-align:right;
+        }
+        table td {
+                border: 1px solid;
+        }
+&apos;&apos;&apos;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/html.py" line="64" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/html.py" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classtangagroomer_1_1html_1_1Html_1a9e7155d19d4a10a358303046350015b0" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>tangagroomer.html.Html::out</definition>
+        <argsstring></argsstring>
+        <name>out</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/html.py" line="96" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/html.py" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtangagroomer_1_1html_1_1Html_1af6e4ef583e0ac5d7f1a686901a363353" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def tangagroomer.html.Html.__init__</definition>
+        <argsstring></argsstring>
+        <name>__init__</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/html.py" line="95" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/html.py" bodystart="95" bodyend="100"/>
+      </memberdef>
+      <memberdef kind="function" id="classtangagroomer_1_1html_1_1Html_1a3d40b13eceb0b5e9061ec558e2ae8805" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def tangagroomer.html.Html.__del__</definition>
+        <argsstring></argsstring>
+        <name>__del__</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/html.py" line="101" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/html.py" bodystart="101" bodyend="104"/>
+      </memberdef>
+      <memberdef kind="function" id="classtangagroomer_1_1html_1_1Html_1a56a868174e1af53b99da50e9776a1dca" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def tangagroomer.html.Html.__iadd__</definition>
+        <argsstring></argsstring>
+        <name>__iadd__</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/html.py" line="105" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/html.py" bodystart="105" bodyend="109"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>Use a flushing file so that output is written to disk on the fly
+</verbatim> </para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="295">
+        <label>tangagroomer.html.Html</label>
+        <link refid="classtangagroomer_1_1html_1_1Html"/>
+      </node>
+      <node id="296">
+        <label>tangagroomer.html.FAR</label>
+        <link refid="classtangagroomer_1_1html_1_1FAR"/>
+        <childnode refid="295" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="298">
+        <label>string</label>
+      </node>
+      <node id="297">
+        <label>tangagroomer.html.Html</label>
+        <link refid="classtangagroomer_1_1html_1_1Html"/>
+        <childnode refid="298" relation="usage">
+          <edgelabel>stylesheet</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/nbentley/Trophia/Code/tangagroomer/html.py" line="60" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/html.py" bodystart="60" bodyend="111"/>
+    <listofallmembers>
+      <member refid="classtangagroomer_1_1html_1_1Html_1a3d40b13eceb0b5e9061ec558e2ae8805" prot="public" virt="non-virtual"><scope>tangagroomer::html::Html</scope><name>__del__</name></member>
+      <member refid="classtangagroomer_1_1html_1_1Html_1a56a868174e1af53b99da50e9776a1dca" prot="public" virt="non-virtual"><scope>tangagroomer::html::Html</scope><name>__iadd__</name></member>
+      <member refid="classtangagroomer_1_1html_1_1Html_1af6e4ef583e0ac5d7f1a686901a363353" prot="public" virt="non-virtual"><scope>tangagroomer::html::Html</scope><name>__init__</name></member>
+      <member refid="classtangagroomer_1_1html_1_1Html_1a9e7155d19d4a10a358303046350015b0" prot="public" virt="non-virtual"><scope>tangagroomer::html::Html</scope><name>out</name></member>
+      <member refid="classtangagroomer_1_1html_1_1Html_1a28cce315977f1895ad6f446cb841e894" prot="public" virt="non-virtual"><scope>tangagroomer::html::Html</scope><name>stylesheet</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="dir_65893ad187c327c6f4a5cec120d4766b" kind="dir">
+    <compoundname>monitoring</compoundname>
+    <innerdir refid="dir_58254c0cae06aeba5e9e143f0712301d">composition</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/monitoring/"/>
+  </compounddef>
+</doxygen>

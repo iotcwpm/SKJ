@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="classIndi_1_1Vessel" kind="class" prot="public">
+    <compoundname>Indi::Vessel</compoundname>
+    <includes refid="vessels_8hpp" local="no">vessels.hpp</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classIndi_1_1Vessel_1ac1faa4a1f7ea72640c4a57e91432d036" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Indi::Vessel::update</definition>
+        <argsstring>(void)</argsstring>
+        <name>update</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/indi/indi/vessels.hpp" line="10" column="1" bodyfile="/home/nbentley/Trophia/Code/indi/indi/vessels.hpp" bodystart="10" bodyend="11"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/nbentley/Trophia/Code/indi/indi/vessels.hpp" line="7" column="1" bodyfile="/home/nbentley/Trophia/Code/indi/indi/vessels.hpp" bodystart="7" bodyend="12"/>
+    <listofallmembers>
+      <member refid="classIndi_1_1Vessel_1ac1faa4a1f7ea72640c4a57e91432d036" prot="public" virt="non-virtual"><scope>Indi::Vessel</scope><name>update</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

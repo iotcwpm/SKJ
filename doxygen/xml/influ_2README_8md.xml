@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="influ_2README_8md" kind="file">
+    <compoundname>influ/README.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#<sp/>influ</highlight></codeline>
+<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>What<sp/>is<sp/>it?</highlight></codeline>
+<codeline lineno="4"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">A<sp/></highlight><highlight class="keyword">package<sp/></highlight><highlight class="normal">for<sp/>the<sp/>R<sp/>language<sp/>which<sp/>generates<sp/>step<sp/>plots,<sp/>influence<sp/>plots,<sp/>coefficient-distribution-influence<sp/>(CDI)<sp/>plots,<sp/>and<sp/>influence<sp/>metrics<sp/>for<sp/>linear<sp/>models</highlight></codeline>
+<codeline lineno="6"><highlight class="normal">as<sp/>described<sp/>in<sp/>the<sp/>paper<sp/>[Bentley,<sp/>N.,<sp/>Kendrick,<sp/>T.<sp/>H.,<sp/>Starr,<sp/>P.<sp/>J.,<sp/>&amp;<sp/>Breen,<sp/>P.<sp/>A.<sp/>(2011).<sp/>Influence<sp/>plots<sp/>and<sp/>metrics:<sp/>tools<sp/>for<sp/>better<sp/>understanding<sp/>fisheries<sp/>catch-per-unit-effort<sp/>standardisations.<sp/>ICES<sp/>Journal<sp/>of<sp/>Marine<sp/>Science,<sp/>69:<sp/>84-88.<sp/>doi:10.1093/icesjms/fsr174](http:</highlight><highlight class="comment">//icesjms.oxfordjournals.org/cgi/reprint/fsr174?</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal">ijkey=zZGx3RoK1zkxhaL&amp;keytype=ref)<sp/>(There<sp/>is<sp/>a<sp/>pre-print,<sp/>pre-review<sp/>version<sp/>[here](https:</highlight><highlight class="comment">//github.com/downloads/trophia/influ/Bentley%20et%20al%20%28preprint%29%20CPUE%20influence.pdf)<sp/>but<sp/>the<sp/>above<sp/>link<sp/>is<sp/>recommended<sp/>as<sp/>it<sp/>gives<sp/>full<sp/>access<sp/>to<sp/>the<sp/>final<sp/>version)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal">##<sp/>How<sp/>do<sp/>I<sp/>get<sp/>it?</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal">The<sp/>package<sp/>is<sp/>still<sp/>in<sp/>development.<sp/>A<sp/>beta<sp/>version<sp/>is<sp/>available<sp/>under<sp/>[Downloads](https:</highlight><highlight class="comment">//github.com/trophia/influ/downloads).<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal">Eventually<sp/>influ<sp/>will<sp/>be<sp/>submitted<sp/>to<sp/>the<sp/>[Comprehensive<sp/>R<sp/>Archive<sp/>Network](http:</highlight><highlight class="comment">//cran.r-project.org/)<sp/>for<sp/>direct<sp/>installation<sp/>via<sp/>the<sp/>`install.packages`<sp/>R<sp/>function.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal">##<sp/>How<sp/>do<sp/>I<sp/>use<sp/>it?</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal">We<sp/>recommend<sp/>looking<sp/>at<sp/>the<sp/>`influ`<sp/>[vignette](https:</highlight><highlight class="comment">//github.com/downloads/trophia/influ/influ_vignette.pdf)<sp/>first.<sp/>But<sp/>if<sp/>you<sp/>don&apos;t<sp/>have<sp/>time<sp/>for<sp/>even<sp/>that,<sp/>here&apos;s<sp/>an<sp/>even<sp/>quicker<sp/>run<sp/>down....</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal">```s</highlight></codeline>
+<codeline lineno="19"><highlight class="normal">#Install<sp/>the<sp/>package<sp/>after<sp/>downloading<sp/>it</highlight></codeline>
+<codeline lineno="20"><highlight class="normal">install.packages(&quot;/path/to/influ_0.6.zip&quot;,repos=NULL)<sp/>#Windows</highlight></codeline>
+<codeline lineno="21"><highlight class="normal">install.packages(&quot;/path/to/influ_0.6.tar.gz&quot;,repos=NULL)<sp/>#Linux</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal">#Load<sp/>the<sp/>package</highlight></codeline>
+<codeline lineno="24"><highlight class="normal">library(influ)</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal">#Fit<sp/>a<sp/>glm<sp/>model<sp/>(the<sp/>first<sp/>term,<sp/>in<sp/>this<sp/>case<sp/>year,<sp/>should<sp/>be<sp/>a<sp/>factor!)</highlight></codeline>
+<codeline lineno="27"><highlight class="normal">myModel<sp/>=<sp/>glm(log(catch)~year+effort+month+area+depth+method,data=myData)</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="29"><highlight class="normal">##Create<sp/>an<sp/>influence<sp/>object<sp/>for<sp/>that<sp/>model</highlight></codeline>
+<codeline lineno="30"><highlight class="normal">myInfl<sp/>=<sp/>Influence$new(myModel)</highlight></codeline>
+<codeline lineno="31"><highlight class="normal">myInfl$calc()</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal">##Look<sp/>at<sp/>the<sp/>summary<sp/>data.frame<sp/>and<sp/>execute<sp/>the<sp/>various<sp/>methods</highlight></codeline>
+<codeline lineno="34"><highlight class="normal">##<sp/>to<sp/>create<sp/>plots</highlight></codeline>
+<codeline lineno="35"><highlight class="normal">myInfl$summary</highlight></codeline>
+<codeline lineno="36"><highlight class="normal">myInfl$stanPlot()</highlight></codeline>
+<codeline lineno="37"><highlight class="normal">myInfl$stepPlot()</highlight></codeline>
+<codeline lineno="38"><highlight class="normal">myInfl$influPlot()</highlight></codeline>
+<codeline lineno="39"><highlight class="normal">myInfl$cdiPlot(&apos;month&apos;)</highlight></codeline>
+<codeline lineno="40"><highlight class="normal">myInfl$cdiPlotAll()</highlight></codeline>
+<codeline lineno="41"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal">There<sp/>is<sp/>also<sp/>a<sp/>[reference<sp/>manual](https:</highlight><highlight class="comment">//github.com/downloads/trophia/influ/influ-manual.pdf)<sp/>and<sp/>if<sp/>that<sp/>fails<sp/>you<sp/>could<sp/>always<sp/>try<sp/>the<sp/>[source<sp/>code](https://github.com/trophia/influ/blob/master/influ.R)!</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal">##<sp/>Who<sp/>has<sp/>contributed<sp/>to<sp/>development?</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal">The<sp/>initial<sp/>development<sp/>of<sp/>this<sp/>software<sp/>was<sp/>done<sp/>by<sp/>Nokome<sp/>Bentley,<sp/>[Trophia<sp/>Ltd](http:</highlight><highlight class="comment">//www.trophia.com)<sp/>and<sp/>funded<sp/>by<sp/>the<sp/>[New<sp/>Zealand<sp/>Seafood<sp/>Industry<sp/>Council<sp/>Ltd.](http://www.seafic.co.nz)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/nbentley/Trophia/Code/influ/README.md"/>
+  </compounddef>
+</doxygen>

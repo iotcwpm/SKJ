@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="classFisl_1_1Math_1_1Probability_1_1NormalCv" kind="class" prot="public">
+    <compoundname>Fisl::Math::Probability::NormalCv</compoundname>
+    <basecompoundref refid="classFisl_1_1Math_1_1Probability_1_1Normal" prot="public" virt="non-virtual">Fisl::Math::Probability::Normal</basecompoundref>
+    <includes refid="normal_8hpp" local="no">normal.hpp</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classFisl_1_1Math_1_1Probability_1_1NormalCv_1a69b0416584fb2312d502c66790e48686" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Fisl::Math::Probability::NormalCv::NormalCv</definition>
+        <argsstring>(const double &amp;mean, const double &amp;cv)</argsstring>
+        <name>NormalCv</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>mean</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>cv</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/normal.hpp" line="59" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/normal.hpp" bodystart="58" bodyend="60"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="145">
+        <label>Fisl::Math::Probability::NormalCv</label>
+        <link refid="classFisl_1_1Math_1_1Probability_1_1NormalCv"/>
+        <childnode refid="146" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="147">
+        <label>Fisl::Math::Probability::Distribution&lt; Normal &gt;</label>
+        <link refid="classFisl_1_1Math_1_1Probability_1_1Distribution"/>
+      </node>
+      <node id="146">
+        <label>Fisl::Math::Probability::Normal</label>
+        <link refid="classFisl_1_1Math_1_1Probability_1_1Normal"/>
+        <childnode refid="147" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="148">
+        <label>Fisl::Math::Probability::NormalCv</label>
+        <link refid="classFisl_1_1Math_1_1Probability_1_1NormalCv"/>
+        <childnode refid="149" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="150">
+        <label>Fisl::Math::Probability::Distribution&lt; Normal &gt;</label>
+        <link refid="classFisl_1_1Math_1_1Probability_1_1Distribution"/>
+      </node>
+      <node id="149">
+        <label>Fisl::Math::Probability::Normal</label>
+        <link refid="classFisl_1_1Math_1_1Probability_1_1Normal"/>
+        <childnode refid="150" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/normal.hpp" line="56" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/normal.hpp" bodystart="56" bodyend="61"/>
+    <listofallmembers>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Normal_1a7b31a35dd83ad499b108d2d06009109d" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::NormalCv</scope><name>boost_dist</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1a95208e0e07e7933ed64050e5cd0fc76f" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::NormalCv</scope><name>cdf</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1a40637f4c486027064fda3c0db912c570" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::NormalCv</scope><name>integrate</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1a2c0a1ca31d89677a9a4e35384c491a37" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::NormalCv</scope><name>integrate</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1a2020edcb2d28b6eb53621799bfd867e3" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::NormalCv</scope><name>kurtosis</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1a1bbc65c211496a872815529ac8ddb714" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::NormalCv</scope><name>kurtosis_excess</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Normal_1abeac662f157977c9d89b9771dfb85031" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::NormalCv</scope><name>mean</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Normal_1aa3bf20d88cd3f7f88f0703b9422b544d" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::NormalCv</scope><name>mean</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1a774d7784c48137c42aaff340377e028e" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::NormalCv</scope><name>median</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1a82ef9d3fc21279c781cd15079962a42d" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::NormalCv</scope><name>mode</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Normal_1aa13c49ca399b7827b348f335c692e893" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::NormalCv</scope><name>Normal</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1NormalCv_1a69b0416584fb2312d502c66790e48686" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::NormalCv</scope><name>NormalCv</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1a5c3913bd5c2a35ad5f37b2f6436a7097" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::NormalCv</scope><name>pdf</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1ac4e32e6c5bd4c66fd332e1bb44e68089" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::NormalCv</scope><name>quantile</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Normal_1a0a463f3215e062ee7328f2f71a02609c" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::NormalCv</scope><name>random</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1a675808a0f84ce19c22b483f270891a86" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::NormalCv</scope><name>reset</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Normal_1aa7eb44fed528843c40024d798cbaf1f0" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::NormalCv</scope><name>sd</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Normal_1ad34eb62412a840516569d23a9d5f35b0" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::NormalCv</scope><name>sd</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1ae7e2437bb1a2d6da0f6c5a73fe9bd359" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::NormalCv</scope><name>skewness</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1a6f367697e755edd3b20387c1e158a710" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::NormalCv</scope><name>variance</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

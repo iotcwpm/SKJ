@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="classFisl_1_1Array_3_01Type_00_01Dimension1_00_01Dimension2_01_4" kind="class" prot="public">
+    <compoundname>Fisl::Array&lt; Type, Dimension1, Dimension2 &gt;</compoundname>
+    <includes refid="array_8hpp" local="no">array.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>class Type</type>
+      </param>
+      <param>
+        <type>int</type>
+        <declname>Dimension1</declname>
+        <defname>Dimension1</defname>
+      </param>
+      <param>
+        <type>int</type>
+        <declname>Dimension2</declname>
+        <defname>Dimension2</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classFisl_1_1Array_3_01Type_00_01Dimension1_00_01Dimension2_01_4_1aa1fc1a334a573e4fe784478f69dcf3ad" prot="private" static="no" mutable="no">
+        <type>Type</type>
+        <definition>Type Fisl::Array&lt; Type, Dimension1, Dimension2 &gt;::values[Dimension1][Dimension2]</definition>
+        <argsstring>[Dimension1][Dimension2]</argsstring>
+        <name>values</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/array.hpp" line="93" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/array.hpp" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classFisl_1_1Array_3_01Type_00_01Dimension1_00_01Dimension2_01_4_1a59340380f5ebc80aca22d34c984156dc" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>unsigned int</type>
+        <definition>unsigned int Fisl::Array&lt; Type, Dimension1, Dimension2 &gt;::size</definition>
+        <argsstring>(void) const </argsstring>
+        <name>size</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/array.hpp" line="96" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/array.hpp" bodystart="96" bodyend="98"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Array_3_01Type_00_01Dimension1_00_01Dimension2_01_4_1aa8d72ba359f7dd0a83e985f16b8a17df" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Type &amp;</type>
+        <definition>Type&amp; Fisl::Array&lt; Type, Dimension1, Dimension2 &gt;::operator()</definition>
+        <argsstring>(int index1, int index2)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>int</type>
+          <declname>index1</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>index2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/array.hpp" line="100" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/array.hpp" bodystart="100" bodyend="102"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Array_3_01Type_00_01Dimension1_00_01Dimension2_01_4_1a09aed9681b23f865a433384c7a5c8645" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>const Type &amp;</type>
+        <definition>const Type&amp; Fisl::Array&lt; Type, Dimension1, Dimension2 &gt;::operator()</definition>
+        <argsstring>(int index1, int index2) const </argsstring>
+        <name>operator()</name>
+        <param>
+          <type>int</type>
+          <declname>index1</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>index2</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/array.hpp" line="104" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/array.hpp" bodystart="104" bodyend="106"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Array_3_01Type_00_01Dimension1_00_01Dimension2_01_4_1a16c98831724840e88fc09651ef9aa99b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Fisl::Array&lt; Type, Dimension1, Dimension2 &gt;::sum</definition>
+        <argsstring>(void)</argsstring>
+        <name>sum</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/array.hpp" line="108" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/array.hpp" bodystart="108" bodyend="114"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/array.hpp" line="91" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/array.hpp" bodystart="91" bodyend="115"/>
+    <listofallmembers>
+      <member refid="classFisl_1_1Array_3_01Type_00_01Dimension1_00_01Dimension2_01_4_1aa8d72ba359f7dd0a83e985f16b8a17df" prot="public" virt="non-virtual"><scope>Fisl::Array&lt; Type, Dimension1, Dimension2 &gt;</scope><name>operator()</name></member>
+      <member refid="classFisl_1_1Array_3_01Type_00_01Dimension1_00_01Dimension2_01_4_1a09aed9681b23f865a433384c7a5c8645" prot="public" virt="non-virtual"><scope>Fisl::Array&lt; Type, Dimension1, Dimension2 &gt;</scope><name>operator()</name></member>
+      <member refid="classFisl_1_1Array_3_01Type_00_01Dimension1_00_01Dimension2_01_4_1a59340380f5ebc80aca22d34c984156dc" prot="public" virt="non-virtual"><scope>Fisl::Array&lt; Type, Dimension1, Dimension2 &gt;</scope><name>size</name></member>
+      <member refid="classFisl_1_1Array_3_01Type_00_01Dimension1_00_01Dimension2_01_4_1a16c98831724840e88fc09651ef9aa99b" prot="public" virt="non-virtual"><scope>Fisl::Array&lt; Type, Dimension1, Dimension2 &gt;</scope><name>sum</name></member>
+      <member refid="classFisl_1_1Array_3_01Type_00_01Dimension1_00_01Dimension2_01_4_1aa1fc1a334a573e4fe784478f69dcf3ad" prot="private" virt="non-virtual"><scope>Fisl::Array&lt; Type, Dimension1, Dimension2 &gt;</scope><name>values</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

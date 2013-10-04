@@ -1,0 +1,301 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="namespaceupdater" kind="namespace">
+    <compoundname>updater</compoundname>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="namespaceupdater_1af1c912524c32953c9c4eeccb0aaf4b8d" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float updater.version</definition>
+        <argsstring></argsstring>
+        <name>version</name>
+        <initializer>= 0.9</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangaupdater/updater.py" line="14" column="1" bodyfile="/home/nbentley/Trophia/Code/tangaupdater/updater.py" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespaceupdater_1aedbc0439f1e2b244da3a337708f01ea9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def updater.header</definition>
+        <argsstring></argsstring>
+        <name>header</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangaupdater/updater.py" line="16" column="1" bodyfile="/home/nbentley/Trophia/Code/tangaupdater/updater.py" bodystart="16" bodyend="18"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceupdater_1a2868dc12ac03f14c812429767fca3a16" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def updater.footer</definition>
+        <argsstring></argsstring>
+        <name>footer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangaupdater/updater.py" line="19" column="1" bodyfile="/home/nbentley/Trophia/Code/tangaupdater/updater.py" bodystart="19" bodyend="21"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceupdater_1a97fdcee976c8bd817281cebb92192f47" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def updater.translate</definition>
+        <argsstring></argsstring>
+        <name>translate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Translate SQL according to the database being used.
+For information on the SQLite SQL dialect see: http://www.sqlite.org/lang.html
+For information on the Sybase SQL dialect see: http://manuals.sybase.com/onlinebooks/group-as/asg1250e/sqlug/@Generic__BookView
+</verbatim> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangaupdater/updater.py" line="22" column="1" bodyfile="/home/nbentley/Trophia/Code/tangaupdater/updater.py" bodystart="22" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceupdater_1ad619f01c8740d965708b9a7cf638ec19" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def updater.setup</definition>
+        <argsstring></argsstring>
+        <name>setup</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Setup database environment and remove temporary tables already created</verbatim> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangaupdater/updater.py" line="61" column="1" bodyfile="/home/nbentley/Trophia/Code/tangaupdater/updater.py" bodystart="61" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceupdater_1a58b9a9e2ff144362e0be00b342f890b3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def updater.create_vessels_table</definition>
+        <argsstring></argsstring>
+        <name>create_vessels_table</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Create a table that lists the vessels that to be used to subset the data.</verbatim> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangaupdater/updater.py" line="70" column="1" bodyfile="/home/nbentley/Trophia/Code/tangaupdater/updater.py" bodystart="70" bodyend="74"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceupdater_1af8f628d94411f4ff1e2a9da89e889a08" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def updater.insert_vessels</definition>
+        <argsstring></argsstring>
+        <name>insert_vessels</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Insert vessels that meet criteria specified in settings.vessels</verbatim> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangaupdater/updater.py" line="75" column="1" bodyfile="/home/nbentley/Trophia/Code/tangaupdater/updater.py" bodystart="75" bodyend="94"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceupdater_1ae55b832f9ff406f31f52edf30ce3e48f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def updater.create_strata_table</definition>
+        <argsstring></argsstring>
+        <name>create_strata_table</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Create a table of CPUE standardisation strata</verbatim> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangaupdater/updater.py" line="95" column="1" bodyfile="/home/nbentley/Trophia/Code/tangaupdater/updater.py" bodystart="95" bodyend="132"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceupdater_1a4564622303de891869f59e0a90c249fd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def updater.insert_strata</definition>
+        <argsstring></argsstring>
+        <name>insert_strata</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Insert strata.  Based on aggregating fishing_events 
+according to the criteria in settings.subset and grouping by the fields in settings.aggregate
+Sum of estimated_subcatch.catch_weight for the species of interest.</verbatim> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangaupdater/updater.py" line="133" column="1" bodyfile="/home/nbentley/Trophia/Code/tangaupdater/updater.py" bodystart="133" bodyend="214"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceupdater_1a18064e7b9fd1a396bef36ef192788c71" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def updater.update_strata_fishing_year</definition>
+        <argsstring></argsstring>
+        <name>update_strata_fishing_year</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Calculate fishing year for each stratum</verbatim> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangaupdater/updater.py" line="215" column="1" bodyfile="/home/nbentley/Trophia/Code/tangaupdater/updater.py" bodystart="215" bodyend="222"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceupdater_1a28b8d5effc2b2560ecd70b0cf78a156a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def updater.create_strata_indices</definition>
+        <argsstring></argsstring>
+        <name>create_strata_indices</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Create some indices to make queries on strata table more efficient</verbatim> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangaupdater/updater.py" line="223" column="1" bodyfile="/home/nbentley/Trophia/Code/tangaupdater/updater.py" bodystart="223" bodyend="229"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceupdater_1a996af072b8366ca1375a3306f1ca6a61" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def updater.create_trip_table</definition>
+        <argsstring></argsstring>
+        <name>create_trip_table</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Create a record for each trip that is in strata which aggregates the _total_ landings
+and estimated catches for the trip of the species of interest. This will be used to determine
+strata.adjustment_landings. The total of each weight for the trip is required (not just for those events that
+meet the criteria in settings.subset.</verbatim> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangaupdater/updater.py" line="232" column="1" bodyfile="/home/nbentley/Trophia/Code/tangaupdater/updater.py" bodystart="232" bodyend="315"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceupdater_1a8226d13b1fee73c7f26714fc8ff0e54d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def updater.update_strata_adjustment_landings</definition>
+        <argsstring></argsstring>
+        <name>update_strata_adjustment_landings</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Set strata.adjustment_landings based on data in trips</verbatim> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangaupdater/updater.py" line="316" column="1" bodyfile="/home/nbentley/Trophia/Code/tangaupdater/updater.py" bodystart="316" bodyend="327"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceupdater_1a42725e74d908d104efe2ec5eccfa1028" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def updater.create_coefficient_tables</definition>
+        <argsstring></argsstring>
+        <name>create_coefficient_tables</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Insert the standardisation coefficients into tables.</verbatim> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangaupdater/updater.py" line="330" column="1" bodyfile="/home/nbentley/Trophia/Code/tangaupdater/updater.py" bodystart="330" bodyend="346"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceupdater_1a48a40c5a15c8a81fbda831c277fb3e88" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def updater.insert_coefficients</definition>
+        <argsstring></argsstring>
+        <name>insert_coefficients</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>For each record, find associated coefficient values</verbatim> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangaupdater/updater.py" line="347" column="1" bodyfile="/home/nbentley/Trophia/Code/tangaupdater/updater.py" bodystart="347" bodyend="366"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceupdater_1a4c8c6be13b4f4cf7e556e79e258c0f30" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def updater.calculate_adjustment</definition>
+        <argsstring></argsstring>
+        <name>calculate_adjustment</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim></verbatim> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangaupdater/updater.py" line="367" column="1" bodyfile="/home/nbentley/Trophia/Code/tangaupdater/updater.py" bodystart="367" bodyend="370"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceupdater_1a9e24a3aed0fc913a84645d419fa9d05b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def updater.summary</definition>
+        <argsstring></argsstring>
+        <name>summary</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Calculate various CPUEs by aggregating over strata</verbatim> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangaupdater/updater.py" line="373" column="1" bodyfile="/home/nbentley/Trophia/Code/tangaupdater/updater.py" bodystart="373" bodyend="388"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceupdater_1a7c7fcda819b75f5f7ae6d68ee41ffadd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def updater.strata</definition>
+        <argsstring></argsstring>
+        <name>strata</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim></verbatim> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangaupdater/updater.py" line="389" column="1" bodyfile="/home/nbentley/Trophia/Code/tangaupdater/updater.py" bodystart="389" bodyend="392"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceupdater_1a3d9e6e2fd49fa8280961aa5e0161970f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def updater.trips</definition>
+        <argsstring></argsstring>
+        <name>trips</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim></verbatim> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangaupdater/updater.py" line="393" column="1" bodyfile="/home/nbentley/Trophia/Code/tangaupdater/updater.py" bodystart="393" bodyend="396"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceupdater_1ae9850cb67818b403b4e3c2d5182c3a12" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def updater.vessels</definition>
+        <argsstring></argsstring>
+        <name>vessels</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim></verbatim> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangaupdater/updater.py" line="397" column="1" bodyfile="/home/nbentley/Trophia/Code/tangaupdater/updater.py" bodystart="397" bodyend="401"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceupdater_1a69122e5f32d32b70888e3544bcfeaf87" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def updater.run</definition>
+        <argsstring></argsstring>
+        <name>run</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangaupdater/updater.py" line="402" column="1" bodyfile="/home/nbentley/Trophia/Code/tangaupdater/updater.py" bodystart="402" bodyend="476"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para><verbatim>A Python module for calculating standardised CPUE indices from catch and effort databases held by
+the New Zeland Ministry of Fisheries.
+
+Copyright 2011 Trophia Ltd
+</verbatim> </para>    </detaileddescription>
+    <location file="/home/nbentley/Trophia/Code/tangaupdater/updater.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

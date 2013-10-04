@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="namespaceFisl_1_1Population_1_1Maturity" kind="namespace">
+    <compoundname>Fisl::Population::Maturity</compoundname>
+      <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="namespaceFisl_1_1Population_1_1Maturity_1a0a6c3c754ceaca7815a826fb4df5c4a4" prot="public" static="no">
+        <type><ref refid="classFisl_1_1Math_1_1Functions_1_1Threshold" kindref="compound">Math::Functions::Threshold</ref></type>
+        <definition>typedef Math::Functions::Threshold Fisl::Population::Maturity::Threshold</definition>
+        <argsstring></argsstring>
+        <name>Threshold</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/maturity/maturity.hpp" line="10" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/maturity/maturity.hpp" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="namespaceFisl_1_1Population_1_1Maturity_1a5a5d82871f8da0f32be919b45c4bb7a3" prot="public" static="no">
+        <type><ref refid="classFisl_1_1Math_1_1Functions_1_1Logistic" kindref="compound">Math::Functions::Logistic</ref></type>
+        <definition>typedef Math::Functions::Logistic Fisl::Population::Maturity::Logistic</definition>
+        <argsstring></argsstring>
+        <name>Logistic</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/maturity/maturity.hpp" line="11" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/maturity/maturity.hpp" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/maturity/maturity.hpp" line="8"/>
+  </compounddef>
+</doxygen>

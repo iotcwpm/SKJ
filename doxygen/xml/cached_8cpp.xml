@@ -1,0 +1,167 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="cached_8cpp" kind="file">
+    <compoundname>cached.cpp</compoundname>
+    <includes refid="function_8hpp" local="yes">../function.hpp</includes>
+    <includes refid="identity_8hpp" local="yes">../identity.hpp</includes>
+    <includes local="no">boost/test/unit_test.hpp</includes>
+    <incdepgraph>
+      <node id="56">
+        <label>boost/test/unit_test.hpp</label>
+      </node>
+      <node id="52">
+        <label>fisl/array.hpp</label>
+        <link refid="array_8hpp"/>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+      </node>
+      <node id="53">
+        <label>vector</label>
+      </node>
+      <node id="51">
+        <label>fisl/common.hpp</label>
+        <link refid="common_8hpp"/>
+      </node>
+      <node id="49">
+        <label>cached.cpp</label>
+        <link refid="cached.cpp"/>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+      </node>
+      <node id="54">
+        <label>algorithm</label>
+      </node>
+      <node id="50">
+        <label>../function.hpp</label>
+        <link refid="function_8hpp"/>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+      </node>
+      <node id="55">
+        <label>../identity.hpp</label>
+        <link refid="identity_8hpp"/>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="cached_8cpp_1a12f7040d5663dbe86952e43aaa32a4e3" prot="public" static="no" mutable="no">
+        <type><ref refid="classFisl_1_1Math_1_1Functions_1_1Cached" kindref="compound">Cached</ref>&lt; <ref refid="classFisl_1_1Math_1_1Functions_1_1Identity" kindref="compound">Identity</ref>, 10 &gt;</type>
+        <definition>Cached&lt;Identity,10&gt; c1</definition>
+        <argsstring></argsstring>
+        <name>c1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P1200X_Trident/Code/fisl/fisl/math/functions/tests/cached.cpp" line="12" bodyfile="/media/Data/Trophia/P1200X_Trident/Code/fisl/fisl/math/functions/tests/cached.cpp" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="cached_8cpp_1ae37f3ec962483be3cc0d116ae4a2e76d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>BOOST_AUTO_TEST_CASE</definition>
+        <argsstring>(reset_plain)</argsstring>
+        <name>BOOST_AUTO_TEST_CASE</name>
+        <param>
+          <type>reset_plain</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P1200X_Trident/Code/fisl/fisl/math/functions/tests/cached.cpp" line="14" bodyfile="/media/Data/Trophia/P1200X_Trident/Code/fisl/fisl/math/functions/tests/cached.cpp" bodystart="14" bodyend="18"/>
+      </memberdef>
+      <memberdef kind="function" id="cached_8cpp_1a391dbee69c656b48d1a487d5e6046b37" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>BOOST_AUTO_TEST_CASE</definition>
+        <argsstring>(reset_base_step)</argsstring>
+        <name>BOOST_AUTO_TEST_CASE</name>
+        <param>
+          <type>reset_base_step</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P1200X_Trident/Code/fisl/fisl/math/functions/tests/cached.cpp" line="20" bodyfile="/media/Data/Trophia/P1200X_Trident/Code/fisl/fisl/math/functions/tests/cached.cpp" bodystart="20" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="cached_8cpp_1a9eb8eef969596037f137a9d104c03ffc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>BOOST_AUTO_TEST_CASE</definition>
+        <argsstring>(reset_function)</argsstring>
+        <name>BOOST_AUTO_TEST_CASE</name>
+        <param>
+          <type>reset_function</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P1200X_Trident/Code/fisl/fisl/math/functions/tests/cached.cpp" line="25" bodyfile="/media/Data/Trophia/P1200X_Trident/Code/fisl/fisl/math/functions/tests/cached.cpp" bodystart="25" bodyend="35"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;../function.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../identity.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>FIGO_TEST_SINGLE</highlight></codeline>
+<codeline lineno="5"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#define<sp/>BOOST_TEST_MODULE<sp/>tests</highlight></codeline>
+<codeline lineno="6"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="7"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#include<sp/>&lt;boost/test/unit_test.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal">BOOST_AUTO_TEST_SUITE(cached)</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal">using<sp/>namespace<sp/>Fisl::Math::Functions;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><ref refid="classFisl_1_1Math_1_1Functions_1_1Cached" kindref="compound" tooltip="Precalculated function values for greater computational efficiency.">Cached</ref>&lt;<ref refid="classFisl_1_1Math_1_1Functions_1_1Identity" kindref="compound">Identity</ref>,10&gt;<sp/><ref refid="cached_8cpp_1a12f7040d5663dbe86952e43aaa32a4e3" kindref="member">c1</ref>;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><ref refid="cached_8cpp_1ae37f3ec962483be3cc0d116ae4a2e76d" kindref="member">BOOST_AUTO_TEST_CASE</ref>(reset_plain){<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/>c1.<ref refid="classFisl_1_1Math_1_1Functions_1_1Cached_1adc75d4386a17cf539cdb2559a77099ed" kindref="member">reset</ref>();</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>BOOST_CHECK_EQUAL(<ref refid="cached_8cpp_1a12f7040d5663dbe86952e43aaa32a4e3" kindref="member">c1</ref>(3),3);</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/>BOOST_CHECK_EQUAL(c1.sum(),0+1+2+3+4+5+6+7+8+9);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><ref refid="cached_8cpp_1ae37f3ec962483be3cc0d116ae4a2e76d" kindref="member">BOOST_AUTO_TEST_CASE</ref>(reset_base_step){<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>c1.<ref refid="classFisl_1_1Math_1_1Functions_1_1Cached_1adc75d4386a17cf539cdb2559a77099ed" kindref="member">reset</ref>(0.123,4.56);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>BOOST_CHECK_EQUAL(<ref refid="cached_8cpp_1a12f7040d5663dbe86952e43aaa32a4e3" kindref="member">c1</ref>(3),0.123+4.56*3);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><ref refid="cached_8cpp_1ae37f3ec962483be3cc0d116ae4a2e76d" kindref="member">BOOST_AUTO_TEST_CASE</ref>(reset_function){<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>c1.<ref refid="classFisl_1_1Math_1_1Functions_1_1Cached_1adc75d4386a17cf539cdb2559a77099ed" kindref="member">reset</ref>([](</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index)-&gt;</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>values[10]={</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>10,9,8,7,6,5,4,3,2,1</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>values[index];</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>});</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>BOOST_CHECK_EQUAL(<ref refid="cached_8cpp_1a12f7040d5663dbe86952e43aaa32a4e3" kindref="member">c1</ref>(0),10);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>BOOST_CHECK_EQUAL(<ref refid="cached_8cpp_1a12f7040d5663dbe86952e43aaa32a4e3" kindref="member">c1</ref>(3),7);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>BOOST_CHECK_EQUAL(<ref refid="cached_8cpp_1a12f7040d5663dbe86952e43aaa32a4e3" kindref="member">c1</ref>(9),1);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal">BOOST_AUTO_TEST_SUITE_END()</highlight></codeline>
+    </programlisting>
+    <location file="/media/Data/Trophia/P1200X_Trident/Code/fisl/fisl/math/functions/tests/cached.cpp"/>
+  </compounddef>
+</doxygen>

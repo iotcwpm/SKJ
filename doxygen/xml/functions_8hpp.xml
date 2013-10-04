@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="functions_8hpp" kind="file">
+    <compoundname>functions.hpp</compoundname>
+    <includes refid="identity_8hpp" local="yes">identity.hpp</includes>
+    <includes refid="threshold_8hpp" local="yes">threshold.hpp</includes>
+    <includes local="yes">logistic.hpp</includes>
+    <incdepgraph>
+      <node id="149">
+        <label>threshold.hpp</label>
+        <link refid="threshold_8hpp"/>
+        <childnode refid="144" relation="include">
+        </childnode>
+        <childnode refid="145" relation="include">
+        </childnode>
+      </node>
+      <node id="146">
+        <label>fisl/array.hpp</label>
+        <link refid="array_8hpp"/>
+        <childnode refid="147" relation="include">
+        </childnode>
+        <childnode refid="148" relation="include">
+        </childnode>
+      </node>
+      <node id="143">
+        <label>identity.hpp</label>
+        <link refid="identity_8hpp"/>
+        <childnode refid="144" relation="include">
+        </childnode>
+        <childnode refid="145" relation="include">
+        </childnode>
+      </node>
+      <node id="147">
+        <label>vector</label>
+      </node>
+      <node id="150">
+        <label>logistic.hpp</label>
+      </node>
+      <node id="142">
+        <label>functions.hpp</label>
+        <link refid="functions.hpp"/>
+        <childnode refid="143" relation="include">
+        </childnode>
+        <childnode refid="149" relation="include">
+        </childnode>
+        <childnode refid="150" relation="include">
+        </childnode>
+      </node>
+      <node id="148">
+        <label>algorithm</label>
+      </node>
+      <node id="145">
+        <label>fisl/math/functions/function.hpp</label>
+        <link refid="function_8hpp"/>
+        <childnode refid="144" relation="include">
+        </childnode>
+        <childnode refid="146" relation="include">
+        </childnode>
+      </node>
+      <node id="144">
+        <label>fisl/common.hpp</label>
+        <link refid="common_8hpp"/>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A convienient way to include all math functions in the library </para>    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="6"><highlight class="preprocessor">#pragma<sp/>once</highlight></codeline>
+<codeline lineno="7"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="identity_8hpp" kindref="compound">identity.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="threshold_8hpp" kindref="compound">threshold.hpp</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;logistic.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/functions/functions.hpp"/>
+  </compounddef>
+</doxygen>

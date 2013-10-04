@@ -1,0 +1,183 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="classtangagroomer_1_1checks__fishing__event_1_1FE" kind="class" prot="public">
+    <compoundname>tangagroomer::checks_fishing_event::FE</compoundname>
+    <basecompoundref refid="classtangagroomer_1_1check_1_1Check" prot="public" virt="non-virtual">tangagroomer.check.Check</basecompoundref>
+    <derivedcompoundref refid="classtangagroomer_1_1checks__fishing__event_1_1FEEFO" prot="public" virt="non-virtual">tangagroomer.checks_fishing_event.FEEFO</derivedcompoundref>
+    <derivedcompoundref refid="classtangagroomer_1_1checks__fishing__event_1_1FEETN" prot="public" virt="non-virtual">tangagroomer.checks_fishing_event.FEETN</derivedcompoundref>
+    <derivedcompoundref refid="classtangagroomer_1_1checks__fishing__event_1_1FEFMA" prot="public" virt="non-virtual">tangagroomer.checks_fishing_event.FEFMA</derivedcompoundref>
+    <derivedcompoundref refid="classtangagroomer_1_1checks__fishing__event_1_1FELLI" prot="public" virt="non-virtual">tangagroomer.checks_fishing_event.FELLI</derivedcompoundref>
+    <derivedcompoundref refid="classtangagroomer_1_1checks__fishing__event_1_1FELLS" prot="public" virt="non-virtual">tangagroomer.checks_fishing_event.FELLS</derivedcompoundref>
+    <derivedcompoundref refid="classtangagroomer_1_1checks__fishing__event_1_1FEPMI" prot="public" virt="non-virtual">tangagroomer.checks_fishing_event.FEPMI</derivedcompoundref>
+    <derivedcompoundref refid="classtangagroomer_1_1checks__fishing__event_1_1FEPMM" prot="public" virt="non-virtual">tangagroomer.checks_fishing_event.FEPMM</derivedcompoundref>
+    <derivedcompoundref refid="classtangagroomer_1_1checks__fishing__event_1_1FESAI" prot="public" virt="non-virtual">tangagroomer.checks_fishing_event.FESAI</derivedcompoundref>
+    <derivedcompoundref refid="classtangagroomer_1_1checks__fishing__event_1_1FESAM" prot="public" virt="non-virtual">tangagroomer.checks_fishing_event.FESAM</derivedcompoundref>
+    <derivedcompoundref refid="classtangagroomer_1_1checks__fishing__event_1_1FESDF" prot="public" virt="non-virtual">tangagroomer.checks_fishing_event.FESDF</derivedcompoundref>
+    <derivedcompoundref refid="classtangagroomer_1_1checks__fishing__event_1_1FESDM" prot="public" virt="non-virtual">tangagroomer.checks_fishing_event.FESDM</derivedcompoundref>
+    <derivedcompoundref refid="classtangagroomer_1_1checks__fishing__event_1_1FETSI" prot="public" virt="non-virtual">tangagroomer.checks_fishing_event.FETSI</derivedcompoundref>
+    <derivedcompoundref refid="classtangagroomer_1_1checks__fishing__event_1_1FETSM" prot="public" virt="non-virtual">tangagroomer.checks_fishing_event.FETSM</derivedcompoundref>
+    <derivedcompoundref refid="classtangagroomer_1_1checks__fishing__event_1_1FETSW" prot="public" virt="non-virtual">tangagroomer.checks_fishing_event.FETSW</derivedcompoundref>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classtangagroomer_1_1checks__fishing__event_1_1FE_1a452f1f1132d5f246faffb072a452c9f2" prot="public" static="yes" mutable="no">
+        <type>string</type>
+        <definition>string tangagroomer.checks_fishing_event.FE::table</definition>
+        <argsstring></argsstring>
+        <name>table</name>
+        <initializer>= &apos;fishing_event&apos;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_fishing_event.py" line="21" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_fishing_event.py" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="119">
+        <label>tangagroomer.checks_fishing_event.FESDF</label>
+        <link refid="classtangagroomer_1_1checks__fishing__event_1_1FESDF"/>
+        <childnode refid="108" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="120">
+        <label>tangagroomer.checks_fishing_event.FESDM</label>
+        <link refid="classtangagroomer_1_1checks__fishing__event_1_1FESDM"/>
+        <childnode refid="108" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="108">
+        <label>tangagroomer.checks_fishing_event.FE</label>
+        <link refid="classtangagroomer_1_1checks__fishing__event_1_1FE"/>
+        <childnode refid="109" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="115">
+        <label>tangagroomer.checks_fishing_event.FEPMI</label>
+        <link refid="classtangagroomer_1_1checks__fishing__event_1_1FEPMI"/>
+        <childnode refid="108" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="116">
+        <label>tangagroomer.checks_fishing_event.FEPMM</label>
+        <link refid="classtangagroomer_1_1checks__fishing__event_1_1FEPMM"/>
+        <childnode refid="108" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="114">
+        <label>tangagroomer.checks_fishing_event.FELLS</label>
+        <link refid="classtangagroomer_1_1checks__fishing__event_1_1FELLS"/>
+        <childnode refid="108" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="121">
+        <label>tangagroomer.checks_fishing_event.FETSI</label>
+        <link refid="classtangagroomer_1_1checks__fishing__event_1_1FETSI"/>
+        <childnode refid="108" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="122">
+        <label>tangagroomer.checks_fishing_event.FETSM</label>
+        <link refid="classtangagroomer_1_1checks__fishing__event_1_1FETSM"/>
+        <childnode refid="108" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="113">
+        <label>tangagroomer.checks_fishing_event.FELLI</label>
+        <link refid="classtangagroomer_1_1checks__fishing__event_1_1FELLI"/>
+        <childnode refid="108" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="110">
+        <label>tangagroomer.checks_fishing_event.FEEFO</label>
+        <link refid="classtangagroomer_1_1checks__fishing__event_1_1FEEFO"/>
+        <childnode refid="108" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="123">
+        <label>tangagroomer.checks_fishing_event.FETSW</label>
+        <link refid="classtangagroomer_1_1checks__fishing__event_1_1FETSW"/>
+        <childnode refid="108" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="109">
+        <label>tangagroomer.check.Check</label>
+        <link refid="classtangagroomer_1_1check_1_1Check"/>
+      </node>
+      <node id="111">
+        <label>tangagroomer.checks_fishing_event.FEETN</label>
+        <link refid="classtangagroomer_1_1checks__fishing__event_1_1FEETN"/>
+        <childnode refid="108" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="112">
+        <label>tangagroomer.checks_fishing_event.FEFMA</label>
+        <link refid="classtangagroomer_1_1checks__fishing__event_1_1FEFMA"/>
+        <childnode refid="108" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="117">
+        <label>tangagroomer.checks_fishing_event.FESAI</label>
+        <link refid="classtangagroomer_1_1checks__fishing__event_1_1FESAI"/>
+        <childnode refid="108" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="118">
+        <label>tangagroomer.checks_fishing_event.FESAM</label>
+        <link refid="classtangagroomer_1_1checks__fishing__event_1_1FESAM"/>
+        <childnode refid="108" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="126">
+        <label>string</label>
+      </node>
+      <node id="124">
+        <label>tangagroomer.checks_fishing_event.FE</label>
+        <link refid="classtangagroomer_1_1checks__fishing__event_1_1FE"/>
+        <childnode refid="125" relation="public-inheritance">
+        </childnode>
+        <childnode refid="126" relation="usage">
+          <edgelabel>table</edgelabel>
+        </childnode>
+      </node>
+      <node id="125">
+        <label>tangagroomer.check.Check</label>
+        <link refid="classtangagroomer_1_1check_1_1Check"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_fishing_event.py" line="20" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_fishing_event.py" bodystart="20" bodyend="23"/>
+    <listofallmembers>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a36e4525d47865671846c9a0219a2bcb2" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FE</scope><name>apply</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1ac9a962f590f51d6d50bd81c6afee81c8" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FE</scope><name>applyAll</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a82ea73bef1203e8dbd51ff577f78fb1e" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FE</scope><name>brief</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a58991e0dd0e97e9578396e9048e89842" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FE</scope><name>change</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a73732d1d3f3cde589eec2c33c6867557" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FE</scope><name>clause</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1aee237860ccf5830b720da9e19b641cda" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FE</scope><name>code</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a7ffea959f622ed29351beace07624f80" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FE</scope><name>column</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a1c68e6bbd01a5b9dbe834a1e2da92c3b" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FE</scope><name>dataset</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a48bb57fdbd589dbef0a23128cdf85b41" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FE</scope><name>db</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a3d7d03dce0aae9625e15101e44b1b1f7" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FE</scope><name>desc</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a7d6e67760f35efc58217072497fa88b7" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FE</scope><name>do</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1ae4bab42cb9c9f2f8388c7310b5166458" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FE</scope><name>filename</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1aa1f73b4e49f59491ee3ed5ecf126b524" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FE</scope><name>fishing_years</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a815714fcb0ead30679fca7e82ede9294" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FE</scope><name>flag</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a9398218abb4e0bbfcb5813da99b707d7" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FE</scope><name>histogram</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a248c19018845f81d7afa5b7c2a78fba0" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FE</scope><name>List</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a4a7bd550d553a6ef8432a726847486c3" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FE</scope><name>quantiles</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1aa8ccd798cee5d3e61dc783cbf501352e" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FE</scope><name>report</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a3b5976b1ad785be57e0c5a1a1ded9060" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FE</scope><name>scatterplot</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a05935123dc66ebbb0dcccdb512e898a7" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FE</scope><name>summarise</name></member>
+      <member refid="classtangagroomer_1_1checks__fishing__event_1_1FE_1a452f1f1132d5f246faffb072a452c9f2" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FE</scope><name>table</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a76dc47c04b683cacf202468e1c8fc7ad" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FE</scope><name>value</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a2e347e6485a4c668a629ad4dc021d4d6" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FE</scope><name>view</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1ad733559ce56183efd768b55ffbce3274" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FE</scope><name>viewAll</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a1f6a7df7df2a85c427a9bf618cb121f9" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event::FE</scope><name>visible</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

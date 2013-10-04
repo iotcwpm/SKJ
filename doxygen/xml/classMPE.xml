@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="classMPE" kind="class" prot="public">
+    <compoundname>MPE</compoundname>
+    <basecompoundref refid="classFisl_1_1Management_1_1Procedures_1_1Evaluation" prot="public" virt="non-virtual">Fisl::Management::Procedures::Evaluation&lt; MPE &gt;</basecompoundref>
+    <innerclass refid="classMPE_1_1Model" prot="public">MPE::Model</innerclass>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classMPE_1a12354d3a7026d54e7ca38e68e8c36e61" prot="public" static="no" mutable="no">
+        <type>class <ref refid="classMPE_1_1Model" kindref="compound">MPE::Model</ref></type>
+        <definition>class MPE::Model  MPE::model</definition>
+        <argsstring></argsstring>
+        <name>model</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/management/procedures/evaluation-skeleton.cpp" line="70"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classMPE_1af60379bc65cbe729ec608e5af49d3a1a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MPE::priors</definition>
+        <argsstring>(void)</argsstring>
+        <name>priors</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para><xrefsect id="todo_1_todo000002"><xreftitle>Todo</xreftitle><xrefdescription><para>Consider using a &apos;flat-topped-triangular&apos; distribution here </para></xrefdescription></xrefsect></para>        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/management/procedures/evaluation-skeleton.cpp" line="72" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/management/procedures/evaluation-skeleton.cpp" bodystart="72" bodyend="134"/>
+      </memberdef>
+      <memberdef kind="function" id="classMPE_1a0b2946e59e6807e2473f07d712986710" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void MPE::priors</definition>
+        <argsstring>(int time)</argsstring>
+        <name>priors</name>
+        <param>
+          <type>int</type>
+          <declname>time</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/management/procedures/evaluation-skeleton.cpp" line="136" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/management/procedures/evaluation-skeleton.cpp" bodystart="136" bodyend="233"/>
+      </memberdef>
+      <memberdef kind="function" id="classMPE_1a621dba24656fcbed641853f560afc820" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Real</type>
+        <definition>Real MPE::log_like</definition>
+        <argsstring>(int time)</argsstring>
+        <name>log_like</name>
+        <param>
+          <type>int</type>
+          <declname>time</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/management/procedures/evaluation-skeleton.cpp" line="235" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/management/procedures/evaluation-skeleton.cpp" bodystart="235" bodyend="312"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="129">
+        <label>Fisl::Management::Procedures::Evaluation&lt; MPE &gt;</label>
+        <link refid="classFisl_1_1Management_1_1Procedures_1_1Evaluation"/>
+      </node>
+      <node id="128">
+        <label>MPE</label>
+        <link refid="classMPE"/>
+        <childnode refid="129" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="136">
+        <label>Fisl::Population::Models::Sexed&lt; Aged&lt; ages, Real, Cached&lt; VonBert, ages &gt;, Cached&lt; Power, ages &gt;, Cached&lt; Logistic, ages &gt;, int, Rate &gt;, BevertonHolt &gt;</label>
+        <link refid="classFisl_1_1Population_1_1Models_1_1Sexed"/>
+        <childnode refid="137" relation="usage">
+          <edgelabel>females</edgelabel>
+          <edgelabel>males</edgelabel>
+        </childnode>
+      </node>
+      <node id="134">
+        <label>Fishery</label>
+        <link refid="structFishery"/>
+        <childnode refid="135" relation="usage">
+          <edgelabel>selectivities</edgelabel>
+        </childnode>
+      </node>
+      <node id="132">
+        <label>MPE::Model</label>
+        <link refid="classMPE_1_1Model"/>
+        <childnode refid="133" relation="usage">
+          <edgelabel>fishing</edgelabel>
+        </childnode>
+        <childnode refid="136" relation="usage">
+          <edgelabel>fish</edgelabel>
+        </childnode>
+      </node>
+      <node id="135">
+        <label>Logistic</label>
+      </node>
+      <node id="138">
+        <label>Array&lt; Real,Ages &gt;</label>
+        <link refid="classArray"/>
+      </node>
+      <node id="131">
+        <label>Fisl::Management::Procedures::Evaluation&lt; MPE &gt;</label>
+        <link refid="classFisl_1_1Management_1_1Procedures_1_1Evaluation"/>
+      </node>
+      <node id="130">
+        <label>MPE</label>
+        <link refid="classMPE"/>
+        <childnode refid="131" relation="public-inheritance">
+        </childnode>
+        <childnode refid="132" relation="usage">
+          <edgelabel>model</edgelabel>
+        </childnode>
+      </node>
+      <node id="133">
+        <label>MPE::Model::Fishing</label>
+        <link refid="classMPE_1_1Model_1_1Fishing"/>
+        <childnode refid="134" relation="usage">
+          <edgelabel>trawl</edgelabel>
+          <edgelabel>line</edgelabel>
+        </childnode>
+      </node>
+      <node id="137">
+        <label>Fisl::Population::Models::Aged&lt; ages, Real, Cached&lt; VonBert, ages &gt;, Cached&lt; Power, ages &gt;, Cached&lt; Logistic, ages &gt;, int, Rate &gt;</label>
+        <link refid="classFisl_1_1Population_1_1Models_1_1Aged"/>
+        <childnode refid="138" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/management/procedures/evaluation-skeleton.cpp" line="44" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/management/procedures/evaluation-skeleton.cpp" bodystart="44" bodyend="314"/>
+    <listofallmembers>
+      <member refid="classMPE_1a621dba24656fcbed641853f560afc820" prot="public" virt="non-virtual"><scope>MPE</scope><name>log_like</name></member>
+      <member refid="classMPE_1a12354d3a7026d54e7ca38e68e8c36e61" prot="public" virt="non-virtual"><scope>MPE</scope><name>model</name></member>
+      <member refid="classMPE_1af60379bc65cbe729ec608e5af49d3a1a" prot="public" virt="non-virtual"><scope>MPE</scope><name>priors</name></member>
+      <member refid="classMPE_1a0b2946e59e6807e2473f07d712986710" prot="public" virt="non-virtual"><scope>MPE</scope><name>priors</name></member>
+      <member refid="classFisl_1_1Management_1_1Procedures_1_1Evaluation_1a08cc12febb79bed4dd814ca7d8b268b8" prot="public" virt="non-virtual"><scope>MPE</scope><name>run</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

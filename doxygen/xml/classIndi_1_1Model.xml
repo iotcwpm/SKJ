@@ -1,0 +1,192 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="classIndi_1_1Model" kind="class" prot="public">
+    <compoundname>Indi::Model</compoundname>
+    <includes refid="indi_2indi_2model_8hpp" local="no">model.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>class</type>
+        <declname>Fishes</declname>
+        <defname>Fishes</defname>
+        <defval><ref refid="classIndi_1_1Fishes" kindref="compound">Indi::Fishes</ref>&lt;&gt;</defval>
+      </param>
+      <param>
+        <type>class</type>
+        <declname>Vessels</declname>
+        <defname>Vessels</defname>
+        <defval><ref refid="classIndi_1_1Vessels" kindref="compound">Indi::Vessels</ref>&lt;&gt;</defval>
+      </param>
+      <param>
+        <type>class</type>
+        <declname>Environs</declname>
+        <defname>Environs</defname>
+        <defval><ref refid="classIndi_1_1Environs" kindref="compound">Indi::Environs</ref></defval>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="classIndi_1_1Model_1a03904042f0a4130221b12d93949765c0" prot="protected" static="no" mutable="no">
+        <type><ref refid="classIndi_1_1Fishes" kindref="compound">Fishes</ref></type>
+        <definition>Fishes Indi::Model&lt; Fishes, Vessels, Environs &gt;::fishes</definition>
+        <argsstring></argsstring>
+        <name>fishes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/indi/indi/model.hpp" line="19" column="1" bodyfile="/home/nbentley/Trophia/Code/indi/indi/model.hpp" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classIndi_1_1Model_1ad85ab3bb239c353466d15f74bea4f760" prot="protected" static="no" mutable="no">
+        <type><ref refid="classIndi_1_1Vessels" kindref="compound">Vessels</ref></type>
+        <definition>Vessels Indi::Model&lt; Fishes, Vessels, Environs &gt;::vessels</definition>
+        <argsstring></argsstring>
+        <name>vessels</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/indi/indi/model.hpp" line="20" column="1" bodyfile="/home/nbentley/Trophia/Code/indi/indi/model.hpp" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classIndi_1_1Model_1a4d8efc4f2c9654b056c523dd4576c571" prot="protected" static="no" mutable="no">
+        <type><ref refid="classIndi_1_1Environs" kindref="compound">Environs</ref></type>
+        <definition>Environs Indi::Model&lt; Fishes, Vessels, Environs &gt;::environs</definition>
+        <argsstring></argsstring>
+        <name>environs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/indi/indi/model.hpp" line="21" column="1" bodyfile="/home/nbentley/Trophia/Code/indi/indi/model.hpp" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classIndi_1_1Model_1a9b441d8db20ffef420c09f793515c6ab" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Indi::Model&lt; Fishes, Vessels, Environs &gt;::start</definition>
+        <argsstring>(void)</argsstring>
+        <name>start</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/indi/indi/model.hpp" line="25" column="1" bodyfile="/home/nbentley/Trophia/Code/indi/indi/model.hpp" bodystart="25" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="classIndi_1_1Model_1a7ff3c6c8b2f5fa07e6a37824bddde716" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Indi::Model&lt; Fishes, Vessels, Environs &gt;::step</definition>
+        <argsstring>(const int &amp;steps=1)</argsstring>
+        <name>step</name>
+        <param>
+          <type>const int &amp;</type>
+          <declname>steps</declname>
+          <defval>1</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/indi/indi/model.hpp" line="31" column="1" bodyfile="/home/nbentley/Trophia/Code/indi/indi/model.hpp" bodystart="31" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="classIndi_1_1Model_1a88ab8d4ae30a35d3e4cf6239ff8a0ce9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Indi::Model&lt; Fishes, Vessels, Environs &gt;::stop</definition>
+        <argsstring>(void)</argsstring>
+        <name>stop</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/indi/indi/model.hpp" line="40" column="1" bodyfile="/home/nbentley/Trophia/Code/indi/indi/model.hpp" bodystart="40" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="classIndi_1_1Model_1a1141c0a19c0da63a81d784c433930aeb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int Indi::Model&lt; Fishes, Vessels, Environs &gt;::main</definition>
+        <argsstring>(int argc, char **argv)</argsstring>
+        <name>main</name>
+        <param>
+          <type>int</type>
+          <declname>argc</declname>
+        </param>
+        <param>
+          <type>char **</type>
+          <declname>argv</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/indi/indi/model.hpp" line="43" column="1" bodyfile="/home/nbentley/Trophia/Code/indi/indi/model.hpp" bodystart="43" bodyend="48"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="439">
+        <label>Indi::Model&lt; Fishes, Vessels, Environs &gt;</label>
+        <link refid="classIndi_1_1Model"/>
+        <childnode refid="440" relation="usage">
+          <edgelabel>vessels</edgelabel>
+        </childnode>
+        <childnode refid="442" relation="usage">
+          <edgelabel>fishes</edgelabel>
+        </childnode>
+        <childnode refid="444" relation="usage">
+          <edgelabel>environs</edgelabel>
+        </childnode>
+      </node>
+      <node id="440">
+        <label>Indi::Vessels&lt; Vessel &gt;</label>
+        <link refid="classIndi_1_1Vessels"/>
+        <childnode refid="441" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="441">
+        <label>std::list&lt; Vessel &gt;</label>
+      </node>
+      <node id="442">
+        <label>Indi::Fishes&lt; Fish &gt;</label>
+        <link refid="classIndi_1_1Fishes"/>
+        <childnode refid="443" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="443">
+        <label>std::vector&lt; Fish &gt;</label>
+      </node>
+      <node id="444">
+        <label>Indi::Environs</label>
+        <link refid="classIndi_1_1Environs"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/nbentley/Trophia/Code/indi/indi/model.hpp" line="16" column="1" bodyfile="/home/nbentley/Trophia/Code/indi/indi/model.hpp" bodystart="16" bodyend="50"/>
+    <listofallmembers>
+      <member refid="classIndi_1_1Model_1a4d8efc4f2c9654b056c523dd4576c571" prot="protected" virt="non-virtual"><scope>Indi::Model</scope><name>environs</name></member>
+      <member refid="classIndi_1_1Model_1a03904042f0a4130221b12d93949765c0" prot="protected" virt="non-virtual"><scope>Indi::Model</scope><name>fishes</name></member>
+      <member refid="classIndi_1_1Model_1a1141c0a19c0da63a81d784c433930aeb" prot="public" virt="non-virtual"><scope>Indi::Model</scope><name>main</name></member>
+      <member refid="classIndi_1_1Model_1a9b441d8db20ffef420c09f793515c6ab" prot="public" virt="non-virtual"><scope>Indi::Model</scope><name>start</name></member>
+      <member refid="classIndi_1_1Model_1a7ff3c6c8b2f5fa07e6a37824bddde716" prot="public" virt="non-virtual"><scope>Indi::Model</scope><name>step</name></member>
+      <member refid="classIndi_1_1Model_1a88ab8d4ae30a35d3e4cf6239ff8a0ce9" prot="public" virt="non-virtual"><scope>Indi::Model</scope><name>stop</name></member>
+      <member refid="classIndi_1_1Model_1ad85ab3bb239c353466d15f74bea4f760" prot="protected" virt="non-virtual"><scope>Indi::Model</scope><name>vessels</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

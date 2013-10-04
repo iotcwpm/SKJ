@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="README_8md" kind="file">
+    <compoundname>README.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#<sp/>Markov<sp/>chain<sp/>Monte<sp/>Carlo<sp/>methods</highlight></codeline>
+<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal">This<sp/>modules<sp/>implements<sp/>MCMC<sp/>algorithms.</highlight></codeline>
+<codeline lineno="4"><highlight class="normal">Currently<sp/>only<sp/>the<sp/>very<sp/>simple<sp/>Metropolis<sp/>algorithm<sp/>is<sp/>implemented.</highlight></codeline>
+<codeline lineno="5"><highlight class="normal">This<sp/>algorithm<sp/>requires<sp/>tuning<sp/>by<sp/>setting<sp/>the<sp/>variance<sp/>of<sp/>the<sp/>proposal<sp/>distibution.</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal">However,<sp/>we<sp/>a<sp/>considering<sp/>implementing<sp/>adaptive<sp/>MCMC<sp/>algorithms<sp/>which<sp/></highlight><highlight class="keywordflow">do</highlight><highlight class="normal"><sp/>not<sp/>require<sp/>tuning.</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal">A<sp/>good<sp/>review<sp/>of<sp/>adaptive<sp/>MCMC<sp/>algorithms<sp/>is<sp/>available<sp/>here:</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Roberts,<sp/>G.<sp/>O.,<sp/>&amp;<sp/>Rosenthal,<sp/>J.<sp/>S.<sp/>(2009).<sp/>Examples<sp/>of<sp/>adaptive<sp/>MCMC.<sp/>Journal<sp/>of<sp/>Computational<sp/>and<sp/>Graphical<sp/>Statistics,<sp/>18(2),<sp/>349-367.</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal">The<sp/>SCAM<sp/>algorithm<sp/>of<sp/>Haario<sp/>et<sp/>al<sp/>(2005)<sp/>seems<sp/>like<sp/>a<sp/>good<sp/>option.</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal">*<sp/>Haario,<sp/>H.,<sp/>Saksman,<sp/>E.,<sp/>&amp;<sp/>Tamminen,<sp/>J.<sp/>(2005).<sp/>Componentwise<sp/>adaptation<sp/>for<sp/>high<sp/>dimensional<sp/>MCMC.<sp/>Computational<sp/>Statistics,<sp/>20(2),<sp/>265-273.</highlight></codeline>
+<codeline lineno="15"><highlight class="normal">*<sp/>Haario,<sp/>H.,<sp/>Laine,<sp/>M.,<sp/>Mira,<sp/>A.,<sp/>&amp;<sp/>Saksman,<sp/>E.<sp/>(2006).<sp/>DRAM:<sp/>efficient<sp/>adaptive<sp/>MCMC.<sp/>Statistics<sp/>and<sp/>Computing,<sp/>16(4),<sp/>339-354.</highlight></codeline>
+<codeline lineno="16"><highlight class="normal">*<sp/>Christen,<sp/>J.<sp/>A.,<sp/>&amp;<sp/>Fox,<sp/>C.<sp/>(2010).<sp/>A<sp/>general<sp/>purpose<sp/>sampling<sp/>algorithm<sp/>for<sp/>continuous<sp/>distributions<sp/>(the<sp/>t-walk).<sp/>Bayesian<sp/>Analysis,<sp/>5(2),<sp/>263-281.</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/>Available<sp/>in<sp/>C++<sp/>and<sp/>C<sp/>at<sp/>http:</highlight><highlight class="comment">//www.cimat.mx/~jac/twalk</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/README.md"/>
+  </compounddef>
+</doxygen>

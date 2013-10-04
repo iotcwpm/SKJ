@@ -1,0 +1,175 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="classFisl_1_1Population_1_1Recruitment_1_1BevertonHolt" kind="class" prot="public">
+    <compoundname>Fisl::Population::Recruitment::BevertonHolt</compoundname>
+    <includes refid="beverton-holt_8hpp" local="no">beverton-holt.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classFisl_1_1Population_1_1Recruitment_1_1BevertonHolt_1ad6ae72880a8ab924422e627e0d658c25" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Fisl::Population::Recruitment::BevertonHolt::r0_</definition>
+        <argsstring></argsstring>
+        <name>r0_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/beverton-holt.hpp" line="16" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/beverton-holt.hpp" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classFisl_1_1Population_1_1Recruitment_1_1BevertonHolt_1a47784d09c3eb15b6dd1e0038f4eaa69f" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Fisl::Population::Recruitment::BevertonHolt::s0_</definition>
+        <argsstring></argsstring>
+        <name>s0_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/beverton-holt.hpp" line="17" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/beverton-holt.hpp" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classFisl_1_1Population_1_1Recruitment_1_1BevertonHolt_1a6761a2985331344d3a841f1b765b9f50" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Fisl::Population::Recruitment::BevertonHolt::steepness_</definition>
+        <argsstring></argsstring>
+        <name>steepness_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/beverton-holt.hpp" line="18" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/beverton-holt.hpp" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classFisl_1_1Population_1_1Recruitment_1_1BevertonHolt_1ac6a26843f7385ced09a79a1a44f6a041" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Fisl::Population::Recruitment::BevertonHolt::stock_</definition>
+        <argsstring></argsstring>
+        <name>stock_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/beverton-holt.hpp" line="19" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/beverton-holt.hpp" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classFisl_1_1Population_1_1Recruitment_1_1BevertonHolt_1a0b1e60f11884daaa574435523bf61c57" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Fisl::Population::Recruitment::BevertonHolt::recruits_</definition>
+        <argsstring></argsstring>
+        <name>recruits_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/beverton-holt.hpp" line="20" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/beverton-holt.hpp" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classFisl_1_1Population_1_1Recruitment_1_1BevertonHolt_1a982cf580029a7cc23adf740bbde9e323" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Fisl::Population::Recruitment::BevertonHolt::steepness</definition>
+        <argsstring>(void) const </argsstring>
+        <name>steepness</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/beverton-holt.hpp" line="24" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/beverton-holt.hpp" bodystart="24" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Population_1_1Recruitment_1_1BevertonHolt_1a3f75a3e1648330aef30f2aa88bb0f358" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classFisl_1_1Population_1_1Recruitment_1_1BevertonHolt" kindref="compound">BevertonHolt</ref> &amp;</type>
+        <definition>BevertonHolt&amp; Fisl::Population::Recruitment::BevertonHolt::steepness</definition>
+        <argsstring>(const double &amp;steepness)</argsstring>
+        <name>steepness</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>steepness</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/beverton-holt.hpp" line="28" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/beverton-holt.hpp" bodystart="28" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Population_1_1Recruitment_1_1BevertonHolt_1a088f154094a9b8ae9cceba7f04732237" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Fisl::Population::Recruitment::BevertonHolt::alpha</definition>
+        <argsstring>(void) const </argsstring>
+        <name>alpha</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/beverton-holt.hpp" line="33" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/beverton-holt.hpp" bodystart="33" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Population_1_1Recruitment_1_1BevertonHolt_1a2287a9f34756278a735ac18ea0deeb81" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Fisl::Population::Recruitment::BevertonHolt::beta</definition>
+        <argsstring>(void) const </argsstring>
+        <name>beta</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/beverton-holt.hpp" line="37" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/beverton-holt.hpp" bodystart="37" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Population_1_1Recruitment_1_1BevertonHolt_1a34d4a3191fe096b86225ea085797456c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classFisl_1_1Population_1_1Recruitment_1_1BevertonHolt" kindref="compound">BevertonHolt</ref> &amp;</type>
+        <definition>BevertonHolt&amp; Fisl::Population::Recruitment::BevertonHolt::operator()</definition>
+        <argsstring>(const double &amp;stock)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>stock</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/beverton-holt.hpp" line="41" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/beverton-holt.hpp" bodystart="41" bodyend="45"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Beverton-Holt stock recruitment relationship</para><para><xrefsect id="todo_1_todo000006"><xreftitle>Todo</xreftitle><xrefdescription><para>Prevent steepness being set outside of 0.2-1 range </para><para>Prevent r0 and s0 being set -ve </para></xrefdescription></xrefsect></para>    </detaileddescription>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/beverton-holt.hpp" line="13" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/beverton-holt.hpp" bodystart="13" bodyend="46"/>
+    <listofallmembers>
+      <member refid="classFisl_1_1Population_1_1Recruitment_1_1BevertonHolt_1a088f154094a9b8ae9cceba7f04732237" prot="public" virt="non-virtual"><scope>Fisl::Population::Recruitment::BevertonHolt</scope><name>alpha</name></member>
+      <member refid="classFisl_1_1Population_1_1Recruitment_1_1BevertonHolt_1a2287a9f34756278a735ac18ea0deeb81" prot="public" virt="non-virtual"><scope>Fisl::Population::Recruitment::BevertonHolt</scope><name>beta</name></member>
+      <member refid="classFisl_1_1Population_1_1Recruitment_1_1BevertonHolt_1a34d4a3191fe096b86225ea085797456c" prot="public" virt="non-virtual"><scope>Fisl::Population::Recruitment::BevertonHolt</scope><name>operator()</name></member>
+      <member refid="classFisl_1_1Population_1_1Recruitment_1_1BevertonHolt_1ad6ae72880a8ab924422e627e0d658c25" prot="private" virt="non-virtual"><scope>Fisl::Population::Recruitment::BevertonHolt</scope><name>r0_</name></member>
+      <member refid="classFisl_1_1Population_1_1Recruitment_1_1BevertonHolt_1a0b1e60f11884daaa574435523bf61c57" prot="private" virt="non-virtual"><scope>Fisl::Population::Recruitment::BevertonHolt</scope><name>recruits_</name></member>
+      <member refid="classFisl_1_1Population_1_1Recruitment_1_1BevertonHolt_1a47784d09c3eb15b6dd1e0038f4eaa69f" prot="private" virt="non-virtual"><scope>Fisl::Population::Recruitment::BevertonHolt</scope><name>s0_</name></member>
+      <member refid="classFisl_1_1Population_1_1Recruitment_1_1BevertonHolt_1a982cf580029a7cc23adf740bbde9e323" prot="public" virt="non-virtual"><scope>Fisl::Population::Recruitment::BevertonHolt</scope><name>steepness</name></member>
+      <member refid="classFisl_1_1Population_1_1Recruitment_1_1BevertonHolt_1a3f75a3e1648330aef30f2aa88bb0f358" prot="public" virt="non-virtual"><scope>Fisl::Population::Recruitment::BevertonHolt</scope><name>steepness</name></member>
+      <member refid="classFisl_1_1Population_1_1Recruitment_1_1BevertonHolt_1a6761a2985331344d3a841f1b765b9f50" prot="private" virt="non-virtual"><scope>Fisl::Population::Recruitment::BevertonHolt</scope><name>steepness_</name></member>
+      <member refid="classFisl_1_1Population_1_1Recruitment_1_1BevertonHolt_1ac6a26843f7385ced09a79a1a44f6a041" prot="private" virt="non-virtual"><scope>Fisl::Population::Recruitment::BevertonHolt</scope><name>stock_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

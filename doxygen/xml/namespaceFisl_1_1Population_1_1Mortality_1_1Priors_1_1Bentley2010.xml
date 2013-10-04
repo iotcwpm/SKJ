@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="namespaceFisl_1_1Population_1_1Mortality_1_1Priors_1_1Bentley2010" kind="namespace">
+    <compoundname>Fisl::Population::Mortality::Priors::Bentley2010</compoundname>
+    <innerclass refid="classFisl_1_1Population_1_1Mortality_1_1Priors_1_1Bentley2010_1_1MFromK" prot="public">Fisl::Population::Mortality::Priors::Bentley2010::MFromK</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/mortality/priors/bentley_2010.hpp" line="10"/>
+  </compounddef>
+</doxygen>

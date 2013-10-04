@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="P02018_01catch__effort_8md" kind="file">
+    <compoundname>P02018 catch_effort.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal">Title:<sp/>P02018:<sp/>Fine<sp/>scale<sp/>reporting<sp/>of<sp/>Catch<sp/>Effort<sp/>information</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">Principal<sp/>Investigator:</highlight></codeline>
+<codeline lineno="6"><highlight class="normal">Paul<sp/>Starr</highlight></codeline>
+<codeline lineno="7"><highlight class="normal">Researchers:</highlight></codeline>
+<codeline lineno="8"><highlight class="normal">Nokome<sp/>Bentley</highlight></codeline>
+<codeline lineno="9"><highlight class="normal">Adam<sp/>Langley</highlight></codeline>
+<codeline lineno="10"><highlight class="normal">Terese<sp/>Kendrick</highlight></codeline>
+<codeline lineno="11"><highlight class="normal">Nathan<sp/>Walker</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal">Subcontractors:<sp/><sp/>NIWA,<sp/>SeaFIC,<sp/>Lat37</highlight></codeline>
+<codeline lineno="14"><highlight class="normal">Status:</highlight></codeline>
+<codeline lineno="15"><highlight class="normal">Completed</highlight></codeline>
+<codeline lineno="16"><highlight class="normal">Trophia<sp/>was<sp/>contracted<sp/>by<sp/>the<sp/>New<sp/>Zealand<sp/>Ministry<sp/>of<sp/>Fisheries<sp/>MFish,<sp/>to<sp/>consult<sp/>and<sp/>report<sp/>on<sp/>options<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>improving<sp/>the<sp/>spatial<sp/>resolution<sp/>in<sp/></highlight><highlight class="keywordflow">catch</highlight><highlight class="normal"><sp/>and<sp/>effort<sp/>data<sp/>from<sp/>New<sp/>Zeland<sp/>fisheries.<sp/></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal">The<sp/>demand<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>more<sp/>spatial<sp/>resolution<sp/>in<sp/>fisheries<sp/></highlight><highlight class="keywordflow">catch</highlight><highlight class="normal">-effort<sp/>data<sp/>comes<sp/>from<sp/>managers,<sp/>scientists<sp/>and<sp/>compliance<sp/>officers<sp/>and<sp/>is<sp/>driven<sp/>largely<sp/>by<sp/>the<sp/>movement<sp/>towards<sp/>managing<sp/>fisheries<sp/>at<sp/>a<sp/>finer<sp/>spatial<sp/>scale.<sp/><sp/></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal">Several<sp/>options<sp/>exist<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>improving<sp/>the<sp/>spatial<sp/>resolution<sp/>of<sp/></highlight><highlight class="keywordflow">catch</highlight><highlight class="normal">-effort<sp/>data.<sp/><sp/>These<sp/>include<sp/>recording<sp/>latitude<sp/>and<sp/>longitude<sp/>and<sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>finer<sp/>statistical<sp/>areas.<sp/><sp/>The<sp/>appropriateness<sp/>of<sp/>each<sp/>option<sp/>needed<sp/>to<sp/>be<sp/>assessed<sp/>in<sp/>terms<sp/>of<sp/>its:</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal">benefits<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>spatial<sp/>precision<sp/>and<sp/>adaptability,</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal">costs<sp/>of<sp/><ref refid="namespaceIOSKJ_1af3eb431b8421bdaee2203d1d0674747e" kindref="member">time</ref><sp/>and<sp/>equipment<sp/>necessary<sp/>to<sp/>record<sp/>and<sp/>manage<sp/>data,</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal">risks<sp/>to<sp/>data<sp/>accuracy.</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal">This<sp/>project<sp/>was<sp/>funded<sp/>by<sp/>MFish<sp/>project<sp/>DAT2002-99</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal">Output<sp/>includes<sp/>presentations<sp/>and<sp/>reports<sp/>to<sp/>the<sp/>Ministry<sp/>of<sp/>Fisheries<sp/>Data<sp/>Management<sp/>Working<sp/>Group:<sp/>A<sp/>Final<sp/>Research<sp/>Report<sp/>will<sp/>soon<sp/>be<sp/>available<sp/>on<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>site;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal">Bentley,<sp/>N.,<sp/>Starr,<sp/>P.J.,<sp/>Banks,<sp/>D.,<sp/>Walker,<sp/>N.A.,<sp/>Anderson,<sp/>S.,<sp/>Kendrick,<sp/>T.H.,<sp/>Langley,<sp/>A.D.<sp/>and<sp/>K.<sp/>Stokes<sp/>(In<sp/>Press).<sp/>Options<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>finer<sp/>scale<sp/>reporting<sp/>of<sp/></highlight><highlight class="keywordflow">catch</highlight><highlight class="normal"><sp/>and<sp/>effort<sp/>data<sp/>in<sp/>New<sp/>Zealand<sp/>commercial<sp/>fisheries.<sp/>New<sp/>Zealand<sp/>Fisheries<sp/>Assessment<sp/>Report<sp/>2004/<sp/>xx.</highlight></codeline>
+    </programlisting>
+    <location file="/home/nbentley/Trophia/Code/www/src/projects/P02018 catch_effort.md"/>
+  </compounddef>
+</doxygen>

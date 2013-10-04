@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="P02016_01Southern_01Gulf_8md" kind="file">
+    <compoundname>P02016 Southern Gulf.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal">Title:<sp/>P02016:<sp/>�<sp/>Recreational<sp/>fishing<sp/>surveys<sp/>in<sp/>the<sp/>Southern<sp/>Gulf<sp/>of<sp/>Carpentaria<sp/>-<sp/>a<sp/>pilot<sp/>study</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">Principal<sp/>Investigator:</highlight></codeline>
+<codeline lineno="6"><highlight class="normal">Anthony<sp/>Hart</highlight></codeline>
+<codeline lineno="7"><highlight class="normal">Researchers:</highlight></codeline>
+<codeline lineno="8"><highlight class="normal">Nokome<sp/>Bentley</highlight></codeline>
+<codeline lineno="9"><highlight class="normal">Status:</highlight></codeline>
+<codeline lineno="10"><highlight class="normal">Completed</highlight></codeline>
+<codeline lineno="11"><highlight class="normal">Information<sp/>on<sp/>the<sp/></highlight><highlight class="keywordflow">catch</highlight><highlight class="normal"><sp/>and<sp/>effort<sp/>of<sp/>recreational<sp/>fishing<sp/>in<sp/>the<sp/>Southern<sp/>Gulf<sp/>of<sp/>Carpentaria<sp/>is<sp/>required<sp/>to<sp/>ensure<sp/>the<sp/>sustainability<sp/>of<sp/>fishing<sp/>activities,<sp/>and<sp/>preserve<sp/>the<sp/>unique<sp/>environment<sp/>and<sp/>wilderness<sp/>aspects<sp/>of<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>area.<sp/>The<sp/>Southern<sp/>Gulf<sp/>includes<sp/>some<sp/>of<sp/>the<sp/>prime<sp/>recreational<sp/>fishing<sp/>locations<sp/>in<sp/>Australia<sp/>with<sp/>estimates<sp/>upwards<sp/>of<sp/>80,000<sp/>visitors<sp/>to<sp/>Karumba<sp/>and<sp/>Burketown<sp/>each<sp/><ref refid="namespaceIOSKJ_1a3b0e8207040c0b0617bab01f6f23cb7d" kindref="member">year</ref><sp/>during<sp/>the<sp/>winter<sp/>season<sp/>.<sp/>However,<sp/>a<sp/>review<sp/>by<sp/>Hart<sp/>(2002)<sp/>found<sp/>a<sp/>lack<sp/>of<sp/>recreational<sp/>fishery<sp/>monitoring<sp/>programs<sp/>in<sp/>the<sp/>area.</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal">The<sp/>objectives<sp/>of<sp/>this<sp/>pilot<sp/>study<sp/>were:</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal">To<sp/>obtain<sp/>estimates<sp/>of<sp/>mean<sp/>and<sp/>variability<sp/>in<sp/>harvest<sp/>rates<sp/>of<sp/>the<sp/>principal<sp/>target<sp/>species<sp/>in<sp/>the<sp/>Karumba<sp/>recreational<sp/>fishery.</highlight></codeline>
+<codeline lineno="16"><highlight class="normal">To<sp/>use<sp/>the<sp/>estimates<sp/>of<sp/>mean<sp/>and<sp/>variance<sp/>to<sp/>undertake<sp/>simulations<sp/>of<sp/>optimal<sp/>design<sp/>for<sp/>a<sp/></highlight><highlight class="keywordtype">long</highlight><highlight class="normal">-term<sp/>monitoring<sp/>program.</highlight></codeline>
+<codeline lineno="17"><highlight class="normal">To<sp/>report<sp/>on<sp/>the<sp/>logistics<sp/>and<sp/>make<sp/>recommendations<sp/>for<sp/>undertaking<sp/>a<sp/>monitoring<sp/>program<sp/>for<sp/>recreational<sp/>fisheries<sp/>in<sp/>the<sp/>Southern<sp/>Gulf<sp/>Region.</highlight></codeline>
+<codeline lineno="18"><highlight class="normal">This<sp/>project<sp/>contributes<sp/>to<sp/>the<sp/>Southern<sp/>Gulf<sp/>Environmental<sp/>Information<sp/>Program<sp/>(SGEIP)<sp/>undertaken<sp/>by<sp/>the<sp/>Australian<sp/>Centre<sp/>for<sp/>Tropical<sp/>Freshwater<sp/>Research<sp/>(ACTFR)<sp/>on<sp/>behalf<sp/>of<sp/>the<sp/>Department<sp/>of<sp/>State<sp/>Development,<sp/>Queensland.<sp/><sp/>The<sp/>ACTFR<sp/>is<sp/>a<sp/>research<sp/>and<sp/>consultancy<sp/>centre<sp/>established<sp/>within<sp/>James<sp/>Cook<sp/>University<sp/>in<sp/>1987<sp/>to<sp/>promote<sp/>water<sp/>research,<sp/>technology<sp/>and<sp/>information<sp/>transfer<sp/>to<sp/>industry.</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal">Click<sp/>link<sp/>below<sp/>to<sp/>find<sp/>out<sp/>more</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Click<sp/>for<sp/>document</highlight></codeline>
+<codeline lineno="22"><highlight class="normal">Hart,<sp/>A.<ref refid="namespaceIOSKJ_1a0ab9304f6271a6b75f81ceff70000f0dac32c131fa8b4252be7fc9b19921ea336" kindref="member">M</ref>.<sp/><sp/>Southern<sp/>Gulf<sp/>Environmental<sp/>Information<sp/>Program:<sp/><sp/>Recreational<sp/>Fishing<sp/>Surveys<sp/>-<sp/>Pilot<sp/>study<sp/>21<sp/>p.<sp/>Unpublished<sp/>Client<sp/>report<sp/>made<sp/>available<sp/>by<sp/>permission<sp/>of<sp/>George<sp/>Lukacs.</highlight></codeline>
+    </programlisting>
+    <location file="/home/nbentley/Trophia/Code/www/src/projects/P02016 Southern Gulf.md"/>
+  </compounddef>
+</doxygen>

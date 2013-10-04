@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="finz_2README_8md" kind="file">
+    <compoundname>finz/README.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#<sp/>Fisheries<sp/>of<sp/>New<sp/>Zealand<sp/>(FINZ)</highlight></codeline>
+<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Why?</highlight></codeline>
+<codeline lineno="4"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">&lt;a<sp/>href=</highlight><highlight class="stringliteral">&quot;http://trophia.com&quot;</highlight><highlight class="normal">&gt;Trophia&lt;/a&gt;<sp/>developed<sp/>the<sp/>Fisheries<sp/>of<sp/>New<sp/>Zealand<sp/>(FINZ)<sp/>website<sp/>during<sp/>a<sp/>project<sp/>for</highlight></codeline>
+<codeline lineno="6"><highlight class="normal">the<sp/>New<sp/>Zealand<sp/>Ministry<sp/>of<sp/>Fisheries<sp/>(<ref refid="namespaceIndi_1a82f9a37370399315a157c4af8d7a3a89" kindref="member">now</ref><sp/>the<sp/>&lt;a<sp/>href=&quot;http:</highlight><highlight class="comment">//mpi.govt.nz&quot;&gt;Ministry<sp/>for<sp/>Primary<sp/>Industries&lt;/a&gt;).</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal">Since<sp/>then,<sp/>the<sp/>project<sp/>has<sp/>been<sp/>incorporated<sp/>into<sp/>the<sp/>work<sp/>programme<sp/></highlight></codeline>
+<codeline lineno="9"><highlight class="normal">of<sp/>&lt;a<sp/>href=&quot;http:</highlight><highlight class="comment">//fonz.tridentsystems.co.nz&quot;&gt;Trident<sp/>Systems&lt;/a&gt;<sp/>and<sp/>developed<sp/>further.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal">This<sp/>repository<sp/>simply<sp/>sets<sp/>up<sp/>a<sp/>HTML<sp/>redirect<sp/>from<sp/>http:</highlight><highlight class="comment">//finz.trophia.com<sp/>to<sp/>http://fonz.tridentsystems.co.nz.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>How?<sp/>(Because<sp/>someone,<sp/>somehere,<sp/>someday,<sp/>might<sp/>just<sp/>be<sp/>interested)</highlight></codeline>
+<codeline lineno="14"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal">We<sp/><ref refid="namespaceupdater_1ad619f01c8740d965708b9a7cf638ec19" kindref="member">setup</ref><sp/>an<sp/>empty<sp/>Github<sp/>pages<sp/>branch<sp/>to<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>repo:</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal">```sh</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal">git<sp/>clone<sp/>https:</highlight><highlight class="comment">//github.com/trophia/finz.git</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal">cd<sp/>finz</highlight></codeline>
+<codeline lineno="21"><highlight class="normal">git<sp/>checkout<sp/>--orphan<sp/>gh-pages</highlight></codeline>
+<codeline lineno="22"><highlight class="normal">git<sp/>rm<sp/>-rf<sp/>.</highlight></codeline>
+<codeline lineno="23"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal">Created<sp/>`index.html`<sp/>with<sp/>the<sp/>HTML<sp/>redirect<sp/>in<sp/>it<sp/>(and<sp/>some<sp/>other<sp/>silly<sp/>stuff<sp/>no<sp/>one<sp/>should<sp/>ever<sp/>see)</highlight></codeline>
+<codeline lineno="26"><highlight class="normal">Then<sp/>pushed<sp/>up<sp/>the<sp/>changes.</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal">```sh</highlight></codeline>
+<codeline lineno="29"><highlight class="normal">git<sp/>add<sp/>index.html</highlight></codeline>
+<codeline lineno="30"><highlight class="normal">git<sp/>commit<sp/>-a<sp/>-m<sp/></highlight><highlight class="stringliteral">&quot;First<sp/>pages<sp/>commit&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal">git<sp/>push<sp/>origin<sp/>gh-pages</highlight></codeline>
+<codeline lineno="32"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal">Created<sp/>a<sp/>file<sp/>called<sp/>`CNAME`<sp/>with<sp/>the<sp/>one<sp/>line<sp/>`finz.trophia.com`<sp/>in<sp/>it<sp/>so<sp/>that</highlight></codeline>
+<codeline lineno="35"><highlight class="normal">Github<sp/>pages<sp/>knows<sp/>to<sp/>point<sp/>that<sp/>domain<sp/>at<sp/>that<sp/>`index.html`<sp/>file.</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal">On<sp/>our<sp/>zone<sp/>file,<sp/>created<sp/>an<sp/>A<sp/>record<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>finz.trophia.com<sp/>pointing<sp/>to<sp/>204.232.175.78<sp/>(Github<sp/>pages).</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal">Done!</highlight></codeline>
+    </programlisting>
+    <location file="/home/nbentley/Trophia/Code/finz/README.md"/>
+  </compounddef>
+</doxygen>

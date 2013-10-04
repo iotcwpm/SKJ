@@ -1,0 +1,263 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="classIndi_1_1Scalar" kind="class" prot="public">
+    <compoundname>Indi::Scalar</compoundname>
+    <includes refid="scalar_8hpp" local="no">scalar.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>int</type>
+        <declname>Code</declname>
+        <defname>Code</defname>
+      </param>
+      <param>
+        <type>typename</type>
+        <declname>Type</declname>
+        <defname>Type</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classIndi_1_1Scalar_1a6303dd7c677774cd633a638b0c4260ac" prot="private" static="no" mutable="no">
+        <type>Type</type>
+        <definition>Type Indi::Scalar&lt; Code, Type &gt;::value</definition>
+        <argsstring></argsstring>
+        <name>value</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/indi/indi/scalar.hpp" line="11" column="1" bodyfile="/home/nbentley/Trophia/Code/indi/indi/scalar.hpp" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classIndi_1_1Scalar_1a8434fe62441962fb8868e05559219e5d" prot="public" static="yes" mutable="no">
+        <type>float</type>
+        <definition>float Indi::Scalar&lt; Code, Type &gt;::base</definition>
+        <argsstring></argsstring>
+        <name>base</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/indi/indi/scalar.hpp" line="14" column="1" bodyfile="/home/nbentley/Trophia/Code/indi/indi/scalar.hpp" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classIndi_1_1Scalar_1a882dc595f5ad7ecc4789ceae5fc2066a" prot="public" static="yes" mutable="no">
+        <type>float</type>
+        <definition>float Indi::Scalar&lt; Code, Type &gt;::incr</definition>
+        <argsstring></argsstring>
+        <name>incr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/indi/indi/scalar.hpp" line="15" column="1" bodyfile="/home/nbentley/Trophia/Code/indi/indi/scalar.hpp" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classIndi_1_1Scalar_1afea8ca26cdbd2916db0343b62e82bb89" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Indi::Scalar&lt; Code, Type &gt;::Scalar</definition>
+        <argsstring>(void)</argsstring>
+        <name>Scalar</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/indi/indi/scalar.hpp" line="17" column="1" bodyfile="/home/nbentley/Trophia/Code/indi/indi/scalar.hpp" bodystart="17" bodyend="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classIndi_1_1Scalar_1abbbe9c705dcca678273286ac7a7c923e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Indi::Scalar&lt; Code, Type &gt;::Scalar</definition>
+        <argsstring>(float real)</argsstring>
+        <name>Scalar</name>
+        <param>
+          <type>float</type>
+          <declname>real</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/indi/indi/scalar.hpp" line="21" column="1" bodyfile="/home/nbentley/Trophia/Code/indi/indi/scalar.hpp" bodystart="21" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classIndi_1_1Scalar_1a331258c21945069d21b33f138b80c13d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Indi::Scalar&lt; Code, Type &gt;::operator float</definition>
+        <argsstring>(void) const </argsstring>
+        <name>operator float</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/indi/indi/scalar.hpp" line="25" column="1" bodyfile="/home/nbentley/Trophia/Code/indi/indi/scalar.hpp" bodystart="25" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="classIndi_1_1Scalar_1af7707be38ff74d1795b6797f43b6fb49" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Indi::Scalar&lt; Code, Type &gt;::operator&lt;</definition>
+        <argsstring>(const Scalar &amp;other) const </argsstring>
+        <name>operator&lt;</name>
+        <param>
+          <type>const <ref refid="classIndi_1_1Scalar" kindref="compound">Scalar</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/indi/indi/scalar.hpp" line="29" column="1" bodyfile="/home/nbentley/Trophia/Code/indi/indi/scalar.hpp" bodystart="29" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="classIndi_1_1Scalar_1a8b4f4d4d22d621c8ef71119f5033ebbb" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool Indi::Scalar&lt; Code, Type &gt;::operator&gt;</definition>
+        <argsstring>(const Scalar &amp;other) const </argsstring>
+        <name>operator&gt;</name>
+        <param>
+          <type>const <ref refid="classIndi_1_1Scalar" kindref="compound">Scalar</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/indi/indi/scalar.hpp" line="33" column="1" bodyfile="/home/nbentley/Trophia/Code/indi/indi/scalar.hpp" bodystart="33" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="classIndi_1_1Scalar_1a23f9daaa03c0206fe7cbd1159b895d31" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classIndi_1_1Scalar" kindref="compound">Scalar</ref> &amp;</type>
+        <definition>Scalar&amp; Indi::Scalar&lt; Code, Type &gt;::operator++</definition>
+        <argsstring>(int)</argsstring>
+        <name>operator++</name>
+        <param>
+          <type>int</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/indi/indi/scalar.hpp" line="37" column="1" bodyfile="/home/nbentley/Trophia/Code/indi/indi/scalar.hpp" bodystart="37" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="classIndi_1_1Scalar_1a7a0cb9c68a16607696732fa9bed8f3a3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Indi::Scalar&lt; Code, Type &gt;::operator+=</definition>
+        <argsstring>(const Scalar &amp;other)</argsstring>
+        <name>operator+=</name>
+        <param>
+          <type>const <ref refid="classIndi_1_1Scalar" kindref="compound">Scalar</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/indi/indi/scalar.hpp" line="42" column="1" bodyfile="/home/nbentley/Trophia/Code/indi/indi/scalar.hpp" bodystart="42" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="classIndi_1_1Scalar_1ad2212ea7740d855d14273138308e3972" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Indi::Scalar&lt; Code, Type &gt;::operator-=</definition>
+        <argsstring>(const Scalar &amp;other)</argsstring>
+        <name>operator-=</name>
+        <param>
+          <type>const <ref refid="classIndi_1_1Scalar" kindref="compound">Scalar</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/indi/indi/scalar.hpp" line="46" column="1" bodyfile="/home/nbentley/Trophia/Code/indi/indi/scalar.hpp" bodystart="46" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classIndi_1_1Scalar_1a1151d4649b64ec13fbf8bc36f78eaa92" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Indi::Scalar&lt; Code, Type &gt;::operator*=</definition>
+        <argsstring>(const Scalar &amp;other)</argsstring>
+        <name>operator*=</name>
+        <param>
+          <type>const <ref refid="classIndi_1_1Scalar" kindref="compound">Scalar</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/indi/indi/scalar.hpp" line="50" column="1" bodyfile="/home/nbentley/Trophia/Code/indi/indi/scalar.hpp" bodystart="50" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="classIndi_1_1Scalar_1a06e675e0645879f01e17401f3067b50c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Indi::Scalar&lt; Code, Type &gt;::operator/=</definition>
+        <argsstring>(const Scalar &amp;other)</argsstring>
+        <name>operator/=</name>
+        <param>
+          <type>const <ref refid="classIndi_1_1Scalar" kindref="compound">Scalar</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/indi/indi/scalar.hpp" line="54" column="1" bodyfile="/home/nbentley/Trophia/Code/indi/indi/scalar.hpp" bodystart="54" bodyend="56"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="465">
+        <label>Type</label>
+      </node>
+      <node id="464">
+        <label>Indi::Scalar&lt; Code, Type &gt;</label>
+        <link refid="classIndi_1_1Scalar"/>
+        <childnode refid="465" relation="usage">
+          <edgelabel>value</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/nbentley/Trophia/Code/indi/indi/scalar.hpp" line="9" column="1" bodyfile="/home/nbentley/Trophia/Code/indi/indi/scalar.hpp" bodystart="9" bodyend="57"/>
+    <listofallmembers>
+      <member refid="classIndi_1_1Scalar_1a8434fe62441962fb8868e05559219e5d" prot="public" virt="non-virtual"><scope>Indi::Scalar</scope><name>base</name></member>
+      <member refid="classIndi_1_1Scalar_1a882dc595f5ad7ecc4789ceae5fc2066a" prot="public" virt="non-virtual"><scope>Indi::Scalar</scope><name>incr</name></member>
+      <member refid="classIndi_1_1Scalar_1a331258c21945069d21b33f138b80c13d" prot="public" virt="non-virtual"><scope>Indi::Scalar</scope><name>operator float</name></member>
+      <member refid="classIndi_1_1Scalar_1a1151d4649b64ec13fbf8bc36f78eaa92" prot="public" virt="non-virtual"><scope>Indi::Scalar</scope><name>operator*=</name></member>
+      <member refid="classIndi_1_1Scalar_1a23f9daaa03c0206fe7cbd1159b895d31" prot="public" virt="non-virtual"><scope>Indi::Scalar</scope><name>operator++</name></member>
+      <member refid="classIndi_1_1Scalar_1a7a0cb9c68a16607696732fa9bed8f3a3" prot="public" virt="non-virtual"><scope>Indi::Scalar</scope><name>operator+=</name></member>
+      <member refid="classIndi_1_1Scalar_1ad2212ea7740d855d14273138308e3972" prot="public" virt="non-virtual"><scope>Indi::Scalar</scope><name>operator-=</name></member>
+      <member refid="classIndi_1_1Scalar_1a06e675e0645879f01e17401f3067b50c" prot="public" virt="non-virtual"><scope>Indi::Scalar</scope><name>operator/=</name></member>
+      <member refid="classIndi_1_1Scalar_1af7707be38ff74d1795b6797f43b6fb49" prot="public" virt="non-virtual"><scope>Indi::Scalar</scope><name>operator&lt;</name></member>
+      <member refid="classIndi_1_1Scalar_1a8b4f4d4d22d621c8ef71119f5033ebbb" prot="public" virt="non-virtual"><scope>Indi::Scalar</scope><name>operator&gt;</name></member>
+      <member refid="classIndi_1_1Scalar_1afea8ca26cdbd2916db0343b62e82bb89" prot="public" virt="non-virtual"><scope>Indi::Scalar</scope><name>Scalar</name></member>
+      <member refid="classIndi_1_1Scalar_1abbbe9c705dcca678273286ac7a7c923e" prot="public" virt="non-virtual"><scope>Indi::Scalar</scope><name>Scalar</name></member>
+      <member refid="classIndi_1_1Scalar_1a6303dd7c677774cd633a638b0c4260ac" prot="private" virt="non-virtual"><scope>Indi::Scalar</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

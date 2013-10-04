@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="P08012_01TAC2nd_8md" kind="file">
+    <compoundname>P08012 TAC2nd.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal">Title:<sp/>P08012:<sp/>Approaches<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>determining<sp/>in<sp/>season<sp/>TAC<sp/>increases<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>2nd<sp/>Schedule<sp/>stocks</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">Principal<sp/>Investigator:</highlight></codeline>
+<codeline lineno="6"><highlight class="normal">Nokome<sp/>Bentley</highlight></codeline>
+<codeline lineno="7"><highlight class="normal">Researchers:</highlight></codeline>
+<codeline lineno="8"><highlight class="normal">Adam<sp/>Langley</highlight></codeline>
+<codeline lineno="9"><highlight class="normal">Terese<sp/>Kendrick</highlight></codeline>
+<codeline lineno="10"><highlight class="normal">Paul<sp/>Starr</highlight></codeline>
+<codeline lineno="11"><highlight class="normal">Status:</highlight></codeline>
+<codeline lineno="12"><highlight class="normal">In<sp/>Progress<sp/>(Due<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>completion<sp/>December<sp/>2009)</highlight></codeline>
+<codeline lineno="13"><highlight class="normal">Trophia<sp/>has<sp/>been<sp/>contracted<sp/>by<sp/>the<sp/>New<sp/>Zealand<sp/>Ministry<sp/>of<sp/>Fisheries<sp/>(MFish)<sp/>to<sp/>characterise<sp/>the<sp/>inshore<sp/>fisheries<sp/>in<sp/>FMA<sp/>2<sp/>and<sp/>identify<sp/>abundance<sp/>indices<sp/>for<sp/>the<sp/>key<sp/>species<sp/>.<sp/>The<sp/>specific<sp/>objectives<sp/>for<sp/>this<sp/>project<sp/>include:</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal">1.<sp/><sp/>To<sp/>examine<sp/>approaches<sp/>for<sp/>determining<sp/>in-season<sp/>TAC<sp/>increases<sp/>in<sp/>FLA<sp/>and<sp/>RCO<sp/>stocks.</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="18"><highlight class="normal">When<sp/>providing<sp/>for<sp/>in-season<sp/>or<sp/>pre-season<sp/>TAC<sp/>changes<sp/>it<sp/>is<sp/>not<sp/>enough<sp/>to<sp/>simply<sp/>be<sp/>able<sp/>to<sp/>predict<sp/>that,<sp/>based<sp/>on<sp/>historic<sp/>relationships,<sp/>the<sp/>current<sp/>TAC<sp/>will<sp/>constrain<sp/>catches.<sp/><sp/>Ultimately,<sp/>what<sp/>is<sp/>required<sp/>is<sp/>a<sp/>method<sp/>for<sp/>formulating<sp/>what<sp/>magnitude<sp/>of<sp/>TAC<sp/>increase<sp/>is<sp/>appropriate<sp/>given<sp/>the<sp/>predicted<sp/>abundance<sp/>increase.<sp/><sp/>This<sp/>in<sp/>turn<sp/>requires<sp/>some<sp/>knowledge<sp/>of<sp/>the<sp/>dynamics<sp/>of<sp/>the<sp/>species,<sp/>the<sp/>precision<sp/>of<sp/>alternative<sp/>methods<sp/>for<sp/>predicting<sp/>abundance<sp/>and<sp/>management<sp/>objectives<sp/>for<sp/>the<sp/>fishery.<sp/><sp/>The<sp/>first<sp/>phase<sp/>of<sp/>this<sp/>project<sp/>examines<sp/>alternative<sp/>methods<sp/>for<sp/>predicting<sp/>abundance.<sp/><sp/>The<sp/>second<sp/>phase<sp/>uses<sp/>the<sp/>best<sp/>methods<sp/>found,<sp/>along<sp/>with<sp/>estimates<sp/>of<sp/>their<sp/>precision,<sp/>to<sp/>design<sp/>and<sp/>evaluate<sp/>alternative<sp/>TAC-setting<sp/>procedures<sp/>in<sp/>terms<sp/>of<sp/>a<sp/>set<sp/>of<sp/>management<sp/>performance<sp/>measures.</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal">There<sp/>has<sp/>been<sp/>little<sp/>work<sp/>done<sp/>in<sp/>New<sp/>Zealand<sp/>on<sp/>characterising<sp/>mixed<sp/>species<sp/>fisheries<sp/>and<sp/>the<sp/>interactions<sp/>within<sp/>them.<sp/>Trophia<sp/>scientists<sp/>are<sp/>interested<sp/>in<sp/>developing<sp/>new<sp/>methods<sp/>and<sp/>ways<sp/>of<sp/>presenting<sp/>data<sp/>that<sp/>will<sp/>describe<sp/>the<sp/>interactions<sp/>among<sp/>fisheries<sp/>in<sp/>a<sp/>way<sp/>that<sp/>is<sp/>useful<sp/>to<sp/>managers.</highlight></codeline>
+<codeline lineno="21"><highlight class="normal">.</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal">Our<sp/>approach<sp/>to<sp/>this<sp/>project<sp/>will<sp/>be<sp/>divided<sp/>into<sp/>two<sp/>phases:</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal">Analysis<sp/>of<sp/>historical<sp/>data<sp/>to<sp/>assess<sp/>alternative<sp/>methods<sp/>for<sp/>predicting<sp/>abundance.</highlight></codeline>
+<codeline lineno="26"><highlight class="normal">Design<sp/>and<sp/>evaluation<sp/>of<sp/>management<sp/>procedures<sp/>for<sp/>TAC<sp/>changes.</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal">This<sp/>work<sp/>is<sp/>funded<sp/>by<sp/>MFish<sp/>project<sp/>INS2008/02</highlight></codeline>
+    </programlisting>
+    <location file="/home/nbentley/Trophia/Code/www/src/projects/P08012 TAC2nd.md"/>
+  </compounddef>
+</doxygen>

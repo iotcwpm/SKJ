@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="dir_7a6e28f766ab0385f5718fefe5a82a02" kind="dir">
+    <compoundname>tests</compoundname>
+    <innerfile refid="cached_8cpp">cached.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/media/Data/Trophia/P1200X_Trident/Code/fisl/fisl/math/functions/tests/"/>
+  </compounddef>
+</doxygen>

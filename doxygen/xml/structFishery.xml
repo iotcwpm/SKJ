@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="structFishery" kind="struct" prot="public">
+    <compoundname>Fishery</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structFishery_1ab1080b52c3a0d6e1c78c1342ad095b6f" prot="public" static="no" mutable="no">
+        <type>Real</type>
+        <definition>Real Fishery::catches</definition>
+        <argsstring></argsstring>
+        <name>catches</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/management/procedures/evaluation-skeleton.cpp" line="40" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/management/procedures/evaluation-skeleton.cpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structFishery_1ae07b690e0992b091c90190e42414b9a0" prot="public" static="no" mutable="no">
+        <type>Logistic</type>
+        <definition>Logistic Fishery::selectivities</definition>
+        <argsstring></argsstring>
+        <name>selectivities</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/management/procedures/evaluation-skeleton.cpp" line="41" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/management/procedures/evaluation-skeleton.cpp" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="43">
+        <label>Fishery</label>
+        <link refid="structFishery"/>
+        <childnode refid="44" relation="usage">
+          <edgelabel>selectivities</edgelabel>
+        </childnode>
+      </node>
+      <node id="44">
+        <label>Logistic</label>
+      </node>
+    </collaborationgraph>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/management/procedures/evaluation-skeleton.cpp" line="39" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/management/procedures/evaluation-skeleton.cpp" bodystart="39" bodyend="42"/>
+    <listofallmembers>
+      <member refid="structFishery_1ab1080b52c3a0d6e1c78c1342ad095b6f" prot="public" virt="non-virtual"><scope>Fishery</scope><name>catches</name></member>
+      <member refid="structFishery_1ae07b690e0992b091c90190e42414b9a0" prot="public" virt="non-virtual"><scope>Fishery</scope><name>selectivities</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

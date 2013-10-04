@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="von-bert_8hpp" kind="file">
+    <compoundname>von-bert.hpp</compoundname>
+    <includes refid="function_8hpp" local="no">fisl/math/functions/function.hpp</includes>
+    <includedby refid="model_8hpp" local="no">model.hpp</includedby>
+    <incdepgraph>
+      <node id="558">
+        <label>fisl/array.hpp</label>
+        <link refid="array_8hpp"/>
+        <childnode refid="559" relation="include">
+        </childnode>
+        <childnode refid="560" relation="include">
+        </childnode>
+      </node>
+      <node id="559">
+        <label>vector</label>
+      </node>
+      <node id="555">
+        <label>von-bert.hpp</label>
+        <link refid="von-bert.hpp"/>
+        <childnode refid="556" relation="include">
+        </childnode>
+      </node>
+      <node id="560">
+        <label>algorithm</label>
+      </node>
+      <node id="556">
+        <label>fisl/math/functions/function.hpp</label>
+        <link refid="function_8hpp"/>
+        <childnode refid="557" relation="include">
+        </childnode>
+        <childnode refid="558" relation="include">
+        </childnode>
+      </node>
+      <node id="557">
+        <label>fisl/common.hpp</label>
+        <link refid="common_8hpp"/>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="562">
+        <label>model.hpp</label>
+        <link refid="model_8hpp"/>
+        <childnode refid="563" relation="include">
+        </childnode>
+        <childnode refid="564" relation="include">
+        </childnode>
+      </node>
+      <node id="563">
+        <label>evaluation-skeleton.cpp</label>
+        <link refid="evaluation-skeleton_8cpp"/>
+      </node>
+      <node id="564">
+        <label>model.cxx</label>
+        <link refid="model_8cxx"/>
+      </node>
+      <node id="561">
+        <label>von-bert.hpp</label>
+        <link refid="von-bert.hpp"/>
+        <childnode refid="562" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classFisl_1_1Population_1_1Growth_1_1VonBert" prot="public">Fisl::Population::Growth::VonBert</innerclass>
+    <innernamespace refid="namespaceFisl">Fisl</innernamespace>
+    <innernamespace refid="namespaceFisl_1_1Population">Fisl::Population</innernamespace>
+    <innernamespace refid="namespaceFisl_1_1Population_1_1Growth">Fisl::Population::Growth</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight></codeline>
+<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="function_8hpp" kindref="compound">fisl/math/functions/function.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">Fisl<sp/>{</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">Population<sp/>{</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">Growth<sp/>{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="classFisl_1_1Math_1_1Functions_1_1Function" kindref="compound">Fisl::Math::Functions::Function</ref>;<sp/></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14" refid="classFisl_1_1Population_1_1Growth_1_1VonBert" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classFisl_1_1Population_1_1Growth_1_1VonBert" kindref="compound">VonBert</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classFisl_1_1Math_1_1Functions_1_1Function" kindref="compound">Function</ref><sp/>{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="16" refid="classFisl_1_1Population_1_1Growth_1_1VonBert_1a8d5acf50aa6bfa48f18cfa72b72c611e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classFisl_1_1Population_1_1Growth_1_1VonBert_1a8d5acf50aa6bfa48f18cfa72b72c611e" kindref="member">k_</ref>;</highlight></codeline>
+<codeline lineno="17" refid="classFisl_1_1Population_1_1Growth_1_1VonBert_1ac48908e5ff5feac24817cb121883212c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classFisl_1_1Population_1_1Growth_1_1VonBert_1ac48908e5ff5feac24817cb121883212c" kindref="member">linf_</ref>;</highlight></codeline>
+<codeline lineno="18" refid="classFisl_1_1Population_1_1Growth_1_1VonBert_1add44be45463b963e778a7c672fe409f2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classFisl_1_1Population_1_1Growth_1_1VonBert_1add44be45463b963e778a7c672fe409f2" kindref="member">t0_</ref>;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="classFisl_1_1Population_1_1Growth_1_1VonBert_1aec57726ad42bc6e9143d9ae86e34b5b1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classFisl_1_1Population_1_1Growth_1_1VonBert_1aec57726ad42bc6e9143d9ae86e34b5b1" kindref="member">k</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classFisl_1_1Population_1_1Growth_1_1VonBert_1a8d5acf50aa6bfa48f18cfa72b72c611e" kindref="member">k_</ref>;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="26" refid="classFisl_1_1Population_1_1Growth_1_1VonBert_1a6de53f9a8630b01cd3b4a71088610516" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classFisl_1_1Population_1_1Growth_1_1VonBert" kindref="compound">VonBert</ref>&amp;<sp/><ref refid="classFisl_1_1Population_1_1Growth_1_1VonBert_1a6de53f9a8630b01cd3b4a71088610516" kindref="member">k</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>value){</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classFisl_1_1Population_1_1Growth_1_1VonBert_1a8d5acf50aa6bfa48f18cfa72b72c611e" kindref="member">k_</ref><sp/>=<sp/>value;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="31" refid="classFisl_1_1Population_1_1Growth_1_1VonBert_1a0200dc6d02901855947b8f3aa343684f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classFisl_1_1Population_1_1Growth_1_1VonBert_1a0200dc6d02901855947b8f3aa343684f" kindref="member">linf</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classFisl_1_1Population_1_1Growth_1_1VonBert_1ac48908e5ff5feac24817cb121883212c" kindref="member">linf_</ref>;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="35" refid="classFisl_1_1Population_1_1Growth_1_1VonBert_1a0608df8ac6644b75ab58dc10a2673ebd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classFisl_1_1Population_1_1Growth_1_1VonBert" kindref="compound">VonBert</ref>&amp;<sp/><ref refid="classFisl_1_1Population_1_1Growth_1_1VonBert_1a0608df8ac6644b75ab58dc10a2673ebd" kindref="member">linf</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>value){</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classFisl_1_1Population_1_1Growth_1_1VonBert_1ac48908e5ff5feac24817cb121883212c" kindref="member">linf_</ref><sp/>=<sp/>value;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="40" refid="classFisl_1_1Population_1_1Growth_1_1VonBert_1aa5aa62e534926cc290888babeed69fca" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classFisl_1_1Population_1_1Growth_1_1VonBert_1aa5aa62e534926cc290888babeed69fca" kindref="member">t0</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classFisl_1_1Population_1_1Growth_1_1VonBert_1add44be45463b963e778a7c672fe409f2" kindref="member">t0_</ref>;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="44" refid="classFisl_1_1Population_1_1Growth_1_1VonBert_1a64194d99062f51370f3f46744ea726c6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classFisl_1_1Population_1_1Growth_1_1VonBert" kindref="compound">VonBert</ref>&amp;<sp/><ref refid="classFisl_1_1Population_1_1Growth_1_1VonBert_1a64194d99062f51370f3f46744ea726c6" kindref="member">t0</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>value){</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classFisl_1_1Population_1_1Growth_1_1VonBert_1add44be45463b963e778a7c672fe409f2" kindref="member">t0_</ref><sp/>=<sp/>value;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49" refid="classFisl_1_1Population_1_1Growth_1_1VonBert_1a63caf0e6c935f27cb367328d628feed4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classFisl_1_1Population_1_1Growth_1_1VonBert_1a63caf0e6c935f27cb367328d628feed4" kindref="member">operator()</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>age)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classFisl_1_1Population_1_1Growth_1_1VonBert_1ac48908e5ff5feac24817cb121883212c" kindref="member">linf_</ref>*(1-std::exp(-<ref refid="classFisl_1_1Population_1_1Growth_1_1VonBert_1a8d5acf50aa6bfa48f18cfa72b72c611e" kindref="member">k_</ref>*(age-<ref refid="classFisl_1_1Population_1_1Growth_1_1VonBert_1add44be45463b963e778a7c672fe409f2" kindref="member">t0_</ref>)));</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="52"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="55"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="56"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/growth/von-bert.hpp"/>
+  </compounddef>
+</doxygen>

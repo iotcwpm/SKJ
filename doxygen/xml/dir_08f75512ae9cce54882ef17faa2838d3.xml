@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="dir_08f75512ae9cce54882ef17faa2838d3" kind="dir">
+    <compoundname>mortality</compoundname>
+    <innerdir refid="dir_1a57b8a3ee7c0050ad1106fa1e5fc204">priors</innerdir>
+    <innerfile refid="rate_8hpp">rate.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/mortality/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,239 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="classFisl_1_1Population_1_1Models_1_1Aged" kind="class" prot="public">
+    <compoundname>Fisl::Population::Models::Aged</compoundname>
+    <basecompoundref refid="classArray" prot="public" virt="non-virtual">Array&lt; Type, Ages &gt;</basecompoundref>
+    <includes refid="model_8hpp" local="no">model.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>int</type>
+        <declname>Ages</declname>
+        <defname>Ages</defname>
+      </param>
+      <param>
+        <type>class</type>
+        <declname>Type</declname>
+        <defname>Type</defname>
+        <defval><ref refid="classFisl_1_1Population_1_1Models_1_1Numbers" kindref="compound">Numbers</ref></defval>
+      </param>
+      <param>
+        <type>class</type>
+        <declname>Sizes</declname>
+        <defname>Sizes</defname>
+        <defval><ref refid="classFisl_1_1Math_1_1Functions_1_1Cached" kindref="compound">Math::Functions::Cached</ref>&lt;<ref refid="classFisl_1_1Population_1_1Growth_1_1VonBert" kindref="compound">Population::Growth::VonBert</ref>,Ages&gt;</defval>
+      </param>
+      <param>
+        <type>class</type>
+        <declname>Weights</declname>
+        <defname>Weights</defname>
+        <defval><ref refid="classFisl_1_1Math_1_1Functions_1_1Cached" kindref="compound">Math::Functions::Cached</ref>&lt;<ref refid="namespaceFisl_1_1Population_1_1Morphometry_1a26d913bc4984477501a4a2a32fa1f306" kindref="member">Population::Morphometry::Power</ref>,Ages&gt;</defval>
+      </param>
+      <param>
+        <type>class</type>
+        <declname>Maturities</declname>
+        <defname>Maturities</defname>
+        <defval><ref refid="classFisl_1_1Math_1_1Functions_1_1Cached" kindref="compound">Math::Functions::Cached</ref>&lt;<ref refid="namespaceFisl_1_1Population_1_1Maturity_1a0a6c3c754ceaca7815a826fb4df5c4a4" kindref="member">Population::Maturity::Threshold</ref>,Ages&gt;</defval>
+      </param>
+      <param>
+        <type>class</type>
+        <declname>Recruitment</declname>
+        <defname>Recruitment</defname>
+        <defval><ref refid="classFisl_1_1Population_1_1Recruitment_1_1BevertonHolt" kindref="compound">Population::Recruitment::BevertonHolt</ref></defval>
+      </param>
+      <param>
+        <type>class</type>
+        <declname>Mortality</declname>
+        <defname>Mortality</defname>
+        <defval><ref refid="classFisl_1_1Population_1_1Mortality_1_1Rate" kindref="compound">Population::Mortality::Rate</ref></defval>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classFisl_1_1Population_1_1Models_1_1Aged_1aada8ad00f1535adde76a56db5cc03eea" prot="public" static="yes" mutable="no">
+        <type>const int</type>
+        <definition>const int Fisl::Population::Models::Aged&lt; Ages, Type, Sizes, Weights, Maturities, Recruitment, Mortality &gt;::age_max</definition>
+        <argsstring></argsstring>
+        <name>age_max</name>
+        <initializer>= Ages-1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/models/model.hpp" line="50" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/models/model.hpp" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classFisl_1_1Population_1_1Models_1_1Aged_1a5d9cebe7993ef77ca8bd59f3b48b68c0" prot="public" static="no" mutable="no">
+        <type>Sizes</type>
+        <definition>Sizes Fisl::Population::Models::Aged&lt; Ages, Type, Sizes, Weights, Maturities, Recruitment, Mortality &gt;::sizes</definition>
+        <argsstring></argsstring>
+        <name>sizes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/models/model.hpp" line="52" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/models/model.hpp" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classFisl_1_1Population_1_1Models_1_1Aged_1acd4c0862a0473af5f7d85ce618f9f468" prot="public" static="no" mutable="no">
+        <type>Weights</type>
+        <definition>Weights Fisl::Population::Models::Aged&lt; Ages, Type, Sizes, Weights, Maturities, Recruitment, Mortality &gt;::weights</definition>
+        <argsstring></argsstring>
+        <name>weights</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/models/model.hpp" line="53" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/models/model.hpp" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classFisl_1_1Population_1_1Models_1_1Aged_1a655e4c43c668d1a1243961c6b99b8696" prot="public" static="no" mutable="no">
+        <type>Maturities</type>
+        <definition>Maturities Fisl::Population::Models::Aged&lt; Ages, Type, Sizes, Weights, Maturities, Recruitment, Mortality &gt;::maturities</definition>
+        <argsstring></argsstring>
+        <name>maturities</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/models/model.hpp" line="54" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/models/model.hpp" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classFisl_1_1Population_1_1Models_1_1Aged_1abe53ccf82b96cbb69c925f09352f39df" prot="public" static="no" mutable="no">
+        <type>Recruitment</type>
+        <definition>Recruitment Fisl::Population::Models::Aged&lt; Ages, Type, Sizes, Weights, Maturities, Recruitment, Mortality &gt;::recruitment</definition>
+        <argsstring></argsstring>
+        <name>recruitment</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/models/model.hpp" line="56" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/models/model.hpp" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classFisl_1_1Population_1_1Models_1_1Aged_1a8e39355ea33eff9ecaa58c60c8a6da69" prot="public" static="no" mutable="no">
+        <type>Mortality</type>
+        <definition>Mortality Fisl::Population::Models::Aged&lt; Ages, Type, Sizes, Weights, Maturities, Recruitment, Mortality &gt;::mortality</definition>
+        <argsstring></argsstring>
+        <name>mortality</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/models/model.hpp" line="57" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/models/model.hpp" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classFisl_1_1Population_1_1Models_1_1Aged_1a82b2cce432e39c2e4b8a3a9b3edec58d" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Fisl::Population::Models::Aged&lt; Ages, Type, Sizes, Weights, Maturities, Recruitment, Mortality &gt;::recruits</definition>
+        <argsstring></argsstring>
+        <name>recruits</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/models/model.hpp" line="59" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/models/model.hpp" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classFisl_1_1Population_1_1Models_1_1Aged_1a7398ba5f611487236bbec4a8799cb3ec" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Fisl::Population::Models::Aged&lt; Ages, Type, Sizes, Weights, Maturities, Recruitment, Mortality &gt;::Aged</definition>
+        <argsstring>(void)</argsstring>
+        <name>Aged</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/models/model.hpp" line="61" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/models/model.hpp" bodystart="61" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Population_1_1Models_1_1Aged_1a0cc35f0017e59f545c3bc746e8a44659" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Fisl::Population::Models::Aged&lt; Ages, Type, Sizes, Weights, Maturities, Recruitment, Mortality &gt;::Aged</definition>
+        <argsstring>(const std::initializer_list&lt; Type &gt; &amp;values)</argsstring>
+        <name>Aged</name>
+        <param>
+          <type>const std::initializer_list&lt; Type &gt; &amp;</type>
+          <declname>values</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/models/model.hpp" line="64" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/models/model.hpp" bodystart="64" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Population_1_1Models_1_1Aged_1a65d4a64fbe36f15fe5509ec001ec7889" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classFisl_1_1Population_1_1Models_1_1Aged" kindref="compound">Aged</ref> &amp;</type>
+        <definition>Aged&amp; Fisl::Population::Models::Aged&lt; Ages, Type, Sizes, Weights, Maturities, Recruitment, Mortality &gt;::ageing</definition>
+        <argsstring>(void)</argsstring>
+        <name>ageing</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/models/model.hpp" line="74" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/models/model.hpp" bodystart="74" bodyend="80"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="0">
+        <label>Fisl::Population::Models::Aged&lt; Ages, Type, Sizes, Weights, Maturities, Recruitment, Mortality &gt;</label>
+        <link refid="classFisl_1_1Population_1_1Models_1_1Aged"/>
+        <childnode refid="1" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>Array&lt; Type, Ages &gt;</label>
+        <link refid="classArray"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>Fisl::Population::Models::Aged&lt; Ages, Type, Sizes, Weights, Maturities, Recruitment, Mortality &gt;</label>
+        <link refid="classFisl_1_1Population_1_1Models_1_1Aged"/>
+        <childnode refid="3" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>Array&lt; Type, Ages &gt;</label>
+        <link refid="classArray"/>
+      </node>
+    </collaborationgraph>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/models/model.hpp" line="48" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/models/model.hpp" bodystart="48" bodyend="81"/>
+    <listofallmembers>
+      <member refid="classFisl_1_1Population_1_1Models_1_1Aged_1aada8ad00f1535adde76a56db5cc03eea" prot="public" virt="non-virtual"><scope>Fisl::Population::Models::Aged</scope><name>age_max</name></member>
+      <member refid="classFisl_1_1Population_1_1Models_1_1Aged_1a7398ba5f611487236bbec4a8799cb3ec" prot="public" virt="non-virtual"><scope>Fisl::Population::Models::Aged</scope><name>Aged</name></member>
+      <member refid="classFisl_1_1Population_1_1Models_1_1Aged_1a0cc35f0017e59f545c3bc746e8a44659" prot="public" virt="non-virtual"><scope>Fisl::Population::Models::Aged</scope><name>Aged</name></member>
+      <member refid="classFisl_1_1Population_1_1Models_1_1Aged_1a65d4a64fbe36f15fe5509ec001ec7889" prot="public" virt="non-virtual"><scope>Fisl::Population::Models::Aged</scope><name>ageing</name></member>
+      <member refid="classFisl_1_1Population_1_1Models_1_1Aged_1a655e4c43c668d1a1243961c6b99b8696" prot="public" virt="non-virtual"><scope>Fisl::Population::Models::Aged</scope><name>maturities</name></member>
+      <member refid="classFisl_1_1Population_1_1Models_1_1Aged_1a8e39355ea33eff9ecaa58c60c8a6da69" prot="public" virt="non-virtual"><scope>Fisl::Population::Models::Aged</scope><name>mortality</name></member>
+      <member refid="classFisl_1_1Population_1_1Models_1_1Aged_1abe53ccf82b96cbb69c925f09352f39df" prot="public" virt="non-virtual"><scope>Fisl::Population::Models::Aged</scope><name>recruitment</name></member>
+      <member refid="classFisl_1_1Population_1_1Models_1_1Aged_1a82b2cce432e39c2e4b8a3a9b3edec58d" prot="public" virt="non-virtual"><scope>Fisl::Population::Models::Aged</scope><name>recruits</name></member>
+      <member refid="classFisl_1_1Population_1_1Models_1_1Aged_1a5d9cebe7993ef77ca8bd59f3b48b68c0" prot="public" virt="non-virtual"><scope>Fisl::Population::Models::Aged</scope><name>sizes</name></member>
+      <member refid="classFisl_1_1Population_1_1Models_1_1Aged_1acd4c0862a0473af5f7d85ce618f9f468" prot="public" virt="non-virtual"><scope>Fisl::Population::Models::Aged</scope><name>weights</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

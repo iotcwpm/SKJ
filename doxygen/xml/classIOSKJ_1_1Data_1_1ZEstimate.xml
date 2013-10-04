@@ -1,0 +1,194 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="classIOSKJ_1_1Data_1_1ZEstimate" kind="class" prot="public">
+    <compoundname>IOSKJ::Data::ZEstimate</compoundname>
+    <includes refid="data_8hpp" local="no">data.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classIOSKJ_1_1Data_1_1ZEstimate_1a2511cde8860fc325a4be66a05d806b94" prot="public" static="no" mutable="no">
+        <type>unsigned short int</type>
+        <definition>unsigned short int IOSKJ::Data::ZEstimate::year</definition>
+        <argsstring></argsstring>
+        <name>year</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/ioskj/data.hpp" line="83" column="1" bodyfile="/home/nbentley/Trophia/Code/ioskj/data.hpp" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classIOSKJ_1_1Data_1_1ZEstimate_1abc1f796aef34133f4dad711ace3dd529" prot="public" static="no" mutable="no">
+        <type>unsigned short int</type>
+        <definition>unsigned short int IOSKJ::Data::ZEstimate::quarter</definition>
+        <argsstring></argsstring>
+        <name>quarter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/ioskj/data.hpp" line="84" column="1" bodyfile="/home/nbentley/Trophia/Code/ioskj/data.hpp" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classIOSKJ_1_1Data_1_1ZEstimate_1ab3cf8c05dd916758fcc22c8676473182" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float IOSKJ::Data::ZEstimate::mu45</definition>
+        <argsstring></argsstring>
+        <name>mu45</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/ioskj/data.hpp" line="85" column="1" bodyfile="/home/nbentley/Trophia/Code/ioskj/data.hpp" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classIOSKJ_1_1Data_1_1ZEstimate_1a49b0106bd644e434504ce8c677bf5d5b" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float IOSKJ::Data::ZEstimate::mu50</definition>
+        <argsstring></argsstring>
+        <name>mu50</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/ioskj/data.hpp" line="86" column="1" bodyfile="/home/nbentley/Trophia/Code/ioskj/data.hpp" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classIOSKJ_1_1Data_1_1ZEstimate_1a7728fcde3967717cb8342ca0b0550f5d" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float IOSKJ::Data::ZEstimate::mu55</definition>
+        <argsstring></argsstring>
+        <name>mu55</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/ioskj/data.hpp" line="87" column="1" bodyfile="/home/nbentley/Trophia/Code/ioskj/data.hpp" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classIOSKJ_1_1Data_1_1ZEstimate_1af2cdea31b63889b691238a92bca3ce10" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float IOSKJ::Data::ZEstimate::mu60</definition>
+        <argsstring></argsstring>
+        <name>mu60</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/ioskj/data.hpp" line="88" column="1" bodyfile="/home/nbentley/Trophia/Code/ioskj/data.hpp" bodystart="88" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classIOSKJ_1_1Data_1_1ZEstimate_1ac6bf29ae6cc8e5b69d21c774b5143937" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float IOSKJ::Data::ZEstimate::sd45</definition>
+        <argsstring></argsstring>
+        <name>sd45</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/ioskj/data.hpp" line="89" column="1" bodyfile="/home/nbentley/Trophia/Code/ioskj/data.hpp" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classIOSKJ_1_1Data_1_1ZEstimate_1ac04b382296b2422a61d6c6e6ceb28d84" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float IOSKJ::Data::ZEstimate::sd50</definition>
+        <argsstring></argsstring>
+        <name>sd50</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/ioskj/data.hpp" line="90" column="1" bodyfile="/home/nbentley/Trophia/Code/ioskj/data.hpp" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classIOSKJ_1_1Data_1_1ZEstimate_1af38b9264f644528589e2fe18750177b6" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float IOSKJ::Data::ZEstimate::sd55</definition>
+        <argsstring></argsstring>
+        <name>sd55</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/ioskj/data.hpp" line="91" column="1" bodyfile="/home/nbentley/Trophia/Code/ioskj/data.hpp" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classIOSKJ_1_1Data_1_1ZEstimate_1a19e5b287fb0fa792569a2062c2e63e2b" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float IOSKJ::Data::ZEstimate::sd60</definition>
+        <argsstring></argsstring>
+        <name>sd60</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/ioskj/data.hpp" line="92" column="1" bodyfile="/home/nbentley/Trophia/Code/ioskj/data.hpp" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classIOSKJ_1_1Data_1_1ZEstimate_1afd875241b51d49785e50acc239d7806e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void IOSKJ::Data::ZEstimate::read</definition>
+        <argsstring>(std::istream &amp;stream)</argsstring>
+        <name>read</name>
+        <param>
+          <type>std::istream &amp;</type>
+          <declname>stream</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/ioskj/data.hpp" line="94" column="1" bodyfile="/home/nbentley/Trophia/Code/ioskj/data.hpp" bodystart="94" bodyend="98"/>
+      </memberdef>
+      <memberdef kind="function" id="classIOSKJ_1_1Data_1_1ZEstimate_1a952dba16d22242db687179289e576b08" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void IOSKJ::Data::ZEstimate::write</definition>
+        <argsstring>(std::ostream &amp;stream)</argsstring>
+        <name>write</name>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>stream</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/ioskj/data.hpp" line="100" column="1" bodyfile="/home/nbentley/Trophia/Code/ioskj/data.hpp" bodystart="100" bodyend="104"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/nbentley/Trophia/Code/ioskj/data.hpp" line="81" column="1" bodyfile="/home/nbentley/Trophia/Code/ioskj/data.hpp" bodystart="81" bodyend="105"/>
+    <listofallmembers>
+      <member refid="classIOSKJ_1_1Data_1_1ZEstimate_1ab3cf8c05dd916758fcc22c8676473182" prot="public" virt="non-virtual"><scope>IOSKJ::Data::ZEstimate</scope><name>mu45</name></member>
+      <member refid="classIOSKJ_1_1Data_1_1ZEstimate_1a49b0106bd644e434504ce8c677bf5d5b" prot="public" virt="non-virtual"><scope>IOSKJ::Data::ZEstimate</scope><name>mu50</name></member>
+      <member refid="classIOSKJ_1_1Data_1_1ZEstimate_1a7728fcde3967717cb8342ca0b0550f5d" prot="public" virt="non-virtual"><scope>IOSKJ::Data::ZEstimate</scope><name>mu55</name></member>
+      <member refid="classIOSKJ_1_1Data_1_1ZEstimate_1af2cdea31b63889b691238a92bca3ce10" prot="public" virt="non-virtual"><scope>IOSKJ::Data::ZEstimate</scope><name>mu60</name></member>
+      <member refid="classIOSKJ_1_1Data_1_1ZEstimate_1abc1f796aef34133f4dad711ace3dd529" prot="public" virt="non-virtual"><scope>IOSKJ::Data::ZEstimate</scope><name>quarter</name></member>
+      <member refid="classIOSKJ_1_1Data_1_1ZEstimate_1afd875241b51d49785e50acc239d7806e" prot="public" virt="non-virtual"><scope>IOSKJ::Data::ZEstimate</scope><name>read</name></member>
+      <member refid="classIOSKJ_1_1Data_1_1ZEstimate_1ac6bf29ae6cc8e5b69d21c774b5143937" prot="public" virt="non-virtual"><scope>IOSKJ::Data::ZEstimate</scope><name>sd45</name></member>
+      <member refid="classIOSKJ_1_1Data_1_1ZEstimate_1ac04b382296b2422a61d6c6e6ceb28d84" prot="public" virt="non-virtual"><scope>IOSKJ::Data::ZEstimate</scope><name>sd50</name></member>
+      <member refid="classIOSKJ_1_1Data_1_1ZEstimate_1af38b9264f644528589e2fe18750177b6" prot="public" virt="non-virtual"><scope>IOSKJ::Data::ZEstimate</scope><name>sd55</name></member>
+      <member refid="classIOSKJ_1_1Data_1_1ZEstimate_1a19e5b287fb0fa792569a2062c2e63e2b" prot="public" virt="non-virtual"><scope>IOSKJ::Data::ZEstimate</scope><name>sd60</name></member>
+      <member refid="classIOSKJ_1_1Data_1_1ZEstimate_1a952dba16d22242db687179289e576b08" prot="public" virt="non-virtual"><scope>IOSKJ::Data::ZEstimate</scope><name>write</name></member>
+      <member refid="classIOSKJ_1_1Data_1_1ZEstimate_1a2511cde8860fc325a4be66a05d806b94" prot="public" virt="non-virtual"><scope>IOSKJ::Data::ZEstimate</scope><name>year</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

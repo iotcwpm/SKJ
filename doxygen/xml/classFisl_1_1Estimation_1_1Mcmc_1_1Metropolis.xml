@@ -1,0 +1,235 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis" kind="class" prot="public">
+    <compoundname>Fisl::Estimation::Mcmc::Metropolis</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">Dataset</basecompoundref>
+    <includes refid="metropolis_8hpp" local="no">metropolis.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>class</type>
+        <declname>Derived</declname>
+        <defname>Derived</defname>
+      </param>
+      <param>
+        <type>int</type>
+        <declname>Parameters</declname>
+        <defname>Parameters</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1af0e834bad8b8189b2ffd2d9ab1b37a92" prot="public" static="no" mutable="no">
+        <type><ref refid="classArray" kindref="compound">Array</ref>&lt; double, Parameters &gt;</type>
+        <definition>Array&lt;double,Parameters&gt; Fisl::Estimation::Mcmc::Metropolis&lt; Derived, Parameters &gt;::values</definition>
+        <argsstring></argsstring>
+        <name>values</name>
+        <briefdescription>
+<para>Vector that represents the paramter values at the end of the chain. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.hpp" line="39" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.hpp" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1aea3da265f9b8b221503f02eaad61689a" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Fisl::Estimation::Mcmc::Metropolis&lt; Derived, Parameters &gt;::ll</definition>
+        <argsstring></argsstring>
+        <name>ll</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.hpp" line="40" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.hpp" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1a9d43634dd5eec8bf5181674b38b22036" prot="public" static="no" mutable="no">
+        <type><ref refid="classArray" kindref="compound">Array</ref>&lt; double, Parameters &gt;</type>
+        <definition>Array&lt;double,Parameters&gt; Fisl::Estimation::Mcmc::Metropolis&lt; Derived, Parameters &gt;::variances</definition>
+        <argsstring></argsstring>
+        <name>variances</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Variances for proposals. These need to be tuned by user to obtain an acceptance ratio (20-70%) </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.hpp" line="44" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.hpp" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1a82dd94cd9f63f6a4e227c5a1002d77e3" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int Fisl::Estimation::Mcmc::Metropolis&lt; Derived, Parameters &gt;::iterations</definition>
+        <argsstring></argsstring>
+        <name>iterations</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.hpp" line="46" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1aea70e4fe4d31d5479d26c8838c4240e4" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int Fisl::Estimation::Mcmc::Metropolis&lt; Derived, Parameters &gt;::accepted</definition>
+        <argsstring></argsstring>
+        <name>accepted</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.hpp" line="47" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.hpp" bodystart="47" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1ab64aa80dd349eeb9ee37f2596ea942f0" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Fisl::Estimation::Mcmc::Metropolis&lt; Derived, Parameters &gt;::acceptance</definition>
+        <argsstring></argsstring>
+        <name>acceptance</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.hpp" line="48" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.hpp" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1a92d8bcbddf91e31118e318c6f11f2c32" prot="public" static="no" mutable="no">
+        <type>Datatable</type>
+        <definition>Datatable Fisl::Estimation::Mcmc::Metropolis&lt; Derived, Parameters &gt;::samples</definition>
+        <argsstring></argsstring>
+        <name>samples</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.hpp" line="50" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.hpp" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1a1b32ea04809286abe87d018dfc455889" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Fisl::Estimation::Mcmc::Metropolis&lt; Derived, Parameters &gt;::Metropolis</definition>
+        <argsstring>(void)</argsstring>
+        <name>Metropolis</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para><xrefsect id="todo_1_todo000001"><xreftitle>Todo</xreftitle><xrefdescription><para>add all parameters </para></xrefdescription></xrefsect></para>        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.hpp" line="52" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.hpp" bodystart="52" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1a4cfc017ea6bfcf770d70fa065a6a928b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Fisl::Estimation::Mcmc::Metropolis&lt; Derived, Parameters &gt;::reset</definition>
+        <argsstring>(void)</argsstring>
+        <name>reset</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.hpp" line="64" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.hpp" bodystart="64" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1a144c81cbf12faa15f2a4e4dfe20a01c4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Fisl::Estimation::Mcmc::Metropolis&lt; Derived, Parameters &gt;::step</definition>
+        <argsstring>(void)</argsstring>
+        <name>step</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para>Generate a proposal for each parameter</para><para>Obtain likelihood for proposal</para><para>Test to see if this proposal will be accepted </para>        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.hpp" line="71" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.hpp" bodystart="71" bodyend="102"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1a56795d955604d4ef28c14e0d6122bdb2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Fisl::Estimation::Mcmc::Metropolis&lt; Derived, Parameters &gt;::run</definition>
+        <argsstring>(unsigned int n)</argsstring>
+        <name>run</name>
+        <param>
+          <type>unsigned int</type>
+          <declname>n</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.hpp" line="104" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.hpp" bodystart="104" bodyend="108"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><ref refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis" kindref="compound">Metropolis</ref> Markov chain Monte Carlo algorithm. </para>    </briefdescription>
+    <detaileddescription>
+<para>The <ref refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis" kindref="compound">Metropolis</ref> algorithm is probably the simplest Markov chain Monte Carlo (MCMC) algorithm. It is a special, simplified case of the Hastings-Metropolis algorithm in which the proposal jump distribution is symetric and therefore the acceptance ratio for a jump is simply the ratio of the likelihoods.</para><para>This implementation uses the gaussian distribution</para><para><simplesect kind="author"><para>Nokome Bentley </para></simplesect>
+</para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="110">
+        <label>Fisl::Estimation::Mcmc::Metropolis&lt; Derived, Parameters &gt;</label>
+        <link refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis"/>
+        <childnode refid="111" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="111">
+        <label>Dataset</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="114">
+        <label>Datatable</label>
+      </node>
+      <node id="112">
+        <label>Fisl::Estimation::Mcmc::Metropolis&lt; Derived, Parameters &gt;</label>
+        <link refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis"/>
+        <childnode refid="113" relation="public-inheritance">
+        </childnode>
+        <childnode refid="114" relation="usage">
+          <edgelabel>samples</edgelabel>
+        </childnode>
+        <childnode refid="115" relation="usage">
+          <edgelabel>variances</edgelabel>
+          <edgelabel>values</edgelabel>
+        </childnode>
+      </node>
+      <node id="115">
+        <label>Array&lt; double, Parameters &gt;</label>
+        <link refid="classArray"/>
+      </node>
+      <node id="113">
+        <label>Dataset</label>
+      </node>
+    </collaborationgraph>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.hpp" line="36" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.hpp" bodystart="36" bodyend="109"/>
+    <listofallmembers>
+      <member refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1ab64aa80dd349eeb9ee37f2596ea942f0" prot="public" virt="non-virtual"><scope>Fisl::Estimation::Mcmc::Metropolis</scope><name>acceptance</name></member>
+      <member refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1aea70e4fe4d31d5479d26c8838c4240e4" prot="public" virt="non-virtual"><scope>Fisl::Estimation::Mcmc::Metropolis</scope><name>accepted</name></member>
+      <member refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1a82dd94cd9f63f6a4e227c5a1002d77e3" prot="public" virt="non-virtual"><scope>Fisl::Estimation::Mcmc::Metropolis</scope><name>iterations</name></member>
+      <member refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1aea3da265f9b8b221503f02eaad61689a" prot="public" virt="non-virtual"><scope>Fisl::Estimation::Mcmc::Metropolis</scope><name>ll</name></member>
+      <member refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1a1b32ea04809286abe87d018dfc455889" prot="public" virt="non-virtual"><scope>Fisl::Estimation::Mcmc::Metropolis</scope><name>Metropolis</name></member>
+      <member refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1a4cfc017ea6bfcf770d70fa065a6a928b" prot="public" virt="non-virtual"><scope>Fisl::Estimation::Mcmc::Metropolis</scope><name>reset</name></member>
+      <member refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1a56795d955604d4ef28c14e0d6122bdb2" prot="public" virt="non-virtual"><scope>Fisl::Estimation::Mcmc::Metropolis</scope><name>run</name></member>
+      <member refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1a92d8bcbddf91e31118e318c6f11f2c32" prot="public" virt="non-virtual"><scope>Fisl::Estimation::Mcmc::Metropolis</scope><name>samples</name></member>
+      <member refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1a144c81cbf12faa15f2a4e4dfe20a01c4" prot="public" virt="non-virtual"><scope>Fisl::Estimation::Mcmc::Metropolis</scope><name>step</name></member>
+      <member refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1af0e834bad8b8189b2ffd2d9ab1b37a92" prot="public" virt="non-virtual"><scope>Fisl::Estimation::Mcmc::Metropolis</scope><name>values</name></member>
+      <member refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1a9d43634dd5eec8bf5181674b38b22036" prot="public" virt="non-virtual"><scope>Fisl::Estimation::Mcmc::Metropolis</scope><name>variances</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

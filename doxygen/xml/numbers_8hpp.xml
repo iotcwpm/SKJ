@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="numbers_8hpp" kind="file">
+    <compoundname>numbers.hpp</compoundname>
+    <includedby refid="aged_8cxx" local="no">aged.cxx</includedby>
+    <invincdepgraph>
+      <node id="446">
+        <label>numbers.hpp</label>
+        <link refid="numbers.hpp"/>
+        <childnode refid="447" relation="include">
+        </childnode>
+      </node>
+      <node id="447">
+        <label>aged.cxx</label>
+        <link refid="aged_8cxx"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classFisl_1_1Population_1_1Structure_1_1Numbers" prot="public">Fisl::Population::Structure::Numbers</innerclass>
+    <innernamespace refid="namespaceFisl">Fisl</innernamespace>
+    <innernamespace refid="namespaceFisl_1_1Population">Fisl::Population</innernamespace>
+    <innernamespace refid="namespaceFisl_1_1Population_1_1Structure">Fisl::Population::Structure</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight></codeline>
+<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">Fisl<sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">Population<sp/>{</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">Structure<sp/>{</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="7" refid="classFisl_1_1Population_1_1Structure_1_1Numbers" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classFisl_1_1Population_1_1Structure_1_1Numbers" kindref="compound">Numbers</ref><sp/>{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="9" refid="classFisl_1_1Population_1_1Structure_1_1Numbers_1a7a9a34c8e26914759a0426ab70f6547d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classFisl_1_1Population_1_1Structure_1_1Numbers_1a7a9a34c8e26914759a0426ab70f6547d" kindref="member">value</ref>;</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="12" refid="classFisl_1_1Population_1_1Structure_1_1Numbers_1a3996b920356939368b0f981edccf7d9f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classFisl_1_1Population_1_1Structure_1_1Numbers_1a3996b920356939368b0f981edccf7d9f" kindref="member">Numbers</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>value_=0):</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classFisl_1_1Population_1_1Structure_1_1Numbers_1a7a9a34c8e26914759a0426ab70f6547d" kindref="member">value</ref>(value_){</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="16" refid="classFisl_1_1Population_1_1Structure_1_1Numbers_1a455d5298fa73df9d0f0d97615a186881" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">operator</highlight><highlight class="normal"><sp/>double()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classFisl_1_1Population_1_1Structure_1_1Numbers_1a7a9a34c8e26914759a0426ab70f6547d" kindref="member">value</ref>;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="20" refid="classFisl_1_1Population_1_1Structure_1_1Numbers_1a7c6089cb009df3233faa8d163b286c71" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classFisl_1_1Population_1_1Structure_1_1Numbers" kindref="compound">Numbers</ref>&amp;<sp/><ref refid="classFisl_1_1Population_1_1Structure_1_1Numbers_1a7c6089cb009df3233faa8d163b286c71" kindref="member">add</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classFisl_1_1Population_1_1Structure_1_1Numbers" kindref="compound">Numbers</ref>&amp;<sp/>other){</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classFisl_1_1Population_1_1Structure_1_1Numbers_1a7a9a34c8e26914759a0426ab70f6547d" kindref="member">value</ref><sp/>+=<sp/>other;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="24"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="27"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="28"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/structure/numbers.hpp"/>
+  </compounddef>
+</doxygen>

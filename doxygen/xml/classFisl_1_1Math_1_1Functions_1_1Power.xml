@@ -1,0 +1,159 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="classFisl_1_1Math_1_1Functions_1_1Power" kind="class" prot="public">
+    <compoundname>Fisl::Math::Functions::Power</compoundname>
+    <basecompoundref refid="classFisl_1_1Math_1_1Functions_1_1Function" prot="public" virt="non-virtual">Fisl::Math::Functions::Function</basecompoundref>
+    <includes refid="power_8hpp" local="no">power.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classFisl_1_1Math_1_1Functions_1_1Power_1a7c9a69198f1a8902449cb393e68ed53e" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Fisl::Math::Functions::Power::a_</definition>
+        <argsstring></argsstring>
+        <name>a_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/functions/power.hpp" line="14" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/functions/power.hpp" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classFisl_1_1Math_1_1Functions_1_1Power_1a9c39a1a9ad988de32f42fc9e955c0254" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Fisl::Math::Functions::Power::b_</definition>
+        <argsstring></argsstring>
+        <name>b_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/functions/power.hpp" line="15" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/functions/power.hpp" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classFisl_1_1Math_1_1Functions_1_1Power_1a503c6386ab78b463fdef307101f23e68" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Fisl::Math::Functions::Power::a</definition>
+        <argsstring>(void) const </argsstring>
+        <name>a</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/functions/power.hpp" line="19" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/functions/power.hpp" bodystart="19" bodyend="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Math_1_1Functions_1_1Power_1ab5a43a9caac818d1c744f456f9a112ad" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classFisl_1_1Math_1_1Functions_1_1Power" kindref="compound">Power</ref> &amp;</type>
+        <definition>Power&amp; Fisl::Math::Functions::Power::a</definition>
+        <argsstring>(const double &amp;value)</argsstring>
+        <name>a</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/functions/power.hpp" line="23" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/functions/power.hpp" bodystart="23" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Math_1_1Functions_1_1Power_1a2850a64a74748ed0577ba249d5991c89" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Fisl::Math::Functions::Power::b</definition>
+        <argsstring>(void) const </argsstring>
+        <name>b</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/functions/power.hpp" line="28" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/functions/power.hpp" bodystart="28" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Math_1_1Functions_1_1Power_1a28a12a4bde41863c1045d94096c45b59" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classFisl_1_1Math_1_1Functions_1_1Power" kindref="compound">Power</ref> &amp;</type>
+        <definition>Power&amp; Fisl::Math::Functions::Power::b</definition>
+        <argsstring>(const double &amp;value)</argsstring>
+        <name>b</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/functions/power.hpp" line="32" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/functions/power.hpp" bodystart="32" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Math_1_1Functions_1_1Power_1a6725b9169dc14676d43b795293b11381" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Fisl::Math::Functions::Power::operator()</definition>
+        <argsstring>(const double &amp;x)</argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/functions/power.hpp" line="37" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/functions/power.hpp" bodystart="37" bodyend="39"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="157">
+        <label>Fisl::Math::Functions::Power</label>
+        <link refid="classFisl_1_1Math_1_1Functions_1_1Power"/>
+        <childnode refid="158" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="158">
+        <label>Fisl::Math::Functions::Function</label>
+        <link refid="classFisl_1_1Math_1_1Functions_1_1Function"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="159">
+        <label>Fisl::Math::Functions::Power</label>
+        <link refid="classFisl_1_1Math_1_1Functions_1_1Power"/>
+        <childnode refid="160" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="160">
+        <label>Fisl::Math::Functions::Function</label>
+        <link refid="classFisl_1_1Math_1_1Functions_1_1Function"/>
+      </node>
+    </collaborationgraph>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/functions/power.hpp" line="12" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/functions/power.hpp" bodystart="12" bodyend="40"/>
+    <listofallmembers>
+      <member refid="classFisl_1_1Math_1_1Functions_1_1Power_1a503c6386ab78b463fdef307101f23e68" prot="public" virt="non-virtual"><scope>Fisl::Math::Functions::Power</scope><name>a</name></member>
+      <member refid="classFisl_1_1Math_1_1Functions_1_1Power_1ab5a43a9caac818d1c744f456f9a112ad" prot="public" virt="non-virtual"><scope>Fisl::Math::Functions::Power</scope><name>a</name></member>
+      <member refid="classFisl_1_1Math_1_1Functions_1_1Power_1a7c9a69198f1a8902449cb393e68ed53e" prot="private" virt="non-virtual"><scope>Fisl::Math::Functions::Power</scope><name>a_</name></member>
+      <member refid="classFisl_1_1Math_1_1Functions_1_1Power_1a2850a64a74748ed0577ba249d5991c89" prot="public" virt="non-virtual"><scope>Fisl::Math::Functions::Power</scope><name>b</name></member>
+      <member refid="classFisl_1_1Math_1_1Functions_1_1Power_1a28a12a4bde41863c1045d94096c45b59" prot="public" virt="non-virtual"><scope>Fisl::Math::Functions::Power</scope><name>b</name></member>
+      <member refid="classFisl_1_1Math_1_1Functions_1_1Power_1a9c39a1a9ad988de32f42fc9e955c0254" prot="private" virt="non-virtual"><scope>Fisl::Math::Functions::Power</scope><name>b_</name></member>
+      <member refid="classFisl_1_1Math_1_1Functions_1_1Power_1a6725b9169dc14676d43b795293b11381" prot="public" virt="non-virtual"><scope>Fisl::Math::Functions::Power</scope><name>operator()</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

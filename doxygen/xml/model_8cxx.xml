@@ -1,0 +1,203 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="model_8cxx" kind="file">
+    <compoundname>model.cxx</compoundname>
+    <includes local="no">boost/test/unit_test.hpp</includes>
+    <includes refid="model_8hpp" local="no">fisl/population/models/model.hpp</includes>
+    <incdepgraph>
+      <node id="381">
+        <label>fisl/population/models/model.hpp</label>
+        <link refid="model_8hpp"/>
+        <childnode refid="382" relation="include">
+        </childnode>
+        <childnode refid="387" relation="include">
+        </childnode>
+        <childnode refid="388" relation="include">
+        </childnode>
+        <childnode refid="391" relation="include">
+        </childnode>
+        <childnode refid="394" relation="include">
+        </childnode>
+        <childnode refid="395" relation="include">
+        </childnode>
+      </node>
+      <node id="380">
+        <label>boost/test/unit_test.hpp</label>
+      </node>
+      <node id="379">
+        <label>model.cxx</label>
+        <link refid="model.cxx"/>
+        <childnode refid="380" relation="include">
+        </childnode>
+        <childnode refid="381" relation="include">
+        </childnode>
+      </node>
+      <node id="390">
+        <label>cmath</label>
+      </node>
+      <node id="389">
+        <label>fisl/math/functions/power.hpp</label>
+        <link refid="power_8hpp"/>
+        <childnode refid="390" relation="include">
+        </childnode>
+        <childnode refid="383" relation="include">
+        </childnode>
+        <childnode refid="382" relation="include">
+        </childnode>
+      </node>
+      <node id="393">
+        <label>fisl/math/functions/logistic.hpp</label>
+        <link refid="logistic_8hpp"/>
+        <childnode refid="383" relation="include">
+        </childnode>
+        <childnode refid="382" relation="include">
+        </childnode>
+      </node>
+      <node id="392">
+        <label>fisl/math/functions/threshold.hpp</label>
+        <link refid="threshold_8hpp"/>
+        <childnode refid="383" relation="include">
+        </childnode>
+        <childnode refid="382" relation="include">
+        </childnode>
+      </node>
+      <node id="384">
+        <label>fisl/array.hpp</label>
+        <link refid="array_8hpp"/>
+        <childnode refid="385" relation="include">
+        </childnode>
+        <childnode refid="386" relation="include">
+        </childnode>
+      </node>
+      <node id="385">
+        <label>vector</label>
+      </node>
+      <node id="388">
+        <label>fisl/population/morphometry/morphometry.hpp</label>
+        <link refid="morphometry_8hpp"/>
+        <childnode refid="389" relation="include">
+        </childnode>
+      </node>
+      <node id="395">
+        <label>fisl/population/mortality/rate.hpp</label>
+        <link refid="rate_8hpp"/>
+      </node>
+      <node id="387">
+        <label>fisl/population/growth/von-bert.hpp</label>
+        <link refid="von-bert_8hpp"/>
+        <childnode refid="382" relation="include">
+        </childnode>
+      </node>
+      <node id="394">
+        <label>fisl/population/recruitment/beverton-holt.hpp</label>
+        <link refid="beverton-holt_8hpp"/>
+      </node>
+      <node id="386">
+        <label>algorithm</label>
+      </node>
+      <node id="391">
+        <label>fisl/population/maturity/maturity.hpp</label>
+        <link refid="maturity_8hpp"/>
+        <childnode refid="392" relation="include">
+        </childnode>
+        <childnode refid="393" relation="include">
+        </childnode>
+      </node>
+      <node id="382">
+        <label>fisl/math/functions/function.hpp</label>
+        <link refid="function_8hpp"/>
+        <childnode refid="383" relation="include">
+        </childnode>
+        <childnode refid="384" relation="include">
+        </childnode>
+      </node>
+      <node id="383">
+        <label>fisl/common.hpp</label>
+        <link refid="common_8hpp"/>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="model_8cxx_1a3caaf58b8738255bedfee47ae4c45792" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>BOOST_AUTO_TEST_CASE</definition>
+        <argsstring>(simple)</argsstring>
+        <name>BOOST_AUTO_TEST_CASE</name>
+        <param>
+          <type>simple</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/models/model.cxx" line="12" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/models/model.cxx" bodystart="12" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="model_8cxx_1a21ff98337c5d668085a12bba1ed6e3fa" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>BOOST_AUTO_TEST_CASE</definition>
+        <argsstring>(simple_2)</argsstring>
+        <name>BOOST_AUTO_TEST_CASE</name>
+        <param>
+          <type>simple_2</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/models/model.cxx" line="31" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/models/model.cxx" bodystart="31" bodyend="40"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifdef<sp/>FISL_TEST_SINGLE</highlight></codeline>
+<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>BOOST_TEST_MODULE<sp/>tests</highlight></codeline>
+<codeline lineno="3"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="4"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#include<sp/>&lt;boost/test/unit_test.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="model_8hpp" kindref="compound">fisl/population/models/model.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal">BOOST_AUTO_TEST_SUITE(population_models_aged_gendered)</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal">using<sp/>namespace<sp/>Fisl::Population::Models;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><ref refid="namespaceFisl_1_1Estimation_1_1Mcmc_1a4ca8d3e6d2f4e46db181252bb09caf14" kindref="member">BOOST_AUTO_TEST_CASE</ref>(simple){</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classFisl_1_1Population_1_1Models_1_1Aged" kindref="compound">Aged</ref>&lt;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>10</highlight><highlight class="comment">//Ages</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&gt;<sp/>pop;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pop.<ref refid="classFisl_1_1Population_1_1Models_1_1Aged_1a5d9cebe7993ef77ca8bd59f3b48b68c0" kindref="member">sizes</ref>.k<sp/>=<sp/>0.7;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pop.<ref refid="classFisl_1_1Population_1_1Models_1_1Aged_1a5d9cebe7993ef77ca8bd59f3b48b68c0" kindref="member">sizes</ref>.linf<sp/>=<sp/>100;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pop.<ref refid="classFisl_1_1Population_1_1Models_1_1Aged_1a5d9cebe7993ef77ca8bd59f3b48b68c0" kindref="member">sizes</ref>.t0<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pop.<ref refid="classFisl_1_1Population_1_1Models_1_1Aged_1a5d9cebe7993ef77ca8bd59f3b48b68c0" kindref="member">sizes</ref>.reset();</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>BOOST_CHECK_EQUAL(pop.<ref refid="classFisl_1_1Population_1_1Models_1_1Aged_1a5d9cebe7993ef77ca8bd59f3b48b68c0" kindref="member">sizes</ref>(0),0);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pop.<ref refid="classFisl_1_1Population_1_1Models_1_1Aged_1a655e4c43c668d1a1243961c6b99b8696" kindref="member">maturities</ref>.inflection<sp/>=<sp/>4;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pop.<ref refid="classFisl_1_1Population_1_1Models_1_1Aged_1a655e4c43c668d1a1243961c6b99b8696" kindref="member">maturities</ref>.reset();</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>BOOST_CHECK_EQUAL(pop.<ref refid="classFisl_1_1Population_1_1Models_1_1Aged_1a655e4c43c668d1a1243961c6b99b8696" kindref="member">maturities</ref>(3),0);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>BOOST_CHECK_EQUAL(pop.<ref refid="classFisl_1_1Population_1_1Models_1_1Aged_1a655e4c43c668d1a1243961c6b99b8696" kindref="member">maturities</ref>(5),1);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><ref refid="namespaceFisl_1_1Estimation_1_1Mcmc_1a4ca8d3e6d2f4e46db181252bb09caf14" kindref="member">BOOST_AUTO_TEST_CASE</ref>(simple_2){</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Gendered&lt;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classFisl_1_1Population_1_1Models_1_1Aged" kindref="compound">Aged</ref>&lt;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>10</highlight><highlight class="comment">//Ages</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&gt;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>&gt;<sp/>pop;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pop.male.<ref refid="classFisl_1_1Population_1_1Models_1_1Aged_1a5d9cebe7993ef77ca8bd59f3b48b68c0" kindref="member">sizes</ref>.k<sp/>=<sp/>0.3;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pop.male.sizes.linf<sp/>=<sp/>100;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal">BOOST_AUTO_TEST_SUITE_END()</highlight></codeline>
+    </programlisting>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/models/model.cxx"/>
+  </compounddef>
+</doxygen>

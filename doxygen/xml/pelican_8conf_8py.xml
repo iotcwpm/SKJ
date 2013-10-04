@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="pelican_8conf_8py" kind="file">
+    <compoundname>pelican.conf.py</compoundname>
+    <innernamespace refid="namespacepelican">pelican</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1" refid="namespacepelican" refkind="compound"><highlight class="comment">#!/usr/bin/env<sp/>python</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">#<sp/>-*-<sp/>coding:<sp/>utf-8<sp/>-*-<sp/>#</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal">AUTHOR<sp/>=<sp/></highlight><highlight class="stringliteral">u&quot;Nokome<sp/>Bentley&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">SITENAME<sp/>=<sp/></highlight><highlight class="stringliteral">u&quot;Trophia&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal">SITESUBTITLE<sp/>=<sp/></highlight><highlight class="stringliteral">u&apos;Research<sp/>for<sp/>sustainable<sp/>fisheries&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal">SITEURL<sp/>=<sp/></highlight><highlight class="stringliteral">&apos;/&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal">TIMEZONE<sp/>=<sp/></highlight><highlight class="stringliteral">&apos;UTC&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal">DEFAULT_LANG<sp/>=<sp/></highlight><highlight class="stringliteral">&apos;en&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal">DISPLAY_PAGES_ON_MENU<sp/>=<sp/></highlight><highlight class="keyword">True</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">#Pagination</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">#The<sp/>minimum<sp/>number<sp/>of<sp/>articles<sp/>allowed<sp/>on<sp/>the<sp/>last<sp/>page.<sp/>Use<sp/>this<sp/>when<sp/>you<sp/>don’t<sp/>want<sp/>to<sp/>have<sp/>a<sp/>last<sp/>page<sp/>with<sp/>very<sp/>few<sp/>articles.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal">DEFAULT_ORPHANS<sp/>=<sp/>5</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">#The<sp/>maximum<sp/>number<sp/>of<sp/>articles<sp/>to<sp/>include<sp/>on<sp/>a<sp/>page,<sp/>not<sp/>including<sp/>orphans.<sp/>False<sp/>to<sp/>disable<sp/>pagination.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal">DEFAULT_PAGINATION<sp/>=<sp/>20</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal">THEME<sp/>=<sp/></highlight><highlight class="stringliteral">&apos;theme&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">#LINKS<sp/>=<sp/><sp/>()</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">#TWITTER_USERNAME<sp/>=<sp/>&apos;&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">#DISQUS_SITENAME<sp/>=<sp/>&apos;&apos;</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/nbentley/Trophia/Code/www/pelican.conf.py"/>
+  </compounddef>
+</doxygen>

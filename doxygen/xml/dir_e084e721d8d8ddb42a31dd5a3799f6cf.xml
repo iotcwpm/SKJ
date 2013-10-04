@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="dir_e084e721d8d8ddb42a31dd5a3799f6cf" kind="dir">
+    <compoundname>parti</compoundname>
+    <innerfile refid="parti_2common_8hpp">parti/common.hpp</innerfile>
+    <innerfile refid="parti_2fish_8hpp">parti/fish.hpp</innerfile>
+    <innerfile refid="parti_2fishing_8hpp">parti/fishing.hpp</innerfile>
+    <innerfile refid="parti_2model_8hpp">parti/model.hpp</innerfile>
+    <innerfile refid="parti_8hpp">parti.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/nbentley/Trophia/Code/parti/"/>
+  </compounddef>
+</doxygen>

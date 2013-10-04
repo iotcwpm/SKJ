@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="____init_____8py" kind="file">
+    <compoundname>__init__.py</compoundname>
+    <innernamespace refid="namespacetangagroomer">tangagroomer</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+    </programlisting>
+    <location file="/home/nbentley/Trophia/Code/tangagroomer/__init__.py"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="classIOSKJ_1_1Data_1_1WestPsCpue" kind="class" prot="public">
+    <compoundname>IOSKJ::Data::WestPsCpue</compoundname>
+    <includes refid="data_8hpp" local="no">data.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classIOSKJ_1_1Data_1_1WestPsCpue_1a76ed2a7cfc9dc71cd96e979a9310a4c7" prot="public" static="no" mutable="no">
+        <type>unsigned short int</type>
+        <definition>unsigned short int IOSKJ::Data::WestPsCpue::year</definition>
+        <argsstring></argsstring>
+        <name>year</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/ioskj/data.hpp" line="45" column="1" bodyfile="/home/nbentley/Trophia/Code/ioskj/data.hpp" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classIOSKJ_1_1Data_1_1WestPsCpue_1a93d81fdc1e2168e56d3c7fc1173c493a" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float IOSKJ::Data::WestPsCpue::index</definition>
+        <argsstring></argsstring>
+        <name>index</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/ioskj/data.hpp" line="46" column="1" bodyfile="/home/nbentley/Trophia/Code/ioskj/data.hpp" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classIOSKJ_1_1Data_1_1WestPsCpue_1a4a66b4d327983bbcc8262cae217c7ede" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void IOSKJ::Data::WestPsCpue::read</definition>
+        <argsstring>(std::istream &amp;stream)</argsstring>
+        <name>read</name>
+        <param>
+          <type>std::istream &amp;</type>
+          <declname>stream</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/ioskj/data.hpp" line="48" column="1" bodyfile="/home/nbentley/Trophia/Code/ioskj/data.hpp" bodystart="48" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="classIOSKJ_1_1Data_1_1WestPsCpue_1a21ae334f9ae536b2624e403c3b77216f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void IOSKJ::Data::WestPsCpue::write</definition>
+        <argsstring>(std::ostream &amp;stream)</argsstring>
+        <name>write</name>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>stream</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/ioskj/data.hpp" line="52" column="1" bodyfile="/home/nbentley/Trophia/Code/ioskj/data.hpp" bodystart="52" bodyend="54"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/nbentley/Trophia/Code/ioskj/data.hpp" line="43" column="1" bodyfile="/home/nbentley/Trophia/Code/ioskj/data.hpp" bodystart="43" bodyend="55"/>
+    <listofallmembers>
+      <member refid="classIOSKJ_1_1Data_1_1WestPsCpue_1a93d81fdc1e2168e56d3c7fc1173c493a" prot="public" virt="non-virtual"><scope>IOSKJ::Data::WestPsCpue</scope><name>index</name></member>
+      <member refid="classIOSKJ_1_1Data_1_1WestPsCpue_1a4a66b4d327983bbcc8262cae217c7ede" prot="public" virt="non-virtual"><scope>IOSKJ::Data::WestPsCpue</scope><name>read</name></member>
+      <member refid="classIOSKJ_1_1Data_1_1WestPsCpue_1a21ae334f9ae536b2624e403c3b77216f" prot="public" virt="non-virtual"><scope>IOSKJ::Data::WestPsCpue</scope><name>write</name></member>
+      <member refid="classIOSKJ_1_1Data_1_1WestPsCpue_1a76ed2a7cfc9dc71cd96e979a9310a4c7" prot="public" virt="non-virtual"><scope>IOSKJ::Data::WestPsCpue</scope><name>year</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

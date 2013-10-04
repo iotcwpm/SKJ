@@ -1,0 +1,171 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="classtangagroomer_1_1checks__landing_1_1LAGWR_1_1Trip" kind="class" prot="public">
+    <compoundname>tangagroomer::checks_landing::LAGWR::Trip</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classtangagroomer_1_1checks__landing_1_1LAGWR_1_1Trip_1a2979656e23536e511ad0a5b2a89e0ae8" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>tangagroomer.checks_landing.LAGWR.Trip::sum_green_weight</definition>
+        <argsstring></argsstring>
+        <name>sum_green_weight</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" line="447" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" bodystart="447" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtangagroomer_1_1checks__landing_1_1LAGWR_1_1Trip_1a44605e0fd2fc1b1ce460a009773b063a" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>tangagroomer.checks_landing.LAGWR.Trip::sum_calc_weight</definition>
+        <argsstring></argsstring>
+        <name>sum_calc_weight</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" line="448" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" bodystart="448" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtangagroomer_1_1checks__landing_1_1LAGWR_1_1Trip_1ad1f87d52dc3b3fda7252bf205b7e4bab" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>tangagroomer.checks_landing.LAGWR.Trip::sum_est_weight</definition>
+        <argsstring></argsstring>
+        <name>sum_est_weight</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" line="449" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" bodystart="449" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtangagroomer_1_1checks__landing_1_1LAGWR_1_1Trip_1a0dfb98aaff7a9b532d6ab9dc129880f6" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>tangagroomer.checks_landing.LAGWR.Trip::ratio_green_calc</definition>
+        <argsstring></argsstring>
+        <name>ratio_green_calc</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" line="450" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" bodystart="450" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtangagroomer_1_1checks__landing_1_1LAGWR_1_1Trip_1a9080eb44ed7ec7539006fca38b1ecc5c" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>tangagroomer.checks_landing.LAGWR.Trip::ratio_green_est</definition>
+        <argsstring></argsstring>
+        <name>ratio_green_est</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" line="451" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" bodystart="451" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtangagroomer_1_1checks__landing_1_1LAGWR_1_1Trip_1ae507724530425790820954fdf8d9126f" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>tangagroomer.checks_landing.LAGWR.Trip::sum_effort</definition>
+        <argsstring></argsstring>
+        <name>sum_effort</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" line="452" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" bodystart="452" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtangagroomer_1_1checks__landing_1_1LAGWR_1_1Trip_1af26e70d949ce867aee43fe3130f3f4e7" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>tangagroomer.checks_landing.LAGWR.Trip::cpue</definition>
+        <argsstring></argsstring>
+        <name>cpue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" line="453" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" bodystart="453" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtangagroomer_1_1checks__landing_1_1LAGWR_1_1Trip_1ae1f09a10c10536dd0fbbd8c7055eecd1" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>tangagroomer.checks_landing.LAGWR.Trip::green_high</definition>
+        <argsstring></argsstring>
+        <name>green_high</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" line="454" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" bodystart="454" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtangagroomer_1_1checks__landing_1_1LAGWR_1_1Trip_1aa348a020b7df6d20b1208e04582e13c3" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>tangagroomer.checks_landing.LAGWR.Trip::ok</definition>
+        <argsstring></argsstring>
+        <name>ok</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" line="455" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" bodystart="455" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtangagroomer_1_1checks__landing_1_1LAGWR_1_1Trip_1a498cb4427434b45400a6f991096e16dc" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>tangagroomer.checks_landing.LAGWR.Trip::drop</definition>
+        <argsstring></argsstring>
+        <name>drop</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" line="456" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" bodystart="456" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtangagroomer_1_1checks__landing_1_1LAGWR_1_1Trip_1ae8cbd2b52298211f2e63a599f742a2e7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def tangagroomer.checks_landing.LAGWR.Trip.__init__</definition>
+        <argsstring></argsstring>
+        <name>__init__</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" line="446" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" bodystart="446" bodyend="458"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" line="443" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" bodystart="443" bodyend="457"/>
+    <listofallmembers>
+      <member refid="classtangagroomer_1_1checks__landing_1_1LAGWR_1_1Trip_1ae8cbd2b52298211f2e63a599f742a2e7" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LAGWR::Trip</scope><name>__init__</name></member>
+      <member refid="classtangagroomer_1_1checks__landing_1_1LAGWR_1_1Trip_1af26e70d949ce867aee43fe3130f3f4e7" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LAGWR::Trip</scope><name>cpue</name></member>
+      <member refid="classtangagroomer_1_1checks__landing_1_1LAGWR_1_1Trip_1a498cb4427434b45400a6f991096e16dc" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LAGWR::Trip</scope><name>drop</name></member>
+      <member refid="classtangagroomer_1_1checks__landing_1_1LAGWR_1_1Trip_1ae1f09a10c10536dd0fbbd8c7055eecd1" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LAGWR::Trip</scope><name>green_high</name></member>
+      <member refid="classtangagroomer_1_1checks__landing_1_1LAGWR_1_1Trip_1aa348a020b7df6d20b1208e04582e13c3" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LAGWR::Trip</scope><name>ok</name></member>
+      <member refid="classtangagroomer_1_1checks__landing_1_1LAGWR_1_1Trip_1a0dfb98aaff7a9b532d6ab9dc129880f6" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LAGWR::Trip</scope><name>ratio_green_calc</name></member>
+      <member refid="classtangagroomer_1_1checks__landing_1_1LAGWR_1_1Trip_1a9080eb44ed7ec7539006fca38b1ecc5c" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LAGWR::Trip</scope><name>ratio_green_est</name></member>
+      <member refid="classtangagroomer_1_1checks__landing_1_1LAGWR_1_1Trip_1a44605e0fd2fc1b1ce460a009773b063a" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LAGWR::Trip</scope><name>sum_calc_weight</name></member>
+      <member refid="classtangagroomer_1_1checks__landing_1_1LAGWR_1_1Trip_1ae507724530425790820954fdf8d9126f" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LAGWR::Trip</scope><name>sum_effort</name></member>
+      <member refid="classtangagroomer_1_1checks__landing_1_1LAGWR_1_1Trip_1ad1f87d52dc3b3fda7252bf205b7e4bab" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LAGWR::Trip</scope><name>sum_est_weight</name></member>
+      <member refid="classtangagroomer_1_1checks__landing_1_1LAGWR_1_1Trip_1a2979656e23536e511ad0a5b2a89e0ae8" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LAGWR::Trip</scope><name>sum_green_weight</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

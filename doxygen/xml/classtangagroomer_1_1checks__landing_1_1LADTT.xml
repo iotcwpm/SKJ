@@ -1,0 +1,175 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="classtangagroomer_1_1checks__landing_1_1LADTT" kind="class" prot="public">
+    <compoundname>tangagroomer::checks_landing::LADTT</compoundname>
+    <basecompoundref refid="classtangagroomer_1_1checks__landing_1_1LA" prot="public" virt="non-virtual">tangagroomer.checks_landing.LA</basecompoundref>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classtangagroomer_1_1checks__landing_1_1LADTT_1a1281e5b7fca34b086c4c52f0268b6009" prot="public" static="yes" mutable="no">
+        <type></type>
+        <definition>tangagroomer.checks_landing.LADTT::drop</definition>
+        <argsstring></argsstring>
+        <name>drop</name>
+        <initializer>= True</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" line="149" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" bodystart="149" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtangagroomer_1_1checks__landing_1_1LADTT_1a014d5d59b9bb6129311279ae1cf0adc1" prot="public" static="yes" mutable="no">
+        <type>string</type>
+        <definition>string tangagroomer.checks_landing.LADTT::brief</definition>
+        <argsstring></argsstring>
+        <name>brief</name>
+        <initializer>= &apos;Landings after transhipping&apos;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" line="150" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" bodystart="150" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtangagroomer_1_1checks__landing_1_1LADTT_1a09c0b79756d812839dd1b67b2f1c2899" prot="public" static="yes" mutable="no">
+        <type>string</type>
+        <definition>string tangagroomer.checks_landing.LADTT::desc</definition>
+        <argsstring></argsstring>
+        <name>desc</name>
+        <initializer>= &apos;&apos;&apos;Fishers sometimes <ref refid="classtangagroomer_1_1check_1_1Check_1aa8ccd798cee5d3e61dc783cbf501352e" kindref="member">report</ref> having transferred catches to another vessel using destination <ref refid="classtangagroomer_1_1check_1_1Check_1aee237860ccf5830b720da9e19b641cda" kindref="member">code</ref> &apos;T&apos;. Unlike for destination codes <ref refid="classtangagroomer_1_1html_1_1P" kindref="compound">P</ref>,Q and R, these catches can be accounted for
+because the destination vessel is recorded in a <ref refid="classtangagroomer_1_1checks__landing_1_1LADTT_1a7ab4f85e6a8a4ce60e98445f0134d27e" kindref="member">column</ref> called &lt;i&gt;tranship_vessel_key&lt;/i&gt;.  This check retains landings with a destination <ref refid="classtangagroomer_1_1check_1_1Check_1aee237860ccf5830b720da9e19b641cda" kindref="member">code</ref> &apos;T&apos; but, to avoid
+double counting, excludes all trips for the destination vessel for the next 3 months. The entire trip is excluded so that species composition is not altered.&apos;&apos;&apos;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" line="151" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" bodystart="151" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtangagroomer_1_1checks__landing_1_1LADTT_1a7ab4f85e6a8a4ce60e98445f0134d27e" prot="public" static="yes" mutable="no">
+        <type>string</type>
+        <definition>string tangagroomer.checks_landing.LADTT::column</definition>
+        <argsstring></argsstring>
+        <name>column</name>
+        <initializer>= &apos;tranship_vessel_key&apos;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" line="154" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" bodystart="154" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtangagroomer_1_1checks__landing_1_1LADTT_1a6f66668bf131040a535b6a1bd67b4dbe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def tangagroomer.checks_landing.LADTT.do</definition>
+        <argsstring></argsstring>
+        <name>do</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" line="155" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" bodystart="155" bodyend="167"/>
+      </memberdef>
+      <memberdef kind="function" id="classtangagroomer_1_1checks__landing_1_1LADTT_1a706b7afb88b89df9c8416a85c574e270" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def tangagroomer.checks_landing.LADTT.summarise</definition>
+        <argsstring></argsstring>
+        <name>summarise</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" line="168" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" bodystart="168" bodyend="233"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="365">
+        <label>tangagroomer.checks_landing.LA</label>
+        <link refid="classtangagroomer_1_1checks__landing_1_1LA"/>
+        <childnode refid="366" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="366">
+        <label>tangagroomer.check.Check</label>
+        <link refid="classtangagroomer_1_1check_1_1Check"/>
+      </node>
+      <node id="364">
+        <label>tangagroomer.checks_landing.LADTT</label>
+        <link refid="classtangagroomer_1_1checks__landing_1_1LADTT"/>
+        <childnode refid="365" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="370">
+        <label>string</label>
+      </node>
+      <node id="368">
+        <label>tangagroomer.checks_landing.LA</label>
+        <link refid="classtangagroomer_1_1checks__landing_1_1LA"/>
+        <childnode refid="369" relation="public-inheritance">
+        </childnode>
+        <childnode refid="370" relation="usage">
+          <edgelabel>table</edgelabel>
+        </childnode>
+      </node>
+      <node id="369">
+        <label>tangagroomer.check.Check</label>
+        <link refid="classtangagroomer_1_1check_1_1Check"/>
+      </node>
+      <node id="367">
+        <label>tangagroomer.checks_landing.LADTT</label>
+        <link refid="classtangagroomer_1_1checks__landing_1_1LADTT"/>
+        <childnode refid="368" relation="public-inheritance">
+        </childnode>
+        <childnode refid="370" relation="usage">
+          <edgelabel>desc</edgelabel>
+          <edgelabel>column</edgelabel>
+          <edgelabel>brief</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" line="148" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" bodystart="148" bodyend="234"/>
+    <listofallmembers>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a36e4525d47865671846c9a0219a2bcb2" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTT</scope><name>apply</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1ac9a962f590f51d6d50bd81c6afee81c8" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTT</scope><name>applyAll</name></member>
+      <member refid="classtangagroomer_1_1checks__landing_1_1LADTT_1a014d5d59b9bb6129311279ae1cf0adc1" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTT</scope><name>brief</name></member>
+      <member refid="classtangagroomer_1_1checks__landing_1_1LA_1a88b64a2ce2eb032755e2a29ae95128ba" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTT</scope><name>change</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a73732d1d3f3cde589eec2c33c6867557" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTT</scope><name>clause</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1aee237860ccf5830b720da9e19b641cda" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTT</scope><name>code</name></member>
+      <member refid="classtangagroomer_1_1checks__landing_1_1LADTT_1a7ab4f85e6a8a4ce60e98445f0134d27e" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTT</scope><name>column</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a1c68e6bbd01a5b9dbe834a1e2da92c3b" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTT</scope><name>dataset</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a48bb57fdbd589dbef0a23128cdf85b41" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTT</scope><name>db</name></member>
+      <member refid="classtangagroomer_1_1checks__landing_1_1LADTT_1a09c0b79756d812839dd1b67b2f1c2899" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTT</scope><name>desc</name></member>
+      <member refid="classtangagroomer_1_1checks__landing_1_1LADTT_1a6f66668bf131040a535b6a1bd67b4dbe" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTT</scope><name>do</name></member>
+      <member refid="classtangagroomer_1_1checks__landing_1_1LADTT_1a1281e5b7fca34b086c4c52f0268b6009" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTT</scope><name>drop</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1ae4bab42cb9c9f2f8388c7310b5166458" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTT</scope><name>filename</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1aa1f73b4e49f59491ee3ed5ecf126b524" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTT</scope><name>fishing_years</name></member>
+      <member refid="classtangagroomer_1_1checks__landing_1_1LA_1a4407a779f4b33899cf036950aeb0117d" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTT</scope><name>flag</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a9398218abb4e0bbfcb5813da99b707d7" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTT</scope><name>histogram</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a248c19018845f81d7afa5b7c2a78fba0" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTT</scope><name>List</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a4a7bd550d553a6ef8432a726847486c3" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTT</scope><name>quantiles</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1aa8ccd798cee5d3e61dc783cbf501352e" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTT</scope><name>report</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a3b5976b1ad785be57e0c5a1a1ded9060" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTT</scope><name>scatterplot</name></member>
+      <member refid="classtangagroomer_1_1checks__landing_1_1LADTT_1a706b7afb88b89df9c8416a85c574e270" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTT</scope><name>summarise</name></member>
+      <member refid="classtangagroomer_1_1checks__landing_1_1LA_1a1c2b29ff19d1c74615f05a20f6b5b7a5" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTT</scope><name>table</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a76dc47c04b683cacf202468e1c8fc7ad" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTT</scope><name>value</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a2e347e6485a4c668a629ad4dc021d4d6" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTT</scope><name>view</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1ad733559ce56183efd768b55ffbce3274" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTT</scope><name>viewAll</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a1f6a7df7df2a85c427a9bf618cb121f9" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTT</scope><name>visible</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

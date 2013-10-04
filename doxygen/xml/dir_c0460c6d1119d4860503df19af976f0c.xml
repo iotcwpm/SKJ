@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="dir_c0460c6d1119d4860503df19af976f0c" kind="dir">
+    <compoundname>indi</compoundname>
+    <innerfile refid="environs_8hpp">environs.hpp</innerfile>
+    <innerfile refid="fishes_8hpp">fishes.hpp</innerfile>
+    <innerfile refid="indi_8hpp">indi.hpp</innerfile>
+    <innerfile refid="indi_2indi_2model_8hpp">indi/indi/model.hpp</innerfile>
+    <innerfile refid="random_8hpp">random.hpp</innerfile>
+    <innerfile refid="scalar_8hpp">scalar.hpp</innerfile>
+    <innerfile refid="scalars_8hpp">scalars.hpp</innerfile>
+    <innerfile refid="vessels_8hpp">vessels.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/nbentley/Trophia/Code/indi/indi/"/>
+  </compounddef>
+</doxygen>

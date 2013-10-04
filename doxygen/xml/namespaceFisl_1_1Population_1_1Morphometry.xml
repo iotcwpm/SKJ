@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="namespaceFisl_1_1Population_1_1Morphometry" kind="namespace">
+    <compoundname>Fisl::Population::Morphometry</compoundname>
+      <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="namespaceFisl_1_1Population_1_1Morphometry_1a26d913bc4984477501a4a2a32fa1f306" prot="public" static="no">
+        <type><ref refid="classFisl_1_1Math_1_1Functions_1_1Power" kindref="compound">Math::Functions::Power</ref></type>
+        <definition>typedef Math::Functions::Power Fisl::Population::Morphometry::Power</definition>
+        <argsstring></argsstring>
+        <name>Power</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/morphometry/morphometry.hpp" line="9" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/morphometry/morphometry.hpp" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/morphometry/morphometry.hpp" line="7"/>
+  </compounddef>
+</doxygen>

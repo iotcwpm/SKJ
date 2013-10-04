@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="namespacetangagroomer_1_1checks__fishing__event__landing" kind="namespace">
+    <compoundname>tangagroomer::checks_fishing_event_landing</compoundname>
+    <innerclass refid="classtangagroomer_1_1checks__fishing__event__landing_1_1FLINI" prot="public">tangagroomer::checks_fishing_event_landing::FLINI</innerclass>
+    <innerclass refid="classtangagroomer_1_1checks__fishing__event__landing_1_1FLSAU" prot="public">tangagroomer::checks_fishing_event_landing::FLSAU</innerclass>
+    <innerclass refid="classtangagroomer_1_1checks__fishing__event__landing_1_1FLFSU" prot="public">tangagroomer::checks_fishing_event_landing::FLFSU</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_fishing_event_landing.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

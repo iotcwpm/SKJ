@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="namespacetangagroomer_1_1checks__fishing__event" kind="namespace">
+    <compoundname>tangagroomer::checks_fishing_event</compoundname>
+    <innerclass refid="classtangagroomer_1_1checks__fishing__event_1_1FESTA" prot="public">tangagroomer::checks_fishing_event::FESTA</innerclass>
+    <innerclass refid="classtangagroomer_1_1checks__fishing__event_1_1FE" prot="public">tangagroomer::checks_fishing_event::FE</innerclass>
+    <innerclass refid="classtangagroomer_1_1checks__fishing__event_1_1FESDM" prot="public">tangagroomer::checks_fishing_event::FESDM</innerclass>
+    <innerclass refid="classtangagroomer_1_1checks__fishing__event_1_1FESDF" prot="public">tangagroomer::checks_fishing_event::FESDF</innerclass>
+    <innerclass refid="classtangagroomer_1_1checks__fishing__event_1_1FEPMI" prot="public">tangagroomer::checks_fishing_event::FEPMI</innerclass>
+    <innerclass refid="classtangagroomer_1_1checks__fishing__event_1_1FEPMM" prot="public">tangagroomer::checks_fishing_event::FEPMM</innerclass>
+    <innerclass refid="classtangagroomer_1_1checks__fishing__event_1_1FETSW" prot="public">tangagroomer::checks_fishing_event::FETSW</innerclass>
+    <innerclass refid="classtangagroomer_1_1checks__fishing__event_1_1FETSI" prot="public">tangagroomer::checks_fishing_event::FETSI</innerclass>
+    <innerclass refid="classtangagroomer_1_1checks__fishing__event_1_1FETSM" prot="public">tangagroomer::checks_fishing_event::FETSM</innerclass>
+    <innerclass refid="classtangagroomer_1_1checks__fishing__event_1_1FESAI" prot="public">tangagroomer::checks_fishing_event::FESAI</innerclass>
+    <innerclass refid="classtangagroomer_1_1checks__fishing__event_1_1FESAM" prot="public">tangagroomer::checks_fishing_event::FESAM</innerclass>
+    <innerclass refid="classtangagroomer_1_1checks__fishing__event_1_1FELLI" prot="public">tangagroomer::checks_fishing_event::FELLI</innerclass>
+    <innerclass refid="classtangagroomer_1_1checks__fishing__event_1_1FELLS" prot="public">tangagroomer::checks_fishing_event::FELLS</innerclass>
+    <innerclass refid="classtangagroomer_1_1checks__fishing__event_1_1FEFMA" prot="public">tangagroomer::checks_fishing_event::FEFMA</innerclass>
+    <innerclass refid="classtangagroomer_1_1checks__fishing__event_1_1FEETN" prot="public">tangagroomer::checks_fishing_event::FEETN</innerclass>
+    <innerclass refid="classtangagroomer_1_1checks__fishing__event_1_1FEEFO" prot="public">tangagroomer::checks_fishing_event::FEEFO</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_fishing_event.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,175 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="classtangagroomer_1_1checks__fishing__event__landing_1_1FLFSU" kind="class" prot="public">
+    <compoundname>tangagroomer::checks_fishing_event_landing::FLFSU</compoundname>
+    <basecompoundref refid="classtangagroomer_1_1check_1_1Check" prot="public" virt="non-virtual">tangagroomer.check.Check</basecompoundref>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classtangagroomer_1_1checks__fishing__event__landing_1_1FLFSU_1ad1866a24327671d4d2675f449c2c4b6c" prot="public" static="yes" mutable="no">
+        <type>string</type>
+        <definition>string tangagroomer.checks_fishing_event_landing.FLFSU::brief</definition>
+        <argsstring></argsstring>
+        <name>brief</name>
+        <initializer>= &apos;Fishstock unmatched by effort&apos;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_fishing_event_landing.py" line="77" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_fishing_event_landing.py" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtangagroomer_1_1checks__fishing__event__landing_1_1FLFSU_1aa50481551d455be2cf2604719c263f53" prot="public" static="yes" mutable="no">
+        <type>string</type>
+        <definition>string tangagroomer.checks_fishing_event_landing.FLFSU::desc</definition>
+        <argsstring></argsstring>
+        <name>desc</name>
+        <initializer>= &apos;&apos;&apos;	&apos;&apos;&apos;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_fishing_event_landing.py" line="78" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_fishing_event_landing.py" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtangagroomer_1_1checks__fishing__event__landing_1_1FLFSU_1a5fe153cd510815c1ce434f298b963892" prot="public" static="yes" mutable="no">
+        <type>string</type>
+        <definition>string tangagroomer.checks_fishing_event_landing.FLFSU::table</definition>
+        <argsstring></argsstring>
+        <name>table</name>
+        <initializer>= &apos;landing&apos;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_fishing_event_landing.py" line="79" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_fishing_event_landing.py" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtangagroomer_1_1checks__fishing__event__landing_1_1FLFSU_1aa8e913c56767b6962783c8aaa97c2a2d" prot="public" static="yes" mutable="no">
+        <type>string</type>
+        <definition>string tangagroomer.checks_fishing_event_landing.FLFSU::column</definition>
+        <argsstring></argsstring>
+        <name>column</name>
+        <initializer>= &apos;fishstock_code&apos;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_fishing_event_landing.py" line="80" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_fishing_event_landing.py" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtangagroomer_1_1checks__fishing__event__landing_1_1FLFSU_1ace483f7e045745db0ecd447bad574005" prot="public" static="yes" mutable="no">
+        <type></type>
+        <definition>tangagroomer.checks_fishing_event_landing.FLFSU::species</definition>
+        <argsstring></argsstring>
+        <name>species</name>
+        <initializer>= None</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_fishing_event_landing.py" line="82" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_fishing_event_landing.py" bodystart="82" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtangagroomer_1_1checks__fishing__event__landing_1_1FLFSU_1ae2c1597114136d78ece23122774af700" prot="public" static="yes" mutable="no">
+        <type></type>
+        <definition>tangagroomer.checks_fishing_event_landing.FLFSU::fishstocks</definition>
+        <argsstring></argsstring>
+        <name>fishstocks</name>
+        <initializer>= None</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_fishing_event_landing.py" line="83" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_fishing_event_landing.py" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtangagroomer_1_1checks__fishing__event__landing_1_1FLFSU_1afff5c51ac0d5571e0e30e5a11639b0e5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def tangagroomer.checks_fishing_event_landing.FLFSU.do</definition>
+        <argsstring></argsstring>
+        <name>do</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_fishing_event_landing.py" line="85" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_fishing_event_landing.py" bodystart="85" bodyend="102"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="257">
+        <label>tangagroomer.checks_fishing_event_landing.FLFSU</label>
+        <link refid="classtangagroomer_1_1checks__fishing__event__landing_1_1FLFSU"/>
+        <childnode refid="258" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="258">
+        <label>tangagroomer.check.Check</label>
+        <link refid="classtangagroomer_1_1check_1_1Check"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="259">
+        <label>tangagroomer.checks_fishing_event_landing.FLFSU</label>
+        <link refid="classtangagroomer_1_1checks__fishing__event__landing_1_1FLFSU"/>
+        <childnode refid="260" relation="public-inheritance">
+        </childnode>
+        <childnode refid="261" relation="usage">
+          <edgelabel>desc</edgelabel>
+          <edgelabel>column</edgelabel>
+          <edgelabel>brief</edgelabel>
+          <edgelabel>table</edgelabel>
+        </childnode>
+      </node>
+      <node id="261">
+        <label>string</label>
+      </node>
+      <node id="260">
+        <label>tangagroomer.check.Check</label>
+        <link refid="classtangagroomer_1_1check_1_1Check"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_fishing_event_landing.py" line="76" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_fishing_event_landing.py" bodystart="76" bodyend="102"/>
+    <listofallmembers>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a36e4525d47865671846c9a0219a2bcb2" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event_landing::FLFSU</scope><name>apply</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1ac9a962f590f51d6d50bd81c6afee81c8" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event_landing::FLFSU</scope><name>applyAll</name></member>
+      <member refid="classtangagroomer_1_1checks__fishing__event__landing_1_1FLFSU_1ad1866a24327671d4d2675f449c2c4b6c" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event_landing::FLFSU</scope><name>brief</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a58991e0dd0e97e9578396e9048e89842" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event_landing::FLFSU</scope><name>change</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a73732d1d3f3cde589eec2c33c6867557" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event_landing::FLFSU</scope><name>clause</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1aee237860ccf5830b720da9e19b641cda" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event_landing::FLFSU</scope><name>code</name></member>
+      <member refid="classtangagroomer_1_1checks__fishing__event__landing_1_1FLFSU_1aa8e913c56767b6962783c8aaa97c2a2d" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event_landing::FLFSU</scope><name>column</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a1c68e6bbd01a5b9dbe834a1e2da92c3b" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event_landing::FLFSU</scope><name>dataset</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a48bb57fdbd589dbef0a23128cdf85b41" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event_landing::FLFSU</scope><name>db</name></member>
+      <member refid="classtangagroomer_1_1checks__fishing__event__landing_1_1FLFSU_1aa50481551d455be2cf2604719c263f53" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event_landing::FLFSU</scope><name>desc</name></member>
+      <member refid="classtangagroomer_1_1checks__fishing__event__landing_1_1FLFSU_1afff5c51ac0d5571e0e30e5a11639b0e5" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event_landing::FLFSU</scope><name>do</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1ae4bab42cb9c9f2f8388c7310b5166458" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event_landing::FLFSU</scope><name>filename</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1aa1f73b4e49f59491ee3ed5ecf126b524" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event_landing::FLFSU</scope><name>fishing_years</name></member>
+      <member refid="classtangagroomer_1_1checks__fishing__event__landing_1_1FLFSU_1ae2c1597114136d78ece23122774af700" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event_landing::FLFSU</scope><name>fishstocks</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a815714fcb0ead30679fca7e82ede9294" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event_landing::FLFSU</scope><name>flag</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a9398218abb4e0bbfcb5813da99b707d7" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event_landing::FLFSU</scope><name>histogram</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a248c19018845f81d7afa5b7c2a78fba0" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event_landing::FLFSU</scope><name>List</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a4a7bd550d553a6ef8432a726847486c3" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event_landing::FLFSU</scope><name>quantiles</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1aa8ccd798cee5d3e61dc783cbf501352e" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event_landing::FLFSU</scope><name>report</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a3b5976b1ad785be57e0c5a1a1ded9060" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event_landing::FLFSU</scope><name>scatterplot</name></member>
+      <member refid="classtangagroomer_1_1checks__fishing__event__landing_1_1FLFSU_1ace483f7e045745db0ecd447bad574005" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event_landing::FLFSU</scope><name>species</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a05935123dc66ebbb0dcccdb512e898a7" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event_landing::FLFSU</scope><name>summarise</name></member>
+      <member refid="classtangagroomer_1_1checks__fishing__event__landing_1_1FLFSU_1a5fe153cd510815c1ce434f298b963892" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event_landing::FLFSU</scope><name>table</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a76dc47c04b683cacf202468e1c8fc7ad" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event_landing::FLFSU</scope><name>value</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a2e347e6485a4c668a629ad4dc021d4d6" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event_landing::FLFSU</scope><name>view</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1ad733559ce56183efd768b55ffbce3274" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event_landing::FLFSU</scope><name>viewAll</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a1f6a7df7df2a85c427a9bf618cb121f9" prot="public" virt="non-virtual"><scope>tangagroomer::checks_fishing_event_landing::FLFSU</scope><name>visible</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

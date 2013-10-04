@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="cralb_2analyses_2cra8-males_2README_8md" kind="file">
+    <compoundname>cralb/analyses/cra8-males/README.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#<sp/>Analysis<sp/>of<sp/>the<sp/>proportion<sp/>of<sp/>males<sp/>in<sp/>CRA<sp/>8</highlight></codeline>
+<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal">This<sp/>analysis<sp/>was<sp/>done<sp/>i<sp/>nresponse<sp/>to<sp/>the<sp/>following<sp/>email<sp/>request<sp/>from<sp/>Dary<sp/>Sykes,<sp/>NZRLIC<sp/>2013-08-22:</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Hi<sp/>Nokome</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>We<sp/>have<sp/>received<sp/>a<sp/>request<sp/>from<sp/>the<sp/>CRA<sp/>8<sp/>Management<sp/>Committee<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>some<sp/>additional<sp/>analysis<sp/>of<sp/>CRA<sp/>8<sp/>Logbook<sp/>data<sp/>as<sp/>follows:</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Is<sp/>it<sp/>possible<sp/>to<sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal"><sp/>a<sp/>calculation<sp/>from<sp/>the<sp/>CRA<sp/>8<sp/>2012/13<sp/>logbook<sp/>data<sp/>of<sp/>the<sp/>amount<sp/>of<sp/>males<sp/>kept<sp/>(numbers<sp/>of<sp/>males<sp/>retained)<sp/>as<sp/>a<sp/>percentage<sp/>of<sp/>the<sp/>total<sp/>number<sp/>of<sp/>lobsters<sp/>that<sp/>were<sp/>kept<sp/>(numbers<sp/>of<sp/>males<sp/>and<sp/>females<sp/>retained).</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>The<sp/>Annual<sp/>Summary<sp/>shows<sp/>the<sp/>percentages<sp/>of<sp/>each<sp/>sex<sp/>that<sp/>were<sp/>caught.</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>The<sp/>Committee<sp/>notes<sp/>that<sp/>the<sp/>percentage<sp/>of<sp/>males<sp/>caught<sp/>has<sp/>dropped<sp/>considerably<sp/>over<sp/>the<sp/>last<sp/>few<sp/>years<sp/>but<sp/>an<sp/>analysis<sp/>of<sp/>the<sp/>percentage<sp/>of<sp/>males<sp/>kept<sp/>from<sp/>the<sp/>total<sp/>number<sp/>of<sp/>lobsters<sp/>kept<sp/>may<sp/>be<sp/>quite<sp/>different.</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Are<sp/>you<sp/>able<sp/>to<sp/><ref refid="namespaceupdater_1a69122e5f32d32b70888e3544bcfeaf87" kindref="member">run</ref><sp/>that<sp/>query<sp/>and<sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal"><sp/>data<sp/>back<sp/>to<sp/>me<sp/>by<sp/>early<sp/>next<sp/>week??</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Daryl</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/nbentley/Trophia/Code/cralb/analyses/cra8-males/README.md"/>
+  </compounddef>
+</doxygen>

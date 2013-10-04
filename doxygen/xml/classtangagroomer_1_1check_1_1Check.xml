@@ -1,0 +1,648 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="classtangagroomer_1_1check_1_1Check" kind="class" prot="public">
+    <compoundname>tangagroomer::check::Check</compoundname>
+    <derivedcompoundref refid="classtangagroomer_1_1check_1_1CHINI" prot="public" virt="non-virtual">tangagroomer.check.CHINI</derivedcompoundref>
+    <derivedcompoundref refid="classtangagroomer_1_1check_1_1CHSTA" prot="public" virt="non-virtual">tangagroomer.check.CHSTA</derivedcompoundref>
+    <derivedcompoundref refid="classtangagroomer_1_1checks__allocation_1_1ALLOC" prot="public" virt="non-virtual">tangagroomer.checks_allocation.ALLOC</derivedcompoundref>
+    <derivedcompoundref refid="classtangagroomer_1_1checks__estimated__subcatch_1_1ESCWN" prot="public" virt="non-virtual">tangagroomer.checks_estimated_subcatch.ESCWN</derivedcompoundref>
+    <derivedcompoundref refid="classtangagroomer_1_1checks__fishing__event_1_1FE" prot="public" virt="non-virtual">tangagroomer.checks_fishing_event.FE</derivedcompoundref>
+    <derivedcompoundref refid="classtangagroomer_1_1checks__fishing__event__landing_1_1FLFSU" prot="public" virt="non-virtual">tangagroomer.checks_fishing_event_landing.FLFSU</derivedcompoundref>
+    <derivedcompoundref refid="classtangagroomer_1_1checks__fishing__event__landing_1_1FLINI" prot="public" virt="non-virtual">tangagroomer.checks_fishing_event_landing.FLINI</derivedcompoundref>
+    <derivedcompoundref refid="classtangagroomer_1_1checks__fishing__event__landing_1_1FLSAU" prot="public" virt="non-virtual">tangagroomer.checks_fishing_event_landing.FLSAU</derivedcompoundref>
+    <derivedcompoundref refid="classtangagroomer_1_1checks__landing_1_1LA" prot="public" virt="non-virtual">tangagroomer.checks_landing.LA</derivedcompoundref>
+    <derivedcompoundref refid="classtangagroomer_1_1checks__trip__details_1_1TDDAB" prot="public" virt="non-virtual">tangagroomer.checks_trip_details.TDDAB</derivedcompoundref>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classtangagroomer_1_1check_1_1Check_1aa1f73b4e49f59491ee3ed5ecf126b524" prot="public" static="yes" mutable="no">
+        <type>tuple</type>
+        <definition>tuple tangagroomer.check.Check::fishing_years</definition>
+        <argsstring></argsstring>
+        <name>fishing_years</name>
+        <initializer>= range(1990,2014)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/check.py" line="18" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/check.py" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtangagroomer_1_1check_1_1Check_1a48bb57fdbd589dbef0a23128cdf85b41" prot="public" static="yes" mutable="no">
+        <type></type>
+        <definition>tangagroomer.check.Check::db</definition>
+        <argsstring></argsstring>
+        <name>db</name>
+        <initializer>= None</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/check.py" line="21" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/check.py" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtangagroomer_1_1check_1_1Check_1a1c68e6bbd01a5b9dbe834a1e2da92c3b" prot="public" static="yes" mutable="no">
+        <type></type>
+        <definition>tangagroomer.check.Check::dataset</definition>
+        <argsstring></argsstring>
+        <name>dataset</name>
+        <initializer>= None</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/check.py" line="23" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/check.py" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtangagroomer_1_1check_1_1Check_1a82ea73bef1203e8dbd51ff577f78fb1e" prot="public" static="yes" mutable="no">
+        <type></type>
+        <definition>tangagroomer.check.Check::brief</definition>
+        <argsstring></argsstring>
+        <name>brief</name>
+        <initializer>= None</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/check.py" line="26" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/check.py" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtangagroomer_1_1check_1_1Check_1a3d7d03dce0aae9625e15101e44b1b1f7" prot="public" static="yes" mutable="no">
+        <type></type>
+        <definition>tangagroomer.check.Check::desc</definition>
+        <argsstring></argsstring>
+        <name>desc</name>
+        <initializer>= None</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/check.py" line="27" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/check.py" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtangagroomer_1_1check_1_1Check_1a1f6a7df7df2a85c427a9bf618cb121f9" prot="public" static="yes" mutable="no">
+        <type></type>
+        <definition>tangagroomer.check.Check::visible</definition>
+        <argsstring></argsstring>
+        <name>visible</name>
+        <initializer>= True</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/check.py" line="29" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/check.py" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtangagroomer_1_1check_1_1Check_1aecfce3677d7fa88332d94e9e4e9dcc3d" prot="public" static="yes" mutable="no">
+        <type></type>
+        <definition>tangagroomer.check.Check::table</definition>
+        <argsstring></argsstring>
+        <name>table</name>
+        <initializer>= None</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/check.py" line="32" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/check.py" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtangagroomer_1_1check_1_1Check_1a73732d1d3f3cde589eec2c33c6867557" prot="public" static="yes" mutable="no">
+        <type></type>
+        <definition>tangagroomer.check.Check::clause</definition>
+        <argsstring></argsstring>
+        <name>clause</name>
+        <initializer>= None</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/check.py" line="33" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/check.py" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtangagroomer_1_1check_1_1Check_1a7ffea959f622ed29351beace07624f80" prot="public" static="yes" mutable="no">
+        <type></type>
+        <definition>tangagroomer.check.Check::column</definition>
+        <argsstring></argsstring>
+        <name>column</name>
+        <initializer>= None</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/check.py" line="34" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/check.py" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtangagroomer_1_1check_1_1Check_1a76dc47c04b683cacf202468e1c8fc7ad" prot="public" static="yes" mutable="no">
+        <type></type>
+        <definition>tangagroomer.check.Check::value</definition>
+        <argsstring></argsstring>
+        <name>value</name>
+        <initializer>= <ref refid="classtangagroomer_1_1check_1_1NotDefined" kindref="compound">NotDefined</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/check.py" line="35" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/check.py" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtangagroomer_1_1check_1_1Check_1a248c19018845f81d7afa5b7c2a78fba0" prot="public" static="yes" mutable="no">
+        <type>list</type>
+        <definition>list tangagroomer.check.Check::List</definition>
+        <argsstring></argsstring>
+        <name>List</name>
+        <initializer>= []</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/check.py" line="38" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/check.py" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtangagroomer_1_1check_1_1Check_1aee237860ccf5830b720da9e19b641cda" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def tangagroomer.check.Check.code</definition>
+        <argsstring></argsstring>
+        <name>code</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/check.py" line="41" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/check.py" bodystart="41" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="function" id="classtangagroomer_1_1check_1_1Check_1a815714fcb0ead30679fca7e82ede9294" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def tangagroomer.check.Check.flag</definition>
+        <argsstring></argsstring>
+        <name>flag</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/check.py" line="46" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/check.py" bodystart="46" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="classtangagroomer_1_1check_1_1Check_1a58991e0dd0e97e9578396e9048e89842" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def tangagroomer.check.Check.change</definition>
+        <argsstring></argsstring>
+        <name>change</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/check.py" line="53" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/check.py" bodystart="53" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="function" id="classtangagroomer_1_1check_1_1Check_1a7d6e67760f35efc58217072497fa88b7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def tangagroomer.check.Check.do</definition>
+        <argsstring></argsstring>
+        <name>do</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/check.py" line="66" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/check.py" bodystart="66" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="classtangagroomer_1_1check_1_1Check_1a36e4525d47865671846c9a0219a2bcb2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def tangagroomer.check.Check.apply</definition>
+        <argsstring></argsstring>
+        <name>apply</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/check.py" line="71" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/check.py" bodystart="71" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="classtangagroomer_1_1check_1_1Check_1ae4bab42cb9c9f2f8388c7310b5166458" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def tangagroomer.check.Check.filename</definition>
+        <argsstring></argsstring>
+        <name>filename</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Create a valid filename from a string</verbatim> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/check.py" line="95" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/check.py" bodystart="95" bodyend="98"/>
+      </memberdef>
+      <memberdef kind="function" id="classtangagroomer_1_1check_1_1Check_1a3b5976b1ad785be57e0c5a1a1ded9060" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def tangagroomer.check.Check.scatterplot</definition>
+        <argsstring></argsstring>
+        <name>scatterplot</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/check.py" line="99" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/check.py" bodystart="99" bodyend="125"/>
+      </memberdef>
+      <memberdef kind="function" id="classtangagroomer_1_1check_1_1Check_1a4a7bd550d553a6ef8432a726847486c3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def tangagroomer.check.Check.quantiles</definition>
+        <argsstring></argsstring>
+        <name>quantiles</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Calculate quantiles of a vector</verbatim> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/check.py" line="126" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/check.py" bodystart="126" bodyend="133"/>
+      </memberdef>
+      <memberdef kind="function" id="classtangagroomer_1_1check_1_1Check_1a9398218abb4e0bbfcb5813da99b707d7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def tangagroomer.check.Check.histogram</definition>
+        <argsstring></argsstring>
+        <name>histogram</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Create a histogram for a field in a table</verbatim> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/check.py" line="134" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/check.py" bodystart="134" bodyend="174"/>
+      </memberdef>
+      <memberdef kind="function" id="classtangagroomer_1_1check_1_1Check_1a05935123dc66ebbb0dcccdb512e898a7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def tangagroomer.check.Check.summarise</definition>
+        <argsstring></argsstring>
+        <name>summarise</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>A default summary of the check</verbatim> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/check.py" line="175" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/check.py" bodystart="175" bodyend="187"/>
+      </memberdef>
+      <memberdef kind="function" id="classtangagroomer_1_1check_1_1Check_1aa8ccd798cee5d3e61dc783cbf501352e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def tangagroomer.check.Check.report</definition>
+        <argsstring></argsstring>
+        <name>report</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/check.py" line="188" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/check.py" bodystart="188" bodyend="194"/>
+      </memberdef>
+      <memberdef kind="function" id="classtangagroomer_1_1check_1_1Check_1a2e347e6485a4c668a629ad4dc021d4d6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def tangagroomer.check.Check.view</definition>
+        <argsstring></argsstring>
+        <name>view</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/check.py" line="195" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/check.py" bodystart="195" bodyend="200"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classtangagroomer_1_1check_1_1Check_1ac9a962f590f51d6d50bd81c6afee81c8" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def tangagroomer.check.Check.applyAll</definition>
+        <argsstring></argsstring>
+        <name>applyAll</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/check.py" line="89" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/check.py" bodystart="89" bodyend="92"/>
+      </memberdef>
+      <memberdef kind="function" id="classtangagroomer_1_1check_1_1Check_1ad733559ce56183efd768b55ffbce3274" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def tangagroomer.check.Check.viewAll</definition>
+        <argsstring></argsstring>
+        <name>viewAll</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/check.py" line="202" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/check.py" bodystart="202" bodyend="208"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="45">
+        <label>tangagroomer.checks_fishing_event_landing.FLSAU</label>
+        <link refid="classtangagroomer_1_1checks__fishing__event__landing_1_1FLSAU"/>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="38">
+        <label>tangagroomer.checks_fishing_event.FESDF</label>
+        <link refid="classtangagroomer_1_1checks__fishing__event_1_1FESDF"/>
+        <childnode refid="28" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="39">
+        <label>tangagroomer.checks_fishing_event.FESDM</label>
+        <link refid="classtangagroomer_1_1checks__fishing__event_1_1FESDM"/>
+        <childnode refid="28" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="43">
+        <label>tangagroomer.checks_fishing_event_landing.FLFSU</label>
+        <link refid="classtangagroomer_1_1checks__fishing__event__landing_1_1FLFSU"/>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="58">
+        <label>tangagroomer.checks_landing.LASCD</label>
+        <link refid="classtangagroomer_1_1checks__landing_1_1LASCD"/>
+        <childnode refid="46" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="59">
+        <label>tangagroomer.checks_landing.LASCF</label>
+        <link refid="classtangagroomer_1_1checks__landing_1_1LASCF"/>
+        <childnode refid="46" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="60">
+        <label>tangagroomer.checks_landing.LASCI</label>
+        <link refid="classtangagroomer_1_1checks__landing_1_1LASCI"/>
+        <childnode refid="46" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>tangagroomer.checks_estimated_subcatch.ESCWN</label>
+        <link refid="classtangagroomer_1_1checks__estimated__subcatch_1_1ESCWN"/>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="23">
+        <label>tangagroomer.checks_fishing_event.FESTA</label>
+        <link refid="classtangagroomer_1_1checks__fishing__event_1_1FESTA"/>
+        <childnode refid="21" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="61">
+        <label>tangagroomer.checks_trip_details.TDDAB</label>
+        <link refid="classtangagroomer_1_1checks__trip__details_1_1TDDAB"/>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="46">
+        <label>tangagroomer.checks_landing.LA</label>
+        <link refid="classtangagroomer_1_1checks__landing_1_1LA"/>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="28">
+        <label>tangagroomer.checks_fishing_event.FE</label>
+        <link refid="classtangagroomer_1_1checks__fishing__event_1_1FE"/>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="47">
+        <label>tangagroomer.checks_landing.LACFC</label>
+        <link refid="classtangagroomer_1_1checks__landing_1_1LACFC"/>
+        <childnode refid="46" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="48">
+        <label>tangagroomer.checks_landing.LACFM</label>
+        <link refid="classtangagroomer_1_1checks__landing_1_1LACFM"/>
+        <childnode refid="46" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="34">
+        <label>tangagroomer.checks_fishing_event.FEPMI</label>
+        <link refid="classtangagroomer_1_1checks__fishing__event_1_1FEPMI"/>
+        <childnode refid="28" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="35">
+        <label>tangagroomer.checks_fishing_event.FEPMM</label>
+        <link refid="classtangagroomer_1_1checks__fishing__event_1_1FEPMM"/>
+        <childnode refid="28" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>tangagroomer.checks_fishing_event.FELLS</label>
+        <link refid="classtangagroomer_1_1checks__fishing__event_1_1FELLS"/>
+        <childnode refid="28" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="40">
+        <label>tangagroomer.checks_fishing_event.FETSI</label>
+        <link refid="classtangagroomer_1_1checks__fishing__event_1_1FETSI"/>
+        <childnode refid="28" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="41">
+        <label>tangagroomer.checks_fishing_event.FETSM</label>
+        <link refid="classtangagroomer_1_1checks__fishing__event_1_1FETSM"/>
+        <childnode refid="28" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>tangagroomer.checks_estimated_subcatch.ESSTA</label>
+        <link refid="classtangagroomer_1_1checks__estimated__subcatch_1_1ESSTA"/>
+        <childnode refid="21" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="32">
+        <label>tangagroomer.checks_fishing_event.FELLI</label>
+        <link refid="classtangagroomer_1_1checks__fishing__event_1_1FELLI"/>
+        <childnode refid="28" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>tangagroomer.checks_fishing_event.FEEFO</label>
+        <link refid="classtangagroomer_1_1checks__fishing__event_1_1FEEFO"/>
+        <childnode refid="28" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="49">
+        <label>tangagroomer.checks_landing.LADAF</label>
+        <link refid="classtangagroomer_1_1checks__landing_1_1LADAF"/>
+        <childnode refid="46" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="50">
+        <label>tangagroomer.checks_landing.LADAM</label>
+        <link refid="classtangagroomer_1_1checks__landing_1_1LADAM"/>
+        <childnode refid="46" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>tangagroomer.checks_trip_details.TDSTA</label>
+        <link refid="classtangagroomer_1_1checks__trip__details_1_1TDSTA"/>
+        <childnode refid="21" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="42">
+        <label>tangagroomer.checks_fishing_event.FETSW</label>
+        <link refid="classtangagroomer_1_1checks__fishing__event_1_1FETSW"/>
+        <childnode refid="28" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="19">
+        <label>tangagroomer.check.Check</label>
+        <link refid="classtangagroomer_1_1check_1_1Check"/>
+      </node>
+      <node id="57">
+        <label>tangagroomer.checks_landing.LAGWR</label>
+        <link refid="classtangagroomer_1_1checks__landing_1_1LAGWR"/>
+        <childnode refid="46" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>tangagroomer.checks_allocation.ALLOC</label>
+        <link refid="classtangagroomer_1_1checks__allocation_1_1ALLOC"/>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="55">
+        <label>tangagroomer.checks_landing.LAGWI</label>
+        <link refid="classtangagroomer_1_1checks__landing_1_1LAGWI"/>
+        <childnode refid="46" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="56">
+        <label>tangagroomer.checks_landing.LAGWM</label>
+        <link refid="classtangagroomer_1_1checks__landing_1_1LAGWM"/>
+        <childnode refid="46" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="20">
+        <label>tangagroomer.check.CHINI</label>
+        <link refid="classtangagroomer_1_1check_1_1CHINI"/>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>tangagroomer.checks_fishing_event.FEETN</label>
+        <link refid="classtangagroomer_1_1checks__fishing__event_1_1FEETN"/>
+        <childnode refid="28" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="44">
+        <label>tangagroomer.checks_fishing_event_landing.FLINI</label>
+        <link refid="classtangagroomer_1_1checks__fishing__event__landing_1_1FLINI"/>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>tangagroomer.checks_landing.LASTA</label>
+        <link refid="classtangagroomer_1_1checks__landing_1_1LASTA"/>
+        <childnode refid="21" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>tangagroomer.checks_fishing_event.FEFMA</label>
+        <link refid="classtangagroomer_1_1checks__fishing__event_1_1FEFMA"/>
+        <childnode refid="28" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="21">
+        <label>tangagroomer.check.CHSTA</label>
+        <link refid="classtangagroomer_1_1check_1_1CHSTA"/>
+        <childnode refid="19" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="54">
+        <label>tangagroomer.checks_landing.LADUP</label>
+        <link refid="classtangagroomer_1_1checks__landing_1_1LADUP"/>
+        <childnode refid="46" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="53">
+        <label>tangagroomer.checks_landing.LADTT</label>
+        <link refid="classtangagroomer_1_1checks__landing_1_1LADTT"/>
+        <childnode refid="46" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="51">
+        <label>tangagroomer.checks_landing.LADTH</label>
+        <link refid="classtangagroomer_1_1checks__landing_1_1LADTH"/>
+        <childnode refid="46" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="52">
+        <label>tangagroomer.checks_landing.LADTI</label>
+        <link refid="classtangagroomer_1_1checks__landing_1_1LADTI"/>
+        <childnode refid="46" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="36">
+        <label>tangagroomer.checks_fishing_event.FESAI</label>
+        <link refid="classtangagroomer_1_1checks__fishing__event_1_1FESAI"/>
+        <childnode refid="28" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="37">
+        <label>tangagroomer.checks_fishing_event.FESAM</label>
+        <link refid="classtangagroomer_1_1checks__fishing__event_1_1FESAM"/>
+        <childnode refid="28" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="/home/nbentley/Trophia/Code/tangagroomer/check.py" line="16" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/check.py" bodystart="16" bodyend="209"/>
+    <listofallmembers>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a36e4525d47865671846c9a0219a2bcb2" prot="public" virt="non-virtual"><scope>tangagroomer::check::Check</scope><name>apply</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1ac9a962f590f51d6d50bd81c6afee81c8" prot="public" virt="non-virtual"><scope>tangagroomer::check::Check</scope><name>applyAll</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a82ea73bef1203e8dbd51ff577f78fb1e" prot="public" virt="non-virtual"><scope>tangagroomer::check::Check</scope><name>brief</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a58991e0dd0e97e9578396e9048e89842" prot="public" virt="non-virtual"><scope>tangagroomer::check::Check</scope><name>change</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a73732d1d3f3cde589eec2c33c6867557" prot="public" virt="non-virtual"><scope>tangagroomer::check::Check</scope><name>clause</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1aee237860ccf5830b720da9e19b641cda" prot="public" virt="non-virtual"><scope>tangagroomer::check::Check</scope><name>code</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a7ffea959f622ed29351beace07624f80" prot="public" virt="non-virtual"><scope>tangagroomer::check::Check</scope><name>column</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a1c68e6bbd01a5b9dbe834a1e2da92c3b" prot="public" virt="non-virtual"><scope>tangagroomer::check::Check</scope><name>dataset</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a48bb57fdbd589dbef0a23128cdf85b41" prot="public" virt="non-virtual"><scope>tangagroomer::check::Check</scope><name>db</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a3d7d03dce0aae9625e15101e44b1b1f7" prot="public" virt="non-virtual"><scope>tangagroomer::check::Check</scope><name>desc</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a7d6e67760f35efc58217072497fa88b7" prot="public" virt="non-virtual"><scope>tangagroomer::check::Check</scope><name>do</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1ae4bab42cb9c9f2f8388c7310b5166458" prot="public" virt="non-virtual"><scope>tangagroomer::check::Check</scope><name>filename</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1aa1f73b4e49f59491ee3ed5ecf126b524" prot="public" virt="non-virtual"><scope>tangagroomer::check::Check</scope><name>fishing_years</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a815714fcb0ead30679fca7e82ede9294" prot="public" virt="non-virtual"><scope>tangagroomer::check::Check</scope><name>flag</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a9398218abb4e0bbfcb5813da99b707d7" prot="public" virt="non-virtual"><scope>tangagroomer::check::Check</scope><name>histogram</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a248c19018845f81d7afa5b7c2a78fba0" prot="public" virt="non-virtual"><scope>tangagroomer::check::Check</scope><name>List</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a4a7bd550d553a6ef8432a726847486c3" prot="public" virt="non-virtual"><scope>tangagroomer::check::Check</scope><name>quantiles</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1aa8ccd798cee5d3e61dc783cbf501352e" prot="public" virt="non-virtual"><scope>tangagroomer::check::Check</scope><name>report</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a3b5976b1ad785be57e0c5a1a1ded9060" prot="public" virt="non-virtual"><scope>tangagroomer::check::Check</scope><name>scatterplot</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a05935123dc66ebbb0dcccdb512e898a7" prot="public" virt="non-virtual"><scope>tangagroomer::check::Check</scope><name>summarise</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1aecfce3677d7fa88332d94e9e4e9dcc3d" prot="public" virt="non-virtual"><scope>tangagroomer::check::Check</scope><name>table</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a76dc47c04b683cacf202468e1c8fc7ad" prot="public" virt="non-virtual"><scope>tangagroomer::check::Check</scope><name>value</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a2e347e6485a4c668a629ad4dc021d4d6" prot="public" virt="non-virtual"><scope>tangagroomer::check::Check</scope><name>view</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1ad733559ce56183efd768b55ffbce3274" prot="public" virt="non-virtual"><scope>tangagroomer::check::Check</scope><name>viewAll</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a1f6a7df7df2a85c427a9bf618cb121f9" prot="public" virt="non-virtual"><scope>tangagroomer::check::Check</scope><name>visible</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

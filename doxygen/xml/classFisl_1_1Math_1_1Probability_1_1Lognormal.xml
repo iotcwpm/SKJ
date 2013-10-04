@@ -1,0 +1,225 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="classFisl_1_1Math_1_1Probability_1_1Lognormal" kind="class" prot="public">
+    <compoundname>Fisl::Math::Probability::Lognormal</compoundname>
+    <basecompoundref refid="classFisl_1_1Math_1_1Probability_1_1Distribution" prot="public" virt="non-virtual">Fisl::Math::Probability::Distribution&lt; Lognormal &gt;</basecompoundref>
+    <derivedcompoundref refid="classFisl_1_1Population_1_1Growth_1_1Priors_1_1Linf" prot="public" virt="non-virtual">Fisl::Population::Growth::Priors::Linf</derivedcompoundref>
+    <derivedcompoundref refid="classFisl_1_1Population_1_1Recruitment_1_1Priors_1_1VariationBentley2012" prot="public" virt="non-virtual">Fisl::Population::Recruitment::Priors::VariationBentley2012</derivedcompoundref>
+    <includes refid="lognormal_8hpp" local="no">lognormal.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classFisl_1_1Math_1_1Probability_1_1Lognormal_1af944e8b2b2b234358deec926efbdc334" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Fisl::Math::Probability::Lognormal::mean_</definition>
+        <argsstring></argsstring>
+        <name>mean_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/lognormal.hpp" line="16" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/lognormal.hpp" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classFisl_1_1Math_1_1Probability_1_1Lognormal_1ab6c4913d56aa34d3101cd862135aaaa5" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Fisl::Math::Probability::Lognormal::sd_</definition>
+        <argsstring></argsstring>
+        <name>sd_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/lognormal.hpp" line="17" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/lognormal.hpp" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classFisl_1_1Math_1_1Probability_1_1Lognormal_1a815ad513c6960b500d724f7ca30156be" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Fisl::Math::Probability::Lognormal::Lognormal</definition>
+        <argsstring>(const double &amp;mean=1, const double &amp;sd=1)</argsstring>
+        <name>Lognormal</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>mean</declname>
+          <defval>1</defval>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>sd</declname>
+          <defval>1</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/lognormal.hpp" line="23" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/lognormal.hpp" bodystart="21" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Math_1_1Probability_1_1Lognormal_1ab0c58418b22ebbdc8125c152d4740731" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Fisl::Math::Probability::Lognormal::mean</definition>
+        <argsstring>(void) const </argsstring>
+        <name>mean</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/lognormal.hpp" line="26" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/lognormal.hpp" bodystart="26" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Math_1_1Probability_1_1Lognormal_1aebfb3deb4dc5237ac290ceec8e4815b6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classFisl_1_1Math_1_1Probability_1_1Lognormal" kindref="compound">Lognormal</ref> &amp;</type>
+        <definition>Lognormal&amp; Fisl::Math::Probability::Lognormal::mean</definition>
+        <argsstring>(const double &amp;mean)</argsstring>
+        <name>mean</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>mean</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/lognormal.hpp" line="30" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/lognormal.hpp" bodystart="30" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Math_1_1Probability_1_1Lognormal_1a9e6d1ae6f64afa274a42368c99bde969" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Fisl::Math::Probability::Lognormal::sd</definition>
+        <argsstring>(void) const </argsstring>
+        <name>sd</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/lognormal.hpp" line="35" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/lognormal.hpp" bodystart="35" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Math_1_1Probability_1_1Lognormal_1a1fe5065c37d5c5fadd22cfe56c60beef" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classFisl_1_1Math_1_1Probability_1_1Lognormal" kindref="compound">Lognormal</ref> &amp;</type>
+        <definition>Lognormal&amp; Fisl::Math::Probability::Lognormal::sd</definition>
+        <argsstring>(const double &amp;sd)</argsstring>
+        <name>sd</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>sd</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/lognormal.hpp" line="39" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/lognormal.hpp" bodystart="39" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Math_1_1Probability_1_1Lognormal_1a1d0674c69d05d6b42e62f07d41bcb188" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>boost::math::lognormal</type>
+        <definition>boost::math::lognormal Fisl::Math::Probability::Lognormal::boost_dist</definition>
+        <argsstring>(void) const </argsstring>
+        <name>boost_dist</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/lognormal.hpp" line="44" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/lognormal.hpp" bodystart="44" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Math_1_1Probability_1_1Lognormal_1ad69cb852023a205064e807ff9e369629" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Fisl::Math::Probability::Lognormal::random</definition>
+        <argsstring>(void) const </argsstring>
+        <name>random</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/lognormal.hpp" line="52" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/lognormal.hpp" bodystart="52" bodyend="56"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="86">
+        <label>Fisl::Math::Probability::Distribution&lt; Lognormal &gt;</label>
+        <link refid="classFisl_1_1Math_1_1Probability_1_1Distribution"/>
+      </node>
+      <node id="88">
+        <label>Fisl::Population::Recruitment::Priors::VariationBentley2012</label>
+        <link refid="classFisl_1_1Population_1_1Recruitment_1_1Priors_1_1VariationBentley2012"/>
+        <childnode refid="85" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="85">
+        <label>Fisl::Math::Probability::Lognormal</label>
+        <link refid="classFisl_1_1Math_1_1Probability_1_1Lognormal"/>
+        <childnode refid="86" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="87">
+        <label>Fisl::Population::Growth::Priors::Linf</label>
+        <link refid="classFisl_1_1Population_1_1Growth_1_1Priors_1_1Linf"/>
+        <childnode refid="85" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="90">
+        <label>Fisl::Math::Probability::Distribution&lt; Lognormal &gt;</label>
+        <link refid="classFisl_1_1Math_1_1Probability_1_1Distribution"/>
+      </node>
+      <node id="89">
+        <label>Fisl::Math::Probability::Lognormal</label>
+        <link refid="classFisl_1_1Math_1_1Probability_1_1Lognormal"/>
+        <childnode refid="90" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/lognormal.hpp" line="14" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/lognormal.hpp" bodystart="14" bodyend="57"/>
+    <listofallmembers>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Lognormal_1a1d0674c69d05d6b42e62f07d41bcb188" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::Lognormal</scope><name>boost_dist</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1a95208e0e07e7933ed64050e5cd0fc76f" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::Lognormal</scope><name>cdf</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1a40637f4c486027064fda3c0db912c570" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::Lognormal</scope><name>integrate</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1a2c0a1ca31d89677a9a4e35384c491a37" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::Lognormal</scope><name>integrate</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1a2020edcb2d28b6eb53621799bfd867e3" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::Lognormal</scope><name>kurtosis</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1a1bbc65c211496a872815529ac8ddb714" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::Lognormal</scope><name>kurtosis_excess</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Lognormal_1a815ad513c6960b500d724f7ca30156be" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::Lognormal</scope><name>Lognormal</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Lognormal_1ab0c58418b22ebbdc8125c152d4740731" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::Lognormal</scope><name>mean</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Lognormal_1aebfb3deb4dc5237ac290ceec8e4815b6" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::Lognormal</scope><name>mean</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Lognormal_1af944e8b2b2b234358deec926efbdc334" prot="private" virt="non-virtual"><scope>Fisl::Math::Probability::Lognormal</scope><name>mean_</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1a774d7784c48137c42aaff340377e028e" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::Lognormal</scope><name>median</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1a82ef9d3fc21279c781cd15079962a42d" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::Lognormal</scope><name>mode</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1a5c3913bd5c2a35ad5f37b2f6436a7097" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::Lognormal</scope><name>pdf</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1ac4e32e6c5bd4c66fd332e1bb44e68089" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::Lognormal</scope><name>quantile</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Lognormal_1ad69cb852023a205064e807ff9e369629" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::Lognormal</scope><name>random</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1a675808a0f84ce19c22b483f270891a86" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::Lognormal</scope><name>reset</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Lognormal_1a9e6d1ae6f64afa274a42368c99bde969" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::Lognormal</scope><name>sd</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Lognormal_1a1fe5065c37d5c5fadd22cfe56c60beef" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::Lognormal</scope><name>sd</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Lognormal_1ab6c4913d56aa34d3101cd862135aaaa5" prot="private" virt="non-virtual"><scope>Fisl::Math::Probability::Lognormal</scope><name>sd_</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1ae7e2437bb1a2d6da0f6c5a73fe9bd359" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::Lognormal</scope><name>skewness</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1a6f367697e755edd3b20387c1e158a710" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::Lognormal</scope><name>variance</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

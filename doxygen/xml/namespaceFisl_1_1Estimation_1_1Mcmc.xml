@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="namespaceFisl_1_1Estimation_1_1Mcmc" kind="namespace">
+    <compoundname>Fisl::Estimation::Mcmc</compoundname>
+    <innerclass refid="classFisl_1_1Estimation_1_1Mcmc_1_1McmcNormal" prot="public">Fisl::Estimation::Mcmc::McmcNormal</innerclass>
+    <innerclass refid="classFisl_1_1Estimation_1_1Mcmc_1_1McmcRegress" prot="public">Fisl::Estimation::Mcmc::McmcRegress</innerclass>
+    <innerclass refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis" prot="public">Fisl::Estimation::Mcmc::Metropolis</innerclass>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="namespaceFisl_1_1Estimation_1_1Mcmc_1a4ca8d3e6d2f4e46db181252bb09caf14" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Fisl::Estimation::Mcmc::BOOST_AUTO_TEST_CASE</definition>
+        <argsstring>(test_1)</argsstring>
+        <name>BOOST_AUTO_TEST_CASE</name>
+        <param>
+          <type>test_1</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.cxx" line="34" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.cxx" bodystart="34" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="namespaceFisl_1_1Estimation_1_1Mcmc_1af1bfc3ddcb167930896964059f8f94bb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>Fisl::Estimation::Mcmc::BOOST_AUTO_TEST_CASE</definition>
+        <argsstring>(test_2)</argsstring>
+        <name>BOOST_AUTO_TEST_CASE</name>
+        <param>
+          <type>test_2</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.cxx" line="68" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.cxx" bodystart="68" bodyend="72"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.cxx" line="10"/>
+  </compounddef>
+</doxygen>

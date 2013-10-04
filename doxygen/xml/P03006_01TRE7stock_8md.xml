@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="P03006_01TRE7stock_8md" kind="file">
+    <compoundname>P03006 TRE7stock.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal">Title:<sp/>P03006:<sp/>Investigation<sp/>of<sp/>potential<sp/>improvements<sp/>to<sp/>the<sp/>TRE<sp/>7<sp/>stock<sp/>assessment</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">Principal<sp/>Investigator:</highlight></codeline>
+<codeline lineno="6"><highlight class="normal">Terese<sp/>Kendrick</highlight></codeline>
+<codeline lineno="7"><highlight class="normal">Researchers:</highlight></codeline>
+<codeline lineno="8"><highlight class="normal">Mark<sp/>Maunder<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="9"><highlight class="normal">Status:</highlight></codeline>
+<codeline lineno="10"><highlight class="normal">Work<sp/>Completed<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="11"><highlight class="normal">The<sp/>Ministry<sp/>of<sp/>Fisheries<sp/>research<sp/>project<sp/></highlight><highlight class="stringliteral">&quot;TRE<sp/>2001/02<sp/>Stock<sp/>assessment<sp/>of<sp/>trevally<sp/>in<sp/>TRE<sp/>7&quot;</highlight><highlight class="normal"><sp/>was<sp/>completed<sp/>by<sp/>Trophia<sp/>and<sp/>included<sp/>an<sp/>analysis<sp/>of<sp/>CPUE<sp/>and<sp/>stock<sp/>assessment<sp/>modelling.<sp/><sp/>The<sp/>results<sp/>were<sp/>presented<sp/>to<sp/>the<sp/>Pelagic<sp/>Fisheries<sp/>Assessment<sp/>Working<sp/>Group<sp/>in<sp/>February<sp/>2003.<sp/><sp/>In<sp/>reviewing<sp/>the<sp/>results<sp/>of<sp/>the<sp/>project,<sp/>the<sp/>WG<sp/>identified<sp/>two<sp/>areas<sp/>where<sp/>additional<sp/>work<sp/>was<sp/>needed:</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal">The<sp/>high<sp/>inter-annual<sp/>variability<sp/>in<sp/>CPUE</highlight></codeline>
+<codeline lineno="14"><highlight class="normal">The<sp/>potential<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>age-specific<sp/>mortality<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="15"><highlight class="normal">The<sp/>New<sp/>Zealand<sp/>Ministry<sp/>of<sp/>Fisheries<sp/>(MFish)<sp/>accepted<sp/>a<sp/>proposal<sp/>from<sp/>Trophia<sp/><sp/>to<sp/>investigate<sp/>these<sp/>two<sp/>areas<sp/>further.</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal">A<sp/>Final<sp/>Research<sp/>Report<sp/>is<sp/>held<sp/>by<sp/>the<sp/>Ministry<sp/>of<sp/>Fisheries.</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal">Maunder,<sp/><ref refid="namespaceIOSKJ_1a0ab9304f6271a6b75f81ceff70000f0dac32c131fa8b4252be7fc9b19921ea336" kindref="member">M</ref>.<sp/>&amp;<sp/>Kendrick,<sp/>T.H.<sp/>(2004).<sp/>Investigation<sp/>of<sp/>potential<sp/>improvements<sp/>to<sp/>the<sp/>TRE<sp/>7<sp/>stock<sp/>assessment.<sp/>Unpublished<sp/>Final<sp/>Research<sp/>Report<sp/>for<sp/>project<sp/>MOF2003-01D<sp/>.<sp/>48<sp/>p.</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal">This<sp/>project<sp/>is<sp/>funded<sp/>by<sp/>the<sp/>New<sp/>Zealand<sp/>Ministry<sp/>of<sp/>Fisheries<sp/>Project<sp/>MOF2003-01D</highlight></codeline>
+    </programlisting>
+    <location file="/home/nbentley/Trophia/Code/www/src/projects/P03006 TRE7stock.md"/>
+  </compounddef>
+</doxygen>

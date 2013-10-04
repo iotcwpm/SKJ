@@ -1,0 +1,215 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="classtangagroomer_1_1dataset_1_1Dataset" kind="class" prot="public">
+    <compoundname>tangagroomer::dataset::Dataset</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classtangagroomer_1_1dataset_1_1Dataset_1a6fa7b9d1300b48cc7b49dd26ffe40c13" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>tangagroomer.dataset.Dataset::extract_filenames</definition>
+        <argsstring></argsstring>
+        <name>extract_filenames</name>
+        <briefdescription>
+<para>Set some defaults. </para>        </briefdescription>
+        <detaileddescription>
+<para>Any extra notes to insert into email The name of the directory holding the dataextract Flag for one of the datetime formats used. See the load method for how this is used Ribaldo (RIB) uses the general FMA boundaries for QMAs, so insert stats for this species. Usseful to override for FLA species codes eg SFL. Reset grooming flags to NULL? More than one field can be extracted to cpue.txt file Additional field to carry over from fishing_event to simple.db3 and cpue.txt Additonal factors for Tanga:Web schema e.g. [(&apos;port_stat&apos;,0,1)] Set defaults for specified extract filenames </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/dataset.py" line="50" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/dataset.py" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtangagroomer_1_1dataset_1_1Dataset_1a12a766f1c19cc987a6c1192808eb84ee" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>tangagroomer.dataset.Dataset::name</definition>
+        <argsstring></argsstring>
+        <name>name</name>
+        <briefdescription>
+<para>Apply overrides specified in arguments. </para>        </briefdescription>
+        <detaileddescription>
+<para>Give a name based on name of current working directory </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/dataset.py" line="64" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/dataset.py" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtangagroomer_1_1dataset_1_1Dataset_1a476de5b86891a924501db700c4265bac" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>tangagroomer.dataset.Dataset::db</definition>
+        <argsstring></argsstring>
+        <name>db</name>
+        <briefdescription>
+<para>Create database connection. </para>        </briefdescription>
+        <detaileddescription>
+<para>Delete the existing database.</para><para>Create a new db connection and initialise it </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/dataset.py" line="67" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/dataset.py" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtangagroomer_1_1dataset_1_1Dataset_1af747dfbd6c592311896e1361dcc56903" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>tangagroomer.dataset.Dataset::extract_datetime_format</definition>
+        <argsstring></argsstring>
+        <name>extract_datetime_format</name>
+        <briefdescription>
+<para>Assume that loooking for table name in filename unless filetag in specified. </para>        </briefdescription>
+        <detaileddescription>
+<para>Find the appropriate file Determine file format from extension Read in the column headers Read in the dashes and determine column positions from them The previous method used assumed a single space between each set of dashes but that is not always the case. This method actually determines the start and end of each set of dashes Read in the column headers Read in each line, insert a comma at each point and then write it out Convert everything to plain text string The blank line at the end of the data Escape if the row with number of rows (see below) is not present. Sometimes it is not. The last line ( which starts with a &apos;(&apos; ) gives the number of rows that are meant to be in the data. Check this with count of row. This is necessary to remove line ends. It can not be done before here because for tab/space delimited files stripping will remove those delimiters. </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/dataset.py" line="530" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/dataset.py" bodystart="530" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtangagroomer_1_1dataset_1_1Dataset_1ae2b95c045398d5ac0dd272ca6103e005" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def tangagroomer.dataset.Dataset.__init__</definition>
+        <argsstring></argsstring>
+        <name>__init__</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/dataset.py" line="12" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/dataset.py" bodystart="12" bodyend="68"/>
+      </memberdef>
+      <memberdef kind="function" id="classtangagroomer_1_1dataset_1_1Dataset_1a5cbdd00d23ee57a5b7c1a5d1f8211e1e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def tangagroomer.dataset.Dataset.prerequest</definition>
+        <argsstring></argsstring>
+        <name>prerequest</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Automatically create an email and SQL for a prerequest (provides a summary of the 
+methods, targets and areas where most of these species were caught).</verbatim> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/dataset.py" line="69" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/dataset.py" bodystart="69" bodyend="141"/>
+      </memberdef>
+      <memberdef kind="function" id="classtangagroomer_1_1dataset_1_1Dataset_1a4786ad65422122dba15a15b9d9e21dc4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def tangagroomer.dataset.Dataset.request</definition>
+        <argsstring></argsstring>
+        <name>request</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Automatically create a data request email based</verbatim> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/dataset.py" line="142" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/dataset.py" bodystart="142" bodyend="452"/>
+      </memberdef>
+      <memberdef kind="function" id="classtangagroomer_1_1dataset_1_1Dataset_1a46a75f6f6178017cb0b060794228dded" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def tangagroomer.dataset.Dataset.loadFile</definition>
+        <argsstring></argsstring>
+        <name>loadFile</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Function for reading a file into a table</verbatim> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/dataset.py" line="453" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/dataset.py" bodystart="453" bodyend="547"/>
+      </memberdef>
+      <memberdef kind="function" id="classtangagroomer_1_1dataset_1_1Dataset_1a61ccdb81b6f0b21ee5c65c802fc622d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def tangagroomer.dataset.Dataset.load</definition>
+        <argsstring></argsstring>
+        <name>load</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/dataset.py" line="548" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/dataset.py" bodystart="548" bodyend="579"/>
+      </memberdef>
+      <memberdef kind="function" id="classtangagroomer_1_1dataset_1_1Dataset_1adf4a5ac1c2d829e2119e128904992dda" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def tangagroomer.dataset.Dataset.groom</definition>
+        <argsstring></argsstring>
+        <name>groom</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/dataset.py" line="580" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/dataset.py" bodystart="580" bodyend="586"/>
+      </memberdef>
+      <memberdef kind="function" id="classtangagroomer_1_1dataset_1_1Dataset_1ac48ed753acbb3ab5ea9b19e7b60956f3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def tangagroomer.dataset.Dataset.allocate</definition>
+        <argsstring></argsstring>
+        <name>allocate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Allocate landings to fishing_events for the top 10 species in landings</verbatim> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/dataset.py" line="587" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/dataset.py" bodystart="587" bodyend="651"/>
+      </memberdef>
+      <memberdef kind="function" id="classtangagroomer_1_1dataset_1_1Dataset_1a98563e711143602037ba5417a482ce9e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def tangagroomer.dataset.Dataset.augment</definition>
+        <argsstring></argsstring>
+        <name>augment</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/dataset.py" line="652" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/dataset.py" bodystart="652" bodyend="698"/>
+      </memberdef>
+      <memberdef kind="function" id="classtangagroomer_1_1dataset_1_1Dataset_1a20a5cd98737e31856041a9f4bbace4b7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def tangagroomer.dataset.Dataset.simplify</definition>
+        <argsstring></argsstring>
+        <name>simplify</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Create a characterization database that is optimized to provide summaries.
+Create a separate database to reduce size when transferring to server and for security reasons</verbatim> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/dataset.py" line="699" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/dataset.py" bodystart="699" bodyend="1061"/>
+      </memberdef>
+      <memberdef kind="function" id="classtangagroomer_1_1dataset_1_1Dataset_1ab800c38d75916c325abdf023cadb0a4e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def tangagroomer.dataset.Dataset.summarise</definition>
+        <argsstring></argsstring>
+        <name>summarise</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><verbatim>Provides a summary of the data and the error checks that were done on it.</verbatim> </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/dataset.py" line="1062" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/dataset.py" bodystart="1062" bodyend="1183"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/nbentley/Trophia/Code/tangagroomer/dataset.py" line="10" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/dataset.py" bodystart="10" bodyend="1183"/>
+    <listofallmembers>
+      <member refid="classtangagroomer_1_1dataset_1_1Dataset_1ae2b95c045398d5ac0dd272ca6103e005" prot="public" virt="non-virtual"><scope>tangagroomer::dataset::Dataset</scope><name>__init__</name></member>
+      <member refid="classtangagroomer_1_1dataset_1_1Dataset_1ac48ed753acbb3ab5ea9b19e7b60956f3" prot="public" virt="non-virtual"><scope>tangagroomer::dataset::Dataset</scope><name>allocate</name></member>
+      <member refid="classtangagroomer_1_1dataset_1_1Dataset_1a98563e711143602037ba5417a482ce9e" prot="public" virt="non-virtual"><scope>tangagroomer::dataset::Dataset</scope><name>augment</name></member>
+      <member refid="classtangagroomer_1_1dataset_1_1Dataset_1a476de5b86891a924501db700c4265bac" prot="public" virt="non-virtual"><scope>tangagroomer::dataset::Dataset</scope><name>db</name></member>
+      <member refid="classtangagroomer_1_1dataset_1_1Dataset_1af747dfbd6c592311896e1361dcc56903" prot="public" virt="non-virtual"><scope>tangagroomer::dataset::Dataset</scope><name>extract_datetime_format</name></member>
+      <member refid="classtangagroomer_1_1dataset_1_1Dataset_1a6fa7b9d1300b48cc7b49dd26ffe40c13" prot="public" virt="non-virtual"><scope>tangagroomer::dataset::Dataset</scope><name>extract_filenames</name></member>
+      <member refid="classtangagroomer_1_1dataset_1_1Dataset_1adf4a5ac1c2d829e2119e128904992dda" prot="public" virt="non-virtual"><scope>tangagroomer::dataset::Dataset</scope><name>groom</name></member>
+      <member refid="classtangagroomer_1_1dataset_1_1Dataset_1a61ccdb81b6f0b21ee5c65c802fc622d1" prot="public" virt="non-virtual"><scope>tangagroomer::dataset::Dataset</scope><name>load</name></member>
+      <member refid="classtangagroomer_1_1dataset_1_1Dataset_1a46a75f6f6178017cb0b060794228dded" prot="public" virt="non-virtual"><scope>tangagroomer::dataset::Dataset</scope><name>loadFile</name></member>
+      <member refid="classtangagroomer_1_1dataset_1_1Dataset_1a12a766f1c19cc987a6c1192808eb84ee" prot="public" virt="non-virtual"><scope>tangagroomer::dataset::Dataset</scope><name>name</name></member>
+      <member refid="classtangagroomer_1_1dataset_1_1Dataset_1a5cbdd00d23ee57a5b7c1a5d1f8211e1e" prot="public" virt="non-virtual"><scope>tangagroomer::dataset::Dataset</scope><name>prerequest</name></member>
+      <member refid="classtangagroomer_1_1dataset_1_1Dataset_1a4786ad65422122dba15a15b9d9e21dc4" prot="public" virt="non-virtual"><scope>tangagroomer::dataset::Dataset</scope><name>request</name></member>
+      <member refid="classtangagroomer_1_1dataset_1_1Dataset_1a20a5cd98737e31856041a9f4bbace4b7" prot="public" virt="non-virtual"><scope>tangagroomer::dataset::Dataset</scope><name>simplify</name></member>
+      <member refid="classtangagroomer_1_1dataset_1_1Dataset_1ab800c38d75916c325abdf023cadb0a4e" prot="public" virt="non-virtual"><scope>tangagroomer::dataset::Dataset</scope><name>summarise</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

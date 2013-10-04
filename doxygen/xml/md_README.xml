@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="md_README" kind="page">
+    <compoundname>md_README</compoundname>
+    <title>Markov chain Monte Carlo methods</title>
+    <detaileddescription>
+<para>This modules implements MCMC algorithms. Currently only the very simple Metropolis algorithm is implemented. This algorithm requires tuning by setting the variance of the proposal distibution.</para><para>However, we a considering implementing adaptive MCMC algorithms which do not require tuning.</para><para>A good review of adaptive MCMC algorithms is available here: Roberts, G. O., &amp; Rosenthal, J. S. (2009). Examples of adaptive MCMC. Journal of Computational and Graphical Statistics, 18(2), 349-367.</para><para>The SCAM algorithm of Haario et al (2005) seems like a good option.</para><para><itemizedlist>
+<listitem><para>Haario, H., Saksman, E., &amp; Tamminen, J. (2005). Componentwise adaptation for high dimensional MCMC. Computational Statistics, 20(2), 265-273.</para></listitem><listitem><para>Haario, H., Laine, M., Mira, A., &amp; Saksman, E. (2006). DRAM: efficient adaptive MCMC. Statistics and Computing, 16(4), 339-354.</para></listitem><listitem><para>Christen, J. A., &amp; Fox, C. (2010). A general purpose sampling algorithm for continuous distributions (the t-walk). Bayesian Analysis, 5(2), 263-281. Available in C++ and C at <ulink url="http://www.cimat.mx/~jac/twalk">http://www.cimat.mx/~jac/twalk</ulink> </para></listitem></itemizedlist>
+</para>    </detaileddescription>
+  </compounddef>
+</doxygen>

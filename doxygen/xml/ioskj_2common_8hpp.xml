@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="ioskj_2common_8hpp" kind="file">
+    <compoundname>ioskj/common.hpp</compoundname>
+    <includes local="no">cmath</includes>
+    <includes local="no">fstream</includes>
+    <includes local="no">stencila/arrayspace/arrayspace.hpp</includes>
+    <includedby refid="data_8hpp" local="yes">data.hpp</includedby>
+    <includedby refid="dimensions_8hpp" local="yes">dimensions.hpp</includedby>
+    <includedby refid="ioskj_2fish_8hpp" local="yes">fish.hpp</includedby>
+    <includedby refid="ioskj_2fishing_8hpp" local="yes">fishing.hpp</includedby>
+    <incdepgraph>
+      <node id="23">
+        <label>stencila/arrayspace/arrayspace.hpp</label>
+      </node>
+      <node id="21">
+        <label>cmath</label>
+      </node>
+      <node id="20">
+        <label>common.hpp</label>
+        <link refid="ioskj/common.hpp"/>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+      </node>
+      <node id="22">
+        <label>fstream</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="28">
+        <label>dimensions.hpp</label>
+        <link refid="dimensions_8hpp"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+      </node>
+      <node id="25">
+        <label>data.hpp</label>
+        <link refid="data_8hpp"/>
+        <childnode refid="26" relation="include">
+        </childnode>
+      </node>
+      <node id="24">
+        <label>common.hpp</label>
+        <link refid="ioskj/common.hpp"/>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>model.hpp</label>
+        <link refid="ioskj_2model_8hpp"/>
+        <childnode refid="27" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>fishing.hpp</label>
+        <link refid="ioskj_2fishing_8hpp"/>
+        <childnode refid="26" relation="include">
+        </childnode>
+      </node>
+      <node id="29">
+        <label>fish.hpp</label>
+        <link refid="ioskj_2fish_8hpp"/>
+        <childnode refid="26" relation="include">
+        </childnode>
+      </node>
+      <node id="27">
+        <label>main.cpp</label>
+        <link refid="main_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innernamespace refid="namespaceStencila_1_1Arrayspace">Stencila::Arrayspace</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&lt;cmath&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;fstream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stencila/arrayspace/arrayspace.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">Stencila::Arrayspace;</highlight></codeline>
+    </programlisting>
+    <location file="/home/nbentley/Trophia/Code/ioskj/common.hpp"/>
+  </compounddef>
+</doxygen>

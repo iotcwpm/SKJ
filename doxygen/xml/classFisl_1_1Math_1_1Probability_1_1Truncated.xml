@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="classFisl_1_1Math_1_1Probability_1_1Truncated" kind="class" prot="public">
+    <compoundname>Fisl::Math::Probability::Truncated</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">Base</basecompoundref>
+    <derivedcompoundref refid="classFisl_1_1Population_1_1Recruitment_1_1Priors_1_1AutocorrelationBentley2012" prot="public" virt="non-virtual">Fisl::Population::Recruitment::Priors::AutocorrelationBentley2012</derivedcompoundref>
+    <includes refid="truncated_8hpp" local="no">truncated.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename</type>
+        <declname>Base</declname>
+        <defname>Base</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classFisl_1_1Math_1_1Probability_1_1Truncated_1ace47c87927f1a4611b4df84d2652c29c" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Fisl::Math::Probability::Truncated&lt; Base &gt;::min</definition>
+        <argsstring></argsstring>
+        <name>min</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/truncated.hpp" line="10" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/truncated.hpp" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classFisl_1_1Math_1_1Probability_1_1Truncated_1a0df16c734b619fd0cabae88e15731d63" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Fisl::Math::Probability::Truncated&lt; Base &gt;::max</definition>
+        <argsstring></argsstring>
+        <name>max</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/truncated.hpp" line="11" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/truncated.hpp" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classFisl_1_1Math_1_1Probability_1_1Truncated_1a49a03747611d1ef8931f089a63654720" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Fisl::Math::Probability::Truncated&lt; Base &gt;::Truncated</definition>
+        <argsstring>(double a=1, double b=1, double min_=-INFINITY, double max_=INFINITY)</argsstring>
+        <name>Truncated</name>
+        <param>
+          <type>double</type>
+          <declname>a</declname>
+          <defval>1</defval>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>b</declname>
+          <defval>1</defval>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>min_</declname>
+          <defval>-INFINITY</defval>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>max_</declname>
+          <defval>INFINITY</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/truncated.hpp" line="14" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/truncated.hpp" bodystart="13" bodyend="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Math_1_1Probability_1_1Truncated_1ae2853a43bd71c488c945394c19da4fd5" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Fisl::Math::Probability::Truncated&lt; Base &gt;::random</definition>
+        <argsstring>(void) const </argsstring>
+        <name>random</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/truncated.hpp" line="16" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/truncated.hpp" bodystart="16" bodyend="20"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="182">
+        <label>Fisl::Math::Probability::Truncated&lt; Base &gt;</label>
+        <link refid="classFisl_1_1Math_1_1Probability_1_1Truncated"/>
+        <childnode refid="183" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="183">
+        <label>Base</label>
+      </node>
+      <node id="184">
+        <label>Fisl::Population::Recruitment::Priors::AutocorrelationBentley2012&lt; Normal &gt;</label>
+        <link refid="classFisl_1_1Population_1_1Recruitment_1_1Priors_1_1AutocorrelationBentley2012"/>
+        <childnode refid="182" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="185">
+        <label>Fisl::Math::Probability::Truncated&lt; Base &gt;</label>
+        <link refid="classFisl_1_1Math_1_1Probability_1_1Truncated"/>
+        <childnode refid="186" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="186">
+        <label>Base</label>
+      </node>
+    </collaborationgraph>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/truncated.hpp" line="8" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/truncated.hpp" bodystart="8" bodyend="21"/>
+    <listofallmembers>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Truncated_1a0df16c734b619fd0cabae88e15731d63" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::Truncated</scope><name>max</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Truncated_1ace47c87927f1a4611b4df84d2652c29c" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::Truncated</scope><name>min</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Truncated_1ae2853a43bd71c488c945394c19da4fd5" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::Truncated</scope><name>random</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Truncated_1a49a03747611d1ef8931f089a63654720" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::Truncated</scope><name>Truncated</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

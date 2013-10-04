@@ -1,0 +1,209 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="classFisl_1_1Population_1_1Growth_1_1VonBert" kind="class" prot="public">
+    <compoundname>Fisl::Population::Growth::VonBert</compoundname>
+    <basecompoundref refid="classFisl_1_1Math_1_1Functions_1_1Function" prot="public" virt="non-virtual">Fisl::Math::Functions::Function</basecompoundref>
+    <includes refid="von-bert_8hpp" local="no">von-bert.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classFisl_1_1Population_1_1Growth_1_1VonBert_1a8d5acf50aa6bfa48f18cfa72b72c611e" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Fisl::Population::Growth::VonBert::k_</definition>
+        <argsstring></argsstring>
+        <name>k_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/growth/von-bert.hpp" line="16" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/growth/von-bert.hpp" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classFisl_1_1Population_1_1Growth_1_1VonBert_1ac48908e5ff5feac24817cb121883212c" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Fisl::Population::Growth::VonBert::linf_</definition>
+        <argsstring></argsstring>
+        <name>linf_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/growth/von-bert.hpp" line="17" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/growth/von-bert.hpp" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classFisl_1_1Population_1_1Growth_1_1VonBert_1add44be45463b963e778a7c672fe409f2" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Fisl::Population::Growth::VonBert::t0_</definition>
+        <argsstring></argsstring>
+        <name>t0_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/growth/von-bert.hpp" line="18" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/growth/von-bert.hpp" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classFisl_1_1Population_1_1Growth_1_1VonBert_1aec57726ad42bc6e9143d9ae86e34b5b1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Fisl::Population::Growth::VonBert::k</definition>
+        <argsstring>(void) const </argsstring>
+        <name>k</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/growth/von-bert.hpp" line="22" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/growth/von-bert.hpp" bodystart="22" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Population_1_1Growth_1_1VonBert_1a6de53f9a8630b01cd3b4a71088610516" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classFisl_1_1Population_1_1Growth_1_1VonBert" kindref="compound">VonBert</ref> &amp;</type>
+        <definition>VonBert&amp; Fisl::Population::Growth::VonBert::k</definition>
+        <argsstring>(const double &amp;value)</argsstring>
+        <name>k</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/growth/von-bert.hpp" line="26" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/growth/von-bert.hpp" bodystart="26" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Population_1_1Growth_1_1VonBert_1a0200dc6d02901855947b8f3aa343684f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Fisl::Population::Growth::VonBert::linf</definition>
+        <argsstring>(void) const </argsstring>
+        <name>linf</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/growth/von-bert.hpp" line="31" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/growth/von-bert.hpp" bodystart="31" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Population_1_1Growth_1_1VonBert_1a0608df8ac6644b75ab58dc10a2673ebd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classFisl_1_1Population_1_1Growth_1_1VonBert" kindref="compound">VonBert</ref> &amp;</type>
+        <definition>VonBert&amp; Fisl::Population::Growth::VonBert::linf</definition>
+        <argsstring>(const double &amp;value)</argsstring>
+        <name>linf</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/growth/von-bert.hpp" line="35" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/growth/von-bert.hpp" bodystart="35" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Population_1_1Growth_1_1VonBert_1aa5aa62e534926cc290888babeed69fca" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Fisl::Population::Growth::VonBert::t0</definition>
+        <argsstring>(void) const </argsstring>
+        <name>t0</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/growth/von-bert.hpp" line="40" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/growth/von-bert.hpp" bodystart="40" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Population_1_1Growth_1_1VonBert_1a64194d99062f51370f3f46744ea726c6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classFisl_1_1Population_1_1Growth_1_1VonBert" kindref="compound">VonBert</ref> &amp;</type>
+        <definition>VonBert&amp; Fisl::Population::Growth::VonBert::t0</definition>
+        <argsstring>(const double &amp;value)</argsstring>
+        <name>t0</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/growth/von-bert.hpp" line="44" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/growth/von-bert.hpp" bodystart="44" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Population_1_1Growth_1_1VonBert_1a63caf0e6c935f27cb367328d628feed4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Fisl::Population::Growth::VonBert::operator()</definition>
+        <argsstring>(const double &amp;age) const </argsstring>
+        <name>operator()</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>age</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/growth/von-bert.hpp" line="49" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/growth/von-bert.hpp" bodystart="49" bodyend="51"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>von Bertallanfy growth function </para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="199">
+        <label>Fisl::Population::Growth::VonBert</label>
+        <link refid="classFisl_1_1Population_1_1Growth_1_1VonBert"/>
+        <childnode refid="200" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="200">
+        <label>Fisl::Math::Functions::Function</label>
+        <link refid="classFisl_1_1Math_1_1Functions_1_1Function"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="201">
+        <label>Fisl::Population::Growth::VonBert</label>
+        <link refid="classFisl_1_1Population_1_1Growth_1_1VonBert"/>
+        <childnode refid="202" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="202">
+        <label>Fisl::Math::Functions::Function</label>
+        <link refid="classFisl_1_1Math_1_1Functions_1_1Function"/>
+      </node>
+    </collaborationgraph>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/growth/von-bert.hpp" line="14" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/growth/von-bert.hpp" bodystart="14" bodyend="52"/>
+    <listofallmembers>
+      <member refid="classFisl_1_1Population_1_1Growth_1_1VonBert_1aec57726ad42bc6e9143d9ae86e34b5b1" prot="public" virt="non-virtual"><scope>Fisl::Population::Growth::VonBert</scope><name>k</name></member>
+      <member refid="classFisl_1_1Population_1_1Growth_1_1VonBert_1a6de53f9a8630b01cd3b4a71088610516" prot="public" virt="non-virtual"><scope>Fisl::Population::Growth::VonBert</scope><name>k</name></member>
+      <member refid="classFisl_1_1Population_1_1Growth_1_1VonBert_1a8d5acf50aa6bfa48f18cfa72b72c611e" prot="private" virt="non-virtual"><scope>Fisl::Population::Growth::VonBert</scope><name>k_</name></member>
+      <member refid="classFisl_1_1Population_1_1Growth_1_1VonBert_1a0200dc6d02901855947b8f3aa343684f" prot="public" virt="non-virtual"><scope>Fisl::Population::Growth::VonBert</scope><name>linf</name></member>
+      <member refid="classFisl_1_1Population_1_1Growth_1_1VonBert_1a0608df8ac6644b75ab58dc10a2673ebd" prot="public" virt="non-virtual"><scope>Fisl::Population::Growth::VonBert</scope><name>linf</name></member>
+      <member refid="classFisl_1_1Population_1_1Growth_1_1VonBert_1ac48908e5ff5feac24817cb121883212c" prot="private" virt="non-virtual"><scope>Fisl::Population::Growth::VonBert</scope><name>linf_</name></member>
+      <member refid="classFisl_1_1Population_1_1Growth_1_1VonBert_1a63caf0e6c935f27cb367328d628feed4" prot="public" virt="non-virtual"><scope>Fisl::Population::Growth::VonBert</scope><name>operator()</name></member>
+      <member refid="classFisl_1_1Math_1_1Functions_1_1Function_1a9742fece50e56752eda60d467a7127ce" prot="public" virt="non-virtual" ambiguityscope="Fisl::Math::Functions::Function::"><scope>Fisl::Population::Growth::VonBert</scope><name>operator()</name></member>
+      <member refid="classFisl_1_1Population_1_1Growth_1_1VonBert_1aa5aa62e534926cc290888babeed69fca" prot="public" virt="non-virtual"><scope>Fisl::Population::Growth::VonBert</scope><name>t0</name></member>
+      <member refid="classFisl_1_1Population_1_1Growth_1_1VonBert_1a64194d99062f51370f3f46744ea726c6" prot="public" virt="non-virtual"><scope>Fisl::Population::Growth::VonBert</scope><name>t0</name></member>
+      <member refid="classFisl_1_1Population_1_1Growth_1_1VonBert_1add44be45463b963e778a7c672fe409f2" prot="private" virt="non-virtual"><scope>Fisl::Population::Growth::VonBert</scope><name>t0_</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

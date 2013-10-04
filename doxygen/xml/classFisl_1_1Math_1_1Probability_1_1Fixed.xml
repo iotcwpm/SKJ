@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="classFisl_1_1Math_1_1Probability_1_1Fixed" kind="class" prot="public">
+    <compoundname>Fisl::Math::Probability::Fixed</compoundname>
+    <includes refid="fixed_8hpp" local="no">fixed.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classFisl_1_1Math_1_1Probability_1_1Fixed_1a37d1a03fdebca74debec0ad097370b8a" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Fisl::Math::Probability::Fixed::value</definition>
+        <argsstring></argsstring>
+        <name>value</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/fixed.hpp" line="7" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/fixed.hpp" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classFisl_1_1Math_1_1Probability_1_1Fixed_1ab79811215c8a32e8f9b29963e336f010" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Fisl::Math::Probability::Fixed::Fixed</definition>
+        <argsstring>(double value_=0)</argsstring>
+        <name>Fixed</name>
+        <param>
+          <type>double</type>
+          <declname>value_</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/fixed.hpp" line="9" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/fixed.hpp" bodystart="9" bodyend="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Math_1_1Probability_1_1Fixed_1a7496106eca8e82c89ef134ae153fec87" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Fisl::Math::Probability::Fixed::mean</definition>
+        <argsstring>(void) const </argsstring>
+        <name>mean</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/fixed.hpp" line="13" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/fixed.hpp" bodystart="13" bodyend="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Math_1_1Probability_1_1Fixed_1a86a0b4cf0415e9952c2d691cc7e29eda" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Fisl::Math::Probability::Fixed::sd</definition>
+        <argsstring>(void) const </argsstring>
+        <name>sd</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/fixed.hpp" line="17" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/fixed.hpp" bodystart="17" bodyend="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Math_1_1Probability_1_1Fixed_1ab7d168559399b66ff103e8e2fb562879" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Fisl::Math::Probability::Fixed::random</definition>
+        <argsstring>(void) const </argsstring>
+        <name>random</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/fixed.hpp" line="21" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/fixed.hpp" bodystart="21" bodyend="23"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/fixed.hpp" line="5" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/fixed.hpp" bodystart="5" bodyend="24"/>
+    <listofallmembers>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Fixed_1ab79811215c8a32e8f9b29963e336f010" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::Fixed</scope><name>Fixed</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Fixed_1a7496106eca8e82c89ef134ae153fec87" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::Fixed</scope><name>mean</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Fixed_1ab7d168559399b66ff103e8e2fb562879" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::Fixed</scope><name>random</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Fixed_1a86a0b4cf0415e9952c2d691cc7e29eda" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::Fixed</scope><name>sd</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Fixed_1a37d1a03fdebca74debec0ad097370b8a" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::Fixed</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

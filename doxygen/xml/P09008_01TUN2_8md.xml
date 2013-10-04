@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="P09008_01TUN2_8md" kind="file">
+    <compoundname>P09008 TUN2.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal">Title:<sp/>P09008:<sp/>Commercial<sp/></highlight><highlight class="keywordflow">catch</highlight><highlight class="normal"><sp/>sampling<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>highly<sp/>migratory<sp/>fish</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">Principal<sp/>Investigator:</highlight></codeline>
+<codeline lineno="6"><highlight class="normal">Terese<sp/>Kendrick</highlight></codeline>
+<codeline lineno="7"><highlight class="normal">Researchers:</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal">Status:</highlight></codeline>
+<codeline lineno="10"><highlight class="normal">In<sp/>Progress<sp/>(Due<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>completion<sp/>September<sp/>2013)</highlight></codeline>
+<codeline lineno="11"><highlight class="normal">Trophia<sp/>has<sp/>been<sp/>contracted<sp/>by<sp/>the<sp/>New<sp/>Zealand<sp/>Ministry<sp/>of<sp/>Fisheries<sp/>(MFish)<sp/>to<sp/>collect<sp/>biological<sp/>information<sp/>describing<sp/>highly<sp/>migratory<sp/>fish<sp/>species<sp/>from<sp/>shore-based<sp/>fish<sp/>processing<sp/>and<sp/>handling<sp/>facilities<sp/>.<sp/>The<sp/>specific<sp/>objectives<sp/>for<sp/>this<sp/>project<sp/>include:</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal">1.<sp/>To<sp/>continue<sp/>the<sp/>catch<sp/>sampling<sp/>programme<sp/>for<sp/>swordfish,<sp/>southern<sp/>bluefin<sp/>tuna,<sp/>bigeye<sp/>tuna,<sp/>Pacific<sp/>bluefin<sp/>tuna,<sp/>and<sp/>yellowfin<sp/>tuna<sp/>for<sp/>the<sp/>2009/10<sp/>fishing<sp/><ref refid="namespaceIOSKJ_1a3b0e8207040c0b0617bab01f6f23cb7d" kindref="member">year</ref>.</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal">2.<sp/>To<sp/>continue<sp/>the<sp/>catch<sp/>sampling<sp/>programme<sp/>for<sp/>swordfish,<sp/>southern<sp/>bluefin<sp/>tuna,<sp/>bigeye<sp/>tuna,<sp/>Pacific<sp/>bluefin<sp/>tuna,<sp/>and<sp/>yellowfin<sp/>tuna<sp/>for<sp/>the<sp/>2010/11<sp/>fishing<sp/><ref refid="namespaceIOSKJ_1a3b0e8207040c0b0617bab01f6f23cb7d" kindref="member">year</ref><sp/>.</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal">3.To<sp/>continue<sp/>the<sp/>catch<sp/>sampling<sp/>programme<sp/>for<sp/>swordfish,<sp/>southern<sp/>bluefin<sp/>tuna,<sp/>bigeye<sp/>tuna,<sp/>Pacific<sp/>bluefin<sp/>tuna,<sp/>and<sp/>yellowfin<sp/>tuna<sp/>for<sp/>the<sp/>2011/12<sp/>fishing<sp/><ref refid="namespaceIOSKJ_1a3b0e8207040c0b0617bab01f6f23cb7d" kindref="member">year</ref><sp/>.</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="20"><highlight class="normal">Individual<sp/>southern<sp/>bluefin<sp/>tuna<sp/>wholeweights<sp/>have<sp/>not<sp/>been<sp/>collected<sp/>in<sp/>fisher<sp/>logbooks<sp/>since<sp/>the<sp/>introduction<sp/>of<sp/>the<sp/>redesigned<sp/>TLCER<sp/>form<sp/>in<sp/>March<sp/>2003.</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="22"><highlight class="normal">Historically,<sp/>most<sp/>biological<sp/>information<sp/>about<sp/>HMS<sp/>was<sp/>collected<sp/>by<sp/>observers<sp/>at<sp/>sea<sp/>in<sp/>the<sp/>tuna<sp/>longline<sp/>fishery.<sp/><sp/>Whilst<sp/>observer<sp/>covereage<sp/>of<sp/>the<sp/>larger<sp/><ref refid="namespacesettings_1af01f7bd57cf8d5e8ff4cf2030661c66d" kindref="member">vessels</ref><sp/>of<sp/>the<sp/>charter<sp/>fleet<sp/>is<sp/>high,<sp/>this<sp/>fleet<sp/>participates<sp/>almost<sp/>exclusively<sp/>in<sp/>the<sp/>southern<sp/>bluefin<sp/>tuna<sp/>longline<sp/>fishery<sp/>operating<sp/>off<sp/>the<sp/>west<sp/>coast<sp/>of<sp/>the<sp/>South<sp/>Island.</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="24"><highlight class="normal">The<sp/>southern<sp/>bluefin<sp/>longline<sp/>fishery<sp/>that<sp/>operates<sp/>off<sp/>the<sp/>east<sp/>coast<sp/>of<sp/>the<sp/>North<sp/>Island,<sp/>and<sp/>the<sp/>extensive<sp/>Bigeye<sp/>longline<sp/>fishery<sp/>are<sp/>mainly<sp/>fished<sp/>by<sp/>smaller<sp/>domestic<sp/><ref refid="namespacesettings_1af01f7bd57cf8d5e8ff4cf2030661c66d" kindref="member">vessels</ref>,<sp/>and<sp/>this<sp/>fleet<sp/>is<sp/>not<sp/>adequately<sp/>observed.<sp/><sp/>These<sp/>more<sp/>northerly<sp/>fisheries<sp/>account<sp/>for<sp/>most<sp/>of<sp/>the<sp/>associated<sp/>bycatch<sp/>of<sp/><sp/>Pacific<sp/>bluefin<sp/>tuna,<sp/>yellowfin<sp/>tuna<sp/>and<sp/>swordfish.<sp/>This<sp/>project<sp/>aims<sp/>to<sp/>augment<sp/>the<sp/>observer<sp/>length<sp/>frequency<sp/><sp/>data,<sp/>with<sp/>length<sp/>estimates<sp/>based<sp/>on<sp/>individual<sp/>processed<sp/>weights<sp/>of<sp/>fish<sp/>landed<sp/>by<sp/>the<sp/>domestic<sp/>fleet.</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="26"><highlight class="normal">The<sp/>low<sp/>quantity<sp/>of<sp/>data<sp/>collected<sp/>annually<sp/>due<sp/>to<sp/>low<sp/>levels<sp/>of<sp/>observer<sp/>coverage<sp/>often<sp/>means<sp/>waiting<sp/>several<sp/>years<sp/>to<sp/>answer<sp/>key<sp/>questions<sp/>and<sp/>greatly<sp/>reduces<sp/>our<sp/>ability<sp/>to<sp/>monitor<sp/>the<sp/>components<sp/>of<sp/>the<sp/>stock<sp/>that<sp/>migrate<sp/>through<sp/>or<sp/>reside<sp/>in<sp/>New<sp/>Zealand<sp/>fisheries<sp/>waters.</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="28"><highlight class="normal">In<sp/>response<sp/>to<sp/>this,<sp/>a<sp/>programme<sp/>has<sp/>been<sp/>set<sp/>up<sp/>to<sp/>take<sp/>advantage<sp/>of<sp/>the<sp/>large<sp/>size<sp/>and<sp/>high<sp/>individual<sp/>value<sp/>of<sp/>these<sp/>HMS<sp/>species.<sp/>For<sp/>many<sp/>high<sp/>value<sp/>species<sp/>it<sp/>is<sp/>possible<sp/>to<sp/>obtain<sp/>individual<sp/>size/weight<sp/>data<sp/>on<sp/>a<sp/>high<sp/>proportion<sp/>of<sp/>the<sp/>catch<sp/>through<sp/>records<sp/>kept<sp/>by<sp/>fish<sp/>processors.<sp/>This<sp/>programme<sp/>was<sp/>developed<sp/>under<sp/>TUN2005/02<sp/>and<sp/>has<sp/>continued<sp/>under<sp/>TUN2006/01<sp/>and<sp/>TUN2007-02.</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="30"><highlight class="normal">The<sp/>current<sp/>project<sp/>will<sp/>continue<sp/>this<sp/><ref refid="namespaceIOSKJ_1af3eb431b8421bdaee2203d1d0674747e" kindref="member">time</ref><sp/>series,<sp/>but<sp/>with<sp/>the<sp/>emphasis<sp/>on<sp/>simplifying<sp/>and<sp/>automating<sp/>the<sp/>process<sp/>and<sp/>the<sp/>outputs</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="33"><highlight class="normal">This<sp/>work<sp/>is<sp/>funded<sp/>by<sp/>MFish<sp/>project<sp/>HMS2009/02</highlight></codeline>
+    </programlisting>
+    <location file="/home/nbentley/Trophia/Code/www/src/projects/P09008 TUN2.md"/>
+  </compounddef>
+</doxygen>

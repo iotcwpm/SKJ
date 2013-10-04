@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="namespacetangagroomer" kind="namespace">
+    <compoundname>tangagroomer</compoundname>
+    <innernamespace refid="namespacetangagroomer_1_1check">tangagroomer::check</innernamespace>
+    <innernamespace refid="namespacetangagroomer_1_1checks">tangagroomer::checks</innernamespace>
+    <innernamespace refid="namespacetangagroomer_1_1checks__allocation">tangagroomer::checks_allocation</innernamespace>
+    <innernamespace refid="namespacetangagroomer_1_1checks__estimated__subcatch">tangagroomer::checks_estimated_subcatch</innernamespace>
+    <innernamespace refid="namespacetangagroomer_1_1checks__fishing__event">tangagroomer::checks_fishing_event</innernamespace>
+    <innernamespace refid="namespacetangagroomer_1_1checks__fishing__event__landing">tangagroomer::checks_fishing_event_landing</innernamespace>
+    <innernamespace refid="namespacetangagroomer_1_1checks__landing">tangagroomer::checks_landing</innernamespace>
+    <innernamespace refid="namespacetangagroomer_1_1checks__trip__details">tangagroomer::checks_trip_details</innernamespace>
+    <innernamespace refid="namespacetangagroomer_1_1database">tangagroomer::database</innernamespace>
+    <innernamespace refid="namespacetangagroomer_1_1dataset">tangagroomer::dataset</innernamespace>
+    <innernamespace refid="namespacetangagroomer_1_1example">tangagroomer::example</innernamespace>
+    <innernamespace refid="namespacetangagroomer_1_1html">tangagroomer::html</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/nbentley/Trophia/Code/tangagroomer/__init__.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

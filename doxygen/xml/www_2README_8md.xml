@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="www_2README_8md" kind="file">
+    <compoundname>www/README.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#<sp/>Trophia<sp/>Website</highlight></codeline>
+<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Requirements</highlight></codeline>
+<codeline lineno="4"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">The<sp/>website<sp/>uses<sp/>Pelican,<sp/>a<sp/>tool<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>creating<sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>content<sp/>from<sp/>markup<sp/>files.</highlight></codeline>
+<codeline lineno="6"><highlight class="normal">We<sp/>decided<sp/>to<sp/>use<sp/>Pelican<sp/>because<sp/>of<sp/>its<sp/>simplicity,<sp/>in<sp/>terms<sp/>of<sp/>both<sp/>authoring<sp/>and<sp/>deployment.</highlight></codeline>
+<codeline lineno="7"><highlight class="normal">This<sp/>and<sp/>other<sp/>requirements<sp/>can<sp/>be<sp/>installed<sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>pip:</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal">```sh</highlight></codeline>
+<codeline lineno="10"><highlight class="normal">sudo<sp/>pip<sp/>install<sp/>-U<sp/>-r<sp/>requirements.pip</highlight></codeline>
+<codeline lineno="11"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">##<sp/>Setup</highlight></codeline>
+<codeline lineno="14"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal">Github<sp/>pages<sp/>are<sp/>used<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>serving<sp/>the<sp/>site.<sp/></highlight></codeline>
+<codeline lineno="16"><highlight class="normal">The<sp/>domain<sp/>http:</highlight><highlight class="comment">//www.trophia.com<sp/>will<sp/>point<sp/>to<sp/>http://trophia.github.com/www/.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal">See<sp/>https:</highlight><highlight class="comment">//help.github.com/articles/setting-up-a-custom-domain-with-pages<sp/>.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal">To<sp/></highlight><highlight class="keywordflow">do</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>it<sp/>was<sp/>necessary<sp/>to:</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal">*<sp/>create<sp/>a<sp/>branch<sp/>called<sp/></highlight><highlight class="stringliteral">&quot;gh-pages&quot;</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal">```sh</highlight></codeline>
+<codeline lineno="24"><highlight class="normal">git<sp/>branch<sp/>gh-pages</highlight></codeline>
+<codeline lineno="25"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal">*<sp/>install<sp/>`ghp-</highlight><highlight class="keyword">import</highlight><highlight class="normal">`<sp/>(already<sp/>listed<sp/>in<sp/>`requirements.pip`)</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal">*<sp/>create<sp/>a<sp/>CNAME<sp/>file<sp/>which<sp/>is<sp/>copied<sp/>to<sp/>`output`<sp/>and<sp/>then<sp/>`gh-pages`<sp/>branch<sp/>on<sp/>`make<sp/>github_upload`</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal">*<sp/>create<sp/>a<sp/>CNAME<sp/>mapping<sp/>at<sp/>gandi.net:</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="34"><highlight class="normal">www<sp/><sp/><sp/><sp/><sp/>CNAME<sp/><sp/><sp/>trophia.github.com.</highlight></codeline>
+<codeline lineno="35"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal">##<sp/>Usage</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal">Write<sp/>pages<sp/></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>markdown<sp/>in<sp/>the<sp/></highlight><highlight class="stringliteral">&quot;src&quot;</highlight><highlight class="normal"><sp/>directory<sp/>and<sp/>then<sp/>use<sp/>make<sp/>to<sp/>generate<sp/>output:</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal">```sh</highlight></codeline>
+<codeline lineno="42"><highlight class="normal">make<sp/>html</highlight></codeline>
+<codeline lineno="43"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal">Preview<sp/>the<sp/>pages<sp/>in<sp/>the<sp/>`output`<sp/>directory<sp/>and<sp/>then<sp/>when<sp/>happy<sp/>commit<sp/>and<sp/>upload:</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal">```sh</highlight></codeline>
+<codeline lineno="48"><highlight class="normal">git<sp/>add<sp/>.</highlight></codeline>
+<codeline lineno="49"><highlight class="normal">git<sp/>commit</highlight></codeline>
+<codeline lineno="50"><highlight class="normal">make<sp/>github_upload</highlight></codeline>
+<codeline lineno="51"><highlight class="normal">```</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="/home/nbentley/Trophia/Code/www/README.md"/>
+  </compounddef>
+</doxygen>

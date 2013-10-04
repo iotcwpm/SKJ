@@ -1,0 +1,263 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="distributions_8cxx" kind="file">
+    <compoundname>distributions.cxx</compoundname>
+    <includes local="no">boost/test/unit_test.hpp</includes>
+    <includes refid="beta_8hpp" local="no">fisl/math/probability/beta.hpp</includes>
+    <includes refid="fixed_8hpp" local="no">fisl/math/probability/fixed.hpp</includes>
+    <includes refid="lognormal_8hpp" local="no">fisl/math/probability/lognormal.hpp</includes>
+    <includes refid="normal_8hpp" local="no">fisl/math/probability/normal.hpp</includes>
+    <includes refid="uniform_8hpp" local="no">fisl/math/probability/uniform.hpp</includes>
+    <incdepgraph>
+      <node id="174">
+        <label>boost/random/variate_generator.hpp</label>
+      </node>
+      <node id="185">
+        <label>fisl/math/probability/uniform.hpp</label>
+        <link refid="uniform_8hpp"/>
+        <childnode refid="175" relation="include">
+        </childnode>
+        <childnode refid="186" relation="include">
+        </childnode>
+        <childnode refid="171" relation="include">
+        </childnode>
+      </node>
+      <node id="169">
+        <label>fisl/math/probability/beta.hpp</label>
+        <link refid="beta_8hpp"/>
+        <childnode refid="170" relation="include">
+        </childnode>
+        <childnode refid="171" relation="include">
+        </childnode>
+      </node>
+      <node id="186">
+        <label>boost/random/uniform_real.hpp</label>
+      </node>
+      <node id="168">
+        <label>boost/test/unit_test.hpp</label>
+      </node>
+      <node id="184">
+        <label>boost/random/normal_distribution.hpp</label>
+      </node>
+      <node id="183">
+        <label>boost/math/distributions/normal.hpp</label>
+      </node>
+      <node id="175">
+        <label>boost/math/distributions/uniform.hpp</label>
+      </node>
+      <node id="179">
+        <label>fisl/math/probability/lognormal.hpp</label>
+        <link refid="lognormal_8hpp"/>
+        <childnode refid="180" relation="include">
+        </childnode>
+        <childnode refid="181" relation="include">
+        </childnode>
+        <childnode refid="171" relation="include">
+        </childnode>
+      </node>
+      <node id="173">
+        <label>boost/random/mersenne_twister.hpp</label>
+      </node>
+      <node id="172">
+        <label>ctime</label>
+      </node>
+      <node id="180">
+        <label>boost/math/distributions/lognormal.hpp</label>
+      </node>
+      <node id="171">
+        <label>fisl/math/probability/distribution.hpp</label>
+        <link refid="distribution_8hpp"/>
+        <childnode refid="172" relation="include">
+        </childnode>
+        <childnode refid="173" relation="include">
+        </childnode>
+        <childnode refid="174" relation="include">
+        </childnode>
+        <childnode refid="175" relation="include">
+        </childnode>
+        <childnode refid="176" relation="include">
+        </childnode>
+        <childnode refid="177" relation="include">
+        </childnode>
+      </node>
+      <node id="181">
+        <label>boost/random/lognormal_distribution.hpp</label>
+      </node>
+      <node id="170">
+        <label>boost/math/distributions/beta.hpp</label>
+      </node>
+      <node id="182">
+        <label>fisl/math/probability/normal.hpp</label>
+        <link refid="normal_8hpp"/>
+        <childnode refid="183" relation="include">
+        </childnode>
+        <childnode refid="184" relation="include">
+        </childnode>
+        <childnode refid="171" relation="include">
+        </childnode>
+      </node>
+      <node id="176">
+        <label>boost/random/uniform_01.hpp</label>
+      </node>
+      <node id="167">
+        <label>distributions.cxx</label>
+        <link refid="distributions.cxx"/>
+        <childnode refid="168" relation="include">
+        </childnode>
+        <childnode refid="169" relation="include">
+        </childnode>
+        <childnode refid="178" relation="include">
+        </childnode>
+        <childnode refid="179" relation="include">
+        </childnode>
+        <childnode refid="182" relation="include">
+        </childnode>
+        <childnode refid="185" relation="include">
+        </childnode>
+      </node>
+      <node id="177">
+        <label>fisl/common.hpp</label>
+        <link refid="common_8hpp"/>
+      </node>
+      <node id="178">
+        <label>fisl/math/probability/fixed.hpp</label>
+        <link refid="fixed_8hpp"/>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="distributions_8cxx_1a0e35893d7fffbe54484247992f2f0f73" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>BOOST_AUTO_TEST_CASE</definition>
+        <argsstring>(beta)</argsstring>
+        <name>BOOST_AUTO_TEST_CASE</name>
+        <param>
+          <type>beta</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/distributions.cxx" line="16" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/distributions.cxx" bodystart="16" bodyend="21"/>
+      </memberdef>
+      <memberdef kind="function" id="distributions_8cxx_1a75db377092984170bd18fbec62d31101" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>BOOST_AUTO_TEST_CASE</definition>
+        <argsstring>(fixed)</argsstring>
+        <name>BOOST_AUTO_TEST_CASE</name>
+        <param>
+          <type>fixed</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/distributions.cxx" line="23" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/distributions.cxx" bodystart="23" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="distributions_8cxx_1a6b18df87d53b789e19936736390fb632" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>BOOST_AUTO_TEST_CASE</definition>
+        <argsstring>(lognormal)</argsstring>
+        <name>BOOST_AUTO_TEST_CASE</name>
+        <param>
+          <type>lognormal</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/distributions.cxx" line="29" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/distributions.cxx" bodystart="29" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="distributions_8cxx_1aa0ed058d6365d9c4ff7f668461a392d0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>BOOST_AUTO_TEST_CASE</definition>
+        <argsstring>(normal)</argsstring>
+        <name>BOOST_AUTO_TEST_CASE</name>
+        <param>
+          <type>normal</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/distributions.cxx" line="35" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/distributions.cxx" bodystart="35" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="distributions_8cxx_1a3bd54d3eb0ce88bd1d44711bd6bffaad" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>BOOST_AUTO_TEST_CASE</definition>
+        <argsstring>(uniform)</argsstring>
+        <name>BOOST_AUTO_TEST_CASE</name>
+        <param>
+          <type>uniform</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/distributions.cxx" line="41" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/distributions.cxx" bodystart="41" bodyend="44"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifdef<sp/>FISL_TEST_SINGLE</highlight></codeline>
+<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>BOOST_TEST_MODULE<sp/>tests</highlight></codeline>
+<codeline lineno="3"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="4"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#include<sp/>&lt;boost/test/unit_test.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="beta_8hpp" kindref="compound">fisl/math/probability/beta.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="fixed_8hpp" kindref="compound">fisl/math/probability/fixed.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="lognormal_8hpp" kindref="compound">fisl/math/probability/lognormal.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="normal_8hpp" kindref="compound">fisl/math/probability/normal.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="uniform_8hpp" kindref="compound">fisl/math/probability/uniform.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal">BOOST_AUTO_TEST_SUITE(cached)</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal">using<sp/>namespace<sp/>Fisl::Math::Probability;<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><ref refid="namespaceFisl_1_1Estimation_1_1Mcmc_1a4ca8d3e6d2f4e46db181252bb09caf14" kindref="member">BOOST_AUTO_TEST_CASE</ref>(beta){<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classFisl_1_1Math_1_1Probability_1_1Beta" kindref="compound">Beta</ref><sp/>beta;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>beta.<ref refid="classFisl_1_1Math_1_1Probability_1_1Beta_1a38515a3c177e904a2085f2335edc935e" kindref="member">mean_sd</ref>(0.5,0.1);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>BOOST_CHECK_EQUAL(beta.<ref refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1a182ec4e2c96c4202bb1dff921f2191a0" kindref="member">mean</ref>(),0.5);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>BOOST_CHECK_EQUAL(beta.<ref refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1abd1a9d338fe54d629948c89621d050f4" kindref="member">sd</ref>(),0.1);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><ref refid="namespaceFisl_1_1Estimation_1_1Mcmc_1a4ca8d3e6d2f4e46db181252bb09caf14" kindref="member">BOOST_AUTO_TEST_CASE</ref>(fixed){<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classFisl_1_1Math_1_1Probability_1_1Fixed" kindref="compound">Fixed</ref><sp/>fixed(3.14);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>BOOST_CHECK_EQUAL(fixed.mean(),3.14);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>BOOST_CHECK_EQUAL(fixed.sd(),0);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><ref refid="namespaceFisl_1_1Estimation_1_1Mcmc_1a4ca8d3e6d2f4e46db181252bb09caf14" kindref="member">BOOST_AUTO_TEST_CASE</ref>(lognormal){<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classFisl_1_1Math_1_1Probability_1_1Lognormal" kindref="compound">Lognormal</ref><sp/>lognormal(1,0.5);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>BOOST_CHECK_EQUAL(lognormal.mean(),1);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>BOOST_CHECK_EQUAL(lognormal.sd(),0.5);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><ref refid="namespaceFisl_1_1Estimation_1_1Mcmc_1a4ca8d3e6d2f4e46db181252bb09caf14" kindref="member">BOOST_AUTO_TEST_CASE</ref>(normal){<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classFisl_1_1Math_1_1Probability_1_1Normal" kindref="compound">Normal</ref><sp/>normal(1,0.5);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>BOOST_CHECK_EQUAL(normal.mean(),1);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>BOOST_CHECK_EQUAL(normal.sd(),0.5);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><ref refid="namespaceFisl_1_1Estimation_1_1Mcmc_1a4ca8d3e6d2f4e46db181252bb09caf14" kindref="member">BOOST_AUTO_TEST_CASE</ref>(uniform){<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classFisl_1_1Math_1_1Probability_1_1Uniform" kindref="compound">Uniform</ref><sp/>uniform(1,2);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>BOOST_CHECK_EQUAL(uniform.mean(),1.5);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal">BOOST_AUTO_TEST_SUITE_END()</highlight></codeline>
+    </programlisting>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/distributions.cxx"/>
+  </compounddef>
+</doxygen>

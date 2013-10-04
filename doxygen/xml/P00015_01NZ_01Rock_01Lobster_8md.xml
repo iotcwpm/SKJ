@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="P00015_01NZ_01Rock_01Lobster_8md" kind="file">
+    <compoundname>P00015 NZ Rock Lobster.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal">Title:<sp/>P00015:<sp/><sp/>Stock<sp/>Assessment<sp/>of<sp/>the<sp/>New<sp/>Zealand<sp/>Rock<sp/>Lobster<sp/>Fishery<sp/>2001-02</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal">Principal<sp/>Investigator:</highlight></codeline>
+<codeline lineno="5"><highlight class="normal">Nokome<sp/>bentley</highlight></codeline>
+<codeline lineno="6"><highlight class="normal">Researchers:</highlight></codeline>
+<codeline lineno="7"><highlight class="normal">Nathan<sp/>Walker</highlight></codeline>
+<codeline lineno="8"><highlight class="normal">Status:</highlight></codeline>
+<codeline lineno="9"><highlight class="normal">Completed</highlight></codeline>
+<codeline lineno="10"><highlight class="normal">Trophia<sp/>is<sp/>contracted<sp/>by<sp/>the<sp/>New<sp/>Zealand<sp/>Rock<sp/>Lobster<sp/>Industry<sp/>Council<sp/>(NZRLIC)<sp/>to<sp/>undertake<sp/>stock<sp/>assessment<sp/>research<sp/>on<sp/>New<sp/>Zealand&apos;s<sp/>rock<sp/>lobster<sp/>fishery<sp/>for<sp/>the<sp/>Ministry<sp/>of<sp/>Fisheries.<sp/>Generalised<sp/>linear<sp/>models<sp/>are<sp/>used<sp/>to<sp/>summarise<sp/>temporal<sp/>and<sp/>spatial<sp/>trends<sp/>in<sp/>the<sp/>catch<sp/>rates<sp/>of<sp/>lobsters.<sp/><sp/>Trophia<sp/>is<sp/>assisting<sp/>in<sp/>the<sp/>development<sp/>of<sp/>a<sp/>size<sp/>structured<sp/>population<sp/>dynamics<sp/>model<sp/>for<sp/>rock<sp/>lobster<sp/>stocks<sp/>in<sp/>New<sp/>Zealand.<sp/>This<sp/>model<sp/>will<sp/>enable<sp/>estimation<sp/>of<sp/>population<sp/>dynamic<sp/>parameters,<sp/>which<sp/>can<sp/>assist<sp/>the<sp/>Ministry<sp/>of<sp/>Fisheries<sp/>in<sp/>making<sp/><sp/>recommendations<sp/>on<sp/>the<sp/>size<sp/>of<sp/>annual<sp/>catch<sp/>quotas.<sp/></highlight></codeline>
+<codeline lineno="11"><highlight class="normal">Year<sp/>I<sp/>of<sp/>III.</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal">Outputs<sp/>include<sp/>Presentations<sp/>to<sp/>the<sp/>Ministry<sp/>of<sp/>Fisheries<sp/>Shelfish<sp/>Working<sp/>Group<sp/>meetings,<sp/>and<sp/>Final<sp/>Research<sp/>Reports<sp/>available<sp/>from<sp/>this<sp/>site<sp/>include;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal">Hart,<sp/>A.<ref refid="namespaceIOSKJ_1a0ab9304f6271a6b75f81ceff70000f0dac32c131fa8b4252be7fc9b19921ea336" kindref="member">M</ref>.;<sp/>Bentley,<sp/>N.;<sp/>Cheng,<sp/>Y.<ref refid="namespaceIOSKJ_1a0ab9304f6271a6b75f81ceff70000f0da3777d6ba82574c6c55b3daef7e31179f" kindref="member">W</ref>.<sp/>(2004).<sp/>A<sp/>review<sp/>of<sp/>catch<sp/>sampling<sp/>data<sp/>from<sp/>logbook<sp/>and<sp/>observer<sp/>programmes<sp/>in<sp/>the<sp/>Jasus<sp/>edwardsii<sp/>fishery,<sp/>New<sp/>Zealand.<sp/>NZ<sp/>Fisheries<sp/>Assessment<sp/>Report<sp/>2004/<sp/>24<sp/>100<sp/>p<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/>Download<sp/>document</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal">Kendrick,<sp/>T.H.;<sp/>Bentley,<sp/>N.<sp/>(2003)<sp/>Movements<sp/>of<sp/>rock<sp/>lobsters<sp/>(Jasus<sp/>edwardsii)<sp/>tagged<sp/>by<sp/>commercial<sp/>fishers<sp/>around<sp/>the<sp/>coast<sp/>of<sp/>New<sp/>Zealand<sp/>since<sp/>1993.<sp/>NZ<sp/>Fisheries<sp/>Assessment<sp/>Report<sp/>2003/<sp/>55<sp/>48<sp/>p<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/>Download<sp/>document</highlight></codeline>
+    </programlisting>
+    <location file="/home/nbentley/Trophia/Code/www/src/projects/P00015 NZ Rock Lobster.md"/>
+  </compounddef>
+</doxygen>

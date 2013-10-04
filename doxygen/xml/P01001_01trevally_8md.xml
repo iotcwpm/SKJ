@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="P01001_01trevally_8md" kind="file">
+    <compoundname>P01001 trevally.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal">Title:<sp/>P01001:<sp/>Stock<sp/>assessment<sp/>of<sp/>trevally</highlight></codeline>
+<codeline lineno="2"><highlight class="normal">in<sp/>TRE<sp/>7</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">Principal<sp/>Investigator:</highlight></codeline>
+<codeline lineno="6"><highlight class="normal">Adam<sp/>Langley</highlight></codeline>
+<codeline lineno="7"><highlight class="normal">Researchers:</highlight></codeline>
+<codeline lineno="8"><highlight class="normal">Mark<sp/>Maunder</highlight></codeline>
+<codeline lineno="9"><highlight class="normal">Nokome<sp/>bentley</highlight></codeline>
+<codeline lineno="10"><highlight class="normal">Status:</highlight></codeline>
+<codeline lineno="11"><highlight class="normal">Completed</highlight></codeline>
+<codeline lineno="12"><highlight class="normal">Trophia<sp/>was<sp/><sp/>contracted<sp/>by<sp/>the<sp/>New<sp/>Zealand<sp/>Ministry<sp/>of<sp/>Fisheries<sp/>(MFish)<sp/>to<sp/>carry<sp/>out<sp/>a<sp/>stock<sp/>assessment<sp/>for<sp/>trevally</highlight></codeline>
+<codeline lineno="13"><highlight class="normal">(<sp/>Pseudocaranx<sp/>dentex<sp/>)<sp/>in<sp/>TRE<sp/>7,<sp/>including<sp/>estimating<sp/>biomass<sp/>and<sp/>sustainable<sp/>yield.The<sp/>specific<sp/>objectives<sp/>for<sp/>this<sp/>project<sp/>were:</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal">1.<sp/>To<sp/>update<sp/>the<sp/>standardised<sp/>and<sp/>unstandardised<sp/>CPUE<sp/>analyses<sp/>for<sp/>TRE<sp/>7.</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal">2.<sp/>To<sp/>update<sp/>the<sp/>current<sp/>TRE<sp/>7<sp/>stock<sp/>assessment<sp/>including<sp/>estimating<sp/>biomass<sp/>and<sp/>sustainable<sp/>yield.</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal">This<sp/>project<sp/>was<sp/>funded<sp/>by<sp/>the<sp/>New<sp/>Zealand<sp/>Ministry<sp/>of<sp/>Fisheries<sp/>Project<sp/>TRE2001/02</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal">Outputs<sp/>that<sp/>will<sp/>soon<sp/>be<sp/>available<sp/>from<sp/>this<sp/>site<sp/>include<sp/>:</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal">Langley,<sp/>A.D.<sp/>(2002).<sp/>Analysis<sp/>of<sp/>catch<sp/>and<sp/>effort<sp/>data<sp/>from<sp/>the<sp/>TRE<sp/>7<sp/>fishery.<sp/>New<sp/>Zealand<sp/>Fisheries<sp/>Assessment<sp/>Report<sp/>2002/32.<sp/>28<sp/>p.<sp/><sp/><sp/>Download<sp/>file</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal">Maunder,<sp/><ref refid="namespaceIOSKJ_1a0ab9304f6271a6b75f81ceff70000f0dac32c131fa8b4252be7fc9b19921ea336" kindref="member">M</ref>.N.;<sp/>Langley,<sp/>A.D.<sp/>(Submitted).<sp/>Stock<sp/>assessment<sp/>of<sp/>trevally<sp/>(Pseudocaranx<sp/>dentex)<sp/>in<sp/>the<sp/>TRE<sp/>7<sp/>fishery.<sp/>Final<sp/>Research<sp/>Report<sp/>to<sp/>Ministry<sp/>of<sp/>Fisheries<sp/>for<sp/>TRE2001/02.</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal">Maunder,<sp/><ref refid="namespaceIOSKJ_1a0ab9304f6271a6b75f81ceff70000f0dac32c131fa8b4252be7fc9b19921ea336" kindref="member">M</ref>.N.;<sp/>Langley,<sp/>A.D.<sp/>(In<sp/>Press).Integrating<sp/>the<sp/>standardization<sp/>of<sp/>catch-per-unit-of-effort<sp/>into<sp/>stock<sp/>assessment<sp/>models:<sp/>testing<sp/>a<sp/>population<sp/>dynamics<sp/>model<sp/>and<sp/>using<sp/>multiple<sp/>data<sp/>types.<sp/>Fisheries<sp/>Research.</highlight></codeline>
+    </programlisting>
+    <location file="/home/nbentley/Trophia/Code/www/src/projects/P01001 trevally.md"/>
+  </compounddef>
+</doxygen>

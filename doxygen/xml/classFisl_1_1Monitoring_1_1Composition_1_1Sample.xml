@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="classFisl_1_1Monitoring_1_1Composition_1_1Sample" kind="class" prot="public">
+    <compoundname>Fisl::Monitoring::Composition::Sample</compoundname>
+    <includes refid="composition_8hpp" local="no">composition.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>unsigned int</type>
+        <declname>lowest</declname>
+        <defname>lowest</defname>
+      </param>
+      <param>
+        <type>unsigned int</type>
+        <declname>highest</declname>
+        <defname>highest</defname>
+      </param>
+      <param>
+        <type>unsigned int</type>
+        <declname>step</declname>
+        <defname>step</defname>
+        <defval>1</defval>
+      </param>
+      <param>
+        <type>class</type>
+        <declname>Handle</declname>
+        <defname>Handle</defname>
+        <defval>int</defval>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classFisl_1_1Monitoring_1_1Composition_1_1Sample_1a66bb22b19a4958a42c8ef9938eb31e68" prot="public" static="yes" mutable="no">
+        <type>const unsigned int</type>
+        <definition>const unsigned int Fisl::Monitoring::Composition::Sample&lt; lowest, highest, step, Handle &gt;::bins</definition>
+        <argsstring></argsstring>
+        <name>bins</name>
+        <initializer>= (lowest-highest)/step+1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/monitoring/composition/composition.hpp" line="15" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/monitoring/composition/composition.hpp" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classFisl_1_1Monitoring_1_1Composition_1_1Sample_1a09db03994db106f82e977af31f3a9f63" prot="public" static="no" mutable="no">
+        <type>Handle</type>
+        <definition>Handle Fisl::Monitoring::Composition::Sample&lt; lowest, highest, step, Handle &gt;::handle</definition>
+        <argsstring></argsstring>
+        <name>handle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/monitoring/composition/composition.hpp" line="23" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/monitoring/composition/composition.hpp" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classFisl_1_1Monitoring_1_1Composition_1_1Sample_1ae061d106d0a08146b25b02f097ce6721" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Fisl::Monitoring::Composition::Sample&lt; lowest, highest, step, Handle &gt;::size</definition>
+        <argsstring></argsstring>
+        <name>size</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/monitoring/composition/composition.hpp" line="24" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/monitoring/composition/composition.hpp" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classFisl_1_1Monitoring_1_1Composition_1_1Sample_1aa9f7d1d1bc5559d31c50780bcbea313d" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Fisl::Monitoring::Composition::Sample&lt; lowest, highest, step, Handle &gt;::proportions[bins]</definition>
+        <argsstring>[bins]</argsstring>
+        <name>proportions</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/monitoring/composition/composition.hpp" line="25" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/monitoring/composition/composition.hpp" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classFisl_1_1Monitoring_1_1Composition_1_1Sample_1aa90f9665095b12f4a24d9a80dfed59fd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Fisl::Monitoring::Composition::Sample&lt; lowest, highest, step, Handle &gt;::Sample</definition>
+        <argsstring>(const Handle &amp;handle, const double &amp;size, const std::initializer_list&lt; double &gt; &amp;proportions)</argsstring>
+        <name>Sample</name>
+        <param>
+          <type>const Handle &amp;</type>
+          <declname>handle</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>size</declname>
+        </param>
+        <param>
+          <type>const std::initializer_list&lt; double &gt; &amp;</type>
+          <declname>proportions</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para><xrefsect id="todo_1_todo000004"><xreftitle>Todo</xreftitle><xrefdescription><para>initialise proportions </para></xrefdescription></xrefsect></para>        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/monitoring/composition/composition.hpp" line="19" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/monitoring/composition/composition.hpp" bodystart="17" bodyend="21"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/monitoring/composition/composition.hpp" line="13" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/monitoring/composition/composition.hpp" bodystart="13" bodyend="26"/>
+    <listofallmembers>
+      <member refid="classFisl_1_1Monitoring_1_1Composition_1_1Sample_1a66bb22b19a4958a42c8ef9938eb31e68" prot="public" virt="non-virtual"><scope>Fisl::Monitoring::Composition::Sample</scope><name>bins</name></member>
+      <member refid="classFisl_1_1Monitoring_1_1Composition_1_1Sample_1a09db03994db106f82e977af31f3a9f63" prot="public" virt="non-virtual"><scope>Fisl::Monitoring::Composition::Sample</scope><name>handle</name></member>
+      <member refid="classFisl_1_1Monitoring_1_1Composition_1_1Sample_1aa9f7d1d1bc5559d31c50780bcbea313d" prot="public" virt="non-virtual"><scope>Fisl::Monitoring::Composition::Sample</scope><name>proportions</name></member>
+      <member refid="classFisl_1_1Monitoring_1_1Composition_1_1Sample_1aa90f9665095b12f4a24d9a80dfed59fd" prot="public" virt="non-virtual"><scope>Fisl::Monitoring::Composition::Sample</scope><name>Sample</name></member>
+      <member refid="classFisl_1_1Monitoring_1_1Composition_1_1Sample_1ae061d106d0a08146b25b02f097ce6721" prot="public" virt="non-virtual"><scope>Fisl::Monitoring::Composition::Sample</scope><name>size</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

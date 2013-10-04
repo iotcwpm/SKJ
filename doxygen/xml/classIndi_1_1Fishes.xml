@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="classIndi_1_1Fishes" kind="class" prot="public">
+    <compoundname>Indi::Fishes</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">std::vector&lt; Fish &gt;</basecompoundref>
+    <includes refid="fishes_8hpp" local="no">fishes.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename</type>
+        <declname>Fish</declname>
+        <defname>Fish</defname>
+        <defval><ref refid="classIndi_1_1Fish" kindref="compound">Indi::Fish</ref></defval>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-type">
+      <memberdef kind="typedef" id="classIndi_1_1Fishes_1afe557c9bb214edbe5f172491eea30225" prot="private" static="no">
+        <type>std::vector&lt; <ref refid="classIndi_1_1Fish" kindref="compound">Fish</ref> &gt;</type>
+        <definition>typedef std::vector&lt;Fish&gt; Indi::Fishes&lt; Fish &gt;::Base</definition>
+        <argsstring></argsstring>
+        <name>Base</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/indi/indi/fishes.hpp" line="71" column="1" bodyfile="/home/nbentley/Trophia/Code/indi/indi/fishes.hpp" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classIndi_1_1Fishes_1a9112f551b4be8aad90d279290ff907ae" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int Indi::Fishes&lt; Fish &gt;::start_number</definition>
+        <argsstring></argsstring>
+        <name>start_number</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/indi/indi/fishes.hpp" line="75" column="1" bodyfile="/home/nbentley/Trophia/Code/indi/indi/fishes.hpp" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classIndi_1_1Fishes_1ac589c20fdc3cee2caedd4a160a8f9be9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class <ref refid="classIndi_1_1Environs" kindref="compound">Environs</ref></type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void Indi::Fishes&lt; Fish &gt;::start</definition>
+        <argsstring>(const Environs &amp;environs)</argsstring>
+        <name>start</name>
+        <param>
+          <type>const <ref refid="classIndi_1_1Environs" kindref="compound">Environs</ref> &amp;</type>
+          <declname>environs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/indi/indi/fishes.hpp" line="78" column="1" bodyfile="/home/nbentley/Trophia/Code/indi/indi/fishes.hpp" bodystart="78" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="classIndi_1_1Fishes_1a68cc0bba6eda55004167c26e38a0d967" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class <ref refid="classIndi_1_1Environs" kindref="compound">Environs</ref></type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void Indi::Fishes&lt; Fish &gt;::update</definition>
+        <argsstring>(const Environs &amp;environs)</argsstring>
+        <name>update</name>
+        <param>
+          <type>const <ref refid="classIndi_1_1Environs" kindref="compound">Environs</ref> &amp;</type>
+          <declname>environs</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/indi/indi/fishes.hpp" line="86" column="1" bodyfile="/home/nbentley/Trophia/Code/indi/indi/fishes.hpp" bodystart="86" bodyend="90"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="249">
+        <label>Indi::Fishes&lt; Fish &gt;</label>
+        <link refid="classIndi_1_1Fishes"/>
+        <childnode refid="250" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="250">
+        <label>std::vector&lt; Fish &gt;</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="251">
+        <label>Indi::Fishes&lt; Fish &gt;</label>
+        <link refid="classIndi_1_1Fishes"/>
+        <childnode refid="252" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="252">
+        <label>std::vector&lt; Fish &gt;</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/nbentley/Trophia/Code/indi/indi/fishes.hpp" line="69" column="1" bodyfile="/home/nbentley/Trophia/Code/indi/indi/fishes.hpp" bodystart="69" bodyend="123"/>
+    <listofallmembers>
+      <member refid="classIndi_1_1Fishes_1afe557c9bb214edbe5f172491eea30225" prot="private" virt="non-virtual"><scope>Indi::Fishes</scope><name>Base</name></member>
+      <member refid="classIndi_1_1Fishes_1ac589c20fdc3cee2caedd4a160a8f9be9" prot="public" virt="non-virtual"><scope>Indi::Fishes</scope><name>start</name></member>
+      <member refid="classIndi_1_1Fishes_1a9112f551b4be8aad90d279290ff907ae" prot="public" virt="non-virtual"><scope>Indi::Fishes</scope><name>start_number</name></member>
+      <member refid="classIndi_1_1Fishes_1a68cc0bba6eda55004167c26e38a0d967" prot="public" virt="non-virtual"><scope>Indi::Fishes</scope><name>update</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="namespaceFisl_1_1Population" kind="namespace">
+    <compoundname>Fisl::Population</compoundname>
+    <innernamespace refid="namespaceFisl_1_1Population_1_1Growth">Fisl::Population::Growth</innernamespace>
+    <innernamespace refid="namespaceFisl_1_1Population_1_1Maturity">Fisl::Population::Maturity</innernamespace>
+    <innernamespace refid="namespaceFisl_1_1Population_1_1Models">Fisl::Population::Models</innernamespace>
+    <innernamespace refid="namespaceFisl_1_1Population_1_1Morphometry">Fisl::Population::Morphometry</innernamespace>
+    <innernamespace refid="namespaceFisl_1_1Population_1_1Mortality">Fisl::Population::Mortality</innernamespace>
+    <innernamespace refid="namespaceFisl_1_1Population_1_1Recruitment">Fisl::Population::Recruitment</innernamespace>
+    <innernamespace refid="namespaceFisl_1_1Population_1_1Structure">Fisl::Population::Structure</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/growth/priors/bentley_2010.hpp" line="10"/>
+  </compounddef>
+</doxygen>

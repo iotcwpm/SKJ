@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="md__home_nbentley_Trophia_Code_www_src_projects_P08009_FLA1" kind="page">
+    <compoundname>md__home_nbentley_Trophia_Code_www_src_projects_P08009_FLA1</compoundname>
+    <title>P08009 FLA1</title>
+    <detaileddescription>
+<para>Title: P08009: FLA 1 setnet CPUE standardisation</para><para>Principal Investigator: Terese Kendrick Researchers: Nokome Bentley Status: Completed Trophia has been contracted by the New Zealand Ministry of Fisheries (MFish) to determine the relative abundance of flatfish in FLA 1. The specific objective for this project include:</para><para><orderedlist>
+<listitem><para>To characterise the FLA 1 fishery and update the CPUE analyses for setnet fisheries in FLA 1 using data up to the end of 2007-08 .</para></listitem></orderedlist>
+</para><para>For management purpose nine species of flatfish (black flounder (BFL), brill (BRI), New Zealand sole (ESO), greenback flounder (GFL), lemon sole (LSO), sand flounder(SFL), Turbot (TUR), witch (WIT) and yellow belly flounder (YBF)) are combined to form a single fishery. Flatfish ITQ provides for the landing of all eight species.</para><para>Since the introduction of flatfish into the QMS, fishers have been required to use the actual species code in the estimated catch section of catch effort forms, and the degree to which they have complied has improved steadily with time. Adequate times series of catch effort data exist in FLA 1 for monitoring the main flatfish species (YBF and SFL) separately using set net CPUE in selected subareas of FLA 1.</para><para>These series will be updated with an additional four years of data and we will investigate the utility of using the current best practice for monitoring species in bycatch or mixed target fisheries which matches verified landings to effort (and in this case effort/species) strata</para><para>This work is funded by MFish project FLA2008/01 </para>    </detaileddescription>
+  </compounddef>
+</doxygen>

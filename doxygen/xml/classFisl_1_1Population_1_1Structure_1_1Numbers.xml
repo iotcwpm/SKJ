@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="classFisl_1_1Population_1_1Structure_1_1Numbers" kind="class" prot="public">
+    <compoundname>Fisl::Population::Structure::Numbers</compoundname>
+    <includes refid="numbers_8hpp" local="no">numbers.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classFisl_1_1Population_1_1Structure_1_1Numbers_1a7a9a34c8e26914759a0426ab70f6547d" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Fisl::Population::Structure::Numbers::value</definition>
+        <argsstring></argsstring>
+        <name>value</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/structure/numbers.hpp" line="9" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/structure/numbers.hpp" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classFisl_1_1Population_1_1Structure_1_1Numbers_1a3996b920356939368b0f981edccf7d9f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Fisl::Population::Structure::Numbers::Numbers</definition>
+        <argsstring>(const double &amp;value_=0)</argsstring>
+        <name>Numbers</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>value_</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/structure/numbers.hpp" line="13" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/structure/numbers.hpp" bodystart="12" bodyend="14"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Population_1_1Structure_1_1Numbers_1a455d5298fa73df9d0f0d97615a186881" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Fisl::Population::Structure::Numbers::operator double</definition>
+        <argsstring>() const </argsstring>
+        <name>operator double</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/structure/numbers.hpp" line="16" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/structure/numbers.hpp" bodystart="16" bodyend="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Population_1_1Structure_1_1Numbers_1a7c6089cb009df3233faa8d163b286c71" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classFisl_1_1Population_1_1Structure_1_1Numbers" kindref="compound">Numbers</ref> &amp;</type>
+        <definition>Numbers&amp; Fisl::Population::Structure::Numbers::add</definition>
+        <argsstring>(const Numbers &amp;other)</argsstring>
+        <name>add</name>
+        <param>
+          <type>const <ref refid="classFisl_1_1Population_1_1Structure_1_1Numbers" kindref="compound">Numbers</ref> &amp;</type>
+          <declname>other</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/structure/numbers.hpp" line="20" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/structure/numbers.hpp" bodystart="20" bodyend="23"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/structure/numbers.hpp" line="7" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/structure/numbers.hpp" bodystart="7" bodyend="24"/>
+    <listofallmembers>
+      <member refid="classFisl_1_1Population_1_1Structure_1_1Numbers_1a7c6089cb009df3233faa8d163b286c71" prot="public" virt="non-virtual"><scope>Fisl::Population::Structure::Numbers</scope><name>add</name></member>
+      <member refid="classFisl_1_1Population_1_1Structure_1_1Numbers_1a3996b920356939368b0f981edccf7d9f" prot="public" virt="non-virtual"><scope>Fisl::Population::Structure::Numbers</scope><name>Numbers</name></member>
+      <member refid="classFisl_1_1Population_1_1Structure_1_1Numbers_1a455d5298fa73df9d0f0d97615a186881" prot="public" virt="non-virtual"><scope>Fisl::Population::Structure::Numbers</scope><name>operator double</name></member>
+      <member refid="classFisl_1_1Population_1_1Structure_1_1Numbers_1a7a9a34c8e26914759a0426ab70f6547d" prot="private" virt="non-virtual"><scope>Fisl::Population::Structure::Numbers</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

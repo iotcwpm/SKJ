@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="classStochastic" kind="class" prot="public">
+    <compoundname>Stochastic</compoundname>
+    <includes refid="stochastic_8hpp" local="no">stochastic.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>class Relationship</type>
+      </param>
+      <param>
+        <type>class Variation</type>
+      </param>
+      <param>
+        <type>class Autocorrelation</type>
+      </param>
+    </templateparamlist>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/stochastic.hpp" line="17" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/stochastic.hpp" bodystart="17" bodyend="-1"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

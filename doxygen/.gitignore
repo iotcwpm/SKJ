@@ -1,0 +1,6 @@
+#Ignore generated Doxyfile
+Doxyfile
+
+#Ignore html and xml build directorys
+html
+xml

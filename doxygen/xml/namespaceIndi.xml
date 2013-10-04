@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="namespaceIndi" kind="namespace">
+    <compoundname>Indi</compoundname>
+    <innerclass refid="classIndi_1_1Environs" prot="public">Indi::Environs</innerclass>
+    <innerclass refid="classIndi_1_1Fish" prot="public">Indi::Fish</innerclass>
+    <innerclass refid="classIndi_1_1Fishes" prot="public">Indi::Fishes</innerclass>
+    <innerclass refid="classIndi_1_1Model" prot="public">Indi::Model</innerclass>
+    <innerclass refid="classIndi_1_1Scalar" prot="public">Indi::Scalar</innerclass>
+    <innerclass refid="classIndi_1_1Vessel" prot="public">Indi::Vessel</innerclass>
+    <innerclass refid="classIndi_1_1Vessels" prot="public">Indi::Vessels</innerclass>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="namespaceIndi_1a88121659e74f2ffe33286bca563539d6" prot="public" static="no">
+        <name>Sex</name>
+        <enumvalue id="namespaceIndi_1a88121659e74f2ffe33286bca563539d6afc7650a72476e97b6cedf67ffa4e78fb" prot="public">
+          <name>male</name>
+          <initializer>= 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="namespaceIndi_1a88121659e74f2ffe33286bca563539d6a6528f3d331af9cca49ed2f2b85b1eebf" prot="public">
+          <name>female</name>
+          <initializer>= 2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/indi/indi/scalars.hpp" line="23" column="1" bodyfile="/home/nbentley/Trophia/Code/indi/indi/scalars.hpp" bodystart="23" bodyend="26"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="namespaceIndi_1a53c2c412982da7e47fcb4d012758bb56" prot="public" static="no">
+        <type><ref refid="classIndi_1_1Scalar" kindref="compound">Scalar</ref>&lt; 0, unsigned short &gt;</type>
+        <definition>typedef Scalar&lt;0,unsigned short&gt; Indi::Time</definition>
+        <argsstring></argsstring>
+        <name>Time</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/indi/indi/scalars.hpp" line="9" column="1" bodyfile="/home/nbentley/Trophia/Code/indi/indi/scalars.hpp" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="namespaceIndi_1a0f2ed7a39e405d2dc8b07ab016d017c7" prot="public" static="no">
+        <type><ref refid="classIndi_1_1Scalar" kindref="compound">Scalar</ref>&lt; 1, unsigned short &gt;</type>
+        <definition>typedef Scalar&lt;1,unsigned short&gt; Indi::Latitude</definition>
+        <argsstring></argsstring>
+        <name>Latitude</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/indi/indi/scalars.hpp" line="15" column="1" bodyfile="/home/nbentley/Trophia/Code/indi/indi/scalars.hpp" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="namespaceIndi_1ab12d57db9a38ff3655cc0089800f8e25" prot="public" static="no">
+        <type><ref refid="classIndi_1_1Scalar" kindref="compound">Scalar</ref>&lt; 2, unsigned short &gt;</type>
+        <definition>typedef Scalar&lt;2,unsigned short&gt; Indi::Longitude</definition>
+        <argsstring></argsstring>
+        <name>Longitude</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/indi/indi/scalars.hpp" line="19" column="1" bodyfile="/home/nbentley/Trophia/Code/indi/indi/scalars.hpp" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="namespaceIndi_1a05360569c644901c60426b532873d8f9" prot="public" static="no">
+        <type><ref refid="classIndi_1_1Scalar" kindref="compound">Scalar</ref>&lt; 3, unsigned short &gt;</type>
+        <definition>typedef Scalar&lt;3,unsigned short&gt; Indi::Length</definition>
+        <argsstring></argsstring>
+        <name>Length</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/indi/indi/scalars.hpp" line="28" column="1" bodyfile="/home/nbentley/Trophia/Code/indi/indi/scalars.hpp" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="namespaceIndi_1a82f9a37370399315a157c4af8d7a3a89" prot="public" static="no" mutable="no">
+        <type><ref refid="namespaceIndi_1a53c2c412982da7e47fcb4d012758bb56" kindref="member">Time</ref></type>
+        <definition>Time Indi::now</definition>
+        <argsstring></argsstring>
+        <name>now</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/indi/indi/scalars.hpp" line="13" column="1" bodyfile="/home/nbentley/Trophia/Code/indi/indi/scalars.hpp" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/nbentley/Trophia/Code/indi/indi/environs.hpp" line="3" column="1"/>
+  </compounddef>
+</doxygen>

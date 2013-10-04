@@ -1,0 +1,319 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="classFisl_1_1Math_1_1Probability_1_1Distribution" kind="class" prot="public">
+    <compoundname>Fisl::Math::Probability::Distribution</compoundname>
+    <includes refid="distribution_8hpp" local="no">distribution.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>typename</type>
+        <declname>Derived</declname>
+        <defname>Derived</defname>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classFisl_1_1Math_1_1Probability_1_1Distribution_1a675808a0f84ce19c22b483f270891a86" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Fisl::Math::Probability::Distribution&lt; Derived &gt;::reset</definition>
+        <argsstring>(void)</argsstring>
+        <name>reset</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/distribution.hpp" line="48" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/distribution.hpp" bodystart="48" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Math_1_1Probability_1_1Distribution_1a182ec4e2c96c4202bb1dff921f2191a0" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Fisl::Math::Probability::Distribution&lt; Derived &gt;::mean</definition>
+        <argsstring>(void) const </argsstring>
+        <name>mean</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/distribution.hpp" line="51" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/distribution.hpp" bodystart="51" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Math_1_1Probability_1_1Distribution_1a774d7784c48137c42aaff340377e028e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Fisl::Math::Probability::Distribution&lt; Derived &gt;::median</definition>
+        <argsstring>(void) const </argsstring>
+        <name>median</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/distribution.hpp" line="55" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/distribution.hpp" bodystart="55" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Math_1_1Probability_1_1Distribution_1a82ef9d3fc21279c781cd15079962a42d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Fisl::Math::Probability::Distribution&lt; Derived &gt;::mode</definition>
+        <argsstring>(void) const </argsstring>
+        <name>mode</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/distribution.hpp" line="59" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/distribution.hpp" bodystart="59" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Math_1_1Probability_1_1Distribution_1abd1a9d338fe54d629948c89621d050f4" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Fisl::Math::Probability::Distribution&lt; Derived &gt;::sd</definition>
+        <argsstring>(void) const </argsstring>
+        <name>sd</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/distribution.hpp" line="63" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/distribution.hpp" bodystart="63" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Math_1_1Probability_1_1Distribution_1a6f367697e755edd3b20387c1e158a710" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Fisl::Math::Probability::Distribution&lt; Derived &gt;::variance</definition>
+        <argsstring>(void) const </argsstring>
+        <name>variance</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/distribution.hpp" line="67" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/distribution.hpp" bodystart="67" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Math_1_1Probability_1_1Distribution_1ae7e2437bb1a2d6da0f6c5a73fe9bd359" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Fisl::Math::Probability::Distribution&lt; Derived &gt;::skewness</definition>
+        <argsstring>(void) const </argsstring>
+        <name>skewness</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/distribution.hpp" line="71" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/distribution.hpp" bodystart="71" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Math_1_1Probability_1_1Distribution_1a2020edcb2d28b6eb53621799bfd867e3" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Fisl::Math::Probability::Distribution&lt; Derived &gt;::kurtosis</definition>
+        <argsstring>(void) const </argsstring>
+        <name>kurtosis</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/distribution.hpp" line="75" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/distribution.hpp" bodystart="75" bodyend="77"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Math_1_1Probability_1_1Distribution_1a1bbc65c211496a872815529ac8ddb714" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Fisl::Math::Probability::Distribution&lt; Derived &gt;::kurtosis_excess</definition>
+        <argsstring>(void) const </argsstring>
+        <name>kurtosis_excess</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/distribution.hpp" line="79" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/distribution.hpp" bodystart="79" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Math_1_1Probability_1_1Distribution_1a5c3913bd5c2a35ad5f37b2f6436a7097" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Fisl::Math::Probability::Distribution&lt; Derived &gt;::pdf</definition>
+        <argsstring>(const double &amp;x) const </argsstring>
+        <name>pdf</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><xrefsect id="todo_1_todo000003"><xreftitle>Todo</xreftitle><xrefdescription><para>implement Duple&lt;&gt; to provide for range and support </para></xrefdescription></xrefsect></para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/distribution.hpp" line="94" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/distribution.hpp" bodystart="94" bodyend="96"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Math_1_1Probability_1_1Distribution_1a95208e0e07e7933ed64050e5cd0fc76f" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Fisl::Math::Probability::Distribution&lt; Derived &gt;::cdf</definition>
+        <argsstring>(const double &amp;x) const </argsstring>
+        <name>cdf</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/distribution.hpp" line="98" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/distribution.hpp" bodystart="98" bodyend="100"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Math_1_1Probability_1_1Distribution_1ac4e32e6c5bd4c66fd332e1bb44e68089" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Fisl::Math::Probability::Distribution&lt; Derived &gt;::quantile</definition>
+        <argsstring>(const double &amp;p) const </argsstring>
+        <name>quantile</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/distribution.hpp" line="102" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/distribution.hpp" bodystart="102" bodyend="104"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Math_1_1Probability_1_1Distribution_1a40637f4c486027064fda3c0db912c570" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Function</type>
+          </param>
+          <param>
+            <type>typename...</type>
+            <declname>Parameters</declname>
+            <defname>Parameters</defname>
+          </param>
+        </templateparamlist>
+        <type>double</type>
+        <definition>double Fisl::Math::Probability::Distribution&lt; Derived &gt;::integrate</definition>
+        <argsstring>(const double &amp;from, const double &amp;to, Function function, Parameters...parameters) const </argsstring>
+        <name>integrate</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>from</declname>
+        </param>
+        <param>
+          <type>const double &amp;</type>
+          <declname>to</declname>
+        </param>
+        <param>
+          <type>Function</type>
+          <declname>function</declname>
+        </param>
+        <param>
+          <type>Parameters...</type>
+          <declname>parameters</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para>Calculate the integral of distibution times function (called with parameters). The first argument of function is the x value of distibutuion. Simpson&apos;s composite rule</para>        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/distribution.hpp" line="110" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/distribution.hpp" bodystart="110" bodyend="128"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Math_1_1Probability_1_1Distribution_1a2c0a1ca31d89677a9a4e35384c491a37" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename Function</type>
+          </param>
+          <param>
+            <type>typename...</type>
+            <declname>Parameters</declname>
+            <defname>Parameters</defname>
+          </param>
+        </templateparamlist>
+        <type>double</type>
+        <definition>double Fisl::Math::Probability::Distribution&lt; Derived &gt;::integrate</definition>
+        <argsstring>(Function function, Parameters...parameters) const </argsstring>
+        <name>integrate</name>
+        <param>
+          <type>Function</type>
+          <declname>function</declname>
+        </param>
+        <param>
+          <type>Parameters...</type>
+          <declname>parameters</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/distribution.hpp" line="134" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/distribution.hpp" bodystart="134" bodyend="136"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Math_1_1Probability_1_1Distribution_1a9d889581e0d2cdbe83ca796a458d9d47" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Fisl::Math::Probability::Distribution&lt; Derived &gt;::random</definition>
+        <argsstring>(void) const </argsstring>
+        <name>random</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para>A generalised means of generating a random number for a distribution. A specific distribution might override this for efficiency</para>        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/distribution.hpp" line="138" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/distribution.hpp" bodystart="138" bodyend="145"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A base implementation class for all probability distributions</para><para>All probability distributions have a member called data_ which is a boost::math distribution. (The alternative of deriving from both boost::math distributions caused a mysterious memory bug in testing). Random variates are produced using boost::random distributions within the <ref refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1a9d889581e0d2cdbe83ca796a458d9d47" kindref="member">random()</ref> method. Specific classes might overide the <ref refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1a9d889581e0d2cdbe83ca796a458d9d47" kindref="member">random()</ref> method to provide greate efficiency (?) by using the boost::random distributions directly, rather than using <ref refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1ac4e32e6c5bd4c66fd332e1bb44e68089" kindref="member">quantile()</ref>.</para><para>Boost::math defines a number of non-member properties that are common to all distributions: &apos;cdf&apos;,&apos;complement&apos;,&apos;chf&apos;,&apos;hazard&apos;,&apos;kurtosis&apos;,&apos;kurtosis_excess&apos;,&apos;mean&apos;,&apos;median&apos;,&apos;mode&apos;,&apos;pdf&apos;,&apos;range&apos;,&apos;quantile&apos;,&apos;skewness&apos;,&apos;standard_deviation&apos;,&apos;support&apos;,&apos;variance&apos; these are wrapped into methods. </para>    </detaileddescription>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/distribution.hpp" line="45" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/distribution.hpp" bodystart="45" bodyend="146"/>
+    <listofallmembers>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1a95208e0e07e7933ed64050e5cd0fc76f" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::Distribution</scope><name>cdf</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1a40637f4c486027064fda3c0db912c570" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::Distribution</scope><name>integrate</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1a2c0a1ca31d89677a9a4e35384c491a37" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::Distribution</scope><name>integrate</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1a2020edcb2d28b6eb53621799bfd867e3" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::Distribution</scope><name>kurtosis</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1a1bbc65c211496a872815529ac8ddb714" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::Distribution</scope><name>kurtosis_excess</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1a182ec4e2c96c4202bb1dff921f2191a0" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::Distribution</scope><name>mean</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1a774d7784c48137c42aaff340377e028e" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::Distribution</scope><name>median</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1a82ef9d3fc21279c781cd15079962a42d" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::Distribution</scope><name>mode</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1a5c3913bd5c2a35ad5f37b2f6436a7097" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::Distribution</scope><name>pdf</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1ac4e32e6c5bd4c66fd332e1bb44e68089" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::Distribution</scope><name>quantile</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1a9d889581e0d2cdbe83ca796a458d9d47" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::Distribution</scope><name>random</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1a675808a0f84ce19c22b483f270891a86" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::Distribution</scope><name>reset</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1abd1a9d338fe54d629948c89621d050f4" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::Distribution</scope><name>sd</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1ae7e2437bb1a2d6da0f6c5a73fe9bd359" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::Distribution</scope><name>skewness</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1a6f367697e755edd3b20387c1e158a710" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::Distribution</scope><name>variance</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

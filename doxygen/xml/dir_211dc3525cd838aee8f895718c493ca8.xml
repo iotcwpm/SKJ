@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="dir_211dc3525cd838aee8f895718c493ca8" kind="dir">
+    <compoundname>structure</compoundname>
+    <innerfile refid="aged_8cxx">aged.cxx</innerfile>
+    <innerfile refid="aged_8hpp">aged.hpp</innerfile>
+    <innerfile refid="gendered_8hpp">gendered.hpp</innerfile>
+    <innerfile refid="numbers_8hpp">numbers.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/structure/"/>
+  </compounddef>
+</doxygen>

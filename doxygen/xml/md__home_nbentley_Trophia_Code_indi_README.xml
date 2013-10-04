@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="md__home_nbentley_Trophia_Code_indi_README" kind="page">
+    <compoundname>md__home_nbentley_Trophia_Code_indi_README</compoundname>
+    <title>indi : An individual-based fisheries model</title>
+    <detaileddescription>
+<para><computeroutput>indi</computeroutput> is a C++ library for individual-based (a.k.a agent-based) models of fisheries. It was developed to implement an IBM for the Indian Ocean skipjack fishery on behalf of the Maldives Ministry of Fisheries and Agriculture (see /projects/io-skipjack/). Currently, the library is in a very preliminary, skeletal, proof-of-concept state. </para>    </detaileddescription>
+  </compounddef>
+</doxygen>

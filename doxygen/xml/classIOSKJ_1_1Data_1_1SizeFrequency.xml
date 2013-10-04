@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="classIOSKJ_1_1Data_1_1SizeFrequency" kind="class" prot="public">
+    <compoundname>IOSKJ::Data::SizeFrequency</compoundname>
+    <includes refid="data_8hpp" local="no">data.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classIOSKJ_1_1Data_1_1SizeFrequency_1a08b0a6bd3c85e65f42521048e6e3bab3" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char IOSKJ::Data::SizeFrequency::area</definition>
+        <argsstring></argsstring>
+        <name>area</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/ioskj/data.hpp" line="60" column="1" bodyfile="/home/nbentley/Trophia/Code/ioskj/data.hpp" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classIOSKJ_1_1Data_1_1SizeFrequency_1a49c0a08a3422004645d2226265c237c7" prot="public" static="no" mutable="no">
+        <type>std::string</type>
+        <definition>std::string IOSKJ::Data::SizeFrequency::method</definition>
+        <argsstring></argsstring>
+        <name>method</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/ioskj/data.hpp" line="61" column="1" bodyfile="/home/nbentley/Trophia/Code/ioskj/data.hpp" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classIOSKJ_1_1Data_1_1SizeFrequency_1a19ef92240e288f489c5d90b1c4df0000" prot="public" static="no" mutable="no">
+        <type>unsigned short int</type>
+        <definition>unsigned short int IOSKJ::Data::SizeFrequency::year</definition>
+        <argsstring></argsstring>
+        <name>year</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/ioskj/data.hpp" line="62" column="1" bodyfile="/home/nbentley/Trophia/Code/ioskj/data.hpp" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classIOSKJ_1_1Data_1_1SizeFrequency_1aee8e747384c06491bebb7cc539bbb15a" prot="public" static="no" mutable="no">
+        <type>unsigned short int</type>
+        <definition>unsigned short int IOSKJ::Data::SizeFrequency::quarter</definition>
+        <argsstring></argsstring>
+        <name>quarter</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/ioskj/data.hpp" line="63" column="1" bodyfile="/home/nbentley/Trophia/Code/ioskj/data.hpp" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classIOSKJ_1_1Data_1_1SizeFrequency_1ab9833e7a7783b8b73489ac83ad0d4bd8" prot="public" static="no" mutable="no">
+        <type>std::array&lt; float, 61 &gt;</type>
+        <definition>std::array&lt;float,61&gt; IOSKJ::Data::SizeFrequency::props</definition>
+        <argsstring></argsstring>
+        <name>props</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/ioskj/data.hpp" line="64" column="1" bodyfile="/home/nbentley/Trophia/Code/ioskj/data.hpp" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classIOSKJ_1_1Data_1_1SizeFrequency_1ad494b63b6b89bdedae41e62ce4dbc1d7" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int IOSKJ::Data::SizeFrequency::num</definition>
+        <argsstring></argsstring>
+        <name>num</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/ioskj/data.hpp" line="65" column="1" bodyfile="/home/nbentley/Trophia/Code/ioskj/data.hpp" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classIOSKJ_1_1Data_1_1SizeFrequency_1a47ab1ffa698fd8b3158eec2451a07b99" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void IOSKJ::Data::SizeFrequency::read</definition>
+        <argsstring>(std::istream &amp;stream)</argsstring>
+        <name>read</name>
+        <param>
+          <type>std::istream &amp;</type>
+          <declname>stream</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/ioskj/data.hpp" line="67" column="1" bodyfile="/home/nbentley/Trophia/Code/ioskj/data.hpp" bodystart="67" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="classIOSKJ_1_1Data_1_1SizeFrequency_1ae75970f485f011f5191566ca0987c572" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void IOSKJ::Data::SizeFrequency::write</definition>
+        <argsstring>(std::ostream &amp;stream)</argsstring>
+        <name>write</name>
+        <param>
+          <type>std::ostream &amp;</type>
+          <declname>stream</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/ioskj/data.hpp" line="73" column="1" bodyfile="/home/nbentley/Trophia/Code/ioskj/data.hpp" bodystart="73" bodyend="77"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/nbentley/Trophia/Code/ioskj/data.hpp" line="58" column="1" bodyfile="/home/nbentley/Trophia/Code/ioskj/data.hpp" bodystart="58" bodyend="78"/>
+    <listofallmembers>
+      <member refid="classIOSKJ_1_1Data_1_1SizeFrequency_1a08b0a6bd3c85e65f42521048e6e3bab3" prot="public" virt="non-virtual"><scope>IOSKJ::Data::SizeFrequency</scope><name>area</name></member>
+      <member refid="classIOSKJ_1_1Data_1_1SizeFrequency_1a49c0a08a3422004645d2226265c237c7" prot="public" virt="non-virtual"><scope>IOSKJ::Data::SizeFrequency</scope><name>method</name></member>
+      <member refid="classIOSKJ_1_1Data_1_1SizeFrequency_1ad494b63b6b89bdedae41e62ce4dbc1d7" prot="public" virt="non-virtual"><scope>IOSKJ::Data::SizeFrequency</scope><name>num</name></member>
+      <member refid="classIOSKJ_1_1Data_1_1SizeFrequency_1ab9833e7a7783b8b73489ac83ad0d4bd8" prot="public" virt="non-virtual"><scope>IOSKJ::Data::SizeFrequency</scope><name>props</name></member>
+      <member refid="classIOSKJ_1_1Data_1_1SizeFrequency_1aee8e747384c06491bebb7cc539bbb15a" prot="public" virt="non-virtual"><scope>IOSKJ::Data::SizeFrequency</scope><name>quarter</name></member>
+      <member refid="classIOSKJ_1_1Data_1_1SizeFrequency_1a47ab1ffa698fd8b3158eec2451a07b99" prot="public" virt="non-virtual"><scope>IOSKJ::Data::SizeFrequency</scope><name>read</name></member>
+      <member refid="classIOSKJ_1_1Data_1_1SizeFrequency_1ae75970f485f011f5191566ca0987c572" prot="public" virt="non-virtual"><scope>IOSKJ::Data::SizeFrequency</scope><name>write</name></member>
+      <member refid="classIOSKJ_1_1Data_1_1SizeFrequency_1a19ef92240e288f489c5d90b1c4df0000" prot="public" virt="non-virtual"><scope>IOSKJ::Data::SizeFrequency</scope><name>year</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

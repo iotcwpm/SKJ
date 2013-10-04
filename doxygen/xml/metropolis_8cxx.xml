@@ -1,0 +1,219 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="metropolis_8cxx" kind="file">
+    <compoundname>metropolis.cxx</compoundname>
+    <includes local="no">boost/test/unit_test.hpp</includes>
+    <includes refid="metropolis_8hpp" local="no">fisl/estimation/mcmc/metropolis.hpp</includes>
+    <incdepgraph>
+      <node id="349">
+        <label>boost/random/variate_generator.hpp</label>
+      </node>
+      <node id="343">
+        <label>fisl/math/probability/uniform.hpp</label>
+        <link refid="uniform_8hpp"/>
+        <childnode refid="344" relation="include">
+        </childnode>
+        <childnode refid="345" relation="include">
+        </childnode>
+        <childnode refid="346" relation="include">
+        </childnode>
+      </node>
+      <node id="345">
+        <label>boost/random/uniform_real.hpp</label>
+      </node>
+      <node id="334">
+        <label>boost/test/unit_test.hpp</label>
+      </node>
+      <node id="333">
+        <label>metropolis.cxx</label>
+        <link refid="metropolis.cxx"/>
+        <childnode refid="334" relation="include">
+        </childnode>
+        <childnode refid="335" relation="include">
+        </childnode>
+      </node>
+      <node id="354">
+        <label>boost/random/normal_distribution.hpp</label>
+      </node>
+      <node id="353">
+        <label>boost/math/distributions/normal.hpp</label>
+      </node>
+      <node id="344">
+        <label>boost/math/distributions/uniform.hpp</label>
+      </node>
+      <node id="336">
+        <label>fstream</label>
+      </node>
+      <node id="340">
+        <label>fisl/array.hpp</label>
+        <link refid="array_8hpp"/>
+        <childnode refid="341" relation="include">
+        </childnode>
+        <childnode refid="342" relation="include">
+        </childnode>
+      </node>
+      <node id="348">
+        <label>boost/random/mersenne_twister.hpp</label>
+      </node>
+      <node id="347">
+        <label>ctime</label>
+      </node>
+      <node id="337">
+        <label>stencila/datatable.hpp</label>
+      </node>
+      <node id="341">
+        <label>vector</label>
+      </node>
+      <node id="346">
+        <label>fisl/math/probability/distribution.hpp</label>
+        <link refid="distribution_8hpp"/>
+        <childnode refid="347" relation="include">
+        </childnode>
+        <childnode refid="348" relation="include">
+        </childnode>
+        <childnode refid="349" relation="include">
+        </childnode>
+        <childnode refid="344" relation="include">
+        </childnode>
+        <childnode refid="350" relation="include">
+        </childnode>
+        <childnode refid="351" relation="include">
+        </childnode>
+      </node>
+      <node id="338">
+        <label>stencila/dataset.hpp</label>
+      </node>
+      <node id="335">
+        <label>fisl/estimation/mcmc/metropolis.hpp</label>
+        <link refid="metropolis_8hpp"/>
+        <childnode refid="336" relation="include">
+        </childnode>
+        <childnode refid="337" relation="include">
+        </childnode>
+        <childnode refid="338" relation="include">
+        </childnode>
+        <childnode refid="339" relation="include">
+        </childnode>
+        <childnode refid="340" relation="include">
+        </childnode>
+        <childnode refid="343" relation="include">
+        </childnode>
+        <childnode refid="352" relation="include">
+        </childnode>
+      </node>
+      <node id="342">
+        <label>algorithm</label>
+      </node>
+      <node id="352">
+        <label>fisl/math/probability/normal.hpp</label>
+        <link refid="normal_8hpp"/>
+        <childnode refid="353" relation="include">
+        </childnode>
+        <childnode refid="354" relation="include">
+        </childnode>
+        <childnode refid="346" relation="include">
+        </childnode>
+      </node>
+      <node id="350">
+        <label>boost/random/uniform_01.hpp</label>
+      </node>
+      <node id="339">
+        <label>stencila/hashing.cpp</label>
+      </node>
+      <node id="351">
+        <label>fisl/common.hpp</label>
+        <link refid="common_8hpp"/>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classFisl_1_1Estimation_1_1Mcmc_1_1McmcNormal" prot="public">Fisl::Estimation::Mcmc::McmcNormal</innerclass>
+    <innerclass refid="classFisl_1_1Estimation_1_1Mcmc_1_1McmcRegress" prot="public">Fisl::Estimation::Mcmc::McmcRegress</innerclass>
+    <innernamespace refid="namespaceFisl">Fisl</innernamespace>
+    <innernamespace refid="namespaceFisl_1_1Estimation">Fisl::Estimation</innernamespace>
+    <innernamespace refid="namespaceFisl_1_1Estimation_1_1Mcmc">Fisl::Estimation::Mcmc</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifdef<sp/>FISL_TEST_SINGLE</highlight></codeline>
+<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>BOOST_TEST_MODULE<sp/>tests</highlight></codeline>
+<codeline lineno="3"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="4"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#include<sp/>&lt;boost/test/unit_test.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="metropolis_8hpp" kindref="compound">fisl/estimation/mcmc/metropolis.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">Fisl<sp/>{</highlight></codeline>
+<codeline lineno="9" refid="namespaceFisl_1_1Estimation" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">Estimation<sp/>{</highlight></codeline>
+<codeline lineno="10" refid="namespaceFisl_1_1Estimation_1_1Mcmc" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">Mcmc<sp/>{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="12"><highlight class="normal">BOOST_AUTO_TEST_SUITE(metropolis)</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="classFisl_1_1Math_1_1Probability_1_1Normal" kindref="compound">Fisl::Math::Probability::Normal</ref>;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis" kindref="compound" tooltip="Metropolis Markov chain Monte Carlo algorithm.">Fisl::Estimation::Mcmc::Metropolis</ref>;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17" refid="classFisl_1_1Estimation_1_1Mcmc_1_1McmcNormal" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classFisl_1_1Estimation_1_1Mcmc_1_1McmcNormal" kindref="compound">McmcNormal</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis" kindref="compound" tooltip="Metropolis Markov chain Monte Carlo algorithm.">Metropolis</ref>&lt;McmcNormal,1&gt;<sp/>{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classFisl_1_1Math_1_1Probability_1_1Normal" kindref="compound">Normal</ref><sp/><ref refid="classFisl_1_1Estimation_1_1Mcmc_1_1McmcNormal_1aaf8946d79ea6d0430f8df58662fbf173" kindref="member">dist</ref>;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classFisl_1_1Estimation_1_1Mcmc_1_1McmcNormal_1acbdabf5bc9eb340467c31d8becf45496" kindref="member">reset</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">){</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classFisl_1_1Estimation_1_1Mcmc_1_1McmcNormal_1aaf8946d79ea6d0430f8df58662fbf173" kindref="member">dist</ref><sp/>=<sp/><ref refid="classFisl_1_1Math_1_1Probability_1_1Normal" kindref="compound">Normal</ref>(3.14,0.56);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1af0e834bad8b8189b2ffd2d9ab1b37a92" kindref="member" tooltip="Vector that represents the paramter values at the end of the chain.">values</ref><sp/>=<sp/>{1};</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1a9d43634dd5eec8bf5181674b38b22036" kindref="member">variances</ref><sp/>=<sp/>{1};<sp/></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1a4cfc017ea6bfcf770d70fa065a6a928b" kindref="member">Metropolis&lt;McmcNormal,1&gt;::reset</ref>();</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Real<sp/><ref refid="classFisl_1_1Estimation_1_1Mcmc_1_1McmcNormal_1ab3602fe90a72fa055d2fbc70d1fe9a20" kindref="member">log_like</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classArray" kindref="compound">Array&lt;Real,1&gt;</ref>&amp;<sp/>parameters){</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Real<sp/>x<sp/>=<sp/>parameters(0);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>std::log(<ref refid="classFisl_1_1Estimation_1_1Mcmc_1_1McmcNormal_1aaf8946d79ea6d0430f8df58662fbf173" kindref="member">dist</ref>.<ref refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1a5c3913bd5c2a35ad5f37b2f6436a7097" kindref="member">pdf</ref>(x));</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="32"><highlight class="normal">};<sp/></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><ref refid="namespaceFisl_1_1Estimation_1_1Mcmc_1a4ca8d3e6d2f4e46db181252bb09caf14" kindref="member">BOOST_AUTO_TEST_CASE</ref>(test_1){</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classFisl_1_1Estimation_1_1Mcmc_1_1McmcNormal" kindref="compound">McmcNormal</ref><sp/>m;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m.<ref refid="classFisl_1_1Estimation_1_1Mcmc_1_1McmcNormal_1acbdabf5bc9eb340467c31d8becf45496" kindref="member">reset</ref>();</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m.<ref refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1a56795d955604d4ef28c14e0d6122bdb2" kindref="member">run</ref>(10000);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>BOOST_CHECK_CLOSE(m.<ref refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1a92d8bcbddf91e31118e318c6f11f2c32" kindref="member">samples</ref>.value&lt;</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&gt;(</highlight><highlight class="stringliteral">&quot;mean(p0)&quot;</highlight><highlight class="normal">),3.14,1);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>BOOST_CHECK_CLOSE(m.<ref refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1a92d8bcbddf91e31118e318c6f11f2c32" kindref="member">samples</ref>.value&lt;</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&gt;(</highlight><highlight class="stringliteral">&quot;sd(p0)&quot;</highlight><highlight class="normal">),0.56,10);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42" refid="classFisl_1_1Estimation_1_1Mcmc_1_1McmcRegress" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classFisl_1_1Estimation_1_1Mcmc_1_1McmcRegress" kindref="compound">McmcRegress</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis" kindref="compound" tooltip="Metropolis Markov chain Monte Carlo algorithm.">Metropolis</ref>&lt;McmcRegress,2&gt;<sp/>{</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classArray" kindref="compound">Array&lt;Real,10&gt;</ref><sp/><ref refid="classFisl_1_1Estimation_1_1Mcmc_1_1McmcRegress_1a67b2424e7d5fd82d929e1ba6b55f973d" kindref="member">x</ref>;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classArray" kindref="compound">Array&lt;Real,10&gt;</ref><sp/><ref refid="classFisl_1_1Estimation_1_1Mcmc_1_1McmcRegress_1a8c0f34ea7126da266a6c1812601aa2b2" kindref="member">y</ref>;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classFisl_1_1Estimation_1_1Mcmc_1_1McmcRegress_1a61a1e4508b36bf8ad591b2fddaad8ebd" kindref="member">reset</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">){</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classFisl_1_1Estimation_1_1Mcmc_1_1McmcRegress_1a67b2424e7d5fd82d929e1ba6b55f973d" kindref="member">x</ref><sp/>=<sp/>{0,1,2,3,4,5,6,7,8,9};</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classFisl_1_1Estimation_1_1Mcmc_1_1McmcRegress_1a8c0f34ea7126da266a6c1812601aa2b2" kindref="member">y</ref><sp/>=<sp/>{0,1.9,2.4,3.8,4.9,6.1,7.5,8.9,10.1,11.5};</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1af0e834bad8b8189b2ffd2d9ab1b37a92" kindref="member" tooltip="Vector that represents the paramter values at the end of the chain.">values</ref><sp/>=<sp/>{0,1};</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1a9d43634dd5eec8bf5181674b38b22036" kindref="member">variances</ref><sp/>=<sp/>{0.01,0.01};</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1a4cfc017ea6bfcf770d70fa065a6a928b" kindref="member">Metropolis&lt;McmcRegress,2&gt;::reset</ref>();</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Real<sp/><ref refid="classFisl_1_1Estimation_1_1Mcmc_1_1McmcRegress_1ad8172017d42d37298abb65dd55d27811" kindref="member">log_like</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classArray" kindref="compound">Array&lt;Real,2&gt;</ref>&amp;<sp/>parameters){</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Real<sp/>a<sp/>=<sp/>parameters(0);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Real<sp/>b<sp/>=<sp/>parameters(1);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1aea3da265f9b8b221503f02eaad61689a" kindref="member">ll</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i=0;i&lt;10;i++){</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Real<sp/>pred<sp/>=<sp/>a<sp/>+<sp/><ref refid="classFisl_1_1Estimation_1_1Mcmc_1_1McmcRegress_1a67b2424e7d5fd82d929e1ba6b55f973d" kindref="member">x</ref>(i)*b;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ll<sp/>+=<sp/>std::log(<ref refid="classFisl_1_1Math_1_1Probability_1_1Normal" kindref="compound">Normal</ref>(<ref refid="classFisl_1_1Estimation_1_1Mcmc_1_1McmcRegress_1a8c0f34ea7126da266a6c1812601aa2b2" kindref="member">y</ref>(i),0.1).pdf(pred));</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1aea3da265f9b8b221503f02eaad61689a" kindref="member">ll</ref>;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="66"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><ref refid="namespaceFisl_1_1Estimation_1_1Mcmc_1a4ca8d3e6d2f4e46db181252bb09caf14" kindref="member">BOOST_AUTO_TEST_CASE</ref>(test_2){</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classFisl_1_1Estimation_1_1Mcmc_1_1McmcRegress" kindref="compound">McmcRegress</ref><sp/>m;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m.<ref refid="classFisl_1_1Estimation_1_1Mcmc_1_1McmcRegress_1a61a1e4508b36bf8ad591b2fddaad8ebd" kindref="member">reset</ref>();</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m.<ref refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1a56795d955604d4ef28c14e0d6122bdb2" kindref="member">run</ref>(10000);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal">BOOST_AUTO_TEST_SUITE_END()</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="77"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="78"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.cxx"/>
+  </compounddef>
+</doxygen>

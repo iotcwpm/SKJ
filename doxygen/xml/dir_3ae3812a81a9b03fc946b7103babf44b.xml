@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="dir_3ae3812a81a9b03fc946b7103babf44b" kind="dir">
+    <compoundname>cralb</compoundname>
+    <innerdir refid="dir_fce5a666c134d0b484b85ac79a6350b7">data</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/nbentley/Trophia/Code/cralb/"/>
+  </compounddef>
+</doxygen>

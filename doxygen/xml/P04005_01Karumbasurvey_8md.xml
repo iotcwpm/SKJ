@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="P04005_01Karumbasurvey_8md" kind="file">
+    <compoundname>P04005 Karumbasurvey.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal">Title:<sp/>P04005:<sp/>Recreational<sp/>fishing<sp/>survey<sp/>Karumba,<sp/>Southern<sp/>Gulf<sp/>of<sp/>Carpentaria</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">Principal<sp/>Investigator:</highlight></codeline>
+<codeline lineno="6"><highlight class="normal">Anthony<sp/>Hart</highlight></codeline>
+<codeline lineno="7"><highlight class="normal">Researchers:</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal">Status:</highlight></codeline>
+<codeline lineno="10"><highlight class="normal">Completed</highlight></codeline>
+<codeline lineno="11"><highlight class="normal">Trophia<sp/>was<sp/>contracted<sp/>by<sp/>the<sp/>Australian<sp/>Centre<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>Tropical<sp/>Freshwater<sp/>Research<sp/>to<sp/>contribute<sp/>to<sp/>the<sp/>Southern<sp/>Gulf<sp/>Environmental<sp/>Information<sp/>Program<sp/>by<sp/>describing<sp/>and<sp/>assessing<sp/>individually<sp/>the<sp/>distinct<sp/>recreational<sp/>fisheries<sp/>in<sp/>the<sp/>area.<sp/>This<sp/>study<sp/>is<sp/>the<sp/>second<sp/>carried<sp/>out<sp/>by<sp/>Trophia<sp/>in<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>series<sp/>and<sp/>focused<sp/>on<sp/>the<sp/>tourist<sp/>fishery<sp/>sub<sp/>component.</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal">The<sp/>objectives<sp/>were:</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal">To<sp/>estimate<sp/></highlight><highlight class="keywordflow">catch</highlight><highlight class="normal">,<sp/>effort<sp/>and<sp/>mean<sp/>size<sp/>of<sp/>the<sp/>principal<sp/>target<sp/>species<sp/>during<sp/>the<sp/>May-June<sp/><ref refid="namespaceupdater_1a7c7fcda819b75f5f7ae6d68ee41ffadd" kindref="member">strata</ref><sp/>of<sp/>the<sp/>tourist<sp/>fishery<sp/>sub-component<sp/>of<sp/>the<sp/>Karumba<sp/>recreational<sp/>fishery.</highlight></codeline>
+<codeline lineno="16"><highlight class="normal">To<sp/>obtain<sp/>estimates<sp/>of<sp/>mean<sp/>and<sp/>variability<sp/>in<sp/>harvest<sp/>rates<sp/>of<sp/>the<sp/>principal<sp/>target<sp/>species<sp/>during<sp/>the<sp/>tourist<sp/>fishery<sp/>sub-component<sp/>of<sp/>the<sp/>Karumba<sp/>recreational<sp/>fishery.</highlight></codeline>
+<codeline lineno="17"><highlight class="normal">To<sp/>link<sp/>up<sp/>data<sp/>from<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>report<sp/>with<sp/>an<sp/>initial<sp/>pilot<sp/>study<sp/>and<sp/>establish<sp/>a<sp/>draft<sp/></highlight><highlight class="keywordflow">catch</highlight><highlight class="normal"><sp/>and<sp/>effort<sp/>estimate<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>the<sp/>overall<sp/>tourist<sp/>fishery<sp/>over<sp/>the<sp/>4<sp/>month<sp/>period<sp/>(1st<sp/>May<sp/>–<sp/>to<sp/>31th<sp/>August).</highlight></codeline>
+<codeline lineno="18"><highlight class="normal">A<sp/>Final<sp/>Research<sp/>Report<sp/>is<sp/>available<sp/>from<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>site<sp/>with<sp/>permission<sp/>of<sp/>George<sp/>Lukacs,<sp/>Australian<sp/>Centre<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>Tropical<sp/>Freshwater<sp/>Research</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal">Hart,<sp/>A.M.;<sp/>(2004):<sp/>Southern<sp/>Gulf<sp/>Environmental<sp/>Information<sp/>Program:Recreational<sp/>Fishing<sp/>Survey</highlight></codeline>
+<codeline lineno="21"><highlight class="normal">1.<sp/>The<sp/>tourist<sp/>fishery</highlight></codeline>
+    </programlisting>
+    <location file="/home/nbentley/Trophia/Code/www/src/projects/P04005 Karumbasurvey.md"/>
+  </compounddef>
+</doxygen>

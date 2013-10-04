@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="classFisl_1_1Population_1_1Growth_1_1Priors_1_1KFromLinf" kind="class" prot="public">
+    <compoundname>Fisl::Population::Growth::Priors::KFromLinf</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">Regression</basecompoundref>
+    <includes refid="growth_2priors_2bentley__2010_8hpp" local="no">bentley_2010.hpp</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classFisl_1_1Population_1_1Growth_1_1Priors_1_1KFromLinf_1a0169cc8d3d5b8df7277a38464c61b626" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Fisl::Population::Growth::Priors::KFromLinf::KFromLinf</definition>
+        <argsstring>(void)</argsstring>
+        <name>KFromLinf</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/growth/priors/bentley_2010.hpp" line="26" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/growth/priors/bentley_2010.hpp" bodystart="25" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Population_1_1Growth_1_1Priors_1_1KFromLinf_1a98b44d2bbe08c29336b182d3509a8826" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Fisl::Population::Growth::Priors::KFromLinf::random</definition>
+        <argsstring>(const double &amp;linf) const </argsstring>
+        <name>random</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>linf</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/growth/priors/bentley_2010.hpp" line="28" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/growth/priors/bentley_2010.hpp" bodystart="28" bodyend="30"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="72">
+        <label>Regression</label>
+      </node>
+      <node id="71">
+        <label>Fisl::Population::Growth::Priors::KFromLinf</label>
+        <link refid="classFisl_1_1Population_1_1Growth_1_1Priors_1_1KFromLinf"/>
+        <childnode refid="72" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="74">
+        <label>Regression</label>
+      </node>
+      <node id="73">
+        <label>Fisl::Population::Growth::Priors::KFromLinf</label>
+        <link refid="classFisl_1_1Population_1_1Growth_1_1Priors_1_1KFromLinf"/>
+        <childnode refid="74" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/growth/priors/bentley_2010.hpp" line="23" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/growth/priors/bentley_2010.hpp" bodystart="23" bodyend="31"/>
+    <listofallmembers>
+      <member refid="classFisl_1_1Population_1_1Growth_1_1Priors_1_1KFromLinf_1a0169cc8d3d5b8df7277a38464c61b626" prot="public" virt="non-virtual"><scope>Fisl::Population::Growth::Priors::KFromLinf</scope><name>KFromLinf</name></member>
+      <member refid="classFisl_1_1Population_1_1Growth_1_1Priors_1_1KFromLinf_1a98b44d2bbe08c29336b182d3509a8826" prot="public" virt="non-virtual"><scope>Fisl::Population::Growth::Priors::KFromLinf</scope><name>random</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

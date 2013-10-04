@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="classIndi_1_1Environs" kind="class" prot="public">
+    <compoundname>Indi::Environs</compoundname>
+    <includes refid="environs_8hpp" local="no">environs.hpp</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classIndi_1_1Environs_1a7bd242c80e72e6e9cc9b9c1c7b7a612d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Indi::Environs::start</definition>
+        <argsstring>(void)</argsstring>
+        <name>start</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/indi/indi/environs.hpp" line="8" column="1" bodyfile="/home/nbentley/Trophia/Code/indi/indi/environs.hpp" bodystart="8" bodyend="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classIndi_1_1Environs_1a0f2b4ec766b7e3a6ea265ff26bc0bf16" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Indi::Environs::update</definition>
+        <argsstring>(void)</argsstring>
+        <name>update</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/indi/indi/environs.hpp" line="10" column="1" bodyfile="/home/nbentley/Trophia/Code/indi/indi/environs.hpp" bodystart="10" bodyend="11"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/nbentley/Trophia/Code/indi/indi/environs.hpp" line="5" column="1" bodyfile="/home/nbentley/Trophia/Code/indi/indi/environs.hpp" bodystart="5" bodyend="12"/>
+    <listofallmembers>
+      <member refid="classIndi_1_1Environs_1a7bd242c80e72e6e9cc9b9c1c7b7a612d" prot="public" virt="non-virtual"><scope>Indi::Environs</scope><name>start</name></member>
+      <member refid="classIndi_1_1Environs_1a0f2b4ec766b7e3a6ea265ff26bc0bf16" prot="public" virt="non-virtual"><scope>Indi::Environs</scope><name>update</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

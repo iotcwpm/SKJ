@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="classFisl_1_1Estimation_1_1Mcmc_1_1McmcNormal" kind="class" prot="public">
+    <compoundname>Fisl::Estimation::Mcmc::McmcNormal</compoundname>
+    <basecompoundref refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis" prot="public" virt="non-virtual">Fisl::Estimation::Mcmc::Metropolis&lt; McmcNormal, 1 &gt;</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classFisl_1_1Estimation_1_1Mcmc_1_1McmcNormal_1aaf8946d79ea6d0430f8df58662fbf173" prot="public" static="no" mutable="no">
+        <type><ref refid="classFisl_1_1Math_1_1Probability_1_1Normal" kindref="compound">Normal</ref></type>
+        <definition>Normal Fisl::Estimation::Mcmc::McmcNormal::dist</definition>
+        <argsstring></argsstring>
+        <name>dist</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.cxx" line="19" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.cxx" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classFisl_1_1Estimation_1_1Mcmc_1_1McmcNormal_1acbdabf5bc9eb340467c31d8becf45496" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Fisl::Estimation::Mcmc::McmcNormal::reset</definition>
+        <argsstring>(void)</argsstring>
+        <name>reset</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.cxx" line="21" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.cxx" bodystart="21" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Estimation_1_1Mcmc_1_1McmcNormal_1ab3602fe90a72fa055d2fbc70d1fe9a20" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Real</type>
+        <definition>Real Fisl::Estimation::Mcmc::McmcNormal::log_like</definition>
+        <argsstring>(const Array&lt; Real, 1 &gt; &amp;parameters)</argsstring>
+        <name>log_like</name>
+        <param>
+          <type>const <ref refid="classArray" kindref="compound">Array</ref>&lt; Real, 1 &gt; &amp;</type>
+          <declname>parameters</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.cxx" line="28" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.cxx" bodystart="28" bodyend="31"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="92">
+        <label>Fisl::Estimation::Mcmc::Metropolis&lt; McmcNormal, 1 &gt;</label>
+        <link refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis"/>
+        <childnode refid="93" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="93">
+        <label>Dataset</label>
+      </node>
+      <node id="91">
+        <label>Fisl::Estimation::Mcmc::McmcNormal</label>
+        <link refid="classFisl_1_1Estimation_1_1Mcmc_1_1McmcNormal"/>
+        <childnode refid="92" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="95">
+        <label>Fisl::Estimation::Mcmc::Metropolis&lt; McmcNormal, 1 &gt;</label>
+        <link refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis"/>
+        <childnode refid="96" relation="public-inheritance">
+        </childnode>
+        <childnode refid="97" relation="usage">
+          <edgelabel>samples</edgelabel>
+        </childnode>
+        <childnode refid="98" relation="usage">
+          <edgelabel>variances</edgelabel>
+          <edgelabel>values</edgelabel>
+        </childnode>
+      </node>
+      <node id="97">
+        <label>Datatable</label>
+      </node>
+      <node id="98">
+        <label>Array&lt; double, Parameters &gt;</label>
+        <link refid="classArray"/>
+      </node>
+      <node id="96">
+        <label>Dataset</label>
+      </node>
+      <node id="100">
+        <label>Fisl::Math::Probability::Distribution&lt; Normal &gt;</label>
+        <link refid="classFisl_1_1Math_1_1Probability_1_1Distribution"/>
+      </node>
+      <node id="94">
+        <label>Fisl::Estimation::Mcmc::McmcNormal</label>
+        <link refid="classFisl_1_1Estimation_1_1Mcmc_1_1McmcNormal"/>
+        <childnode refid="95" relation="public-inheritance">
+        </childnode>
+        <childnode refid="99" relation="usage">
+          <edgelabel>dist</edgelabel>
+        </childnode>
+      </node>
+      <node id="99">
+        <label>Fisl::Math::Probability::Normal</label>
+        <link refid="classFisl_1_1Math_1_1Probability_1_1Normal"/>
+        <childnode refid="100" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.cxx" line="17" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.cxx" bodystart="17" bodyend="32"/>
+    <listofallmembers>
+      <member refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1ab64aa80dd349eeb9ee37f2596ea942f0" prot="public" virt="non-virtual"><scope>Fisl::Estimation::Mcmc::McmcNormal</scope><name>acceptance</name></member>
+      <member refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1aea70e4fe4d31d5479d26c8838c4240e4" prot="public" virt="non-virtual"><scope>Fisl::Estimation::Mcmc::McmcNormal</scope><name>accepted</name></member>
+      <member refid="classFisl_1_1Estimation_1_1Mcmc_1_1McmcNormal_1aaf8946d79ea6d0430f8df58662fbf173" prot="public" virt="non-virtual"><scope>Fisl::Estimation::Mcmc::McmcNormal</scope><name>dist</name></member>
+      <member refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1a82dd94cd9f63f6a4e227c5a1002d77e3" prot="public" virt="non-virtual"><scope>Fisl::Estimation::Mcmc::McmcNormal</scope><name>iterations</name></member>
+      <member refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1aea3da265f9b8b221503f02eaad61689a" prot="public" virt="non-virtual"><scope>Fisl::Estimation::Mcmc::McmcNormal</scope><name>ll</name></member>
+      <member refid="classFisl_1_1Estimation_1_1Mcmc_1_1McmcNormal_1ab3602fe90a72fa055d2fbc70d1fe9a20" prot="public" virt="non-virtual"><scope>Fisl::Estimation::Mcmc::McmcNormal</scope><name>log_like</name></member>
+      <member refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1a1b32ea04809286abe87d018dfc455889" prot="public" virt="non-virtual"><scope>Fisl::Estimation::Mcmc::McmcNormal</scope><name>Metropolis</name></member>
+      <member refid="classFisl_1_1Estimation_1_1Mcmc_1_1McmcNormal_1acbdabf5bc9eb340467c31d8becf45496" prot="public" virt="non-virtual"><scope>Fisl::Estimation::Mcmc::McmcNormal</scope><name>reset</name></member>
+      <member refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1a56795d955604d4ef28c14e0d6122bdb2" prot="public" virt="non-virtual"><scope>Fisl::Estimation::Mcmc::McmcNormal</scope><name>run</name></member>
+      <member refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1a92d8bcbddf91e31118e318c6f11f2c32" prot="public" virt="non-virtual"><scope>Fisl::Estimation::Mcmc::McmcNormal</scope><name>samples</name></member>
+      <member refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1a144c81cbf12faa15f2a4e4dfe20a01c4" prot="public" virt="non-virtual"><scope>Fisl::Estimation::Mcmc::McmcNormal</scope><name>step</name></member>
+      <member refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1af0e834bad8b8189b2ffd2d9ab1b37a92" prot="public" virt="non-virtual"><scope>Fisl::Estimation::Mcmc::McmcNormal</scope><name>values</name></member>
+      <member refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1a9d43634dd5eec8bf5181674b38b22036" prot="public" virt="non-virtual"><scope>Fisl::Estimation::Mcmc::McmcNormal</scope><name>variances</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

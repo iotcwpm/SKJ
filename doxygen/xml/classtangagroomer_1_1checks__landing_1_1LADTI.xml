@@ -1,0 +1,197 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="classtangagroomer_1_1checks__landing_1_1LADTI" kind="class" prot="public">
+    <compoundname>tangagroomer::checks_landing::LADTI</compoundname>
+    <basecompoundref refid="classtangagroomer_1_1checks__landing_1_1LA" prot="public" virt="non-virtual">tangagroomer.checks_landing.LA</basecompoundref>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classtangagroomer_1_1checks__landing_1_1LADTI_1aeaaf8de9f52a0770d56b478ef5fbda6a" prot="public" static="yes" mutable="no">
+        <type>string</type>
+        <definition>string tangagroomer.checks_landing.LADTI::brief</definition>
+        <argsstring></argsstring>
+        <name>brief</name>
+        <initializer>= &apos;Destination type is invalid&apos;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" line="42" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtangagroomer_1_1checks__landing_1_1LADTI_1ae73412b9e6603e0ebd4436ed2c2edcd1" prot="public" static="yes" mutable="no">
+        <type>string</type>
+        <definition>string tangagroomer.checks_landing.LADTI::desc</definition>
+        <argsstring></argsstring>
+        <name>desc</name>
+        <initializer>= &apos;&apos;&apos;Drop invalid destination codes (Starr D.1.1). The following is from the Warehou documentation v8.0:
+        &lt;pre&gt;
+                destination_type destination_type_desc destination_indicator
+                A Accidental loss N
+                B Stored as Bait N
+                C Disposed to crown L
+                D Discarded (NON-ITQ) N
+                E Eaten N
+                F Section 111 Recreational Catch N
+                H Loss from Holding Pot N
+                L Landed in NZ (to LFR) L
+                M QMS returned to sea (Part 6A) N
+                O Conveyed outside NZ O
+                P Holding receptacle in the water N
+                Q Holding receptacle on land N
+                R Retained on board N
+                S Seized by crown L
+                T Transfer to another vessel V
+                U Used for Bait N
+                W Sold at wharf O
+                X QMS returned to sea, except 6A N
+        &lt;/pre&gt;&apos;&apos;&apos;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" line="43" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtangagroomer_1_1checks__landing_1_1LADTI_1ab7a162ba763f36c4fb3778ded4cf859d" prot="public" static="yes" mutable="no">
+        <type>string</type>
+        <definition>string tangagroomer.checks_landing.LADTI::column</definition>
+        <argsstring></argsstring>
+        <name>column</name>
+        <initializer>= &apos;destination_type&apos;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" line="65" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtangagroomer_1_1checks__landing_1_1LADTI_1abc9dc0d923e0b4f6ea316543e02982bd" prot="public" static="yes" mutable="no">
+        <type>tuple</type>
+        <definition>tuple tangagroomer.checks_landing.LADTI::list</definition>
+        <argsstring></argsstring>
+        <name>list</name>
+        <initializer>= (&apos;A&apos;,&apos;B&apos;,&apos;C&apos;,&apos;D&apos;,&apos;E&apos;,&apos;F&apos;,&apos;H&apos;,&apos;L&apos;,&apos;M&apos;,&apos;O&apos;,&apos;<ref refid="classtangagroomer_1_1html_1_1P" kindref="compound">P</ref>&apos;,&apos;Q&apos;,&apos;R&apos;,&apos;S&apos;,&apos;T&apos;,&apos;U&apos;,&apos;W&apos;,&apos;X&apos;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" line="66" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtangagroomer_1_1checks__landing_1_1LADTI_1ab3988a944b6463cdf19f8aec604c27ea" prot="public" static="yes" mutable="no">
+        <type>string</type>
+        <definition>string tangagroomer.checks_landing.LADTI::clause</definition>
+        <argsstring></argsstring>
+        <name>clause</name>
+        <initializer>= &apos;&apos;&apos;destination_type NOT IN %s&apos;&apos;&apos;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" line="67" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtangagroomer_1_1checks__landing_1_1LADTI_1abd5ea65be2a81930c5bd303f2776ed76" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def tangagroomer.checks_landing.LADTI.summarise</definition>
+        <argsstring></argsstring>
+        <name>summarise</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" line="68" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" bodystart="68" bodyend="110"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="358">
+        <label>tangagroomer.checks_landing.LA</label>
+        <link refid="classtangagroomer_1_1checks__landing_1_1LA"/>
+        <childnode refid="359" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="359">
+        <label>tangagroomer.check.Check</label>
+        <link refid="classtangagroomer_1_1check_1_1Check"/>
+      </node>
+      <node id="357">
+        <label>tangagroomer.checks_landing.LADTI</label>
+        <link refid="classtangagroomer_1_1checks__landing_1_1LADTI"/>
+        <childnode refid="358" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="363">
+        <label>string</label>
+      </node>
+      <node id="361">
+        <label>tangagroomer.checks_landing.LA</label>
+        <link refid="classtangagroomer_1_1checks__landing_1_1LA"/>
+        <childnode refid="362" relation="public-inheritance">
+        </childnode>
+        <childnode refid="363" relation="usage">
+          <edgelabel>table</edgelabel>
+        </childnode>
+      </node>
+      <node id="362">
+        <label>tangagroomer.check.Check</label>
+        <link refid="classtangagroomer_1_1check_1_1Check"/>
+      </node>
+      <node id="360">
+        <label>tangagroomer.checks_landing.LADTI</label>
+        <link refid="classtangagroomer_1_1checks__landing_1_1LADTI"/>
+        <childnode refid="361" relation="public-inheritance">
+        </childnode>
+        <childnode refid="363" relation="usage">
+          <edgelabel>desc</edgelabel>
+          <edgelabel>column</edgelabel>
+          <edgelabel>brief</edgelabel>
+          <edgelabel>clause</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" line="41" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_landing.py" bodystart="41" bodyend="112"/>
+    <listofallmembers>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a36e4525d47865671846c9a0219a2bcb2" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTI</scope><name>apply</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1ac9a962f590f51d6d50bd81c6afee81c8" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTI</scope><name>applyAll</name></member>
+      <member refid="classtangagroomer_1_1checks__landing_1_1LADTI_1aeaaf8de9f52a0770d56b478ef5fbda6a" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTI</scope><name>brief</name></member>
+      <member refid="classtangagroomer_1_1checks__landing_1_1LA_1a88b64a2ce2eb032755e2a29ae95128ba" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTI</scope><name>change</name></member>
+      <member refid="classtangagroomer_1_1checks__landing_1_1LADTI_1ab3988a944b6463cdf19f8aec604c27ea" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTI</scope><name>clause</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1aee237860ccf5830b720da9e19b641cda" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTI</scope><name>code</name></member>
+      <member refid="classtangagroomer_1_1checks__landing_1_1LADTI_1ab7a162ba763f36c4fb3778ded4cf859d" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTI</scope><name>column</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a1c68e6bbd01a5b9dbe834a1e2da92c3b" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTI</scope><name>dataset</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a48bb57fdbd589dbef0a23128cdf85b41" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTI</scope><name>db</name></member>
+      <member refid="classtangagroomer_1_1checks__landing_1_1LADTI_1ae73412b9e6603e0ebd4436ed2c2edcd1" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTI</scope><name>desc</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a7d6e67760f35efc58217072497fa88b7" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTI</scope><name>do</name></member>
+      <member refid="classtangagroomer_1_1checks__landing_1_1LA_1a9b595e9ba715015bdee63ee37d3d1d8b" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTI</scope><name>drop</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1ae4bab42cb9c9f2f8388c7310b5166458" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTI</scope><name>filename</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1aa1f73b4e49f59491ee3ed5ecf126b524" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTI</scope><name>fishing_years</name></member>
+      <member refid="classtangagroomer_1_1checks__landing_1_1LA_1a4407a779f4b33899cf036950aeb0117d" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTI</scope><name>flag</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a9398218abb4e0bbfcb5813da99b707d7" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTI</scope><name>histogram</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a248c19018845f81d7afa5b7c2a78fba0" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTI</scope><name>List</name></member>
+      <member refid="classtangagroomer_1_1checks__landing_1_1LADTI_1abc9dc0d923e0b4f6ea316543e02982bd" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTI</scope><name>list</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a4a7bd550d553a6ef8432a726847486c3" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTI</scope><name>quantiles</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1aa8ccd798cee5d3e61dc783cbf501352e" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTI</scope><name>report</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a3b5976b1ad785be57e0c5a1a1ded9060" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTI</scope><name>scatterplot</name></member>
+      <member refid="classtangagroomer_1_1checks__landing_1_1LADTI_1abd5ea65be2a81930c5bd303f2776ed76" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTI</scope><name>summarise</name></member>
+      <member refid="classtangagroomer_1_1checks__landing_1_1LA_1a1c2b29ff19d1c74615f05a20f6b5b7a5" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTI</scope><name>table</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a76dc47c04b683cacf202468e1c8fc7ad" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTI</scope><name>value</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a2e347e6485a4c668a629ad4dc021d4d6" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTI</scope><name>view</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1ad733559ce56183efd768b55ffbce3274" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTI</scope><name>viewAll</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a1f6a7df7df2a85c427a9bf618cb121f9" prot="public" virt="non-virtual"><scope>tangagroomer::checks_landing::LADTI</scope><name>visible</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

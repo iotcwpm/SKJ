@@ -1,0 +1,145 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="classtangagroomer_1_1checks__trip__details_1_1TDDAB" kind="class" prot="public">
+    <compoundname>tangagroomer::checks_trip_details::TDDAB</compoundname>
+    <basecompoundref refid="classtangagroomer_1_1check_1_1Check" prot="public" virt="non-virtual">tangagroomer.check.Check</basecompoundref>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="classtangagroomer_1_1checks__trip__details_1_1TDDAB_1a9b60ddd1ee102f0aede626b261a9e30f" prot="public" static="yes" mutable="no">
+        <type>string</type>
+        <definition>string tangagroomer.checks_trip_details.TDDAB::table</definition>
+        <argsstring></argsstring>
+        <name>table</name>
+        <initializer>= &apos;trip_details&apos;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_trip_details.py" line="14" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_trip_details.py" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtangagroomer_1_1checks__trip__details_1_1TDDAB_1a74197c48591f2aa8b38f8bbf16161186" prot="public" static="yes" mutable="no">
+        <type>string</type>
+        <definition>string tangagroomer.checks_trip_details.TDDAB::brief</definition>
+        <argsstring></argsstring>
+        <name>brief</name>
+        <initializer>= &apos;Calculate the best date for a trip&apos;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_trip_details.py" line="15" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_trip_details.py" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classtangagroomer_1_1checks__trip__details_1_1TDDAB_1a990ba40bbfb0bb99e132ea02c020e78a" prot="public" static="yes" mutable="no">
+        <type>string</type>
+        <definition>string tangagroomer.checks_trip_details.TDDAB::desc</definition>
+        <argsstring></argsstring>
+        <name>desc</name>
+        <initializer>= &apos;&apos;&apos;Starr D.1.8 describes a method for calculating the &quot;best date&quot; for a trip.  This involves determining the length (in days) of each trip,  
+        calculating the 95th percentile of trip length for each type of form and using that as the basis for determining if the trip end date is likely.  The field &lt;i&gt;best_date&lt;/i&gt; which is created is not actually used for characterization and CPUE analyses 
+        because the field &lt;i&gt;fishing_event.start_datetime&lt;/i&gt; is used instead.  However, the following summaries may indicated potential problems with the asignment of a trip number&apos;&apos;&apos;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_trip_details.py" line="16" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_trip_details.py" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtangagroomer_1_1checks__trip__details_1_1TDDAB_1adf047706a1a2fb63c483950c18a11a6f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def tangagroomer.checks_trip_details.TDDAB.do</definition>
+        <argsstring></argsstring>
+        <name>do</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_trip_details.py" line="20" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_trip_details.py" bodystart="20" bodyend="56"/>
+      </memberdef>
+      <memberdef kind="function" id="classtangagroomer_1_1checks__trip__details_1_1TDDAB_1aae6c618ff32bb7dd1549322425a32257" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def tangagroomer.checks_trip_details.TDDAB.summarise</definition>
+        <argsstring></argsstring>
+        <name>summarise</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_trip_details.py" line="57" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_trip_details.py" bodystart="57" bodyend="59"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="502">
+        <label>tangagroomer.checks_trip_details.TDDAB</label>
+        <link refid="classtangagroomer_1_1checks__trip__details_1_1TDDAB"/>
+        <childnode refid="503" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="503">
+        <label>tangagroomer.check.Check</label>
+        <link refid="classtangagroomer_1_1check_1_1Check"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="506">
+        <label>string</label>
+      </node>
+      <node id="504">
+        <label>tangagroomer.checks_trip_details.TDDAB</label>
+        <link refid="classtangagroomer_1_1checks__trip__details_1_1TDDAB"/>
+        <childnode refid="505" relation="public-inheritance">
+        </childnode>
+        <childnode refid="506" relation="usage">
+          <edgelabel>desc</edgelabel>
+          <edgelabel>brief</edgelabel>
+          <edgelabel>table</edgelabel>
+        </childnode>
+      </node>
+      <node id="505">
+        <label>tangagroomer.check.Check</label>
+        <link refid="classtangagroomer_1_1check_1_1Check"/>
+      </node>
+    </collaborationgraph>
+    <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_trip_details.py" line="13" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_trip_details.py" bodystart="13" bodyend="60"/>
+    <listofallmembers>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a36e4525d47865671846c9a0219a2bcb2" prot="public" virt="non-virtual"><scope>tangagroomer::checks_trip_details::TDDAB</scope><name>apply</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1ac9a962f590f51d6d50bd81c6afee81c8" prot="public" virt="non-virtual"><scope>tangagroomer::checks_trip_details::TDDAB</scope><name>applyAll</name></member>
+      <member refid="classtangagroomer_1_1checks__trip__details_1_1TDDAB_1a74197c48591f2aa8b38f8bbf16161186" prot="public" virt="non-virtual"><scope>tangagroomer::checks_trip_details::TDDAB</scope><name>brief</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a58991e0dd0e97e9578396e9048e89842" prot="public" virt="non-virtual"><scope>tangagroomer::checks_trip_details::TDDAB</scope><name>change</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a73732d1d3f3cde589eec2c33c6867557" prot="public" virt="non-virtual"><scope>tangagroomer::checks_trip_details::TDDAB</scope><name>clause</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1aee237860ccf5830b720da9e19b641cda" prot="public" virt="non-virtual"><scope>tangagroomer::checks_trip_details::TDDAB</scope><name>code</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a7ffea959f622ed29351beace07624f80" prot="public" virt="non-virtual"><scope>tangagroomer::checks_trip_details::TDDAB</scope><name>column</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a1c68e6bbd01a5b9dbe834a1e2da92c3b" prot="public" virt="non-virtual"><scope>tangagroomer::checks_trip_details::TDDAB</scope><name>dataset</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a48bb57fdbd589dbef0a23128cdf85b41" prot="public" virt="non-virtual"><scope>tangagroomer::checks_trip_details::TDDAB</scope><name>db</name></member>
+      <member refid="classtangagroomer_1_1checks__trip__details_1_1TDDAB_1a990ba40bbfb0bb99e132ea02c020e78a" prot="public" virt="non-virtual"><scope>tangagroomer::checks_trip_details::TDDAB</scope><name>desc</name></member>
+      <member refid="classtangagroomer_1_1checks__trip__details_1_1TDDAB_1adf047706a1a2fb63c483950c18a11a6f" prot="public" virt="non-virtual"><scope>tangagroomer::checks_trip_details::TDDAB</scope><name>do</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1ae4bab42cb9c9f2f8388c7310b5166458" prot="public" virt="non-virtual"><scope>tangagroomer::checks_trip_details::TDDAB</scope><name>filename</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1aa1f73b4e49f59491ee3ed5ecf126b524" prot="public" virt="non-virtual"><scope>tangagroomer::checks_trip_details::TDDAB</scope><name>fishing_years</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a815714fcb0ead30679fca7e82ede9294" prot="public" virt="non-virtual"><scope>tangagroomer::checks_trip_details::TDDAB</scope><name>flag</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a9398218abb4e0bbfcb5813da99b707d7" prot="public" virt="non-virtual"><scope>tangagroomer::checks_trip_details::TDDAB</scope><name>histogram</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a248c19018845f81d7afa5b7c2a78fba0" prot="public" virt="non-virtual"><scope>tangagroomer::checks_trip_details::TDDAB</scope><name>List</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a4a7bd550d553a6ef8432a726847486c3" prot="public" virt="non-virtual"><scope>tangagroomer::checks_trip_details::TDDAB</scope><name>quantiles</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1aa8ccd798cee5d3e61dc783cbf501352e" prot="public" virt="non-virtual"><scope>tangagroomer::checks_trip_details::TDDAB</scope><name>report</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a3b5976b1ad785be57e0c5a1a1ded9060" prot="public" virt="non-virtual"><scope>tangagroomer::checks_trip_details::TDDAB</scope><name>scatterplot</name></member>
+      <member refid="classtangagroomer_1_1checks__trip__details_1_1TDDAB_1aae6c618ff32bb7dd1549322425a32257" prot="public" virt="non-virtual"><scope>tangagroomer::checks_trip_details::TDDAB</scope><name>summarise</name></member>
+      <member refid="classtangagroomer_1_1checks__trip__details_1_1TDDAB_1a9b60ddd1ee102f0aede626b261a9e30f" prot="public" virt="non-virtual"><scope>tangagroomer::checks_trip_details::TDDAB</scope><name>table</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a76dc47c04b683cacf202468e1c8fc7ad" prot="public" virt="non-virtual"><scope>tangagroomer::checks_trip_details::TDDAB</scope><name>value</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a2e347e6485a4c668a629ad4dc021d4d6" prot="public" virt="non-virtual"><scope>tangagroomer::checks_trip_details::TDDAB</scope><name>view</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1ad733559ce56183efd768b55ffbce3274" prot="public" virt="non-virtual"><scope>tangagroomer::checks_trip_details::TDDAB</scope><name>viewAll</name></member>
+      <member refid="classtangagroomer_1_1check_1_1Check_1a1f6a7df7df2a85c427a9bf618cb121f9" prot="public" virt="non-virtual"><scope>tangagroomer::checks_trip_details::TDDAB</scope><name>visible</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

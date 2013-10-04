@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="namespacetangagroomer_1_1checks__trip__details" kind="namespace">
+    <compoundname>tangagroomer::checks_trip_details</compoundname>
+    <innerclass refid="classtangagroomer_1_1checks__trip__details_1_1TDSTA" prot="public">tangagroomer::checks_trip_details::TDSTA</innerclass>
+    <innerclass refid="classtangagroomer_1_1checks__trip__details_1_1TDDAB" prot="public">tangagroomer::checks_trip_details::TDDAB</innerclass>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="namespacetangagroomer_1_1checks__trip__details_1a44901828d05030eb6c0dbb88ed4f1653" prot="public" static="no" mutable="no">
+        <type>tuple</type>
+        <definition>tuple tangagroomer::checks_trip_details.inst</definition>
+        <argsstring></argsstring>
+        <name>inst</name>
+        <initializer>= check()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_trip_details.py" line="66" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/checks_trip_details.py" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/nbentley/Trophia/Code/tangagroomer/checks_trip_details.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

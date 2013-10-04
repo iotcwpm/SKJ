@@ -1,0 +1,266 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="model_8hpp" kind="file">
+    <compoundname>model.hpp</compoundname>
+    <includes refid="function_8hpp" local="no">fisl/math/functions/function.hpp</includes>
+    <includes refid="von-bert_8hpp" local="no">fisl/population/growth/von-bert.hpp</includes>
+    <includes refid="morphometry_8hpp" local="no">fisl/population/morphometry/morphometry.hpp</includes>
+    <includes refid="maturity_8hpp" local="no">fisl/population/maturity/maturity.hpp</includes>
+    <includes refid="beverton-holt_8hpp" local="no">fisl/population/recruitment/beverton-holt.hpp</includes>
+    <includes refid="rate_8hpp" local="no">fisl/population/mortality/rate.hpp</includes>
+    <includedby refid="evaluation-skeleton_8cpp" local="no">evaluation-skeleton.cpp</includedby>
+    <includedby refid="model_8cxx" local="no">model.cxx</includedby>
+    <incdepgraph>
+      <node id="397">
+        <label>model.hpp</label>
+        <link refid="model.hpp"/>
+        <childnode refid="398" relation="include">
+        </childnode>
+        <childnode refid="403" relation="include">
+        </childnode>
+        <childnode refid="404" relation="include">
+        </childnode>
+        <childnode refid="407" relation="include">
+        </childnode>
+        <childnode refid="410" relation="include">
+        </childnode>
+        <childnode refid="411" relation="include">
+        </childnode>
+      </node>
+      <node id="406">
+        <label>cmath</label>
+      </node>
+      <node id="405">
+        <label>fisl/math/functions/power.hpp</label>
+        <link refid="power_8hpp"/>
+        <childnode refid="406" relation="include">
+        </childnode>
+        <childnode refid="399" relation="include">
+        </childnode>
+        <childnode refid="398" relation="include">
+        </childnode>
+      </node>
+      <node id="409">
+        <label>fisl/math/functions/logistic.hpp</label>
+        <link refid="logistic_8hpp"/>
+        <childnode refid="399" relation="include">
+        </childnode>
+        <childnode refid="398" relation="include">
+        </childnode>
+      </node>
+      <node id="408">
+        <label>fisl/math/functions/threshold.hpp</label>
+        <link refid="threshold_8hpp"/>
+        <childnode refid="399" relation="include">
+        </childnode>
+        <childnode refid="398" relation="include">
+        </childnode>
+      </node>
+      <node id="400">
+        <label>fisl/array.hpp</label>
+        <link refid="array_8hpp"/>
+        <childnode refid="401" relation="include">
+        </childnode>
+        <childnode refid="402" relation="include">
+        </childnode>
+      </node>
+      <node id="401">
+        <label>vector</label>
+      </node>
+      <node id="404">
+        <label>fisl/population/morphometry/morphometry.hpp</label>
+        <link refid="morphometry_8hpp"/>
+        <childnode refid="405" relation="include">
+        </childnode>
+      </node>
+      <node id="411">
+        <label>fisl/population/mortality/rate.hpp</label>
+        <link refid="rate_8hpp"/>
+      </node>
+      <node id="403">
+        <label>fisl/population/growth/von-bert.hpp</label>
+        <link refid="von-bert_8hpp"/>
+        <childnode refid="398" relation="include">
+        </childnode>
+      </node>
+      <node id="410">
+        <label>fisl/population/recruitment/beverton-holt.hpp</label>
+        <link refid="beverton-holt_8hpp"/>
+      </node>
+      <node id="402">
+        <label>algorithm</label>
+      </node>
+      <node id="407">
+        <label>fisl/population/maturity/maturity.hpp</label>
+        <link refid="maturity_8hpp"/>
+        <childnode refid="408" relation="include">
+        </childnode>
+        <childnode refid="409" relation="include">
+        </childnode>
+      </node>
+      <node id="398">
+        <label>fisl/math/functions/function.hpp</label>
+        <link refid="function_8hpp"/>
+        <childnode refid="399" relation="include">
+        </childnode>
+        <childnode refid="400" relation="include">
+        </childnode>
+      </node>
+      <node id="399">
+        <label>fisl/common.hpp</label>
+        <link refid="common_8hpp"/>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="412">
+        <label>model.hpp</label>
+        <link refid="model.hpp"/>
+        <childnode refid="413" relation="include">
+        </childnode>
+        <childnode refid="414" relation="include">
+        </childnode>
+      </node>
+      <node id="413">
+        <label>evaluation-skeleton.cpp</label>
+        <link refid="evaluation-skeleton_8cpp"/>
+      </node>
+      <node id="414">
+        <label>model.cxx</label>
+        <link refid="model_8cxx"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classFisl_1_1Population_1_1Models_1_1Unity" prot="public">Fisl::Population::Models::Unity</innerclass>
+    <innerclass refid="classFisl_1_1Population_1_1Models_1_1Numbers" prot="public">Fisl::Population::Models::Numbers</innerclass>
+    <innerclass refid="classFisl_1_1Population_1_1Models_1_1Aged" prot="public">Fisl::Population::Models::Aged</innerclass>
+    <innerclass refid="classFisl_1_1Population_1_1Models_1_1Sexed" prot="public">Fisl::Population::Models::Sexed</innerclass>
+    <innernamespace refid="namespaceFisl">Fisl</innernamespace>
+    <innernamespace refid="namespaceFisl_1_1Population">Fisl::Population</innernamespace>
+    <innernamespace refid="namespaceFisl_1_1Population_1_1Models">Fisl::Population::Models</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight></codeline>
+<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="function_8hpp" kindref="compound">fisl/math/functions/function.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="von-bert_8hpp" kindref="compound">fisl/population/growth/von-bert.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="morphometry_8hpp" kindref="compound">fisl/population/morphometry/morphometry.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="maturity_8hpp" kindref="compound">fisl/population/maturity/maturity.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="beverton-holt_8hpp" kindref="compound">fisl/population/recruitment/beverton-holt.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="rate_8hpp" kindref="compound">fisl/population/mortality/rate.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">Fisl<sp/>{</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">Population<sp/>{</highlight></codeline>
+<codeline lineno="14" refid="namespaceFisl_1_1Population_1_1Models" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">Models<sp/>{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="16" refid="classFisl_1_1Population_1_1Models_1_1Unity" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classFisl_1_1Population_1_1Models_1_1Unity" kindref="compound">Unity</ref><sp/>{</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:<sp/></highlight></codeline>
+<codeline lineno="18"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20" refid="classFisl_1_1Population_1_1Models_1_1Numbers" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classFisl_1_1Population_1_1Models_1_1Numbers" kindref="compound">Numbers</ref><sp/>{</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="22" refid="classFisl_1_1Population_1_1Models_1_1Numbers_1a4b452a029fb876786360c310f41efcd8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classFisl_1_1Population_1_1Models_1_1Numbers_1a4b452a029fb876786360c310f41efcd8" kindref="member">value</ref>;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="25" refid="classFisl_1_1Population_1_1Models_1_1Numbers_1a309594f04923cef7f3706b9e63a66a28" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classFisl_1_1Population_1_1Models_1_1Numbers_1a309594f04923cef7f3706b9e63a66a28" kindref="member">Numbers</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>value_=0):</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classFisl_1_1Population_1_1Models_1_1Numbers_1a4b452a029fb876786360c310f41efcd8" kindref="member">value</ref>(value_){</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="29" refid="classFisl_1_1Population_1_1Models_1_1Numbers_1af6dcd879d3b4c8d3f6b5abb5da5bbcd1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">operator</highlight><highlight class="normal"><sp/>double()</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classFisl_1_1Population_1_1Models_1_1Numbers_1a4b452a029fb876786360c310f41efcd8" kindref="member">value</ref>;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="33" refid="classFisl_1_1Population_1_1Models_1_1Numbers_1a59cbfc538d716ae8633154779827886e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classFisl_1_1Population_1_1Models_1_1Numbers" kindref="compound">Numbers</ref>&amp;<sp/><ref refid="classFisl_1_1Population_1_1Models_1_1Numbers_1a59cbfc538d716ae8633154779827886e" kindref="member">add</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="classFisl_1_1Population_1_1Models_1_1Numbers" kindref="compound">Numbers</ref>&amp;<sp/>other){</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classFisl_1_1Population_1_1Models_1_1Numbers_1a4b452a029fb876786360c310f41efcd8" kindref="member">value</ref><sp/>+=<sp/>other;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="37"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>Ages,</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">Type<sp/>=<sp/>Numbers,</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">Sizes<sp/>=<sp/><ref refid="classFisl_1_1Math_1_1Functions_1_1Cached" kindref="compound" tooltip="Precalculated function values for greater computational efficiency.">Math::Functions::Cached&lt;Population::Growth::VonBert,Ages&gt;</ref>,</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">Weights<sp/>=<sp/><ref refid="classFisl_1_1Math_1_1Functions_1_1Cached" kindref="compound" tooltip="Precalculated function values for greater computational efficiency.">Math::Functions::Cached&lt;Population::Morphometry::Power,Ages&gt;</ref>,</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">Maturities<sp/>=<sp/><ref refid="classFisl_1_1Math_1_1Functions_1_1Cached" kindref="compound" tooltip="Precalculated function values for greater computational efficiency.">Math::Functions::Cached&lt;Population::Maturity::Threshold,Ages&gt;</ref>,</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">Recruitment<sp/>=<sp/><ref refid="classFisl_1_1Population_1_1Recruitment_1_1BevertonHolt" kindref="compound">Population::Recruitment::BevertonHolt</ref>,</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">Mortality<sp/>=<sp/><ref refid="classFisl_1_1Population_1_1Mortality_1_1Rate" kindref="compound">Population::Mortality::Rate</ref></highlight></codeline>
+<codeline lineno="47"><highlight class="normal">&gt;<sp/></highlight></codeline>
+<codeline lineno="48" refid="classFisl_1_1Population_1_1Models_1_1Aged" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classFisl_1_1Population_1_1Models_1_1Aged" kindref="compound">Aged</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classArray" kindref="compound">Array</ref>&lt;Type,Ages&gt;<sp/>{</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="50" refid="classFisl_1_1Population_1_1Models_1_1Aged_1aada8ad00f1535adde76a56db5cc03eea" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classFisl_1_1Population_1_1Models_1_1Aged_1aada8ad00f1535adde76a56db5cc03eea" kindref="member">age_max</ref><sp/>=<sp/>Ages-1;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="52" refid="classFisl_1_1Population_1_1Models_1_1Aged_1a5d9cebe7993ef77ca8bd59f3b48b68c0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Sizes<sp/><ref refid="classFisl_1_1Population_1_1Models_1_1Aged_1a5d9cebe7993ef77ca8bd59f3b48b68c0" kindref="member">sizes</ref>;</highlight></codeline>
+<codeline lineno="53" refid="classFisl_1_1Population_1_1Models_1_1Aged_1acd4c0862a0473af5f7d85ce618f9f468" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Weights<sp/><ref refid="classFisl_1_1Population_1_1Models_1_1Aged_1acd4c0862a0473af5f7d85ce618f9f468" kindref="member">weights</ref>;</highlight></codeline>
+<codeline lineno="54" refid="classFisl_1_1Population_1_1Models_1_1Aged_1a655e4c43c668d1a1243961c6b99b8696" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Maturities<sp/><ref refid="classFisl_1_1Population_1_1Models_1_1Aged_1a655e4c43c668d1a1243961c6b99b8696" kindref="member">maturities</ref>;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="56" refid="classFisl_1_1Population_1_1Models_1_1Aged_1abe53ccf82b96cbb69c925f09352f39df" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Recruitment<sp/><ref refid="classFisl_1_1Population_1_1Models_1_1Aged_1abe53ccf82b96cbb69c925f09352f39df" kindref="member">recruitment</ref>;</highlight></codeline>
+<codeline lineno="57" refid="classFisl_1_1Population_1_1Models_1_1Aged_1a8e39355ea33eff9ecaa58c60c8a6da69" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Mortality<sp/><ref refid="classFisl_1_1Population_1_1Models_1_1Aged_1a8e39355ea33eff9ecaa58c60c8a6da69" kindref="member">mortality</ref>;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="59" refid="classFisl_1_1Population_1_1Models_1_1Aged_1a82b2cce432e39c2e4b8a3a9b3edec58d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classFisl_1_1Population_1_1Models_1_1Aged_1a82b2cce432e39c2e4b8a3a9b3edec58d" kindref="member">recruits</ref>;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61" refid="classFisl_1_1Population_1_1Models_1_1Aged_1a7398ba5f611487236bbec4a8799cb3ec" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classFisl_1_1Population_1_1Models_1_1Aged_1a7398ba5f611487236bbec4a8799cb3ec" kindref="member">Aged</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">){</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64" refid="classFisl_1_1Population_1_1Models_1_1Aged_1a0cc35f0017e59f545c3bc746e8a44659" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classFisl_1_1Population_1_1Models_1_1Aged_1a0cc35f0017e59f545c3bc746e8a44659" kindref="member">Aged</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::initializer_list&lt;Type&gt;&amp;<sp/>values){</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>age<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>values.begin();</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(age&lt;Ages<sp/>and<sp/>i!=values.end()){</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(*this)(age)<sp/>=<sp/>*i;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>age++;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>i++;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74" refid="classFisl_1_1Population_1_1Models_1_1Aged_1a65d4a64fbe36f15fe5509ec001ec7889" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classFisl_1_1Population_1_1Models_1_1Aged" kindref="compound">Aged</ref>&amp;<sp/><ref refid="classFisl_1_1Population_1_1Models_1_1Aged_1a65d4a64fbe36f15fe5509ec001ec7889" kindref="member">ageing</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">){</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/></highlight><highlight class="keyword">self</highlight><highlight class="normal"><sp/>=<sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">self</highlight><highlight class="normal">(<ref refid="classFisl_1_1Population_1_1Models_1_1Aged_1aada8ad00f1535adde76a56db5cc03eea" kindref="member">age_max</ref>).add(</highlight><highlight class="keyword">self</highlight><highlight class="normal">(<ref refid="classFisl_1_1Population_1_1Models_1_1Aged_1aada8ad00f1535adde76a56db5cc03eea" kindref="member">age_max</ref>-1));</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>age=<ref refid="classFisl_1_1Population_1_1Models_1_1Aged_1aada8ad00f1535adde76a56db5cc03eea" kindref="member">age_max</ref>-1;age&gt;0;age--)<sp/></highlight><highlight class="keyword">self</highlight><highlight class="normal">(age)<sp/>=<sp/></highlight><highlight class="keyword">self</highlight><highlight class="normal">(age-1);</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">self</highlight><highlight class="normal">(0)<sp/>=<sp/><ref refid="classFisl_1_1Population_1_1Models_1_1Aged_1a82b2cce432e39c2e4b8a3a9b3edec58d" kindref="member">recruits</ref>;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">self</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="81"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">Type,</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal">Recruitment<sp/>=<sp/><ref refid="classFisl_1_1Population_1_1Recruitment_1_1BevertonHolt" kindref="compound">Population::Recruitment::BevertonHolt</ref></highlight></codeline>
+<codeline lineno="86"><highlight class="normal">&gt;<sp/></highlight></codeline>
+<codeline lineno="87" refid="classFisl_1_1Population_1_1Models_1_1Sexed" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classFisl_1_1Population_1_1Models_1_1Sexed" kindref="compound">Sexed</ref><sp/>{</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="89" refid="classFisl_1_1Population_1_1Models_1_1Sexed_1ac2039528a97f8640c4bfcd3bd1062b85" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classFisl_1_1Population_1_1Models_1_1Sexed_1ac2039528a97f8640c4bfcd3bd1062b85" kindref="member">proportion_</ref>;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="92" refid="classFisl_1_1Population_1_1Models_1_1Sexed_1ac060ae7c4f8957553762434a1307e799" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Type<sp/><ref refid="classFisl_1_1Population_1_1Models_1_1Sexed_1ac060ae7c4f8957553762434a1307e799" kindref="member">males</ref>;</highlight></codeline>
+<codeline lineno="93" refid="classFisl_1_1Population_1_1Models_1_1Sexed_1a8f90ba66c36a7e586fc2789d3ecdbd71" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Type<sp/><ref refid="classFisl_1_1Population_1_1Models_1_1Sexed_1a8f90ba66c36a7e586fc2789d3ecdbd71" kindref="member">females</ref>;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="95" refid="classFisl_1_1Population_1_1Models_1_1Sexed_1ae00995d828f776fab74c88564a43355a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Recruitment<sp/><ref refid="classFisl_1_1Population_1_1Models_1_1Sexed_1ae00995d828f776fab74c88564a43355a" kindref="member">recruitment</ref>;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="97" refid="classFisl_1_1Population_1_1Models_1_1Sexed_1a5d56d1a9838bf2f639c51f0ecec6cce6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classFisl_1_1Population_1_1Models_1_1Sexed_1a5d56d1a9838bf2f639c51f0ecec6cce6" kindref="member">recruits</ref>;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="99" refid="classFisl_1_1Population_1_1Models_1_1Sexed_1ac9d099568339ea971e872905ab55b86e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classFisl_1_1Population_1_1Models_1_1Sexed_1ac9d099568339ea971e872905ab55b86e" kindref="member">proportion</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classFisl_1_1Population_1_1Models_1_1Sexed_1ac2039528a97f8640c4bfcd3bd1062b85" kindref="member">proportion_</ref>;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="103" refid="classFisl_1_1Population_1_1Models_1_1Sexed_1adf7d607c99f6bb55a58460561c96ccfb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classFisl_1_1Population_1_1Models_1_1Sexed" kindref="compound">Sexed</ref>&amp;<sp/><ref refid="classFisl_1_1Population_1_1Models_1_1Sexed_1adf7d607c99f6bb55a58460561c96ccfb" kindref="member">proportion</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>p)<sp/>{</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classFisl_1_1Population_1_1Models_1_1Sexed_1ac2039528a97f8640c4bfcd3bd1062b85" kindref="member">proportion_</ref><sp/>=<sp/>p;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108" refid="classFisl_1_1Population_1_1Models_1_1Sexed_1a538d7eba6f5d865bb9c236a5c6013a2d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classFisl_1_1Population_1_1Models_1_1Sexed" kindref="compound">Sexed</ref>&amp;<sp/><ref refid="classFisl_1_1Population_1_1Models_1_1Sexed_1a538d7eba6f5d865bb9c236a5c6013a2d" kindref="member">ageing</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">){</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classFisl_1_1Population_1_1Models_1_1Sexed_1ac060ae7c4f8957553762434a1307e799" kindref="member">males</ref>.recruits<sp/>=<sp/><ref refid="classFisl_1_1Population_1_1Models_1_1Sexed_1a5d56d1a9838bf2f639c51f0ecec6cce6" kindref="member">recruits</ref><sp/>*<sp/><ref refid="classFisl_1_1Population_1_1Models_1_1Sexed_1ac9d099568339ea971e872905ab55b86e" kindref="member">proportion</ref>;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classFisl_1_1Population_1_1Models_1_1Sexed_1ac060ae7c4f8957553762434a1307e799" kindref="member">males</ref>.ageing();</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classFisl_1_1Population_1_1Models_1_1Sexed_1a8f90ba66c36a7e586fc2789d3ecdbd71" kindref="member">females</ref>.recruits<sp/>=<sp/><ref refid="classFisl_1_1Population_1_1Models_1_1Sexed_1a5d56d1a9838bf2f639c51f0ecec6cce6" kindref="member">recruits</ref><sp/>*<sp/>(1-<ref refid="classFisl_1_1Population_1_1Models_1_1Sexed_1ac9d099568339ea971e872905ab55b86e" kindref="member">proportion</ref>);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classFisl_1_1Population_1_1Models_1_1Sexed_1a8f90ba66c36a7e586fc2789d3ecdbd71" kindref="member">females</ref>.ageing();</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>*</highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="115"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="118"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="119"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/models/model.hpp"/>
+  </compounddef>
+</doxygen>

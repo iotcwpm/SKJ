@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="classFisl_1_1Monitoring_1_1Composition_1_1Samples" kind="class" prot="public">
+    <compoundname>Fisl::Monitoring::Composition::Samples</compoundname>
+    <includes refid="composition_8hpp" local="no">composition.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>unsigned int</type>
+        <declname>number</declname>
+        <defname>number</defname>
+      </param>
+      <param>
+        <type>unsigned int</type>
+        <declname>lowest</declname>
+        <defname>lowest</defname>
+      </param>
+      <param>
+        <type>unsigned int</type>
+        <declname>highest</declname>
+        <defname>highest</defname>
+      </param>
+      <param>
+        <type>unsigned int</type>
+        <declname>step</declname>
+        <defname>step</defname>
+        <defval>1</defval>
+      </param>
+      <param>
+        <type>class Handle</type>
+        <defval>int</defval>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classFisl_1_1Monitoring_1_1Composition_1_1Samples_1a08645e5a07b2a619d45fe020dfd2cc92" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Fisl::Monitoring::Composition::Samples&lt; number, lowest, highest, step, Handle &gt;::Samples</definition>
+        <argsstring>(Sample&lt; lowest, highest, step, Handle &gt; samples[number])</argsstring>
+        <name>Samples</name>
+        <param>
+          <type><ref refid="classFisl_1_1Monitoring_1_1Composition_1_1Sample" kindref="compound">Sample</ref>&lt; lowest, highest, step, Handle &gt;</type>
+          <declname>samples</declname>
+          <array>[number]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para><xrefsect id="todo_1_todo000005"><xreftitle>Todo</xreftitle><xrefdescription><para>initialise samples </para></xrefdescription></xrefsect></para>        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/monitoring/composition/composition.hpp" line="38" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/monitoring/composition/composition.hpp" bodystart="38" bodyend="40"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/monitoring/composition/composition.hpp" line="35" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/monitoring/composition/composition.hpp" bodystart="35" bodyend="41"/>
+    <listofallmembers>
+      <member refid="classFisl_1_1Monitoring_1_1Composition_1_1Samples_1a08645e5a07b2a619d45fe020dfd2cc92" prot="public" virt="non-virtual"><scope>Fisl::Monitoring::Composition::Samples</scope><name>Samples</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

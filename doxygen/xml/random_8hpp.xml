@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="random_8hpp" kind="file">
+    <compoundname>random.hpp</compoundname>
+    <includes local="no">random</includes>
+    <includedby refid="fishes_8hpp" local="no">fishes.hpp</includedby>
+    <incdepgraph>
+      <node id="312">
+        <label>random</label>
+      </node>
+      <node id="311">
+        <label>random.hpp</label>
+        <link refid="random.hpp"/>
+        <childnode refid="312" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="315">
+        <label>model.hpp</label>
+        <link refid="indi_2indi_2model_8hpp"/>
+        <childnode refid="316" relation="include">
+        </childnode>
+      </node>
+      <node id="314">
+        <label>fishes.hpp</label>
+        <link refid="fishes_8hpp"/>
+        <childnode refid="315" relation="include">
+        </childnode>
+      </node>
+      <node id="316">
+        <label>indi.hpp</label>
+        <link refid="indi_8hpp"/>
+        <childnode refid="317" relation="include">
+        </childnode>
+      </node>
+      <node id="318">
+        <label>io-skipjack.cpp</label>
+        <link refid="io-skipjack_8cpp"/>
+      </node>
+      <node id="317">
+        <label>io-skipjack.hpp</label>
+        <link refid="io-skipjack_8hpp"/>
+        <childnode refid="318" relation="include">
+        </childnode>
+      </node>
+      <node id="313">
+        <label>random.hpp</label>
+        <link refid="random.hpp"/>
+        <childnode refid="314" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="random_8hpp_1a3587a710956beb3d42b9a4c6a0aa3acd" prot="public" static="no" mutable="no">
+        <type>std::default_random_engine</type>
+        <definition>std::default_random_engine generator</definition>
+        <argsstring></argsstring>
+        <name>generator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/indi/indi/random.hpp" line="5" column="1" bodyfile="/home/nbentley/Trophia/Code/indi/indi/random.hpp" bodystart="5" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="random_8hpp_1aa6e896987347fb0ebc5e6bb184962658" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::uniform_int_distribution&lt; int &gt;</type>
+        <definition>std::uniform_int_distribution&lt;int&gt; distribution</definition>
+        <argsstring>(1, 10)</argsstring>
+        <name>distribution</name>
+        <param>
+          <type>1</type>
+        </param>
+        <param>
+          <type>10</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/indi/indi/random.hpp" line="6" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight></codeline>
+<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;random&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5" refid="random_8hpp_1a3587a710956beb3d42b9a4c6a0aa3acd" refkind="member"><highlight class="normal">std::default_random_engine<sp/><ref refid="random_8hpp_1a3587a710956beb3d42b9a4c6a0aa3acd" kindref="member">generator</ref>;</highlight></codeline>
+<codeline lineno="6"><highlight class="normal">std::uniform_int_distribution&lt;int&gt;<sp/><ref refid="random_8hpp_1aa6e896987347fb0ebc5e6bb184962658" kindref="member">distribution</ref>(1,10);</highlight></codeline>
+    </programlisting>
+    <location file="/home/nbentley/Trophia/Code/indi/indi/random.hpp"/>
+  </compounddef>
+</doxygen>

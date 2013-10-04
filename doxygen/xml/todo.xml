@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="todo" kind="page">
+    <compoundname>todo</compoundname>
+    <title>Todo List</title>
+    <detaileddescription>
+<para><variablelist>
+<varlistentry><term><anchor id="todo_1_todo000002"/>Member <ref refid="classIndi_1_1Fish_1a8636134fd4fa848c1f45d5f262597d21" kindref="member">Indi::Fish::grow</ref>  (void)</term></varlistentry>
+<listitem><para>implement real growth curve with random  </para></listitem>
+<varlistentry><term><anchor id="todo_1_todo000003"/>Member <ref refid="classIndi_1_1Fish_1affc42debcf5cbafd15b3367f863e4c0a" kindref="member">Indi::Fish::move</ref>  (void)</term></varlistentry>
+<listitem><para>implement movement in respone to Environs  </para></listitem>
+<varlistentry><term><anchor id="todo_1_todo000001"/>Member <ref refid="classIndi_1_1Fish_1abc9fb53b3106297d9f0e6f5f2c4af240" kindref="member">Indi::Fish::survive</ref>  (void)</term></varlistentry>
+<listitem><para>probabalistic mortality with given rate  </para></listitem>
+<varlistentry><term><anchor id="todo_1_todo000004"/>Member <ref refid="classParti_1_1Fish_1a7c6cbb9b85331ac921bf2148d3b21942" kindref="member">Parti::Fish&lt; Derived, Areas, Sexes, Ages, Sizes, Maturities &gt;::partitions_set_all</ref>  (void)</term></varlistentry>
+<listitem><para>Set everything in the one loop </para></listitem>
+</variablelist>
+</para>    </detaileddescription>
+  </compounddef>
+</doxygen>

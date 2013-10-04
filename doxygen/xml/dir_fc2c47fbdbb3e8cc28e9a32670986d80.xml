@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="dir_fc2c47fbdbb3e8cc28e9a32670986d80" kind="dir">
+    <compoundname>indi</compoundname>
+    <innerdir refid="dir_c0460c6d1119d4860503df19af976f0c">indi</innerdir>
+    <innerdir refid="dir_92ca985c52481b9eba864f2879870b18">projects</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/nbentley/Trophia/Code/indi/"/>
+  </compounddef>
+</doxygen>

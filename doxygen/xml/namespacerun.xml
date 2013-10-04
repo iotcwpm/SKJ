@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="namespacerun" kind="namespace">
+    <compoundname>run</compoundname>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="namespacerun_1a003d15f8cc55289d1b8a640ce1d2b8a8" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string run.test</definition>
+        <argsstring></argsstring>
+        <name>test</name>
+        <initializer>= &apos;temp.db3&apos;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangaupdater/tests/fla3/run.py" line="9" column="1" bodyfile="/home/nbentley/Trophia/Code/tangaupdater/tests/fla3/run.py" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/nbentley/Trophia/Code/tangaupdater/tests/fla3/run.py" line="1" column="1"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="namespaceFisl_1_1Math_1_1Probability" kind="namespace">
+    <compoundname>Fisl::Math::Probability</compoundname>
+    <innerclass refid="classFisl_1_1Math_1_1Probability_1_1Beta" prot="public">Fisl::Math::Probability::Beta</innerclass>
+    <innerclass refid="structFisl_1_1Math_1_1Probability_1_1Generator" prot="public">Fisl::Math::Probability::Generator</innerclass>
+    <innerclass refid="classFisl_1_1Math_1_1Probability_1_1Distribution" prot="public">Fisl::Math::Probability::Distribution</innerclass>
+    <innerclass refid="classFisl_1_1Math_1_1Probability_1_1Fixed" prot="public">Fisl::Math::Probability::Fixed</innerclass>
+    <innerclass refid="classFisl_1_1Math_1_1Probability_1_1Lognormal" prot="public">Fisl::Math::Probability::Lognormal</innerclass>
+    <innerclass refid="classFisl_1_1Math_1_1Probability_1_1Normal" prot="public">Fisl::Math::Probability::Normal</innerclass>
+    <innerclass refid="classFisl_1_1Math_1_1Probability_1_1NormalCv" prot="public">Fisl::Math::Probability::NormalCv</innerclass>
+    <innerclass refid="classFisl_1_1Math_1_1Probability_1_1Truncated" prot="public">Fisl::Math::Probability::Truncated</innerclass>
+    <innerclass refid="classFisl_1_1Math_1_1Probability_1_1Uniform" prot="public">Fisl::Math::Probability::Uniform</innerclass>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="namespaceFisl_1_1Math_1_1Probability_1a5dd269a398e86f5980e17d0edf20b881" prot="public" static="no" mutable="no">
+        <type><ref refid="structFisl_1_1Math_1_1Probability_1_1Generator" kindref="compound">Fisl::Math::Probability::Generator</ref></type>
+        <definition> Fisl::Math::Probability::Generator  Fisl::Math::Probability::Generator</definition>
+        <argsstring></argsstring>
+        <name>Generator</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/distribution.hpp" line="28"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/beta.hpp" line="9"/>
+  </compounddef>
+</doxygen>

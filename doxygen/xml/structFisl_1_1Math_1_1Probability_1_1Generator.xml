@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="structFisl_1_1Math_1_1Probability_1_1Generator" kind="struct" prot="public">
+    <compoundname>Fisl::Math::Probability::Generator</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">mt19937</basecompoundref>
+    <includes refid="distribution_8hpp" local="no">distribution.hpp</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structFisl_1_1Math_1_1Probability_1_1Generator_1a1cdee13ca7f34d306fcebbbfc4e217bd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Fisl::Math::Probability::Generator::Generator</definition>
+        <argsstring>(void)</argsstring>
+        <name>Generator</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para>Set random number generator seed using current time </para>        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/distribution.hpp" line="24" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/distribution.hpp" bodystart="24" bodyend="27"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A scaffolding object that holds the random number generator used in the random() methods </para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="63">
+        <label>Fisl::Math::Probability::Generator</label>
+        <link refid="structFisl_1_1Math_1_1Probability_1_1Generator"/>
+        <childnode refid="64" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="64">
+        <label>boost::mt19937</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="65">
+        <label>Fisl::Math::Probability::Generator</label>
+        <link refid="structFisl_1_1Math_1_1Probability_1_1Generator"/>
+        <childnode refid="66" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="66">
+        <label>boost::mt19937</label>
+      </node>
+    </collaborationgraph>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/distribution.hpp" line="23" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/probability/distribution.hpp" bodystart="23" bodyend="28"/>
+    <listofallmembers>
+      <member refid="structFisl_1_1Math_1_1Probability_1_1Generator_1a1cdee13ca7f34d306fcebbbfc4e217bd" prot="public" virt="non-virtual"><scope>Fisl::Math::Probability::Generator</scope><name>Generator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

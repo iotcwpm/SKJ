@@ -1,0 +1,192 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="function_8hpp" kind="file">
+    <compoundname>function.hpp</compoundname>
+    <includes refid="common_8hpp" local="no">fisl/common.hpp</includes>
+    <includes refid="array_8hpp" local="no">fisl/array.hpp</includes>
+    <includedby refid="evaluation-skeleton_8cpp" local="no">evaluation-skeleton.cpp</includedby>
+    <includedby refid="cached_8cxx" local="no">cached.cxx</includedby>
+    <includedby refid="identity_8hpp" local="no">identity.hpp</includedby>
+    <includedby refid="logistic_8hpp" local="no">logistic.hpp</includedby>
+    <includedby refid="power_8hpp" local="no">power.hpp</includedby>
+    <includedby refid="threshold_8hpp" local="no">threshold.hpp</includedby>
+    <includedby refid="von-bert_8hpp" local="no">von-bert.hpp</includedby>
+    <includedby refid="model_8hpp" local="no">model.hpp</includedby>
+    <incdepgraph>
+      <node id="264">
+        <label>fisl/array.hpp</label>
+        <link refid="array_8hpp"/>
+        <childnode refid="265" relation="include">
+        </childnode>
+        <childnode refid="266" relation="include">
+        </childnode>
+      </node>
+      <node id="265">
+        <label>vector</label>
+      </node>
+      <node id="266">
+        <label>algorithm</label>
+      </node>
+      <node id="262">
+        <label>function.hpp</label>
+        <link refid="function.hpp"/>
+        <childnode refid="263" relation="include">
+        </childnode>
+        <childnode refid="264" relation="include">
+        </childnode>
+      </node>
+      <node id="263">
+        <label>fisl/common.hpp</label>
+        <link refid="common_8hpp"/>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="273">
+        <label>model.hpp</label>
+        <link refid="model_8hpp"/>
+        <childnode refid="268" relation="include">
+        </childnode>
+        <childnode refid="274" relation="include">
+        </childnode>
+      </node>
+      <node id="268">
+        <label>evaluation-skeleton.cpp</label>
+        <link refid="evaluation-skeleton_8cpp"/>
+      </node>
+      <node id="274">
+        <label>model.cxx</label>
+        <link refid="model_8cxx"/>
+      </node>
+      <node id="275">
+        <label>power.hpp</label>
+        <link refid="power_8hpp"/>
+        <childnode refid="276" relation="include">
+        </childnode>
+      </node>
+      <node id="271">
+        <label>logistic.hpp</label>
+        <link refid="logistic_8hpp"/>
+        <childnode refid="272" relation="include">
+        </childnode>
+      </node>
+      <node id="277">
+        <label>threshold.hpp</label>
+        <link refid="threshold_8hpp"/>
+        <childnode refid="272" relation="include">
+        </childnode>
+      </node>
+      <node id="269">
+        <label>cached.cxx</label>
+        <link refid="cached_8cxx"/>
+      </node>
+      <node id="270">
+        <label>identity.hpp</label>
+        <link refid="identity_8hpp"/>
+        <childnode refid="269" relation="include">
+        </childnode>
+      </node>
+      <node id="276">
+        <label>morphometry.hpp</label>
+        <link refid="morphometry_8hpp"/>
+        <childnode refid="268" relation="include">
+        </childnode>
+        <childnode refid="273" relation="include">
+        </childnode>
+      </node>
+      <node id="278">
+        <label>von-bert.hpp</label>
+        <link refid="von-bert_8hpp"/>
+        <childnode refid="273" relation="include">
+        </childnode>
+      </node>
+      <node id="272">
+        <label>maturity.hpp</label>
+        <link refid="maturity_8hpp"/>
+        <childnode refid="268" relation="include">
+        </childnode>
+        <childnode refid="273" relation="include">
+        </childnode>
+      </node>
+      <node id="267">
+        <label>function.hpp</label>
+        <link refid="function.hpp"/>
+        <childnode refid="268" relation="include">
+        </childnode>
+        <childnode refid="269" relation="include">
+        </childnode>
+        <childnode refid="270" relation="include">
+        </childnode>
+        <childnode refid="271" relation="include">
+        </childnode>
+        <childnode refid="275" relation="include">
+        </childnode>
+        <childnode refid="277" relation="include">
+        </childnode>
+        <childnode refid="278" relation="include">
+        </childnode>
+        <childnode refid="273" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classFisl_1_1Math_1_1Functions_1_1Function" prot="public">Fisl::Math::Functions::Function</innerclass>
+    <innerclass refid="classFisl_1_1Math_1_1Functions_1_1Cached" prot="public">Fisl::Math::Functions::Cached</innerclass>
+    <innernamespace refid="namespaceFisl">Fisl</innernamespace>
+    <innernamespace refid="namespaceFisl_1_1Math">Fisl::Math</innernamespace>
+    <innernamespace refid="namespaceFisl_1_1Math_1_1Functions">Fisl::Math::Functions</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight></codeline>
+<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="common_8hpp" kindref="compound" tooltip="Definitions of common #includes and typedefs.">fisl/common.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="array_8hpp" kindref="compound">fisl/array.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">Fisl<sp/>{</highlight></codeline>
+<codeline lineno="7" refid="namespaceFisl_1_1Math" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">Math<sp/>{</highlight></codeline>
+<codeline lineno="8" refid="namespaceFisl_1_1Math_1_1Functions" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">Functions<sp/>{</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="17" refid="classFisl_1_1Math_1_1Functions_1_1Function" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classFisl_1_1Math_1_1Functions_1_1Function" kindref="compound">Function</ref><sp/>{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="20" refid="classFisl_1_1Math_1_1Functions_1_1Function_1a9742fece50e56752eda60d467a7127ce" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classFisl_1_1Math_1_1Functions_1_1Function_1a9742fece50e56752eda60d467a7127ce" kindref="member">operator()</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>x){</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="23"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>Function,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>Dimension&gt;</highlight></codeline>
+<codeline lineno="30" refid="classFisl_1_1Math_1_1Functions_1_1Cached" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classFisl_1_1Math_1_1Functions_1_1Cached" kindref="compound" tooltip="Precalculated function values for greater computational efficiency.">Cached</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classFisl_1_1Math_1_1Functions_1_1Function" kindref="compound">Function</ref>,<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classArray" kindref="compound">Array</ref>&lt;double,Dimension&gt;<sp/>{</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33" refid="classFisl_1_1Math_1_1Functions_1_1Cached_1ae660826cb8dce1540be57a36783e8d5a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/><ref refid="classArray" kindref="compound">Array&lt;double,Dimension&gt;</ref><sp/><ref refid="classFisl_1_1Math_1_1Functions_1_1Cached_1ae660826cb8dce1540be57a36783e8d5a" kindref="member">ArrayType</ref>;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35" refid="classFisl_1_1Math_1_1Functions_1_1Cached_1adc75d4386a17cf539cdb2559a77099ed" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classFisl_1_1Math_1_1Functions_1_1Cached_1adc75d4386a17cf539cdb2559a77099ed" kindref="member">reset</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">){</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index=0;index&lt;ArrayType::size();index++)<sp/>{</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ArrayType::operator()(index)<sp/>=<sp/><ref refid="classFisl_1_1Math_1_1Functions_1_1Function_1a9742fece50e56752eda60d467a7127ce" kindref="member">Function::operator()</ref>(index);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="41" refid="classFisl_1_1Math_1_1Functions_1_1Cached_1a8a379b0eea08a95c25664c4424990b1e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classFisl_1_1Math_1_1Functions_1_1Cached_1a8a379b0eea08a95c25664c4424990b1e" kindref="member">reset</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>base,</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">&amp;<sp/>step){</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index=0;index&lt;ArrayType::size();index++)<sp/>{</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ArrayType::operator()(index)<sp/>=<sp/><ref refid="classFisl_1_1Math_1_1Functions_1_1Function_1a9742fece50e56752eda60d467a7127ce" kindref="member">Function::operator()</ref>(base+index*step);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">typename</highlight><highlight class="normal"><sp/>Callable&gt;</highlight></codeline>
+<codeline lineno="48" refid="classFisl_1_1Math_1_1Functions_1_1Cached_1ae95be8fb6f753f147b2be5b52d0a6403" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classFisl_1_1Math_1_1Functions_1_1Cached_1ae95be8fb6f753f147b2be5b52d0a6403" kindref="member">reset</ref>(Callable<sp/>callable){</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>index=0;index&lt;ArrayType::size();index++)<sp/>{</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ArrayType::operator()(index)<sp/>=<sp/><ref refid="classFisl_1_1Math_1_1Functions_1_1Function_1a9742fece50e56752eda60d467a7127ce" kindref="member">Function::operator()</ref>(callable(index));</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="54" refid="classFisl_1_1Math_1_1Functions_1_1Cached_1ace51cedd3c3d5e781a7a188bcbb2ee5a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="classFisl_1_1Math_1_1Functions_1_1Cached_1ace51cedd3c3d5e781a7a188bcbb2ee5a" kindref="member">operator()</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">&amp;<sp/>index)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>ArrayType::operator()(index);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="57"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal">}}}</highlight></codeline>
+    </programlisting>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/functions/function.hpp"/>
+  </compounddef>
+</doxygen>

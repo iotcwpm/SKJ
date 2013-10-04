@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="classFisl_1_1Population_1_1Recruitment_1_1Stochastic_3_01Relationship_00	Math_1_1Probability_1_12e6e0ed33f3be284cd5e3cec21f57116" kind="class" prot="public">
+    <compoundname>Fisl::Population::Recruitment::Stochastic&lt; Relationship,	Math::Probability::Lognormal,	Math::Series::Autocorrelation &gt;</compoundname>
+    <includes refid="stochastic_8hpp" local="no">stochastic.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>class Relationship</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classFisl_1_1Population_1_1Recruitment_1_1Stochastic_3_01Relationship_00	Math_1_1Probability_1_12e6e0ed33f3be284cd5e3cec21f57116_1a1f166aad65a0f17deba1902f2c0a894c" prot="public" static="no" mutable="no">
+        <type>Relationship</type>
+        <definition>Relationship Fisl::Population::Recruitment::Stochastic&lt; Relationship,	Math::Probability::Lognormal,	Math::Series::Autocorrelation &gt;::relationship</definition>
+        <argsstring></argsstring>
+        <name>relationship</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/stochastic.hpp" line="28" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/stochastic.hpp" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classFisl_1_1Population_1_1Recruitment_1_1Stochastic_3_01Relationship_00	Math_1_1Probability_1_12e6e0ed33f3be284cd5e3cec21f57116_1a732250e50349ffc6ea68be4ecb4fc236" prot="public" static="no" mutable="no">
+        <type><ref refid="classFisl_1_1Math_1_1Probability_1_1Normal" kindref="compound">Math::Probability::Normal</ref></type>
+        <definition>Math::Probability::Normal Fisl::Population::Recruitment::Stochastic&lt; Relationship,	Math::Probability::Lognormal,	Math::Series::Autocorrelation &gt;::variation</definition>
+        <argsstring></argsstring>
+        <name>variation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/stochastic.hpp" line="29" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/stochastic.hpp" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classFisl_1_1Population_1_1Recruitment_1_1Stochastic_3_01Relationship_00	Math_1_1Probability_1_12e6e0ed33f3be284cd5e3cec21f57116_1afb5d891609df88d4a182badb442f8e35" prot="public" static="no" mutable="no">
+        <type><ref refid="classFisl_1_1Math_1_1Series_1_1Autocorrelation" kindref="compound">Math::Series::Autocorrelation</ref></type>
+        <definition>Math::Series::Autocorrelation Fisl::Population::Recruitment::Stochastic&lt; Relationship,	Math::Probability::Lognormal,	Math::Series::Autocorrelation &gt;::autocorrelation</definition>
+        <argsstring></argsstring>
+        <name>autocorrelation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/stochastic.hpp" line="30" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/stochastic.hpp" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classFisl_1_1Population_1_1Recruitment_1_1Stochastic_3_01Relationship_00	Math_1_1Probability_1_12e6e0ed33f3be284cd5e3cec21f57116_1a26115fd8b56b5ac4755c019f82f0c247" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Fisl::Population::Recruitment::Stochastic&lt; Relationship,	Math::Probability::Lognormal,	Math::Series::Autocorrelation &gt;::spawners</definition>
+        <argsstring></argsstring>
+        <name>spawners</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/stochastic.hpp" line="32" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/stochastic.hpp" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classFisl_1_1Population_1_1Recruitment_1_1Stochastic_3_01Relationship_00	Math_1_1Probability_1_12e6e0ed33f3be284cd5e3cec21f57116_1a20330b83c4827d0dcc69d5440520089b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Fisl::Population::Recruitment::Stochastic&lt; Relationship,	Math::Probability::Lognormal,	Math::Series::Autocorrelation &gt;::recruits</definition>
+        <argsstring>(void)</argsstring>
+        <name>recruits</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/stochastic.hpp" line="34" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/stochastic.hpp" bodystart="34" bodyend="40"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="174">
+        <label>Fisl::Population::Recruitment::Stochastic&lt; Relationship,	Math::Probability::Lognormal,	Math::Series::Autocorrelation &gt;</label>
+        <link refid="classFisl_1_1Population_1_1Recruitment_1_1Stochastic_3_01Relationship_00	Math_1_1Probability_1_12e6e0ed33f3be284cd5e3cec21f57116"/>
+        <childnode refid="175" relation="usage">
+          <edgelabel>autocorrelation</edgelabel>
+        </childnode>
+        <childnode refid="176" relation="usage">
+          <edgelabel>variation</edgelabel>
+        </childnode>
+      </node>
+      <node id="177">
+        <label>Fisl::Math::Probability::Distribution&lt; Normal &gt;</label>
+        <link refid="classFisl_1_1Math_1_1Probability_1_1Distribution"/>
+      </node>
+      <node id="175">
+        <label>Fisl::Math::Series::Autocorrelation</label>
+        <link refid="classFisl_1_1Math_1_1Series_1_1Autocorrelation"/>
+      </node>
+      <node id="176">
+        <label>Fisl::Math::Probability::Normal</label>
+        <link refid="classFisl_1_1Math_1_1Probability_1_1Normal"/>
+        <childnode refid="177" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/stochastic.hpp" line="26" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/stochastic.hpp" bodystart="22" bodyend="41"/>
+    <listofallmembers>
+      <member refid="classFisl_1_1Population_1_1Recruitment_1_1Stochastic_3_01Relationship_00	Math_1_1Probability_1_12e6e0ed33f3be284cd5e3cec21f57116_1afb5d891609df88d4a182badb442f8e35" prot="public" virt="non-virtual"><scope>Fisl::Population::Recruitment::Stochastic&lt; Relationship,	Math::Probability::Lognormal,	Math::Series::Autocorrelation &gt;</scope><name>autocorrelation</name></member>
+      <member refid="classFisl_1_1Population_1_1Recruitment_1_1Stochastic_3_01Relationship_00	Math_1_1Probability_1_12e6e0ed33f3be284cd5e3cec21f57116_1a20330b83c4827d0dcc69d5440520089b" prot="public" virt="non-virtual"><scope>Fisl::Population::Recruitment::Stochastic&lt; Relationship,	Math::Probability::Lognormal,	Math::Series::Autocorrelation &gt;</scope><name>recruits</name></member>
+      <member refid="classFisl_1_1Population_1_1Recruitment_1_1Stochastic_3_01Relationship_00	Math_1_1Probability_1_12e6e0ed33f3be284cd5e3cec21f57116_1a1f166aad65a0f17deba1902f2c0a894c" prot="public" virt="non-virtual"><scope>Fisl::Population::Recruitment::Stochastic&lt; Relationship,	Math::Probability::Lognormal,	Math::Series::Autocorrelation &gt;</scope><name>relationship</name></member>
+      <member refid="classFisl_1_1Population_1_1Recruitment_1_1Stochastic_3_01Relationship_00	Math_1_1Probability_1_12e6e0ed33f3be284cd5e3cec21f57116_1a26115fd8b56b5ac4755c019f82f0c247" prot="public" virt="non-virtual"><scope>Fisl::Population::Recruitment::Stochastic&lt; Relationship,	Math::Probability::Lognormal,	Math::Series::Autocorrelation &gt;</scope><name>spawners</name></member>
+      <member refid="classFisl_1_1Population_1_1Recruitment_1_1Stochastic_3_01Relationship_00	Math_1_1Probability_1_12e6e0ed33f3be284cd5e3cec21f57116_1a732250e50349ffc6ea68be4ecb4fc236" prot="public" virt="non-virtual"><scope>Fisl::Population::Recruitment::Stochastic&lt; Relationship,	Math::Probability::Lognormal,	Math::Series::Autocorrelation &gt;</scope><name>variation</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

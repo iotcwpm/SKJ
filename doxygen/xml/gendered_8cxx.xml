@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="gendered_8cxx" kind="file">
+    <compoundname>gendered.cxx</compoundname>
+    <includes local="no">boost/test/unit_test.hpp</includes>
+    <includes refid="aged_8hpp" local="no">fisl/population/structure/aged.hpp</includes>
+    <includes refid="gendered_8hpp" local="no">fisl/population/structure/gendered.hpp</includes>
+    <includes refid="numbers_8hpp" local="no">fisl/population/structure/numbers.hpp</includes>
+    <incdepgraph>
+      <node id="153">
+        <label>boost/test/unit_test.hpp</label>
+      </node>
+      <node id="159">
+        <label>fisl/population/structure/numbers.hpp</label>
+        <link refid="numbers_8hpp"/>
+      </node>
+      <node id="155">
+        <label>fisl/array.hpp</label>
+        <link refid="array_8hpp"/>
+        <childnode refid="156" relation="include">
+        </childnode>
+        <childnode refid="157" relation="include">
+        </childnode>
+      </node>
+      <node id="158">
+        <label>fisl/population/structure/gendered.hpp</label>
+        <link refid="gendered_8hpp"/>
+        <childnode refid="155" relation="include">
+        </childnode>
+      </node>
+      <node id="156">
+        <label>vector</label>
+      </node>
+      <node id="152">
+        <label>gendered.cxx</label>
+        <link refid="gendered.cxx"/>
+        <childnode refid="153" relation="include">
+        </childnode>
+        <childnode refid="154" relation="include">
+        </childnode>
+        <childnode refid="158" relation="include">
+        </childnode>
+        <childnode refid="159" relation="include">
+        </childnode>
+      </node>
+      <node id="157">
+        <label>algorithm</label>
+      </node>
+      <node id="154">
+        <label>fisl/population/structure/aged.hpp</label>
+        <link refid="aged_8hpp"/>
+        <childnode refid="155" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="gendered_8cxx_1a3caaf58b8738255bedfee47ae4c45792" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>BOOST_AUTO_TEST_CASE</definition>
+        <argsstring>(simple)</argsstring>
+        <name>BOOST_AUTO_TEST_CASE</name>
+        <param>
+          <type>simple</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/structure/gendered.cxx" line="14" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/structure/gendered.cxx" bodystart="14" bodyend="23"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifdef<sp/>FISL_TEST_SINGLE</highlight></codeline>
+<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#define<sp/>BOOST_TEST_MODULE<sp/>tests</highlight></codeline>
+<codeline lineno="3"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="4"><highlight class="preprocessor"></highlight><highlight class="preprocessor">#include<sp/>&lt;boost/test/unit_test.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="aged_8hpp" kindref="compound">fisl/population/structure/aged.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="gendered_8hpp" kindref="compound">fisl/population/structure/gendered.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="numbers_8hpp" kindref="compound">fisl/population/structure/numbers.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal">BOOST_AUTO_TEST_SUITE(population_structure_aged)</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal">using<sp/>namespace<sp/>Fisl::Population::Structure;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><ref refid="cached_8cxx_1ae37f3ec962483be3cc0d116ae4a2e76d" kindref="member">BOOST_AUTO_TEST_CASE</ref>(simple){</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classFisl_1_1Population_1_1Structure_1_1Gendered" kindref="compound">Gendered&lt;Aged&lt;Numbers,10&gt;</ref>&gt;<sp/>pop;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pop(0)<sp/>=<sp/>{10,9,8,7,6,5,4,3,2,1};</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pop(1)<sp/>=<sp/>{10,9,8,7,6,5,4,3,2,1};</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>pop.<ref refid="classFisl_1_1Population_1_1Structure_1_1Gendered_1a00dee18ca76537557cb825a3e0f530f0" kindref="member">recruits</ref><sp/>=<sp/>10;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pop.<ref refid="classFisl_1_1Population_1_1Structure_1_1Gendered_1a6a068156ac743a359e3601d405f9fea7" kindref="member">ageing</ref>();</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>BOOST_CHECK_EQUAL(pop(0)(0),10);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>BOOST_CHECK_EQUAL(pop(0)(1),9);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>BOOST_CHECK_EQUAL(pop(0)(9),3);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal">BOOST_AUTO_TEST_SUITE_END()</highlight></codeline>
+    </programlisting>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/structure/gendered.cxx"/>
+  </compounddef>
+</doxygen>

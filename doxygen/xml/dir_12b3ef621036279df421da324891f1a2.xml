@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="dir_12b3ef621036279df421da324891f1a2" kind="dir">
+    <compoundname>procedures</compoundname>
+    <innerfile refid="evaluation-skeleton_8cpp">evaluation-skeleton.cpp</innerfile>
+    <innerfile refid="evaluation_8hpp">evaluation.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/management/procedures/"/>
+  </compounddef>
+</doxygen>

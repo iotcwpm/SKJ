@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="P09003_01MSE_8md" kind="file">
+    <compoundname>P09003 MSE.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal">Title:<sp/>P09003:<sp/>Management<sp/>strategy<sp/>evaluation<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>data-poor<sp/>fishstocks</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal">Principal<sp/>Investigator:</highlight></codeline>
+<codeline lineno="4"><highlight class="normal">Mark<sp/>Maunder</highlight></codeline>
+<codeline lineno="5"><highlight class="normal">Researchers:</highlight></codeline>
+<codeline lineno="6"><highlight class="normal">Nokome<sp/>Bentley</highlight></codeline>
+<codeline lineno="7"><highlight class="normal">Status:</highlight></codeline>
+<codeline lineno="8"><highlight class="normal">Completed</highlight></codeline>
+<codeline lineno="9"><highlight class="normal">Trophia<sp/>has<sp/>been<sp/>contracted<sp/>by<sp/>Quantitative<sp/>Resource<sp/>Assessment<sp/>LLC<sp/>(Mark<sp/>Maunder)<sp/>in<sp/>coordination<sp/>with<sp/>the<sp/>California<sp/>Ocean<sp/>Protection<sp/>Council<sp/>(OPC)<sp/>and<sp/>the<sp/>California<sp/>Department<sp/>of<sp/>Fish<sp/>and<sp/>Game<sp/>(CDFG)<sp/>to<sp/>develop<sp/>an<sp/>MSE<sp/>approach<sp/>for<sp/>data-poor<sp/>stocks.<sp/>The<sp/>specific<sp/>objectives<sp/>for<sp/>this<sp/>project<sp/>include:</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal">1.<sp/><sp/>MSE<sp/>for<sp/>generic<sp/>fisheries:<sp/>Describe<sp/>the<sp/>evaluation<sp/>of<sp/>management<sp/>strategies<sp/>for<sp/>generic<sp/>(archtypal)<sp/>fisheries..</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal">2.<sp/>Tailored<sp/>MSE:<sp/>Evaluate<sp/>one<sp/>or<sp/>more.<sp/>of<sp/>Calefornia&apos;s<sp/>data-poor<sp/>stocks.</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal">The<sp/>generic<sp/>MSE<sp/>will<sp/>include<sp/>archetypes<sp/>that<sp/>can<sp/>be<sp/>applied<sp/>to<sp/>such<sp/>data-poor<sp/>Calefornia<sp/>fisheries<sp/>as<sp/>teh<sp/>nearshore<sp/>finfish<sp/>fishery<sp/>and<sp/>the<sp/>Calefornia<sp/>lobster<sp/>fishery.<sp/>Also<sp/>to<sp/>provide<sp/>information<sp/>on<sp/>how<sp/>to<sp/>apply<sp/>these<sp/>MSE<sp/>(i.e.<sp/>MDE<sp/>decision<sp/>tree).<sp/>In<sp/>addition,<sp/>identify<sp/>and<sp/>prioritize<sp/>the<sp/>type<sp/>of<sp/>data<sp/>that<sp/>are<sp/>critical<sp/>to<sp/>such<sp/>evaluations.</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal">The<sp/>tailored<sp/>MSE<sp/>will<sp/>evaluate<sp/>one<sp/>or<sp/>more<sp/>of<sp/>Calefornia&apos;s<sp/>data-poor<sp/>stocks<sp/>using<sp/>MSE<sp/>tailored<sp/>to<sp/>(uses<sp/>the<sp/>biological<sp/>parameters<sp/>and<sp/>data<sp/>available<sp/>from)<sp/>these<sp/>stocks.</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal">Outputs<sp/>from<sp/>this<sp/>project<sp/>will<sp/>include<sp/>three<sp/>client<sp/>reports.</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal">This<sp/>work<sp/>is<sp/>funded<sp/>by<sp/>Quantitative<sp/>Resource<sp/>Assessment<sp/>LLC<sp/>(Mark<sp/>Maunder)<sp/>in<sp/>coordination<sp/>with<sp/>the<sp/>California<sp/>Ocean<sp/>Protection<sp/>Council<sp/>(OPC)<sp/>and<sp/>the<sp/>California<sp/>Department<sp/>of<sp/>Fish<sp/>and<sp/>Game<sp/>(CDFG)</highlight></codeline>
+    </programlisting>
+    <location file="/home/nbentley/Trophia/Code/www/src/projects/P09003 MSE.md"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="P03005_01tunafisheries_8md" kind="file">
+    <compoundname>P03005 tunafisheries.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal">Title:<sp/>P03005:<sp/>Characterisation<sp/>of<sp/>the<sp/>New<sp/>Zealand<sp/>tuna<sp/>fisheries</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">Principal<sp/>Investigator:</highlight></codeline>
+<codeline lineno="6"><highlight class="normal">Terese<sp/>Kendrick</highlight></codeline>
+<codeline lineno="7"><highlight class="normal">Researchers:</highlight></codeline>
+<codeline lineno="8"><highlight class="normal">Nokome<sp/>Bentley</highlight></codeline>
+<codeline lineno="9"><highlight class="normal">Nathan<sp/>Walker<sp/><sp/></highlight></codeline>
+<codeline lineno="10"><highlight class="normal">Status:</highlight></codeline>
+<codeline lineno="11"><highlight class="normal">Completed</highlight></codeline>
+<codeline lineno="12"><highlight class="normal">Trophia<sp/>has<sp/>been<sp/>contracted<sp/>by<sp/>the<sp/>New<sp/>Zealand<sp/>Ministry<sp/>of<sp/>Fisheries<sp/>(MFish)<sp/>to<sp/>To<sp/>characterise<sp/>the<sp/>New<sp/>Zealand<sp/>tuna<sp/>fisheries,<sp/>including<sp/>catches<sp/>of<sp/>important<sp/>associated<sp/>tuna<sp/>like<sp/>species.<sp/><sp/>The<sp/>specific<sp/>objectives<sp/>for<sp/>this<sp/>project<sp/>include:</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal">1.<sp/><sp/>To<sp/>characterise<sp/>the<sp/>New<sp/>Zealand<sp/>tuna<sp/>fisheries<sp/>for<sp/>albacore<sp/>(Thunnus<sp/>alalunga),<sp/>bigeye<sp/>tuna<sp/>(T.<sp/>obesus),<sp/>Pacific<sp/>bluefin<sp/>tuna<sp/>(T.<sp/>orientalis),<sp/>skipjack<sp/>tuna<sp/>(Katsuwonus<sp/>pelamis),<sp/>southern<sp/>bluefin<sp/>tuna<sp/>(Thunnus<sp/>maccoyii),<sp/>yellowfin<sp/>tuna<sp/>(T.<sp/>albacares),<sp/>and<sp/>swordfish<sp/>(Xiphias<sp/>gladius)<sp/>in<sp/>the<sp/>New<sp/>Zealand<sp/>EEZ<sp/>and<sp/>adjacent<sp/>areas<sp/>for<sp/>the<sp/>2002/03<sp/>fishing<sp/><ref refid="namespaceIOSKJ_1a3b0e8207040c0b0617bab01f6f23cb7d" kindref="member">year</ref>.</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal">2.<sp/><sp/>As<sp/>above<sp/>for<sp/>the<sp/>2003/04<sp/>fishing<sp/><ref refid="namespaceIOSKJ_1a3b0e8207040c0b0617bab01f6f23cb7d" kindref="member">year</ref>.</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal">The<sp/>Final<sp/>Report<sp/>for<sp/>this<sp/>work<sp/>will<sp/>be<sp/>published<sp/>as<sp/>an<sp/>MFish<sp/>stock<sp/>Assessment<sp/>Report<sp/>and<sp/>will<sp/>also<sp/>be<sp/>available<sp/>soon<sp/>from<sp/>this<sp/>site:</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal">Kendrick,<sp/>T.H.<sp/>(2006).<sp/>Characterisation<sp/>of<sp/>the<sp/>New<sp/>Zealand<sp/>tuna<sp/>fisheries<sp/>in<sp/>2002–03<sp/>and<sp/>2003–­04.</highlight></codeline>
+<codeline lineno="21"><highlight class="normal">New<sp/>Zealand<sp/>Fisheries<sp/>Assessment<sp/>Report<sp/>2006/28.<sp/>78<sp/>p.</highlight></codeline>
+<codeline lineno="22"><highlight class="normal">This<sp/>work<sp/>is<sp/>funded<sp/>by<sp/>MFish<sp/>project<sp/>TUN2003/02</highlight></codeline>
+    </programlisting>
+    <location file="/home/nbentley/Trophia/Code/www/src/projects/P03005 tunafisheries.md"/>
+  </compounddef>
+</doxygen>

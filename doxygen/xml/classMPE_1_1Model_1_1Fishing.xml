@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="classMPE_1_1Model_1_1Fishing" kind="class" prot="public">
+    <compoundname>MPE::Model::Fishing</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classMPE_1_1Model_1_1Fishing_1aa970b5d2e8978c484c735ca1cee908d8" prot="public" static="no" mutable="no">
+        <type><ref refid="structFishery" kindref="compound">Fishery</ref></type>
+        <definition>Fishery MPE::Model::Fishing::line</definition>
+        <argsstring></argsstring>
+        <name>line</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/management/procedures/evaluation-skeleton.cpp" line="66" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/management/procedures/evaluation-skeleton.cpp" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classMPE_1_1Model_1_1Fishing_1a1e75e8d6a4472448591c50a8aa3f364d" prot="public" static="no" mutable="no">
+        <type><ref refid="structFishery" kindref="compound">Fishery</ref></type>
+        <definition>Fishery MPE::Model::Fishing::trawl</definition>
+        <argsstring></argsstring>
+        <name>trawl</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/management/procedures/evaluation-skeleton.cpp" line="67" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/management/procedures/evaluation-skeleton.cpp" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="47">
+        <label>Fishery</label>
+        <link refid="structFishery"/>
+        <childnode refid="48" relation="usage">
+          <edgelabel>selectivities</edgelabel>
+        </childnode>
+      </node>
+      <node id="48">
+        <label>Logistic</label>
+      </node>
+      <node id="46">
+        <label>MPE::Model::Fishing</label>
+        <link refid="classMPE_1_1Model_1_1Fishing"/>
+        <childnode refid="47" relation="usage">
+          <edgelabel>trawl</edgelabel>
+          <edgelabel>line</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/management/procedures/evaluation-skeleton.cpp" line="64" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/management/procedures/evaluation-skeleton.cpp" bodystart="64" bodyend="68"/>
+    <listofallmembers>
+      <member refid="classMPE_1_1Model_1_1Fishing_1aa970b5d2e8978c484c735ca1cee908d8" prot="public" virt="non-virtual"><scope>MPE::Model::Fishing</scope><name>line</name></member>
+      <member refid="classMPE_1_1Model_1_1Fishing_1a1e75e8d6a4472448591c50a8aa3f364d" prot="public" virt="non-virtual"><scope>MPE::Model::Fishing</scope><name>trawl</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

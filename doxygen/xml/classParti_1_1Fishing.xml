@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="classParti_1_1Fishing" kind="class" prot="public">
+    <compoundname>Parti::Fishing</compoundname>
+    <includes refid="parti_2fishing_8hpp" local="no">fishing.hpp</includes>
+    <innerclass refid="classParti_1_1Fishing_1_1Partition" prot="public">Parti::Fishing::Partition</innerclass>
+    <templateparamlist>
+      <param>
+        <type>class Derived</type>
+      </param>
+      <param>
+        <type>uint</type>
+        <declname>Areas</declname>
+        <defname>Areas</defname>
+        <defval>1</defval>
+      </param>
+      <param>
+        <type>uint</type>
+        <declname>Fleets</declname>
+        <defname>Fleets</defname>
+        <defval>1</defval>
+      </param>
+      <param>
+        <type>uint</type>
+        <declname>Methods</declname>
+        <defname>Methods</defname>
+        <defval>1</defval>
+      </param>
+    </templateparamlist>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/nbentley/Trophia/Code/parti/fishing.hpp" line="11" column="1" bodyfile="/home/nbentley/Trophia/Code/parti/fishing.hpp" bodystart="11" bodyend="19"/>
+    <listofallmembers>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

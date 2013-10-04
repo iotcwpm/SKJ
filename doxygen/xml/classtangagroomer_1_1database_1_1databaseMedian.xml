@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="classtangagroomer_1_1database_1_1databaseMedian" kind="class" prot="public">
+    <compoundname>tangagroomer::database::databaseMedian</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classtangagroomer_1_1database_1_1databaseMedian_1a75577b3f25bbcfbbf9f2e3ddf4dad95c" prot="public" static="no" mutable="no">
+        <type></type>
+        <definition>tangagroomer.database.databaseMedian::values</definition>
+        <argsstring></argsstring>
+        <name>values</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/database.py" line="12" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/database.py" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classtangagroomer_1_1database_1_1databaseMedian_1a47d1431a639a7a0509bc66972958bac4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def tangagroomer.database.databaseMedian.__init__</definition>
+        <argsstring></argsstring>
+        <name>__init__</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/database.py" line="11" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/database.py" bodystart="11" bodyend="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classtangagroomer_1_1database_1_1databaseMedian_1a96b518b2e1054d59c36c8aa9df35b026" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def tangagroomer.database.databaseMedian.step</definition>
+        <argsstring></argsstring>
+        <name>step</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/database.py" line="14" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/database.py" bodystart="14" bodyend="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classtangagroomer_1_1database_1_1databaseMedian_1a106b2e9d997d4a8f28c36243d9f24b8d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>def</type>
+        <definition>def tangagroomer.database.databaseMedian.finalize</definition>
+        <argsstring></argsstring>
+        <name>finalize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/tangagroomer/database.py" line="17" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/database.py" bodystart="17" bodyend="29"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/nbentley/Trophia/Code/tangagroomer/database.py" line="10" column="1" bodyfile="/home/nbentley/Trophia/Code/tangagroomer/database.py" bodystart="10" bodyend="30"/>
+    <listofallmembers>
+      <member refid="classtangagroomer_1_1database_1_1databaseMedian_1a47d1431a639a7a0509bc66972958bac4" prot="public" virt="non-virtual"><scope>tangagroomer::database::databaseMedian</scope><name>__init__</name></member>
+      <member refid="classtangagroomer_1_1database_1_1databaseMedian_1a106b2e9d997d4a8f28c36243d9f24b8d" prot="public" virt="non-virtual"><scope>tangagroomer::database::databaseMedian</scope><name>finalize</name></member>
+      <member refid="classtangagroomer_1_1database_1_1databaseMedian_1a96b518b2e1054d59c36c8aa9df35b026" prot="public" virt="non-virtual"><scope>tangagroomer::database::databaseMedian</scope><name>step</name></member>
+      <member refid="classtangagroomer_1_1database_1_1databaseMedian_1a75577b3f25bbcfbbf9f2e3ddf4dad95c" prot="public" virt="non-virtual"><scope>tangagroomer::database::databaseMedian</scope><name>values</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

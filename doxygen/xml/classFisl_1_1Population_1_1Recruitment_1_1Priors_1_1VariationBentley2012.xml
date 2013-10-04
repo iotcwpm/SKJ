@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="classFisl_1_1Population_1_1Recruitment_1_1Priors_1_1VariationBentley2012" kind="class" prot="public">
+    <compoundname>Fisl::Population::Recruitment::Priors::VariationBentley2012</compoundname>
+    <basecompoundref refid="classFisl_1_1Math_1_1Probability_1_1Lognormal" prot="public" virt="non-virtual">Fisl::Math::Probability::Lognormal</basecompoundref>
+    <includes refid="variation-bentley-2012_8hpp" local="no">variation-bentley-2012.hpp</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classFisl_1_1Population_1_1Recruitment_1_1Priors_1_1VariationBentley2012_1a98f98d782772ac25d9ea4ea3862dbc3b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Fisl::Population::Recruitment::Priors::VariationBentley2012::VariationBentley2012</definition>
+        <argsstring>(void)</argsstring>
+        <name>VariationBentley2012</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/priors/variation-bentley-2012.hpp" line="20" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/priors/variation-bentley-2012.hpp" bodystart="19" bodyend="21"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A prior for the standard deviation of recruitment variation </para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="195">
+        <label>Fisl::Math::Probability::Distribution&lt; Lognormal &gt;</label>
+        <link refid="classFisl_1_1Math_1_1Probability_1_1Distribution"/>
+      </node>
+      <node id="193">
+        <label>Fisl::Population::Recruitment::Priors::VariationBentley2012</label>
+        <link refid="classFisl_1_1Population_1_1Recruitment_1_1Priors_1_1VariationBentley2012"/>
+        <childnode refid="194" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="194">
+        <label>Fisl::Math::Probability::Lognormal</label>
+        <link refid="classFisl_1_1Math_1_1Probability_1_1Lognormal"/>
+        <childnode refid="195" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="198">
+        <label>Fisl::Math::Probability::Distribution&lt; Lognormal &gt;</label>
+        <link refid="classFisl_1_1Math_1_1Probability_1_1Distribution"/>
+      </node>
+      <node id="196">
+        <label>Fisl::Population::Recruitment::Priors::VariationBentley2012</label>
+        <link refid="classFisl_1_1Population_1_1Recruitment_1_1Priors_1_1VariationBentley2012"/>
+        <childnode refid="197" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="197">
+        <label>Fisl::Math::Probability::Lognormal</label>
+        <link refid="classFisl_1_1Math_1_1Probability_1_1Lognormal"/>
+        <childnode refid="198" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/priors/variation-bentley-2012.hpp" line="17" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/priors/variation-bentley-2012.hpp" bodystart="17" bodyend="22"/>
+    <listofallmembers>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Lognormal_1a1d0674c69d05d6b42e62f07d41bcb188" prot="public" virt="non-virtual"><scope>Fisl::Population::Recruitment::Priors::VariationBentley2012</scope><name>boost_dist</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1a95208e0e07e7933ed64050e5cd0fc76f" prot="public" virt="non-virtual"><scope>Fisl::Population::Recruitment::Priors::VariationBentley2012</scope><name>cdf</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1a40637f4c486027064fda3c0db912c570" prot="public" virt="non-virtual"><scope>Fisl::Population::Recruitment::Priors::VariationBentley2012</scope><name>integrate</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1a2c0a1ca31d89677a9a4e35384c491a37" prot="public" virt="non-virtual"><scope>Fisl::Population::Recruitment::Priors::VariationBentley2012</scope><name>integrate</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1a2020edcb2d28b6eb53621799bfd867e3" prot="public" virt="non-virtual"><scope>Fisl::Population::Recruitment::Priors::VariationBentley2012</scope><name>kurtosis</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1a1bbc65c211496a872815529ac8ddb714" prot="public" virt="non-virtual"><scope>Fisl::Population::Recruitment::Priors::VariationBentley2012</scope><name>kurtosis_excess</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Lognormal_1a815ad513c6960b500d724f7ca30156be" prot="public" virt="non-virtual"><scope>Fisl::Population::Recruitment::Priors::VariationBentley2012</scope><name>Lognormal</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Lognormal_1ab0c58418b22ebbdc8125c152d4740731" prot="public" virt="non-virtual"><scope>Fisl::Population::Recruitment::Priors::VariationBentley2012</scope><name>mean</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Lognormal_1aebfb3deb4dc5237ac290ceec8e4815b6" prot="public" virt="non-virtual"><scope>Fisl::Population::Recruitment::Priors::VariationBentley2012</scope><name>mean</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1a774d7784c48137c42aaff340377e028e" prot="public" virt="non-virtual"><scope>Fisl::Population::Recruitment::Priors::VariationBentley2012</scope><name>median</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1a82ef9d3fc21279c781cd15079962a42d" prot="public" virt="non-virtual"><scope>Fisl::Population::Recruitment::Priors::VariationBentley2012</scope><name>mode</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1a5c3913bd5c2a35ad5f37b2f6436a7097" prot="public" virt="non-virtual"><scope>Fisl::Population::Recruitment::Priors::VariationBentley2012</scope><name>pdf</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1ac4e32e6c5bd4c66fd332e1bb44e68089" prot="public" virt="non-virtual"><scope>Fisl::Population::Recruitment::Priors::VariationBentley2012</scope><name>quantile</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Lognormal_1ad69cb852023a205064e807ff9e369629" prot="public" virt="non-virtual"><scope>Fisl::Population::Recruitment::Priors::VariationBentley2012</scope><name>random</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1a675808a0f84ce19c22b483f270891a86" prot="public" virt="non-virtual"><scope>Fisl::Population::Recruitment::Priors::VariationBentley2012</scope><name>reset</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Lognormal_1a9e6d1ae6f64afa274a42368c99bde969" prot="public" virt="non-virtual"><scope>Fisl::Population::Recruitment::Priors::VariationBentley2012</scope><name>sd</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Lognormal_1a1fe5065c37d5c5fadd22cfe56c60beef" prot="public" virt="non-virtual"><scope>Fisl::Population::Recruitment::Priors::VariationBentley2012</scope><name>sd</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1ae7e2437bb1a2d6da0f6c5a73fe9bd359" prot="public" virt="non-virtual"><scope>Fisl::Population::Recruitment::Priors::VariationBentley2012</scope><name>skewness</name></member>
+      <member refid="classFisl_1_1Math_1_1Probability_1_1Distribution_1a6f367697e755edd3b20387c1e158a710" prot="public" virt="non-virtual"><scope>Fisl::Population::Recruitment::Priors::VariationBentley2012</scope><name>variance</name></member>
+      <member refid="classFisl_1_1Population_1_1Recruitment_1_1Priors_1_1VariationBentley2012_1a98f98d782772ac25d9ea4ea3862dbc3b" prot="public" virt="non-virtual"><scope>Fisl::Population::Recruitment::Priors::VariationBentley2012</scope><name>VariationBentley2012</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

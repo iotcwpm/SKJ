@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="structGenerator" kind="struct" prot="public">
+    <compoundname>Generator</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">mt19937</basecompoundref>
+    <includes refid="distributions_8hpp" local="no">distributions.hpp</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structGenerator_1a35e61989f22dfc623b2237ece2436dd4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Generator::Generator</definition>
+        <argsstring>(void)</argsstring>
+        <name>Generator</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para>Set random number generator seed using current time </para>        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/ioskj/distributions.hpp" line="10" column="1" bodyfile="/home/nbentley/Trophia/Code/ioskj/distributions.hpp" bodystart="10" bodyend="13"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A scaffolding object that holds the random number generator used in the random() methods </para>    </detaileddescription>
+    <inheritancegraph>
+      <node id="271">
+        <label>Generator</label>
+        <link refid="structGenerator"/>
+        <childnode refid="272" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="272">
+        <label>boost::mt19937</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="273">
+        <label>Generator</label>
+        <link refid="structGenerator"/>
+        <childnode refid="274" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="274">
+        <label>boost::mt19937</label>
+      </node>
+    </collaborationgraph>
+    <location file="/home/nbentley/Trophia/Code/ioskj/distributions.hpp" line="9" column="1" bodyfile="/home/nbentley/Trophia/Code/ioskj/distributions.hpp" bodystart="9" bodyend="14"/>
+    <listofallmembers>
+      <member refid="structGenerator_1a35e61989f22dfc623b2237ece2436dd4" prot="public" virt="non-virtual"><scope>Generator</scope><name>Generator</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="classIoSkipjack_1_1Model" kind="class" prot="public">
+    <compoundname>IoSkipjack::Model</compoundname>
+    <basecompoundref refid="classIndi_1_1Model" prot="public" virt="non-virtual">Indi::Model&lt;&gt;</basecompoundref>
+    <includes refid="io-skipjack_8hpp" local="no">io-skipjack.hpp</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classIoSkipjack_1_1Model_1aa5b6675882b1f205651265bd28291184" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>IoSkipjack::Model::Model</definition>
+        <argsstring>(void)</argsstring>
+        <name>Model</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/indi/projects/io-skipjack/io-skipjack.hpp" line="10" column="1" bodyfile="/home/nbentley/Trophia/Code/indi/projects/io-skipjack/io-skipjack.hpp" bodystart="10" bodyend="16"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="429">
+        <label>IoSkipjack::Model</label>
+        <link refid="classIoSkipjack_1_1Model"/>
+        <childnode refid="430" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="430">
+        <label>Indi::Model&lt;&gt;</label>
+        <link refid="classIndi_1_1Model"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="434">
+        <label>std::vector&lt;Indi::Fish &gt;</label>
+      </node>
+      <node id="437">
+        <label>std::list&lt;Indi::Vessel &gt;</label>
+      </node>
+      <node id="433">
+        <label>Indi::Fishes&lt;&gt;</label>
+        <link refid="classIndi_1_1Fishes"/>
+        <childnode refid="434" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="431">
+        <label>IoSkipjack::Model</label>
+        <link refid="classIoSkipjack_1_1Model"/>
+        <childnode refid="432" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="432">
+        <label>Indi::Model&lt;&gt;</label>
+        <link refid="classIndi_1_1Model"/>
+        <childnode refid="433" relation="usage">
+          <edgelabel>fishes</edgelabel>
+        </childnode>
+        <childnode refid="435" relation="usage">
+          <edgelabel>environs</edgelabel>
+        </childnode>
+        <childnode refid="436" relation="usage">
+          <edgelabel>vessels</edgelabel>
+        </childnode>
+      </node>
+      <node id="435">
+        <label>Indi::Environs</label>
+        <link refid="classIndi_1_1Environs"/>
+      </node>
+      <node id="436">
+        <label>Indi::Vessels&lt;&gt;</label>
+        <link refid="classIndi_1_1Vessels"/>
+        <childnode refid="437" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/home/nbentley/Trophia/Code/indi/projects/io-skipjack/io-skipjack.hpp" line="7" column="1" bodyfile="/home/nbentley/Trophia/Code/indi/projects/io-skipjack/io-skipjack.hpp" bodystart="7" bodyend="18"/>
+    <listofallmembers>
+      <member refid="classIndi_1_1Model_1a4d8efc4f2c9654b056c523dd4576c571" prot="protected" virt="non-virtual"><scope>IoSkipjack::Model</scope><name>environs</name></member>
+      <member refid="classIndi_1_1Model_1a03904042f0a4130221b12d93949765c0" prot="protected" virt="non-virtual"><scope>IoSkipjack::Model</scope><name>fishes</name></member>
+      <member refid="classIndi_1_1Model_1a1141c0a19c0da63a81d784c433930aeb" prot="public" virt="non-virtual"><scope>IoSkipjack::Model</scope><name>main</name></member>
+      <member refid="classIoSkipjack_1_1Model_1aa5b6675882b1f205651265bd28291184" prot="public" virt="non-virtual"><scope>IoSkipjack::Model</scope><name>Model</name></member>
+      <member refid="classIndi_1_1Model_1a9b441d8db20ffef420c09f793515c6ab" prot="public" virt="non-virtual"><scope>IoSkipjack::Model</scope><name>start</name></member>
+      <member refid="classIndi_1_1Model_1a7ff3c6c8b2f5fa07e6a37824bddde716" prot="public" virt="non-virtual"><scope>IoSkipjack::Model</scope><name>step</name></member>
+      <member refid="classIndi_1_1Model_1a88ab8d4ae30a35d3e4cf6239ff8a0ce9" prot="public" virt="non-virtual"><scope>IoSkipjack::Model</scope><name>stop</name></member>
+      <member refid="classIndi_1_1Model_1ad85ab3bb239c353466d15f74bea4f760" prot="protected" virt="non-virtual"><scope>IoSkipjack::Model</scope><name>vessels</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

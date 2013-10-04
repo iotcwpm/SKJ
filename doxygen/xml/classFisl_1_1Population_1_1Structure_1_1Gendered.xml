@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="classFisl_1_1Population_1_1Structure_1_1Gendered" kind="class" prot="public">
+    <compoundname>Fisl::Population::Structure::Gendered</compoundname>
+    <basecompoundref refid="classArray" prot="public" virt="non-virtual">Array&lt; Type, 2 &gt;</basecompoundref>
+    <includes refid="gendered_8hpp" local="no">gendered.hpp</includes>
+    <templateparamlist>
+      <param>
+        <type>class Type</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classFisl_1_1Population_1_1Structure_1_1Gendered_1aaab10efd9a0d7d97a7a6e4afd08eca1f" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Fisl::Population::Structure::Gendered&lt; Type &gt;::proportion</definition>
+        <argsstring></argsstring>
+        <name>proportion</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/structure/gendered.hpp" line="17" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/structure/gendered.hpp" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classFisl_1_1Population_1_1Structure_1_1Gendered_1a00dee18ca76537557cb825a3e0f530f0" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Fisl::Population::Structure::Gendered&lt; Type &gt;::recruits</definition>
+        <argsstring></argsstring>
+        <name>recruits</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/structure/gendered.hpp" line="18" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/structure/gendered.hpp" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classFisl_1_1Population_1_1Structure_1_1Gendered_1a6a068156ac743a359e3601d405f9fea7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classFisl_1_1Population_1_1Structure_1_1Gendered" kindref="compound">Gendered</ref> &amp;</type>
+        <definition>Gendered&amp; Fisl::Population::Structure::Gendered&lt; Type &gt;::ageing</definition>
+        <argsstring>(void)</argsstring>
+        <name>ageing</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/structure/gendered.hpp" line="20" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/structure/gendered.hpp" bodystart="20" bodyend="27"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="60">
+        <label>Array&lt; Type, 2 &gt;</label>
+        <link refid="classArray"/>
+      </node>
+      <node id="59">
+        <label>Fisl::Population::Structure::Gendered&lt; Type &gt;</label>
+        <link refid="classFisl_1_1Population_1_1Structure_1_1Gendered"/>
+        <childnode refid="60" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="62">
+        <label>Array&lt; Type, 2 &gt;</label>
+        <link refid="classArray"/>
+      </node>
+      <node id="61">
+        <label>Fisl::Population::Structure::Gendered&lt; Type &gt;</label>
+        <link refid="classFisl_1_1Population_1_1Structure_1_1Gendered"/>
+        <childnode refid="62" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/structure/gendered.hpp" line="14" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/structure/gendered.hpp" bodystart="14" bodyend="28"/>
+    <listofallmembers>
+      <member refid="classFisl_1_1Population_1_1Structure_1_1Gendered_1a6a068156ac743a359e3601d405f9fea7" prot="public" virt="non-virtual"><scope>Fisl::Population::Structure::Gendered</scope><name>ageing</name></member>
+      <member refid="classFisl_1_1Population_1_1Structure_1_1Gendered_1aaab10efd9a0d7d97a7a6e4afd08eca1f" prot="public" virt="non-virtual"><scope>Fisl::Population::Structure::Gendered</scope><name>proportion</name></member>
+      <member refid="classFisl_1_1Population_1_1Structure_1_1Gendered_1a00dee18ca76537557cb825a3e0f530f0" prot="public" virt="non-virtual"><scope>Fisl::Population::Structure::Gendered</scope><name>recruits</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

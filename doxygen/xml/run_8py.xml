@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="run_8py" kind="file">
+    <compoundname>run.py</compoundname>
+    <innernamespace refid="namespacerun">run</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1" refid="namespacerun" refkind="compound"><highlight class="keyword">import</highlight><highlight class="normal"><sp/>sys</highlight></codeline>
+<codeline lineno="2"><highlight class="normal">sys.path.insert(0,</highlight><highlight class="stringliteral">&apos;/Trophia/Tanga/Updater/tangaupdater/&apos;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>updater</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">import</highlight><highlight class="normal"><sp/>settings</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><ref refid="namespaceupdater_1a69122e5f32d32b70888e3544bcfeaf87" kindref="member">updater.run</ref>(</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>settings,</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>test<sp/>=<sp/></highlight><highlight class="stringliteral">&apos;temp.db3&apos;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">#test<sp/>=<sp/>&apos;temp_full.db3&apos;,restart<sp/>=<sp/>False</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal">)</highlight></codeline>
+    </programlisting>
+    <location file="/home/nbentley/Trophia/Code/tangaupdater/tests/fla3/run.py"/>
+  </compounddef>
+</doxygen>

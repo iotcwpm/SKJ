@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="dir_92ca985c52481b9eba864f2879870b18" kind="dir">
+    <compoundname>projects</compoundname>
+    <innerdir refid="dir_a4f3fe111becc2331bcc357fe372703c">io-skipjack</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/nbentley/Trophia/Code/indi/projects/"/>
+  </compounddef>
+</doxygen>

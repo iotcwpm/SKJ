@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="classFisl_1_1Estimation_1_1Mcmc_1_1McmcRegress" kind="class" prot="public">
+    <compoundname>Fisl::Estimation::Mcmc::McmcRegress</compoundname>
+    <basecompoundref refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis" prot="public" virt="non-virtual">Fisl::Estimation::Mcmc::Metropolis&lt; McmcRegress, 2 &gt;</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classFisl_1_1Estimation_1_1Mcmc_1_1McmcRegress_1a67b2424e7d5fd82d929e1ba6b55f973d" prot="public" static="no" mutable="no">
+        <type><ref refid="classArray" kindref="compound">Array</ref>&lt; Real, 10 &gt;</type>
+        <definition>Array&lt;Real,10&gt; Fisl::Estimation::Mcmc::McmcRegress::x</definition>
+        <argsstring></argsstring>
+        <name>x</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.cxx" line="45" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.cxx" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classFisl_1_1Estimation_1_1Mcmc_1_1McmcRegress_1a8c0f34ea7126da266a6c1812601aa2b2" prot="public" static="no" mutable="no">
+        <type><ref refid="classArray" kindref="compound">Array</ref>&lt; Real, 10 &gt;</type>
+        <definition>Array&lt;Real,10&gt; Fisl::Estimation::Mcmc::McmcRegress::y</definition>
+        <argsstring></argsstring>
+        <name>y</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.cxx" line="46" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.cxx" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classFisl_1_1Estimation_1_1Mcmc_1_1McmcRegress_1a61a1e4508b36bf8ad591b2fddaad8ebd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Fisl::Estimation::Mcmc::McmcRegress::reset</definition>
+        <argsstring>(void)</argsstring>
+        <name>reset</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.cxx" line="48" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.cxx" bodystart="48" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Estimation_1_1Mcmc_1_1McmcRegress_1ad8172017d42d37298abb65dd55d27811" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Real</type>
+        <definition>Real Fisl::Estimation::Mcmc::McmcRegress::log_like</definition>
+        <argsstring>(const Array&lt; Real, 2 &gt; &amp;parameters)</argsstring>
+        <name>log_like</name>
+        <param>
+          <type>const <ref refid="classArray" kindref="compound">Array</ref>&lt; Real, 2 &gt; &amp;</type>
+          <declname>parameters</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.cxx" line="56" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.cxx" bodystart="56" bodyend="65"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="102">
+        <label>Fisl::Estimation::Mcmc::Metropolis&lt; McmcRegress, 2 &gt;</label>
+        <link refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis"/>
+        <childnode refid="103" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="101">
+        <label>Fisl::Estimation::Mcmc::McmcRegress</label>
+        <link refid="classFisl_1_1Estimation_1_1Mcmc_1_1McmcRegress"/>
+        <childnode refid="102" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="103">
+        <label>Dataset</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="107">
+        <label>Datatable</label>
+      </node>
+      <node id="109">
+        <label>Array&lt; Real, 10 &gt;</label>
+        <link refid="classArray"/>
+      </node>
+      <node id="105">
+        <label>Fisl::Estimation::Mcmc::Metropolis&lt; McmcRegress, 2 &gt;</label>
+        <link refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis"/>
+        <childnode refid="106" relation="public-inheritance">
+        </childnode>
+        <childnode refid="107" relation="usage">
+          <edgelabel>samples</edgelabel>
+        </childnode>
+        <childnode refid="108" relation="usage">
+          <edgelabel>variances</edgelabel>
+          <edgelabel>values</edgelabel>
+        </childnode>
+      </node>
+      <node id="108">
+        <label>Array&lt; double, Parameters &gt;</label>
+        <link refid="classArray"/>
+      </node>
+      <node id="104">
+        <label>Fisl::Estimation::Mcmc::McmcRegress</label>
+        <link refid="classFisl_1_1Estimation_1_1Mcmc_1_1McmcRegress"/>
+        <childnode refid="105" relation="public-inheritance">
+        </childnode>
+        <childnode refid="109" relation="usage">
+          <edgelabel>x</edgelabel>
+          <edgelabel>y</edgelabel>
+        </childnode>
+      </node>
+      <node id="106">
+        <label>Dataset</label>
+      </node>
+    </collaborationgraph>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.cxx" line="42" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.cxx" bodystart="42" bodyend="66"/>
+    <listofallmembers>
+      <member refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1ab64aa80dd349eeb9ee37f2596ea942f0" prot="public" virt="non-virtual"><scope>Fisl::Estimation::Mcmc::McmcRegress</scope><name>acceptance</name></member>
+      <member refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1aea70e4fe4d31d5479d26c8838c4240e4" prot="public" virt="non-virtual"><scope>Fisl::Estimation::Mcmc::McmcRegress</scope><name>accepted</name></member>
+      <member refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1a82dd94cd9f63f6a4e227c5a1002d77e3" prot="public" virt="non-virtual"><scope>Fisl::Estimation::Mcmc::McmcRegress</scope><name>iterations</name></member>
+      <member refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1aea3da265f9b8b221503f02eaad61689a" prot="public" virt="non-virtual"><scope>Fisl::Estimation::Mcmc::McmcRegress</scope><name>ll</name></member>
+      <member refid="classFisl_1_1Estimation_1_1Mcmc_1_1McmcRegress_1ad8172017d42d37298abb65dd55d27811" prot="public" virt="non-virtual"><scope>Fisl::Estimation::Mcmc::McmcRegress</scope><name>log_like</name></member>
+      <member refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1a1b32ea04809286abe87d018dfc455889" prot="public" virt="non-virtual"><scope>Fisl::Estimation::Mcmc::McmcRegress</scope><name>Metropolis</name></member>
+      <member refid="classFisl_1_1Estimation_1_1Mcmc_1_1McmcRegress_1a61a1e4508b36bf8ad591b2fddaad8ebd" prot="public" virt="non-virtual"><scope>Fisl::Estimation::Mcmc::McmcRegress</scope><name>reset</name></member>
+      <member refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1a56795d955604d4ef28c14e0d6122bdb2" prot="public" virt="non-virtual"><scope>Fisl::Estimation::Mcmc::McmcRegress</scope><name>run</name></member>
+      <member refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1a92d8bcbddf91e31118e318c6f11f2c32" prot="public" virt="non-virtual"><scope>Fisl::Estimation::Mcmc::McmcRegress</scope><name>samples</name></member>
+      <member refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1a144c81cbf12faa15f2a4e4dfe20a01c4" prot="public" virt="non-virtual"><scope>Fisl::Estimation::Mcmc::McmcRegress</scope><name>step</name></member>
+      <member refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1af0e834bad8b8189b2ffd2d9ab1b37a92" prot="public" virt="non-virtual"><scope>Fisl::Estimation::Mcmc::McmcRegress</scope><name>values</name></member>
+      <member refid="classFisl_1_1Estimation_1_1Mcmc_1_1Metropolis_1a9d43634dd5eec8bf5181674b38b22036" prot="public" virt="non-virtual"><scope>Fisl::Estimation::Mcmc::McmcRegress</scope><name>variances</name></member>
+      <member refid="classFisl_1_1Estimation_1_1Mcmc_1_1McmcRegress_1a67b2424e7d5fd82d929e1ba6b55f973d" prot="public" virt="non-virtual"><scope>Fisl::Estimation::Mcmc::McmcRegress</scope><name>x</name></member>
+      <member refid="classFisl_1_1Estimation_1_1Mcmc_1_1McmcRegress_1a8c0f34ea7126da266a6c1812601aa2b2" prot="public" virt="non-virtual"><scope>Fisl::Estimation::Mcmc::McmcRegress</scope><name>y</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

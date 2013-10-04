@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="classFisl_1_1Math_1_1Series_1_1Autocorrelation" kind="class" prot="public">
+    <compoundname>Fisl::Math::Series::Autocorrelation</compoundname>
+    <includes refid="autocorrelation_8hpp" local="no">autocorrelation.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classFisl_1_1Math_1_1Series_1_1Autocorrelation_1a37f0c2d18f1a675daa6edd0a08c64084" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Fisl::Math::Series::Autocorrelation::coefficient_</definition>
+        <argsstring></argsstring>
+        <name>coefficient_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/series/autocorrelation.hpp" line="10" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/series/autocorrelation.hpp" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classFisl_1_1Math_1_1Series_1_1Autocorrelation_1aa46fbb1487580da80e7e0c9c973973bc" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Fisl::Math::Series::Autocorrelation::started_</definition>
+        <argsstring></argsstring>
+        <name>started_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/series/autocorrelation.hpp" line="11" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/series/autocorrelation.hpp" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classFisl_1_1Math_1_1Series_1_1Autocorrelation_1ad034927db77e81a1ad5a644276dccfb9" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Fisl::Math::Series::Autocorrelation::last_</definition>
+        <argsstring></argsstring>
+        <name>last_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/series/autocorrelation.hpp" line="12" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/series/autocorrelation.hpp" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classFisl_1_1Math_1_1Series_1_1Autocorrelation_1af2e74b786433d91cd1abbe4f32365784" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Fisl::Math::Series::Autocorrelation::Autocorrelation</definition>
+        <argsstring>(void)</argsstring>
+        <name>Autocorrelation</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/series/autocorrelation.hpp" line="18" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/series/autocorrelation.hpp" bodystart="15" bodyend="19"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Math_1_1Series_1_1Autocorrelation_1a1b2ffe4b5c79d603355bba1f38d9e9c1" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Fisl::Math::Series::Autocorrelation::coefficient</definition>
+        <argsstring>(void) const </argsstring>
+        <name>coefficient</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/series/autocorrelation.hpp" line="21" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/series/autocorrelation.hpp" bodystart="21" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Math_1_1Series_1_1Autocorrelation_1a05be3bf472aeee37cb4e6e94194451f1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classFisl_1_1Math_1_1Series_1_1Autocorrelation" kindref="compound">Autocorrelation</ref> &amp;</type>
+        <definition>Autocorrelation&amp; Fisl::Math::Series::Autocorrelation::coefficient</definition>
+        <argsstring>(double const &amp;value)</argsstring>
+        <name>coefficient</name>
+        <param>
+          <type>double const &amp;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/series/autocorrelation.hpp" line="25" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/series/autocorrelation.hpp" bodystart="25" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Math_1_1Series_1_1Autocorrelation_1a68c0632580672ab77023c2f59a07c2e4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Fisl::Math::Series::Autocorrelation::value</definition>
+        <argsstring>(const double &amp;deviation)</argsstring>
+        <name>value</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>deviation</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/series/autocorrelation.hpp" line="30" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/series/autocorrelation.hpp" bodystart="30" bodyend="39"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/series/autocorrelation.hpp" line="7" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/series/autocorrelation.hpp" bodystart="7" bodyend="40"/>
+    <listofallmembers>
+      <member refid="classFisl_1_1Math_1_1Series_1_1Autocorrelation_1af2e74b786433d91cd1abbe4f32365784" prot="public" virt="non-virtual"><scope>Fisl::Math::Series::Autocorrelation</scope><name>Autocorrelation</name></member>
+      <member refid="classFisl_1_1Math_1_1Series_1_1Autocorrelation_1a1b2ffe4b5c79d603355bba1f38d9e9c1" prot="public" virt="non-virtual"><scope>Fisl::Math::Series::Autocorrelation</scope><name>coefficient</name></member>
+      <member refid="classFisl_1_1Math_1_1Series_1_1Autocorrelation_1a05be3bf472aeee37cb4e6e94194451f1" prot="public" virt="non-virtual"><scope>Fisl::Math::Series::Autocorrelation</scope><name>coefficient</name></member>
+      <member refid="classFisl_1_1Math_1_1Series_1_1Autocorrelation_1a37f0c2d18f1a675daa6edd0a08c64084" prot="private" virt="non-virtual"><scope>Fisl::Math::Series::Autocorrelation</scope><name>coefficient_</name></member>
+      <member refid="classFisl_1_1Math_1_1Series_1_1Autocorrelation_1ad034927db77e81a1ad5a644276dccfb9" prot="private" virt="non-virtual"><scope>Fisl::Math::Series::Autocorrelation</scope><name>last_</name></member>
+      <member refid="classFisl_1_1Math_1_1Series_1_1Autocorrelation_1aa46fbb1487580da80e7e0c9c973973bc" prot="private" virt="non-virtual"><scope>Fisl::Math::Series::Autocorrelation</scope><name>started_</name></member>
+      <member refid="classFisl_1_1Math_1_1Series_1_1Autocorrelation_1a68c0632580672ab77023c2f59a07c2e4" prot="public" virt="non-virtual"><scope>Fisl::Math::Series::Autocorrelation</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

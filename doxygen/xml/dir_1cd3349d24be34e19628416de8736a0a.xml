@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="dir_1cd3349d24be34e19628416de8736a0a" kind="dir">
+    <compoundname>series</compoundname>
+    <innerfile refid="autocorrelation_8hpp">autocorrelation.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/series/"/>
+  </compounddef>
+</doxygen>

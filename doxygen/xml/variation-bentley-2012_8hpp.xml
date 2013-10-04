@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="variation-bentley-2012_8hpp" kind="file">
+    <compoundname>variation-bentley-2012.hpp</compoundname>
+    <includes refid="lognormal_8hpp" local="no">fisl/math/probability/lognormal.hpp</includes>
+    <incdepgraph>
+      <node id="550">
+        <label>boost/random/variate_generator.hpp</label>
+      </node>
+      <node id="551">
+        <label>boost/math/distributions/uniform.hpp</label>
+      </node>
+      <node id="544">
+        <label>fisl/math/probability/lognormal.hpp</label>
+        <link refid="lognormal_8hpp"/>
+        <childnode refid="545" relation="include">
+        </childnode>
+        <childnode refid="546" relation="include">
+        </childnode>
+        <childnode refid="547" relation="include">
+        </childnode>
+      </node>
+      <node id="549">
+        <label>boost/random/mersenne_twister.hpp</label>
+      </node>
+      <node id="548">
+        <label>ctime</label>
+      </node>
+      <node id="545">
+        <label>boost/math/distributions/lognormal.hpp</label>
+      </node>
+      <node id="547">
+        <label>fisl/math/probability/distribution.hpp</label>
+        <link refid="distribution_8hpp"/>
+        <childnode refid="548" relation="include">
+        </childnode>
+        <childnode refid="549" relation="include">
+        </childnode>
+        <childnode refid="550" relation="include">
+        </childnode>
+        <childnode refid="551" relation="include">
+        </childnode>
+        <childnode refid="552" relation="include">
+        </childnode>
+        <childnode refid="553" relation="include">
+        </childnode>
+      </node>
+      <node id="546">
+        <label>boost/random/lognormal_distribution.hpp</label>
+      </node>
+      <node id="543">
+        <label>variation-bentley-2012.hpp</label>
+        <link refid="variation-bentley-2012.hpp"/>
+        <childnode refid="544" relation="include">
+        </childnode>
+      </node>
+      <node id="552">
+        <label>boost/random/uniform_01.hpp</label>
+      </node>
+      <node id="553">
+        <label>fisl/common.hpp</label>
+        <link refid="common_8hpp"/>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classFisl_1_1Population_1_1Recruitment_1_1Priors_1_1VariationBentley2012" prot="public">Fisl::Population::Recruitment::Priors::VariationBentley2012</innerclass>
+    <innernamespace refid="namespaceFisl">Fisl</innernamespace>
+    <innernamespace refid="namespaceFisl_1_1Population">Fisl::Population</innernamespace>
+    <innernamespace refid="namespaceFisl_1_1Population_1_1Recruitment">Fisl::Population::Recruitment</innernamespace>
+    <innernamespace refid="namespaceFisl_1_1Population_1_1Recruitment_1_1Priors">Fisl::Population::Recruitment::Priors</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight></codeline>
+<codeline lineno="2"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;<ref refid="lognormal_8hpp" kindref="compound">fisl/math/probability/lognormal.hpp</ref>&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">Fisl<sp/>{</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">Population<sp/>{</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">Recruitment<sp/>{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">Priors<sp/>{</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="classFisl_1_1Math_1_1Probability_1_1Lognormal" kindref="compound">Fisl::Math::Probability::Lognormal</ref>;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17" refid="classFisl_1_1Population_1_1Recruitment_1_1Priors_1_1VariationBentley2012" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classFisl_1_1Population_1_1Recruitment_1_1Priors_1_1VariationBentley2012" kindref="compound">VariationBentley2012</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classFisl_1_1Math_1_1Probability_1_1Lognormal" kindref="compound">Lognormal</ref><sp/>{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="19" refid="classFisl_1_1Population_1_1Recruitment_1_1Priors_1_1VariationBentley2012_1a98f98d782772ac25d9ea4ea3862dbc3b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classFisl_1_1Population_1_1Recruitment_1_1Priors_1_1VariationBentley2012_1a98f98d782772ac25d9ea4ea3862dbc3b" kindref="member">VariationBentley2012</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">):</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classFisl_1_1Math_1_1Probability_1_1Lognormal" kindref="compound">Lognormal</ref>(0.6,0.2){</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="22"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="25"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="26"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="27"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/recruitment/priors/variation-bentley-2012.hpp"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="classFisl_1_1Population_1_1Mortality_1_1Rate" kind="class" prot="public">
+    <compoundname>Fisl::Population::Mortality::Rate</compoundname>
+    <includes refid="rate_8hpp" local="no">rate.hpp</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classFisl_1_1Population_1_1Mortality_1_1Rate_1ae28cea44beba8991ae39d4c4f454bc4d" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Fisl::Population::Mortality::Rate::rate_</definition>
+        <argsstring></argsstring>
+        <name>rate_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/mortality/rate.hpp" line="17" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/mortality/rate.hpp" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classFisl_1_1Population_1_1Mortality_1_1Rate_1a23d6e4ceb110f4cf8db2b72e08073904" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Fisl::Population::Mortality::Rate::rate</definition>
+        <argsstring>(void) const </argsstring>
+        <name>rate</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Get the rate of mortality ( <formula id="2">$r$</formula>) </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/mortality/rate.hpp" line="22" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/mortality/rate.hpp" bodystart="22" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Population_1_1Mortality_1_1Rate_1aa36d2da393ea99e793ba75205965108a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classFisl_1_1Population_1_1Mortality_1_1Rate" kindref="compound">Rate</ref> &amp;</type>
+        <definition>Rate&amp; Fisl::Population::Mortality::Rate::rate</definition>
+        <argsstring>(const double &amp;rate)</argsstring>
+        <name>rate</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>rate</declname>
+        </param>
+        <briefdescription>
+<para>Set the rate of mortality ( <formula id="2">$r$</formula>) </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/mortality/rate.hpp" line="27" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/mortality/rate.hpp" bodystart="27" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Population_1_1Mortality_1_1Rate_1ace5a4a2d543a00c5416a88e78e8c8c03" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Fisl::Population::Mortality::Rate::instantaneous</definition>
+        <argsstring>() const </argsstring>
+        <name>instantaneous</name>
+        <briefdescription>
+<para>Get the instantaneous rate of mortality ( <formula id="3">$i=-ln(1-r)$</formula>) </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/mortality/rate.hpp" line="33" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/mortality/rate.hpp" bodystart="33" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Population_1_1Mortality_1_1Rate_1ab77da2b8f94cd181ebf5584f17e4c852" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classFisl_1_1Population_1_1Mortality_1_1Rate" kindref="compound">Rate</ref> &amp;</type>
+        <definition>Rate&amp; Fisl::Population::Mortality::Rate::instantaneous</definition>
+        <argsstring>(const double &amp;i)</argsstring>
+        <name>instantaneous</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+<para>Set the instantaneous rate of mortality ( <formula id="4">$r=1-exp(-i)$</formula>) </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/mortality/rate.hpp" line="38" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/mortality/rate.hpp" bodystart="38" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Population_1_1Mortality_1_1Rate_1abd98616059803529a01313ac81b0204b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Fisl::Population::Mortality::Rate::survival</definition>
+        <argsstring>(void) const </argsstring>
+        <name>survival</name>
+        <param>
+          <type>void</type>
+        </param>
+        <briefdescription>
+<para>Get the survival rate ( <formula id="5">$1-r$</formula>) </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/mortality/rate.hpp" line="44" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/mortality/rate.hpp" bodystart="44" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="classFisl_1_1Population_1_1Mortality_1_1Rate_1aee5e62fcea946a4898dd531f37729a1d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="classFisl_1_1Population_1_1Mortality_1_1Rate" kindref="compound">Rate</ref> &amp;</type>
+        <definition>Rate&amp; Fisl::Population::Mortality::Rate::survival</definition>
+        <argsstring>(const double &amp;s)</argsstring>
+        <name>survival</name>
+        <param>
+          <type>const double &amp;</type>
+          <declname>s</declname>
+        </param>
+        <briefdescription>
+<para>Set the survival rate ( <formula id="5">$1-r$</formula>) </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/mortality/rate.hpp" line="49" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/mortality/rate.hpp" bodystart="49" bodyend="52"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>A simple mortality rate</para><para>This class is for modelling a simple mortality rate. It provides convienince function for getting and setting the instantaneous rates of mortality and getting survival. </para>    </detaileddescription>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/mortality/rate.hpp" line="14" bodyfile="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/population/mortality/rate.hpp" bodystart="14" bodyend="53"/>
+    <listofallmembers>
+      <member refid="classFisl_1_1Population_1_1Mortality_1_1Rate_1ace5a4a2d543a00c5416a88e78e8c8c03" prot="public" virt="non-virtual"><scope>Fisl::Population::Mortality::Rate</scope><name>instantaneous</name></member>
+      <member refid="classFisl_1_1Population_1_1Mortality_1_1Rate_1ab77da2b8f94cd181ebf5584f17e4c852" prot="public" virt="non-virtual"><scope>Fisl::Population::Mortality::Rate</scope><name>instantaneous</name></member>
+      <member refid="classFisl_1_1Population_1_1Mortality_1_1Rate_1a23d6e4ceb110f4cf8db2b72e08073904" prot="public" virt="non-virtual"><scope>Fisl::Population::Mortality::Rate</scope><name>rate</name></member>
+      <member refid="classFisl_1_1Population_1_1Mortality_1_1Rate_1aa36d2da393ea99e793ba75205965108a" prot="public" virt="non-virtual"><scope>Fisl::Population::Mortality::Rate</scope><name>rate</name></member>
+      <member refid="classFisl_1_1Population_1_1Mortality_1_1Rate_1ae28cea44beba8991ae39d4c4f454bc4d" prot="private" virt="non-virtual"><scope>Fisl::Population::Mortality::Rate</scope><name>rate_</name></member>
+      <member refid="classFisl_1_1Population_1_1Mortality_1_1Rate_1abd98616059803529a01313ac81b0204b" prot="public" virt="non-virtual"><scope>Fisl::Population::Mortality::Rate</scope><name>survival</name></member>
+      <member refid="classFisl_1_1Population_1_1Mortality_1_1Rate_1aee5e62fcea946a4898dd531f37729a1d" prot="public" virt="non-virtual"><scope>Fisl::Population::Mortality::Rate</scope><name>survival</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

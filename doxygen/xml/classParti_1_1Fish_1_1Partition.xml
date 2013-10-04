@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="classParti_1_1Fish_1_1Partition" kind="class" prot="public">
+    <compoundname>Parti::Fish::Partition</compoundname>
+    <includes refid="parti_2fish_8hpp" local="no">fish.hpp</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classParti_1_1Fish_1_1Partition_1a728be24d5963324145d800b6ae70bce2" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Parti::Fish&lt; Derived, Areas, Sexes, Ages, Sizes, Maturities &gt;::Partition::number</definition>
+        <argsstring></argsstring>
+        <name>number</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/parti/fish.hpp" line="24" column="1" bodyfile="/home/nbentley/Trophia/Code/parti/fish.hpp" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classParti_1_1Fish_1_1Partition_1aff388a680c1548d5a6ac6e2c106e4dc2" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Parti::Fish&lt; Derived, Areas, Sexes, Ages, Sizes, Maturities &gt;::Partition::length</definition>
+        <argsstring></argsstring>
+        <name>length</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/parti/fish.hpp" line="26" column="1" bodyfile="/home/nbentley/Trophia/Code/parti/fish.hpp" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classParti_1_1Fish_1_1Partition_1aa43d114ec36a038b518807fcfcc69c7c" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Parti::Fish&lt; Derived, Areas, Sexes, Ages, Sizes, Maturities &gt;::Partition::mass</definition>
+        <argsstring></argsstring>
+        <name>mass</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/parti/fish.hpp" line="27" column="1" bodyfile="/home/nbentley/Trophia/Code/parti/fish.hpp" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classParti_1_1Fish_1_1Partition_1a647592e28dacd4ab83a5a445012b2da1" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Parti::Fish&lt; Derived, Areas, Sexes, Ages, Sizes, Maturities &gt;::Partition::survival</definition>
+        <argsstring></argsstring>
+        <name>survival</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="/home/nbentley/Trophia/Code/parti/fish.hpp" line="29" column="1" bodyfile="/home/nbentley/Trophia/Code/parti/fish.hpp" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/home/nbentley/Trophia/Code/parti/fish.hpp" line="22" column="1" bodyfile="/home/nbentley/Trophia/Code/parti/fish.hpp" bodystart="22" bodyend="30"/>
+    <listofallmembers>
+      <member refid="classParti_1_1Fish_1_1Partition_1aff388a680c1548d5a6ac6e2c106e4dc2" prot="public" virt="non-virtual"><scope>Parti::Fish::Partition</scope><name>length</name></member>
+      <member refid="classParti_1_1Fish_1_1Partition_1aa43d114ec36a038b518807fcfcc69c7c" prot="public" virt="non-virtual"><scope>Parti::Fish::Partition</scope><name>mass</name></member>
+      <member refid="classParti_1_1Fish_1_1Partition_1a728be24d5963324145d800b6ae70bce2" prot="public" virt="non-virtual"><scope>Parti::Fish::Partition</scope><name>number</name></member>
+      <member refid="classParti_1_1Fish_1_1Partition_1a647592e28dacd4ab83a5a445012b2da1" prot="public" virt="non-virtual"><scope>Parti::Fish::Partition</scope><name>survival</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

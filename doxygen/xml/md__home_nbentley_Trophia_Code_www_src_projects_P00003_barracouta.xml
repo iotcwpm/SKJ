@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="md__home_nbentley_Trophia_Code_www_src_projects_P00003_barracouta" kind="page">
+    <compoundname>md__home_nbentley_Trophia_Code_www_src_projects_P00003_barracouta</compoundname>
+    <title>P00003 barracouta</title>
+    <detaileddescription>
+<para>Title: P00003: Stock Assessment of Barracouta Tags: Adam Langley, Nokome Bentley, Nathan Walker</para><para>Trophia was contracted by the New Zealand Ministry of Fisheries (MFish) to carry out stock assessments of barracouta, including estimating biomass and sustainable yields.</para><para>The specific objectives for this project include:</para><para><orderedlist>
+<listitem><para>To determine the relationship between barracouta on the East Coast and West Coasts of the South Island and with the stock in BAR 5.</para></listitem><listitem><para>To carry out stock assessment of barracouta (BAR 5) including estimating biomass and sustainable yields.</para></listitem><listitem><para>To complete a characterisation of the barracouta fishery in BAR 1 and determine the feasibility of deriving a relative abundance index from catch and effort data.</para></listitem></orderedlist>
+</para><para>This study concluded that a stock assessment for any stock of barracouta was not yet possible due to lack of sufficient data.</para><para><itemizedlist>
+<listitem><para><ulink url="/Reports/xxxx.html">Langley, A.D., Bentley, N. (2002). An examination of the stock structure of barracouta (Thyrsites atun) around the South Island of New Zealand. New Zealand Fisheries Assessment Report 2002/30. 57 p</ulink></para></listitem><listitem><para>Langley, A.D.; Walker, N. (2002). Characterisation of the barracouta (Thyrsites atun) fishery in BAR 1. New Zealand Fisheries Assessment Report 2002/44. 37 p</para></listitem><listitem><para>Langley, A.D.; Walker, N. (2002). CPUE analysis of the southeast South Island BAR 1 fishery, 1989�90 to 1999�2000. New Zealand Fisheries Assessment Report 2002/11 . 28 p. </para></listitem></itemizedlist>
+</para>    </detaileddescription>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="namespaceFisl_1_1Math_1_1Series" kind="namespace">
+    <compoundname>Fisl::Math::Series</compoundname>
+    <innerclass refid="classFisl_1_1Math_1_1Series_1_1Autocorrelation" prot="public">Fisl::Math::Series::Autocorrelation</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/math/series/autocorrelation.hpp" line="5"/>
+  </compounddef>
+</doxygen>

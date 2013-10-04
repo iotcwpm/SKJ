@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="P08009_01FLA1_8md" kind="file">
+    <compoundname>P08009 FLA1.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal">Title:<sp/>P08009:<sp/>FLA<sp/>1<sp/>setnet<sp/>CPUE<sp/>standardisation</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">Principal<sp/>Investigator:</highlight></codeline>
+<codeline lineno="6"><highlight class="normal">Terese<sp/>Kendrick</highlight></codeline>
+<codeline lineno="7"><highlight class="normal">Researchers:</highlight></codeline>
+<codeline lineno="8"><highlight class="normal">Nokome<sp/>Bentley</highlight></codeline>
+<codeline lineno="9"><highlight class="normal">Status:</highlight></codeline>
+<codeline lineno="10"><highlight class="normal">Completed</highlight></codeline>
+<codeline lineno="11"><highlight class="normal">Trophia<sp/>has<sp/>been<sp/>contracted<sp/>by<sp/>the<sp/>New<sp/>Zealand<sp/>Ministry<sp/>of<sp/>Fisheries<sp/>(MFish)<sp/>to<sp/>determine<sp/>the<sp/>relative<sp/>abundance<sp/>of<sp/>flatfish<sp/>in<sp/>FLA<sp/>1.<sp/>The<sp/>specific<sp/>objective<sp/>for<sp/>this<sp/>project<sp/>include:</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal">1.<sp/><sp/>To<sp/>characterise<sp/>the<sp/>FLA<sp/>1<sp/>fishery<sp/>and<sp/>update<sp/>the<sp/>CPUE<sp/>analyses<sp/>for<sp/>setnet<sp/>fisheries<sp/>in<sp/>FLA<sp/>1<sp/>using<sp/>data<sp/>up<sp/>to<sp/>the<sp/>end<sp/>of<sp/>2007-08<sp/>.</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="16"><highlight class="normal">For<sp/>management<sp/>purpose<sp/>nine<sp/>species<sp/>of<sp/>flatfish<sp/>(black<sp/>flounder<sp/>(BFL),<sp/>brill<sp/>(BRI),<sp/>New<sp/>Zealand<sp/>sole<sp/>(ESO),<sp/>greenback<sp/>flounder<sp/>(GFL),<sp/>lemon<sp/>sole<sp/>(LSO),<sp/>sand<sp/>flounder(SFL),<sp/>Turbot<sp/>(TUR),<sp/>witch<sp/>(WIT)<sp/>and<sp/>yellow<sp/>belly<sp/>flounder<sp/>(YBF))<sp/>are<sp/>combined<sp/>to<sp/>form<sp/>a<sp/>single<sp/>fishery.<sp/>Flatfish<sp/>ITQ<sp/>provides<sp/>for<sp/>the<sp/>landing<sp/>of<sp/>all<sp/>eight<sp/>species.</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal">Since<sp/>the<sp/>introduction<sp/>of<sp/>flatfish<sp/>into<sp/>the<sp/>QMS,<sp/>fishers<sp/>have<sp/>been<sp/>required<sp/>to<sp/>use<sp/>the<sp/>actual<sp/>species<sp/>code<sp/>in<sp/>the<sp/>estimated<sp/>catch<sp/>section<sp/>of<sp/>catch<sp/>effort<sp/>forms,<sp/>and<sp/>the<sp/>degree<sp/>to<sp/>which<sp/>they<sp/>have<sp/>complied<sp/>has<sp/>improved<sp/>steadily<sp/>with<sp/><ref refid="namespaceIOSKJ_1af3eb431b8421bdaee2203d1d0674747e" kindref="member">time</ref>.<sp/>Adequate<sp/><ref refid="namespaceIOSKJ_1a155c6121d3704895c5f0061730f93a2a" kindref="member">times</ref><sp/>series<sp/>of<sp/>catch<sp/>effort<sp/>data<sp/>exist<sp/>in<sp/>FLA<sp/>1<sp/>for<sp/>monitoring<sp/>the<sp/><ref refid="io-skipjack_8cpp_1a3c04138a5bfe5d72780bb7e82a18e627" kindref="member">main</ref><sp/>flatfish<sp/>species<sp/>(YBF<sp/>and<sp/>SFL)<sp/>separately<sp/>using<sp/>set<sp/>net<sp/>CPUE<sp/>in<sp/>selected<sp/>subareas<sp/>of<sp/>FLA<sp/>1.<sp/></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal">These<sp/>series<sp/>will<sp/>be<sp/>updated<sp/>with<sp/>an<sp/>additional<sp/>four<sp/>years<sp/>of<sp/>data<sp/>and<sp/>we<sp/>will<sp/>investigate<sp/>the<sp/>utility<sp/>of<sp/>using<sp/>the<sp/>current<sp/>best<sp/>practice<sp/>for<sp/>monitoring<sp/>species<sp/>in<sp/>bycatch<sp/>or<sp/>mixed<sp/>target<sp/>fisheries<sp/>which<sp/>matches<sp/>verified<sp/>landings<sp/>to<sp/>effort<sp/>(and<sp/>in<sp/>this<sp/>case<sp/>effort/species)<sp/><ref refid="namespaceupdater_1a7c7fcda819b75f5f7ae6d68ee41ffadd" kindref="member">strata</ref></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal">This<sp/>work<sp/>is<sp/>funded<sp/>by<sp/>MFish<sp/>project<sp/>FLA2008/01</highlight></codeline>
+    </programlisting>
+    <location file="/home/nbentley/Trophia/Code/www/src/projects/P08009 FLA1.md"/>
+  </compounddef>
+</doxygen>

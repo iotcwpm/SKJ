@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.2">
+  <compounddef id="namespaceFisl_1_1Estimation" kind="namespace">
+    <compoundname>Fisl::Estimation</compoundname>
+    <innernamespace refid="namespaceFisl_1_1Estimation_1_1Mcmc">Fisl::Estimation::Mcmc</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="/media/Data/Trophia/P12013_Trident/Code/fisl/fisl/estimation/mcmc/metropolis.cxx" line="9"/>
+  </compounddef>
+</doxygen>

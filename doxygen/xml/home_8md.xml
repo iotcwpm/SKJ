@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.5">
+  <compounddef id="home_8md" kind="file">
+    <compoundname>home.md</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal">Title:<sp/>Home</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#<sp/>Research<sp/>and<sp/>advice<sp/>for<sp/>sustainable<sp/>fisheries</highlight></codeline>
+<codeline lineno="4"><highlight class="preprocessor"></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">Trophia<sp/>provides<sp/>high<sp/>quality<sp/>research<sp/>and<sp/>advice<sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>the<sp/>sustainable<sp/>management<sp/>of<sp/>marine<sp/>resources.<sp/>Trophia</highlight><highlight class="stringliteral">&apos;s<sp/>services<sp/>span<sp/>all<sp/>aspects<sp/>of<sp/>marine<sp/>resource<sp/>management<sp/>from<sp/>data<sp/>collection<sp/>to<sp/>policy<sp/>formulation.</highlight></codeline>
+<codeline lineno="6"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="7"><highlight class="stringliteral">Trophia<sp/>has<sp/>an<sp/>integrated,<sp/>multidisciplinary<sp/>approach<sp/>to<sp/>marine<sp/>resource<sp/>management.<sp/>Through<sp/>field<sp/>research,<sp/>information<sp/>necessary<sp/>to<sp/>monitor<sp/>and<sp/>assess<sp/>a<sp/>resource<sp/>is<sp/>collected.<sp/>This<sp/>data<sp/>is<sp/>stored<sp/>in<sp/>purpose<sp/>built<sp/>databases<sp/>that<sp/>allow<sp/>for<sp/>rapid<sp/>reporting<sp/>back<sp/>to<sp/>resource<sp/>stakeholders.<sp/></highlight></codeline>
+<codeline lineno="8"><highlight class="stringliteral"></highlight></codeline>
+<codeline lineno="9"><highlight class="stringliteral">Data<sp/>analyses<sp/>and<sp/>resource<sp/>modelling<sp/>are<sp/>then<sp/>used<sp/>to<sp/>estimate<sp/>the<sp/>status<sp/>and<sp/>dynamics<sp/>of<sp/>the<sp/>resource.<sp/>These<sp/>estimates<sp/>can<sp/>be<sp/>used<sp/>to<sp/>forecast<sp/>the<sp/>status<sp/>of<sp/>the<sp/>stock<sp/>and<sp/>assess<sp/>alternative<sp/>management<sp/>strategies.</highlight></codeline>
+    </programlisting>
+    <location file="/home/nbentley/Trophia/Code/www/src/pages/home.md"/>
+  </compounddef>
+</doxygen>
