@@ -1,6 +1,7 @@
 #Ignore generated Doxyfile
 Doxyfile
 
-#Ignore html and xml build directorys
+#Ignore build directorys
 html
 xml
+latex
