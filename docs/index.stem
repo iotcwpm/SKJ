@@ -142,6 +142,8 @@ section#fish
 
         p where `O` is the proportion of fish that are mature and `W` is the weight of fish.
 
+        .todo Consider changing assumption of recruitment in one quarter. Grande (2013) states that "Spawning occurs year round with peaks in the reproductive activity during the monsoon events". To model this would require (a) the Age dimension to be quarterly i.e. `0,1,2,...,24` (up to 6 years) and (b) a parameter vector of relative fecundity by quarter (to for the observed seasonality in spawning).
+
         p The total spawning biomass is used as the basis for determining a recruitment over all three regions, `bar(R)` based on the Beverton-Holt stock recruitment function,
 
             `bar(R) = 4 eta theta S/((5 eta-1) S + dot(S)  (1-eta)) D`
@@ -305,14 +307,14 @@ section#proirs
             td `tau`
             td Inflection point of the maturity ogive
             td `cm`
-            td `N(38,1)`
-            td Sharma et al (2012) assumed 38cm based on Grande et al. (2010). This prior allows for some uncertainty in that value.
+            td `N(40,2)`
+            td Grande (2013) estimated a value of 39.9cm, Sharma et al (2012) assumed 38cm based on Grande et al. (2010). This prior allows for uncertainty with a c.v. of 5%.
         tr
             td `upsilon`
             td Steepness of the maturity ogive
             td `cm`
-            td `U(1,4)`
-            td Allows for some uncertainty in steepness of the maturity ogive.
+            td `N(5,0.5)`
+            td Grande (2013) Fig 7.3, p 95 shows that 5% and 95% maturity at about 35cm and 44cm respectively. Given a 50% maturity of 40cm this corresponds to a steepness of about 5cm. This prioir allows for uncertainty with a c.v. of 10% .
         tr
             td 
 
@@ -357,6 +359,8 @@ section#references
     h2 References
 
     p Everson, J.P., Million, J., Sardenne, F., Le Croizier, G. (2012) Updated growth estimates for skipjack,yellowfin and bigeye tuna in the Indian Ocean using the most recent tag-recpature and otolith data. IIOOTC-2012-WPT14-23 Rev-1
+
+    p Grande, M (2013). The reproductive biology, condition and feeding ecology of the skipjack, Katsuwonus pelamis, in the Western Indian Ocean PhD Thesis. Department of Zoology and Animal Cell Biology, Universidad del Pais Vasco.
 
     p Myers, R.A. (2002) Recruitment: understanding density-dependence in fish populations.
 
