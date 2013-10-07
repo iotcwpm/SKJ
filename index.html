@@ -7,148 +7,326 @@
 	<body>
 		<h1>ioskj: a simulation model of the Indian Ocean skipjack tuna fishery</h1>
 		<p class="note">
-			This documentation is a draft under active development. 
-			Throughout this documents notes like this one indicate potential changes or refinements to the model.
-			Separate documentation, generated from the model's C++ source code, is also
-			 
-			<a href="doxygen/html/index.html">available.</a>
+			This documentation is a draft under active development. Separate documentation, generated from the model's C++ source code, is also
+			<a href="doxygen/html/index.html">available</a>
+			.
 		</p>
-		<section>
-			<h2 id="introduction">Introduction</h2>
+		<section id="introduction">
+			<h2>Introduction</h2>
+			<p>This document describes a simulation model for the skipjack fishery in the Indian Ocean. The model has been designed for use in simulation based evaluation of alternative management strategies for the fishery. This document outlines the structure of the model, describes prior probability distributions for model parameters, model conditioning algorithms and conditioning results.</p>
+			<p>The model, and consequently this document, are under development. The approach has been to start simple and add complexity as required. Potential alternative model forumations are noted throughout the document.</p>
+			<section id="symbols">
+				<h3>Symbols</h3>
+				<p>The following convention is used for assigning symbols for the model: Greek lower case letters (e.g. `alpha`) for model parameters, Roman capital letters (e.g. `N`) for model variables, and Roman lower case letters for variable or parameter array subscripts (e.g. `N_{r,a,s}`, `phi_{r}`). Using this convention means that in some instances model parameters are given different symbols that usual (e.g. `nu` instead of `M` for natural mortality) but has the advantage of clearly distinquishing model parameters from model variables.</p>
+				<p>The subscript for time, `t`, is usually omitted from the model equations below except where it is necessary to be explicit regarding the time step involved.</p>
+			</section>
 		</section>
-		<section>
-			<h2 id="symbols">Symbols</h2>
-			<p>The following convention is used for assigning symbols for the model: Greek lower case letters (e.g. `alpha`) for model parameters, Roman capital letters (e.g. `N`) for arrays of model variables, and Roman lower case letters for array subscripts (e.g. `N_{r,a,s}`). This means that in some instances model parameters are given different symbols that usual.</p>
-			<p>The table below lists and briefly describes each model symbol and provides a link to the section in this document where they are more fully detailed</p>
+		<section id="dimensions">
+			<h2>Dimensions</h2>
+			<p>Several other dimensions are used to partition aspects of the model (e.g. fish numbers, catches).</p>
+			<h3>Time (`t`)</h3>
+			<p>The model uses a quarterly, i.e. three month, time step. Each time step, `t`, has an associated calendar year (`y`) and calendar quarter (`q`).</p>
+			<h3>Region (`r`)</h3>
+			<p>There are three regions, West (`we`), Maldives (`ma`) and East (`ea`). The term "region" is used in preference to "area" becausing using the latter would confound the `a` subscript which is also used for age.</p>
+			<h3>Age (`a`)</h3>
+			<p>There are 6 fish ages, `0+,1+,...,6+`. Although the model has a quarterly time step, fish ages represent years and fish recruit and have their birthday in the first quarter of each year.</p>
+			<h3>Size (`s`)</h3>
+			<p>Fish size is represented in fourty, 2mm bins, `0-2, 2-4, ..., 78-80mm`.</p>
+			<h3>Method (`m`)</h3>
+			<p>
+				Five fishing methods are defined (Table 1), See
+				<a href="data-catches">Catches</a>
+				for a description of how nominal catches were assigned to each of these methods and regions.
+			</p>
 			<table>
+				<caption>Table 1: Symbols used for model dimensions</caption>
 				<tr>
-					<td>
-						<a href="#dimensions">Dimensions</a>
-					</td>
+					<td>`t`</td>
+					<td>Time step</td>
+				</tr>
+				<tr>
+					<td>`y`</td>
+					<td>Calendar year</td>
+				</tr>
+				<tr>
+					<td>`q`</td>
+					<td>Calendar quarter; 1 = Jan-Mar</td>
+				</tr>
+				<tr>
+					<td />
 				</tr>
 				<tr>
 					<td>`r`</td>
 					<td>Region subscript</td>
 				</tr>
 				<tr>
-					<td>`w`</td>
+					<td>`we`</td>
 					<td>West region</td>
 				</tr>
 				<tr>
-					<td>`m`</td>
+					<td>`ma`</td>
 					<td>Maldives region</td>
 				</tr>
 				<tr>
-					<td>`e`</td>
+					<td>`ea`</td>
 					<td>East region</td>
 				</tr>
 				<tr>
+					<td />
+				</tr>
+				<tr>
 					<td>`a`</td>
-					<td>Age subscript</td>
+					<td>Fish age subscript</td>
 				</tr>
 				<tr>
 					<td>`s`</td>
-					<td>Size subscript</td>
+					<td>Fish size subscript</td>
 				</tr>
 				<tr>
 					<td />
 				</tr>
 				<tr>
-					<td>Numbers</td>
+					<td>`m`</td>
+					<td>Fishing method subscript</td>
 				</tr>
 				<tr>
-					<td>`N_{r,a,s}`</td>
-					<td>Number of fish in region `r` of age `a` and size `s`</td>
+					<td>`ps` </td>
+					<td>Purse seine</td>
 				</tr>
 				<tr>
+					<td>`pl`</td>
+					<td>Pole and line</td>
+				</tr>
+				<tr>
+					<td>`gn` </td>
+					<td>Gill net</td>
+				</tr>
+				<tr>
+					<td>`li`</td>
+					<td>Line</td>
+				</tr>
+				<tr>
+					<td>`ot` </td>
+					<td>Other</td>
+				</tr>
+			</table>
+		</section>
+		<section id="fish">
+			<h2>Fish</h2>
+			<section id="fish-numbers">
+				<h3>Numbers</h3>
+				<p>Fish numbers are partitioned by region, age and size, `N_{r,a,s}`. In the first quarter recruitment and ageing occur. NUmbers of fish accumulate into the maximum age group, `vec(a)`:</p>
+				<p class="equation">`N_{r,vec(a),s} = N_{r,bar(a),s} + N_{r,bar(a)-1,s}`</p>
+				<p>For ages `1` to `vec(a)-1`, simple aging occurs, </p>
+				<p class="equation">`N_{r,a,s} = N_{r,a-1,s}`</p>
+				<p>For age 0, recruitment occurs,</p>
+				<p class="equation">`N_{r,0,s} = R_{r,s}`</p>
+				<p>where `R_{r,s}` is the number of fish recruiting to age 0 in region `r` at size `s` (see following section).</p>
+				<p>In all quarters numbers are updated by applying growth, survival, exploitation and movement. The numbers in each region, in each age class and size class are determined by summing over all regions and size classes,</p>
+				<p class="equation">`N_{r,a,s} = sum_{dot(r) in {we,ma,ea},dot(s)=0...vec(s)}( dot(N)_{dot(r),a,dot(s)} G_{dot(s),s} e^-nu (1-E_{dot(r),dot(s)}) M_{dot(r),r} )`</p>
+				<p>where `G` is the growth transition matrix, `nu` is the rate of natural mortality, `E` is the exploitation rate, and `M` is the movement transition matrix.</p>
+			</section>
+			<section id="fish-recruitment">
+				<h3>Recruitment</h3>
+				<p>Recruitment is annual (in the first quarter) and is partitioned by region and size, `R_{r,s}`. The total number of recruits is based on the spawning biomass in the previous time step (the last quarter of the previous year),</p>
+				<p class="equation">`S = sum_{r in {we,ma,ea},a=0...vec(a),s=0...vec(s)} N_{r,a,s} O_{s} W_(s} `</p>
+				<p>where `O` is the proportion of fish that are mature and `W` is the weight of fish.</p>
+				<p>The total spawning biomass is used as the basis for determining a recruitment over all three regions, `bar(R)` based on the Beverton-Holt stock recruitment function,</p>
+				<p class="equation">`bar(R) = 4 eta theta S/((5 eta-1) S + dot(S)  (1-eta)) D`</p>
+				<p>where `eta` is steepness, `lambda` and `dot(S)` are the respectively the recruitment and spawning biomass in the absence of fishing, and `D` is the recruitment deviation which is lognormally distrubuted with mean of 1 and standard deviation of `sigma`.</p>
+				<p>This recruitment is divided equally across the three regions,</p>
+				<p class="equation">`R_{r,s} = bar(R)/3 * phi_s`</p>
+				<p>where `phi_s` is the proportion of recruits of size `s` which is based on a normal distribution with mean, `alpha` and standard deviation `beta`,</p>
+				<p class="equation">`phi_s = 1/sqrt(2 pi beta^2) e^(-((L_s-alpha)^2)// 2 beta^2)`</p>
+				<div class="note">Currently, recruitment is pooled across all areas and divided equally. This could be changed via a recruitment dispersal matrix.</div>
+			</section>
+			<section id="fish-maturity">
+				<h3>Maturity</h3>
+				<p>The proportion of fish of size `s` that are mature is modelled as a logistic curve,</p>
+				<p class="equation">`O_s = 1/(1+19^(alpha-x)/beta)`</p>
+				<div class="note">Maturity could be a function of age, rather than size, i.e. `O_a`, and/or vary by region i.e. `alpha_{r}, beta_{r}`</div>
+			</section>
+			<section id="fish-growth">
+				<h3>Growth</h3>
+				 
+				<p>Growth is described using a size transition matrix of the proportion of fish growing from size `dot(s)` to size `s` in one quarter</p>
+				<p class="equation">`G_{dot(s),s}`</p>
+				<p>This transition matrix is calculated based on the von Bertallanfy growth function. The mean increment in one quarter is,</p>
+				<p class="equation">`I_s = (lambda-L_s)(1-e^{-kappa})`</p>
+				<p>with a standard deviation, `varphi`.</p>
+				<div class="todo">Equations for calculation of `G_{dot(s),s}`: use Hillary (2010) approach or more convential approach?</div>
+				<div class="note">An alternative would be to use the two-stanza growth model and estimates of Everson et al (2012).</div>
+				<div class="note">Growth could vary by region and/or time e.g `lambda_{r}`. `kappa_{t}`</div>
+			</section>
+			<section id="fish-natural-mortality">
+				<h3>Natural mortality</h3>
+				<p>Natural mortality is modelled as a constant instantaeous rate over all regions, ages and sizes.</p>
+				<div class="note">Natural mortality could vary by region and/or age i.e. `nu_{r,a}` or size `nu_{r,s}`</div>
+			</section>
+			<section id="fish-movement">
+				<h3>Movement</h3>
+				<p>The proportion of fish moving from region `dot(r)` to region `r` in one quarter is described by the movement matrix defined by six off-diagonal parameters,</p>
+				<p class="equation">`M_{dot(r),r} = [[1-omega_{ea,ma}-omega_{ea,we},omega_{ea,ma},omega_{ea,we}],[omega_{ma,ea},1-omega_{ma,ea}-omega_{ma,we},omega_{ma,we}],[omega_{we,ea},omega_{we,ma},1-omega_{we,ea}-omega_{we,ma}]]`</p>
+				<div class="note">There could be separate movement parameters for each age (or size) e.g. `omega_{ma,we,a}`, or more simply, the relative proportion of fish moving could vary by age (or size) e.g. `M_{ma,we,a} =  omega_{ma,we} zeta_a`.</div>
+			</section>
+		</section>
+		<section id="fishing">
+			<h2>Fishing</h2>
+			<section id="fishing-exploitation">
+				<h3>Exploitation rate</h3>
+				<p>The biomass that is vulnerable to each method, `m` in each region `r`, is calculated by summing over ages and sizes,</p>
+				<p class="equation">`V_{r,m} = sum_{a=0,...,vec(a),s=0,...,vec(s)} N_{r,a,s} W_s P_{m,s}`</p>
+				<p>where `P_{m,s}` is the relative selectivity of method `m` for fish of size, `s`.</p>
+				<div class="todo">Determine best way to parameterize selectivity ogives e.g. logistic, splines etc.</div>
+				<p>The exploitation rate of method `m` in region `r` is then,</p>
+				<p class="equation">`E_{r,s} = C_{r,m}/V_{r,m}`</p>
+			</section>
+		</section>
+		<section id="proirs">
+			<h2>Priors</h2>
+			<table>
+				<caption>Table X: Prior probaility distributions for model parameters. Distributions are indicated as follows: fixed `F(value)`, uniform `U(lower,upper)`, normal `N(mean,sd)`, lognormal `L(mean,sd)`, beta `B(alpha,beta)`, mesa `M(min,lower,upper,max)`</caption>
+				<tr>
+					<th>Symbol</th>
+					<th>Description</th>
+					<th>Units</th>
+					<th>Prior</th>
+					<th>Notes</th>
+				</tr>
+				<tr>
+					<th>Recruitment</th>
+				</tr>
+				<tr>
+					<td>`theta`</td>
+					<td>Virgin recruitment</td>
+					<td>-</td>
 					<td />
-				</tr>
-				<tr>
-					<td>
-						<a href="#recruitment">Recruitment</a>
-					</td>
-				</tr>
-				<tr>
-					<td>`R_{r,s}`</td>
-					<td>Number of fish recruiting to age 0 in region `r` at size `s`</td>
+					<td />
 				</tr>
 				<tr>
 					<td>`eta`</td>
-					<td>Steepness of the stock-recruitment relationship</td>
+					<td>Steepness of the stock-recruitment relationship precursor parameter</td>
+					<td>-</td>
+					<td>`B(1.91,1.28)`</td>
+					<td>This prior produces a prior for steepness with median = 0.67, 25th%ile = 0.48, 75th%ile = 0.82</td>
 				</tr>
 				<tr>
 					<td>`sigma`</td>
 					<td>Standard deviation of stock-recruitment deviations</td>
+					<td>-</td>
+					<td>`L(0.6,0.5)`</td>
+					<td>Based on Myers (2002) Figure 6.5 which has a median of about 0.6 for Scombridae.</td>
 				</tr>
 				<tr>
-					<td>`vartheta_{s}`</td>
-					<td>Proportion of recruits at size `s`</td>
+					<th>Natural mortality</th>
 				</tr>
 				<tr>
-					<td />
-				</tr>
-				<tr>
-					<td>
-						<a href="#natural-mortality">Natural mortality</a>
-					</td>
-				</tr>
-				<tr>
-					<td>`S`</td>
-					<td>Survival from natural mortality</td>
-				</tr>
-				<tr>
-					<td>`rho`</td>
+					<td>`nu`</td>
 					<td>Instantaeous rate of natural mortality (usually given the symbol `M`)</td>
+					<td />
+					<td>N(0.8,1)</td>
+					<td>Prior used by Sharma et al (2012).</td>
+				</tr>
+				<tr>
+					<th>Growth</th>
+				</tr>
+				<tr>
+					<td>`mu`</td>
+					<td>Mean size of recruits</td>
+					<td>`cm`</td>
+					<td>`F(20)`</td>
+					<td>Everson et al (2012) and Sharma et al (2012) assume 20cm for age 0 fish.</td>
+				</tr>
+				<tr>
+					<td>`phi`</td>
+					<td>Standard deviation of size of recruits</td>
+					<td>`cm`</td>
+					<td>`F(5)`</td>
+					<td>Currently fixed. This prioir might be better determined from data.</td>
+				</tr>
+				<tr>
+					<td>`kappa`</td>
+					<td>Maximum growth rate</td>
+					<td>`cm*y^-1`</td>
+					<td>`N()`</td>
+					<td>Hillary (2011) estimated posterior N(0.28,0.012). Sharma et al(2012) assumed 0.37 based on Anganuzzi &amp; Million (pers. comm.).</td>
+				</tr>
+				<tr>
+					<td>`lambda`</td>
+					<td>Assymptotic length</td>
+					<td>`cm`</td>
+					<td>`N()`</td>
+					<td>Hillary (2011) estimated posterior N(73.7,1.09). Sharma et al(2012) assumed 70 based on Anganuzzi &amp; Million (pers. comm.).</td>
+				</tr>
+				<tr>
+					<td>`varphi`</td>
+					<td>Growth variability</td>
+					<td>`cm`</td>
+					<td>`N()`</td>
+					<td>Hillary (2011) estimated posterior N(78.8,2.32)</td>
+				</tr>
+				<tr>
+					<th>Maturity</th>
+				</tr>
+				<tr>
+					<td>`tau`</td>
+					<td>Inflection point of the maturity ogive</td>
+					<td>`cm`</td>
+					<td>`N(38,1)`</td>
+					<td>Sharma et al (2012) assumed 38cm based on Grande et al. (2010). This prior allows for some uncertainty in that value.</td>
+				</tr>
+				<tr>
+					<td>`upsilon`</td>
+					<td>Steepness of the maturity ogive</td>
+					<td>`cm`</td>
+					<td>`U(1,4)`</td>
+					<td>Allows for some uncertainty in steepness of the maturity ogive.</td>
 				</tr>
 				<tr>
 					<td />
 				</tr>
 				<tr>
-					<td>
-						<a href="#growth">Growth</a>
-					</td>
+					<th>Weight</th>
 				</tr>
 				<tr>
-					<td>`G_{dot(s),s}`</td>
-					<td>Size transition matrix of the proportion of fish growing from size `dot(s)` to size `s` in one quarter</td>
+					<td>`alpha`</td>
+					<td>Coefficient of the length-weight relationship</td>
+					<td>`t*cm^-3*10^-6`</td>
+					<td>`N(5.32,0.266)`</td>
+					<td>Sharma et al (2012) used `F(5.32)` based on IOTC (2005). This prior allows for uncertainty with a c.v. of 5%.</td>
 				</tr>
 				<tr>
+					<td>`beta`</td>
+					<td>Exponent of the length-weight relationship</td>
+					<td>-</td>
+					<td>`N(3.35,0.1675)`</td>
+					<td>Sharma et al (2012) used `F(3.35)` based on IOTC (2005). This prior allows for uncertainty with a c.v. of 5%.</td>
+				</tr>
+				<tr>
+					<th>Movement</th>
+				</tr>
+				<tr>
+					<td>`omega_{dot(r),r}`</td>
+					<td>Proportion of fish moving from region `dot(r)` to region `r`</td>
 					<td />
-					 
-				</tr>
-				<tr>
-					<td>
-						<a href="#movement">Movement</a>
-					</td>
-				</tr>
-				<tr>
-					<td>`M_{dot(r),r}`</td>
-					<td>Movement transition of the proportion of fish moving from region `dot(r)` to region `r` in one quarter</td>
+					<td />
+					<td />
 				</tr>
 			</table>
 		</section>
-		<section>
-			<h2 id="dimensions">Dimensions</h2>
-			<p>There are several model dimensions that are used to partition both the fish population and fishing catches.</p>
-			<h3>Region</h3>
-			There are three regions, West (`w`), Maldives (`m`) and East (`e`).
-			<p class="note">The term "region" is used over "area" becausing using the latter would confound the `a` subscript which is also used for age.</p>
+		<section id="data">
+			<h2>Data</h2>
+			<div class="todo">Complete this section based on R scripts in data folder</div>
+			<section id="data-catches">
+				<h3>Catches</h3>
+				<p>Purse seine includes both free school and associated school sets. The skipjack catch from free school purse seineing is minor.</p>
+			</section>
 		</section>
-		<section>
-			<h2 id="numbers">Numbers</h2>
-			<p class="equation">`N_{r,a,s} = sum_{dot(r) in {w,m,e},dot(s)=0...S}( dot(N)_{dot(r),a,dot(s)} G_{dot(s),s} M_{dot(r),r} S )`</p>
-		</section>
-		<section>
-			<h2 id="recruitment">Recruitment</h2>
-			<p class="note">
-				Currently, recruitment is pooled across all areas and divided equally. This could be changed via a recruitment
-				dispersal matrix.
-			</p>
-		</section>
-		<section>
-			<h2 id="natural-mortality">Natural mortality</h2>
-			<p class="equation">`S = e^-rho`</p>
-			<p class="note">Natural mortality could be vary by region and or age.</p>
+		<section id="references">
+			<h2>References</h2>
+			<p>Everson, J.P., Million, J., Sardenne, F., Le Croizier, G. (2012) Updated growth estimates for skipjack,yellowfin and bigeye tuna in the Indian Ocean using the most recent tag-recpature and otolith data. IIOOTC-2012-WPT14-23 Rev-1</p>
+			<p>Myers, R.A. (2002) Recruitment: understanding density-dependence in fish populations.</p>
+			<p>Sharma, R., Herrera, M., Million, J. (2012) Indian Ocean skipjack tuna stock assessment 1950-2011 (Stock Synthesis). IOTC-2012-WPTT14-29 Rev-1</p>
 		</section>
 	</body>
 </html>
