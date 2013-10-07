@@ -131,6 +131,7 @@
 				<p>Recruitment is annual (in the first quarter) and is partitioned by region and size, `R_{r,s}`. The total number of recruits is based on the spawning biomass in the previous time step (the last quarter of the previous year),</p>
 				<p class="equation">`S = sum_{r in {we,ma,ea},a=0...vec(a),s=0...vec(s)} N_{r,a,s} O_{s} W_(s} `</p>
 				<p>where `O` is the proportion of fish that are mature and `W` is the weight of fish.</p>
+				<div class="todo">Grande (2013) states that "Spawning occurs year round with peaks in the reproductive activity during the monsoon events". To model this would require (a) the Age dimension to be quarterly i.e. `0,1,2,...,24` (up to 6 years) and (b) a parameter vector of relative fecundity by quarter (to for the observed seasonality in spawning)</div>
 				<p>The total spawning biomass is used as the basis for determining a recruitment over all three regions, `bar(R)` based on the Beverton-Holt stock recruitment function,</p>
 				<p class="equation">`bar(R) = 4 eta theta S/((5 eta-1) S + dot(S)  (1-eta)) D`</p>
 				<p>where `eta` is steepness, `lambda` and `dot(S)` are the respectively the recruitment and spawning biomass in the absence of fishing, and `D` is the recruitment deviation which is lognormally distrubuted with mean of 1 and standard deviation of `sigma`.</p>
@@ -272,15 +273,15 @@
 					<td>`tau`</td>
 					<td>Inflection point of the maturity ogive</td>
 					<td>`cm`</td>
-					<td>`N(38,1)`</td>
-					<td>Sharma et al (2012) assumed 38cm based on Grande et al. (2010). This prior allows for some uncertainty in that value.</td>
+					<td>`N(40,2)`</td>
+					<td>Grande (2013) estimated a value of 39.9cm, Sharma et al (2012) assumed 38cm based on Grande et al. (2010). This prior allows for uncertainty with a c.v. of 5%.</td>
 				</tr>
 				<tr>
 					<td>`upsilon`</td>
 					<td>Steepness of the maturity ogive</td>
 					<td>`cm`</td>
-					<td>`U(1,4)`</td>
-					<td>Allows for some uncertainty in steepness of the maturity ogive.</td>
+					<td>`N(5,0.5)`</td>
+					<td>Grande (2013) Fig 7.3, p 95 shows that 5% and 95% maturity at about 35cm and 44cm respectively. Given a 50% maturity of 40cm this corresponds to a steepness of about 5cm. This prioir allows for uncertainty with a c.v. of 10% .</td>
 				</tr>
 				<tr>
 					<td />
@@ -325,6 +326,7 @@
 		<section id="references">
 			<h2>References</h2>
 			<p>Everson, J.P., Million, J., Sardenne, F., Le Croizier, G. (2012) Updated growth estimates for skipjack,yellowfin and bigeye tuna in the Indian Ocean using the most recent tag-recpature and otolith data. IIOOTC-2012-WPT14-23 Rev-1</p>
+			<p>Grande, M (2013). The reproductive biology, condition and feeding ecology of the skipjack, Katsuwonus pelamis, in the Western Indian Ocean PhD Thesis. Department of Zoology and Animal Cell Biology, Universidad del Pais Vasco.</p>
 			<p>Myers, R.A. (2002) Recruitment: understanding density-dependence in fish populations.</p>
 			<p>Sharma, R., Herrera, M., Million, J. (2012) Indian Ocean skipjack tuna stock assessment 1950-2011 (Stock Synthesis). IOTC-2012-WPTT14-29 Rev-1</p>
 		</section>
