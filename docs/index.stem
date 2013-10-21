@@ -23,7 +23,7 @@ section#introduction
 section#dimensions
     h2 Dimensions
 
-    p Several other dimensions are used to partition aspects of the model (e.g. fish numbers, catches).
+    p Several dimensions are used to partition aspects of the model (e.g. fish numbers, catches).
 
     h3 Time (`t`)
 
@@ -35,7 +35,7 @@ section#dimensions
 
     h3 Age (`a`)
 
-    p There are 6 fish ages, `0+,1+,...,6+`. Although the model has a quarterly time step, fish ages represent years and fish recruit and have their birthday in the first quarter of each year.
+    p Fish recruit to the model in each quarter and the model keeps track of their numbers by their age, in quarters up to siz years i.e. `0,1,2,...,23`
 
     h3 Size (`s`)
 
@@ -80,10 +80,16 @@ section#dimensions
 
         tr
             td `a`
-            td Fish age subscript
+            td Fish age group
+        tr
+            td `vec(a)`
+            td Maximum age in the model
         tr
             td `s`
-            td Fish size subscript
+            td Fish size group
+        tr
+            td `vec(s)`
+            td Largest size group in the model
         tr
             td
 
@@ -113,42 +119,79 @@ section#fish
     section#fish-numbers
         h3 Numbers
 
-        p Fish numbers are partitioned by region, age and size, `N_{r,a,s}`. In the first quarter recruitment and ageing occur. NUmbers of fish accumulate into the maximum age group, `vec(a)`:
+        p Fish numbers are partitioned by region, age and size, `N_{r,a,s}`. In each quarter, recruitment to the model and ageing occur as follows.
 
-            `N_{r,vec(a),s} = N_{r,bar(a),s} + N_{r,bar(a)-1,s}`
+        p The maximum age group, `vec(a)`, accumulates fish from the previous age, `vec(a)-1`,
 
-        p For ages `1` to `vec(a)-1`, simple aging occurs, 
+            `N_{r,bar(a),s} = N_{r,vec(a),s} + N_{r,vec(a)-1,s}`
+
+        p For ages `1` to `vec(a)-1`, simple ageing occurs, 
 
             `N_{r,a,s} = N_{r,a-1,s}`
 
-        p For age 0, recruitment occurs,
+        p For age `0`, recruitment occurs,
 
             `N_{r,0,s} = R_{r,s}`
 
-        p where `R_{r,s}` is the number of fish recruiting to age 0 in region `r` at size `s` (see following section).
+        p where `R_{r,s}` is the number of fish recruiting to age 0 in region `r` at size `s`.
 
-        p In all quarters numbers are updated by applying growth, survival, exploitation and movement. The numbers in each region, in each age class and size class are determined by summing over all regions and size classes,
+        p Numbers are updated by applying growth, survival, exploitation and movement. The numbers in each region, in each age class and size class are determined by summing over all regions and size classes,
 
             `N_{r,a,s} = sum_{dot(r) in {we,ma,ea},dot(s)=0...vec(s)}( dot(N)_{dot(r),a,dot(s)} G_{dot(s),s} e^-nu (1-E_{dot(r),dot(s)}) M_{dot(r),r} )`
 
         p where `G` is the growth transition matrix, `nu` is the rate of natural mortality, `E` is the exploitation rate, and `M` is the movement transition matrix.
 
+
+    section#fish-length
+        h3 Length
+
+        p The length of fish of size `s` is the midpoint of the bin size,
+
+            `L_s = 2s+1`
+
+
+    section#fish-weight
+        h3 Weight
+
+        p The weight of fish of size `s` is modelled as an exponential curve,
+
+            `W_s = alpha (L_s)^beta`
+
+        .note Parameters of the length-weight relationship could vary by region i.e. `alpha_{r}, beta_{r}`
+
+
+    section#fish-maturity
+        h3 Maturity
+
+        p The proportion of fish of size `s` that are mature is modelled as a logistic curve,
+
+            `O_s = 1/(1+19^(tau-L_s)/upsilon)`
+
+        .note Maturity could be a function of age, rather than size, i.e. `O_a`, and/or vary by region i.e. `alpha_{r}, beta_{r}`
+
+
+    section#fish-spawning
+        h3 Spawning
+
+        p The proportion of mature fish that spawn in each quarter is allowed to vary,
+
+            `rho_q`
+
+
     section#fish-recruitment
         h3 Recruitment
 
-        p Recruitment is annual (in the first quarter) and is partitioned by region and size, `R_{r,s}`. The total number of recruits is based on the spawning biomass in the previous time step (the last quarter of the previous year),
+        p Recruitment occurs in each quarter and is partitioned by region and size, `R_{r,s}`. The total number of recruits is based on the total spawning biomass in the previous quarter,
 
-            `S = sum_{r in {we,ma,ea},a=0...vec(a),s=0...vec(s)} N_{r,a,s} O_{s} W_(s} `
+            `S = sum_{r in {we,ma,ea},a=0...vec(a),s=0...vec(s)} N_{r,a,s} O_s W_s rho_q`
 
-        p where `O` is the proportion of fish that are mature and `W` is the weight of fish.
-
-        .todo Consider changing assumption of recruitment in one quarter. Grande (2013) states that "Spawning occurs year round with peaks in the reproductive activity during the monsoon events". To model this would require (a) the Age dimension to be quarterly i.e. `0,1,2,...,24` (up to 6 years) and (b) a parameter vector of relative fecundity by quarter (to for the observed seasonality in spawning).
+        p where `O_s` is the proportion of fish that are mature at size `s`, `W_s` is the weight of fish at size `s`, and `rho_q` is the proportion of fish that spawn in quarter `q`.
 
         p The total spawning biomass is used as the basis for determining a recruitment over all three regions, `bar(R)` based on the Beverton-Holt stock recruitment function,
 
             `bar(R) = 4 eta theta S/((5 eta-1) S + dot(S)  (1-eta)) D`
 
-        p where `eta` is steepness, `lambda` and `dot(S)` are the respectively the recruitment and spawning biomass in the absence of fishing, and `D` is the recruitment deviation which is lognormally distrubuted with mean of 1 and standard deviation of `sigma`.
+        p where `eta` is steepness, `lambda` and `dot(S)` are the respectively the recruitment and spawning biomass in the absence of fishing, and `D` is the recruitment deviation which is lognormally distributed with mean of 1 and standard deviation of `sigma`.
 
         p This recruitment is divided equally across the three regions,
 
@@ -160,14 +203,14 @@ section#fish
 
         .note Currently, recruitment is pooled across all areas and divided equally. This could be changed via a recruitment dispersal matrix.
 
-    section#fish-maturity
-        h3 Maturity
 
-        p The proportion of fish of size `s` that are mature is modelled as a logistic curve,
+    section#fish-natural-mortality
+        h3 Natural mortality
 
-            `O_s = 1/(1+19^(alpha-x)/beta)`
+        p Natural mortality is modelled as a constant instantaeous rate that is uniform over all regions, ages and sizes.
 
-        .note Maturity could be a function of age, rather than size, i.e. `O_a`, and/or vary by region i.e. `alpha_{r}, beta_{r}`
+        .note Natural mortality could vary by region and/or age i.e. `nu_{r,a}` or size `nu_{r,s}` or even time.
+
 
     section#fish-growth
         h3 Growth
@@ -188,12 +231,6 @@ section#fish
 
         .note Growth could vary by region and/or time e.g `lambda_{r}`. `kappa_{t}`
 
-    section#fish-natural-mortality
-        h3 Natural mortality
-
-        p Natural mortality is modelled as a constant instantaeous rate over all regions, ages and sizes.
-
-        .note Natural mortality could vary by region and/or age i.e. `nu_{r,a}` or size `nu_{r,s}`
 
     section#fish-movement
         h3 Movement
@@ -203,6 +240,7 @@ section#fish
             `M_{dot(r),r} = [[1-omega_{ea,ma}-omega_{ea,we},omega_{ea,ma},omega_{ea,we}],[omega_{ma,ea},1-omega_{ma,ea}-omega_{ma,we},omega_{ma,we}],[omega_{we,ea},omega_{we,ma},1-omega_{we,ea}-omega_{we,ma}]]`
 
         .note There could be separate movement parameters for each age (or size) e.g. `omega_{ma,we,a}`, or more simply, the relative proportion of fish moving could vary by age (or size) e.g. `M_{ma,we,a} =  omega_{ma,we} zeta_a`.
+
 
 section#fishing
     h2 Fishing
@@ -226,9 +264,25 @@ section#fishing
 section#proirs
     h2 Priors
 
+    Table 2 summarises the priors used for each model parameter. This section provides further notes where necessary on the derivation of priors.
+
+    section#priors-weight
+        h3 Weight
+
+        p Priors for length-weight parameters were based on those used in Sharma et al (2012) with a coefficient of variation of 5%.
+
+    section#priors-maturity
+        h3 Maturity
+
+        p Priors for maturity ogive parameters were based on the results of Grande (2013) with a coefficient of variation of 5% for the inflection point. A c.v. of 10% was used for the steepness of the maturity ogive.
+
+    section#priors-spawning
+
+        p Priors for spawning seasonality were based on Grande (2013) who states that "Spawning occurs year round with peaks in the reproductive activity during the monsoon events".
+
     table
         caption 
-            Table X: Prior probaility distributions for model parameters. Distributions are indicated as follows: fixed `F(value)`, uniform `U(lower,upper)`, normal `N(mean,sd)`, lognormal `L(mean,sd)`, beta `B(alpha,beta)`, mesa `M(min,lower,upper,max)`
+            Table X: Prior probability distributions for model parameters. Distributions are indicated as follows: fixed `F(value)`, uniform `U(lower,upper)`, normal `N(mean,sd)`, lognormal `L(mean,sd)`, beta `B(alpha,beta)`, mesa `M(min,lower,upper,max)`
 
         tr
             th Symbol
@@ -236,6 +290,52 @@ section#proirs
             th Units
             th Prior
             th Notes
+
+
+        tr
+            th Weight
+        tr
+            td `alpha`
+            td Coefficient of the length-weight relationship
+            td `t*cm^-3*10^-6`
+            td `N(5.32,0.266)`
+            td Sharma et al (2012) used `F(5.32)` based on IOTC (2005). C.v. of 5%.
+        tr
+            td `beta`
+            td Exponent of the length-weight relationship
+            td -
+            td `N(3.35,0.1675)`
+            td Sharma et al (2012) used `F(3.35)` based on IOTC (2005). C.v. of 5%.
+
+
+        tr
+            th Maturity
+        tr
+            td `tau`
+            td Inflection point of the maturity ogive
+            td `cm`
+            td `N(40,2)`
+            td Grande (2013) estimated a value of 39.9cm. Sharma et al (2012) assumed 38cm based on Grande et al. (2010). Note that Table 4.2 of Grande (2013) indicates that some earlier studies estimate values around 42-43cm. C.v. of 5%.
+        tr
+            td `upsilon`
+            td Steepness of the maturity ogive
+            td `cm`
+            td `N(5,0.5)`
+            td Grande (2013) Fig 7.3, p 95 shows 5% and 95% maturity at about 35cm and 44cm respectively. Given a 50% maturity of 40cm this corresponds to a steepness of about 5cm. C.v. of 10%.
+        tr
+            td 
+
+
+        tr
+            th Spawning
+        tr
+            td `rho_q`
+            td Proportion of mature fish spawning in quarter `q`
+            td -
+            td `[1=,2=,3,4=]`
+            td Grande (2013) suggests February-March is period of highest spawning.
+        tr
+
 
         tr
             th Recruitment
@@ -299,39 +399,6 @@ section#proirs
             td `cm`
             td `N()`
             td Hillary (2011) estimated posterior N(78.8,2.32)
-
-
-        tr
-            th Maturity
-        tr
-            td `tau`
-            td Inflection point of the maturity ogive
-            td `cm`
-            td `N(40,2)`
-            td Grande (2013) estimated a value of 39.9cm, Sharma et al (2012) assumed 38cm based on Grande et al. (2010). This prior allows for uncertainty with a c.v. of 5%.
-        tr
-            td `upsilon`
-            td Steepness of the maturity ogive
-            td `cm`
-            td `N(5,0.5)`
-            td Grande (2013) Fig 7.3, p 95 shows that 5% and 95% maturity at about 35cm and 44cm respectively. Given a 50% maturity of 40cm this corresponds to a steepness of about 5cm. This prioir allows for uncertainty with a c.v. of 10% .
-        tr
-            td 
-
-        tr
-            th Weight
-        tr
-            td `alpha`
-            td Coefficient of the length-weight relationship
-            td `t*cm^-3*10^-6`
-            td `N(5.32,0.266)`
-            td Sharma et al (2012) used `F(5.32)` based on IOTC (2005). This prior allows for uncertainty with a c.v. of 5%.
-        tr
-            td `beta`
-            td Exponent of the length-weight relationship
-            td -
-            td `N(3.35,0.1675)`
-            td Sharma et al (2012) used `F(3.35)` based on IOTC (2005). This prior allows for uncertainty with a c.v. of 5%.
 
         tr
             th Movement
