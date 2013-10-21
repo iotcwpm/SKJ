@@ -173,7 +173,7 @@ section#fish
     section#fish-spawning
         h3 Spawning
 
-        p The proportion of mature fish that spawn in each quarter is allowed to vary,
+        p The proportion of mature fish that spawn in each quarter is allowed to vary according to a model parameter,
 
             `rho_q`
 
@@ -197,9 +197,9 @@ section#fish
 
             `R_{r,s} = bar(R)/3 * phi_s`
 
-        p where `phi_s` is the proportion of recruits of size `s` which is based on a normal distribution with mean, `alpha` and standard deviation `beta`,
+        p where `phi_s` is the proportion of recruits of size `s` which is based on a normal distribution with mean, `mu` and standard deviation `zeta`,
 
-            `phi_s = 1/sqrt(2 pi beta^2) e^(-((L_s-alpha)^2)// 2 beta^2)`
+            `phi_s = 1/sqrt(2 pi zeta^2) e^(-((L_s-mu)^2)// 2 zeta^2)`
 
         .note Currently, recruitment is pooled across all areas and divided equally. This could be changed via a recruitment dispersal matrix.
 
@@ -274,11 +274,59 @@ section#proirs
     section#priors-maturity
         h3 Maturity
 
-        p Priors for maturity ogive parameters were based on the results of Grande (2013) with a coefficient of variation of 5% for the inflection point. A c.v. of 10% was used for the steepness of the maturity ogive.
+        p Priors for maturity ogive parameters were based on the results of Grande (2013). For the inflection point a normal prior with mean of 40cm and a coefficient of variation of 5% was used. Note that Table 4.2 of Grande (2013) indicates that some earlier studies in the Indian Ocean estimated values around 42-43cm for the inflection point. 
+
+        p Figure 7.3 of Grande (2013) shows 5% and 95% maturity at about 35cm and 44cm respectively. Given a 50% maturity of 40cm this corresponds to a steepness of the maturity ogive of about 5cm. A normal distribution with a mean of 5cm and a 10% c.v. was used.
 
     section#priors-spawning
+        h3 Spawning
 
-        p Priors for spawning seasonality were based on Grande (2013) who states that "Spawning occurs year round with peaks in the reproductive activity during the monsoon events".
+        p In the western Indian Ocean, skipjack spawning appears to occur all year but with periods of greater activity during the North-east monsoon (November to March) and South-west monsoon (June to July) (Grande 2013 and references cited therein). Grande (2013) summarised the percentage of fish in the "spawning capable" phase in the months January to July. This percentage was highest during January and February (85%) decreasing to 51.9% in May and then increasing again to 82.4% in June and 73.3% in July. These percentages were used as the basis for a uniform prior on each `rho_q` (Table 2). We assumed that the spawning percentage during the fourth quarter, October to December, was similar to that during the second quarter.
+
+    section#priors-recruitment
+        h3 Recruitment
+
+        p Following Mangel et al. (2010) the prior for stock-recruitment steepness is based on a beta probability distribution function for a precursor parameter
+
+            `dot(eta) ~ B(.)`
+            `eta = (dot(eta)+0.25)/1.25`
+
+        p where `B(.)` is the beta distribution. This formulation allows for `eta` to be constrained between 0.2 and 1. 
+
+        r
+            eta_par1 = 10
+            eta_par2 = 2
+            eta = seq(0.2,1,0.01)
+            eta_median = round(qbeta(0.5,eta_par1,eta_par2),2)
+            eta_qs = round(qbeta(c(0.05,0.2,0.8,0.95),eta_par1,eta_par2),2)
+
+        p The resulting prior for steepness has a median of |eta_median| and 5, 20, 80 and 95th percentiles of |eta_qs| respectively (Figure X).
+
+        figure#eta-dist
+
+            r
+                plot(eta,(dbeta(eta,eta_par1,eta_par2)+0.25)/1.25,type='l',ylab='Density',xlab='eta')
+            
+
+    section#priors-mortality
+        h3 Mortality
+
+        p 
+
+    section#priors-growth
+        h3 Growth
+
+        p   
+
+    section#priors-movement
+        h3 Movement
+
+        p   
+
+    section#priors-selectivity
+        h3 Selectivity
+
+        p   
 
     table
         caption 
@@ -315,13 +363,13 @@ section#proirs
             td Inflection point of the maturity ogive
             td `cm`
             td `N(40,2)`
-            td Grande (2013) estimated a value of 39.9cm. Sharma et al (2012) assumed 38cm based on Grande et al. (2010). Note that Table 4.2 of Grande (2013) indicates that some earlier studies estimate values around 42-43cm. C.v. of 5%.
+            td Grande (2013) estimated a value of 39.9cm. Sharma et al (2012) assumed 38cm based on Grande et al. (2010). C.v. of 5%.
         tr
             td `upsilon`
             td Steepness of the maturity ogive
             td `cm`
             td `N(5,0.5)`
-            td Grande (2013) Fig 7.3, p 95 shows 5% and 95% maturity at about 35cm and 44cm respectively. Given a 50% maturity of 40cm this corresponds to a steepness of about 5cm. C.v. of 10%.
+            td Grande (2013) Fig 7.3. C.v. of 10%.
         tr
             td 
 
@@ -332,8 +380,8 @@ section#proirs
             td `rho_q`
             td Proportion of mature fish spawning in quarter `q`
             td -
-            td `[1=,2=,3,4=]`
-            td Grande (2013) suggests February-March is period of highest spawning.
+            td `[[rho_1 ~ U(0.8,0.9)],[rho_2 ~ U(0.4,0.6)],[rho_3 ~ U(0.8,0.9)],[rho_4 ~ U(0.4,0.6)]]`
+            td Based on Grande (2013).
         tr
 
 
@@ -349,14 +397,26 @@ section#proirs
             td `eta`
             td Steepness of the stock-recruitment relationship precursor parameter
             td -
-            td `B(1.91,1.28)`
-            td This prior produces a prior for steepness with median = 0.67, 25th%ile = 0.48, 75th%ile = 0.82
+            td `B(10,2)`
+            td 
         tr
             td `sigma`
             td Standard deviation of stock-recruitment deviations
             td -
             td `L(0.6,0.5)`
             td Based on Myers (2002) Figure 6.5 which has a median of about 0.6 for Scombridae.
+        tr
+            td `mu`
+            td Mean length of fish at the end of the first quarter
+            td -
+            td ?
+            td 
+        tr
+            td `zeta`
+            td Standard deviation of the length of fish at the end of the first quarter
+            td -
+            td ?
+            td 
 
         tr
             th Natural mortality
@@ -364,7 +424,7 @@ section#proirs
             td `nu`
             td Instantaeous rate of natural mortality (usually given the symbol `M`)
             td
-            td N(0.8,1)
+            td `N(0.8,1)`
             td Prior used by Sharma et al (2012).
 
         tr
