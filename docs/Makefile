@@ -1,6 +1,6 @@
 all: index doxygen
 
-.PHONY: index doxygen
+.PHONY: index doxygen publish
 
 index:
 	stencila --convert index.stem index.html
