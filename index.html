@@ -23,13 +23,13 @@
 		</section>
 		<section id="dimensions">
 			<h2>Dimensions</h2>
-			<p>Several other dimensions are used to partition aspects of the model (e.g. fish numbers, catches).</p>
+			<p>Several dimensions are used to partition aspects of the model (e.g. fish numbers, catches).</p>
 			<h3>Time (`t`)</h3>
 			<p>The model uses a quarterly, i.e. three month, time step. Each time step, `t`, has an associated calendar year (`y`) and calendar quarter (`q`).</p>
 			<h3>Region (`r`)</h3>
 			<p>There are three regions, West (`we`), Maldives (`ma`) and East (`ea`). The term "region" is used in preference to "area" becausing using the latter would confound the `a` subscript which is also used for age.</p>
 			<h3>Age (`a`)</h3>
-			<p>There are 6 fish ages, `0+,1+,...,6+`. Although the model has a quarterly time step, fish ages represent years and fish recruit and have their birthday in the first quarter of each year.</p>
+			<p>Fish recruit to the model in each quarter and the model keeps track of their numbers by their age, in quarters up to siz years i.e. `0,1,2,...,23`</p>
 			<h3>Size (`s`)</h3>
 			<p>Fish size is represented in fourty, 2mm bins, `0-2, 2-4, ..., 78-80mm`.</p>
 			<h3>Method (`m`)</h3>
@@ -76,11 +76,19 @@
 				</tr>
 				<tr>
 					<td>`a`</td>
-					<td>Fish age subscript</td>
+					<td>Fish age group</td>
+				</tr>
+				<tr>
+					<td>`vec(a)`</td>
+					<td>Maximum age in the model</td>
 				</tr>
 				<tr>
 					<td>`s`</td>
-					<td>Fish size subscript</td>
+					<td>Fish size group</td>
+				</tr>
+				<tr>
+					<td>`vec(s)`</td>
+					<td>Largest size group in the model</td>
 				</tr>
 				<tr>
 					<td />
@@ -115,37 +123,58 @@
 			<h2>Fish</h2>
 			<section id="fish-numbers">
 				<h3>Numbers</h3>
-				<p>Fish numbers are partitioned by region, age and size, `N_{r,a,s}`. In the first quarter recruitment and ageing occur. NUmbers of fish accumulate into the maximum age group, `vec(a)`:</p>
-				<p class="equation">`N_{r,vec(a),s} = N_{r,bar(a),s} + N_{r,bar(a)-1,s}`</p>
-				<p>For ages `1` to `vec(a)-1`, simple aging occurs, </p>
+				<p>Fish numbers are partitioned by region, age and size, `N_{r,a,s}`. In each quarter, recruitment to the model and ageing occur as follows.</p>
+				<p>The maximum age group, `vec(a)`, accumulates fish from the previous age, `vec(a)-1`,</p>
+				<p class="equation">`N_{r,bar(a),s} = N_{r,vec(a),s} + N_{r,vec(a)-1,s}`</p>
+				<p>For ages `1` to `vec(a)-1`, simple ageing occurs, </p>
 				<p class="equation">`N_{r,a,s} = N_{r,a-1,s}`</p>
-				<p>For age 0, recruitment occurs,</p>
+				<p>For age `0`, recruitment occurs,</p>
 				<p class="equation">`N_{r,0,s} = R_{r,s}`</p>
-				<p>where `R_{r,s}` is the number of fish recruiting to age 0 in region `r` at size `s` (see following section).</p>
-				<p>In all quarters numbers are updated by applying growth, survival, exploitation and movement. The numbers in each region, in each age class and size class are determined by summing over all regions and size classes,</p>
+				<p>where `R_{r,s}` is the number of fish recruiting to age 0 in region `r` at size `s`.</p>
+				<p>Numbers are updated by applying growth, survival, exploitation and movement. The numbers in each region, in each age class and size class are determined by summing over all regions and size classes,</p>
 				<p class="equation">`N_{r,a,s} = sum_{dot(r) in {we,ma,ea},dot(s)=0...vec(s)}( dot(N)_{dot(r),a,dot(s)} G_{dot(s),s} e^-nu (1-E_{dot(r),dot(s)}) M_{dot(r),r} )`</p>
 				<p>where `G` is the growth transition matrix, `nu` is the rate of natural mortality, `E` is the exploitation rate, and `M` is the movement transition matrix.</p>
 			</section>
-			<section id="fish-recruitment">
-				<h3>Recruitment</h3>
-				<p>Recruitment is annual (in the first quarter) and is partitioned by region and size, `R_{r,s}`. The total number of recruits is based on the spawning biomass in the previous time step (the last quarter of the previous year),</p>
-				<p class="equation">`S = sum_{r in {we,ma,ea},a=0...vec(a),s=0...vec(s)} N_{r,a,s} O_{s} W_(s} `</p>
-				<p>where `O` is the proportion of fish that are mature and `W` is the weight of fish.</p>
-				<div class="todo">Grande (2013) states that "Spawning occurs year round with peaks in the reproductive activity during the monsoon events". To model this would require (a) the Age dimension to be quarterly i.e. `0,1,2,...,24` (up to 6 years) and (b) a parameter vector of relative fecundity by quarter (to for the observed seasonality in spawning)</div>
-				<p>The total spawning biomass is used as the basis for determining a recruitment over all three regions, `bar(R)` based on the Beverton-Holt stock recruitment function,</p>
-				<p class="equation">`bar(R) = 4 eta theta S/((5 eta-1) S + dot(S)  (1-eta)) D`</p>
-				<p>where `eta` is steepness, `lambda` and `dot(S)` are the respectively the recruitment and spawning biomass in the absence of fishing, and `D` is the recruitment deviation which is lognormally distrubuted with mean of 1 and standard deviation of `sigma`.</p>
-				<p>This recruitment is divided equally across the three regions,</p>
-				<p class="equation">`R_{r,s} = bar(R)/3 * phi_s`</p>
-				<p>where `phi_s` is the proportion of recruits of size `s` which is based on a normal distribution with mean, `alpha` and standard deviation `beta`,</p>
-				<p class="equation">`phi_s = 1/sqrt(2 pi beta^2) e^(-((L_s-alpha)^2)// 2 beta^2)`</p>
-				<div class="note">Currently, recruitment is pooled across all areas and divided equally. This could be changed via a recruitment dispersal matrix.</div>
+			<section id="fish-length">
+				<h3>Length</h3>
+				<p>The length of fish of size `s` is the midpoint of the bin size,</p>
+				<p class="equation">`L_s = 2s+1`</p>
+			</section>
+			<section id="fish-weight">
+				<h3>Weight</h3>
+				<p>The weight of fish of size `s` is modelled as an exponential curve,</p>
+				<p class="equation">`W_s = alpha (L_s)^beta`</p>
+				<div class="note">Parameters of the length-weight relationship could vary by region i.e. `alpha_{r}, beta_{r}`</div>
 			</section>
 			<section id="fish-maturity">
 				<h3>Maturity</h3>
 				<p>The proportion of fish of size `s` that are mature is modelled as a logistic curve,</p>
-				<p class="equation">`O_s = 1/(1+19^(alpha-x)/beta)`</p>
+				<p class="equation">`O_s = 1/(1+19^(tau-L_s)/upsilon)`</p>
 				<div class="note">Maturity could be a function of age, rather than size, i.e. `O_a`, and/or vary by region i.e. `alpha_{r}, beta_{r}`</div>
+			</section>
+			<section id="fish-spawning">
+				<h3>Spawning</h3>
+				<p>The proportion of mature fish that spawn in each quarter is allowed to vary according to a model parameter,</p>
+				<p class="equation">`rho_q`</p>
+			</section>
+			<section id="fish-recruitment">
+				<h3>Recruitment</h3>
+				<p>Recruitment occurs in each quarter and is partitioned by region and size, `R_{r,s}`. The total number of recruits is based on the total spawning biomass in the previous quarter,</p>
+				<p class="equation">`S = sum_{r in {we,ma,ea},a=0...vec(a),s=0...vec(s)} N_{r,a,s} O_s W_s rho_q`</p>
+				<p>where `O_s` is the proportion of fish that are mature at size `s`, `W_s` is the weight of fish at size `s`, and `rho_q` is the proportion of fish that spawn in quarter `q`.</p>
+				<p>The total spawning biomass is used as the basis for determining a recruitment over all three regions, `bar(R)` based on the Beverton-Holt stock recruitment function,</p>
+				<p class="equation">`bar(R) = 4 eta theta S/((5 eta-1) S + dot(S)  (1-eta)) D`</p>
+				<p>where `eta` is steepness, `lambda` and `dot(S)` are the respectively the recruitment and spawning biomass in the absence of fishing, and `D` is the recruitment deviation which is lognormally distributed with mean of 1 and standard deviation of `sigma`.</p>
+				<p>This recruitment is divided equally across the three regions,</p>
+				<p class="equation">`R_{r,s} = bar(R)/3 * phi_s`</p>
+				<p>where `phi_s` is the proportion of recruits of size `s` which is based on a normal distribution with mean, `mu` and standard deviation `zeta`,</p>
+				<p class="equation">`phi_s = 1/sqrt(2 pi zeta^2) e^(-((L_s-mu)^2)// 2 zeta^2)`</p>
+				<div class="note">Currently, recruitment is pooled across all areas and divided equally. This could be changed via a recruitment dispersal matrix.</div>
+			</section>
+			<section id="fish-natural-mortality">
+				<h3>Natural mortality</h3>
+				<p>Natural mortality is modelled as a constant instantaeous rate that is uniform over all regions, ages and sizes.</p>
+				<div class="note">Natural mortality could vary by region and/or age i.e. `nu_{r,a}` or size `nu_{r,s}` or even time.</div>
 			</section>
 			<section id="fish-growth">
 				<h3>Growth</h3>
@@ -158,11 +187,6 @@
 				<div class="todo">Equations for calculation of `G_{dot(s),s}`: use Hillary (2010) approach or more convential approach?</div>
 				<div class="note">An alternative would be to use the two-stanza growth model and estimates of Everson et al (2012).</div>
 				<div class="note">Growth could vary by region and/or time e.g `lambda_{r}`. `kappa_{t}`</div>
-			</section>
-			<section id="fish-natural-mortality">
-				<h3>Natural mortality</h3>
-				<p>Natural mortality is modelled as a constant instantaeous rate over all regions, ages and sizes.</p>
-				<div class="note">Natural mortality could vary by region and/or age i.e. `nu_{r,a}` or size `nu_{r,s}`</div>
 			</section>
 			<section id="fish-movement">
 				<h3>Movement</h3>
@@ -185,8 +209,72 @@
 		</section>
 		<section id="proirs">
 			<h2>Priors</h2>
+			Table 2 summarises the priors used for each model parameter. This section provides further notes where necessary on the derivation of priors.
+			<section id="priors-weight">
+				<h3>Weight</h3>
+				<p>Priors for length-weight parameters were based on those used in Sharma et al (2012) with a coefficient of variation of 5%.</p>
+			</section>
+			<section id="priors-maturity">
+				<h3>Maturity</h3>
+				<p>Priors for maturity ogive parameters were based on the results of Grande (2013). For the inflection point a normal prior with mean of 40cm and a coefficient of variation of 5% was used. Note that Table 4.2 of Grande (2013) indicates that some earlier studies in the Indian Ocean estimated values around 42-43cm for the inflection point. </p>
+				<p>Figure 7.3 of Grande (2013) shows 5% and 95% maturity at about 35cm and 44cm respectively. Given a 50% maturity of 40cm this corresponds to a steepness of the maturity ogive of about 5cm. A normal distribution with a mean of 5cm and a 10% c.v. was used.</p>
+			</section>
+			<section id="priors-spawning">
+				<h3>Spawning</h3>
+				<p>In the western Indian Ocean, skipjack spawning appears to occur all year but with periods of greater activity during the North-east monsoon (November to March) and South-west monsoon (June to July) (Grande 2013 and references cited therein). Grande (2013) summarised the percentage of fish in the "spawning capable" phase in the months January to July. This percentage was highest during January and February (85%) decreasing to 51.9% in May and then increasing again to 82.4% in June and 73.3% in July. These percentages were used as the basis for a uniform prior on each `rho_q` (Table 2). We assumed that the spawning percentage during the fourth quarter, October to December, was similar to that during the second quarter.</p>
+			</section>
+			<section id="priors-recruitment">
+				<h3>Recruitment</h3>
+				<p>Following Mangel et al. (2010) the prior for stock-recruitment steepness is based on a beta probability distribution function for a precursor parameter</p>
+				<p class="equation">`dot(eta) ~ B(.)`</p>
+				<p class="equation">`eta = (dot(eta)+0.25)/1.25`</p>
+				<p>where `B(.)` is the beta distribution. This formulation allows for `eta` to be constrained between 0.2 and 1. </p>
+				<script type="text/r">
+					#
+					<![CDATA[
+            eta_par1 = 10
+            eta_par2 = 2
+            eta = seq(0.2,1,0.01)
+            eta_median = round(qbeta(0.5,eta_par1,eta_par2),2)
+            eta_qs = round(qbeta(c(0.05,0.2,0.8,0.95),eta_par1,eta_par2),2)
+
+#]]>
+				</script>
+				<p>
+					The resulting prior for steepness has a median of 
+					<span data-text="eta_median" />
+					 and 5, 20, 80 and 95th percentiles of 
+					<span data-text="eta_qs" />
+					 respectively (Figure X).
+				</p>
+				<figure id="eta-dist" />
+				<script type="text/r">
+					#
+					<![CDATA[
+                plot(eta,(dbeta(eta,eta_par1,eta_par2)+0.25)/1.25,type='l',ylab='Density',xlab='eta')
+            
+
+#]]>
+				</script>
+			</section>
+			<section id="priors-mortality">
+				<h3>Mortality</h3>
+				<p />
+			</section>
+			<section id="priors-growth">
+				<h3>Growth</h3>
+				<p />
+			</section>
+			<section id="priors-movement">
+				<h3>Movement</h3>
+				<p />
+			</section>
+			<section id="priors-selectivity">
+				<h3>Selectivity</h3>
+				<p />
+			</section>
 			<table>
-				<caption>Table X: Prior probaility distributions for model parameters. Distributions are indicated as follows: fixed `F(value)`, uniform `U(lower,upper)`, normal `N(mean,sd)`, lognormal `L(mean,sd)`, beta `B(alpha,beta)`, mesa `M(min,lower,upper,max)`</caption>
+				<caption>Table X: Prior probability distributions for model parameters. Distributions are indicated as follows: fixed `F(value)`, uniform `U(lower,upper)`, normal `N(mean,sd)`, lognormal `L(mean,sd)`, beta `B(alpha,beta)`, mesa `M(min,lower,upper,max)`</caption>
 				<tr>
 					<th>Symbol</th>
 					<th>Description</th>
@@ -194,6 +282,54 @@
 					<th>Prior</th>
 					<th>Notes</th>
 				</tr>
+				<tr>
+					<th>Weight</th>
+				</tr>
+				<tr>
+					<td>`alpha`</td>
+					<td>Coefficient of the length-weight relationship</td>
+					<td>`t*cm^-3*10^-6`</td>
+					<td>`N(5.32,0.266)`</td>
+					<td>Sharma et al (2012) used `F(5.32)` based on IOTC (2005). C.v. of 5%.</td>
+				</tr>
+				<tr>
+					<td>`beta`</td>
+					<td>Exponent of the length-weight relationship</td>
+					<td>-</td>
+					<td>`N(3.35,0.1675)`</td>
+					<td>Sharma et al (2012) used `F(3.35)` based on IOTC (2005). C.v. of 5%.</td>
+				</tr>
+				<tr>
+					<th>Maturity</th>
+				</tr>
+				<tr>
+					<td>`tau`</td>
+					<td>Inflection point of the maturity ogive</td>
+					<td>`cm`</td>
+					<td>`N(40,2)`</td>
+					<td>Grande (2013) estimated a value of 39.9cm. Sharma et al (2012) assumed 38cm based on Grande et al. (2010). C.v. of 5%.</td>
+				</tr>
+				<tr>
+					<td>`upsilon`</td>
+					<td>Steepness of the maturity ogive</td>
+					<td>`cm`</td>
+					<td>`N(5,0.5)`</td>
+					<td>Grande (2013) Fig 7.3. C.v. of 10%.</td>
+				</tr>
+				<tr>
+					<td />
+				</tr>
+				<tr>
+					<th>Spawning</th>
+				</tr>
+				<tr>
+					<td>`rho_q`</td>
+					<td>Proportion of mature fish spawning in quarter `q`</td>
+					<td>-</td>
+					<td>`[[rho_1 ~ U(0.8,0.9)],[rho_2 ~ U(0.4,0.6)],[rho_3 ~ U(0.8,0.9)],[rho_4 ~ U(0.4,0.6)]]`</td>
+					<td>Based on Grande (2013).</td>
+				</tr>
+				<tr />
 				<tr>
 					<th>Recruitment</th>
 				</tr>
@@ -208,8 +344,8 @@
 					<td>`eta`</td>
 					<td>Steepness of the stock-recruitment relationship precursor parameter</td>
 					<td>-</td>
-					<td>`B(1.91,1.28)`</td>
-					<td>This prior produces a prior for steepness with median = 0.67, 25th%ile = 0.48, 75th%ile = 0.82</td>
+					<td>`B(10,2)`</td>
+					<td />
 				</tr>
 				<tr>
 					<td>`sigma`</td>
@@ -219,13 +355,27 @@
 					<td>Based on Myers (2002) Figure 6.5 which has a median of about 0.6 for Scombridae.</td>
 				</tr>
 				<tr>
+					<td>`mu`</td>
+					<td>Mean length of fish at the end of the first quarter</td>
+					<td>-</td>
+					<td>?</td>
+					<td />
+				</tr>
+				<tr>
+					<td>`zeta`</td>
+					<td>Standard deviation of the length of fish at the end of the first quarter</td>
+					<td>-</td>
+					<td>?</td>
+					<td />
+				</tr>
+				<tr>
 					<th>Natural mortality</th>
 				</tr>
 				<tr>
 					<td>`nu`</td>
 					<td>Instantaeous rate of natural mortality (usually given the symbol `M`)</td>
 					<td />
-					<td>N(0.8,1)</td>
+					<td>`N(0.8,1)`</td>
 					<td>Prior used by Sharma et al (2012).</td>
 				</tr>
 				<tr>
@@ -265,43 +415,6 @@
 					<td>`cm`</td>
 					<td>`N()`</td>
 					<td>Hillary (2011) estimated posterior N(78.8,2.32)</td>
-				</tr>
-				<tr>
-					<th>Maturity</th>
-				</tr>
-				<tr>
-					<td>`tau`</td>
-					<td>Inflection point of the maturity ogive</td>
-					<td>`cm`</td>
-					<td>`N(40,2)`</td>
-					<td>Grande (2013) estimated a value of 39.9cm, Sharma et al (2012) assumed 38cm based on Grande et al. (2010). This prior allows for uncertainty with a c.v. of 5%.</td>
-				</tr>
-				<tr>
-					<td>`upsilon`</td>
-					<td>Steepness of the maturity ogive</td>
-					<td>`cm`</td>
-					<td>`N(5,0.5)`</td>
-					<td>Grande (2013) Fig 7.3, p 95 shows that 5% and 95% maturity at about 35cm and 44cm respectively. Given a 50% maturity of 40cm this corresponds to a steepness of about 5cm. This prioir allows for uncertainty with a c.v. of 10% .</td>
-				</tr>
-				<tr>
-					<td />
-				</tr>
-				<tr>
-					<th>Weight</th>
-				</tr>
-				<tr>
-					<td>`alpha`</td>
-					<td>Coefficient of the length-weight relationship</td>
-					<td>`t*cm^-3*10^-6`</td>
-					<td>`N(5.32,0.266)`</td>
-					<td>Sharma et al (2012) used `F(5.32)` based on IOTC (2005). This prior allows for uncertainty with a c.v. of 5%.</td>
-				</tr>
-				<tr>
-					<td>`beta`</td>
-					<td>Exponent of the length-weight relationship</td>
-					<td>-</td>
-					<td>`N(3.35,0.1675)`</td>
-					<td>Sharma et al (2012) used `F(3.35)` based on IOTC (2005). This prior allows for uncertainty with a c.v. of 5%.</td>
 				</tr>
 				<tr>
 					<th>Movement</th>
