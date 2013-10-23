@@ -8,6 +8,9 @@ namespace IOSKJ {
 class Fishing {
 public:
 	
+	void init(void){
+	}
+
 	void step(void){
 	}
 

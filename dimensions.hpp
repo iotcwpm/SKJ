@@ -11,17 +11,20 @@ const uint times = (2013+25-1950)*4;
 uint year;
 uint quarter;
 
+STENCILA_ARRAY_DIM(Quarter,quarters,quarter,4)
+
 STENCILA_ARRAY_DIM(Region,regions,region,3);
-STENCILA_ARRAY_DIM(RegionTo,region_tos,region_to,3);
+STENCILA_ARRAY_DIM(RegionFrom,region_froms,region_from,3);
 enum {
 	W = 0,
 	M = 1,
 	E = 2
 };
 
-STENCILA_ARRAY_DIM(Age,ages,age,6);
+STENCILA_ARRAY_DIM(Age,ages,age,24);
 
 STENCILA_ARRAY_DIM(Size,sizes,size,40);
+STENCILA_ARRAY_DIM(SizeFrom,size_froms,size_from,40);
 
 STENCILA_ARRAY_DIM(Method,methods,method,5);
 enum {

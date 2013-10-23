@@ -4,7 +4,7 @@
 
 ## Status
 
-`ioskj` is still under active development. It requires several third party C++ libraries and a modern C++ compiler which supports the C++11 standard. At this stage we do not recommend trying to compile it yourself. As the model matures we intend to make it available as precompiled executables for Windows and Linux and/or a package for R.
+`ioskj` is still under active development. It requires several third party C++ libraries and a modern C++ compiler which supports the C++11 standard. At this stage we do not recommend trying to compile it yourself. As the model matures we hope to make it available as precompiled executables for Windows and Linux and/or a package for R.
 
 ## Documentation
 

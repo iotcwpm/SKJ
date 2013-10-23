@@ -65,7 +65,7 @@ public:
 		for(time=0;time<times;time++){
 			// Set Year and Quarter
 			year = 1950 + time/4;
-			quarter = 1 + time%4;
+			quarter = time%4;
 
 			// If time zero then initialise things
 			if(time==0){
