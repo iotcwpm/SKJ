@@ -167,9 +167,9 @@
 				<p class="equation">`bar(R) = 4 eta theta S/((5 eta-1) S + dot(S)  (1-eta))`</p>
 				<p>where `eta` is steepness, `lambda` and `dot(S)` are the respectively the recruitment and spawning biomass in the absence of fishing, and `D` is the recruitment deviation which is lognormally distributed with mean of 1 and standard deviation of `sigma`.</p>
 				<p>This total recruitment is distributed across the three regions,</p>
-				<p class="equation">`R_{r,s} = bar(R) * chi_s * phi_s`</p>
-				<p>where `chi_s` is the proportion of recruits which recruit into region `r` and `phi_s` is the proportion of recruits of size `s` which is based on a normal distribution with mean, `mu` and standard deviation `zeta`,</p>
-				<p class="equation">`phi_s = 1/sqrt(2 pi zeta^2) e^(-((L_s-mu)^2)// 2 zeta^2)`</p>
+				<p class="equation">`R_{r,s} = bar(R) * chi_r * A_s`</p>
+				<p>where `chi_r` is the proportion of recruits which recruit into region `r` and `A_s` is the proportion of recruits of size `s` which is based on a normal distribution with mean, `mu` and standard deviation `zeta`,</p>
+				<p class="equation">`A_s = 1/sqrt(2 pi zeta^2) e^(-((L_s-mu)^2)// 2 zeta^2)`</p>
 				<div class="note">Currently, recruitment is pooled across all areas. This could be changed via a recruitment dispersal matrix.</div>
 			</section>
 			<section id="fish-natural-mortality">
