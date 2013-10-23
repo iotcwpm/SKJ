@@ -1,5 +1,7 @@
 h1 ioskj: a simulation model of the Indian Ocean skipjack tuna fishery
 
+p Nokome Bentley
+
 p.note 
     This documentation is a draft under active development. Separate documentation, generated from the model's C++ source code, is also
     a[href="doxygen/html/index.html"] available
@@ -10,12 +12,12 @@ section#introduction
 
     p This document describes a simulation model for the skipjack fishery in the Indian Ocean. The model has been designed for use in simulation based evaluation of alternative management strategies for the fishery. This document outlines the structure of the model, describes prior probability distributions for model parameters, model conditioning algorithms and conditioning results.
 
-    p The model, and consequently this document, are under development. The approach has been to start simple and add complexity as required. Potential alternative model forumations are noted throughout the document.
+    p The model, and consequently this document, are under development. The general approach to model development has been to start simple and add complexity as required. Potential alternative model forumations are noted throughout the document.
 
     section#symbols 
         h3 Symbols
 
-        p The following convention is used for assigning symbols for the model: Greek lower case letters (e.g. `alpha`) for model parameters, Roman capital letters (e.g. `N`) for model variables, and Roman lower case letters for variable or parameter array subscripts (e.g. `N_{r,a,s}`, `phi_{r}`). Using this convention means that in some instances model parameters are given different symbols that usual (e.g. `nu` instead of `M` for natural mortality) but has the advantage of clearly distinquishing model parameters from model variables.
+        p The following convention is used for assigning symbols for the model: Greek lower case letters (e.g. `alpha`) for model parameters, Roman capital letters (e.g. `N`) for model variables, and Roman lower case letters for variable or parameter array subscripts (e.g. `N_{r,a,s}`, `phi_{r}`). Using this convention means that in some instances model parameters are given different symbols that usual (e.g. `nu` instead of `M` for natural mortality) but has the advantage of clearly distinquishing model parameters (which are independent of other parametrs or variables and are usually estimated) from model variables (which are dependent upon parameter values).
 
         p The subscript for time, `t`, is usually omitted from the model equations below except where it is necessary to be explicit regarding the time step involved.
 
@@ -123,7 +125,7 @@ section#fish
 
         p The maximum age group, `vec(a)`, accumulates fish from the previous age, `vec(a)-1`,
 
-            `N_{r,bar(a),s} = N_{r,vec(a),s} + N_{r,vec(a)-1,s}`
+            `N_{r,vec(a),s} = N_{r,vec(a),s} + N_{r,vec(a)-1,s}`
 
         p For ages `1` to `vec(a)-1`, simple ageing occurs, 
 
@@ -137,9 +139,9 @@ section#fish
 
         p Numbers are updated by applying growth, survival, exploitation and movement. The numbers in each region, in each age class and size class are determined by summing over all regions and size classes,
 
-            `N_{r,a,s} = sum_{dot(r) in {we,ma,ea},dot(s)=0...vec(s)}( dot(N)_{dot(r),a,dot(s)} G_{dot(s),s} e^-nu (1-E_{dot(r),dot(s)}) M_{dot(r),r} )`
+            `N_{r,a,s} = sum_{dot(r) in {we,ma,ea},dot(s)=0...vec(s)}( dot(N)_{dot(r),a,dot(s)} G_{dot(s),s} D (1-E_{dot(r),dot(s)}) M_{dot(r),r} )`
 
-        p where `G` is the growth transition matrix, `nu` is the rate of natural mortality, `E` is the exploitation rate, and `M` is the movement transition matrix.
+        p where `G` is the growth transition matrix, `D` is the natural survival rate, `E` is the exploitation rate, and `M` is the movement transition matrix.
 
 
     section#fish-length
@@ -167,7 +169,7 @@ section#fish
 
             `O_s = 1/(1+19^(tau-L_s)/upsilon)`
 
-        .note Maturity could be a function of age, rather than size, i.e. `O_a`, and/or vary by region i.e. `alpha_{r}, beta_{r}`
+        .note Maturity could be a function of age, rather than size, i.e. `O_a`, and/or vary by region e.g. `tau_{r}`
 
 
     section#fish-spawning
@@ -189,47 +191,50 @@ section#fish
 
         p The total spawning biomass is used as the basis for determining a recruitment over all three regions, `bar(R)` based on the Beverton-Holt stock recruitment function,
 
-            `bar(R) = 4 eta theta S/((5 eta-1) S + dot(S)  (1-eta)) D`
+            `bar(R) = 4 eta theta S/((5 eta-1) S + dot(S)  (1-eta))`
 
         p where `eta` is steepness, `lambda` and `dot(S)` are the respectively the recruitment and spawning biomass in the absence of fishing, and `D` is the recruitment deviation which is lognormally distributed with mean of 1 and standard deviation of `sigma`.
 
-        p This recruitment is divided equally across the three regions,
+        p This total recruitment is distributed across the three regions,
 
-            `R_{r,s} = bar(R)/3 * phi_s`
+            `R_{r,s} = bar(R) * chi_s * phi_s`
 
-        p where `phi_s` is the proportion of recruits of size `s` which is based on a normal distribution with mean, `mu` and standard deviation `zeta`,
+        p where `chi_s` is the proportion of recruits which recruit into region `r` and `phi_s` is the proportion of recruits of size `s` which is based on a normal distribution with mean, `mu` and standard deviation `zeta`,
 
             `phi_s = 1/sqrt(2 pi zeta^2) e^(-((L_s-mu)^2)// 2 zeta^2)`
 
-        .note Currently, recruitment is pooled across all areas and divided equally. This could be changed via a recruitment dispersal matrix.
+        .note Currently, recruitment is pooled across all areas. This could be changed via a recruitment dispersal matrix.
 
 
     section#fish-natural-mortality
         h3 Natural mortality
 
-        p Natural mortality is modelled as a constant instantaeous rate that is uniform over all regions, ages and sizes.
+        p Natural mortality is modelled as a constant instantaeous rate that is uniform over all regions, ages and sizes. The survival in one quarter is,
+
+            `D = e^{-0.25nu}`
 
         .note Natural mortality could vary by region and/or age i.e. `nu_{r,a}` or size `nu_{r,s}` or even time.
 
 
     section#fish-growth
         h3 Growth
-        
-        p Growth is described using a size transition matrix of the proportion of fish growing from size `dot(s)` to size `s` in one quarter
 
-            `G_{dot(s),s}`
+        p Growth is described using a size transition matrix which is calculated based on the von Bertallanfy growth function. The mean increment in one quarter is,
 
-        p This transition matrix is calculated based on the von Bertallanfy growth function. The mean increment in one quarter is,
+            `I_s = (lambda-L_s)(1-e^{-0.25kappa})`
 
-            `I_s = (lambda-L_s)(1-e^{-kappa})`
+        p Variation in growth is modelled as a normal distribution with a constant standard deviation, `epsilon`, and a coefficient of variation, `varphi`, on the increment. The standard deviation of the growth increment for a fish of size `s` is thus,
 
-        p with a standard deviation, `varphi`.
+        	`J_s = sqrt(epsilon^2 + (varphi I_s)^2)`
 
-        .todo Equations for calculation of `G_{dot(s),s}`: use Hillary (2010) approach or more convential approach?
+        p The proportion of fish growing from size `dot(s)` to size `s` in one quarter is thus,
 
-        .note An alternative would be to use the two-stanza growth model and estimates of Everson et al (2012).
+			`G_{dot(s),s} = int_{l=2s}^{l=2(s+1)} 1/(sqrt(2 pi) J_dot(s))e^(-(L_dot(s)+I_dot(s)-l)^2)/(2 (J_dot(s))^2)`
 
-        .note Growth could vary by region and/or time e.g `lambda_{r}`. `kappa_{t}`
+		
+        .note Growth could vary by region and/or time e.g `lambda_{r}`, `kappa_{t}`
+
+        .note An alternative to the vonB model would be to use the two-stanza growth model and parameter estimates of Everson et al (2012).
 
 
     section#fish-movement
@@ -256,15 +261,17 @@ section#fishing
 
         .todo Determine best way to parameterize selectivity ogives e.g. logistic, splines etc.
 
-        p The exploitation rate of method `m` in region `r` is then,
+        p The exploitation rate in region `r` of method `m` is then,
 
-            `E_{r,s} = C_{r,m}/V_{r,m}`
+            `E_{r,m} = C_{r,m}/V_{r,m}`
 
 
-section#proirs
-    h2 Priors
+section#priors
+    h2 Parameter priors and sensitivity ranges
 
-    Table 2 summarises the priors used for each model parameter. This section provides further notes where necessary on the derivation of priors.
+    p For each model parameter a prior probability is defined. These priors are used in conditioning algorithms (either Sampling-Importance-Resampling (SIR) or Markov Chain Monte Carlo (MCMC)) and are intended to represent the prior knowledge and associated uncertainty. For some parameters, such as stock recruitment steepeness `eta`, there is unlikely to be any information in the data and so the prior may be influential.
+
+    p In addition, for each model parameter a sensitivity range is defined. This range is used in robustness testing of candidate harvest control rules to evaluate how sensitive a rule is to paramter values which are possible but which are determined, on the basis of either priors or conditioning, to be unlikely.
 
     section#priors-weight
         h3 Weight
@@ -303,30 +310,43 @@ section#proirs
         p The resulting prior for steepness has a median of |eta_median| and 5, 20, 80 and 95th percentiles of |eta_qs| respectively (Figure X).
 
         figure#eta-dist
-
             r
                 plot(eta,(dbeta(eta,eta_par1,eta_par2)+0.25)/1.25,type='l',ylab='Density',xlab='eta')
+
+
+        p Everson et al (2012) and Sharma et al (2012) assumed 20cm for age 0 fish.
             
 
     section#priors-mortality
         h3 Mortality
 
-        p 
+        p For the instantaneous rate of natural mortality, the same normal prior as in Sharma et al (2012) was used which has a mean of 0.1 and a standard deviation of 1 (Figure X).
+
+        figure#nu-dist
+            r
+	            nu = seq(0.2,1,0.01)
+                plot(nu,(dnorm(nu,0.8,1),type='l',ylab='Density',xlab='nu')
+
 
     section#priors-growth
         h3 Growth
 
-        p   
+        p The priors for the growth curve parameters were from Hillary (2011). His Table 2 provides estimated posterior distributions for `kappa`, `lambda` and `varphi` from analysis of tagging data. For comparision, Sharma et al(2012) assumed 0.37 and 70 for `kappa`, `lambda` based on Anganuzzi & Million (pers. comm.).
+        
+        .note Hillary's estimate of 78.8 for `varphi` seems to be very high given that this is a coefficient of variation so needs to be multiplied by the increment (? Hillary's Equation 1 says multiplied by the length).
+
 
     section#priors-movement
         h3 Movement
 
-        p   
+        p There is little quantitative information on movement rates between the three regions. A uniform prior, `U(0.2,0.8)` was used for all elements of the movement matrix `M_{dot(r),r}`
+
 
     section#priors-selectivity
         h3 Selectivity
 
         p   
+
 
     table
         caption 
@@ -336,7 +356,8 @@ section#proirs
             th Symbol
             th Description
             th Units
-            th Prior
+            th Prior distribution
+            th Sensitivity range
             th Notes
 
 
@@ -347,12 +368,14 @@ section#proirs
             td Coefficient of the length-weight relationship
             td `t*cm^-3*10^-6`
             td `N(5.32,0.266)`
+            td 4-6
             td Sharma et al (2012) used `F(5.32)` based on IOTC (2005). C.v. of 5%.
         tr
             td `beta`
             td Exponent of the length-weight relationship
             td -
             td `N(3.35,0.1675)`
+            td 3.0-3.6
             td Sharma et al (2012) used `F(3.35)` based on IOTC (2005). C.v. of 5%.
 
 
@@ -363,12 +386,14 @@ section#proirs
             td Inflection point of the maturity ogive
             td `cm`
             td `N(40,2)`
+            td 35-55
             td Grande (2013) estimated a value of 39.9cm. Sharma et al (2012) assumed 38cm based on Grande et al. (2010). C.v. of 5%.
         tr
             td `upsilon`
             td Steepness of the maturity ogive
             td `cm`
             td `N(5,0.5)`
+            td
             td Grande (2013) Fig 7.3. C.v. of 10%.
         tr
             td 
@@ -381,6 +406,7 @@ section#proirs
             td Proportion of mature fish spawning in quarter `q`
             td -
             td `[[rho_1 ~ U(0.8,0.9)],[rho_2 ~ U(0.4,0.6)],[rho_3 ~ U(0.8,0.9)],[rho_4 ~ U(0.4,0.6)]]`
+            td
             td Based on Grande (2013).
         tr
 
@@ -391,6 +417,7 @@ section#proirs
             td `theta`
             td Virgin recruitment
             td -
+            td
             td 
             td
         tr
@@ -398,24 +425,35 @@ section#proirs
             td Steepness of the stock-recruitment relationship precursor parameter
             td -
             td `B(10,2)`
+            td
             td 
         tr
             td `sigma`
             td Standard deviation of stock-recruitment deviations
             td -
             td `L(0.6,0.5)`
+            td
             td Based on Myers (2002) Figure 6.5 which has a median of about 0.6 for Scombridae.
+        tr
+            td `chi_r`
+            td Proportion of total recruits that recruit into region `r`
+            td -
+            td
+            td
+            td 
         tr
             td `mu`
             td Mean length of fish at the end of the first quarter
             td -
-            td ?
+            td
+            td
             td 
         tr
             td `zeta`
             td Standard deviation of the length of fish at the end of the first quarter
             td -
-            td ?
+            td
+            td
             td 
 
         tr
@@ -425,40 +463,43 @@ section#proirs
             td Instantaeous rate of natural mortality (usually given the symbol `M`)
             td
             td `N(0.8,1)`
+            td
             td Prior used by Sharma et al (2012).
 
         tr
             th Growth
         tr
             td `mu`
-            td Mean size of recruits
+            td Mean size of fish in their first quarter
             td `cm`
             td `F(20)`
-            td Everson et al (2012) and Sharma et al (2012) assume 20cm for age 0 fish.
+            td
+            td 
         tr  
             td `phi`
-            td Standard deviation of size of recruits
+            td Standard deviation of fish in their first quarter
             td `cm`
             td `F(5)`
-            td Currently fixed. This prioir might be better determined from data.
+            td
+            td 
         tr
             td `kappa`
             td Maximum growth rate
             td `cm*y^-1`
-            td `N()`
-            td Hillary (2011) estimated posterior N(0.28,0.012). Sharma et al(2012) assumed 0.37 based on Anganuzzi & Million (pers. comm.).
+            td `N(0.28,0.012)`
+            td 0.2-0.4
         tr
             td `lambda`
             td Assymptotic length
             td `cm`
-            td `N()`
-            td Hillary (2011) estimated posterior N(73.7,1.09). Sharma et al(2012) assumed 70 based on Anganuzzi & Million (pers. comm.).
+            td `N(73.7,1.09)`
+            td 70-80
         tr
             td `varphi`
             td Growth variability
             td `cm`
-            td `N()`
-            td Hillary (2011) estimated posterior N(78.8,2.32)
+            td `N(78.8,2.32)`
+            td 
 
         tr
             th Movement
@@ -466,8 +507,8 @@ section#proirs
             td `omega_{dot(r),r}`
             td Proportion of fish moving from region `dot(r)` to region `r`
             td 
-            td 
-            td
+            td `U(0.2,0.8)`
+            td 0-1
 
 
 section#data 
@@ -480,6 +521,17 @@ section#data
 
         p Purse seine includes both free school and associated school sets. The skipjack catch from free school purse seineing is minor.
 
+    section#data-pl-cpue
+        h3 Pole and line CPUE
+
+    section#data-ps-cpue
+        h3 Purse seine CPUE
+
+    section#data-sizes
+        h3 Size frequencies
+
+    section#data-z-estimates
+        h3 Estimates of Z
 
 
 section#references
