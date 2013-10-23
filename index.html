@@ -164,8 +164,8 @@
 				<p class="equation">`S = sum_{r in {we,ma,ea},a=0...vec(a),s=0...vec(s)} N_{r,a,s} O_s W_s rho_q`</p>
 				<p>where `O_s` is the proportion of fish that are mature at size `s`, `W_s` is the weight of fish at size `s`, and `rho_q` is the proportion of fish that spawn in quarter `q`.</p>
 				<p>The total spawning biomass is used as the basis for determining a recruitment over all three regions, `bar(R)` based on the Beverton-Holt stock recruitment function,</p>
-				<p class="equation">`bar(R) = 4 eta theta S/((5 eta-1) S + dot(S)  (1-eta))`</p>
-				<p>where `eta` is steepness, `lambda` and `dot(S)` are the respectively the recruitment and spawning biomass in the absence of fishing, and `D` is the recruitment deviation which is lognormally distributed with mean of 1 and standard deviation of `sigma`.</p>
+				<p class="equation">`bar(R) = 4 eta theta S/((5 eta-1) S + dot(S)  (1-eta)) D_t`</p>
+				<p>where `eta` is steepness, `theta` and `dot(S)` are the respectively the recruitment and spawning biomass in the absence of fishing, and `D_t` is the recruitment deviation at time t which is lognormally distributed with mean of 1 and standard deviation of `sigma`.</p>
 				<p>This total recruitment is distributed across the three regions,</p>
 				<p class="equation">`R_{r,s} = bar(R) * chi_r * A_s`</p>
 				<p>where `chi_r` is the proportion of recruits which recruit into region `r` and `A_s` is the proportion of recruits of size `s` which is based on a normal distribution with mean, `mu` and standard deviation `zeta`,</p>
@@ -182,8 +182,8 @@
 				<h3>Growth</h3>
 				<p>Growth is described using a size transition matrix which is calculated based on the von Bertallanfy growth function. The mean increment in one quarter is,</p>
 				<p class="equation">`I_s = (lambda-L_s)(1-e^{-0.25kappa})`</p>
-				<p>Variation in growth is modelled as a normal distribution with a constant standard deviation, `epsilon`, and a coefficient of variation, `varphi`, on the increment. The standard deviation of the growth increment for a fish of size `s` is thus,</p>
-				<p class="equation">`J_s = sqrt(epsilon^2 + (varphi I_s)^2)`</p>
+				<p>Variation in growth is modelled as a normal distribution with a constant standard deviation, `zeta`, and a coefficient of variation, `varphi`, on the increment. The standard deviation of the growth increment for a fish of size `s` is thus,</p>
+				<p class="equation">`J_s = sqrt(zeta^2 + (varphi I_s)^2)`</p>
 				<p>The proportion of fish growing from size `dot(s)` to size `s` in one quarter is thus,</p>
 			</section>
 		</section>
@@ -193,7 +193,7 @@
 			<h3>Movement</h3>
 			<p>The proportion of fish moving from region `dot(r)` to region `r` in one quarter is described by the movement matrix defined by six off-diagonal parameters,</p>
 			<p class="equation">`M_{dot(r),r} = [[1-omega_{ea,ma}-omega_{ea,we},omega_{ea,ma},omega_{ea,we}],[omega_{ma,ea},1-omega_{ma,ea}-omega_{ma,we},omega_{ma,we}],[omega_{we,ea},omega_{we,ma},1-omega_{we,ea}-omega_{we,ma}]]`</p>
-			<div class="note">There could be separate movement parameters for each age (or size) e.g. `omega_{ma,we,a}`, or more simply, the relative proportion of fish moving could vary by age (or size) e.g. `M_{ma,we,a} =  omega_{ma,we} zeta_a`.</div>
+			<div class="note">There could be separate movement parameters for each age (or size) e.g. `omega_{ma,we,a}`, or more simply, the relative proportion of fish moving could vary by age (or size).</div>
 		</section>
 		<section id="fishing">
 			<h2>Fishing</h2>
