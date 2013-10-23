@@ -197,11 +197,11 @@ section#fish
 
         p This total recruitment is distributed across the three regions,
 
-            `R_{r,s} = bar(R) * chi_s * phi_s`
+            `R_{r,s} = bar(R) * chi_r * A_s`
 
-        p where `chi_s` is the proportion of recruits which recruit into region `r` and `phi_s` is the proportion of recruits of size `s` which is based on a normal distribution with mean, `mu` and standard deviation `zeta`,
+        p where `chi_r` is the proportion of recruits which recruit into region `r` and `A_s` is the proportion of recruits of size `s` which is based on a normal distribution with mean, `mu` and standard deviation `zeta`,
 
-            `phi_s = 1/sqrt(2 pi zeta^2) e^(-((L_s-mu)^2)// 2 zeta^2)`
+            `A_s = 1/sqrt(2 pi zeta^2) e^(-((L_s-mu)^2)// 2 zeta^2)`
 
         .note Currently, recruitment is pooled across all areas. This could be changed via a recruitment dispersal matrix.
 
