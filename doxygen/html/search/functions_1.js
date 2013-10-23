@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['generator',['Generator',['../structGenerator.html#a35e61989f22dfc623b2237ece2436dd4',1,'Generator']]]
+  ['init',['init',['../classIOSKJ_1_1Fish.html#a5e536120fdadc3302e76270f6876cf14',1,'IOSKJ::Fish']]]
 ];

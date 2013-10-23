@@ -37,6 +37,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -61,7 +62,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -70,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -95,22 +95,36 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>biomass</b>(void) const  (defined in <a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a>)</td><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html#ad787d9334e8699d000825066fd546bc0">defaults</a>(void)</td><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>equilibrium</b>(void) (defined in <a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a>)</td><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html#a5e536120fdadc3302e76270f6876cf14">init</a>(void)</td><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>initials</b> (defined in <a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a>)</td><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html#ac75234d73d32d8aa63243b54b20c0fa1">exploitation</a></td><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>growth</b> (defined in <a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a>)</td><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>growth_assymptote</b> (defined in <a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a>)</td><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>growth_cv</b> (defined in <a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a>)</td><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>growth_increments</b> (defined in <a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a>)</td><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>growth_rate</b> (defined in <a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a>)</td><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>growth_sd</b> (defined in <a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a>)</td><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html#a5e536120fdadc3302e76270f6876cf14">init</a>(void)</td><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>lengths</b> (defined in <a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a>)</td><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>lengths_step</b> (defined in <a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a>)</td><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>maturities</b> (defined in <a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a>)</td><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>maturity_50</b> (defined in <a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a>)</td><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>maturity_95</b> (defined in <a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a>)</td><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>mortalities</b> (defined in <a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a>)</td><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>maturity_inflection</b> (defined in <a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a>)</td><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>maturity_steepness</b> (defined in <a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a>)</td><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>mortality</b> (defined in <a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a>)</td><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>movement</b> (defined in <a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a>)</td><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>numbers</b> (defined in <a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a>)</td><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>r0</b> (defined in <a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a>)</td><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>recruit_rel</b> (defined in <a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a>)</td><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>recruit_sd</b> (defined in <a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a>)</td><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>recruit_var</b> (defined in <a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a>)</td><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>movement_pars</b> (defined in <a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a>)</td><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>numbers</b> (defined in <a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a>)</td><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>recruit_regions</b> (defined in <a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a>)</td><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>recruit_relation</b> (defined in <a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a>)</td><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>recruit_sd</b> (defined in <a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a>)</td><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>recruit_sizes</b> (defined in <a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a>)</td><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>recruit_steepness</b> (defined in <a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a>)</td><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>recruit_variation</b> (defined in <a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a>)</td><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>recruit_virgin</b> (defined in <a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a>)</td><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></td><td class="entry"></td></tr>
   <tr><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html#aff50e418c8b3917583430b9b421573df">sample</a>(void)</td><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html#a490ad0b072fac8f0392ecd2da9598c20">step</a>(void)</td><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>spawners</b> (defined in <a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a>)</td><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0"><td class="entry"><b>spawners_virgin</b> (defined in <a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a>)</td><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></td><td class="entry"></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>spawning</b> (defined in <a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a>)</td><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html#a490ad0b072fac8f0392ecd2da9598c20">step</a>(void)</td><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
+  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>survival</b> (defined in <a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a>)</td><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>weight_a</b> (defined in <a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a>)</td><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>weight_b</b> (defined in <a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a>)</td><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>weights</b> (defined in <a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a>)</td><td class="entry"><a class="el" href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></td><td class="entry"></td></tr>
@@ -118,7 +132,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </table></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Oct 21 2013 17:57:11 for ioskj by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Oct 23 2013 07:08:59 for ioskj by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.5"/>
-<title>ioskj: /home/nbentley/Trophia/Code/ioskj/model.hpp Source File</title>
+<title>ioskj: model.hpp Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -37,6 +37,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li><a href="annotated.html"><span>Classes</span></a></li>
       <li class="current"><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -68,7 +69,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -79,7 +80,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div class="header">
   <div class="headertitle">
-<div class="title">/home/nbentley/Trophia/Code/ioskj/model.hpp</div>  </div>
+<div class="title">model.hpp</div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
@@ -149,7 +150,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;        <span class="keywordflow">for</span>(time=0;time&lt;times;time++){</div>
 <div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            <span class="comment">// Set Year and Quarter</span></div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            year = 1950 + time/4;</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            quarter = 1 + time%4;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            quarter = time%4;</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div>
 <div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;            <span class="comment">// If time zero then initialise things</span></div>
 <div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            <span class="keywordflow">if</span>(time==0){</div>
@@ -176,16 +177,16 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;};</div>
 <div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;</div>
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;}</div>
-<div class="ttc" id="classIOSKJ_1_1Fish_html_a490ad0b072fac8f0392ecd2da9598c20"><div class="ttname"><a href="classIOSKJ_1_1Fish.html#a490ad0b072fac8f0392ecd2da9598c20">IOSKJ::Fish::step</a></div><div class="ttdeci">void step(void)</div><div class="ttdef"><b>Definition:</b> fish.hpp:96</div></div>
+<div class="ttc" id="classIOSKJ_1_1Fish_html_a490ad0b072fac8f0392ecd2da9598c20"><div class="ttname"><a href="classIOSKJ_1_1Fish.html#a490ad0b072fac8f0392ecd2da9598c20">IOSKJ::Fish::step</a></div><div class="ttdeci">void step(void)</div><div class="ttdef"><b>Definition:</b> fish.hpp:160</div></div>
 <div class="ttc" id="classIOSKJ_1_1Model_html"><div class="ttname"><a href="classIOSKJ_1_1Model.html">IOSKJ::Model</a></div><div class="ttdef"><b>Definition:</b> model.hpp:9</div></div>
 <div class="ttc" id="classIOSKJ_1_1Fishing_html"><div class="ttname"><a href="classIOSKJ_1_1Fishing.html">IOSKJ::Fishing</a></div><div class="ttdef"><b>Definition:</b> fishing.hpp:8</div></div>
-<div class="ttc" id="classIOSKJ_1_1Fish_html"><div class="ttname"><a href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></div><div class="ttdef"><b>Definition:</b> fish.hpp:8</div></div>
-<div class="ttc" id="classIOSKJ_1_1Fish_html_a5e536120fdadc3302e76270f6876cf14"><div class="ttname"><a href="classIOSKJ_1_1Fish.html#a5e536120fdadc3302e76270f6876cf14">IOSKJ::Fish::init</a></div><div class="ttdeci">void init(void)</div><div class="ttdef"><b>Definition:</b> fish.hpp:68</div></div>
-<div class="ttc" id="classIOSKJ_1_1Fish_html_ad787d9334e8699d000825066fd546bc0"><div class="ttname"><a href="classIOSKJ_1_1Fish.html#ad787d9334e8699d000825066fd546bc0">IOSKJ::Fish::defaults</a></div><div class="ttdeci">void defaults(void)</div><div class="ttdef"><b>Definition:</b> fish.hpp:40</div></div>
+<div class="ttc" id="classIOSKJ_1_1Fish_html"><div class="ttname"><a href="classIOSKJ_1_1Fish.html">IOSKJ::Fish</a></div><div class="ttdef"><b>Definition:</b> fish.hpp:9</div></div>
+<div class="ttc" id="classIOSKJ_1_1Fish_html_a5e536120fdadc3302e76270f6876cf14"><div class="ttname"><a href="classIOSKJ_1_1Fish.html#a5e536120fdadc3302e76270f6876cf14">IOSKJ::Fish::init</a></div><div class="ttdeci">void init(void)</div><div class="ttdef"><b>Definition:</b> fish.hpp:107</div></div>
+<div class="ttc" id="classIOSKJ_1_1Fish_html_ad787d9334e8699d000825066fd546bc0"><div class="ttname"><a href="classIOSKJ_1_1Fish.html#ad787d9334e8699d000825066fd546bc0">IOSKJ::Fish::defaults</a></div><div class="ttdeci">void defaults(void)</div><div class="ttdef"><b>Definition:</b> fish.hpp:62</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Oct 21 2013 17:57:11 for ioskj by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Oct 23 2013 07:08:59 for ioskj by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

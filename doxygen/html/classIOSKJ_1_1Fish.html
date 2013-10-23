@@ -37,6 +37,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div id="navrow1" class="tabs">
     <ul class="tablist">
       <li><a href="index.html"><span>Main&#160;Page</span></a></li>
+      <li><a href="pages.html"><span>Related&#160;Pages</span></a></li>
       <li class="current"><a href="annotated.html"><span>Classes</span></a></li>
       <li><a href="files.html"><span>Files</span></a></li>
       <li>
@@ -61,7 +62,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
     <ul class="tablist">
       <li><a href="annotated.html"><span>Class&#160;List</span></a></li>
       <li><a href="classes.html"><span>Class&#160;Index</span></a></li>
-      <li><a href="hierarchy.html"><span>Class&#160;Hierarchy</span></a></li>
       <li><a href="functions.html"><span>Class&#160;Members</span></a></li>
     </ul>
   </div>
@@ -70,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Pages</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -119,21 +119,27 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a1bb94657937a5693877ffcda2aa05484"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1bb94657937a5693877ffcda2aa05484"></a>
 Array&lt; double, Region, Age, Size &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>numbers</b></td></tr>
 <tr class="separator:a1bb94657937a5693877ffcda2aa05484"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee795e04e3454a81acf2e883a23baae0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aee795e04e3454a81acf2e883a23baae0"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>r0</b></td></tr>
-<tr class="separator:aee795e04e3454a81acf2e883a23baae0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0a09cc1b3700f57bb3d70b28fdb4c4b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af0a09cc1b3700f57bb3d70b28fdb4c4b"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>recruit_virgin</b></td></tr>
+<tr class="separator:af0a09cc1b3700f57bb3d70b28fdb4c4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5c57a9d4a4afc805a09c0cc097890f8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab5c57a9d4a4afc805a09c0cc097890f8"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>recruit_steepness</b></td></tr>
+<tr class="separator:ab5c57a9d4a4afc805a09c0cc097890f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a346a8928285d63ac27b5c867055e0531"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a346a8928285d63ac27b5c867055e0531"></a>
 double&#160;</td><td class="memItemRight" valign="bottom"><b>recruit_sd</b></td></tr>
 <tr class="separator:a346a8928285d63ac27b5c867055e0531"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa75b964e87b21f46632974f15d97a32a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa75b964e87b21f46632974f15d97a32a"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>recruit_var</b></td></tr>
-<tr class="separator:aa75b964e87b21f46632974f15d97a32a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0776f928970167eb0aec1a5b4836b217"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0776f928970167eb0aec1a5b4836b217"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>recruit_rel</b></td></tr>
-<tr class="separator:a0776f928970167eb0aec1a5b4836b217"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8a40e0799241539b0221dc7361452083"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8a40e0799241539b0221dc7361452083"></a>
-Array&lt; double, Size &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>initials</b></td></tr>
-<tr class="separator:a8a40e0799241539b0221dc7361452083"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8e1df8c242e01d1ddcca691411d5f06"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af8e1df8c242e01d1ddcca691411d5f06"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>recruit_variation</b></td></tr>
+<tr class="separator:af8e1df8c242e01d1ddcca691411d5f06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d26b52bc1f462d1c6a212837f29ba2f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7d26b52bc1f462d1c6a212837f29ba2f"></a>
+bool&#160;</td><td class="memItemRight" valign="bottom"><b>recruit_relation</b></td></tr>
+<tr class="separator:a7d26b52bc1f462d1c6a212837f29ba2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9430ed413dcb90dd7ad71bda748104ff"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9430ed413dcb90dd7ad71bda748104ff"></a>
+Array&lt; double, Region &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>recruit_regions</b></td></tr>
+<tr class="separator:a9430ed413dcb90dd7ad71bda748104ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a621bae527bed2badc921f5c48c14f91b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a621bae527bed2badc921f5c48c14f91b"></a>
+Array&lt; double, Size &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>recruit_sizes</b></td></tr>
+<tr class="separator:a621bae527bed2badc921f5c48c14f91b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab2db2279759fd69d8be56797d04c21a7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab2db2279759fd69d8be56797d04c21a7"></a>
 Array&lt; double, Size &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>lengths</b></td></tr>
 <tr class="separator:ab2db2279759fd69d8be56797d04c21a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -149,22 +155,56 @@ double&#160;</td><td class="memItemRight" valign="bottom"><b>weight_b</b></td></
 <tr class="memitem:a5dd5a7b9ed17075f8b6ee9b000f908e2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5dd5a7b9ed17075f8b6ee9b000f908e2"></a>
 Array&lt; double, Size &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>weights</b></td></tr>
 <tr class="separator:a5dd5a7b9ed17075f8b6ee9b000f908e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a47b712624f1b0f961dc30d6ad05177cc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a47b712624f1b0f961dc30d6ad05177cc"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>maturity_50</b></td></tr>
-<tr class="separator:a47b712624f1b0f961dc30d6ad05177cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae69e3959280434ed86988f7c900a5802"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae69e3959280434ed86988f7c900a5802"></a>
-double&#160;</td><td class="memItemRight" valign="bottom"><b>maturity_95</b></td></tr>
-<tr class="separator:ae69e3959280434ed86988f7c900a5802"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74cb2d4dc9fef4b23f46f208921b7a04"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a74cb2d4dc9fef4b23f46f208921b7a04"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>maturity_inflection</b></td></tr>
+<tr class="separator:a74cb2d4dc9fef4b23f46f208921b7a04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59d9ec980c528048bb07ecd1ef8b900d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a59d9ec980c528048bb07ecd1ef8b900d"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>maturity_steepness</b></td></tr>
+<tr class="separator:a59d9ec980c528048bb07ecd1ef8b900d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a35868a87508340cd35f593c1b33fad9e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a35868a87508340cd35f593c1b33fad9e"></a>
 Array&lt; double, Size &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>maturities</b></td></tr>
 <tr class="separator:a35868a87508340cd35f593c1b33fad9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3d476797ca07a538c0000a98280131c9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3d476797ca07a538c0000a98280131c9"></a>
-Array&lt; double, Region, Age &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>mortalities</b></td></tr>
-<tr class="separator:a3d476797ca07a538c0000a98280131c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09aa6f50267957567d4adcf3fdeaca93"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a09aa6f50267957567d4adcf3fdeaca93"></a>
-Array&lt; double, Region, Age, <br class="typebreak"/>
-RegionTo &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>movement</b></td></tr>
-<tr class="separator:a09aa6f50267957567d4adcf3fdeaca93"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab55240e9e4b45bfa274dac27a5bf2d72"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab55240e9e4b45bfa274dac27a5bf2d72"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>mortality</b></td></tr>
+<tr class="separator:ab55240e9e4b45bfa274dac27a5bf2d72"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1ca6bccdf60f26a9015af4091932bbf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae1ca6bccdf60f26a9015af4091932bbf"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>survival</b></td></tr>
+<tr class="separator:ae1ca6bccdf60f26a9015af4091932bbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8bb1a81f6c410273e8480aec85552d9d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8bb1a81f6c410273e8480aec85552d9d"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>growth_rate</b></td></tr>
+<tr class="separator:a8bb1a81f6c410273e8480aec85552d9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a225ee79c581f474b034c9dbc8744f81b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a225ee79c581f474b034c9dbc8744f81b"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>growth_assymptote</b></td></tr>
+<tr class="separator:a225ee79c581f474b034c9dbc8744f81b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77bdf6f3c1182096edbc65b3c7881c1f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a77bdf6f3c1182096edbc65b3c7881c1f"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>growth_sd</b></td></tr>
+<tr class="separator:a77bdf6f3c1182096edbc65b3c7881c1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac82b9dfa22a29fca944f1ec591e9d8d1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac82b9dfa22a29fca944f1ec591e9d8d1"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>growth_cv</b></td></tr>
+<tr class="separator:ac82b9dfa22a29fca944f1ec591e9d8d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fee8014f660af2af1801ee18dba2a73"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5fee8014f660af2af1801ee18dba2a73"></a>
+Array&lt; double, Size &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>growth_increments</b></td></tr>
+<tr class="separator:a5fee8014f660af2af1801ee18dba2a73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a543e74ce81cd4ecf90807da0cd261df6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a543e74ce81cd4ecf90807da0cd261df6"></a>
+Array&lt; double, SizeFrom, Size &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>growth</b></td></tr>
+<tr class="separator:a543e74ce81cd4ecf90807da0cd261df6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c868e34918dd840331c7452053791e1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5c868e34918dd840331c7452053791e1"></a>
+Array&lt; double, RegionFrom, Region &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>movement_pars</b></td></tr>
+<tr class="separator:a5c868e34918dd840331c7452053791e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1da3f734344a9dbfbabf192493b737d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa1da3f734344a9dbfbabf192493b737d"></a>
+Array&lt; double, RegionFrom, Region &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>movement</b></td></tr>
+<tr class="separator:aa1da3f734344a9dbfbabf192493b737d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac75234d73d32d8aa63243b54b20c0fa1"><td class="memItemLeft" align="right" valign="top">Array&lt; double, Region, Size &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIOSKJ_1_1Fish.html#ac75234d73d32d8aa63243b54b20c0fa1">exploitation</a></td></tr>
+<tr class="separator:ac75234d73d32d8aa63243b54b20c0fa1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ce79faa3a7599320738fc7479e44813"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8ce79faa3a7599320738fc7479e44813"></a>
+Array&lt; double, Quarter &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>spawning</b></td></tr>
+<tr class="separator:a8ce79faa3a7599320738fc7479e44813"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64c0d4b35c1cee840caacfa6fd71f912"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a64c0d4b35c1cee840caacfa6fd71f912"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>spawners</b></td></tr>
+<tr class="separator:a64c0d4b35c1cee840caacfa6fd71f912"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4bd5e4c696fb248fc4741382343e90a6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4bd5e4c696fb248fc4741382343e90a6"></a>
+double&#160;</td><td class="memItemRight" valign="bottom"><b>spawners_virgin</b></td></tr>
+<tr class="separator:a4bd5e4c696fb248fc4741382343e90a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="ad787d9334e8699d000825066fd546bc0"></a>
@@ -215,7 +255,6 @@ RegionTo &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>movement</b>
 </table>
 </div><div class="memdoc">
 <p>Initialise the fish population with based on current parameter values </p>
-<p>Maturity is a logistic function of length</p>
 <p>The fish population is initialised to an unfished state by iterating with virgin recruitment until it reaches equibrium defined by less than 0.01% change in total biomass</p>
 
 </div>
@@ -266,17 +305,32 @@ RegionTo &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>movement</b>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Recruits are evenly distributed over regions</p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>check this equation </dd></dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="ac75234d73d32d8aa63243b54b20c0fa1"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Array&lt;double,Region,Size&gt; IOSKJ::Fish::exploitation</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Exploitation rate by region and size for current time step</p>
+<dl class="section see"><dt>See Also</dt><dd>exploit </dd></dl>
 
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>/home/nbentley/Trophia/Code/ioskj/<a class="el" href="fish_8hpp_source.html">fish.hpp</a></li>
+<li><a class="el" href="fish_8hpp_source.html">fish.hpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Oct 21 2013 17:57:11 for ioskj by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Oct 23 2013 07:08:59 for ioskj by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

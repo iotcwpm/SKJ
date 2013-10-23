@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['sizefrequency',['SizeFrequency',['../classIOSKJ_1_1Data_1_1SizeFrequency.html',1,'IOSKJ::Data']]]
+  ['westpscpue',['WestPsCpue',['../classIOSKJ_1_1Data_1_1WestPsCpue.html',1,'IOSKJ::Data']]]
 ];

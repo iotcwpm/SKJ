@@ -7,16 +7,20 @@
 
 var indexSectionsWithContent =
 {
-  0: "dfgimnswz",
-  1: "fgmnswz",
-  2: "dgis"
+  0: "defimnstwz",
+  1: "fmnswz",
+  2: "dis",
+  3: "e",
+  4: "t"
 };
 
 var indexSectionNames =
 {
   0: "all",
   1: "classes",
-  2: "functions"
+  2: "functions",
+  3: "variables",
+  4: "pages"
 };
 
 function convertToId(search)
