@@ -17,11 +17,13 @@ Documentation is at http://trophia.github.io/ioskj/
 The main C++ files are:
 
 - `dimensions.hpp` - defines the dimensions used in various model arrays e.g. `Region`, `Age`, `Method`
-- `fish.hpp` - contains the `Fish` class representing the fish population dynamic
-- `fishing.hpp` - contains the `Fishing` class representing fishing activity
+- `model.hpp` - contains the `Model` class which specifies the model parameters and dynamics
 - `data.hpp` - reads in and holds data for use in driving and conditioning the model
-- `model.hpp` - contains the `Model` class which puts `Fish`, `Fishing` and the various data classes together
 - `main.cpp` - the primary C++ file for compiling a `Model` executable
+
+### `priors` folder
+
+The `data` folder includes R scripts of background analyses for developing model prior probability distributions.
 
 ### `data` folder
 
