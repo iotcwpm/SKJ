@@ -57,6 +57,7 @@ public:
 		Data::startup();
 
 		fish.defaults();
+		fishing.defaults();
 	}
 
 	void simulate(void){

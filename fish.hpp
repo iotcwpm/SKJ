@@ -14,6 +14,7 @@ public:
 	double recruit_virgin;
 	double recruit_steepness;
 	double recruit_sd;
+	double recruit_deviation;
 	bool recruit_variation;
 	bool recruit_relation;
 	Array<double,Region> recruit_regions;
@@ -82,13 +83,17 @@ public:
 		growth_sd = 1;
 		growth_cv = 0.2;
 
+		movement_pars(W,W) = 0.85;
 		movement_pars(W,M) = 0.10;
 		movement_pars(W,E) = 0.05;
-		movement_pars(M,W) = 0.10;
-		movement_pars(M,E) = 0.10;
-		movement_pars(E,M) = 0.10;
-		movement_pars(E,W) = 0.05;
 
+		movement_pars(M,W) = 0.10;
+		movement_pars(M,M) = 0.80;
+		movement_pars(M,E) = 0.10;
+
+		movement_pars(E,W) = 0.05;
+		movement_pars(E,M) = 0.10;
+		movement_pars(E,E) = 0.85;
 
 		spawning = {0.8,0.5,0.8,0.5};
 	}
@@ -136,7 +141,10 @@ public:
 		auto movement_sums = movement(by(region_froms),sum());
 		for(auto region_from : region_froms){
 			for(auto region : regions){
-				movement(region_from,region) = movement(region_from,region)/movement_sums(region_from);
+				movement(region_from,region) = 
+					movement_pars(region_from,region);
+					//region_from==region?1:0;
+					//movement(region_from,region)/movement_sums(region_from);
 			}
 		}
 
@@ -160,19 +168,25 @@ public:
 	void step(void){
 
 		// Recruits
-		double recruits;
+		double recruits_determ;
 		if(recruit_relation){
 			// Stock-recruitment realtion is active so calculate recruits based on 
 			// the spawning biomass in the previous time step
 			//! @todo check this equation
-			recruits = 4 * recruit_steepness * recruit_virgin * spawners / (
+			recruits_determ = 4 * recruit_steepness * recruit_virgin * spawners / (
 				(5*recruit_steepness-1)*spawners + spawners_virgin*(1-recruit_steepness)
 			);
-		}
-		else {
+		} else {
 			// Stock-recruitment realtion is not active so recruitment is just r0.
-			recruits = recruit_virgin;
+			recruits_determ = recruit_virgin;
 		}
+		double recruits_deviation;
+		if(recruit_variation){
+			recruits_deviation = 0;//! @todo implement
+		} else {
+			recruits_deviation = 1;
+		}
+		double recruits = recruits_determ * recruits_deviation;
 
 		// Ageing and recruitment
 		for(auto region : regions){
