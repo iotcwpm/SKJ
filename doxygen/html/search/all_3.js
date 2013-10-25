@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['init',['init',['../classIOSKJ_1_1Fish.html#a5e536120fdadc3302e76270f6876cf14',1,'IOSKJ::Fish']]]
+  ['maldiveplcpue',['MaldivePlCpue',['../classIOSKJ_1_1Data_1_1MaldivePlCpue.html',1,'IOSKJ::Data']]],
+  ['model',['Model',['../classIOSKJ_1_1Model.html',1,'IOSKJ']]]
 ];

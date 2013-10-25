@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['exploitation',['exploitation',['../classIOSKJ_1_1Fish.html#ac75234d73d32d8aa63243b54b20c0fa1',1,'IOSKJ::Fish']]]
+  ['exploitation',['exploitation',['../classIOSKJ_1_1Model.html#ad4379e82be5723f2e1b58e9492dde3dc',1,'IOSKJ::Model']]],
+  ['exploitation_5fon',['exploitation_on',['../classIOSKJ_1_1Model.html#ab9afc5bae0ac8e16817802e54bdfa60d',1,'IOSKJ::Model']]]
 ];

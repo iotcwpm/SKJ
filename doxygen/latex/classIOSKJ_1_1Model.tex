@@ -1,6 +1,12 @@
 \hypertarget{classIOSKJ_1_1Model}{\section{I\-O\-S\-K\-J\-:\-:Model Class Reference}
 \label{classIOSKJ_1_1Model}\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}}
 }
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classIOSKJ_1_1Model_a925d88350f3dc87464d3893bd9307b91}{typedef std\-::array$<$ double, 5 $>$ {\bfseries Selectivity\-Points}}\label{classIOSKJ_1_1Model_a925d88350f3dc87464d3893bd9307b91}
+
+\end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -16,7 +22,24 @@
 \hypertarget{classIOSKJ_1_1Model_a6f42bfc7352faa7bba7e00d04fc166b0}{void {\bfseries startup} (void)}\label{classIOSKJ_1_1Model_a6f42bfc7352faa7bba7e00d04fc166b0}
 
 \item 
+void \hyperlink{classIOSKJ_1_1Model_a2018db7a3e7780fddc161f026dd35c4e}{defaults} (void)
+\item 
+void \hyperlink{classIOSKJ_1_1Model_a242ba7c47871099bf4bed482d262cede}{sample} (void)
+\item 
+void \hyperlink{classIOSKJ_1_1Model_af64274ff5991d11e1c232618af8de800}{init} (void)
+\item 
+void \hyperlink{classIOSKJ_1_1Model_af163ebda22001c7df308dc227c1687bb}{step} (void)
+\item 
+\hypertarget{classIOSKJ_1_1Model_a1f1a75ddee2aa7203e7a944b267d4362}{double {\bfseries biomass} (void) const }\label{classIOSKJ_1_1Model_a1f1a75ddee2aa7203e7a944b267d4362}
+
+\item 
+\hypertarget{classIOSKJ_1_1Model_aa422925a07c078b87c5727a6a7c22d00}{double {\bfseries equilibrium} (void)}\label{classIOSKJ_1_1Model_aa422925a07c078b87c5727a6a7c22d00}
+
+\item 
 \hypertarget{classIOSKJ_1_1Model_abf9ebdb10aee501808836438cb542fab}{void {\bfseries simulate} (void)}\label{classIOSKJ_1_1Model_abf9ebdb10aee501808836438cb542fab}
+
+\item 
+\hypertarget{classIOSKJ_1_1Model_abfc09c1b2d6bfe2802835cd5fd58c3b3}{void {\bfseries write} (void)}\label{classIOSKJ_1_1Model_abfc09c1b2d6bfe2802835cd5fd58c3b3}
 
 \item 
 \hypertarget{classIOSKJ_1_1Model_a343216d7c9019f15f01f205423001005}{void {\bfseries shutdown} (void)}\label{classIOSKJ_1_1Model_a343216d7c9019f15f01f205423001005}
@@ -25,13 +48,171 @@
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classIOSKJ_1_1Model_aa8bf5f43996857e428bb0745943363a4}{\hyperlink{classIOSKJ_1_1Fish}{Fish} {\bfseries fish}}\label{classIOSKJ_1_1Model_aa8bf5f43996857e428bb0745943363a4}
+\hypertarget{classIOSKJ_1_1Model_aa90edf75b7c9ebf8e50a30f3779b9664}{Array$<$ double, Region, Age, Size $>$ {\bfseries numbers}}\label{classIOSKJ_1_1Model_aa90edf75b7c9ebf8e50a30f3779b9664}
 
 \item 
-\hypertarget{classIOSKJ_1_1Model_a416c537ca8c64648516e928fcea72ef2}{\hyperlink{classIOSKJ_1_1Fishing}{Fishing} {\bfseries fishing}}\label{classIOSKJ_1_1Model_a416c537ca8c64648516e928fcea72ef2}
+\hypertarget{classIOSKJ_1_1Model_a686cbcc0d80f740b223f1f25b0869da7}{double {\bfseries recruit\-\_\-virgin}}\label{classIOSKJ_1_1Model_a686cbcc0d80f740b223f1f25b0869da7}
+
+\item 
+\hypertarget{classIOSKJ_1_1Model_a862b4466389406b47613ad56ab137d8e}{double {\bfseries recruit\-\_\-steepness}}\label{classIOSKJ_1_1Model_a862b4466389406b47613ad56ab137d8e}
+
+\item 
+\hypertarget{classIOSKJ_1_1Model_a2efdcaae859b3c94a3a0c6cd885b4fc2}{double {\bfseries recruit\-\_\-sd}}\label{classIOSKJ_1_1Model_a2efdcaae859b3c94a3a0c6cd885b4fc2}
+
+\item 
+\hypertarget{classIOSKJ_1_1Model_a83f5db36b2616ea265b360872b5586e5}{bool {\bfseries recruit\-\_\-variation}}\label{classIOSKJ_1_1Model_a83f5db36b2616ea265b360872b5586e5}
+
+\item 
+\hypertarget{classIOSKJ_1_1Model_a758094db1a66fe7e6fb040e63169d50b}{bool {\bfseries recruit\-\_\-relation}}\label{classIOSKJ_1_1Model_a758094db1a66fe7e6fb040e63169d50b}
+
+\item 
+\hypertarget{classIOSKJ_1_1Model_a39e8570fc684498461ba6b9983bae0f1}{Array$<$ double, Region $>$ {\bfseries recruit\-\_\-regions}}\label{classIOSKJ_1_1Model_a39e8570fc684498461ba6b9983bae0f1}
+
+\item 
+\hypertarget{classIOSKJ_1_1Model_a73219276650abc075d7cfbf164083b67}{Array$<$ double, Size $>$ {\bfseries recruit\-\_\-sizes}}\label{classIOSKJ_1_1Model_a73219276650abc075d7cfbf164083b67}
+
+\item 
+\hypertarget{classIOSKJ_1_1Model_ad2450f5604c657cbe259b7b49e8f905a}{double {\bfseries recruits\-\_\-determ}}\label{classIOSKJ_1_1Model_ad2450f5604c657cbe259b7b49e8f905a}
+
+\item 
+\hypertarget{classIOSKJ_1_1Model_a639afa6cd0480ad8c6dbac286bdaa55c}{double {\bfseries recruits\-\_\-deviation}}\label{classIOSKJ_1_1Model_a639afa6cd0480ad8c6dbac286bdaa55c}
+
+\item 
+\hypertarget{classIOSKJ_1_1Model_a8ffa15a7aea7598d5a6c91bec5779ef3}{double {\bfseries recruits}}\label{classIOSKJ_1_1Model_a8ffa15a7aea7598d5a6c91bec5779ef3}
+
+\item 
+\hypertarget{classIOSKJ_1_1Model_ab26d2c0b3da23a380d21bbfafa236cff}{Array$<$ double, Size $>$ {\bfseries lengths}}\label{classIOSKJ_1_1Model_ab26d2c0b3da23a380d21bbfafa236cff}
+
+\item 
+\hypertarget{classIOSKJ_1_1Model_ad74671e3ed2a104a557b75adf0c64b14}{const double {\bfseries lengths\-\_\-step} = 2}\label{classIOSKJ_1_1Model_ad74671e3ed2a104a557b75adf0c64b14}
+
+\item 
+\hypertarget{classIOSKJ_1_1Model_a39f409e1010b3f2d1559366a7f7daad8}{double {\bfseries weight\-\_\-a}}\label{classIOSKJ_1_1Model_a39f409e1010b3f2d1559366a7f7daad8}
+
+\item 
+\hypertarget{classIOSKJ_1_1Model_aca953740b9305b51d39e04bc1b19ebb5}{double {\bfseries weight\-\_\-b}}\label{classIOSKJ_1_1Model_aca953740b9305b51d39e04bc1b19ebb5}
+
+\item 
+\hypertarget{classIOSKJ_1_1Model_a9befb275d915c5cec6b1e0e7a4bc8791}{Array$<$ double, Size $>$ {\bfseries weights}}\label{classIOSKJ_1_1Model_a9befb275d915c5cec6b1e0e7a4bc8791}
+
+\item 
+\hypertarget{classIOSKJ_1_1Model_aaba1b769dc8f413829f5fe639e978058}{double {\bfseries maturity\-\_\-inflection}}\label{classIOSKJ_1_1Model_aaba1b769dc8f413829f5fe639e978058}
+
+\item 
+\hypertarget{classIOSKJ_1_1Model_a7cbfb9cd8bd5be39c93302e1352d2ad2}{double {\bfseries maturity\-\_\-steepness}}\label{classIOSKJ_1_1Model_a7cbfb9cd8bd5be39c93302e1352d2ad2}
+
+\item 
+\hypertarget{classIOSKJ_1_1Model_a374c4b48c908c40b7401e484cc49c767}{Array$<$ double, Size $>$ {\bfseries maturities}}\label{classIOSKJ_1_1Model_a374c4b48c908c40b7401e484cc49c767}
+
+\item 
+\hypertarget{classIOSKJ_1_1Model_a970fad74268a92b08807a7cdbb32468b}{double {\bfseries mortality}}\label{classIOSKJ_1_1Model_a970fad74268a92b08807a7cdbb32468b}
+
+\item 
+\hypertarget{classIOSKJ_1_1Model_aeeec3e4e692016d4b6913a47075a0a5d}{double {\bfseries survival}}\label{classIOSKJ_1_1Model_aeeec3e4e692016d4b6913a47075a0a5d}
+
+\item 
+\hypertarget{classIOSKJ_1_1Model_a37a3bf07009aa97913f40e58110e8bdf}{double {\bfseries growth\-\_\-rate}}\label{classIOSKJ_1_1Model_a37a3bf07009aa97913f40e58110e8bdf}
+
+\item 
+\hypertarget{classIOSKJ_1_1Model_a02f4a83466509247a77ecec82980aa5b}{double {\bfseries growth\-\_\-assymptote}}\label{classIOSKJ_1_1Model_a02f4a83466509247a77ecec82980aa5b}
+
+\item 
+\hypertarget{classIOSKJ_1_1Model_ac4a5b947f4c8f00a43d40dde17374222}{double {\bfseries growth\-\_\-sd}}\label{classIOSKJ_1_1Model_ac4a5b947f4c8f00a43d40dde17374222}
+
+\item 
+\hypertarget{classIOSKJ_1_1Model_a52e9d3dbf85db8de068b3843c7769ef7}{double {\bfseries growth\-\_\-cv}}\label{classIOSKJ_1_1Model_a52e9d3dbf85db8de068b3843c7769ef7}
+
+\item 
+\hypertarget{classIOSKJ_1_1Model_ae56a1109058ca37a7bb05f62ceac6d06}{Array$<$ double, Size $>$ {\bfseries growth\-\_\-increments}}\label{classIOSKJ_1_1Model_ae56a1109058ca37a7bb05f62ceac6d06}
+
+\item 
+\hypertarget{classIOSKJ_1_1Model_aa08429f500442de8a2e93bf00b20e0e9}{Array$<$ double, Size\-From, Size $>$ {\bfseries growth}}\label{classIOSKJ_1_1Model_aa08429f500442de8a2e93bf00b20e0e9}
+
+\item 
+\hypertarget{classIOSKJ_1_1Model_a035849bda5a75ef50d5d83ce93462fb4}{Array$<$ double, Region\-From, Region $>$ {\bfseries movement\-\_\-pars}}\label{classIOSKJ_1_1Model_a035849bda5a75ef50d5d83ce93462fb4}
+
+\item 
+\hypertarget{classIOSKJ_1_1Model_ac09e002c91144697de6e96bb8beb6d83}{Array$<$ double, Region\-From, Region $>$ {\bfseries movement}}\label{classIOSKJ_1_1Model_ac09e002c91144697de6e96bb8beb6d83}
+
+\item 
+\hypertarget{classIOSKJ_1_1Model_a2c2ff5eb6f4ed186b725c13b0e9e6012}{Array$<$ Selectivity\-Points, Method $>$ {\bfseries selectivity\-\_\-points}}\label{classIOSKJ_1_1Model_a2c2ff5eb6f4ed186b725c13b0e9e6012}
+
+\item 
+\hypertarget{classIOSKJ_1_1Model_aa59ec2970e6ab5478b29d68ad89b67d9}{Array$<$ double, Method, Size $>$ {\bfseries selectivities}}\label{classIOSKJ_1_1Model_aa59ec2970e6ab5478b29d68ad89b67d9}
+
+\item 
+bool \hyperlink{classIOSKJ_1_1Model_ab9afc5bae0ac8e16817802e54bdfa60d}{exploitation\-\_\-on}
+\item 
+\hypertarget{classIOSKJ_1_1Model_a94bd8b1bf820dc11f306c81603083e4c}{Array$<$ double, Region, Method $>$ {\bfseries vulnerable}}\label{classIOSKJ_1_1Model_a94bd8b1bf820dc11f306c81603083e4c}
+
+\item 
+Array$<$ double, Region, Size $>$ \hyperlink{classIOSKJ_1_1Model_ad4379e82be5723f2e1b58e9492dde3dc}{exploitation}
+\item 
+\hypertarget{classIOSKJ_1_1Model_a81bffc6707aa313f87bf21dbbf1d8143}{Array$<$ double, Quarter $>$ {\bfseries spawning}}\label{classIOSKJ_1_1Model_a81bffc6707aa313f87bf21dbbf1d8143}
+
+\item 
+\hypertarget{classIOSKJ_1_1Model_a2402f10b5c0d2905a9c560ad8e7fe38d}{double {\bfseries spawners}}\label{classIOSKJ_1_1Model_a2402f10b5c0d2905a9c560ad8e7fe38d}
+
+\item 
+\hypertarget{classIOSKJ_1_1Model_a835cf1d5135ecae9cbc2daa9622c4e32}{double {\bfseries spawners\-\_\-virgin}}\label{classIOSKJ_1_1Model_a835cf1d5135ecae9cbc2daa9622c4e32}
 
 \end{DoxyCompactItemize}
 
+
+\subsection{Member Function Documentation}
+\hypertarget{classIOSKJ_1_1Model_a2018db7a3e7780fddc161f026dd35c4e}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!defaults@{defaults}}
+\index{defaults@{defaults}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
+\subsubsection[{defaults}]{\setlength{\rightskip}{0pt plus 5cm}void I\-O\-S\-K\-J\-::\-Model\-::defaults (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classIOSKJ_1_1Model_a2018db7a3e7780fddc161f026dd35c4e}
+Set default parameter values
+
+Mainly used in testing \hypertarget{classIOSKJ_1_1Model_af64274ff5991d11e1c232618af8de800}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!init@{init}}
+\index{init@{init}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
+\subsubsection[{init}]{\setlength{\rightskip}{0pt plus 5cm}void I\-O\-S\-K\-J\-::\-Model\-::init (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classIOSKJ_1_1Model_af64274ff5991d11e1c232618af8de800}
+Initialise the fish population with based on current parameter values Initialise selectivity
+
+The fish population is initialised to an unfished state by iterating with virgin recruitment until it reaches equibrium defined by less than 0.\-01\% change in total biomass\hypertarget{classIOSKJ_1_1Model_a242ba7c47871099bf4bed482d262cede}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!sample@{sample}}
+\index{sample@{sample}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
+\subsubsection[{sample}]{\setlength{\rightskip}{0pt plus 5cm}void I\-O\-S\-K\-J\-::\-Model\-::sample (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classIOSKJ_1_1Model_a242ba7c47871099bf4bed482d262cede}
+Sample parameter values from prior probabiity distributions \hypertarget{classIOSKJ_1_1Model_af163ebda22001c7df308dc227c1687bb}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!step@{step}}
+\index{step@{step}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
+\subsubsection[{step}]{\setlength{\rightskip}{0pt plus 5cm}void I\-O\-S\-K\-J\-::\-Model\-::step (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classIOSKJ_1_1Model_af163ebda22001c7df308dc227c1687bb}
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000002}{Todo}]check this equation \end{DoxyRefDesc}
+
+
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000003}{Todo}]implement \end{DoxyRefDesc}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classIOSKJ_1_1Model_ad4379e82be5723f2e1b58e9492dde3dc}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!exploitation@{exploitation}}
+\index{exploitation@{exploitation}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
+\subsubsection[{exploitation}]{\setlength{\rightskip}{0pt plus 5cm}Array$<$double,Region,Size$>$ I\-O\-S\-K\-J\-::\-Model\-::exploitation}}\label{classIOSKJ_1_1Model_ad4379e82be5723f2e1b58e9492dde3dc}
+Exploitation rate by region and size for current time step
+
+\begin{DoxySeeAlso}{See Also}
+exploit 
+\end{DoxySeeAlso}
+\hypertarget{classIOSKJ_1_1Model_ab9afc5bae0ac8e16817802e54bdfa60d}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!exploitation\-\_\-on@{exploitation\-\_\-on}}
+\index{exploitation\-\_\-on@{exploitation\-\_\-on}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
+\subsubsection[{exploitation\-\_\-on}]{\setlength{\rightskip}{0pt plus 5cm}bool I\-O\-S\-K\-J\-::\-Model\-::exploitation\-\_\-on}}\label{classIOSKJ_1_1Model_ab9afc5bae0ac8e16817802e54bdfa60d}
+A switch used to turn off/on exploitation dynamics (e.\-g turn off for virgin equilibrium) 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 

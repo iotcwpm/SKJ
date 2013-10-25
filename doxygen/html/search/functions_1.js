@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['init',['init',['../classIOSKJ_1_1Fish.html#a5e536120fdadc3302e76270f6876cf14',1,'IOSKJ::Fish']]]
+  ['init',['init',['../classIOSKJ_1_1Model.html#af64274ff5991d11e1c232618af8de800',1,'IOSKJ::Model']]]
 ];
