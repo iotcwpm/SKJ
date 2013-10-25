@@ -191,9 +191,9 @@ section#fish
 
         p The total spawning biomass is used as the basis for determining a recruitment over all three regions, `bar(R)` based on the Beverton-Holt stock recruitment function,
 
-            `bar(R) = 4 eta theta S/((5 eta-1) S + dot(S)  (1-eta))`
+            `bar(R) = 4 eta theta S/((5 eta-1) S + dot(S)  (1-eta)) D_t`
 
-        p where `eta` is steepness, `lambda` and `dot(S)` are the respectively the recruitment and spawning biomass in the absence of fishing, and `D` is the recruitment deviation which is lognormally distributed with mean of 1 and standard deviation of `sigma`.
+        p where `eta` is steepness, `theta` and `dot(S)` are the respectively the recruitment and spawning biomass in the absence of fishing, and `D_t` is the recruitment deviation at time t which is lognormally distributed with mean of 1 and standard deviation of `sigma`.
 
         p This total recruitment is distributed across the three regions,
 
@@ -213,7 +213,9 @@ section#fish
 
             `D = e^{-0.25nu}`
 
-        .note Natural mortality could vary by region and/or age i.e. `nu_{r,a}` or size `nu_{r,s}` or even time.
+        .note Natural mortality could vary by age or size: the functional form of Lorenzen (1996) could be used (`nu_s` a function of weight `W_s`) with an estimated scalar.
+
+        .note Natural mortality could vary by region.
 
 
     section#fish-growth
@@ -223,9 +225,9 @@ section#fish
 
             `I_s = (lambda-L_s)(1-e^{-0.25kappa})`
 
-        p Variation in growth is modelled as a normal distribution with a constant standard deviation, `epsilon`, and a coefficient of variation, `varphi`, on the increment. The standard deviation of the growth increment for a fish of size `s` is thus,
+        p Variation in growth is modelled as a normal distribution with a constant standard deviation, `zeta`, and a coefficient of variation, `varphi`, on the increment. The standard deviation of the growth increment for a fish of size `s` is thus,
 
-        	`J_s = sqrt(epsilon^2 + (varphi I_s)^2)`
+        	`J_s = sqrt(zeta^2 + (varphi I_s)^2)`
 
         p The proportion of fish growing from size `dot(s)` to size `s` in one quarter is thus,
 
@@ -244,7 +246,7 @@ section#fish
 
             `M_{dot(r),r} = [[1-omega_{ea,ma}-omega_{ea,we},omega_{ea,ma},omega_{ea,we}],[omega_{ma,ea},1-omega_{ma,ea}-omega_{ma,we},omega_{ma,we}],[omega_{we,ea},omega_{we,ma},1-omega_{we,ea}-omega_{we,ma}]]`
 
-        .note There could be separate movement parameters for each age (or size) e.g. `omega_{ma,we,a}`, or more simply, the relative proportion of fish moving could vary by age (or size) e.g. `M_{ma,we,a} =  omega_{ma,we} zeta_a`.
+        .note There could be separate movement parameters for each age (or size) e.g. `omega_{ma,we,a}`, or more simply, the relative proportion of fish moving could vary by age (or size).
 
 
 section#fishing
@@ -540,6 +542,8 @@ section#references
     p Everson, J.P., Million, J., Sardenne, F., Le Croizier, G. (2012) Updated growth estimates for skipjack,yellowfin and bigeye tuna in the Indian Ocean using the most recent tag-recpature and otolith data. IIOOTC-2012-WPT14-23 Rev-1
 
     p Grande, M (2013). The reproductive biology, condition and feeding ecology of the skipjack, Katsuwonus pelamis, in the Western Indian Ocean PhD Thesis. Department of Zoology and Animal Cell Biology, Universidad del Pais Vasco.
+
+    p Lorenzen, K. (1996). The relationship between body weight and natural mortality in juvenile and adult fish: a comparison of natural ecosystems and aquaculture. Journal of fish biology, 49(4), 627-642.
 
     p Myers, R.A. (2002) Recruitment: understanding density-dependence in fish populations.
 
