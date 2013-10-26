@@ -14,13 +14,13 @@
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classIOSKJ_1_1Model_ae261a53c42f71d17182c1b129698126d}{void {\bfseries track\-\_\-begin} (void)}\label{classIOSKJ_1_1Model_ae261a53c42f71d17182c1b129698126d}
+\hypertarget{classIOSKJ_1_1Model_a886bf4ee5289a07b220cedfd2accf801}{void {\bfseries track\-\_\-open} (std\-::string filename)}\label{classIOSKJ_1_1Model_a886bf4ee5289a07b220cedfd2accf801}
 
 \item 
 \hypertarget{classIOSKJ_1_1Model_af18a3687dd2685745174b91e0aae56ce}{void {\bfseries track} (void)}\label{classIOSKJ_1_1Model_af18a3687dd2685745174b91e0aae56ce}
 
 \item 
-\hypertarget{classIOSKJ_1_1Model_a03e6aeb637c83c34774ac66c18bac74d}{void {\bfseries track\-\_\-end} (void)}\label{classIOSKJ_1_1Model_a03e6aeb637c83c34774ac66c18bac74d}
+\hypertarget{classIOSKJ_1_1Model_a35a3793549d5fab47834483c0c013a78}{void {\bfseries track\-\_\-close} (void)}\label{classIOSKJ_1_1Model_a35a3793549d5fab47834483c0c013a78}
 
 \item 
 \hypertarget{classIOSKJ_1_1Model_a6f42bfc7352faa7bba7e00d04fc166b0}{void {\bfseries startup} (void)}\label{classIOSKJ_1_1Model_a6f42bfc7352faa7bba7e00d04fc166b0}
@@ -32,9 +32,10 @@ void \hyperlink{classIOSKJ_1_1Model_af64274ff5991d11e1c232618af8de800}{init} (vo
 \item 
 void \hyperlink{classIOSKJ_1_1Model_af163ebda22001c7df308dc227c1687bb}{step} (void)
 \item 
-double \hyperlink{classIOSKJ_1_1Model_aa422925a07c078b87c5727a6a7c22d00}{equilibrium} (void)
+\hypertarget{classIOSKJ_1_1Model_a58e460b456d7affc4f6a8af785f6e82c}{void {\bfseries equilibrium} (void)}\label{classIOSKJ_1_1Model_a58e460b456d7affc4f6a8af785f6e82c}
+
 \item 
-\hypertarget{classIOSKJ_1_1Model_abf9ebdb10aee501808836438cb542fab}{void {\bfseries simulate} (void)}\label{classIOSKJ_1_1Model_abf9ebdb10aee501808836438cb542fab}
+\hypertarget{classIOSKJ_1_1Model_af17ad85c098293b9b7e13fbdb959bf02}{void {\bfseries simulate} (uint end=times)}\label{classIOSKJ_1_1Model_af17ad85c098293b9b7e13fbdb959bf02}
 
 \item 
 \hypertarget{classIOSKJ_1_1Model_abfc09c1b2d6bfe2802835cd5fd58c3b3}{void {\bfseries write} (void)}\label{classIOSKJ_1_1Model_abfc09c1b2d6bfe2802835cd5fd58c3b3}
@@ -48,11 +49,13 @@ double \hyperlink{classIOSKJ_1_1Model_aa422925a07c078b87c5727a6a7c22d00}{equilib
 \item 
 void \hyperlink{classIOSKJ_1_1Model_a2018db7a3e7780fddc161f026dd35c4e}{defaults} (void)
 \item 
+void \hyperlink{classIOSKJ_1_1Model_a53443d7a0b8ac5f00918023cd232de8d}{recruit\-\_\-uniform} (void)
+\item 
 void \hyperlink{classIOSKJ_1_1Model_ac65da2c311c6b0a840755af4d3ec17ea}{movement\-\_\-none} (void)
 \item 
-void \hyperlink{classIOSKJ_1_1Model_ac61f07fcabb36b29506d253d269985cf}{movement\-\_\-complete} (void)
+void \hyperlink{classIOSKJ_1_1Model_a0278c3e4893f0891856dc4df93d3306f}{movement\-\_\-uniform} (void)
 \item 
-void \hyperlink{classIOSKJ_1_1Model_aa825779594f07b2a0b28ffdd91feca27}{spawning\-\_\-even} (void)
+void \hyperlink{classIOSKJ_1_1Model_ae04fad38e291a476bec70ff67bbfd9b6}{spawning\-\_\-uniform} (void)
 \end{DoxyCompactItemize}
 \end{Indent}
 \subsection*{Public Attributes}
@@ -169,6 +172,12 @@ Array$<$ double, Quarter $>$ \hyperlink{classIOSKJ_1_1Model_a81bffc6707aa313f87b
 \item 
 \hypertarget{classIOSKJ_1_1Model_a98d798c4e85e38a52c0b901ac19b82b1}{double {\bfseries biomass\-\_\-spawning\-\_\-overall}}\label{classIOSKJ_1_1Model_a98d798c4e85e38a52c0b901ac19b82b1}
 
+\item 
+\hypertarget{classIOSKJ_1_1Model_ab2c712a92a7f11ef0d8282bd97167872}{bool {\bfseries track\-\_\-on}}\label{classIOSKJ_1_1Model_ab2c712a92a7f11ef0d8282bd97167872}
+
+\item 
+\hypertarget{classIOSKJ_1_1Model_a54eea6573edc1058346964bd39413b99}{std\-::ofstream {\bfseries track\-\_\-file}}\label{classIOSKJ_1_1Model_a54eea6573edc1058346964bd39413b99}
+
 \end{DoxyCompactItemize}
 
 
@@ -190,36 +199,16 @@ Nokome Bentley \href{mailto:nokome.bentley@trophia.com}{\tt nokome.\-bentley@tro
 )\hspace{0.3cm}{\ttfamily [inline]}}}\label{classIOSKJ_1_1Model_a2018db7a3e7780fddc161f026dd35c4e}
 Set default parameter values
 
-Mainly used in testing \hypertarget{classIOSKJ_1_1Model_aa422925a07c078b87c5727a6a7c22d00}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!equilibrium@{equilibrium}}
-\index{equilibrium@{equilibrium}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
-\subsubsection[{equilibrium}]{\setlength{\rightskip}{0pt plus 5cm}double I\-O\-S\-K\-J\-::\-Model\-::equilibrium (
-\begin{DoxyParamCaption}
-\item[{void}]{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classIOSKJ_1_1Model_aa422925a07c078b87c5727a6a7c22d00}
-\begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000004}{Todo}]Equilibrium convergence should be based on individual regions \end{DoxyRefDesc}
-\hypertarget{classIOSKJ_1_1Model_af64274ff5991d11e1c232618af8de800}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!init@{init}}
+Mainly used in testing \hypertarget{classIOSKJ_1_1Model_af64274ff5991d11e1c232618af8de800}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!init@{init}}
 \index{init@{init}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
 \subsubsection[{init}]{\setlength{\rightskip}{0pt plus 5cm}void I\-O\-S\-K\-J\-::\-Model\-::init (
 \begin{DoxyParamCaption}
 \item[{void}]{}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}}\label{classIOSKJ_1_1Model_af64274ff5991d11e1c232618af8de800}
-Initialise the fish population based on current parameter values Initialise
+Initialise the fish population based on current parameter values The fish population is initialised to an unfished state by iterating with virgin recruitment until it reaches equibrium defined by less than 0.\-01\% change in total biomass.
 
-The fish population is initialised to an unfished state by iterating with virgin recruitment until it reaches equibrium defined by less than 0.\-01\% change in total biomass.
-
-Once the population has converged to unfished equilibrium, the virgin spawning biomass can be set.\hypertarget{classIOSKJ_1_1Model_ac61f07fcabb36b29506d253d269985cf}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!movement\-\_\-complete@{movement\-\_\-complete}}
-\index{movement\-\_\-complete@{movement\-\_\-complete}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
-\subsubsection[{movement\-\_\-complete}]{\setlength{\rightskip}{0pt plus 5cm}void I\-O\-S\-K\-J\-::\-Model\-::movement\-\_\-complete (
-\begin{DoxyParamCaption}
-\item[{void}]{}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classIOSKJ_1_1Model_ac61f07fcabb36b29506d253d269985cf}
-Set movement parameters so that there is complete movement.
-
-All elements set to 1/3. Mainly used for testing \hypertarget{classIOSKJ_1_1Model_ac65da2c311c6b0a840755af4d3ec17ea}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!movement\-\_\-none@{movement\-\_\-none}}
+Once the population has converged to unfished equilibrium, the virgin spawning biomass can be set.\hypertarget{classIOSKJ_1_1Model_ac65da2c311c6b0a840755af4d3ec17ea}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!movement\-\_\-none@{movement\-\_\-none}}
 \index{movement\-\_\-none@{movement\-\_\-none}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
 \subsubsection[{movement\-\_\-none}]{\setlength{\rightskip}{0pt plus 5cm}void I\-O\-S\-K\-J\-::\-Model\-::movement\-\_\-none (
 \begin{DoxyParamCaption}
@@ -228,20 +217,36 @@ All elements set to 1/3. Mainly used for testing \hypertarget{classIOSKJ_1_1Mode
 )\hspace{0.3cm}{\ttfamily [inline]}}}\label{classIOSKJ_1_1Model_ac65da2c311c6b0a840755af4d3ec17ea}
 Set movement parameters so that there is no movement.
 
-Diagonal elements set to 1. Mainly used for testing \hypertarget{classIOSKJ_1_1Model_a242ba7c47871099bf4bed482d262cede}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!sample@{sample}}
+Diagonal elements set to 1. Mainly used for testing \hypertarget{classIOSKJ_1_1Model_a0278c3e4893f0891856dc4df93d3306f}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!movement\-\_\-uniform@{movement\-\_\-uniform}}
+\index{movement\-\_\-uniform@{movement\-\_\-uniform}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
+\subsubsection[{movement\-\_\-uniform}]{\setlength{\rightskip}{0pt plus 5cm}void I\-O\-S\-K\-J\-::\-Model\-::movement\-\_\-uniform (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classIOSKJ_1_1Model_a0278c3e4893f0891856dc4df93d3306f}
+Set movement parameters so that there is uniform movement.
+
+All elements set to 1/3. Mainly used for testing \hypertarget{classIOSKJ_1_1Model_a53443d7a0b8ac5f00918023cd232de8d}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!recruit\-\_\-uniform@{recruit\-\_\-uniform}}
+\index{recruit\-\_\-uniform@{recruit\-\_\-uniform}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
+\subsubsection[{recruit\-\_\-uniform}]{\setlength{\rightskip}{0pt plus 5cm}void I\-O\-S\-K\-J\-::\-Model\-::recruit\-\_\-uniform (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classIOSKJ_1_1Model_a53443d7a0b8ac5f00918023cd232de8d}
+Set recruitment distribution across regions to be uniform \hypertarget{classIOSKJ_1_1Model_a242ba7c47871099bf4bed482d262cede}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!sample@{sample}}
 \index{sample@{sample}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
 \subsubsection[{sample}]{\setlength{\rightskip}{0pt plus 5cm}void I\-O\-S\-K\-J\-::\-Model\-::sample (
 \begin{DoxyParamCaption}
 \item[{void}]{}
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [inline]}}}\label{classIOSKJ_1_1Model_a242ba7c47871099bf4bed482d262cede}
-Sample parameter values from prior probabiity distributions \hypertarget{classIOSKJ_1_1Model_aa825779594f07b2a0b28ffdd91feca27}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!spawning\-\_\-even@{spawning\-\_\-even}}
-\index{spawning\-\_\-even@{spawning\-\_\-even}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
-\subsubsection[{spawning\-\_\-even}]{\setlength{\rightskip}{0pt plus 5cm}void I\-O\-S\-K\-J\-::\-Model\-::spawning\-\_\-even (
+Sample parameter values from prior probability distributions \hypertarget{classIOSKJ_1_1Model_ae04fad38e291a476bec70ff67bbfd9b6}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!spawning\-\_\-uniform@{spawning\-\_\-uniform}}
+\index{spawning\-\_\-uniform@{spawning\-\_\-uniform}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
+\subsubsection[{spawning\-\_\-uniform}]{\setlength{\rightskip}{0pt plus 5cm}void I\-O\-S\-K\-J\-::\-Model\-::spawning\-\_\-uniform (
 \begin{DoxyParamCaption}
 \item[{void}]{}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classIOSKJ_1_1Model_aa825779594f07b2a0b28ffdd91feca27}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classIOSKJ_1_1Model_ae04fad38e291a476bec70ff67bbfd9b6}
 Set spawning seasonality parameters so that there is uniform spawning.
 
 All elements set to 1. Mainly used for testing. \hypertarget{classIOSKJ_1_1Model_af163ebda22001c7df308dc227c1687bb}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!step@{step}}
