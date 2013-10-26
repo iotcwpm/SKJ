@@ -1,8 +1,5 @@
 #pragma once
 
-//#include "fish.hpp"
-//#include "fishing.hpp"
-
 #include <array>
 
 #include "spline.hpp"
@@ -13,20 +10,32 @@
 
 namespace IOSKJ {
 
+/**
+ * Model of the Indian tuna fishery. This model encapsulates both fish
+ * population and fishing dynamics.
+ * 
+ * @author Nokome Bentley <nokome.bentley@trophia.com>
+ */
 class Model {
 public:
 
-
+	/**
+	 * Fish numbers by region, age and size
+	 */
 	Array<double,Region,Age,Size> numbers;
 
 	double recruit_virgin;
+	double recruit_virgin_spawners;
 	double recruit_steepness;
 	double recruit_sd;
-	double recruit_deviation;
-	bool recruit_variation;
-	bool recruit_relation;
+	bool recruit_variation_on;
+	bool recruit_relation_on;
 	Array<double,Region> recruit_regions;
 	Array<double,Size> recruit_sizes;
+
+	double recruits_determ;
+	double recruits_deviation;
+	double recruits;
 	
 	Array<double,Size> lengths;
 	const double lengths_step = 2;
@@ -59,17 +68,33 @@ public:
 	Array<double,Method,Size> selectivities;
 
 	/**
+	 * A switch used to turn off/on exploitation dynamics
+	 * (e.g turn off for virgin equilibrium)
+	 */
+	bool exploitation_on;
+
+	/**
+	 * Vulneralble biomass by region and method
+	 */
+	Array<double,Region,Method> biomass_vulnerable;
+
+	/**
 	 * Exploitation rate by region and size for current time step
 	 *
 	 * @see exploit
 	 */
 	Array<double,Region,Size> exploitation;
 
+	/**
+	 * The spawning fraction by quarter
+	 */
 	Array<double,Quarter> spawning;
-	double spawners;
-	double spawners_virgin;
-
 	
+
+	Array<double,Region> biomass;
+	Array<double,Region> biomass_spawning;
+	double biomass_spawning_overall;
+
 	#if TRACKING
 
 		std::string track_filename;
@@ -82,6 +107,13 @@ public:
 				<<"time\t"
 				<<"year\t"
 				<<"quarter\t"
+				<<"recruits_determ\t"
+				<<"recruits_deviation\t"
+				<<"recruits\t"
+				<<"biomass_spawning_overall\t"
+				<<"biomass_spawning_w\t"
+				<<"biomass_spawning_m\t"
+				<<"biomass_spawning_e\t"
 				<<std::endl;
 		}
 
@@ -89,7 +121,15 @@ public:
 			track_file
 				<<time<<"\t"
 				<<year<<"\t"
-				<<quarter<<"\t";
+				<<quarter<<"\t"
+				<<recruits_determ<<"\t"
+				<<recruits_deviation<<"\t"
+				<<recruits<<"\t"
+				<<biomass_spawning_overall<<"\t"
+				<<biomass_spawning(W)<<"\t"
+				<<biomass_spawning(M)<<"\t"
+				<<biomass_spawning(E)
+			;
 
 			track_file<<std::endl;
 		}
@@ -113,6 +153,9 @@ public:
 
 	void startup(void){
 	}
+
+	//! @{
+	//! @name Parameter setting methods
 
 	/**
 	 * Set default parameter values
@@ -187,7 +230,39 @@ public:
 		selectivity_points(OT)[4] = 1.0;
 	}
 
+	/**
+	 * Set movement parameters so that there is no movement.
+	 *
+	 * Diagonal elements set to 1. Mainly used for testing
+	 */
+	void movement_none(void){
+		for(auto region_from : region_froms){
+			for(auto region: regions){
+				movement_pars(region_from,region) = region_from==region?1:0;
+			}
+		}
+	}
 
+	/**
+	 * Set movement parameters so that there is complete movement.
+	 *
+	 * All elements set to 1/3. Mainly used for testing
+	 */
+	void movement_complete(void){
+		movement_pars = 1.0/regions.size;
+	}
+
+	/**
+	 * Set spawning seasonality parameters so that there is uniform
+	 * spawning.
+	 *
+	 * All elements set to 1. Mainly used for testing.
+	 */
+	void spawning_even(void){
+		spawning = 1.0;
+	}
+
+	//! @}
 
 	/**
 	 * Sample parameter values from prior 
@@ -196,29 +271,122 @@ public:
 	void sample(void){
 	}
 
+	/**
+	 * Initialise the fish population based on current parameter values
+	 */
+	void init(void){
+		// Initialise arrays by size...
+		for(auto size : sizes){
+
+			lengths[size] = 2*size+1;
+
+			weights[size] = weight_a * std::pow(lengths[size],weight_b);
+
+			maturities[size] = 1/(1+std::pow(19,(maturity_inflection-lengths[size])/maturity_steepness));
+		}
+
+		// Initialise natural survival rate
+		survival = std::exp(-0.25*mortality);
+
+		// Initialise growth size transition matrix
+		for(auto size : sizes){
+			growth_increments(size) = (growth_assymptote-lengths(size))*(1-std::exp(-0.25*growth_rate));
+		}
+		for(auto size_from : size_froms){
+			double growth_increment = growth_increments(size_from);
+			double mean = lengths(size_from) + growth_increment;
+			double sd = std::pow(std::pow(growth_sd,2)+std::pow(growth_increment*growth_cv,2),0.5);
+			for(auto size : sizes){
+				growth(size_from,size) = normal_integral(2*size,2*(size+1),mean,sd);
+			}
+		}
+
+		// Initialise movement matrix
+		auto movement_sums = movement_pars(by(region_froms),sum());
+		for(auto region_from : region_froms){
+			for(auto region : regions){
+				movement(region_from,region) = 
+					movement_pars(region_from,region)/movement_sums(region_from);
+			}
+		}
+
+		// Initialise selectivity
+		for(auto method : methods){
+			auto points = selectivity_points(method);
+			Spline<double,double> selectivity_spline(
+				{0,20,40,60,80},
+				std::vector<double>(points.begin(),points.end())
+			);
+
+			for(auto size : sizes){
+				selectivities(method,size) = selectivity_spline.interpolate(lengths(size));
+			}
+		}
+
+		/**
+		 * Initialise
+		 */
+
+		/**
+		 * The fish population is initialised to an unfished state
+		 * by iterating with virgin recruitment until it reaches equibrium
+		 * defined by less than 0.01% change in total biomass.
+		 */
+		// Initialise the population to zero
+		numbers = 0;
+		// Turn off recruitment relationship, variation and exploitation
+		recruit_relation_on = false;
+		exploitation_on = false;
+		// Go to equilibrium
+		equilibrium();
+		// Turn on recruitment relationship etc again
+		recruit_relation_on = true;
+		exploitation_on = true;
+
+		/**
+		 * Once the population has converged to unfished equilibrium, the virgin
+		 * spawning biomass can be set.
+		 */
+		recruit_virgin_spawners = biomass_spawning_overall;
+
+		write();
+	}
 
 	void step(void){
 
 		// Recruits
-		double recruits_determ;
-		if(recruit_relation){
+		if(recruit_relation_on){
 			// Stock-recruitment realtion is active so calculate recruits based on 
 			// the spawning biomass in the previous time step
 			//! @todo check this equation
-			recruits_determ = 4 * recruit_steepness * recruit_virgin * spawners / (
-				(5*recruit_steepness-1)*spawners + spawners_virgin*(1-recruit_steepness)
+			recruits_determ = 4 * recruit_steepness * recruit_virgin * biomass_spawning_overall / (
+				(5*recruit_steepness-1)*biomass_spawning_overall + recruit_virgin_spawners*(1-recruit_steepness)
 			);
 		} else {
-			// Stock-recruitment realtion is not active so recruitment is just r0.
+			// Stock-recruitment relation is not active so recruitment is just r0.
 			recruits_determ = recruit_virgin;
 		}
-		double recruits_deviation;
-		if(recruit_variation){
-			recruits_deviation = 0;//! @todo implement
+		if(recruit_variation_on){
+			recruits_deviation = 1;//! @todo implement
 		} else {
 			recruits_deviation = 1;
 		}
-		double recruits = recruits_determ * recruits_deviation;
+		recruits = recruits_determ * recruits_deviation;
+
+		if(exploitation_on){
+			// Exploitation rate
+			for(auto region : regions){
+				for(auto method : methods){
+					double sum = 0;
+					for(auto age : ages){
+						for(auto size : sizes){
+							sum += numbers(region,age,size) * weights(size) * selectivities(method,size);
+						}
+					}
+					biomass_vulnerable(region,method) = sum;
+				}
+			}
+		}
 
 		// Ageing and recruitment
 		for(auto region : regions){
@@ -248,7 +416,7 @@ public:
 							sum += numbers(region_from,age,size_from) * 
 									growth(size_from,size) * 
 									survival * 
-									//(1-exploitation(region_from,size_from)) * 
+									//(1-(exploitation_on?exploitation(region_from,size_from):0)) * 
 									movement(region_from,region);
 						}
 					}
@@ -258,34 +426,29 @@ public:
 		}
 		numbers = numbers_temp;
 
-		// Spawners
-		spawners = 0;
+		// Calculate total biomass and spawning biomass by region
 		for(auto region : regions){
+			double biomass_ = 0;
+			double biomass_spawning_ = 0;
 			for(auto age : ages){
 				for(auto size : sizes){
-					spawners = numbers(region,age,size) * maturities(size) * weights(size) * spawning(quarter);
+					double biomass = numbers(region,age,size) * weights(size);
+					biomass_ += biomass;
+					biomass_spawning_ += biomass * maturities(size) * spawning(quarter);
 				}
 			}
+			biomass(region) = biomass_;
+			biomass_spawning(region) = biomass_spawning_;
 		}
-	}
-
-	double biomass(void) const {
-		double sum = 0;
-		for(auto region : regions){
-			for(auto age : ages){
-				for(auto size : sizes){
-					sum += numbers(region,age,size) * weights(size);
-				}
-			}			
-		}
-		return sum;
+		biomass_spawning_overall = sum(biomass_spawning);
 	}
 
 	double equilibrium(void){
 		// Iterate until there is a very minor change in biomass
+		//! @todo Equilibrium convergence should be based on individual regions
 
 		// Turn off recruitment variation
-		recruit_variation = false;
+		recruit_variation_on = false;
 
 		unsigned int steps = 0;
 		double biomass_prev = 1;
@@ -302,105 +465,20 @@ public:
 		}
 
 		// Turn on recruitment deviation again
-		recruit_variation = true;
+		recruit_variation_on = true;
 
 		return biomass_prev;
-	}
-
-
-	/**
-	 * Initialise the fish population with 
-	 * based on current parameter values
-	 */
-	void init(void){
-
-		// Initialise arrays by size...
-		for(auto size : sizes){
-
-			lengths[size] = 2*size+1;
-
-			weights[size] = weight_a * std::pow(lengths[size],weight_b);
-
-			maturities[size] = 1/(1+std::pow(19,(maturity_inflection-lengths[size])/maturity_steepness));
-		}
-
-		// Initialise natural survival rate
-		survival = std::exp(-0.25*mortality);
-
-		// Initialise growth size transition matrix
-		for(auto size : sizes){
-			growth_increments(size) = (growth_assymptote-lengths(size))*(1-std::exp(-0.25*growth_rate));
-		}
-		for(auto size_from : size_froms){
-			double growth_increment = growth_increments(size_from);
-			double mean = lengths(size_from) + growth_increment;
-			double sd = std::pow(std::pow(growth_sd,2)+std::pow(growth_increment*growth_cv,2),0.5);
-			for(auto size : sizes){
-				growth(size_from,size) = normal_integral(2*size,2*(size+1),mean,sd);
-			}
-		}
-
-		// Initialise movement matrix
-		auto movement_sums = movement(by(region_froms),sum());
-		for(auto region_from : region_froms){
-			for(auto region : regions){
-				movement(region_from,region) = 
-					movement_pars(region_from,region);
-					//region_from==region?1:0;
-					//movement(region_from,region)/movement_sums(region_from);
-			}
-		}
-
-		/**
-		 * Initialise selectivity
-		 */
-		for(auto method : methods){
-			auto points = selectivity_points(method);
-			Spline<double,double> selectivity_spline(
-				{0,20,40,60,80},
-				std::vector<double>(points.begin(),points.end())
-			);
-
-			for(auto size : sizes){
-				selectivities(method,size) = selectivity_spline.interpolate(size*2+1);
-			}
-		}
-
-		/**
-		 * The fish population is initialised to an unfished state
-		 * by iterating with virgin recruitment until it reaches equibrium
-		 * defined by less than 0.01% change in total biomass
-		 */
-		// Initialise the population to zero
-		numbers = 0;
-		// Turn off recruitment relationship
-		recruit_relation = false;
-		// Go to equilibrium
-		equilibrium();
-		// Turn on recruitment relationship again
-		recruit_relation = true;
-
-		write();
 	}
 
 	void simulate(void){
 		track_begin();
 
+		init();
+
 		for(time=0;time<times;time++){
-			// Set Year and Quarter
 			year = 1950 + time/4;
-			quarter = time%4;
-
-			// If time zero then initialise things
-			if(time==0){
-				init();
-			}
-
-			// Otherwise do the usual annual time step
-			else {
-				step();
-			}
-
+			quarter = time==0?0:time%4;
+			step();
 			track();
 		}
 
@@ -408,15 +486,15 @@ public:
 	}
 
 	void write(void){
-		numbers.write("output/fish-numbers.txt");
-		lengths.write("output/fish-lengths.txt");
-		weights.write("output/fish-weights.txt");
-		maturities.write("output/fish-maturities.txt");
-		spawning.write("output/fish-spawning.txt");
-		growth_increments.write("output/fish-growth-increments.txt");
-		growth.write("output/fish-growth.txt");
-		movement.write("output/fish-movement.txt");
-		selectivities.write("output/fishing-selectivities.txt");
+		numbers.write("output/numbers.txt");
+		lengths.write("output/lengths.txt");
+		weights.write("output/weights.txt");
+		maturities.write("output/maturities.txt");
+		spawning.write("output/spawning.txt");
+		growth_increments.write("output/growth-increments.txt");
+		growth.write("output/growth.txt");
+		movement.write("output/movement.txt");
+		selectivities.write("output/selectivities.txt");
 	}
 
 	void shutdown(void){

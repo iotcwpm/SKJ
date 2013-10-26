@@ -11,6 +11,10 @@ int main(void){
 	model.startup();
 	Data::startup();
 
+	model.track_filename = "defaults-track.txt";
+
+	model.defaults();
+
 	model.simulate();
 
 	model.shutdown();

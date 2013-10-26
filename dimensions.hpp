@@ -6,10 +6,10 @@ namespace IOSKJ {
 
 typedef unsigned int uint;
 
-uint time = 0;
+uint time;
 const uint times = (2013+25-1950)*4;
-uint year;
-uint quarter;
+int year;
+int quarter;
 
 STENCILA_ARRAY_DIM(Quarter,quarters,quarter,4)
 
