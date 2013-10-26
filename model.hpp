@@ -13,7 +13,7 @@
 namespace IOSKJ {
 
 /**
- * Model of the Indian tuna fishery. This model encapsulates both fish
+ * Model of the Indian Ocean skipjack tuna fishery. This class encapsulates both fish
  * population and fishing dynamics.
  * 
  * @author Nokome Bentley <nokome.bentley@trophia.com>
@@ -27,7 +27,13 @@ public:
 	Array<double,Region,Age,Size> numbers;
 
 	double recruit_virgin;
-	double recruit_virgin_spawners;
+
+	/**
+	 * Unfished spawning biomass by quarter. It is necessary to have this by quarter
+	 * because the proportion of mature fish that spawn varies by quarter.
+	 */
+	Array<double,Quarter> recruit_virgin_spawners;
+
 	double recruit_steepness;
 	double recruit_sd;
 	bool recruit_variation_on;
@@ -95,7 +101,13 @@ public:
 
 	Array<double,Region> biomass;
 	Array<double,Region> biomass_spawning;
-	double biomass_spawning_overall;
+
+	/**
+	 * Spawning biomass in each of the most recent quarters
+	 * This is recorded in step() so that the recruits_virgin_spawners
+	 * can be set by init()
+	 */
+	Array<double,Quarter> biomass_spawning_overall;
 
 	#if TRACKING
 
@@ -128,7 +140,7 @@ public:
 					<<recruits_determ<<"\t"
 					<<recruits_deviation<<"\t"
 					<<recruits<<"\t"
-					<<biomass_spawning_overall<<"\t"
+					<<biomass_spawning_overall(quarter)<<"\t"
 					<<biomass_spawning(W)<<"\t"
 					<<biomass_spawning(M)<<"\t"
 					<<biomass_spawning(E)
@@ -350,23 +362,39 @@ public:
 
 		/**
 		 * Once the population has converged to unfished equilibrium, the virgin
-		 * spawning biomass can be set.
+		 * spawning biomass in each quarter can be set.
 		 */
-		recruit_virgin_spawners = biomass_spawning_overall;
+		for(auto quarter : quarters) recruit_virgin_spawners(quarter) = biomass_spawning_overall(quarter);
 
 		write();
 	}
 
 	void step(void){
 
+		// Calculate total biomass and spawning biomass by region
+		for(auto region : regions){
+			double biomass_ = 0;
+			double biomass_spawning_ = 0;
+			for(auto age : ages){
+				for(auto size : sizes){
+					double biomass = numbers(region,age,size) * weights(size);
+					biomass_ += biomass;
+					biomass_spawning_ += biomass * maturities(size) * spawning(quarter);
+				}
+			}
+			biomass(region) = biomass_;
+			biomass_spawning(region) = biomass_spawning_;
+		}
+		biomass_spawning_overall(quarter) = sum(biomass_spawning);
+
 		// Recruits
 		if(recruit_relation_on){
 			// Stock-recruitment realtion is active so calculate recruits based on 
 			// the spawning biomass in the previous time step
 			//! @todo check this equation
-			recruits_determ = 4 * recruit_steepness * recruit_virgin * biomass_spawning_overall / (
-				(5*recruit_steepness-1)*biomass_spawning_overall + 
-				recruit_virgin_spawners*(1-recruit_steepness)
+			recruits_determ = 4 * recruit_steepness * recruit_virgin * biomass_spawning_overall(quarter) / (
+				(5*recruit_steepness-1)*biomass_spawning_overall(quarter) + 
+				recruit_virgin_spawners(quarter)*(1-recruit_steepness)
 			);
 		} else {
 			// Stock-recruitment relation is not active so recruitment is just r0.
@@ -431,22 +459,6 @@ public:
 			}
 		}
 		numbers = numbers_temp;
-
-		// Calculate total biomass and spawning biomass by region
-		for(auto region : regions){
-			double biomass_ = 0;
-			double biomass_spawning_ = 0;
-			for(auto age : ages){
-				for(auto size : sizes){
-					double biomass = numbers(region,age,size) * weights(size);
-					biomass_ += biomass;
-					biomass_spawning_ += biomass * maturities(size) * spawning(quarter);
-				}
-			}
-			biomass(region) = biomass_;
-			biomass_spawning(region) = biomass_spawning_;
-		}
-		biomass_spawning_overall = sum(biomass_spawning);
 
 		track();
 	}

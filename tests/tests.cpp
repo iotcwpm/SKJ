@@ -16,13 +16,15 @@ struct modelFixture {
 BOOST_FIXTURE_TEST_SUITE(model,modelFixture)
 
 	/**
+	 * @class IOSKJ::Model
+	 * @test equilibrium_stable
+	 * 
 	 * Test that when there is no substantial change in equilibrium
 	 * conditions given further simulation.
 	 */
 	BOOST_AUTO_TEST_CASE(equilibrium_stable){
 		model.track_open("equilibrium_stable.txt");
 
-		model.spawning_uniform();
 		model.init();
 		auto biomass_equil = model.biomass;
 
@@ -37,6 +39,9 @@ BOOST_FIXTURE_TEST_SUITE(model,modelFixture)
 	}
 
 	/**
+	 * @class IOSKJ::Model
+	 * @test equilibrium_uniform
+	 * 
 	 * Test that when there is no movement and equal
 	 * reruitment distribution that the equilibrium biomass
 	 * is equal in all areas
