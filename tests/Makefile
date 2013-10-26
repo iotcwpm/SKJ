@@ -1,14 +1,14 @@
 # Makefile for tests
 
-all: tests.test
+all: tests.out
 
 # Compile the tests
 tests.exe: *.cpp
 	$(CXX) -std=c++11 -g -O3 -Wall -I. -o tests.exe tests.cpp -lboost_unit_test_framework
 
 # Run the tests
-tests.test : tests.exe
-	./tests.exe 2>&1 | tee -a tests.test
+tests.out : tests.exe
+	./tests.exe 2>&1 | tee tests.out
 
 clean:
-	rm -f *.o *.exe *.test
+	rm -f *.o *.exe *.out
