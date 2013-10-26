@@ -1,5 +1,4 @@
 #define DEBUG 1
-#define TRACKING 1
 
 #include "model.hpp"
 #include "data.hpp"
@@ -11,10 +10,8 @@ int main(void){
 	model.startup();
 	Data::startup();
 
-	model.track_filename = "defaults-track.txt";
-
 	model.defaults();
-
+	model.init();
 	model.simulate();
 
 	model.shutdown();

@@ -8,6 +8,8 @@
 #include "dimensions.hpp"
 #include "distributions.hpp"
 
+#define TRACKING 1
+
 namespace IOSKJ {
 
 /**
@@ -97,12 +99,12 @@ public:
 
 	#if TRACKING
 
-		std::string track_filename;
+		bool track_on;
 		std::ofstream track_file;
 
-		void track_begin(void){
-			track_file.open(track_filename);
-
+		void track_open(std::string filename){
+			track_on = true;
+			track_file.open(filename);
 			track_file
 				<<"time\t"
 				<<"year\t"
@@ -113,40 +115,41 @@ public:
 				<<"biomass_spawning_overall\t"
 				<<"biomass_spawning_w\t"
 				<<"biomass_spawning_m\t"
-				<<"biomass_spawning_e\t"
+				<<"biomass_spawning_e"
 				<<std::endl;
 		}
 
 		void track(void){
-			track_file
-				<<time<<"\t"
-				<<year<<"\t"
-				<<quarter<<"\t"
-				<<recruits_determ<<"\t"
-				<<recruits_deviation<<"\t"
-				<<recruits<<"\t"
-				<<biomass_spawning_overall<<"\t"
-				<<biomass_spawning(W)<<"\t"
-				<<biomass_spawning(M)<<"\t"
-				<<biomass_spawning(E)
-			;
-
-			track_file<<std::endl;
+			if(track_on){
+				track_file
+					<<time<<"\t"
+					<<year<<"\t"
+					<<quarter<<"\t"
+					<<recruits_determ<<"\t"
+					<<recruits_deviation<<"\t"
+					<<recruits<<"\t"
+					<<biomass_spawning_overall<<"\t"
+					<<biomass_spawning(W)<<"\t"
+					<<biomass_spawning(M)<<"\t"
+					<<biomass_spawning(E)
+					<<std::endl;
+			}
 		}
 
-		void track_end(void){
+		void track_close(void){
+			track_on = false;
 			track_file.close();
 		}
 
 	#else
 
-		void track_begin(void){
+		void track_open(void){
 		}
 
 		void track(void){
 		}
 
-		void track_end(void){
+		void track_close(void){
 		}
 
 	#endif
@@ -231,6 +234,13 @@ public:
 	}
 
 	/**
+	 * Set recruitment distribution across regions to be uniform
+	 */
+	void recruit_uniform(void){
+		recruit_regions = 1.0/recruit_regions.size();
+	}
+
+	/**
 	 * Set movement parameters so that there is no movement.
 	 *
 	 * Diagonal elements set to 1. Mainly used for testing
@@ -244,12 +254,12 @@ public:
 	}
 
 	/**
-	 * Set movement parameters so that there is complete movement.
+	 * Set movement parameters so that there is uniform movement.
 	 *
 	 * All elements set to 1/3. Mainly used for testing
 	 */
-	void movement_complete(void){
-		movement_pars = 1.0/regions.size;
+	void movement_uniform(void){
+		movement_pars = 1.0/movement_pars.size();
 	}
 
 	/**
@@ -258,15 +268,14 @@ public:
 	 *
 	 * All elements set to 1. Mainly used for testing.
 	 */
-	void spawning_even(void){
+	void spawning_uniform(void){
 		spawning = 1.0;
 	}
 
 	//! @}
 
 	/**
-	 * Sample parameter values from prior 
-	 * probabiity distributions
+	 * Sample parameter values from prior probability distributions
 	 */
 	void sample(void){
 	}
@@ -324,10 +333,6 @@ public:
 		}
 
 		/**
-		 * Initialise
-		 */
-
-		/**
 		 * The fish population is initialised to an unfished state
 		 * by iterating with virgin recruitment until it reaches equibrium
 		 * defined by less than 0.01% change in total biomass.
@@ -360,7 +365,8 @@ public:
 			// the spawning biomass in the previous time step
 			//! @todo check this equation
 			recruits_determ = 4 * recruit_steepness * recruit_virgin * biomass_spawning_overall / (
-				(5*recruit_steepness-1)*biomass_spawning_overall + recruit_virgin_spawners*(1-recruit_steepness)
+				(5*recruit_steepness-1)*biomass_spawning_overall + 
+				recruit_virgin_spawners*(1-recruit_steepness)
 			);
 		} else {
 			// Stock-recruitment relation is not active so recruitment is just r0.
@@ -441,48 +447,46 @@ public:
 			biomass_spawning(region) = biomass_spawning_;
 		}
 		biomass_spawning_overall = sum(biomass_spawning);
+
+		track();
 	}
 
-	double equilibrium(void){
+	void equilibrium(void){
 		// Iterate until there is a very minor change in biomass
-		//! @todo Equilibrium convergence should be based on individual regions
 
 		// Turn off recruitment variation
 		recruit_variation_on = false;
 
-		unsigned int steps = 0;
-		double biomass_prev = 1;
-		while(steps<10000){
+		uint steps = 0;
+		const uint steps_max = 10000;
+		Array<double,Region> biomass_prev = 1;
+		while(steps<steps_max){
 			for(quarter=0;quarter<4;quarter++) step();
 
-			double biomass_curr = biomass();
-			#if DEBUG
-				std::cout<<steps<<"\t"<<biomass_curr<<"\t"<<biomass_prev<<std::endl;
-			#endif
-			if(fabs(biomass_curr-biomass_prev)/biomass_prev<0.0001) break;
-			biomass_prev = biomass_curr;
+			double diffs = 0;
+			for(auto region : regions){
+				diffs += fabs(biomass(region)-biomass_prev(region))/biomass_prev(region);
+			}
+			if(diffs<0.0001) break;
+			biomass_prev = biomass;
+
 			steps++;
 		}
+		// Throw an error if there was no convergence
+		assert(steps<steps_max);
+
+		std::cout<<steps<<"\n";
 
 		// Turn on recruitment deviation again
 		recruit_variation_on = true;
-
-		return biomass_prev;
 	}
 
-	void simulate(void){
-		track_begin();
-
-		init();
-
-		for(time=0;time<times;time++){
+	void simulate(uint end=times){
+		for(time=0;time<end;time++){
 			year = 1950 + time/4;
 			quarter = time==0?0:time%4;
 			step();
-			track();
 		}
-
-		track_end();
 	}
 
 	void write(void){

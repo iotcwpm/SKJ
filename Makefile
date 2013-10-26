@@ -1,6 +1,6 @@
 all: main.exe main.debug
 
-.PHONY: docs
+.PHONY: docs tests
 
 HPPS := $(shell find . -name "*.hpp")
 CPPS := $(shell find . -name "*.cpp")
@@ -16,6 +16,9 @@ run: main.exe
 
 docs:
 	$(MAKE) -C docs
+
+tests:
+	$(MAKE) -C tests
 
 clean:
 	rm -f *.debug *.exe *.o
