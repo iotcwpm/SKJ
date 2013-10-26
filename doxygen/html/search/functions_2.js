@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['sample',['sample',['../classIOSKJ_1_1Model.html#a242ba7c47871099bf4bed482d262cede',1,'IOSKJ::Model']]],
-  ['step',['step',['../classIOSKJ_1_1Model.html#af163ebda22001c7df308dc227c1687bb',1,'IOSKJ::Model']]]
+  ['init',['init',['../classIOSKJ_1_1Model.html#af64274ff5991d11e1c232618af8de800',1,'IOSKJ::Model']]]
 ];

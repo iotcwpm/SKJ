@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['exploitation',['exploitation',['../classIOSKJ_1_1Model.html#ad4379e82be5723f2e1b58e9492dde3dc',1,'IOSKJ::Model']]],
-  ['exploitation_5fon',['exploitation_on',['../classIOSKJ_1_1Model.html#ab9afc5bae0ac8e16817802e54bdfa60d',1,'IOSKJ::Model']]]
+  ['biomass_5fvulnerable',['biomass_vulnerable',['../classIOSKJ_1_1Model.html#a0aa015def5316af0f5ce23bdaecbf67c',1,'IOSKJ::Model']]]
 ];
