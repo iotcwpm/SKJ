@@ -12,7 +12,7 @@ int main(void){
 
 	model.defaults();
 	model.init();
-	model.simulate();
+	model.simulate(0,1000);
 
 	model.shutdown();
 	Data::shutdown();

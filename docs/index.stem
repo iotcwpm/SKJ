@@ -195,6 +195,8 @@ section#fish
 
         p where `eta` is steepness, `theta` and `dot(S)` are the respectively the recruitment and spawning biomass in the absence of fishing, and `D_t` is the recruitment deviation at time t which is lognormally distributed with mean of 1 and standard deviation of `sigma`.
 
+        .todo To do : add in recruitment autocorrelation
+
         p This total recruitment is distributed across the three regions,
 
             `R_{r,s} = bar(R) * chi_r * A_s`
@@ -232,7 +234,6 @@ section#fish
         p The proportion of fish growing from size `dot(s)` to size `s` in one quarter is thus,
 
 			`G_{dot(s),s} = int_{l=2s}^{l=2(s+1)} 1/(sqrt(2 pi) J_dot(s))e^(-(L_dot(s)+I_dot(s)-l)^2)/(2 (J_dot(s))^2)`
-
 		
         .note Growth could vary by region and/or time e.g `lambda_{r}`, `kappa_{t}`
 

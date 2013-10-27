@@ -2,6 +2,7 @@
 #include <boost/test/unit_test.hpp>
 
 #include "../model.hpp"
+#include "../statistics.hpp"
 using namespace IOSKJ;
 
 struct modelFixture { 
@@ -30,9 +31,9 @@ BOOST_FIXTURE_TEST_SUITE(model,modelFixture)
 
 		model.recruit_variation_on = false;
 		model.exploitation_on = false;
-		model.simulate(100);
+		model.simulate(0,100);
 
-		const double tolerance = 0.1; //0.1%
+		const double tolerance = 0.01; //0.01%
 		BOOST_CHECK_CLOSE(biomass_equil(W),model.biomass(W),tolerance);
 		BOOST_CHECK_CLOSE(biomass_equil(M),model.biomass(M),tolerance);
 		BOOST_CHECK_CLOSE(biomass_equil(E),model.biomass(E),tolerance);
@@ -55,6 +56,29 @@ BOOST_FIXTURE_TEST_SUITE(model,modelFixture)
 		BOOST_CHECK_CLOSE(model.biomass(W),model.biomass(M),tolerance);
 		BOOST_CHECK_CLOSE(model.biomass(M),model.biomass(E),tolerance);
 		BOOST_CHECK_CLOSE(model.biomass(W),model.biomass(E),tolerance);
+	}
+
+	/**
+	 * @class IOSKJ::Model
+	 * @test recruiment_variation
+	 * 
+	 * Test that recruitment variation has the right mean and 
+	 * standard deviation.
+	 */
+	BOOST_AUTO_TEST_CASE(recruiment_variation){
+		model.track_open("recruiment_variation.txt");
+
+		model.init();
+		
+		Stats stats;
+		for(period=0;period<1000;period++){
+			time(period);
+			model.step();
+			stats(model.recruits_deviation);
+		}
+
+		BOOST_CHECK_CLOSE(mean(stats),1,5);
+		BOOST_CHECK_CLOSE(std::pow(variance(stats),0.5),model.recruit_sd,10);
 	}
 
 BOOST_AUTO_TEST_SUITE_END()

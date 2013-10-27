@@ -118,7 +118,7 @@ public:
 			track_on = true;
 			track_file.open(filename);
 			track_file
-				<<"time\t"
+				<<"period\t"
 				<<"year\t"
 				<<"quarter\t"
 				<<"recruits_determ\t"
@@ -134,7 +134,7 @@ public:
 		void track(void){
 			if(track_on){
 				track_file
-					<<time<<"\t"
+					<<period<<"\t"
 					<<year<<"\t"
 					<<quarter<<"\t"
 					<<recruits_determ<<"\t"
@@ -184,7 +184,7 @@ public:
 
 		recruit_regions = {0.5,0.3,0.2};
 
-		recruit_sizes = 0;
+		recruit_sizes = 0.0;
 		recruit_sizes[0] = 1;
 
 		weight_a = 5.32e-6;
@@ -251,18 +251,16 @@ public:
 	void recruit_uniform(void){
 		recruit_regions = 1.0/recruit_regions.size();
 	}
-
+ 
 	/**
 	 * Set movement parameters so that there is no movement.
 	 *
 	 * Diagonal elements set to 1. Mainly used for testing
 	 */
 	void movement_none(void){
-		for(auto region_from : region_froms){
-			for(auto region: regions){
-				movement_pars(region_from,region) = region_from==region?1:0;
-			}
-		}
+		movement_pars = [](uint region_from, uint region_to){
+			return double(region_from==region_to?1:0);
+		};
 	}
 
 	/**
@@ -350,7 +348,7 @@ public:
 		 * defined by less than 0.01% change in total biomass.
 		 */
 		// Initialise the population to zero
-		numbers = 0;
+		numbers = 0.0;
 		// Turn off recruitment relationship, variation and exploitation
 		recruit_relation_on = false;
 		exploitation_on = false;
@@ -384,7 +382,8 @@ public:
 			}
 			biomass(region) = biomass_;
 			biomass_spawning(region) = biomass_spawning_;
-		}
+
+		} 
 		biomass_spawning_overall(quarter) = sum(biomass_spawning);
 
 		// Recruits
@@ -401,7 +400,7 @@ public:
 			recruits_determ = recruit_virgin;
 		}
 		if(recruit_variation_on){
-			recruits_deviation = 1;//! @todo implement
+			recruits_deviation = lognormal_rand(1,recruit_sd);
 		} else {
 			recruits_deviation = 1;
 		}
@@ -493,10 +492,9 @@ public:
 		recruit_variation_on = true;
 	}
 
-	void simulate(uint end=times){
-		for(time=0;time<end;time++){
-			year = 1950 + time/4;
-			quarter = time==0?0:time%4;
+	void simulate(uint begin,uint end){
+		for(period=begin;period<end;period++){
+			time(period);
 			step();
 		}
 	}
