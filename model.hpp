@@ -26,39 +26,173 @@ public:
 	 */
 	Array<double,Region,Age,Size> numbers;
 
-	double recruit_virgin;
+	/**
+	 * Total biomass by region
+	 */
+	Array<double,Region> biomass;
+	
+
+	/**
+	 * @{
+	 * @name Spawning
+	 */
+
+	/**
+	 * The spawning fraction by quarter
+	 */
+	Array<double,Quarter> spawning;
+	
+
+	/**
+	 * The total spawning biomass by region
+	 */
+	Array<double,Region> biomass_spawning;
+
+	/**
+	 * Total spawning biomass in each of the most recent quarters
+	 * This is recorded in step() so that the biomass_spawning_unfished
+	 * can be set by init()
+	 */
+	Array<double,Quarter> biomass_spawning_overall;
 
 	/**
 	 * Unfished spawning biomass by quarter. It is necessary to have this by quarter
 	 * because the proportion of mature fish that spawn varies by quarter.
 	 */
-	Array<double,Quarter> recruit_virgin_spawners;
+	Array<double,Quarter> biomass_spawning_unfished;
 
-	double recruit_steepness;
-	double recruit_sd;
-	bool recruit_variation_on;
-	bool recruit_relation_on;
-	Array<double,Region> recruit_regions;
-	Array<double,Size> recruit_sizes;
+	/**
+	 * @}
+	 */
 
+	/**
+	 * @{
+	 * @name Recruitment
+	 */
+
+	/**
+	 * Unfished equlibrium recruitment (numbers)
+	 */
+	double recruits_unfished;
+
+	/**
+	 * Steepness of stock-recruit relation
+	 */
+	double recruits_steepness;
+
+	/**
+	 * Standard deviation of recruitment vaiation
+	 */
+	double recruits_sd;
+
+	/**
+	 * Flag to turn on/off recruitment variation
+	 */
+	bool recruits_variation_on;
+
+	/**
+	 * Flag to turn on/off recruitment relation
+	 */
+	bool recruits_relation_on;
+
+	/**
+	 * Deterministic recruitment at time t 
+	 */
 	double recruits_determ;
+
+	/**
+	 * Recruitment deviation (multiplier) at time t
+	 */
 	double recruits_deviation;
+
+	/**
+	 * Total number of recruits at time t
+	 */
 	double recruits;
+
+	/**
+	 * Recruitment by region
+	 */
+	Array<double,Region> recruits_regions;
+
+	/**
+	 * Initial sizes of recruits
+	 */
+	Array<double,Size> recruits_sizes;
+
+	/**
+	 * @}
+	 */
 	
+	/**
+	 * @{
+	 * @name Length, weight, maturity
+	 */
+	
+	/**
+	 * Length at size s
+	 */
 	Array<double,Size> lengths;
 	const double lengths_step = 2;
 
+	/**
+	 * Scalar of length-weight relationship
+	 */
 	double weight_a;
+
+	/**
+	 * Exponent of length-weight relationship
+	 */
 	double weight_b;
+
+	/**
+	 * Weight at size s
+	 */
 	Array<double,Size> weights;
 	
+	/**
+	 * Inflection of maturity ogive
+	 */
 	double maturity_inflection;
-	double maturity_steepness;
-	Array<double,Size> maturities;
-	
-	double mortality;
-	double survival;
 
+	/**
+	 * Steepness of maturiy ogive
+	 */
+	double maturity_steepness;
+
+	/**
+	 * Maturity at size s
+	 */
+	Array<double,Size> maturities;
+
+	/**
+	 * @}
+	 */
+	
+	/**
+	 * @{
+	 * @name Natural mortality
+	 */
+	
+	/**
+	 * Instantaneous rate of natural mortality
+	 */
+	double mortality;
+
+	/**
+	 * Quarterly rate of survival from natural mortality
+	 */
+	double natural_survival;
+
+	/**
+	 * @}
+	 */
+
+	/**
+	 * @{
+	 * @name Growth
+	 */
+	
 	double growth_rate;
 	double growth_assymptote;
 	double growth_sd;
@@ -66,10 +200,27 @@ public:
 	Array<double,Size> growth_increments;
 	Array<double,SizeFrom,Size> growth;
 
+	/**
+	 * @}
+	 */
+
+	/**
+	 * @{
+	 * @name Movement
+	 */
+	
 	Array<double,RegionFrom,Region> movement_pars;
 	Array<double,RegionFrom,Region> movement;
 
+	/**
+	 * @}
+	 */
 
+	/**
+	 * @{
+	 * @name Selectivity/exploitation
+	 */
+	
 	typedef std::array<double,5> SelectivityPoints;
 	Array<SelectivityPoints,Method> selectivity_points;
 
@@ -88,27 +239,22 @@ public:
 
 	/**
 	 * Exploitation rate by region and size for current time step
-	 *
-	 * @see exploit
 	 */
 	Array<double,Region,Size> exploitation;
 
 	/**
-	 * The spawning fraction by quarter
+	 * @}
 	 */
-	Array<double,Quarter> spawning;
 	
 
-	Array<double,Region> biomass;
-	Array<double,Region> biomass_spawning;
-
 	/**
-	 * Spawning biomass in each of the most recent quarters
-	 * This is recorded in step() so that the recruits_virgin_spawners
-	 * can be set by init()
+	 * @{
+	 * @name Tracking
+	 *
+	 * Tracking of various model variables during simulation.
+	 * Mainly used in testing.
+	 * Writing output is slow so this can be turned off using the TRACKING macro
 	 */
-	Array<double,Quarter> biomass_spawning_overall;
-
 	#if TRACKING
 
 		bool track_on;
@@ -166,6 +312,13 @@ public:
 
 	#endif
 
+	/**
+	 * @}
+	 */
+
+	/**
+	 * Perform any necessary steps at initial model execution 
+	 */
 	void startup(void){
 	}
 
@@ -178,14 +331,14 @@ public:
 	 * Mainly used in testing
 	 */
 	void defaults(void){
-		recruit_virgin = 10e6;
-		recruit_steepness = 0.9;
-		recruit_sd = 0.6;
+		recruits_unfished = 10e6;
+		recruits_steepness = 0.9;
+		recruits_sd = 0.6;
 
-		recruit_regions = {0.5,0.3,0.2};
+		recruits_regions = {0.5,0.3,0.2};
 
-		recruit_sizes = 0.0;
-		recruit_sizes[0] = 1;
+		recruits_sizes = 0.0;
+		recruits_sizes[0] = 1;
 
 		weight_a = 5.32e-6;
 		weight_b = 3.35;
@@ -248,8 +401,8 @@ public:
 	/**
 	 * Set recruitment distribution across regions to be uniform
 	 */
-	void recruit_uniform(void){
-		recruit_regions = 1.0/recruit_regions.size();
+	void recruits_uniform(void){
+		recruits_regions = 1.0/recruits_regions.size();
 	}
  
 	/**
@@ -305,7 +458,7 @@ public:
 		}
 
 		// Initialise natural survival rate
-		survival = std::exp(-0.25*mortality);
+		natural_survival = std::exp(-0.25*mortality);
 
 		// Initialise growth size transition matrix
 		for(auto size : sizes){
@@ -350,19 +503,21 @@ public:
 		// Initialise the population to zero
 		numbers = 0.0;
 		// Turn off recruitment relationship, variation and exploitation
-		recruit_relation_on = false;
+		recruits_relation_on = false;
 		exploitation_on = false;
 		// Go to equilibrium
 		equilibrium();
 		// Turn on recruitment relationship etc again
-		recruit_relation_on = true;
+		recruits_relation_on = true;
 		exploitation_on = true;
 
 		/**
 		 * Once the population has converged to unfished equilibrium, the virgin
 		 * spawning biomass in each quarter can be set.
 		 */
-		for(auto quarter : quarters) recruit_virgin_spawners(quarter) = biomass_spawning_overall(quarter);
+		for(auto quarter : quarters){
+			biomass_spawning_unfished(quarter) = biomass_spawning_overall(quarter);
+		}
 
 		write();
 	}
@@ -387,39 +542,25 @@ public:
 		biomass_spawning_overall(quarter) = sum(biomass_spawning);
 
 		// Recruits
-		if(recruit_relation_on){
+		if(recruits_relation_on){
 			// Stock-recruitment realtion is active so calculate recruits based on 
 			// the spawning biomass in the previous time step
 			//! @todo check this equation
-			recruits_determ = 4 * recruit_steepness * recruit_virgin * biomass_spawning_overall(quarter) / (
-				(5*recruit_steepness-1)*biomass_spawning_overall(quarter) + 
-				recruit_virgin_spawners(quarter)*(1-recruit_steepness)
-			);
+			recruits_determ = 
+				4 * recruits_steepness * recruits_unfished * biomass_spawning_unfished(quarter) / (
+					(5*recruits_steepness-1)*biomass_spawning_overall(quarter) + 
+					biomass_spawning_unfished(quarter)*(1-recruits_steepness)
+				);
 		} else {
 			// Stock-recruitment relation is not active so recruitment is just r0.
-			recruits_determ = recruit_virgin;
+			recruits_determ = recruits_unfished;
 		}
-		if(recruit_variation_on){
-			recruits_deviation = lognormal_rand(1,recruit_sd);
+		if(recruits_variation_on){
+			recruits_deviation = lognormal_rand(1,recruits_sd);
 		} else {
 			recruits_deviation = 1;
 		}
 		recruits = recruits_determ * recruits_deviation;
-
-		if(exploitation_on){
-			// Exploitation rate
-			for(auto region : regions){
-				for(auto method : methods){
-					double sum = 0;
-					for(auto age : ages){
-						for(auto size : sizes){
-							sum += numbers(region,age,size) * weights(size) * selectivities(method,size);
-						}
-					}
-					biomass_vulnerable(region,method) = sum;
-				}
-			}
-		}
 
 		// Ageing and recruitment
 		for(auto region : regions){
@@ -434,10 +575,42 @@ public:
 
 				// Recruits are evenly distributed over regions and over sizes
 				// according to `initials`
-				numbers(region,0,size) = recruits * recruit_regions(region) * recruit_sizes(size);
+				numbers(region,0,size) = recruits * recruits_regions(region) * recruits_sizes(size);
 			}
 		}
 
+		if(exploitation_on){
+			// Exploitation rate
+			for(auto region : regions){
+				for(auto method : methods){
+					double sum = 0;
+					for(auto age : ages){
+						for(auto size : sizes){
+							sum += numbers(region,age,size) * weights(size) * selectivities(method,size);
+						}
+					}
+					biomass_vulnerable(region,method) = sum;
+				}
+			}
+			//exploitation_rate(region_method) = catches(region,method)/biomass_vulnerable(region,method);
+		} else {
+
+		}
+
+		/*
+		for(auto region : regions){
+			for(auto size : sizes){
+				double sum = 0;
+				for(auto method : methods){
+					for(auto age : ages){
+						sum += 
+					}
+				}
+				exploitation_survival(region,size) = 1-sum;
+			}
+		}
+		*/
+	
 		// Mortality, growth and movement
 		auto numbers_temp = numbers;
 		for(auto region : regions){
@@ -448,8 +621,8 @@ public:
 						for(auto size_from : size_froms){
 							sum += numbers(region_from,age,size_from) * 
 									growth(size_from,size) * 
-									survival * 
-									//(1-(exploitation_on?exploitation(region_from,size_from):0)) * 
+									natural_survival/*(size_from)*/ * 
+									//exploitation_survival(region_from,size_from) * 
 									movement(region_from,region);
 						}
 					}
@@ -466,7 +639,7 @@ public:
 		// Iterate until there is a very minor change in biomass
 
 		// Turn off recruitment variation
-		recruit_variation_on = false;
+		recruits_variation_on = false;
 
 		uint steps = 0;
 		const uint steps_max = 10000;
@@ -486,10 +659,8 @@ public:
 		// Throw an error if there was no convergence
 		assert(steps<steps_max);
 
-		std::cout<<steps<<"\n";
-
 		// Turn on recruitment deviation again
-		recruit_variation_on = true;
+		recruits_variation_on = true;
 	}
 
 	void simulate(uint begin,uint end){
