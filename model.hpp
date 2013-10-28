@@ -175,14 +175,31 @@ public:
 	 */
 	
 	/**
-	 * Instantaneous rate of natural mortality
+	 * Allometric exponent of the weight to natural mortality
+	 * relationship
+	 */
+	double mortality_weight_exponent;
+	
+	/**
+	 * Instantaneous rate of natural mortality at weight of 1kg
 	 */
 	double mortality;
 
 	/**
-	 * Quarterly rate of survival from natural mortality
+	 * Maximum rate of natural mortality (exponential relationship
+	 * can give very high natural mortality at small sizes)
 	 */
-	double natural_survival;
+	double mortality_max;
+
+	/**
+	 * Instantaneous rate of natural mortality for size s
+	 */
+	Array<double,Size> mortality_rate;
+
+	/**
+	 * Quarterly rate of survival from natural mortality for size s
+	 */
+	Array<double,Size> mortality_survival;
 
 	/**
 	 * @}
@@ -218,7 +235,7 @@ public:
 
 	/**
 	 * @{
-	 * @name Selectivity/exploitation
+	 * @name Selectivity and exploitation
 	 */
 	
 	typedef std::array<double,5> SelectivityPoints;
@@ -233,7 +250,7 @@ public:
 	bool exploitation_on;
 
 	/**
-	 * Vulneralble biomass by region and method
+	 * Vulnerable biomass by region and method
 	 */
 	Array<double,Region,Method> biomass_vulnerable;
 
@@ -347,6 +364,8 @@ public:
 		maturity_steepness = 5;
 
 		mortality = 0.8;
+		mortality_weight_exponent = -0.29;
+		mortality_max = -std::log(0.01);
 
 		growth_rate = 0.3;
 		growth_assymptote = 75;
@@ -447,18 +466,14 @@ public:
 	 * Initialise the fish population based on current parameter values
 	 */
 	void init(void){
-		// Initialise arrays by size...
+		// Initialise arrays by size...	
 		for(auto size : sizes){
-
-			lengths[size] = 2*size+1;
-
-			weights[size] = weight_a * std::pow(lengths[size],weight_b);
-
-			maturities[size] = 1/(1+std::pow(19,(maturity_inflection-lengths[size])/maturity_steepness));
+			lengths(size) = 2*size+1;
+			weights(size) = weight_a * std::pow(lengths(size),weight_b);
+			maturities(size) = 1/(1+std::pow(19,(maturity_inflection-lengths(size))/maturity_steepness));
+			mortality_rate(size) = std::min(mortality * std::pow(weights(size),mortality_weight_exponent),mortality_max);
+			mortality_survival(size) = std::exp(-0.25*mortality_rate(size));
 		}
-
-		// Initialise natural survival rate
-		natural_survival = std::exp(-0.25*mortality);
 
 		// Initialise growth size transition matrix
 		for(auto size : sizes){
@@ -621,7 +636,7 @@ public:
 						for(auto size_from : size_froms){
 							sum += numbers(region_from,age,size_from) * 
 									growth(size_from,size) * 
-									natural_survival/*(size_from)*/ * 
+									mortality_survival(size_from) * 
 									//exploitation_survival(region_from,size_from) * 
 									movement(region_from,region);
 						}
@@ -675,6 +690,7 @@ public:
 		lengths.write("output/lengths.txt");
 		weights.write("output/weights.txt");
 		maturities.write("output/maturities.txt");
+		mortality_rate.write("output/mortality-rate.txt");
 		spawning.write("output/spawning.txt");
 		growth_increments.write("output/growth-increments.txt");
 		growth.write("output/growth.txt");

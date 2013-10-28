@@ -3,7 +3,7 @@
 all: tests.out
 
 # Compile the tests
-tests.exe: *.cpp
+tests.exe: *.cpp $(shell find .. -name *.hpp)
 	$(CXX) -std=c++11 -g -O3 -Wall -I. -o tests.exe tests.cpp -lboost_unit_test_framework
 
 # Run the tests
