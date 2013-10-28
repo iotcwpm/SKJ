@@ -40,11 +40,13 @@ nc = within(nc,{
 sums = ddply(nc,.(AreaOM,Method,Year,Quarter),summarise,Catch=sum(SKJ,na.rm=T))
 
 # Plot
+svg("nominal-catches.svg",width=25/2.54,height=18/2.54)
 ggplot(sums) + 
     geom_line(aes(x=Year,y=Catch,color=Method),alpha=0.5) + 
     geom_point(aes(x=Year,y=Catch,color=Method,shape=Method),size=3,alpha=0.5) +
     facet_wrap(~AreaOM) + 
     labs(y='Catch (t)')
+dev.off()
 
 # Rename columns and output
 names(sums) = c('area','method','year','quarter','catch')

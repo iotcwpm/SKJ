@@ -1,3 +1,3 @@
-data = read.table("equilibrium_stable.txt",header=T)
+data = read.table("recruiment_variation.txt",header=T)
 
-with(data,plot(biomass_spawning_w,col=quarter))
+with(data,plot(biomass_spawning_m,col=quarter+1))

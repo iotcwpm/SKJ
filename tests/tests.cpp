@@ -29,7 +29,7 @@ BOOST_FIXTURE_TEST_SUITE(model,modelFixture)
 		model.init();
 		auto biomass_equil = model.biomass;
 
-		model.recruit_variation_on = false;
+		model.recruits_variation_on = false;
 		model.exploitation_on = false;
 		model.simulate(0,100);
 
@@ -48,7 +48,7 @@ BOOST_FIXTURE_TEST_SUITE(model,modelFixture)
 	 * is equal in all areas
 	 */
 	BOOST_AUTO_TEST_CASE(equilibrium_uniform){
-		model.recruit_uniform();
+		model.recruits_uniform();
 		model.movement_none();
 		model.init();
 
@@ -78,7 +78,7 @@ BOOST_FIXTURE_TEST_SUITE(model,modelFixture)
 		}
 
 		BOOST_CHECK_CLOSE(mean(stats),1,5);
-		BOOST_CHECK_CLOSE(std::pow(variance(stats),0.5),model.recruit_sd,10);
+		BOOST_CHECK_CLOSE(std::pow(variance(stats),0.5),model.recruits_sd,10);
 	}
 
 BOOST_AUTO_TEST_SUITE_END()
