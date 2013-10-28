@@ -17,7 +17,7 @@ section#introduction
     section#symbols 
         h3 Symbols
 
-        p The following convention is used for assigning symbols for the model: Greek lower case letters (e.g. `alpha`) for model parameters, Roman capital letters (e.g. `N`) for model variables, and Roman lower case letters for variable or parameter array subscripts (e.g. `N_{r,a,s}`, `phi_{r}`). Using this convention means that in some instances model parameters are given different symbols that usual (e.g. `nu` instead of `M` for natural mortality) but has the advantage of clearly distinquishing model parameters (which are independent of other parametrs or variables and are usually estimated) from model variables (which are dependent upon parameter values).
+        p The following convention is used for assigning symbols for the model: Greek lower case letters (e.g. `alpha`) for model parameters, Roman capital letters (e.g. `N`) for model variables, and Roman lower case letters for variable or parameter array subscripts (e.g. `N_{r,a,s}`, `phi_{r}`). Using this convention means that in some instances model parameters are given different symbols that usual but has the advantage of clearly distinquishing model parameters (which are independent of other parametrs or variables and are usually estimated) from model variables (which are dependent upon parameter values).
 
         p The subscript for time, `t`, is usually omitted from the model equations below except where it is necessary to be explicit regarding the time step involved.
 
@@ -211,11 +211,13 @@ section#fish
     section#fish-natural-mortality
         h3 Natural mortality
 
-        p Natural mortality is modelled as a constant instantaeous rate that is uniform over all regions, ages and sizes. The survival in one quarter is,
+        p The instantaneous rate of natural mortality at size `s` is modelled as a function of weight at size `s`,
 
-            `D = e^{-0.25nu}`
+            `M_s = nu W_s^gamma`
 
-        .note Natural mortality could vary by age or size: the functional form of Lorenzen (1996) could be used (`nu_s` a function of weight `W_s`) with an estimated scalar.
+        The survival rate in one quarter is thus,
+
+            `D_s = e^{-0.25 M_s}`
 
         .note Natural mortality could vary by region.
 
@@ -323,7 +325,9 @@ section#priors
     section#priors-mortality
         h3 Mortality
 
-        p For the instantaneous rate of natural mortality, the same normal prior as in Sharma et al (2012) was used which has a mean of 0.1 and a standard deviation of 1 (Figure X).
+        p The instantaneous rate of natural mortality at 1kg, `nu`, the same normal prior as in Sharma et al (2012) was used which has a mean of 0.1 and a standard deviation of 1 (Figure X).
+
+        p A prior for the allometric exponent of the weight to natural mortality function, `gamma` was based on Lorenzen (1996) who estimated a value on -0.29.
 
         figure#nu-dist
             r
@@ -459,15 +463,24 @@ section#priors
             td
             td 
 
+
         tr
             th Natural mortality
         tr
             td `nu`
-            td Instantaeous rate of natural mortality (usually given the symbol `M`)
-            td
+            td Instantaneous rate of natural mortality at a weight of 1kg
+            td `yr^-1`
             td `N(0.8,1)`
-            td
-            td Prior used by Sharma et al (2012).
+            td 0.4-1.0
+            td 
+        tr
+            td `gamma`
+            td Exponent of weight to natural mortality rate function
+            td 
+            td `N(-0.29,0.07)`
+            td [-0.2,-0.4]
+            td 
+
 
         tr
             th Growth
