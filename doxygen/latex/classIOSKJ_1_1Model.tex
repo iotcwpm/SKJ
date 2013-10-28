@@ -5,26 +5,10 @@
 
 {\ttfamily \#include $<$model.\-hpp$>$}
 
-\subsection*{Public Types}
-\begin{DoxyCompactItemize}
-\item 
-\hypertarget{classIOSKJ_1_1Model_a925d88350f3dc87464d3893bd9307b91}{typedef std\-::array$<$ double, 5 $>$ {\bfseries Selectivity\-Points}}\label{classIOSKJ_1_1Model_a925d88350f3dc87464d3893bd9307b91}
-
-\end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classIOSKJ_1_1Model_a886bf4ee5289a07b220cedfd2accf801}{void {\bfseries track\-\_\-open} (std\-::string filename)}\label{classIOSKJ_1_1Model_a886bf4ee5289a07b220cedfd2accf801}
-
-\item 
-\hypertarget{classIOSKJ_1_1Model_af18a3687dd2685745174b91e0aae56ce}{void {\bfseries track} (void)}\label{classIOSKJ_1_1Model_af18a3687dd2685745174b91e0aae56ce}
-
-\item 
-\hypertarget{classIOSKJ_1_1Model_a35a3793549d5fab47834483c0c013a78}{void {\bfseries track\-\_\-close} (void)}\label{classIOSKJ_1_1Model_a35a3793549d5fab47834483c0c013a78}
-
-\item 
-\hypertarget{classIOSKJ_1_1Model_a6f42bfc7352faa7bba7e00d04fc166b0}{void {\bfseries startup} (void)}\label{classIOSKJ_1_1Model_a6f42bfc7352faa7bba7e00d04fc166b0}
-
+void \hyperlink{classIOSKJ_1_1Model_a6f42bfc7352faa7bba7e00d04fc166b0}{startup} (void)
 \item 
 void \hyperlink{classIOSKJ_1_1Model_a242ba7c47871099bf4bed482d262cede}{sample} (void)
 \item 
@@ -35,7 +19,7 @@ void \hyperlink{classIOSKJ_1_1Model_af163ebda22001c7df308dc227c1687bb}{step} (vo
 \hypertarget{classIOSKJ_1_1Model_a58e460b456d7affc4f6a8af785f6e82c}{void {\bfseries equilibrium} (void)}\label{classIOSKJ_1_1Model_a58e460b456d7affc4f6a8af785f6e82c}
 
 \item 
-\hypertarget{classIOSKJ_1_1Model_af17ad85c098293b9b7e13fbdb959bf02}{void {\bfseries simulate} (uint end=times)}\label{classIOSKJ_1_1Model_af17ad85c098293b9b7e13fbdb959bf02}
+\hypertarget{classIOSKJ_1_1Model_a6bf9c91a1ad6d785f935acdf44445367}{void {\bfseries simulate} (uint begin, uint end)}\label{classIOSKJ_1_1Model_a6bf9c91a1ad6d785f935acdf44445367}
 
 \item 
 \hypertarget{classIOSKJ_1_1Model_abfc09c1b2d6bfe2802835cd5fd58c3b3}{void {\bfseries write} (void)}\label{classIOSKJ_1_1Model_abfc09c1b2d6bfe2802835cd5fd58c3b3}
@@ -49,7 +33,7 @@ void \hyperlink{classIOSKJ_1_1Model_af163ebda22001c7df308dc227c1687bb}{step} (vo
 \item 
 void \hyperlink{classIOSKJ_1_1Model_a2018db7a3e7780fddc161f026dd35c4e}{defaults} (void)
 \item 
-void \hyperlink{classIOSKJ_1_1Model_a53443d7a0b8ac5f00918023cd232de8d}{recruit\-\_\-uniform} (void)
+void \hyperlink{classIOSKJ_1_1Model_ae74437cf19859e4f38dd50b6edf958b4}{recruits\-\_\-uniform} (void)
 \item 
 void \hyperlink{classIOSKJ_1_1Model_ac65da2c311c6b0a840755af4d3ec17ea}{movement\-\_\-none} (void)
 \item 
@@ -63,68 +47,81 @@ void \hyperlink{classIOSKJ_1_1Model_ae04fad38e291a476bec70ff67bbfd9b6}{spawning\
 \item 
 Array$<$ double, Region, Age, Size $>$ \hyperlink{classIOSKJ_1_1Model_aa90edf75b7c9ebf8e50a30f3779b9664}{numbers}
 \item 
-\hypertarget{classIOSKJ_1_1Model_a686cbcc0d80f740b223f1f25b0869da7}{double {\bfseries recruit\-\_\-virgin}}\label{classIOSKJ_1_1Model_a686cbcc0d80f740b223f1f25b0869da7}
-
+Array$<$ double, Region $>$ \hyperlink{classIOSKJ_1_1Model_a05da71e81b1a0a7ecbba4d417f4ba727}{biomass}
+\end{DoxyCompactItemize}
+\begin{Indent}{\bf Spawning}\par
+\begin{DoxyCompactItemize}
 \item 
-\hypertarget{classIOSKJ_1_1Model_a890862bf74f81155cfd527cec42752e4}{double {\bfseries recruit\-\_\-virgin\-\_\-spawners}}\label{classIOSKJ_1_1Model_a890862bf74f81155cfd527cec42752e4}
-
+Array$<$ double, Quarter $>$ \hyperlink{classIOSKJ_1_1Model_a81bffc6707aa313f87bf21dbbf1d8143}{spawning}
 \item 
-\hypertarget{classIOSKJ_1_1Model_a862b4466389406b47613ad56ab137d8e}{double {\bfseries recruit\-\_\-steepness}}\label{classIOSKJ_1_1Model_a862b4466389406b47613ad56ab137d8e}
-
+Array$<$ double, Region $>$ \hyperlink{classIOSKJ_1_1Model_ac507a33d868bbf1b74a6e098f32eb49f}{biomass\-\_\-spawning}
 \item 
-\hypertarget{classIOSKJ_1_1Model_a2efdcaae859b3c94a3a0c6cd885b4fc2}{double {\bfseries recruit\-\_\-sd}}\label{classIOSKJ_1_1Model_a2efdcaae859b3c94a3a0c6cd885b4fc2}
-
+Array$<$ double, Quarter $>$ \hyperlink{classIOSKJ_1_1Model_a2e2376de2347bb24f9cd18c6cb6b71a5}{biomass\-\_\-spawning\-\_\-overall}
 \item 
-\hypertarget{classIOSKJ_1_1Model_a0a9fb9908fa2eb8ab96630efc76267e7}{bool {\bfseries recruit\-\_\-variation\-\_\-on}}\label{classIOSKJ_1_1Model_a0a9fb9908fa2eb8ab96630efc76267e7}
-
+Array$<$ double, Quarter $>$ \hyperlink{classIOSKJ_1_1Model_a2fe8d9737c54dcba326f0d6d73e50d28}{biomass\-\_\-spawning\-\_\-unfished}
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Recruitment}\par
+\begin{DoxyCompactItemize}
 \item 
-\hypertarget{classIOSKJ_1_1Model_a2385640d3893a07f67ec1bd2e07a9c8b}{bool {\bfseries recruit\-\_\-relation\-\_\-on}}\label{classIOSKJ_1_1Model_a2385640d3893a07f67ec1bd2e07a9c8b}
-
+double \hyperlink{classIOSKJ_1_1Model_a780f4e69674141e96e028765004608ea}{recruits\-\_\-unfished}
 \item 
-\hypertarget{classIOSKJ_1_1Model_a39e8570fc684498461ba6b9983bae0f1}{Array$<$ double, Region $>$ {\bfseries recruit\-\_\-regions}}\label{classIOSKJ_1_1Model_a39e8570fc684498461ba6b9983bae0f1}
-
+double \hyperlink{classIOSKJ_1_1Model_ae3660f3f79edc131d7b96cf391f6a902}{recruits\-\_\-steepness}
 \item 
-\hypertarget{classIOSKJ_1_1Model_a73219276650abc075d7cfbf164083b67}{Array$<$ double, Size $>$ {\bfseries recruit\-\_\-sizes}}\label{classIOSKJ_1_1Model_a73219276650abc075d7cfbf164083b67}
-
+double \hyperlink{classIOSKJ_1_1Model_aff3f79494f94a20043a0c57009129dea}{recruits\-\_\-sd}
 \item 
-\hypertarget{classIOSKJ_1_1Model_ad2450f5604c657cbe259b7b49e8f905a}{double {\bfseries recruits\-\_\-determ}}\label{classIOSKJ_1_1Model_ad2450f5604c657cbe259b7b49e8f905a}
-
+bool \hyperlink{classIOSKJ_1_1Model_a164e3c054caea071da7079d5ff27833b}{recruits\-\_\-variation\-\_\-on}
 \item 
-\hypertarget{classIOSKJ_1_1Model_a639afa6cd0480ad8c6dbac286bdaa55c}{double {\bfseries recruits\-\_\-deviation}}\label{classIOSKJ_1_1Model_a639afa6cd0480ad8c6dbac286bdaa55c}
-
+bool \hyperlink{classIOSKJ_1_1Model_a88f9a0d53e76f9a88bf0d81c30bdb612}{recruits\-\_\-relation\-\_\-on}
 \item 
-\hypertarget{classIOSKJ_1_1Model_a8ffa15a7aea7598d5a6c91bec5779ef3}{double {\bfseries recruits}}\label{classIOSKJ_1_1Model_a8ffa15a7aea7598d5a6c91bec5779ef3}
-
+double \hyperlink{classIOSKJ_1_1Model_ad2450f5604c657cbe259b7b49e8f905a}{recruits\-\_\-determ}
 \item 
-\hypertarget{classIOSKJ_1_1Model_ab26d2c0b3da23a380d21bbfafa236cff}{Array$<$ double, Size $>$ {\bfseries lengths}}\label{classIOSKJ_1_1Model_ab26d2c0b3da23a380d21bbfafa236cff}
-
+double \hyperlink{classIOSKJ_1_1Model_a639afa6cd0480ad8c6dbac286bdaa55c}{recruits\-\_\-deviation}
+\item 
+double \hyperlink{classIOSKJ_1_1Model_a8ffa15a7aea7598d5a6c91bec5779ef3}{recruits}
+\item 
+Array$<$ double, Region $>$ \hyperlink{classIOSKJ_1_1Model_a735f9a4288dc9fc4ca836c9ad3af3161}{recruits\-\_\-regions}
+\item 
+Array$<$ double, Size $>$ \hyperlink{classIOSKJ_1_1Model_a55d28db5525f6a4b0702c60dccbebd57}{recruits\-\_\-sizes}
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Length, weight, maturity}\par
+\begin{DoxyCompactItemize}
+\item 
+Array$<$ double, Size $>$ \hyperlink{classIOSKJ_1_1Model_ab26d2c0b3da23a380d21bbfafa236cff}{lengths}
 \item 
 \hypertarget{classIOSKJ_1_1Model_ad74671e3ed2a104a557b75adf0c64b14}{const double {\bfseries lengths\-\_\-step} = 2}\label{classIOSKJ_1_1Model_ad74671e3ed2a104a557b75adf0c64b14}
 
 \item 
-\hypertarget{classIOSKJ_1_1Model_a39f409e1010b3f2d1559366a7f7daad8}{double {\bfseries weight\-\_\-a}}\label{classIOSKJ_1_1Model_a39f409e1010b3f2d1559366a7f7daad8}
-
+double \hyperlink{classIOSKJ_1_1Model_a39f409e1010b3f2d1559366a7f7daad8}{weight\-\_\-a}
 \item 
-\hypertarget{classIOSKJ_1_1Model_aca953740b9305b51d39e04bc1b19ebb5}{double {\bfseries weight\-\_\-b}}\label{classIOSKJ_1_1Model_aca953740b9305b51d39e04bc1b19ebb5}
-
+double \hyperlink{classIOSKJ_1_1Model_aca953740b9305b51d39e04bc1b19ebb5}{weight\-\_\-b}
 \item 
-\hypertarget{classIOSKJ_1_1Model_a9befb275d915c5cec6b1e0e7a4bc8791}{Array$<$ double, Size $>$ {\bfseries weights}}\label{classIOSKJ_1_1Model_a9befb275d915c5cec6b1e0e7a4bc8791}
-
+Array$<$ double, Size $>$ \hyperlink{classIOSKJ_1_1Model_a9befb275d915c5cec6b1e0e7a4bc8791}{weights}
 \item 
-\hypertarget{classIOSKJ_1_1Model_aaba1b769dc8f413829f5fe639e978058}{double {\bfseries maturity\-\_\-inflection}}\label{classIOSKJ_1_1Model_aaba1b769dc8f413829f5fe639e978058}
-
+double \hyperlink{classIOSKJ_1_1Model_aaba1b769dc8f413829f5fe639e978058}{maturity\-\_\-inflection}
 \item 
-\hypertarget{classIOSKJ_1_1Model_a7cbfb9cd8bd5be39c93302e1352d2ad2}{double {\bfseries maturity\-\_\-steepness}}\label{classIOSKJ_1_1Model_a7cbfb9cd8bd5be39c93302e1352d2ad2}
-
+double \hyperlink{classIOSKJ_1_1Model_a7cbfb9cd8bd5be39c93302e1352d2ad2}{maturity\-\_\-steepness}
 \item 
-\hypertarget{classIOSKJ_1_1Model_a374c4b48c908c40b7401e484cc49c767}{Array$<$ double, Size $>$ {\bfseries maturities}}\label{classIOSKJ_1_1Model_a374c4b48c908c40b7401e484cc49c767}
-
+Array$<$ double, Size $>$ \hyperlink{classIOSKJ_1_1Model_a374c4b48c908c40b7401e484cc49c767}{maturities}
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Natural mortality}\par
+\begin{DoxyCompactItemize}
 \item 
-\hypertarget{classIOSKJ_1_1Model_a970fad74268a92b08807a7cdbb32468b}{double {\bfseries mortality}}\label{classIOSKJ_1_1Model_a970fad74268a92b08807a7cdbb32468b}
-
+double \hyperlink{classIOSKJ_1_1Model_a6a3e26a7c2e42634669ea2526626a18e}{mortality\-\_\-weight\-\_\-exponent}
 \item 
-\hypertarget{classIOSKJ_1_1Model_aeeec3e4e692016d4b6913a47075a0a5d}{double {\bfseries survival}}\label{classIOSKJ_1_1Model_aeeec3e4e692016d4b6913a47075a0a5d}
-
+double \hyperlink{classIOSKJ_1_1Model_a970fad74268a92b08807a7cdbb32468b}{mortality}
+\item 
+double \hyperlink{classIOSKJ_1_1Model_a7c6726c255509c23749664a82ed4c4a9}{mortality\-\_\-max}
+\item 
+Array$<$ double, Size $>$ \hyperlink{classIOSKJ_1_1Model_a7fd43f29a1f093bfc97c0d6a8bd2a4ea}{mortality\-\_\-rate}
+\item 
+Array$<$ double, Size $>$ \hyperlink{classIOSKJ_1_1Model_ad3c9235716a5015c822d74610b4807ef}{mortality\-\_\-survival}
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Growth}\par
+\begin{DoxyCompactItemize}
 \item 
 \hypertarget{classIOSKJ_1_1Model_a37a3bf07009aa97913f40e58110e8bdf}{double {\bfseries growth\-\_\-rate}}\label{classIOSKJ_1_1Model_a37a3bf07009aa97913f40e58110e8bdf}
 
@@ -143,11 +140,22 @@ Array$<$ double, Region, Age, Size $>$ \hyperlink{classIOSKJ_1_1Model_aa90edf75b
 \item 
 \hypertarget{classIOSKJ_1_1Model_aa08429f500442de8a2e93bf00b20e0e9}{Array$<$ double, Size\-From, Size $>$ {\bfseries growth}}\label{classIOSKJ_1_1Model_aa08429f500442de8a2e93bf00b20e0e9}
 
+\end{DoxyCompactItemize}
+\end{Indent}
+\begin{Indent}{\bf Movement}\par
+\begin{DoxyCompactItemize}
 \item 
 \hypertarget{classIOSKJ_1_1Model_a035849bda5a75ef50d5d83ce93462fb4}{Array$<$ double, Region\-From, Region $>$ {\bfseries movement\-\_\-pars}}\label{classIOSKJ_1_1Model_a035849bda5a75ef50d5d83ce93462fb4}
 
 \item 
 \hypertarget{classIOSKJ_1_1Model_ac09e002c91144697de6e96bb8beb6d83}{Array$<$ double, Region\-From, Region $>$ {\bfseries movement}}\label{classIOSKJ_1_1Model_ac09e002c91144697de6e96bb8beb6d83}
+
+\end{DoxyCompactItemize}
+\end{Indent}
+\subsection*{Selectivity and exploitation}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classIOSKJ_1_1Model_a925d88350f3dc87464d3893bd9307b91}{typedef std\-::array$<$ double, 5 $>$ {\bfseries Selectivity\-Points}}\label{classIOSKJ_1_1Model_a925d88350f3dc87464d3893bd9307b91}
 
 \item 
 \hypertarget{classIOSKJ_1_1Model_a2c2ff5eb6f4ed186b725c13b0e9e6012}{Array$<$ Selectivity\-Points, Method $>$ {\bfseries selectivity\-\_\-points}}\label{classIOSKJ_1_1Model_a2c2ff5eb6f4ed186b725c13b0e9e6012}
@@ -161,33 +169,51 @@ bool \hyperlink{classIOSKJ_1_1Model_ab9afc5bae0ac8e16817802e54bdfa60d}{exploitat
 Array$<$ double, Region, Method $>$ \hyperlink{classIOSKJ_1_1Model_a0aa015def5316af0f5ce23bdaecbf67c}{biomass\-\_\-vulnerable}
 \item 
 Array$<$ double, Region, Size $>$ \hyperlink{classIOSKJ_1_1Model_ad4379e82be5723f2e1b58e9492dde3dc}{exploitation}
-\item 
-Array$<$ double, Quarter $>$ \hyperlink{classIOSKJ_1_1Model_a81bffc6707aa313f87bf21dbbf1d8143}{spawning}
-\item 
-\hypertarget{classIOSKJ_1_1Model_a05da71e81b1a0a7ecbba4d417f4ba727}{Array$<$ double, Region $>$ {\bfseries biomass}}\label{classIOSKJ_1_1Model_a05da71e81b1a0a7ecbba4d417f4ba727}
-
-\item 
-\hypertarget{classIOSKJ_1_1Model_ac507a33d868bbf1b74a6e098f32eb49f}{Array$<$ double, Region $>$ {\bfseries biomass\-\_\-spawning}}\label{classIOSKJ_1_1Model_ac507a33d868bbf1b74a6e098f32eb49f}
-
-\item 
-\hypertarget{classIOSKJ_1_1Model_a98d798c4e85e38a52c0b901ac19b82b1}{double {\bfseries biomass\-\_\-spawning\-\_\-overall}}\label{classIOSKJ_1_1Model_a98d798c4e85e38a52c0b901ac19b82b1}
-
+\end{DoxyCompactItemize}
+\subsection*{Tracking}
+\label{_amgrp2205dc082ba550b67ad71e3e2241d9a6}%
+Tracking of various model variables during simulation. Mainly used in testing. Writing output is slow so this can be turned off using the T\-R\-A\-C\-K\-I\-N\-G macro \begin{DoxyCompactItemize}
 \item 
 \hypertarget{classIOSKJ_1_1Model_ab2c712a92a7f11ef0d8282bd97167872}{bool {\bfseries track\-\_\-on}}\label{classIOSKJ_1_1Model_ab2c712a92a7f11ef0d8282bd97167872}
 
 \item 
 \hypertarget{classIOSKJ_1_1Model_a54eea6573edc1058346964bd39413b99}{std\-::ofstream {\bfseries track\-\_\-file}}\label{classIOSKJ_1_1Model_a54eea6573edc1058346964bd39413b99}
 
+\item 
+\hypertarget{classIOSKJ_1_1Model_a886bf4ee5289a07b220cedfd2accf801}{void {\bfseries track\-\_\-open} (std\-::string filename)}\label{classIOSKJ_1_1Model_a886bf4ee5289a07b220cedfd2accf801}
+
+\item 
+\hypertarget{classIOSKJ_1_1Model_af18a3687dd2685745174b91e0aae56ce}{void {\bfseries track} (void)}\label{classIOSKJ_1_1Model_af18a3687dd2685745174b91e0aae56ce}
+
+\item 
+\hypertarget{classIOSKJ_1_1Model_a35a3793549d5fab47834483c0c013a78}{void {\bfseries track\-\_\-close} (void)}\label{classIOSKJ_1_1Model_a35a3793549d5fab47834483c0c013a78}
+
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-\hyperlink{classIOSKJ_1_1Model}{Model} of the Indian tuna fishery. This model encapsulates both fish population and fishing dynamics.
+\hyperlink{classIOSKJ_1_1Model}{Model} of the Indian Ocean skipjack tuna fishery. This class encapsulates both fish population and fishing dynamics.
 
 \begin{DoxyAuthor}{Author}
-Nokome Bentley \href{mailto:nokome.bentley@trophia.com}{\tt nokome.\-bentley@trophia.\-com} 
+Nokome Bentley \href{mailto:nokome.bentley@trophia.com}{\tt nokome.\-bentley@trophia.\-com}
 \end{DoxyAuthor}
+\begin{DoxyRefDesc}{Test}
+\item[\hyperlink{test__test000001}{Test}]equilibrium\-\_\-stable\end{DoxyRefDesc}
 
+
+Test that when there is no substantial change in equilibrium conditions given further simulation.
+
+\begin{DoxyRefDesc}{Test}
+\item[\hyperlink{test__test000002}{Test}]equilibrium\-\_\-uniform\end{DoxyRefDesc}
+
+
+Test that when there is no movement and equal reruitment distribution that the equilibrium biomass is equal in all areas
+
+\begin{DoxyRefDesc}{Test}
+\item[\hyperlink{test__test000003}{Test}]recruiment\-\_\-variation\end{DoxyRefDesc}
+
+
+Test that recruitment variation has the right mean and standard deviation. 
 
 \subsection{Member Function Documentation}
 \hypertarget{classIOSKJ_1_1Model_a2018db7a3e7780fddc161f026dd35c4e}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!defaults@{defaults}}
@@ -208,7 +234,7 @@ Mainly used in testing \hypertarget{classIOSKJ_1_1Model_af64274ff5991d11e1c23261
 )\hspace{0.3cm}{\ttfamily [inline]}}}\label{classIOSKJ_1_1Model_af64274ff5991d11e1c232618af8de800}
 Initialise the fish population based on current parameter values The fish population is initialised to an unfished state by iterating with virgin recruitment until it reaches equibrium defined by less than 0.\-01\% change in total biomass.
 
-Once the population has converged to unfished equilibrium, the virgin spawning biomass can be set.\hypertarget{classIOSKJ_1_1Model_ac65da2c311c6b0a840755af4d3ec17ea}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!movement\-\_\-none@{movement\-\_\-none}}
+Once the population has converged to unfished equilibrium, the virgin spawning biomass in each quarter can be set.\hypertarget{classIOSKJ_1_1Model_ac65da2c311c6b0a840755af4d3ec17ea}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!movement\-\_\-none@{movement\-\_\-none}}
 \index{movement\-\_\-none@{movement\-\_\-none}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
 \subsubsection[{movement\-\_\-none}]{\setlength{\rightskip}{0pt plus 5cm}void I\-O\-S\-K\-J\-::\-Model\-::movement\-\_\-none (
 \begin{DoxyParamCaption}
@@ -226,13 +252,13 @@ Diagonal elements set to 1. Mainly used for testing \hypertarget{classIOSKJ_1_1M
 )\hspace{0.3cm}{\ttfamily [inline]}}}\label{classIOSKJ_1_1Model_a0278c3e4893f0891856dc4df93d3306f}
 Set movement parameters so that there is uniform movement.
 
-All elements set to 1/3. Mainly used for testing \hypertarget{classIOSKJ_1_1Model_a53443d7a0b8ac5f00918023cd232de8d}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!recruit\-\_\-uniform@{recruit\-\_\-uniform}}
-\index{recruit\-\_\-uniform@{recruit\-\_\-uniform}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
-\subsubsection[{recruit\-\_\-uniform}]{\setlength{\rightskip}{0pt plus 5cm}void I\-O\-S\-K\-J\-::\-Model\-::recruit\-\_\-uniform (
+All elements set to 1/3. Mainly used for testing \hypertarget{classIOSKJ_1_1Model_ae74437cf19859e4f38dd50b6edf958b4}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!recruits\-\_\-uniform@{recruits\-\_\-uniform}}
+\index{recruits\-\_\-uniform@{recruits\-\_\-uniform}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
+\subsubsection[{recruits\-\_\-uniform}]{\setlength{\rightskip}{0pt plus 5cm}void I\-O\-S\-K\-J\-::\-Model\-::recruits\-\_\-uniform (
 \begin{DoxyParamCaption}
 \item[{void}]{}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classIOSKJ_1_1Model_a53443d7a0b8ac5f00918023cd232de8d}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classIOSKJ_1_1Model_ae74437cf19859e4f38dd50b6edf958b4}
 Set recruitment distribution across regions to be uniform \hypertarget{classIOSKJ_1_1Model_a242ba7c47871099bf4bed482d262cede}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!sample@{sample}}
 \index{sample@{sample}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
 \subsubsection[{sample}]{\setlength{\rightskip}{0pt plus 5cm}void I\-O\-S\-K\-J\-::\-Model\-::sample (
@@ -249,7 +275,14 @@ Sample parameter values from prior probability distributions \hypertarget{classI
 )\hspace{0.3cm}{\ttfamily [inline]}}}\label{classIOSKJ_1_1Model_ae04fad38e291a476bec70ff67bbfd9b6}
 Set spawning seasonality parameters so that there is uniform spawning.
 
-All elements set to 1. Mainly used for testing. \hypertarget{classIOSKJ_1_1Model_af163ebda22001c7df308dc227c1687bb}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!step@{step}}
+All elements set to 1. Mainly used for testing. \hypertarget{classIOSKJ_1_1Model_a6f42bfc7352faa7bba7e00d04fc166b0}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!startup@{startup}}
+\index{startup@{startup}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
+\subsubsection[{startup}]{\setlength{\rightskip}{0pt plus 5cm}void I\-O\-S\-K\-J\-::\-Model\-::startup (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{classIOSKJ_1_1Model_a6f42bfc7352faa7bba7e00d04fc166b0}
+Perform any necessary steps at initial model execution \hypertarget{classIOSKJ_1_1Model_af163ebda22001c7df308dc227c1687bb}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!step@{step}}
 \index{step@{step}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
 \subsubsection[{step}]{\setlength{\rightskip}{0pt plus 5cm}void I\-O\-S\-K\-J\-::\-Model\-::step (
 \begin{DoxyParamCaption}
@@ -260,32 +293,101 @@ All elements set to 1. Mainly used for testing. \hypertarget{classIOSKJ_1_1Model
 \item[\hyperlink{todo__todo000002}{Todo}]check this equation \end{DoxyRefDesc}
 
 
-\begin{DoxyRefDesc}{Todo}
-\item[\hyperlink{todo__todo000003}{Todo}]implement \end{DoxyRefDesc}
-
-
 \subsection{Member Data Documentation}
-\hypertarget{classIOSKJ_1_1Model_a0aa015def5316af0f5ce23bdaecbf67c}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!biomass\-\_\-vulnerable@{biomass\-\_\-vulnerable}}
+\hypertarget{classIOSKJ_1_1Model_a05da71e81b1a0a7ecbba4d417f4ba727}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!biomass@{biomass}}
+\index{biomass@{biomass}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
+\subsubsection[{biomass}]{\setlength{\rightskip}{0pt plus 5cm}Array$<$double,Region$>$ I\-O\-S\-K\-J\-::\-Model\-::biomass}}\label{classIOSKJ_1_1Model_a05da71e81b1a0a7ecbba4d417f4ba727}
+Total biomass by region \hypertarget{classIOSKJ_1_1Model_ac507a33d868bbf1b74a6e098f32eb49f}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!biomass\-\_\-spawning@{biomass\-\_\-spawning}}
+\index{biomass\-\_\-spawning@{biomass\-\_\-spawning}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
+\subsubsection[{biomass\-\_\-spawning}]{\setlength{\rightskip}{0pt plus 5cm}Array$<$double,Region$>$ I\-O\-S\-K\-J\-::\-Model\-::biomass\-\_\-spawning}}\label{classIOSKJ_1_1Model_ac507a33d868bbf1b74a6e098f32eb49f}
+The total spawning biomass by region \hypertarget{classIOSKJ_1_1Model_a2e2376de2347bb24f9cd18c6cb6b71a5}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!biomass\-\_\-spawning\-\_\-overall@{biomass\-\_\-spawning\-\_\-overall}}
+\index{biomass\-\_\-spawning\-\_\-overall@{biomass\-\_\-spawning\-\_\-overall}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
+\subsubsection[{biomass\-\_\-spawning\-\_\-overall}]{\setlength{\rightskip}{0pt plus 5cm}Array$<$double,Quarter$>$ I\-O\-S\-K\-J\-::\-Model\-::biomass\-\_\-spawning\-\_\-overall}}\label{classIOSKJ_1_1Model_a2e2376de2347bb24f9cd18c6cb6b71a5}
+Total spawning biomass in each of the most recent quarters This is recorded in \hyperlink{classIOSKJ_1_1Model_af163ebda22001c7df308dc227c1687bb}{step()} so that the biomass\-\_\-spawning\-\_\-unfished can be set by \hyperlink{classIOSKJ_1_1Model_af64274ff5991d11e1c232618af8de800}{init()} \hypertarget{classIOSKJ_1_1Model_a2fe8d9737c54dcba326f0d6d73e50d28}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!biomass\-\_\-spawning\-\_\-unfished@{biomass\-\_\-spawning\-\_\-unfished}}
+\index{biomass\-\_\-spawning\-\_\-unfished@{biomass\-\_\-spawning\-\_\-unfished}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
+\subsubsection[{biomass\-\_\-spawning\-\_\-unfished}]{\setlength{\rightskip}{0pt plus 5cm}Array$<$double,Quarter$>$ I\-O\-S\-K\-J\-::\-Model\-::biomass\-\_\-spawning\-\_\-unfished}}\label{classIOSKJ_1_1Model_a2fe8d9737c54dcba326f0d6d73e50d28}
+Unfished spawning biomass by quarter. It is necessary to have this by quarter because the proportion of mature fish that spawn varies by quarter. \hypertarget{classIOSKJ_1_1Model_a0aa015def5316af0f5ce23bdaecbf67c}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!biomass\-\_\-vulnerable@{biomass\-\_\-vulnerable}}
 \index{biomass\-\_\-vulnerable@{biomass\-\_\-vulnerable}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
 \subsubsection[{biomass\-\_\-vulnerable}]{\setlength{\rightskip}{0pt plus 5cm}Array$<$double,Region,Method$>$ I\-O\-S\-K\-J\-::\-Model\-::biomass\-\_\-vulnerable}}\label{classIOSKJ_1_1Model_a0aa015def5316af0f5ce23bdaecbf67c}
-Vulneralble biomass by region and method \hypertarget{classIOSKJ_1_1Model_ad4379e82be5723f2e1b58e9492dde3dc}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!exploitation@{exploitation}}
+Vulnerable biomass by region and method \hypertarget{classIOSKJ_1_1Model_ad4379e82be5723f2e1b58e9492dde3dc}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!exploitation@{exploitation}}
 \index{exploitation@{exploitation}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
 \subsubsection[{exploitation}]{\setlength{\rightskip}{0pt plus 5cm}Array$<$double,Region,Size$>$ I\-O\-S\-K\-J\-::\-Model\-::exploitation}}\label{classIOSKJ_1_1Model_ad4379e82be5723f2e1b58e9492dde3dc}
-Exploitation rate by region and size for current time step
-
-\begin{DoxySeeAlso}{See Also}
-exploit 
-\end{DoxySeeAlso}
-\hypertarget{classIOSKJ_1_1Model_ab9afc5bae0ac8e16817802e54bdfa60d}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!exploitation\-\_\-on@{exploitation\-\_\-on}}
+Exploitation rate by region and size for current time step \hypertarget{classIOSKJ_1_1Model_ab9afc5bae0ac8e16817802e54bdfa60d}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!exploitation\-\_\-on@{exploitation\-\_\-on}}
 \index{exploitation\-\_\-on@{exploitation\-\_\-on}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
 \subsubsection[{exploitation\-\_\-on}]{\setlength{\rightskip}{0pt plus 5cm}bool I\-O\-S\-K\-J\-::\-Model\-::exploitation\-\_\-on}}\label{classIOSKJ_1_1Model_ab9afc5bae0ac8e16817802e54bdfa60d}
-A switch used to turn off/on exploitation dynamics (e.\-g turn off for virgin equilibrium) \hypertarget{classIOSKJ_1_1Model_aa90edf75b7c9ebf8e50a30f3779b9664}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!numbers@{numbers}}
+A switch used to turn off/on exploitation dynamics (e.\-g turn off for virgin equilibrium) \hypertarget{classIOSKJ_1_1Model_ab26d2c0b3da23a380d21bbfafa236cff}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!lengths@{lengths}}
+\index{lengths@{lengths}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
+\subsubsection[{lengths}]{\setlength{\rightskip}{0pt plus 5cm}Array$<$double,Size$>$ I\-O\-S\-K\-J\-::\-Model\-::lengths}}\label{classIOSKJ_1_1Model_ab26d2c0b3da23a380d21bbfafa236cff}
+Length at size s \hypertarget{classIOSKJ_1_1Model_a374c4b48c908c40b7401e484cc49c767}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!maturities@{maturities}}
+\index{maturities@{maturities}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
+\subsubsection[{maturities}]{\setlength{\rightskip}{0pt plus 5cm}Array$<$double,Size$>$ I\-O\-S\-K\-J\-::\-Model\-::maturities}}\label{classIOSKJ_1_1Model_a374c4b48c908c40b7401e484cc49c767}
+Maturity at size s \hypertarget{classIOSKJ_1_1Model_aaba1b769dc8f413829f5fe639e978058}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!maturity\-\_\-inflection@{maturity\-\_\-inflection}}
+\index{maturity\-\_\-inflection@{maturity\-\_\-inflection}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
+\subsubsection[{maturity\-\_\-inflection}]{\setlength{\rightskip}{0pt plus 5cm}double I\-O\-S\-K\-J\-::\-Model\-::maturity\-\_\-inflection}}\label{classIOSKJ_1_1Model_aaba1b769dc8f413829f5fe639e978058}
+Inflection of maturity ogive \hypertarget{classIOSKJ_1_1Model_a7cbfb9cd8bd5be39c93302e1352d2ad2}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!maturity\-\_\-steepness@{maturity\-\_\-steepness}}
+\index{maturity\-\_\-steepness@{maturity\-\_\-steepness}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
+\subsubsection[{maturity\-\_\-steepness}]{\setlength{\rightskip}{0pt plus 5cm}double I\-O\-S\-K\-J\-::\-Model\-::maturity\-\_\-steepness}}\label{classIOSKJ_1_1Model_a7cbfb9cd8bd5be39c93302e1352d2ad2}
+Steepness of maturiy ogive \hypertarget{classIOSKJ_1_1Model_a970fad74268a92b08807a7cdbb32468b}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!mortality@{mortality}}
+\index{mortality@{mortality}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
+\subsubsection[{mortality}]{\setlength{\rightskip}{0pt plus 5cm}double I\-O\-S\-K\-J\-::\-Model\-::mortality}}\label{classIOSKJ_1_1Model_a970fad74268a92b08807a7cdbb32468b}
+Instantaneous rate of natural mortality at weight of 1kg \hypertarget{classIOSKJ_1_1Model_a7c6726c255509c23749664a82ed4c4a9}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!mortality\-\_\-max@{mortality\-\_\-max}}
+\index{mortality\-\_\-max@{mortality\-\_\-max}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
+\subsubsection[{mortality\-\_\-max}]{\setlength{\rightskip}{0pt plus 5cm}double I\-O\-S\-K\-J\-::\-Model\-::mortality\-\_\-max}}\label{classIOSKJ_1_1Model_a7c6726c255509c23749664a82ed4c4a9}
+Maximum rate of natural mortality (exponential relationship can give very high natural mortality at small sizes) \hypertarget{classIOSKJ_1_1Model_a7fd43f29a1f093bfc97c0d6a8bd2a4ea}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!mortality\-\_\-rate@{mortality\-\_\-rate}}
+\index{mortality\-\_\-rate@{mortality\-\_\-rate}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
+\subsubsection[{mortality\-\_\-rate}]{\setlength{\rightskip}{0pt plus 5cm}Array$<$double,Size$>$ I\-O\-S\-K\-J\-::\-Model\-::mortality\-\_\-rate}}\label{classIOSKJ_1_1Model_a7fd43f29a1f093bfc97c0d6a8bd2a4ea}
+Instantaneous rate of natural mortality for size s \hypertarget{classIOSKJ_1_1Model_ad3c9235716a5015c822d74610b4807ef}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!mortality\-\_\-survival@{mortality\-\_\-survival}}
+\index{mortality\-\_\-survival@{mortality\-\_\-survival}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
+\subsubsection[{mortality\-\_\-survival}]{\setlength{\rightskip}{0pt plus 5cm}Array$<$double,Size$>$ I\-O\-S\-K\-J\-::\-Model\-::mortality\-\_\-survival}}\label{classIOSKJ_1_1Model_ad3c9235716a5015c822d74610b4807ef}
+Quarterly rate of survival from natural mortality for size s \hypertarget{classIOSKJ_1_1Model_a6a3e26a7c2e42634669ea2526626a18e}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!mortality\-\_\-weight\-\_\-exponent@{mortality\-\_\-weight\-\_\-exponent}}
+\index{mortality\-\_\-weight\-\_\-exponent@{mortality\-\_\-weight\-\_\-exponent}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
+\subsubsection[{mortality\-\_\-weight\-\_\-exponent}]{\setlength{\rightskip}{0pt plus 5cm}double I\-O\-S\-K\-J\-::\-Model\-::mortality\-\_\-weight\-\_\-exponent}}\label{classIOSKJ_1_1Model_a6a3e26a7c2e42634669ea2526626a18e}
+Allometric exponent of the weight to natural mortality relationship \hypertarget{classIOSKJ_1_1Model_aa90edf75b7c9ebf8e50a30f3779b9664}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!numbers@{numbers}}
 \index{numbers@{numbers}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
 \subsubsection[{numbers}]{\setlength{\rightskip}{0pt plus 5cm}Array$<$double,Region,Age,Size$>$ I\-O\-S\-K\-J\-::\-Model\-::numbers}}\label{classIOSKJ_1_1Model_aa90edf75b7c9ebf8e50a30f3779b9664}
-Fish numbers by region, age and size \hypertarget{classIOSKJ_1_1Model_a81bffc6707aa313f87bf21dbbf1d8143}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!spawning@{spawning}}
+Fish numbers by region, age and size \hypertarget{classIOSKJ_1_1Model_a8ffa15a7aea7598d5a6c91bec5779ef3}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!recruits@{recruits}}
+\index{recruits@{recruits}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
+\subsubsection[{recruits}]{\setlength{\rightskip}{0pt plus 5cm}double I\-O\-S\-K\-J\-::\-Model\-::recruits}}\label{classIOSKJ_1_1Model_a8ffa15a7aea7598d5a6c91bec5779ef3}
+Total number of recruits at time t \hypertarget{classIOSKJ_1_1Model_ad2450f5604c657cbe259b7b49e8f905a}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!recruits\-\_\-determ@{recruits\-\_\-determ}}
+\index{recruits\-\_\-determ@{recruits\-\_\-determ}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
+\subsubsection[{recruits\-\_\-determ}]{\setlength{\rightskip}{0pt plus 5cm}double I\-O\-S\-K\-J\-::\-Model\-::recruits\-\_\-determ}}\label{classIOSKJ_1_1Model_ad2450f5604c657cbe259b7b49e8f905a}
+Deterministic recruitment at time t \hypertarget{classIOSKJ_1_1Model_a639afa6cd0480ad8c6dbac286bdaa55c}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!recruits\-\_\-deviation@{recruits\-\_\-deviation}}
+\index{recruits\-\_\-deviation@{recruits\-\_\-deviation}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
+\subsubsection[{recruits\-\_\-deviation}]{\setlength{\rightskip}{0pt plus 5cm}double I\-O\-S\-K\-J\-::\-Model\-::recruits\-\_\-deviation}}\label{classIOSKJ_1_1Model_a639afa6cd0480ad8c6dbac286bdaa55c}
+Recruitment deviation (multiplier) at time t \hypertarget{classIOSKJ_1_1Model_a735f9a4288dc9fc4ca836c9ad3af3161}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!recruits\-\_\-regions@{recruits\-\_\-regions}}
+\index{recruits\-\_\-regions@{recruits\-\_\-regions}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
+\subsubsection[{recruits\-\_\-regions}]{\setlength{\rightskip}{0pt plus 5cm}Array$<$double,Region$>$ I\-O\-S\-K\-J\-::\-Model\-::recruits\-\_\-regions}}\label{classIOSKJ_1_1Model_a735f9a4288dc9fc4ca836c9ad3af3161}
+Recruitment by region \hypertarget{classIOSKJ_1_1Model_a88f9a0d53e76f9a88bf0d81c30bdb612}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!recruits\-\_\-relation\-\_\-on@{recruits\-\_\-relation\-\_\-on}}
+\index{recruits\-\_\-relation\-\_\-on@{recruits\-\_\-relation\-\_\-on}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
+\subsubsection[{recruits\-\_\-relation\-\_\-on}]{\setlength{\rightskip}{0pt plus 5cm}bool I\-O\-S\-K\-J\-::\-Model\-::recruits\-\_\-relation\-\_\-on}}\label{classIOSKJ_1_1Model_a88f9a0d53e76f9a88bf0d81c30bdb612}
+Flag to turn on/off recruitment relation \hypertarget{classIOSKJ_1_1Model_aff3f79494f94a20043a0c57009129dea}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!recruits\-\_\-sd@{recruits\-\_\-sd}}
+\index{recruits\-\_\-sd@{recruits\-\_\-sd}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
+\subsubsection[{recruits\-\_\-sd}]{\setlength{\rightskip}{0pt plus 5cm}double I\-O\-S\-K\-J\-::\-Model\-::recruits\-\_\-sd}}\label{classIOSKJ_1_1Model_aff3f79494f94a20043a0c57009129dea}
+Standard deviation of recruitment vaiation \hypertarget{classIOSKJ_1_1Model_a55d28db5525f6a4b0702c60dccbebd57}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!recruits\-\_\-sizes@{recruits\-\_\-sizes}}
+\index{recruits\-\_\-sizes@{recruits\-\_\-sizes}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
+\subsubsection[{recruits\-\_\-sizes}]{\setlength{\rightskip}{0pt plus 5cm}Array$<$double,Size$>$ I\-O\-S\-K\-J\-::\-Model\-::recruits\-\_\-sizes}}\label{classIOSKJ_1_1Model_a55d28db5525f6a4b0702c60dccbebd57}
+Initial sizes of recruits \hypertarget{classIOSKJ_1_1Model_ae3660f3f79edc131d7b96cf391f6a902}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!recruits\-\_\-steepness@{recruits\-\_\-steepness}}
+\index{recruits\-\_\-steepness@{recruits\-\_\-steepness}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
+\subsubsection[{recruits\-\_\-steepness}]{\setlength{\rightskip}{0pt plus 5cm}double I\-O\-S\-K\-J\-::\-Model\-::recruits\-\_\-steepness}}\label{classIOSKJ_1_1Model_ae3660f3f79edc131d7b96cf391f6a902}
+Steepness of stock-\/recruit relation \hypertarget{classIOSKJ_1_1Model_a780f4e69674141e96e028765004608ea}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!recruits\-\_\-unfished@{recruits\-\_\-unfished}}
+\index{recruits\-\_\-unfished@{recruits\-\_\-unfished}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
+\subsubsection[{recruits\-\_\-unfished}]{\setlength{\rightskip}{0pt plus 5cm}double I\-O\-S\-K\-J\-::\-Model\-::recruits\-\_\-unfished}}\label{classIOSKJ_1_1Model_a780f4e69674141e96e028765004608ea}
+Unfished equlibrium recruitment (numbers) \hypertarget{classIOSKJ_1_1Model_a164e3c054caea071da7079d5ff27833b}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!recruits\-\_\-variation\-\_\-on@{recruits\-\_\-variation\-\_\-on}}
+\index{recruits\-\_\-variation\-\_\-on@{recruits\-\_\-variation\-\_\-on}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
+\subsubsection[{recruits\-\_\-variation\-\_\-on}]{\setlength{\rightskip}{0pt plus 5cm}bool I\-O\-S\-K\-J\-::\-Model\-::recruits\-\_\-variation\-\_\-on}}\label{classIOSKJ_1_1Model_a164e3c054caea071da7079d5ff27833b}
+Flag to turn on/off recruitment variation \hypertarget{classIOSKJ_1_1Model_a81bffc6707aa313f87bf21dbbf1d8143}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!spawning@{spawning}}
 \index{spawning@{spawning}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
 \subsubsection[{spawning}]{\setlength{\rightskip}{0pt plus 5cm}Array$<$double,Quarter$>$ I\-O\-S\-K\-J\-::\-Model\-::spawning}}\label{classIOSKJ_1_1Model_a81bffc6707aa313f87bf21dbbf1d8143}
-The spawning fraction by quarter 
+The spawning fraction by quarter \hypertarget{classIOSKJ_1_1Model_a39f409e1010b3f2d1559366a7f7daad8}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!weight\-\_\-a@{weight\-\_\-a}}
+\index{weight\-\_\-a@{weight\-\_\-a}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
+\subsubsection[{weight\-\_\-a}]{\setlength{\rightskip}{0pt plus 5cm}double I\-O\-S\-K\-J\-::\-Model\-::weight\-\_\-a}}\label{classIOSKJ_1_1Model_a39f409e1010b3f2d1559366a7f7daad8}
+Scalar of length-\/weight relationship \hypertarget{classIOSKJ_1_1Model_aca953740b9305b51d39e04bc1b19ebb5}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!weight\-\_\-b@{weight\-\_\-b}}
+\index{weight\-\_\-b@{weight\-\_\-b}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
+\subsubsection[{weight\-\_\-b}]{\setlength{\rightskip}{0pt plus 5cm}double I\-O\-S\-K\-J\-::\-Model\-::weight\-\_\-b}}\label{classIOSKJ_1_1Model_aca953740b9305b51d39e04bc1b19ebb5}
+Exponent of length-\/weight relationship \hypertarget{classIOSKJ_1_1Model_a9befb275d915c5cec6b1e0e7a4bc8791}{\index{I\-O\-S\-K\-J\-::\-Model@{I\-O\-S\-K\-J\-::\-Model}!weights@{weights}}
+\index{weights@{weights}!IOSKJ::Model@{I\-O\-S\-K\-J\-::\-Model}}
+\subsubsection[{weights}]{\setlength{\rightskip}{0pt plus 5cm}Array$<$double,Size$>$ I\-O\-S\-K\-J\-::\-Model\-::weights}}\label{classIOSKJ_1_1Model_a9befb275d915c5cec6b1e0e7a4bc8791}
+Weight at size s 
 
 The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
 \item 

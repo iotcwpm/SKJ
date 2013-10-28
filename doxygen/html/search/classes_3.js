@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['sizefrequency',['SizeFrequency',['../classIOSKJ_1_1Data_1_1SizeFrequency.html',1,'IOSKJ::Data']]],
-  ['spline',['Spline',['../classSpline.html',1,'']]]
+  ['nominalcatch',['NominalCatch',['../classIOSKJ_1_1Data_1_1NominalCatch.html',1,'IOSKJ::Data']]]
 ];
