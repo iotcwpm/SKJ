@@ -12,7 +12,7 @@ int main(void){
 
 	model.defaults();
 	model.init();
-	model.simulate(0,100);
+	model.years(0,2013-1950);
 
 	model.shutdown();
 	Data::shutdown();

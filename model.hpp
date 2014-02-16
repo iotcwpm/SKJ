@@ -31,7 +31,6 @@ public:
 	 */
 	Array<double,Region> biomass;
 	
-
 	/**
 	 * @{
 	 * @name Spawning
@@ -88,12 +87,12 @@ public:
 	/**
 	 * Flag to turn on/off recruitment variation
 	 */
-	bool recruits_variation_on;
+	bool recruits_variation_on = true;
 
 	/**
 	 * Flag to turn on/off recruitment relation
 	 */
-	bool recruits_relation_on;
+	bool recruits_relation_on = true;
 
 	/**
 	 * Deterministic recruitment at time t 
@@ -244,10 +243,22 @@ public:
 	Array<double,Method,Size> selectivities;
 
 	/**
-	 * A switch used to turn off/on exploitation dynamics
+	 * A switch used to turn on/off exploitation dynamics
 	 * (e.g turn off for virgin equilibrium)
 	 */
-	bool exploitation_on;
+	bool exploitation_on = true;
+
+	/**
+	 * A switch used to turn on/off the calculation
+	 * of exploitation rates from catches. Used to specify a particular
+	 * exploitation rate when calculation MSY/Bmsy
+	 */
+	bool catches_on = true;
+
+	/**
+	 * The exploitation rate specified, for example, when calculating MSY/Bmsy
+	 */
+	double exploitation_rate_specified;
 
 	/**
 	 * Vulnerable biomass by region and method
@@ -255,9 +266,19 @@ public:
 	Array<double,Region,Method> biomass_vulnerable;
 
 	/**
-	 * Exploitation rate by region and size for current time step
+	 * Catches by region and method
 	 */
-	Array<double,Region,Size> exploitation;
+	Array<double,Region,Method> catches;
+
+	/**
+	 * Exploitation rate by region and method for current time step
+	 */
+	Array<double,Region,Method> exploitation_rate;
+
+	/**
+	 * Exploitation survival
+	 */
+	Array<double,Region,Size> exploitation_survival;
 
 	/**
 	 * @}
@@ -281,7 +302,6 @@ public:
 			track_on = true;
 			track_file.open(filename);
 			track_file
-				<<"period\t"
 				<<"year\t"
 				<<"quarter\t"
 				<<"recruits_determ\t"
@@ -294,10 +314,9 @@ public:
 				<<std::endl;
 		}
 
-		void track(void){
+		void track(int year, int quarter){
 			if(track_on){
 				track_file
-					<<period<<"\t"
 					<<year<<"\t"
 					<<quarter<<"\t"
 					<<recruits_determ<<"\t"
@@ -334,13 +353,31 @@ public:
 	 */
 
 	/**
-	 * Perform any necessary steps at initial model execution 
+	 * Perform any necessary steps at start of model execution 
 	 */
 	void startup(void){
 	}
 
-	//! @{
-	//! @name Parameter setting methods
+	/**
+	 * Perform any necessary steps at end of model execution
+	 */
+	void shutdown(void){
+	}
+
+	/**
+	 * Set exploitation rate. Used in testing and in 
+	 * equilibrium exploitation i.e. MSY/BMSY calculations
+	 */
+	void exploitation_rate_set(double value){
+		exploitation_on = true;
+		catches_on = false;
+		exploitation_rate_specified = value;
+	}
+
+	/**
+	 * @{
+	 * @name Parameter setting methods
+	 */
 
 	/**
 	 * Set default parameter values
@@ -463,7 +500,7 @@ public:
 	}
 
 	/**
-	 * Initialise the fish population based on current parameter values
+	 * Initialise various model variables based on current parameter values
 	 */
 	void init(void){
 		// Initialise arrays by size...	
@@ -537,7 +574,10 @@ public:
 		write();
 	}
 
-	void step(void){
+	/**
+	 * Perform a single time step
+	 */
+	void quarter(int year, int quarter){
 
 		// Calculate total biomass and spawning biomass by region
 		for(auto region : regions){
@@ -594,37 +634,35 @@ public:
 			}
 		}
 
+		// Exploitation rate
 		if(exploitation_on){
-			// Exploitation rate
-			for(auto region : regions){
-				for(auto method : methods){
-					double sum = 0;
-					for(auto age : ages){
-						for(auto size : sizes){
-							sum += numbers(region,age,size) * weights(size) * selectivities(method,size);
+			if(catches_on){
+				for(auto region : regions){
+					for(auto method : methods){
+						double sum = 0;
+						for(auto age : ages){
+							for(auto size : sizes){
+								sum += numbers(region,age,size) * weights(size) * selectivities(method,size);
+							}
 						}
-					}
-					biomass_vulnerable(region,method) = sum;
-				}
-			}
-			//exploitation_rate(region_method) = catches(region,method)/biomass_vulnerable(region,method);
-		} else {
-
-		}
-
-		/*
-		for(auto region : regions){
-			for(auto size : sizes){
-				double sum = 0;
-				for(auto method : methods){
-					for(auto age : ages){
-						sum += 
+						biomass_vulnerable(region,method) = sum;
+						exploitation_rate(region,method) = catches(region,method)/biomass_vulnerable(region,method);
 					}
 				}
-				exploitation_survival(region,size) = 1-sum;
+			} else {
+				exploitation_rate = exploitation_rate_specified;
+			}
+			// Pre-calculate the exploitation_survival for each region and size
+			for(auto region : regions){
+				for(auto size : sizes){
+					double prod = 1;
+					for(auto method : methods){
+						prod *= exploitation_rate(region,method) * selectivities(method,size);
+					}
+					exploitation_survival(region,size) = 1-prod;
+				}
 			}
 		}
-		*/
 	
 		// Mortality, growth and movement
 		auto numbers_temp = numbers;
@@ -637,7 +675,7 @@ public:
 							sum += numbers(region_from,age,size_from) * 
 									growth(size_from,size) * 
 									mortality_survival(size_from) * 
-									//exploitation_survival(region_from,size_from) * 
+									(exploitation_on?exploitation_survival(region_from,size_from):1) * 
 									movement(region_from,region);
 						}
 					}
@@ -647,20 +685,41 @@ public:
 		}
 		numbers = numbers_temp;
 
-		track();
+		// Tracking
+		track(year,quarter);
 	}
 
-	void equilibrium(void){
-		// Iterate until there is a very minor change in biomass
+	/**
+	 * Simulate one year
+	 * 
+	 * @param y Year
+	 */
+	void year(int y){
+		for(int q=0;q<4;q++) quarter(y,q);
+	}
 
+	/**
+	 * Simulate over a range of years
+	 * 
+	 * @param begin Start year
+	 * @param end   End year
+	 */
+	void years(int begin,int end){
+		for(int y=begin;y<end;y++) year(y);
+	}
+
+	/**
+	 * Move the population to a deterministic equilibrium 
+	 */
+	void equilibrium(void){
 		// Turn off recruitment variation
 		recruits_variation_on = false;
-
+		// Iterate until there is a very minor change in biomass
 		uint steps = 0;
 		const uint steps_max = 10000;
 		Array<double,Region> biomass_prev = 1;
 		while(steps<steps_max){
-			for(quarter=0;quarter<4;quarter++) step();
+			year(0);
 
 			double diffs = 0;
 			for(auto region : regions){
@@ -673,18 +732,13 @@ public:
 		}
 		// Throw an error if there was no convergence
 		assert(steps<steps_max);
-
 		// Turn on recruitment deviation again
 		recruits_variation_on = true;
 	}
 
-	void simulate(uint begin,uint end){
-		for(period=begin;period<end;period++){
-			time(period);
-			step();
-		}
-	}
-
+	/**
+	 * Write model attributes to files for examination
+	 */
 	void write(void){
 		numbers.write("output/numbers.txt");
 		lengths.write("output/lengths.txt");
@@ -697,10 +751,6 @@ public:
 		movement.write("output/movement.txt");
 		selectivities.write("output/selectivities.txt");
 	}
-
-	void shutdown(void){
-	}
-
 };
 
 }
