@@ -2,3 +2,9 @@ main.debug
 main.exe
 
 output
+
+# Ignore text editor and iDE files
+
+*.sublime-project
+*.sublime-workspace
+.Rhistory
