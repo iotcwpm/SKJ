@@ -621,10 +621,10 @@ public:
 		for(auto region : regions){
 			for(auto size : sizes){
 				// Oldest age class accumulates 
-				numbers(region,ages.size-1,size) += numbers(region,ages.size-2,size);
+				numbers(region,ages-1,size) += numbers(region,ages-2,size);
 
 				// For most ages just "shuffle" along
-				for(uint age=ages.size-2;age>0;age--){
+				for(uint age=ages-2;age>0;age--){
 					numbers(region,age,size) = numbers(region,age-1,size);
 				}
 
@@ -740,16 +740,16 @@ public:
 	 * Write model attributes to files for examination
 	 */
 	void write(void){
-		numbers.write("output/numbers.txt");
-		lengths.write("output/lengths.txt");
-		weights.write("output/weights.txt");
-		maturities.write("output/maturities.txt");
-		mortality_rate.write("output/mortality-rate.txt");
-		spawning.write("output/spawning.txt");
-		growth_increments.write("output/growth-increments.txt");
-		growth.write("output/growth.txt");
-		movement.write("output/movement.txt");
-		selectivities.write("output/selectivities.txt");
+		numbers.write("output/numbers.tsv");
+		lengths.write("output/lengths.tsv");
+		weights.write("output/weights.tsv");
+		maturities.write("output/maturities.tsv");
+		mortality_rate.write("output/mortality-rate.tsv");
+		spawning.write("output/spawning.tsv");
+		growth_increments.write("output/growth-increments.tsv");
+		growth.write("output/growth.tsv");
+		movement.write("output/movement.tsv");
+		selectivities.write("output/selectivities.tsv");
 	}
 };
 

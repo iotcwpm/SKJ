@@ -1,5 +1,6 @@
 #include <cmath>
 #include <fstream>
 
-#include <stencila/arrayspace/arrayspace.hpp>
-using namespace Stencila::Arrayspace;
+#include <stencila/array.hpp>
+#include <stencila/query.hpp>
+using namespace Stencila;
