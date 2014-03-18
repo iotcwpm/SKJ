@@ -2,6 +2,8 @@
 
 #include <array>
 
+#include <fsl/math/probability/lognormal.hpp>
+
 #include "spline.hpp"
 
 #include "common.hpp"
@@ -21,15 +23,17 @@ namespace IOSKJ {
 class Model {
 public:
 
+	using Lognormal = Fsl::Math::Probability::Lognormal;
+
 	/**
 	 * Fish numbers by region, age and size
 	 */
-	Array<double,Region,Age,Size> numbers;
+	Grid<double,Region,Age,Size> numbers;
 
 	/**
 	 * Total biomass by region
 	 */
-	Array<double,Region> biomass;
+	Grid<double,Region> biomass;
 	
 	/**
 	 * @{
@@ -39,26 +43,26 @@ public:
 	/**
 	 * The spawning fraction by quarter
 	 */
-	Array<double,Quarter> spawning;
+	Grid<double,Quarter> spawning;
 	
 
 	/**
 	 * The total spawning biomass by region
 	 */
-	Array<double,Region> biomass_spawning;
+	Grid<double,Region> biomass_spawning;
 
 	/**
 	 * Total spawning biomass in each of the most recent quarters
 	 * This is recorded in step() so that the biomass_spawning_unfished
 	 * can be set by init()
 	 */
-	Array<double,Quarter> biomass_spawning_overall;
+	Grid<double,Quarter> biomass_spawning_overall;
 
 	/**
 	 * Unfished spawning biomass by quarter. It is necessary to have this by quarter
 	 * because the proportion of mature fish that spawn varies by quarter.
 	 */
-	Array<double,Quarter> biomass_spawning_unfished;
+	Grid<double,Quarter> biomass_spawning_unfished;
 
 	/**
 	 * @}
@@ -110,14 +114,16 @@ public:
 	double recruits;
 
 	/**
-	 * Recruitment by region
+	 * Proportion of recruits by region
 	 */
-	Array<double,Region> recruits_regions;
+	Grid<double,Region> recruits_regions;
 
 	/**
-	 * Initial sizes of recruits
+	 * Proportion of recruits by size class
 	 */
-	Array<double,Size> recruits_sizes;
+	double recruits_size_mean;
+	double recruits_size_cv;
+	Grid<double,Size> recruits_sizes;
 
 	/**
 	 * @}
@@ -131,7 +137,7 @@ public:
 	/**
 	 * Length at size s
 	 */
-	Array<double,Size> lengths;
+	Grid<double,Size> lengths;
 	const double lengths_step = 2;
 
 	/**
@@ -147,7 +153,7 @@ public:
 	/**
 	 * Weight at size s
 	 */
-	Array<double,Size> weights;
+	Grid<double,Size> weights;
 	
 	/**
 	 * Inflection of maturity ogive
@@ -162,7 +168,7 @@ public:
 	/**
 	 * Maturity at size s
 	 */
-	Array<double,Size> maturities;
+	Grid<double,Size> maturities;
 
 	/**
 	 * @}
@@ -193,12 +199,12 @@ public:
 	/**
 	 * Instantaneous rate of natural mortality for size s
 	 */
-	Array<double,Size> mortality_rate;
+	Grid<double,Size> mortality_rate;
 
 	/**
 	 * Quarterly rate of survival from natural mortality for size s
 	 */
-	Array<double,Size> mortality_survival;
+	Grid<double,Size> mortality_survival;
 
 	/**
 	 * @}
@@ -213,8 +219,8 @@ public:
 	double growth_assymptote;
 	double growth_sd;
 	double growth_cv;
-	Array<double,Size> growth_increments;
-	Array<double,SizeFrom,Size> growth;
+	Grid<double,Size> growth_increments;
+	Grid<double,SizeFrom,Size> growth;
 
 	/**
 	 * @}
@@ -225,8 +231,8 @@ public:
 	 * @name Movement
 	 */
 	
-	Array<double,RegionFrom,Region> movement_pars;
-	Array<double,RegionFrom,Region> movement;
+	Grid<double,RegionFrom,Region> movement_pars;
+	Grid<double,RegionFrom,Region> movement;
 
 	/**
 	 * @}
@@ -237,10 +243,9 @@ public:
 	 * @name Selectivity and exploitation
 	 */
 	
-	typedef std::array<double,5> SelectivityPoints;
-	Array<SelectivityPoints,Method> selectivity_points;
+	Grid<double,Method,SelectivityKnot> selectivity_points;
 
-	Array<double,Method,Size> selectivities;
+	Grid<double,Method,Size> selectivities;
 
 	/**
 	 * A switch used to turn on/off exploitation dynamics
@@ -263,22 +268,22 @@ public:
 	/**
 	 * Vulnerable biomass by region and method
 	 */
-	Array<double,Region,Method> biomass_vulnerable;
+	Grid<double,Region,Method> biomass_vulnerable;
 
 	/**
 	 * Catches by region and method
 	 */
-	Array<double,Region,Method> catches;
+	Grid<double,Region,Method> catches;
 
 	/**
 	 * Exploitation rate by region and method for current time step
 	 */
-	Array<double,Region,Method> exploitation_rate;
+	Grid<double,Region,Method> exploitation_rate;
 
 	/**
 	 * Exploitation survival
 	 */
-	Array<double,Region,Size> exploitation_survival;
+	Grid<double,Region,Size> exploitation_survival;
 
 	/**
 	 * @}
@@ -337,10 +342,10 @@ public:
 
 	#else
 
-		void track_open(void){
+		void track_open(std::string filename){
 		}
 
-		void track(void){
+		void track(int year, int quarter){
 		}
 
 		void track_close(void){
@@ -378,81 +383,6 @@ public:
 	 * @{
 	 * @name Parameter setting methods
 	 */
-
-	/**
-	 * Set default parameter values
-	 *
-	 * Mainly used in testing
-	 */
-	void defaults(void){
-		recruits_unfished = 10e6;
-		recruits_steepness = 0.9;
-		recruits_sd = 0.6;
-
-		recruits_regions = {0.5,0.3,0.2};
-
-		recruits_sizes = 0.0;
-		recruits_sizes[0] = 1;
-
-		weight_a = 5.32e-6;
-		weight_b = 3.35;
-
-		maturity_inflection = 40;
-		maturity_steepness = 5;
-
-		mortality = 0.8;
-		mortality_weight_exponent = -0.29;
-		mortality_max = -std::log(0.01);
-
-		growth_rate = 0.3;
-		growth_assymptote = 75;
-		growth_sd = 1;
-		growth_cv = 0.2;
-
-		movement_pars(W,W) = 0.85;
-		movement_pars(W,M) = 0.10;
-		movement_pars(W,E) = 0.05;
-
-		movement_pars(M,W) = 0.10;
-		movement_pars(M,M) = 0.80;
-		movement_pars(M,E) = 0.10;
-
-		movement_pars(E,W) = 0.05;
-		movement_pars(E,M) = 0.10;
-		movement_pars(E,E) = 0.85;
-
-		spawning = {0.8,0.5,0.8,0.5};
-
-		selectivity_points(PS)[0] = 0.0;
-		selectivity_points(PS)[1] = 0.1;
-		selectivity_points(PS)[2] = 0.3;
-		selectivity_points(PS)[3] = 0.5;
-		selectivity_points(PS)[4] = 1.0;
-
-		selectivity_points(PL)[0] = 0.0;
-		selectivity_points(PL)[1] = 0.1;
-		selectivity_points(PL)[2] = 0.3;
-		selectivity_points(PL)[3] = 0.5;
-		selectivity_points(PL)[4] = 1.0;
-
-		selectivity_points(GN)[0] = 0.0;
-		selectivity_points(GN)[1] = 0.1;
-		selectivity_points(GN)[2] = 0.3;
-		selectivity_points(GN)[3] = 0.5;
-		selectivity_points(GN)[4] = 1.0;
-
-		selectivity_points(LI)[0] = 0.0;
-		selectivity_points(LI)[1] = 0.1;
-		selectivity_points(LI)[2] = 0.3;
-		selectivity_points(LI)[3] = 0.5;
-		selectivity_points(LI)[4] = 1.0;
-
-		selectivity_points(OT)[0] = 0.0;
-		selectivity_points(OT)[1] = 0.1;
-		selectivity_points(OT)[2] = 0.3;
-		selectivity_points(OT)[3] = 0.5;
-		selectivity_points(OT)[4] = 1.0;
-	}
 
 	/**
 	 * Set recruitment distribution across regions to be uniform
@@ -502,8 +432,8 @@ public:
 	/**
 	 * Initialise various model variables based on current parameter values
 	 */
-	void init(void){
-		// Initialise arrays by size...	
+	void initialise(void){
+		// Initialise grids by size...	
 		for(auto size : sizes){
 			lengths(size) = 2*size+1;
 			weights(size) = weight_a * std::pow(lengths(size),weight_b);
@@ -511,6 +441,12 @@ public:
 			mortality_rate(size) = std::min(mortality * std::pow(weights(size),mortality_weight_exponent),mortality_max);
 			mortality_survival(size) = std::exp(-0.25*mortality_rate(size));
 		}
+
+		// Initialise proportion of recruits by size
+		Lognormal recruits_sizes_dist(recruits_size_mean,recruits_size_mean*recruits_size_cv);
+		recruits_sizes = [&recruits_sizes_dist](uint size){
+			return recruits_sizes_dist.cdf(size*2,(size+1)*2);
+		};
 
 		// Initialise growth size transition matrix
 		for(auto size : sizes){
@@ -526,7 +462,8 @@ public:
 		}
 
 		// Initialise movement matrix
-		auto movement_sums = movement_pars(by(region_froms),sum());
+		// Normalise so that movement proportions always sum to 1 for a particular region
+		auto movement_sums = movement_pars(sum(),by(region_froms));
 		for(auto region_from : region_froms){
 			for(auto region : regions){
 				movement(region_from,region) = 
@@ -536,16 +473,22 @@ public:
 
 		// Initialise selectivity
 		for(auto method : methods){
-			auto points = selectivity_points(method);
+			// Extract values at knots
+			Array<> points(selectivity_knots.size());
+			for(auto knot : selectivity_knots) points[knot] = selectivity_points(method,knot);
+			// Create a spline
 			Spline<double,double> selectivity_spline(
 				{0,20,40,60,80},
-				std::vector<double>(points.begin(),points.end())
+				points
 			);
-
+			// Iterpolate with spline
 			for(auto size : sizes){
 				selectivities(method,size) = selectivity_spline.interpolate(lengths(size));
 			}
 		}
+
+		// Normalise the recruits_region grid so that it sums to one
+		recruits_regions /= sum(recruits_regions);
 
 		/**
 		 * The fish population is initialised to an unfished state
@@ -621,10 +564,10 @@ public:
 		for(auto region : regions){
 			for(auto size : sizes){
 				// Oldest age class accumulates 
-				numbers(region,ages-1,size) += numbers(region,ages-2,size);
+				numbers(region,ages.size()-1,size) += numbers(region,ages.size()-2,size);
 
 				// For most ages just "shuffle" along
-				for(uint age=ages-2;age>0;age--){
+				for(uint age=ages.size()-2;age>0;age--){
 					numbers(region,age,size) = numbers(region,age-1,size);
 				}
 
@@ -717,7 +660,7 @@ public:
 		// Iterate until there is a very minor change in biomass
 		uint steps = 0;
 		const uint steps_max = 10000;
-		Array<double,Region> biomass_prev = 1;
+		Grid<double,Region> biomass_prev = 1;
 		while(steps<steps_max){
 			year(0);
 

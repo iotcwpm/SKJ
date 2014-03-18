@@ -30,4 +30,6 @@ enum {
 	OT = 4
 };
 
+STENCILA_DIM(SelectivityKnot,selectivity_knots,selectivity_knot,5);
+
 }
