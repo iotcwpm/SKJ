@@ -5,6 +5,8 @@ using boost::format;
 
 #include <fsl/estimation/parameters.hpp>
 #include <fsl/math/probability/uniform.hpp>
+#include <fsl/math/probability/normal.hpp>
+#include <fsl/math/probability/truncated.hpp>
 
 namespace IOSKJ {
 
@@ -21,9 +23,23 @@ public:
 	using Parameter = Fsl::Estimation::Parameter<Types...>;
 
 	using Uniform = Fsl::Math::Probability::Uniform;
+	using Normal = Fsl::Math::Probability::Normal;
+	template<typename Type>
+	using Truncated = Fsl::Math::Probability::Truncated<Type>;
 
 	using Fixed = Fsl::Estimation::Priors::Fixed;
 	using Log = Fsl::Estimation::Links::Log;
+
+	/**
+	 * Define begin and end time for parameter binding
+	 * The `bind` method is called over this range to generate a parameter set
+	 */
+	uint begin(void) const {
+		return 0;
+	}
+	uint end(void) const {
+		return time(2014,0);
+	}
 	
 	/**
 	 * Parameters of the stock-recruitment relationship
@@ -31,6 +47,11 @@ public:
 	Parameter<Uniform,Log> recruits_unfished = {"recruits_unfished",{10,30}};
 	Parameter<Uniform> recruits_steepness = {"recruits_steepness",{0.7,1.0}};
 	Parameter<Uniform> recruits_sd = {"recruits_sd",{0.4,0.8}};
+
+	/**
+	 * Recruitment deviations
+	 */
+	Parameter<Truncated<Normal>,Log> recruits_deviation = {"recruits_deviation",{0,0.6,-3,3}};
 
 	/**
 	 * Proportion of mature fish spawning by quarter
@@ -95,70 +116,117 @@ public:
 	/**
 	 * Selectivity parameters
 	 *
-	 * These are likely to be wel determined from the data and so a U(0,1) prior
+	 * These are likely to be well determined from the data and so a U(0,1) prior
 	 * is used for all
 	 */
 	Parameter<Uniform> selectivity = {"selectivity",{0,1}};
 
+	/**
+	 * Catches by time, region and method
+	 */
+	Grid<
+		Parameter<Fixed>,
+		Time,Region,Method
+	> catches;
 
 	/**
-	 * Bind parameter definitions to model variables
+	 * Bind parameters to model variables
 	 */
 	template<class Binder>
-	void bind(Binder& binder, Model& model) {
+	void bind(Binder& binder, Model& model, uint time) {
+		uint year = IOSKJ::year(time);
+		uint quarter = IOSKJ::quarter(time);
 		
-		binder(recruits_unfished, model.recruits_unfished);
-		binder(recruits_steepness, model.recruits_steepness);
-		binder(recruits_sd, model.recruits_sd);
+		// Bind invariant parameters
+		if(time==0){
+			binder(recruits_unfished, model.recruits_unfished);
+			binder(recruits_steepness, model.recruits_steepness);
+			binder(recruits_sd, model.recruits_sd);
 
-		binder(spawning_0, model.spawning(0));
-		binder(spawning_1, model.spawning(1));
-		binder(spawning_2, model.spawning(2));
-		binder(spawning_3, model.spawning(3));
+			binder(spawning_0, model.spawning(0));
+			binder(spawning_1, model.spawning(1));
+			binder(spawning_2, model.spawning(2));
+			binder(spawning_3, model.spawning(3));
 
-		for(auto region : regions) {
+			for(auto region : regions) {
+				binder(
+					recruits_regions,
+					model.recruits_regions(region),
+					str(format("recruits_regions_%s")%region)
+				);
+			}
+
+			binder(recruits_size_mean, model.recruits_size_mean);
+			binder(recruits_size_cv, model.recruits_size_cv);
+
+			binder(weight_a, model.weight_a);
+			binder(weight_b, model.weight_b);
+
+			binder(maturity_inflection, model.maturity_inflection);
+			binder(maturity_steepness, model.maturity_steepness);
+
+			binder(mortality,model.mortality);
+			binder(mortality_weight_exponent,model.mortality_weight_exponent);
+			binder(mortality_max,model.mortality_max);
+
+			binder(growth_rate, model.growth_rate);
+			binder(growth_assymptote, model.growth_assymptote);
+			binder(growth_sd, model.growth_sd);
+			binder(growth_cv, model.growth_cv);		
+
+			for(auto region_from : region_froms){
+				for(auto region : regions){
+					auto label = str(format("movement_%s_%s")%region_from%region);
+					if(region_from==region) binder(movement_stay, model.movement_pars(region_from,region), label);
+					else if((region_from==W and region==M) or (region_from==M and region==W)) binder(movement_w_m, model.movement_pars(region_from,region), label);
+					else if((region_from==M and region==E) or (region_from==E and region==M)) binder(movement_m_e, model.movement_pars(region_from,region), label);
+					else if((region_from==W and region==E) or (region_from==E and region==W)) binder(movement_w_e, model.movement_pars(region_from,region), label);
+					else throw std::runtime_error("Unhandled movement parameter:"+label);
+				}
+			}
+
+			for(auto method : methods){
+				for(auto knot : selectivity_knots){
+					binder(selectivity, model.selectivity_points(method,knot),str(format("selectivity_%s_%s")%method%knot));
+				}
+			}
+
+			// If the binder is a "setter" then need to initialise the model
+			if(binder.setter){
+				model.initialise();
+			}
+		}
+
+		// Alternative parameterisation of recruitment variation epending on year..
+		if(year<1990){
+			// Deterministric recruitment
+			model.recruits_variation_on = false;
+			model.recruits_deviation = 1;
+		}
+		else if(quarter==0 and year>=1990 and year<=2012){
+			// Stochastic recruitment defined by recruitment deviation parameters
+			// Bind recruitment deviations in the first quarter (only one deviation per year) where information available
+			model.recruits_variation_on = false;
 			binder(
-				recruits_regions,
-				model.recruits_regions(region),
-				str(format("recruits_regions_%s")%region)
+				recruits_deviation,
+				model.recruits_deviation,
+				str(format("recruits_deviation_%s")%year)
 			);
+		} else {
+			// Stochastic recruitment defined by recruits_sd and recruits_auto as bound in time==0
+			model.recruits_variation_on = true;
 		}
 
-		binder(recruits_size_mean, model.recruits_size_mean);
-		binder(recruits_size_cv, model.recruits_size_cv);
-
-		binder(weight_a, model.weight_a);
-		binder(weight_b, model.weight_b);
-
-		binder(maturity_inflection, model.maturity_inflection);
-		binder(maturity_steepness, model.maturity_steepness);
-
-		binder(mortality,model.mortality);
-		binder(mortality_weight_exponent,model.mortality_weight_exponent);
-		binder(mortality_max,model.mortality_max);
-
-		binder(growth_rate, model.growth_rate);
-		binder(growth_assymptote, model.growth_assymptote);
-		binder(growth_sd, model.growth_sd);
-		binder(growth_cv, model.growth_cv);		
-
-		for(auto region_from : region_froms){
-			for(auto region : regions){
-				auto label = str(format("movement_%s_%s")%region_from%region);
-				if(region_from==region) binder(movement_stay, model.movement_pars(region_from,region), label);
-				else if((region_from==W and region==M) or (region_from==M and region==W)) binder(movement_w_m, model.movement_pars(region_from,region), label);
-				else if((region_from==M and region==E) or (region_from==E and region==M)) binder(movement_m_e, model.movement_pars(region_from,region), label);
-				else if((region_from==W and region==E) or (region_from==E and region==W)) binder(movement_w_e, model.movement_pars(region_from,region), label);
-				else throw std::runtime_error("Unhandled movement parameter:"+label);
+		// Bind quarterly catch history to model catches
+		for(auto region : regions){
+			for(auto method : methods){
+				binder(
+					catches(time,region,method),
+					model.catches(region,method),
+					str(format("catch_%s_%s_%s_%s")%year%quarter%region%method)
+				);
 			}
 		}
-
-		for(auto method : methods){
-			for(auto knot : selectivity_knots){
-				binder(selectivity, model.selectivity_points(method,knot),str(format("selectivity_%s_%s")%method%knot));
-			}
-		}
-
 	}
 
 };

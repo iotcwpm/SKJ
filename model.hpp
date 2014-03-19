@@ -11,14 +11,13 @@
 #include "distributions.hpp"
 
 #define TRACKING 1
+#define DEBUG 1
 
 namespace IOSKJ {
 
 /**
  * Model of the Indian Ocean skipjack tuna fishery. This class encapsulates both fish
  * population and fishing dynamics.
- * 
- * @author Nokome Bentley <nokome.bentley@trophia.com>
  */
 class Model {
 public:
@@ -255,8 +254,8 @@ public:
 
 	/**
 	 * A switch used to turn on/off the calculation
-	 * of exploitation rates from catches. Used to specify a particular
-	 * exploitation rate when calculation MSY/Bmsy
+	 * of exploitation rates from catches. Turned off to specify a particular
+	 * exploitation rate when calculating MSY/Bmsy
 	 */
 	bool catches_on = true;
 
@@ -274,6 +273,12 @@ public:
 	 * Catches by region and method
 	 */
 	Grid<double,Region,Method> catches;
+
+	/**
+	 * Catches by region and method given maximimum exploitation rate of
+	 * one. This variable is useful for penalising against impossible dynamics.
+	 */
+	Grid<double,Region,Method> catches_taken;
 
 	/**
 	 * Exploitation rate by region and method for current time step
@@ -356,18 +361,6 @@ public:
 	/**
 	 * @}
 	 */
-
-	/**
-	 * Perform any necessary steps at start of model execution 
-	 */
-	void startup(void){
-	}
-
-	/**
-	 * Perform any necessary steps at end of model execution
-	 */
-	void shutdown(void){
-	}
 
 	/**
 	 * Set exploitation rate. Used in testing and in 
@@ -491,15 +484,16 @@ public:
 		recruits_regions /= sum(recruits_regions);
 
 		/**
-		 * The fish population is initialised to an unfished state
+		 * The population is initialised to an unfished state
 		 * by iterating with virgin recruitment until it reaches equibrium
 		 * defined by less than 0.01% change in total biomass.
 		 */
-		// Initialise the population to zero
-		numbers = 0.0;
 		// Turn off recruitment relationship, variation and exploitation
 		recruits_relation_on = false;
 		exploitation_on = false;
+		// Reset the population, noting that with recruits_relation_on==false 
+		// the population gets R0 each year
+		numbers = 0.0;
 		// Go to equilibrium
 		equilibrium();
 		// Turn on recruitment relationship etc again
@@ -520,7 +514,9 @@ public:
 	/**
 	 * Perform a single time step
 	 */
-	void quarter(int year, int quarter){
+	void update(uint time){
+		uint year = IOSKJ::year(time);
+		uint quarter = IOSKJ::quarter(time);
 
 		// Calculate total biomass and spawning biomass by region
 		for(auto region : regions){
@@ -582,14 +578,21 @@ public:
 			if(catches_on){
 				for(auto region : regions){
 					for(auto method : methods){
-						double sum = 0;
+						// Calculate vulnerable biomass in this region
+						double biomass_vuln = 0;
 						for(auto age : ages){
 							for(auto size : sizes){
-								sum += numbers(region,age,size) * weights(size) * selectivities(method,size);
+								biomass_vuln += numbers(region,age,size) * weights(size) * selectivities(method,size);
 							}
 						}
-						biomass_vulnerable(region,method) = sum;
-						exploitation_rate(region,method) = catches(region,method)/biomass_vulnerable(region,method);
+						biomass_vulnerable(region,method) = biomass_vuln;
+						// Calculate exploitation rate
+						double er = 0;
+						if(biomass_vuln>0) er = catches(region,method)/biomass_vulnerable(region,method);
+						if(er>1) er = 1;
+						// Assign to variables
+						exploitation_rate(region,method) = er;
+						catches_taken(region,method) = er * biomass_vuln;
 					}
 				}
 			} else {
@@ -633,26 +636,8 @@ public:
 	}
 
 	/**
-	 * Simulate one year
-	 * 
-	 * @param y Year
-	 */
-	void year(int y){
-		for(int q=0;q<4;q++) quarter(y,q);
-	}
-
-	/**
-	 * Simulate over a range of years
-	 * 
-	 * @param begin Start year
-	 * @param end   End year
-	 */
-	void years(int begin,int end){
-		for(int y=begin;y<end;y++) year(y);
-	}
-
-	/**
-	 * Move the population to a deterministic equilibrium 
+	 * Move the population to a deterministic equilibrium by iterating over
+	 * time until biomass in each region remains stable
 	 */
 	void equilibrium(void){
 		// Turn off recruitment variation
@@ -662,7 +647,7 @@ public:
 		const uint steps_max = 10000;
 		Grid<double,Region> biomass_prev = 1;
 		while(steps<steps_max){
-			year(0);
+			update(0);
 
 			double diffs = 0;
 			for(auto region : regions){
@@ -670,6 +655,10 @@ public:
 			}
 			if(diffs<0.0001) break;
 			biomass_prev = biomass;
+
+			#if DEBUG
+				std::cout<<steps<<" "<<biomass(W)<<" "<<biomass(M)<<" "<<biomass(E)<<" "<<diffs<<std::endl;
+			#endif
 
 			steps++;
 		}

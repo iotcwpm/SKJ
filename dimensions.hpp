@@ -6,6 +6,19 @@ namespace IOSKJ {
 
 typedef unsigned int uint;
 
+const uint time_max = (2020-1963+1)*4;
+uint time(uint year, uint quarter){
+	return (year-1963)*4;
+}
+uint year(uint time){
+	return 1963+time/4;
+}
+uint quarter(uint time){
+	return time%4;
+}
+
+STENCILA_DIM(Time,times,time,time_max);
+
 STENCILA_DIM(Quarter,quarters,quarter,4);
 
 STENCILA_DIM(Region,regions,region,3);
