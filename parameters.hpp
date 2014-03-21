@@ -1,34 +1,11 @@
-#pragma once
-
-#include <boost/format.hpp>
-using boost::format;
-
-#include <fsl/estimation/parameters.hpp>
-#include <fsl/math/probability/uniform.hpp>
-#include <fsl/math/probability/normal.hpp>
-#include <fsl/math/probability/truncated.hpp>
-
 namespace IOSKJ {
 
 /**
  * Class for defining model parameters, their priors, transformations etc.
  * See the `bind()` method which "binds" parameters defined here to model variables.
  */
-class Parameters : public Fsl::Estimation::Parameters<Parameters,Model> {
+class Parameters : public ParameterGroup<Parameters,Model> {
 public:
-
-	// Define some aliases for convienience
-	
-	template<typename... Types> 
-	using Parameter = Fsl::Estimation::Parameter<Types...>;
-
-	using Uniform = Fsl::Math::Probability::Uniform;
-	using Normal = Fsl::Math::Probability::Normal;
-	template<typename Type>
-	using Truncated = Fsl::Math::Probability::Truncated<Type>;
-
-	using Fixed = Fsl::Estimation::Priors::Fixed;
-	using Log = Fsl::Estimation::Links::Log;
 
 	/**
 	 * Define first and last time for parameter binding

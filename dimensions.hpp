@@ -1,25 +1,45 @@
-#pragma once
-
-#include "common.hpp"
-
 namespace IOSKJ {
 
 typedef unsigned int uint;
 
-const uint time_max = (2020-1963+1)*4;
-uint time(uint year, uint quarter){
-	return (year-1963)*4;
+const uint year_min = 1950;
+const uint year_max = 2040;
+
+uint time(uint year,uint quarter){
+	return (year-year_min)*4+quarter;
 }
 uint year(uint time){
-	return 1963+time/4;
+	return year_min+time/4;
 }
 uint quarter(uint time){
 	return time%4;
 }
 
-STENCILA_DIM(Time,times,time,time_max);
+const uint time_max = time(year_max,3);
+
+class Year : public Dimension<Year,year_max-year_min+1,year_min> {
+public:
+	Year(void):Dimension<Year,year_max-year_min+1,year_min>("year"){}
+	static const char* name(void) { return "year"; }
+} years;
 
 STENCILA_DIM(Quarter,quarters,quarter,4);
+
+/**
+ * @name DataYear
+ * 
+ * A dimension for the years where there is data
+ *
+ * This allows grids for data to be dimensioned with a subset years
+ * so that they take up less memory and are quicker to iterate over
+ */
+const uint data_years_size = 2013-1985+1;
+class DataYear : public Dimension<DataYear,data_years_size,1985> {
+public:
+	DataYear(void):Dimension<DataYear,data_years_size,1985>("data_year"){}
+	static const char* name(void) { return "data_year"; }
+} data_years;
+
 
 STENCILA_DIM(Region,regions,region,3);
 STENCILA_DIM(RegionFrom,region_froms,region_from,3);
@@ -44,5 +64,7 @@ enum {
 };
 
 STENCILA_DIM(SelectivityKnot,selectivity_knots,selectivity_knot,5);
+
+STENCILA_DIM(ZSize,z_sizes,z_size,4);
 
 }

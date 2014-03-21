@@ -1,16 +1,3 @@
-#pragma once
-
-#include "common.hpp"
-#include "dimensions.hpp"
-#include "model.hpp"
-
-#include <fsl/estimation/data.hpp>
-using namespace Fsl::Estimation;
-
-#include <fsl/math/probability/normal.hpp>
-#include <fsl/math/probability/lognormal.hpp>
-using namespace Fsl::Math::Probability;
-
 namespace IOSKJ {
 
 /**

@@ -1,18 +1,3 @@
-#pragma once
-
-#include <array>
-
-#include <fsl/math/probability/lognormal.hpp>
-
-#include "spline.hpp"
-
-#include "common.hpp"
-#include "dimensions.hpp"
-#include "distributions.hpp"
-
-#define TRACKING 1
-#define DEBUG 1
-
 namespace IOSKJ {
 
 /**
@@ -21,8 +6,6 @@ namespace IOSKJ {
  */
 class Model {
 public:
-
-	using Lognormal = Fsl::Math::Probability::Lognormal;
 
 	/**
 	 * Fish numbers by region, age and size
@@ -83,6 +66,17 @@ public:
 	double recruits_steepness;
 
 	/**
+	 * Flag to turn on/off recruitment relation
+	 * (if off then recruits_unfished is used)
+	 */
+	bool recruits_relation_on = true;
+
+	/**
+	 * Deterministic recruitment at time t 
+	 */
+	double recruits_determ;
+
+	/**
 	 * Standard deviation of recruitment vaiation
 	 */
 	double recruits_sd;
@@ -93,14 +87,10 @@ public:
 	bool recruits_variation_on = true;
 
 	/**
-	 * Flag to turn on/off recruitment relation
+	 * Lognormal distibution to produces recruitment 
+	 * deviations from recruit_realtion.
 	 */
-	bool recruits_relation_on = true;
-
-	/**
-	 * Deterministic recruitment at time t 
-	 */
-	double recruits_determ;
+	Lognormal recruits_variation;
 
 	/**
 	 * Recruitment deviation (multiplier) at time t
@@ -120,9 +110,9 @@ public:
 	/**
 	 * Proportion of recruits by size class
 	 */
-	double recruits_size_mean;
-	double recruits_size_cv;
-	Grid<double,Size> recruits_sizes;
+	double recruits_lengths_mean;
+	double recruits_lengths_cv;
+	Grid<double,Size> recruits_lengths;
 
 	/**
 	 * @}
@@ -320,7 +310,13 @@ public:
 				<<"biomass_spawning_overall\t"
 				<<"biomass_spawning_w\t"
 				<<"biomass_spawning_m\t"
-				<<"biomass_spawning_e"
+				<<"biomass_spawning_e\t"
+				<<"catches_w_ps\t"
+				<<"catches_m_pl\t"
+				<<"catches_e_gn\t"
+				<<"exploitation_survival_m_20\t"
+				<<"biomass_vulnerable_m_pl\t"
+				<<"exp_rate_m_pl\t"
 				<<std::endl;
 		}
 
@@ -335,7 +331,13 @@ public:
 					<<biomass_spawning_overall(quarter)<<"\t"
 					<<biomass_spawning(W)<<"\t"
 					<<biomass_spawning(M)<<"\t"
-					<<biomass_spawning(E)
+					<<biomass_spawning(E)<<"\t"
+					<<catches(W,PS)<<"\t"
+					<<catches(M,PL)<<"\t"
+					<<catches(E,GN)<<"\t"
+					<<exploitation_survival(M,20)<<"\t"
+					<<biomass_vulnerable(M,PL)<<"\t"
+					<<exploitation_rate(M,PL)<<"\t"
 					<<std::endl;
 			}
 		}
@@ -383,17 +385,6 @@ public:
 	void recruits_uniform(void){
 		recruits_regions = 1.0/recruits_regions.size();
 	}
- 
-	/**
-	 * Set movement parameters so that there is no movement.
-	 *
-	 * Diagonal elements set to 1. Mainly used for testing
-	 */
-	void movement_none(void){
-		movement_pars = [](uint region_from, uint region_to){
-			return double(region_from==region_to?1:0);
-		};
-	}
 
 	/**
 	 * Set movement parameters so that there is uniform movement.
@@ -428,7 +419,7 @@ public:
 	void initialise(void){
 		// Initialise grids by size...	
 		for(auto size : sizes){
-			lengths(size) = 2*size+1;
+			lengths(size) = 2*size.index()+1;
 			weights(size) = weight_a * std::pow(lengths(size),weight_b);
 			maturities(size) = 1/(1+std::pow(19,(maturity_inflection-lengths(size))/maturity_steepness));
 			mortality_rate(size) = std::min(mortality * std::pow(weights(size),mortality_weight_exponent),mortality_max);
@@ -436,9 +427,10 @@ public:
 		}
 
 		// Initialise proportion of recruits by size
-		Lognormal recruits_sizes_dist(recruits_size_mean,recruits_size_mean*recruits_size_cv);
-		recruits_sizes = [&recruits_sizes_dist](uint size){
-			return recruits_sizes_dist.cdf(size*2,(size+1)*2);
+		Lognormal recruits_lengths_dist(recruits_lengths_mean,recruits_lengths_mean*recruits_lengths_cv);
+		recruits_lengths = [&](Level<Size> size){
+			double length = lengths(size);
+			return recruits_lengths_dist.integrate(length-1,length+1);
 		};
 
 		// Initialise growth size transition matrix
@@ -446,11 +438,15 @@ public:
 			growth_increments(size) = (growth_assymptote-lengths(size))*(1-std::exp(-0.25*growth_rate));
 		}
 		for(auto size_from : size_froms){
-			double growth_increment = growth_increments(size_from);
-			double mean = lengths(size_from) + growth_increment;
+			Level<Size> size_from_size(size_from);
+			double length_from = lengths(size_from_size);
+			double growth_increment = growth_increments(size_from_size);
+			double mean = length_from + growth_increment;
 			double sd = std::pow(std::pow(growth_sd,2)+std::pow(growth_increment*growth_cv,2),0.5);
+			Normal distribution(mean,sd);
 			for(auto size : sizes){
-				growth(size_from,size) = normal_integral(2*size,2*(size+1),mean,sd);
+				double length_to = lengths(size);
+				growth(size_from,size) = distribution.integrate(length_to-1,length_to+1);
 			}
 		}
 
@@ -467,8 +463,8 @@ public:
 		// Initialise selectivity
 		for(auto method : methods){
 			// Extract values at knots
-			Array<> points(selectivity_knots.size());
-			for(auto knot : selectivity_knots) points[knot] = selectivity_points(method,knot);
+			Grid<double,SelectivityKnot> points;
+			for(auto knot : selectivity_knots) points(knot) = selectivity_points(method,knot);
 			// Create a spline
 			Spline<double,double> selectivity_spline(
 				{0,20,40,60,80},
@@ -482,6 +478,15 @@ public:
 
 		// Normalise the recruits_region grid so that it sums to one
 		recruits_regions /= sum(recruits_regions);
+
+		// Initialise recruits_variation
+		recruits_variation = Lognormal(1,recruits_sd);
+
+		// During debug mode dump the model here for easy inspection
+		// Done here before quilibrium() in case that fails
+		#if DEBUG
+			write();
+		#endif
 
 		/**
 		 * The population is initialised to an unfished state
@@ -508,7 +513,11 @@ public:
 			biomass_spawning_unfished(quarter) = biomass_spawning_overall(quarter);
 		}
 
-		write();
+		// During debug mode dump the model here for easy inspection
+		// Done after equilibrium() and biomass_spawning_unfished has been set
+		#if DEBUG
+			write();
+		#endif
 	}
 
 	/**
@@ -524,7 +533,7 @@ public:
 			double biomass_spawning_ = 0;
 			for(auto age : ages){
 				for(auto size : sizes){
-					double biomass = numbers(region,age,size) * weights(size);
+					double biomass = numbers(region,age,size) * weights(size)/1000;
 					biomass_ += biomass;
 					biomass_spawning_ += biomass * maturities(size) * spawning(quarter);
 				}
@@ -549,11 +558,11 @@ public:
 			// Stock-recruitment relation is not active so recruitment is just r0.
 			recruits_determ = recruits_unfished;
 		}
+		
 		if(recruits_variation_on){
-			recruits_deviation = lognormal_rand(1,recruits_sd);
-		} else {
-			recruits_deviation = 1;
+			recruits_deviation = recruits_variation.random();
 		}
+
 		recruits = recruits_determ * recruits_deviation;
 
 		// Ageing and recruitment
@@ -569,7 +578,7 @@ public:
 
 				// Recruits are evenly distributed over regions and over sizes
 				// according to `initials`
-				numbers(region,0,size) = recruits * recruits_regions(region) * recruits_sizes(size);
+				numbers(region,0,size) = recruits * recruits_regions(region) * recruits_lengths(size);
 			}
 		}
 
@@ -582,15 +591,15 @@ public:
 						double biomass_vuln = 0;
 						for(auto age : ages){
 							for(auto size : sizes){
-								biomass_vuln += numbers(region,age,size) * weights(size) * selectivities(method,size);
+								biomass_vuln += numbers(region,age,size) * weights(size)/1000 * selectivities(method,size);
 							}
 						}
-						biomass_vulnerable(region,method) = biomass_vuln;
 						// Calculate exploitation rate
 						double er = 0;
-						if(biomass_vuln>0) er = catches(region,method)/biomass_vulnerable(region,method);
+						if(biomass_vuln>0) er = catches(region,method)/biomass_vuln;
 						if(er>1) er = 1;
 						// Assign to variables
+						biomass_vulnerable(region,method) = biomass_vuln;
 						exploitation_rate(region,method) = er;
 						catches_taken(region,method) = er * biomass_vuln;
 					}
@@ -601,11 +610,11 @@ public:
 			// Pre-calculate the exploitation_survival for each region and size
 			for(auto region : regions){
 				for(auto size : sizes){
-					double prod = 1;
+					double proportion_taken = 0;
 					for(auto method : methods){
-						prod *= exploitation_rate(region,method) * selectivities(method,size);
+						proportion_taken += exploitation_rate(region,method) * selectivities(method,size);
 					}
-					exploitation_survival(region,size) = 1-prod;
+					exploitation_survival(region,size) = 1-proportion_taken;
 				}
 			}
 		}
@@ -615,17 +624,19 @@ public:
 		for(auto region : regions){
 			for(auto age : ages){
 				for(auto size : sizes){
-					double sum = 0;
+					double number = 0;
 					for(auto region_from : region_froms){
-						for(auto size_from : size_froms){
-							sum += numbers(region_from,age,size_from) * 
-									growth(size_from,size) * 
-									mortality_survival(size_from) * 
-									(exploitation_on?exploitation_survival(region_from,size_from):1) * 
-									movement(region_from,region);
+						for(auto size_from : size_froms){ 
+							Level<Region> rf(region_from);
+							Level<Size> sf(size_from);
+							number += 	numbers(rf,age,sf) * 
+										growth(size_from,size) * 
+										mortality_survival(sf) * 
+										(exploitation_on?exploitation_survival(rf,sf):1) * 
+										movement(region_from,region);
 						}
 					}
-					numbers_temp(region,age,size) = sum;
+					numbers_temp(region,age,size) = number;
 				}
 			}
 		}
@@ -644,10 +655,12 @@ public:
 		recruits_variation_on = false;
 		// Iterate until there is a very minor change in biomass
 		uint steps = 0;
-		const uint steps_max = 10000;
+		const uint steps_max = 1000;
 		Grid<double,Region> biomass_prev = 1;
 		while(steps<steps_max){
-			update(0);
+			// It is necessary to update the model for each quarter so that quarterly differences
+			// in dynamics (e.g. spawning proportion) are incorporated
+			for(uint quarter=0;quarter<4;quarter++) update(quarter);
 
 			double diffs = 0;
 			for(auto region : regions){
@@ -657,7 +670,7 @@ public:
 			biomass_prev = biomass;
 
 			#if DEBUG
-				std::cout<<steps<<" "<<biomass(W)<<" "<<biomass(M)<<" "<<biomass(E)<<" "<<diffs<<std::endl;
+				std::cout<<steps<<"\t"<<biomass(W)<<"\t"<<biomass(M)<<"\t"<<biomass(E)<<"\t"<<diffs<<std::endl;
 			#endif
 
 			steps++;
@@ -678,6 +691,7 @@ public:
 		maturities.write("output/maturities.tsv");
 		mortality_rate.write("output/mortality-rate.tsv");
 		spawning.write("output/spawning.tsv");
+		biomass_spawning_unfished.write("output/biomass-spawning-unfished.tsv");
 		growth_increments.write("output/growth-increments.tsv");
 		growth.write("output/growth.tsv");
 		movement.write("output/movement.tsv");

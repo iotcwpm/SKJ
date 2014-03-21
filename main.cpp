@@ -1,5 +1,8 @@
 #define DEBUG 1
+#define TRACKING 1
 
+#include "common.hpp"
+#include "dimensions.hpp"
 #include "model.hpp"
 #include "parameters.hpp"
 #include "data.hpp"
@@ -14,21 +17,25 @@ Data data;
  * Tasks that need to be done at startup
  */
 void startup(void){
+	// Read in parameters (including catches)
+	parameters.read();
 	// Read in data
 	data.read();
 }
 
 /**
- * Run the model with parameters set at the means of their priors
+ * Run the model with a parameters set read from the "parameters.tsv" file
  */
-void run_with_means(void){
+void run_pars(void){
 	Model model;
+	model.track_open("output/track.tsv");
 	// Get values of parameters at mean
-	auto parameter_values = parameters.prior_means();
+	auto parameter_set = parameters.read_set("parameters.tsv");
 	// For each time step...
-	for(auto time : times){
+	for(uint time=0;time<=time_max;time++){
+		std::cout<<time<<" "<<year(time)<<" "<<quarter(time)<<std::endl;
 		//... set model parameters
-		parameters.set(model,time,parameter_values);
+		parameters.set(model,time,parameter_set);
 		//... update the model
 		model.update(time);
 		//... get model variables corresponding to data
@@ -36,22 +43,23 @@ void run_with_means(void){
 		//... get model variables of interest for tracking
 		//tracker.get(model,time);
 	}
+	model.track_close();
 }
 
 /**
  * Tasks that are usually done at shutdown
- * to output results regardless of the task called
  */
 void shutdown(void) {
-	// Output data for checking that is was read in correctly
+	// Output parameter details
+	parameters.write();
+	// Output data
 	data.write();
-	// Output prior PDFs for plotting
-	parameters.prior_pdfs("prior-pdfs.tsv");
 }
+
 
 int main(void){
 	startup();
-	run_with_means();
+	run_pars();
 	shutdown();
 	return 0;
 }
