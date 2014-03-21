@@ -2,6 +2,14 @@
 
 #include "common.hpp"
 #include "dimensions.hpp"
+#include "model.hpp"
+
+#include <fsl/estimation/data.hpp>
+using namespace Fsl::Estimation;
+
+#include <fsl/math/probability/normal.hpp>
+#include <fsl/math/probability/lognormal.hpp>
+using namespace Fsl::Math::Probability;
 
 namespace IOSKJ {
 
@@ -9,101 +17,112 @@ namespace IOSKJ {
  * Class for defining data against which the model is conditioned
  * See the `get()` method which "gets" model variables corresponding to data points at specific times.
  */
-class Data /*: public Fsl::Estimation::Data<Data,Model>*/ {
+class Data : public DataGroup<Data,Model> {
 public:
 
-	// Define some aliases for convienience
-	using Normal = Fsl::Math::Probability::Normal;
-	using Lognormal = Fsl::Math::Probability::Lognormal;
+	Fits<Lognormal,DataYear,Quarter> maldive_pl_cpue = 0.2;
 
-	// Classes for each type of data...
-	
-	class MaldivePlCpue {
-	public:
-		uint year;
-		uint quarter;
-		float index;
+	Fits<Lognormal,DataYear> west_ps_cpue = 0.3;
 
-		void read(std::istream& stream){
-			stream>>year>>quarter>>index;
-		}
+	Fits<Normal,DataYear,Quarter,Region,Method,Size> size_freqs = 0.01;
 
-		void write(std::ostream& stream){
-			stream<<year<<"\t"<<quarter<<"\t"<<index;
-		}
-	};
-	std::array<MaldivePlCpue,32> MaldivePlCpues;
-
-	class WestPsCpue {
-	public:
-		uint year;
-		float index;
-
-		void read(std::istream& stream){
-			stream>>year>>index;
-		}
-
-		void write(std::ostream& stream){
-			stream<<year<<"\t"<<index;
-		}
-	};
-	std::array<WestPsCpue,20> WestPsCpues;
-
-	class SizeFrequency {
-	public:
-		char area;
-		std::string method;
-		uint year;
-		uint quarter;
-		std::array<float,61> props;
-		unsigned int num;
-
-		void read(std::istream& stream){
-			stream>>area>>method>>year>>quarter;
-			for(auto& item : props) stream>>item;
-			stream>>num;
-		}
-
-		void write(std::ostream& stream){
-			stream<<area<<"\t"<<method<<"\t"<<year<<"\t"<<quarter;
-			for(auto& item : props) stream<<"\t"<<item;
-			stream<<"\t"<<num;
-		}
-	};
-	std::array<SizeFrequency,531> SizeFrequencies;
-
-	class ZEstimate {
-	public:
-		uint year;
-		uint quarter;
-		float mu45;
-		float mu50;
-		float mu55;
-		float mu60;
-		float sd45;
-		float sd50;
-		float sd55;
-		float sd60;
-
-		void read(std::istream& stream){
-			stream>>year>>quarter
-				  >>mu45>>mu50>>mu55>>mu60
-				  >>sd45>>sd50>>sd55>>sd60;
-		}
-
-		void write(std::ostream& stream){
-			stream<<year<<"\t"<<quarter
-				  <<"\t"<<mu45<<"\t"<<mu50<<"\t"<<mu55<<"\t"<<mu60
-				  <<"\t"<<sd45<<"\t"<<sd50<<"\t"<<sd55<<"\t"<<sd60;
-		}
-	};
-	std::array<ZEstimate,16> ZEstimates;
+	Fits<Normal,DataYear,Quarter,ZSize> z_ests = 0.05;
 
 	/**
-	 * Get model variables coreesponding to data at a particular time
+	 * Get model variables corresponding to data at a particular time
+	 *
+	 * For each data set, predictions are generated outside of the range of observed
+	 * data. This is for diagnosis and future proofing (when more observed data become available
+	 * and are added to data files the model will already be set up to fit that it). 
+	 * There will be a small computational cost to this.
 	 */
 	void get(const Model& model,uint time){
+		uint year = IOSKJ::year(time);
+		uint quarter = IOSKJ::quarter(time);
+		
+		// Maldive PL quarterly CPUE
+		if(year>=2000 and year<=2013){
+			// Just get M/PL vulnerable biomass
+			maldive_pl_cpue(year,quarter).expected = model.biomass_vulnerable(M,PL);	
+			
+			// At end, scale expected by geometric mean over period 2004-2012
+			if(year==2013 and quarter==3){
+				GeometricMean geomean;
+				for(uint year=2004;year<=2012;year++){
+					for(uint quarter=0;quarter<4;quarter++){
+						geomean.append(maldive_pl_cpue(year,quarter).expected);
+					}
+				}
+				double scaler = 1/geomean.result();
+				for(auto& fit : maldive_pl_cpue) fit.expected *= scaler;
+			}
+		}
 
+		// West PS annual CPUE
+		if(year>=1985 and year<=2013){
+			// Currently take a mean of vulnerable biomass over all quarters in the year...
+			static Grid<double,Quarter> cpue_quarters;
+			// ... get this quarter's CPUE and save it
+			cpue_quarters(quarter) = model.biomass_vulnerable(W,PS);
+			// ... if this is the last quarter then take the geometric mean
+			if(quarter==3){
+				west_ps_cpue(year).expected = geomean(cpue_quarters);
+			}	
+
+			// At end, scale expected by geometric mean over period 1991-2010
+			if(year==2013 and quarter==3){
+				GeometricMean geomean;
+				for(uint year=1991;year<=2010;year++){
+					geomean.append(west_ps_cpue(year,quarter).expected);
+				}
+				double scaler = 1/geomean.result();
+				for(auto& fit : west_ps_cpue) fit.expected *= scaler;
+			}	
+		}
+
+		// Size frequencies by region and method
+		if(year>=1985 and year<=2013){
+			// Generate expected size frequencies for each method in each 
+			// region regardless of whether there is observed data or not
+			for(auto region : regions){
+				for(auto method : methods){
+					Grid<double,Size> composition = 0;
+					// Calculate selected numbers by size accumulated over ages
+					for(auto size : sizes){
+						for(auto age : ages){
+							composition(size) += model.numbers(region,age,size) * model.selectivities(method,size);
+						}
+					}
+					// Proportionalise
+					composition /= sum(composition);
+					// Store
+					for(auto size : sizes) size_freqs(year,quarter,region,method,size).expected = composition(size);
+				}
+			}
+		}
+
+		// Z-estimates for W region
+		if(year>=2005 and year<=2013){
+			// Generate expected values of Z for each size bin
+			// Expected values of Z are calculated by combining natural mortality and 
+			// fishing mortality rates
+			for(auto z_size : z_sizes){
+				// Model size classes are 2mm wide, so for each of the 5mm wide Z-estimate bins there are three model
+				// size classes to average over e.g. 
+				//   45-50 Z-estimate size bin ~ 45,47,49 model size class mid points ~ ([44,46,48])/2 ~ 22,23,24 size dimension levels
+				// Calculate the mean Z for the model size classes in each Z-estimate size bin
+				double z = 0;
+				uint z_lower = 45+z_size.index()*5;
+				uint size_class = (z_lower-1)/2;
+				for(uint size=size_class;size<size_class+3;size++){
+					double survival = model.mortality_survival(size) * model.exploitation_survival(W,size);
+					z += -log(survival);
+				}
+				z /= 3;
+				// Store
+				z_ests(year,quarter,z_size).expected = z;
+			}
+		}
 	}
 
 	/**
@@ -111,43 +130,27 @@ public:
 	 */
 	double likelihood(void){
 		double likelihood = 0;
+
+		likelihood += maldive_pl_cpue.likelihood();
+		likelihood += west_ps_cpue.likelihood();
+		likelihood += size_freqs.likelihood();
+		likelihood += z_ests.likelihood();
+
 		return likelihood;
 	}
 
-
-	template<
-		class Series
-	>
-	void read(Series& series, const std::string& filename){
-		std::ifstream file(filename);
-		std::string header;
-		std::getline(file,header);
-		for(auto& item : series) item.read(file);
-	}
-
-	template<
-		class Series
-	>
-	void write(Series& series, const std::string& filename){
-		std::ofstream file(filename);
-		for(auto& item : series){
-			item.write(file);
-			file<<"\n";
-		}
-	}
-
 	void read(void){
-		read(MaldivePlCpues,"data/processed-data/m-pl-cpue.txt");
-		read(WestPsCpues,"data/processed-data/w-ps-cpue.txt");
-		read(SizeFrequencies,"data/processed-data/size-frequencies.txt");
-		read(ZEstimates,"data/processed-data/z-estimates.txt");
+		maldive_pl_cpue.read_observed("data/processed-data/m-pl-cpue.tsv");
+		west_ps_cpue.read_observed("data/processed-data/w-ps-cpue.tsv");
+		//size_freqs.read_observed("data/processed-data/size-frequencies.tsv");
+		//z_ests.read_observed("data/processed-data/z-estimates.tsv");
 	}
 
 	void write(void){
-		write(MaldivePlCpues,"output/m-pl-cpue.txt");
-		write(WestPsCpues,"output/w-ps-cpue.txt");
-		write(SizeFrequencies,"output/size-frequencies.txt");
-		write(ZEstimates,"output/z-estimates.txt");
+		maldive_pl_cpue.write("output/m-pl-cpue.tsv");
+		west_ps_cpue.write("output/w-ps-cpue.tsv");
+		size_freqs.write("output/size-freqs.tsv");
+		z_ests.write("output/z-ests.tsv");
 	}
 
 }; // class Data
