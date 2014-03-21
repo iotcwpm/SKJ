@@ -3,6 +3,8 @@ main.exe
 
 output
 
+*.svg
+
 # Ignore text editor and iDE files
 
 *.sublime-project

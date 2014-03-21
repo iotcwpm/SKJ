@@ -29,7 +29,7 @@ nc = within(nc,{
   Method[Gear %in% c('HAND','LLCO','SPOR','TROL','TROLM','TROLN')] = 'LI'
   # Longline has very minor catches in all areas so inclue in other 
   Method[is.na(Method)] = 'OT'
-  Method =factor(Method,levels=c(
+  Method = factor(Method,levels=c(
     'PS','PL','GN','LI','OT'
   ))
   
@@ -56,6 +56,13 @@ ggplot(ddply(nc,.(Area,Method,Year),summarise,Catch=sum(tmt,na.rm=T))) +
   labs(y='Catch (t)')
 dev.off()
 
-# Rename columns and output
-names(sums) = c('area','method','year','quarter','catch')
-write.table(sums,file='processed-data/nominal-catches.txt',row.names=F,quote=F,sep='\t')
+# Rename columns, reorder, sort, recode and output for reading into model
+names(sums) = c('region','method','year','quarter','catch')
+sums = sums[,c('year','quarter','region','method','catch')]
+sums = sums[with(sums,order(year,quarter,region,method)),]
+sums = within(sums,{
+  quarter = quarter-1
+  region = as.integer(region)-1
+  method = as.integer(method)-1
+})
+write.table(sums,file='processed-data/nominal-catches.tsv',row.names=F,quote=F,sep='\t')
