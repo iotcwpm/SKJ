@@ -1,3 +1,7 @@
+#pragma once
+
+#include "model.hpp"
+
 namespace IOSKJ {
 
 /**

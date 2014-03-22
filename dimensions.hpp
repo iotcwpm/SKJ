@@ -1,3 +1,7 @@
+#pragma once
+
+#include "imports.hpp"
+
 namespace IOSKJ {
 
 typedef unsigned int uint;

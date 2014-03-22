@@ -1,3 +1,7 @@
+#pragma once
+
+#include "dimensions.hpp"
+
 namespace IOSKJ {
 
 /**

@@ -1,6 +1,6 @@
 # Skipjack
 
-The Indian Ocean Tuna Comission Working (IOTC) Party on Methods' (WPM) simulation model of the Indian Ocean skipjack (SKJ) tuna fishery for management strategy evaluation (MSE).
+The Indian Ocean Tuna Commission's (IOTC) Working Party on Methods' (WPM) simulation model of the Indian Ocean skipjack (SKJ) tuna fishery for management strategy evaluation (MSE).
 
 ## Status
 

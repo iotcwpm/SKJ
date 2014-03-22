@@ -2,6 +2,8 @@
  * File for importing necessary external libraries
  */
 
+#pragma once
+
 // C++ standard library
 #include <cmath>
 #include <fstream>
