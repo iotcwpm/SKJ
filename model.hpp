@@ -5,8 +5,8 @@
 namespace IOSKJ {
 
 /**
- * Model of the Indian Ocean skipjack tuna fishery. This class encapsulates both fish
- * population and fishing dynamics.
+ * Model of the Indian Ocean skipjack tuna fishery. This class encapsulates the dynamics
+ * of both the fish population and fishing.
  */
 class Model {
 public:
@@ -39,8 +39,8 @@ public:
 
 	/**
 	 * Total spawning biomass in each of the most recent quarters
-	 * This is recorded in step() so that the biomass_spawning_unfished
-	 * can be set by init()
+	 * This is recorded in `update()` so that the biomass_spawning_unfished
+	 * can be set by `initialise()`
 	 */
 	Grid<double,Quarter> biomass_spawning_overall;
 
@@ -475,16 +475,13 @@ public:
 				proportions
 			);
 			// Iterpolate with spline
-			double max = 0;
+			// Ensure that selectivity is between 0 and 1 since the spline
+			// can produce values outside this range even if knots are not
 			for(auto size : sizes){
-				selectivities(method,size) = selectivity_spline.interpolate(lengths(size));
-				if(selectivities(method,size)>max) max = selectivities(method,size);
-			}
-			// Ensure that selectivity is between 0 and 1
-			for(auto size : sizes){
-				double& select = selectivities(method,size);
-				if(select<0) select = 0;
-				else select /= max;
+				double selectivity = selectivity_spline.interpolate(lengths(size));
+				if(selectivity<0) selectivity = 0;
+				else if(selectivity>1) selectivity = 1;				
+				selectivities(method,size) = selectivity;
 			}
 		}
 
