@@ -72,7 +72,7 @@ public:
 		}
 
 		// Size frequencies by region and method
-		if(year>=1985 and year<=2013){
+		if(year>=1982 and year<=2013){
 			// Generate expected size frequencies for each method in each 
 			// region regardless of whether there is observed data or not
 			for(auto region : regions){
@@ -130,13 +130,19 @@ public:
 		return likelihood;
 	}
 
+	/**
+	 * Read in observed data
+	 */
 	void read(void){
 		maldive_pl_cpue.read_observed("data/processed-data/m-pl-cpue.tsv");
 		west_ps_cpue.read_observed("data/processed-data/w-ps-cpue.tsv");
-		//size_freqs.read_observed("data/processed-data/size-frequencies.tsv");
+		size_freqs.read_observed_uncertainty("data/processed-data/size-frequencies.tsv");
 		//z_ests.read_observed("data/processed-data/z-estimates.tsv");
 	}
 
+	/**
+	 * Write out fits
+	 */
 	void write(void){
 		maldive_pl_cpue.write("output/m-pl-cpue.tsv");
 		west_ps_cpue.write("output/w-ps-cpue.tsv");

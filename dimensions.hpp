@@ -37,10 +37,10 @@ STENCILA_DIM(Quarter,quarters,quarter,4);
  * This allows grids for data to be dimensioned with a subset years
  * so that they take up less memory and are quicker to iterate over
  */
-const uint data_years_size = 2013-1985+1;
-class DataYear : public Dimension<DataYear,data_years_size,1985> {
+const uint data_years_size = 2013-1982+1;
+class DataYear : public Dimension<DataYear,data_years_size,1982> {
 public:
-	DataYear(void):Dimension<DataYear,data_years_size,1985>("data_year"){}
+	DataYear(void):Dimension<DataYear,data_years_size,1982>("data_year"){}
 	static const char* name(void) { return "data_year"; }
 } data_years;
 

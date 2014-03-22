@@ -76,7 +76,7 @@ table(sf$SizeInterval)
 sf$SizeInterval <- NULL
 
 ###############################################################
-# Allocate records to operating model strata : Area, Method, Year, Quarter
+# Allocate records to operating model strata : Region, Method, Year, Quarter
 
 # 99% of the records use a GridSize of 5 (1x1 degreee cells) or 6 (5x5 degree cells)
 # Remove records with other GridSizes because they may straddle Lon 80 and thus
@@ -86,13 +86,16 @@ sf = subset(sf,GridSize>=5)
 
 sf = within(sf,{
     
-    # Area
+    # Region
     # Because a 5x5 grid will straddle the 77 Lon line that is used to separate
     # Sri Lanka and Maldives, put all LKA records in E
-    Area = NA
-    Area[Lon>=20 & Lon<80] = 'W'
-    Area[(Lon>=80 & Lon<150) | Fleet=='LKA'] =  'E'
-    Area[Fleet=='MDV'] = 'M'
+    Region = NA
+    Region[Lon>=20 & Lon<80] = 'W'
+    Region[(Lon>=80 & Lon<150) | Fleet=='LKA'] =  'E'
+    Region[Fleet=='MDV'] = 'M'
+    Region = factor(Region,levels=c(
+        'W','M','E'
+    ))
     
     # Method
     # Used LargeGroup on CodeGear sheet in SF_Reference.xlxs as a guide
@@ -114,8 +117,8 @@ sf = within(sf,{
     Quarter = floor((Month-1)/3)+1
 })
 # Check no NAs or drop NAs
-table(sf$Area,sf$Fleet)
-if(sum(is.na(sf$Area))) stop()
+table(sf$Region,sf$Fleet)
+if(sum(is.na(sf$Region))) stop()
 if(sum(is.na(sf$Method))) stop()
 if(sum(is.na(sf$Year))) stop()
 if(sum(is.na(sf$Quarter))) stop()
@@ -132,8 +135,8 @@ abline(v=c(10,70))
 # Note that C001 is 10cm
 keep = sprintf('C%03d',10:70)
 
-# Aggregate by OM areas, methods, years and quarters
-sums = ddply(sf,.(Area,Method,Year,Quarter),function(sub){
+# Aggregate by OM regions, methods, years and quarters
+sums = ddply(sf,.(Region,Method,Year,Quarter),function(sub){
     colSums(sub[,keep])
 })
 
@@ -145,21 +148,51 @@ sums[,keep] = sums[,keep]/sums$Num
 
 # Some summaries of numbers measured and aggregate histos
 hist(log10(sums$Num),breaks=100)
-sums[order(sums$Num,decreasing=T),c('Area','Method','Year','Quarter','Num')]
+sums[order(sums$Num,decreasing=T),c('Region','Method','Year','Quarter','Num')]
 
 ggplot(sums) + 
     geom_line(aes(x=Year+(Quarter-1)/4,y=Num,color=Method),alpha=0.5) + 
     geom_point(aes(x=Year+(Quarter-1)/4,y=Num,color=Method,shape=Method),size=3,alpha=0.5) +
-    facet_wrap(~Area) + 
+    facet_wrap(~Region) + 
     scale_y_log10() + 
     labs(y='Number',x='Year')
 
 par(mfrow=c(3,2))
 for(method in c('PL','PS','GN','LI','OT')) plot(20:80,colMeans(sums[sums$Method==method,keep]),main=method,ylab="",xlab="")
 
-# Rename columns and output
-names(sums) = c('area','method','year','quarter',sprintf('p%01d',20:80),'num')
-write.table(sums,file='processed-data/size-frequencies.txt',row.names=F,quote=F,sep='\t')
+#################################
+# Prepare data for outputting to model
 
+# Only use samples where more than 100 fish
+data = subset(sums,Num>100)
+# Reshape and reorder
+data = melt(data,id.vars=c('Year','Quarter','Region','Method','Num'))
+# Rename columns
+names(data) = c('year','quarter','region','method','count','size','proportion')
+# Recode to match model coding
+data = within(data,{
+  # Convert dimensions to 0-based indexes
+  quarter = quarter-1
+  region = as.integer(region)-1
+  method = as.integer(method)-1
+  # Convert 1 mm size to an integer
+  size = as.character(size)
+  size = as.integer(substr(size,2,nchar(size)))
+  # Create a 2mm size bin which is indexed as in model
+  # e.g a 43mm fish is in size class 21 (21*2 = 42 = 42 to 44mm)
+  class = floor(size/2)
+})
+# Bin into 2mm size classes
+data = ddply(data,.(year,quarter,region,method,class),summarise,
+  count = head(count,n=1),
+  # To reduce size of file and increase reading speed round to 6 decimals
+  proportion = round(sum(proportion),6)
+)
+# Reorder columns
+data = data[,c('year','quarter','region','method','class','proportion','count')]
+# Re-sort
+data = data[with(data,order(year,quarter,region,method)),]
+# Write
+write.table(data,file='processed-data/size-frequencies.tsv',row.names=F,quote=F,sep='\t')
 
 
