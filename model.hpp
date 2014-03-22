@@ -134,32 +134,22 @@ public:
 	const double lengths_step = 2;
 
 	/**
-	 * Scalar of length-weight relationship
+	 * Weight at length power funciton
 	 */
-	double weight_a;
+	Power weight_length;
 
 	/**
-	 * Exponent of length-weight relationship
-	 */
-	double weight_b;
-
-	/**
-	 * Weight at size s
+	 * Weight at size
 	 */
 	Grid<double,Size> weights;
 	
 	/**
-	 * Inflection of maturity ogive
+	 * Maturity at length logistic function
 	 */
-	double maturity_inflection;
+	Logistic maturity_length;
 
 	/**
-	 * Steepness of maturiy ogive
-	 */
-	double maturity_steepness;
-
-	/**
-	 * Maturity at size s
+	 * Maturity at size
 	 */
 	Grid<double,Size> maturities;
 
@@ -236,8 +226,19 @@ public:
 	 * @name Selectivity and exploitation
 	 */
 	
-	Grid<double,Method,SelectivityKnot> selectivity_points;
+	/**
+	 * Lengths at each selectivity knot
+	 */
+	Grid<double,SelectivityKnot> selectivity_lengths = {0,20,40,60,80};
 
+	/**
+	 * Proportion selected at each selectivity knot for each method
+	 */
+	Grid<double,Method,SelectivityKnot> selectivity_values;
+
+	/**
+	 * Selectivities by method and size
+	 */
 	Grid<double,Method,Size> selectivities;
 
 	/**
@@ -423,9 +424,10 @@ public:
 	void initialise(void){
 		// Initialise grids by size...	
 		for(auto size : sizes){
-			lengths(size) = 2*size.index()+1;
-			weights(size) = weight_a * std::pow(lengths(size),weight_b);
-			maturities(size) = 1/(1+std::pow(19,(maturity_inflection-lengths(size))/maturity_steepness));
+			double length = 2*size.index()+1;
+			lengths(size) = length;
+			weights(size) = weight_length(length);
+			maturities(size) = maturity_length(length);
 			mortality_rate(size) = std::min(mortality * std::pow(weights(size),mortality_weight_exponent),mortality_max);
 			mortality_survival(size) = std::exp(-0.25*mortality_rate(size));
 		}
@@ -468,12 +470,9 @@ public:
 		for(auto method : methods){
 			// Extract proportion selected at each knots
 			Grid<double,SelectivityKnot> proportions;
-			for(auto knot : selectivity_knots) proportions(knot) = selectivity_points(method,knot);
+			for(auto knot : selectivity_knots) proportions(knot) = selectivity_values(method,knot);
 			// Create a spline
-			Spline<double,double> selectivity_spline(
-				{0,20,40,60,80},
-				proportions
-			);
+			Spline<double,double> selectivity_spline(selectivity_lengths,proportions);
 			// Iterpolate with spline
 			// Ensure that selectivity is between 0 and 1 since the spline
 			// can produce values outside this range even if knots are not
@@ -557,12 +556,11 @@ public:
 		if(recruits_relation_on){
 			// Stock-recruitment realtion is active so calculate recruits based on 
 			// the spawning biomass in the previous time step
-			//! @todo check this equation
-			recruits_determ = 
-				4 * recruits_steepness * recruits_unfished * biomass_spawning_unfished(quarter) / (
-					(5*recruits_steepness-1)*biomass_spawning_overall(quarter) + 
-					biomass_spawning_unfished(quarter)*(1-recruits_steepness)
-				);
+			BevertonHolt recruits_stock;
+			recruits_stock.steepness = recruits_steepness;
+			recruits_stock.r0 = recruits_unfished;
+			recruits_stock.s0 = biomass_spawning_unfished(quarter);
+			recruits_determ = recruits_stock(biomass_spawning_overall(quarter));
 		} else {
 			// Stock-recruitment relation is not active so recruitment is just r0.
 			recruits_determ = recruits_unfished;

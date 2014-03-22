@@ -32,9 +32,9 @@ movement_w_e	2-0	0.1
 movement_m_e	2-1	0.2	
 movement_stay	2-2	0.8	
 selectivity	0-0	0.0	
-selectivity	0-1	0.05	
+selectivity	0-1	0.01	
 selectivity	0-2	0.5	
-selectivity	0-3	1.0	
+selectivity	0-3	0.99	
 selectivity	0-4	1.0	
 selectivity	1-0	0.0	
 selectivity	1-1	0.05	

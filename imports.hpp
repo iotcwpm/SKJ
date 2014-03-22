@@ -33,9 +33,17 @@ using namespace Stencila;
 #include <fsl/math/probability/truncated.hpp>
 using namespace Fsl::Math::Probability;
 
-//... spline function
+//... functions
+#include <fsl/math/functions/power.hpp>
+using Fsl::Math::Functions::Power;
+#include <fsl/math/functions/logistic.hpp>
+using Fsl::Math::Functions::Logistic;
 #include <fsl/math/functions/spline.hpp>
 using Fsl::Math::Functions::Spline;
+
+//... stock-recruitment relationship
+#include <fsl/population/recruitment/beverton-holt.hpp>
+using Fsl::Population::Recruitment::BevertonHolt;
 
 //... estimation scaffolding
 #include <fsl/estimation/parameters.hpp>

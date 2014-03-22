@@ -122,6 +122,7 @@ public:
 		if(time==0){
 			binder(recruits_unfished, model.recruits_unfished);
 			binder(recruits_steepness, model.recruits_steepness);
+
 			binder(recruits_sd, model.recruits_sd);
 
 			binder(spawning_0, model.spawning(0));
@@ -140,11 +141,11 @@ public:
 			binder(recruits_lengths_mean, model.recruits_lengths_mean);
 			binder(recruits_lengths_cv, model.recruits_lengths_cv);
 
-			binder(weight_a, model.weight_a);
-			binder(weight_b, model.weight_b);
+			binder(weight_a, model.weight_length.a);
+			binder(weight_b, model.weight_length.b);
 
-			binder(maturity_inflection, model.maturity_inflection);
-			binder(maturity_steepness, model.maturity_steepness);
+			binder(maturity_inflection, model.maturity_length.inflection);
+			binder(maturity_steepness, model.maturity_length.steepness);
 
 			binder(mortality,model.mortality);
 			binder(mortality_weight_exponent,model.mortality_weight_exponent);
@@ -168,7 +169,7 @@ public:
 
 			for(auto method : methods){
 				for(auto knot : selectivity_knots){
-					binder(selectivity, model.selectivity_points(method,knot),str(format("%s-%s")%method%knot));
+					binder(selectivity, model.selectivity_values(method,knot),str(format("%s-%s")%method%knot));
 				}
 			}
 		}
