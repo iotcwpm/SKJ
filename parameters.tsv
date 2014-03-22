@@ -1,16 +1,16 @@
 name	label	value
-recruits_unfished		18	
+recruits_unfished		20	
 recruits_steepness		0.85	
 recruits_sd		0.6	
 spawning_0		0.85	
 spawning_1		0.5	
 spawning_2		0.85	
 spawning_3		0.5	
-recruits_regions	0	0.5	
-recruits_regions	1	0.5	
-recruits_regions	2	0.5	
-recruits_lengths_mean		5.5	
-recruits_lengths_cv		0.15	
+recruits_regions	0	0.6	
+recruits_regions	1	0.1	
+recruits_regions	2	0.3	
+recruits_lengths_mean		5	
+recruits_lengths_cv		0.1	
 weight_a		5.32001e-06	
 weight_b		3.35001	
 maturity_inflection		42.5	
@@ -31,31 +31,31 @@ movement_m_e	1-2	0.2
 movement_w_e	2-0	0.1	
 movement_m_e	2-1	0.2	
 movement_stay	2-2	0.8	
-selectivity	0-0	0.5	
-selectivity	0-1	0.5	
+selectivity	0-0	0.0	
+selectivity	0-1	0.05	
 selectivity	0-2	0.5	
-selectivity	0-3	0.5	
-selectivity	0-4	0.5	
-selectivity	1-0	0.5	
-selectivity	1-1	0.5	
-selectivity	1-2	0.5	
-selectivity	1-3	0.5	
-selectivity	1-4	0.5	
-selectivity	2-0	0.5	
-selectivity	2-1	0.5	
+selectivity	0-3	1.0	
+selectivity	0-4	1.0	
+selectivity	1-0	0.0	
+selectivity	1-1	0.05	
+selectivity	1-2	0.4	
+selectivity	1-3	0.8	
+selectivity	1-4	1.0	
+selectivity	2-0	0.0	
+selectivity	2-1	0.05	
 selectivity	2-2	0.5	
-selectivity	2-3	0.5	
-selectivity	2-4	0.5	
-selectivity	3-0	0.5	
-selectivity	3-1	0.5	
-selectivity	3-2	0.5	
-selectivity	3-3	0.5	
-selectivity	3-4	0.5	
-selectivity	4-0	0.5	
-selectivity	4-1	0.5	
-selectivity	4-2	0.5	
-selectivity	4-3	0.5	
-selectivity	4-4	0.5	
+selectivity	2-3	1.0	
+selectivity	2-4	1.0	
+selectivity	3-0	0.0	
+selectivity	3-1	0.05	
+selectivity	3-2	0.5
+selectivity	3-3	0.8	
+selectivity	3-4	1.0	
+selectivity	4-0	0.0	
+selectivity	4-1	0.05	
+selectivity	4-2	0.2
+selectivity	4-3	1.0	
+selectivity	4-4	1.0	
 catches	1950-0-0-0	0	
 catches	1950-0-0-1	57	
 catches	1950-0-0-2	129	

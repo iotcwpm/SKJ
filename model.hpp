@@ -116,7 +116,7 @@ public:
 	 */
 	double recruits_lengths_mean;
 	double recruits_lengths_cv;
-	Grid<double,Size> recruits_lengths;
+	Grid<double,Size> recruits_sizes;
 
 	/**
 	 * @}
@@ -432,9 +432,9 @@ public:
 
 		// Initialise proportion of recruits by size
 		Lognormal recruits_lengths_dist(recruits_lengths_mean,recruits_lengths_mean*recruits_lengths_cv);
-		recruits_lengths = [&](Level<Size> size){
+		for(auto size : sizes){
 			double length = lengths(size);
-			return recruits_lengths_dist.integrate(length-1,length+1);
+			recruits_sizes(size) = recruits_lengths_dist.integrate(length-1,length+1);
 		};
 
 		// Initialise growth size transition matrix
@@ -466,17 +466,25 @@ public:
 
 		// Initialise selectivity
 		for(auto method : methods){
-			// Extract values at knots
-			Grid<double,SelectivityKnot> points;
-			for(auto knot : selectivity_knots) points(knot) = selectivity_points(method,knot);
+			// Extract proportion selected at each knots
+			Grid<double,SelectivityKnot> proportions;
+			for(auto knot : selectivity_knots) proportions(knot) = selectivity_points(method,knot);
 			// Create a spline
 			Spline<double,double> selectivity_spline(
 				{0,20,40,60,80},
-				points
+				proportions
 			);
 			// Iterpolate with spline
+			double max = 0;
 			for(auto size : sizes){
 				selectivities(method,size) = selectivity_spline.interpolate(lengths(size));
+				if(selectivities(method,size)>max) max = selectivities(method,size);
+			}
+			// Ensure that selectivity is between 0 and 1
+			for(auto size : sizes){
+				double& select = selectivities(method,size);
+				if(select<0) select = 0;
+				else select /= max;
 			}
 		}
 
@@ -582,7 +590,7 @@ public:
 
 				// Recruits are evenly distributed over regions and over sizes
 				// according to `initials`
-				numbers(region,0,size) = recruits * recruits_regions(region) * recruits_lengths(size);
+				numbers(region,0,size) = recruits * recruits_regions(region) * recruits_sizes(size);
 			}
 		}
 
@@ -691,6 +699,7 @@ public:
 	void write(void){
 		numbers.write("output/numbers.tsv");
 		lengths.write("output/lengths.tsv");
+		recruits_sizes.write("output/recruits-sizes.tsv");
 		weights.write("output/weights.tsv");
 		maturities.write("output/maturities.tsv");
 		mortality_rate.write("output/mortality-rate.tsv");
