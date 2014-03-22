@@ -185,9 +185,13 @@ data = within(data,{
 # Bin into 2mm size classes
 data = ddply(data,.(year,quarter,region,method,class),summarise,
   count = head(count,n=1),
-  # To reduce size of file and increase reading speed round to 6 decimals
   proportion = round(sum(proportion),6)
 )
+range(data$year)
+range(data$quarter)
+range(data$region)
+range(data$method)
+range(data$class)
 # Reorder columns
 data = data[,c('year','quarter','region','method','class','proportion','count')]
 # Re-sort

@@ -137,7 +137,7 @@ public:
 		maldive_pl_cpue.read_observed("data/processed-data/m-pl-cpue.tsv");
 		west_ps_cpue.read_observed("data/processed-data/w-ps-cpue.tsv");
 		size_freqs.read_observed_uncertainty("data/processed-data/size-frequencies.tsv");
-		//z_ests.read_observed("data/processed-data/z-estimates.tsv");
+		z_ests.read_observed_uncertainty("data/processed-data/z-estimates.tsv");
 	}
 
 	/**
