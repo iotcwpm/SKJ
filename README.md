@@ -24,6 +24,7 @@ The C++ code is divided into several files:
 - `parameters.hpp` - contains the `Parameters` class which defines the parameters and their priors used for model conditioning
 - `data.hpp` - contains the `Data` class which defines the data sets and their likelihoods used for model conditioning
 - `ioskj.cpp` - the primary C++ file for compiling the executable
+- `tests.cpp` - unit tests of the C+ code
 
 ### `priors` folder
 
@@ -37,6 +38,3 @@ The `data` folder includes R and Python scripts for processing source data. See 
 
 The `docs` folder includes hand written documentation and a Doxygen project for automatically generating documentation from C++ source code.
 
-### `tests` folder
-
-The `tests` folder includes unit tests.

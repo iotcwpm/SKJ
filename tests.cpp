@@ -1,16 +1,14 @@
 #define BOOST_TEST_MODULE tests
 #include <boost/test/unit_test.hpp>
 
-#include "../model.hpp"
-#include "../statistics.hpp"
+#include "model.hpp"
+
 using namespace IOSKJ;
 
 struct modelFixture { 
 	Model model;
 
 	modelFixture(){
-		model.startup();
-		model.defaults();
 	} 
 };
 
@@ -26,7 +24,7 @@ BOOST_FIXTURE_TEST_SUITE(model,modelFixture)
 	BOOST_AUTO_TEST_CASE(equilibrium_stable){
 		model.track_open("equilibrium_stable.txt");
 
-		model.init();
+		model.inititialise();
 		auto biomass_equil = model.biomass;
 
 		model.recruits_variation_on = false;
@@ -50,7 +48,7 @@ BOOST_FIXTURE_TEST_SUITE(model,modelFixture)
 	BOOST_AUTO_TEST_CASE(equilibrium_uniform){
 		model.recruits_uniform();
 		model.movement_none();
-		model.init();
+		model.initialise();
 
 		const double tolerance = 0.01; //0.01%
 		BOOST_CHECK_CLOSE(model.biomass(W),model.biomass(M),tolerance);
@@ -68,7 +66,7 @@ BOOST_FIXTURE_TEST_SUITE(model,modelFixture)
 	BOOST_AUTO_TEST_CASE(recruiment_variation){
 		model.track_open("recruiment_variation.txt");
 
-		model.init();
+		model.initialise();
 		
 		model.exploitation_on = false;
 		Stats stats;
@@ -89,7 +87,7 @@ BOOST_FIXTURE_TEST_SUITE(model,modelFixture)
 	BOOST_AUTO_TEST_CASE(exploitation_specified){
 		model.track_open("exploitation_specified.txt");
 
-		model.init();
+		model.initialise();
 
 		model.recruits_variation_on = false;
 		model.exploitation_rate_set(0);
