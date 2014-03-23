@@ -106,7 +106,7 @@ public:
 				uint z_lower = 45+z_size.index()*5;
 				uint size_class = (z_lower-1)/2;
 				for(uint size=size_class;size<size_class+3;size++){
-					double survival = model.mortality_survival(size) * model.exploitation_survival(W,size);
+					double survival = model.mortalities_survival(size) * model.exploitation_survival(W,size);
 					z += -log(survival);
 				}
 				z /= 3;

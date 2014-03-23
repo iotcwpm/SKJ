@@ -182,12 +182,12 @@ public:
 	/**
 	 * Instantaneous rate of natural mortality for size s
 	 */
-	Grid<double,Size> mortality_rate;
+	Grid<double,Size> mortalities;
 
 	/**
 	 * Quarterly rate of survival from natural mortality for size s
 	 */
-	Grid<double,Size> mortality_survival;
+	Grid<double,Size> mortalities_survival;
 
 	/**
 	 * @}
@@ -428,12 +428,12 @@ public:
 			lengths(size) = length;
 			weights(size) = weight_length(length);
 			maturities(size) = maturity_length(length);
-			mortality_rate(size) = std::min(mortality * std::pow(weights(size),mortality_weight_exponent),mortality_max);
-			mortality_survival(size) = std::exp(-0.25*mortality_rate(size));
+			mortalities(size) = std::min(mortality * std::pow(weights(size),mortality_weight_exponent),mortality_max);
+			mortalities_survival(size) = std::exp(-0.25*mortalities(size));
 		}
 
 		// Initialise proportion of recruits by size
-		Lognormal recruits_lengths_dist(recruits_lengths_mean,recruits_lengths_mean*recruits_lengths_cv);
+		Normal recruits_lengths_dist(recruits_lengths_mean,recruits_lengths_mean*recruits_lengths_cv);
 		for(auto size : sizes){
 			double length = lengths(size);
 			recruits_sizes(size) = recruits_lengths_dist.integrate(length-1,length+1);
@@ -638,7 +638,7 @@ public:
 							Level<Size> sf(size_from);
 							number += 	numbers(rf,age,sf) * 
 										growth(size_from,size) * 
-										mortality_survival(sf) * 
+										mortalities_survival(sf) * 
 										(exploitation_on?exploitation_survival(rf,sf):1) * 
 										movement(region_from,region);
 						}
@@ -692,17 +692,24 @@ public:
 	 * Write model attributes to files for examination
 	 */
 	void write(void){
-		numbers.write("output/numbers.tsv");
 		lengths.write("output/lengths.tsv");
 		recruits_sizes.write("output/recruits_sizes.tsv");
-		weights.write("output/weights.tsv");
-		maturities.write("output/maturities.tsv");
-		mortality_rate.write("output/mortality_rate.tsv");
-		spawning.write("output/spawning.tsv");
-		biomass_spawning_unfished.write("output/biomass_spawning_unfished.tsv");
+
 		growth_increments.write("output/growth_increments.tsv");
 		growth.write("output/growth.tsv");
+
+		mortalities.write("output/mortalities.tsv");
+
+		weights.write("output/weights.tsv");
+		maturities.write("output/maturities.tsv");
+		
+		spawning.write("output/spawning.tsv");
+		biomass_spawning_unfished.write("output/biomass_spawning_unfished.tsv");
+		
 		movement.write("output/movement.tsv");
+
+		numbers.write("output/numbers.tsv");
+
 		selectivities.write("output/selectivities.tsv");
 	}
 };
