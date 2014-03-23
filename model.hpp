@@ -288,86 +288,6 @@ public:
 	/**
 	 * @}
 	 */
-	
-
-	/**
-	 * @{
-	 * @name Tracking
-	 *
-	 * Tracking of various model variables during simulation.
-	 * Mainly used in testing.
-	 * Writing output is slow so this can be turned off using the TRACKING macro
-	 */
-	#if TRACKING
-
-		bool track_on;
-		std::ofstream track_file;
-
-		void track_open(std::string filename){
-			track_on = true;
-			track_file.open(filename);
-			track_file
-				<<"year\t"
-				<<"quarter\t"
-				<<"recruits_determ\t"
-				<<"recruits_deviation\t"
-				<<"recruits\t"
-				<<"biomass_spawning_overall\t"
-				<<"biomass_spawning_w\t"
-				<<"biomass_spawning_m\t"
-				<<"biomass_spawning_e\t"
-				<<"catches_w_ps\t"
-				<<"catches_m_pl\t"
-				<<"catches_e_gn\t"
-				<<"exploitation_survival_m_20\t"
-				<<"biomass_vulnerable_m_pl\t"
-				<<"exp_rate_m_pl\t"
-				<<std::endl;
-		}
-
-		void track(int year, int quarter){
-			if(track_on){
-				track_file
-					<<year<<"\t"
-					<<quarter<<"\t"
-					<<recruits_determ<<"\t"
-					<<recruits_deviation<<"\t"
-					<<recruits<<"\t"
-					<<biomass_spawning_overall(quarter)<<"\t"
-					<<biomass_spawning(W)<<"\t"
-					<<biomass_spawning(M)<<"\t"
-					<<biomass_spawning(E)<<"\t"
-					<<catches(W,PS)<<"\t"
-					<<catches(M,PL)<<"\t"
-					<<catches(E,GN)<<"\t"
-					<<exploitation_survival(M,20)<<"\t"
-					<<biomass_vulnerable(M,PL)<<"\t"
-					<<exploitation_rate(M,PL)<<"\t"
-					<<std::endl;
-			}
-		}
-
-		void track_close(void){
-			track_on = false;
-			track_file.close();
-		}
-
-	#else
-
-		void track_open(std::string filename){
-		}
-
-		void track(int year, int quarter){
-		}
-
-		void track_close(void){
-		}
-
-	#endif
-
-	/**
-	 * @}
-	 */
 
 	/**
 	 * Set exploitation rate. Used in testing and in 
@@ -441,7 +361,8 @@ public:
 
 		// Initialise growth size transition matrix
 		for(auto size : sizes){
-			growth_increments(size) = (growth_assymptote-lengths(size))*(1-std::exp(-0.25*growth_rate));
+			double increment = (growth_assymptote-lengths(size))*(1-std::exp(-0.25*growth_rate));
+			growth_increments(size) = (increment>0)?increment:0;
 		}
 		for(auto size_from : size_froms){
 			Level<Size> size_from_size(size_from);
@@ -532,7 +453,6 @@ public:
 	 * Perform a single time step
 	 */
 	void update(uint time){
-		uint year = IOSKJ::year(time);
 		uint quarter = IOSKJ::quarter(time);
 
 		// Calculate total biomass and spawning biomass by region
@@ -621,7 +541,7 @@ public:
 					for(auto method : methods){
 						proportion_taken += exploitation_rate(region,method) * selectivities(method,size);
 					}
-					exploitation_survival(region,size) = 1-proportion_taken;
+					exploitation_survival(region,size) = (proportion_taken<1)?(1-proportion_taken):0;
 				}
 			}
 		}
@@ -648,9 +568,6 @@ public:
 			}
 		}
 		numbers = numbers_temp;
-
-		// Tracking
-		track(year,quarter);
 	}
 
 	/**

@@ -1,11 +1,11 @@
 #define DEBUG 1
-#define TRACKING 1
 
 #include "imports.hpp"
 #include "dimensions.hpp"
 #include "model.hpp"
 #include "parameters.hpp"
 #include "data.hpp"
+#include "tracker.hpp"
  
 using namespace IOSKJ;
 
@@ -28,9 +28,10 @@ void startup(void){
  */
 void run_pars(void){
 	Model model;
-	model.track_open("output/track.tsv");
 	// Get values of parameters at mean
 	auto parameter_set = parameters.read_set("parameters.tsv");
+	// Do tracking
+	Tracker tracker("output/track.tsv");
 	// For each time step...
 	for(uint time=0;time<=time_max;time++){
 		std::cout<<time<<" "<<year(time)<<" "<<quarter(time)<<std::endl;
@@ -41,9 +42,8 @@ void run_pars(void){
 		//... get model variables corresponding to data
 		data.get(model,time);
 		//... get model variables of interest for tracking
-		//tracker.get(model,time);
+		tracker.get(model,time);
 	}
-	model.track_close();
 }
 
 /**
