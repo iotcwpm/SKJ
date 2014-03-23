@@ -694,13 +694,13 @@ public:
 	void write(void){
 		numbers.write("output/numbers.tsv");
 		lengths.write("output/lengths.tsv");
-		recruits_sizes.write("output/recruits-sizes.tsv");
+		recruits_sizes.write("output/recruits_sizes.tsv");
 		weights.write("output/weights.tsv");
 		maturities.write("output/maturities.tsv");
-		mortality_rate.write("output/mortality-rate.tsv");
+		mortality_rate.write("output/mortality_rate.tsv");
 		spawning.write("output/spawning.tsv");
-		biomass_spawning_unfished.write("output/biomass-spawning-unfished.tsv");
-		growth_increments.write("output/growth-increments.tsv");
+		biomass_spawning_unfished.write("output/biomass_spawning_unfished.tsv");
+		growth_increments.write("output/growth_increments.tsv");
 		growth.write("output/growth.tsv");
 		movement.write("output/movement.tsv");
 		selectivities.write("output/selectivities.tsv");

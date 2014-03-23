@@ -11,9 +11,9 @@ namespace IOSKJ {
 class Data : public DataGroup<Data,Model> {
 public:
 
-	Fits<Lognormal,DataYear,Quarter> maldive_pl_cpue = 0.2;
+	Fits<Lognormal,DataYear,Quarter> m_pl_cpue = 0.2;
 
-	Fits<Lognormal,DataYear> west_ps_cpue = 0.3;
+	Fits<Lognormal,DataYear> w_ps_cpue = 0.3;
 
 	Fits<Normal,DataYear,Quarter,Region,Method,Size> size_freqs = 0.01;
 
@@ -34,18 +34,18 @@ public:
 		// Maldive PL quarterly CPUE
 		if(year>=2000 and year<=2013){
 			// Just get M/PL vulnerable biomass
-			maldive_pl_cpue(year,quarter).expected = model.biomass_vulnerable(M,PL);	
+			m_pl_cpue(year,quarter).expected = model.biomass_vulnerable(M,PL);	
 			
 			// At end, scale expected by geometric mean over period 2004-2012
 			if(year==2013 and quarter==3){
 				GeometricMean geomean;
 				for(uint year=2004;year<=2012;year++){
 					for(uint quarter=0;quarter<4;quarter++){
-						geomean.append(maldive_pl_cpue(year,quarter).expected);
+						geomean.append(m_pl_cpue(year,quarter).expected);
 					}
 				}
 				double scaler = 1/geomean.result();
-				for(auto& fit : maldive_pl_cpue) fit.expected *= scaler;
+				for(auto& fit : m_pl_cpue) fit.expected *= scaler;
 			}
 		}
 
@@ -57,17 +57,17 @@ public:
 			cpue_quarters(quarter) = model.biomass_vulnerable(W,PS);
 			// ... if this is the last quarter then take the geometric mean
 			if(quarter==3){
-				west_ps_cpue(year).expected = geomean(cpue_quarters);
+				w_ps_cpue(year).expected = geomean(cpue_quarters);
 			}	
 
 			// At end, scale expected by geometric mean over period 1991-2010
 			if(year==2013 and quarter==3){
 				GeometricMean geomean;
 				for(uint year=1991;year<=2010;year++){
-					geomean.append(west_ps_cpue(year,quarter).expected);
+					geomean.append(w_ps_cpue(year,quarter).expected);
 				}
 				double scaler = 1/geomean.result();
-				for(auto& fit : west_ps_cpue) fit.expected *= scaler;
+				for(auto& fit : w_ps_cpue) fit.expected *= scaler;
 			}	
 		}
 
@@ -122,8 +122,8 @@ public:
 	double likelihood(void){
 		double likelihood = 0;
 
-		likelihood += maldive_pl_cpue.likelihood();
-		likelihood += west_ps_cpue.likelihood();
+		likelihood += m_pl_cpue.likelihood();
+		likelihood += w_ps_cpue.likelihood();
 		likelihood += size_freqs.likelihood();
 		likelihood += z_ests.likelihood();
 
@@ -134,8 +134,8 @@ public:
 	 * Read in observed data
 	 */
 	void read(void){
-		maldive_pl_cpue.read_observed("data/processed-data/m-pl-cpue.tsv");
-		west_ps_cpue.read_observed("data/processed-data/w-ps-cpue.tsv");
+		m_pl_cpue.read_observed("data/processed-data/m-pl-cpue.tsv");
+		w_ps_cpue.read_observed("data/processed-data/w-ps-cpue.tsv");
 		size_freqs.read_observed_uncertainty("data/processed-data/size-frequencies.tsv");
 		z_ests.read_observed_uncertainty("data/processed-data/z-estimates.tsv");
 	}
@@ -144,10 +144,10 @@ public:
 	 * Write out fits
 	 */
 	void write(void){
-		maldive_pl_cpue.write("output/m-pl-cpue.tsv");
-		west_ps_cpue.write("output/w-ps-cpue.tsv");
-		size_freqs.write("output/size-freqs.tsv");
-		z_ests.write("output/z-ests.tsv");
+		m_pl_cpue.write("output/m_pl_cpue.tsv");
+		w_ps_cpue.write("output/w_ps_cpue.tsv");
+		size_freqs.write("output/size_freqs.tsv");
+		z_ests.write("output/z_ests.tsv");
 	}
 
 }; // class Data

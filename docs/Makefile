@@ -3,7 +3,7 @@ all: index doxygen
 .PHONY: index doxygen publish
 
 index:
-	stencila --convert index.stem index.html
+	stencila --convert index.cila index.html
 
 doxygen:
 	$(MAKE) -C doxygen

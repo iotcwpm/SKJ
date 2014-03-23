@@ -231,11 +231,11 @@ public:
 
 	void write(void){
 		// Write parameter means to file
-		write_set("output/parameter-means.tsv",means());
+		write_set("output/parameters_means.tsv",means());
 		// Write probability distributions for priors for plotting
-		write_pdfs("output/parameter-pdfs.tsv");
+		write_pdfs("output/parameters_pdfs.tsv");
 		// Write catch data for checking
-		catches.write("output/parameter-catches.tsv",{"catch"},[](std::ostream& stream, const Parameter<Fixed>& parameter){
+		catches.write("output/parameters_catches.tsv",{"catch"},[](std::ostream& stream, const Parameter<Fixed>& parameter){
 			stream<<parameter.prior.value;
 		});
 	}
