@@ -178,12 +178,16 @@ data = within(data,{
   # Convert 1 mm size to an integer
   size = as.character(size)
   size = as.integer(substr(size,2,nchar(size)))
+  # Need to add 10cm because C001 is 10cm
+  size = size + 10
   # Create a 2mm size bin which is indexed as in model
   # e.g a 43mm fish is in size class 21 (21*2 = 42 = 42 to 44mm)
   class = floor(size/2)
+  class[class<0] = NA # Can't have a class index <0
+  class[class>=40] = NA # Can't have a class index >39
 })
 # Bin into 2mm size classes
-data = ddply(data,.(year,quarter,region,method,class),summarise,
+data = ddply(subset(data,!is.na(class)),.(year,quarter,region,method,class),summarise,
   count = head(count,n=1),
   proportion = round(sum(proportion),6)
 )
