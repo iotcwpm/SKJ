@@ -163,21 +163,22 @@ public:
 	 */
 	
 	/**
+	 * Instantaneous rate of natural mortality at weight of 1kg
+	 */
+	double mortality_base;
+	
+	/**
 	 * Allometric exponent of the weight to natural mortality
 	 * relationship
 	 */
-	double mortality_weight_exponent;
-	
-	/**
-	 * Instantaneous rate of natural mortality at weight of 1kg
-	 */
-	double mortality;
+	double mortality_exponent;
 
 	/**
-	 * Maximum rate of natural mortality (exponential relationship
-	 * can give very high natural mortality at small sizes)
+	 * Size with maximum rate of natural mortality (exponential relationship
+	 * can give very high natural mortality at small sizes). Note this is not a 
+	 * length but a 0-based size class
 	 */
-	double mortality_max;
+	Level<Size> mortality_cap_size = 10;
 
 	/**
 	 * Instantaneous rate of natural mortality for size s
@@ -348,7 +349,13 @@ public:
 			lengths(size) = length;
 			weights(size) = weight_length(length);
 			maturities(size) = maturity_length(length);
-			mortalities(size) = std::min(mortality * std::pow(weights(size),mortality_weight_exponent),mortality_max);
+
+			// Mortality at size
+			// The maximum mortality is determined by the mortality_cap which defines
+			// the _size_ at which mortality is highest
+			double mortality_weight = (size<mortality_cap_size)?weights(mortality_cap_size):weights(size);
+			mortalities(size) = mortality_base * std::pow(mortality_weight,mortality_exponent);
+
 			mortalities_survival(size) = std::exp(-0.25*mortalities(size));
 		}
 

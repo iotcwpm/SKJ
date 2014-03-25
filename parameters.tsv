@@ -15,9 +15,8 @@ weight_a		5.32e-06
 weight_b		3.35
 maturity_inflection		42.5	
 maturity_steepness		5	
-mortality		0.7	
-mortality_weight_exponent		-0.29	
-mortality_max		4.60517	
+mortality_base		0.7	
+mortality_exponent		-0.29	
 growth_rate		0.3	
 growth_assymptote		75	
 growth_sd		1	

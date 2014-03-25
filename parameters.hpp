@@ -70,9 +70,8 @@ public:
     /**
      * Mortality parameters
      */
-   	Parameter<Uniform> mortality = {"mortality",0.5,0.9};
-	Parameter<Fixed> mortality_weight_exponent = {"mortality_weight_exponent",-0.29};
-	Parameter<Fixed> mortality_max = {"mortality_max",-std::log(0.01)};
+   	Parameter<Uniform> mortality_base = {"mortality",0.5,0.9};
+	Parameter<Fixed> mortality_exponent = {"mortality_weight_exponent",-0.29};
 
     /**
      * Growth rate parameters
@@ -159,10 +158,9 @@ public:
 			binder(maturity_inflection, model.maturity_length.inflection);
 			binder(maturity_steepness, model.maturity_length.steepness);
 
-			binder(mortality,model.mortality);
-			binder(mortality_weight_exponent,model.mortality_weight_exponent);
-			binder(mortality_max,model.mortality_max);
-
+			binder(mortality_base,model.mortality_base);
+			binder(mortality_exponent,model.mortality_exponent);
+			
 			binder(growth_rate, model.growth_rate);
 			binder(growth_assymptote, model.growth_assymptote);
 			binder(growth_sd, model.growth_sd);

@@ -47,7 +47,7 @@ section#dimensions
 
     p
         Five fishing methods are defined (Table 1), See
-        a[href="data-catches"] Catches
+        a[href="#data-catches"] Catches
         for a description of how nominal catches were assigned to each of these methods and regions.
 
     table
@@ -215,11 +215,9 @@ section#fish
 
             `M_s = nu W_s^gamma`
 
-        The survival rate in one quarter is thus,
+        To prevent `M_s` going to very high levels at low `s`, `M_s` is restricted to be a maximum of `M_10` (i.e. the mortality at a length of 21cm). The survival rate in one quarter is thus,
 
             `D_s = e^{-0.25 M_s}`
-
-        .note Natural mortality could vary by region.
 
 
     section#fish-growth
