@@ -3,7 +3,7 @@ h1 Simulation model of the Indian Ocean skipjack tuna fishery
 p Nokome Bentley
 
 p.note 
-    This documentation is a draft under active development. Separate documentation, generated from the model's C++ source code, is also
+    This documentation is a draft under active development. As such, this documentation may not exactly mirror what is in the current version of the code. Separate documentation, generated from the model's C++ source code, is also
     a[href="doxygen/html/index.html"] available
     .
 
@@ -12,12 +12,12 @@ section#introduction
 
     p This document describes a simulation model for the skipjack fishery in the Indian Ocean. The model has been designed for use in simulation based evaluation of alternative management strategies for the fishery. This document outlines the structure of the model, describes prior probability distributions for model parameters, model conditioning algorithms and conditioning results.
 
-    p The model, and consequently this document, are under development. The general approach to model development has been to start simple and add complexity as required. Potential alternative model forumations are noted throughout the document.
+    p The model, and consequently this document, are under development. The general approach to model development has been to start simple and add complexity as required. Potential alternative model formulations are noted throughout the document.
 
     section#symbols 
         h3 Symbols
 
-        p The following convention is used for assigning symbols for the model: Greek lower case letters (e.g. `alpha`) for model parameters, Roman capital letters (e.g. `N`) for model variables, and Roman lower case letters for variable or parameter array subscripts (e.g. `N_{r,a,s}`, `phi_{r}`). Using this convention means that in some instances model parameters are given different symbols that usual but has the advantage of clearly distinquishing model parameters (which are independent of other parametrs or variables and are usually estimated) from model variables (which are dependent upon parameter values).
+        p The following convention is used for assigning symbols for the model: Greek lower case letters (e.g. `alpha`) for model parameters, Roman capital letters (e.g. `N`) for model variables, and Roman lower case letters for variable or parameter array subscripts (e.g. `N_{r,a,s}`, `phi_{r}`). Using this convention means that in some instances model parameters are given different symbols that usual but has the advantage of clearly distinguishing model parameters (which are independent of other parameters or variables and are usually estimated) from model variables (which are dependent upon parameter values).
 
         p The subscript for time, `t`, is usually omitted from the model equations below except where it is necessary to be explicit regarding the time step involved.
 
@@ -33,15 +33,15 @@ section#dimensions
 
     h3 Region (`r`)
 
-    p There are three regions, West (`we`), Maldives (`ma`) and East (`ea`). The term "region" is used in preference to "area" becausing using the latter would confound the `a` subscript which is also used for age.
+    p There are three regions, West (`we`), Maldives (`ma`) and East (`ea`). The term "region" is used in preference to "area" because using the latter would confound the `a` subscript which is also used for age.
 
     h3 Age (`a`)
 
-    p Fish recruit to the model in each quarter and the model keeps track of their numbers by their age, in quarters up to siz years i.e. `0,1,2,...,23`
+    p Fish recruit to the model in each quarter and the model keeps track of their numbers by their age, in quarters up to six years i.e. `0,1,2,...,23`
 
     h3 Size (`s`)
 
-    p Fish size is represented in fourty, 2mm bins, `0-2, 2-4, ..., 78-80mm`.
+    p Fish size is represented in forty, 2cm bins, `0-2, 2-4, ..., 78-80cm`.
 
     h3 Method (`m`)
 
@@ -274,9 +274,9 @@ section#fishing
 section#priors
     h2 Parameter priors and sensitivity ranges
 
-    p For each model parameter a prior probability is defined. These priors are used in conditioning algorithms (either Sampling-Importance-Resampling (SIR) or Markov Chain Monte Carlo (MCMC)) and are intended to represent the prior knowledge and associated uncertainty. For some parameters, such as stock recruitment steepeness `eta`, there is unlikely to be any information in the data and so the prior may be influential.
+    p For each model parameter a prior probability is defined. These priors are used in conditioning algorithms (either Sampling-Importance-Resampling (SIR) or Markov Chain Monte Carlo (MCMC)) and are intended to represent the prior knowledge and associated uncertainty. For some parameters, such as stock recruitment steepness `eta`, there is unlikely to be any information in the data and so the prior may be influential.
 
-    p In addition, for each model parameter a sensitivity range is defined. This range is used in robustness testing of candidate harvest control rules to evaluate how sensitive a rule is to paramter values which are possible but which are determined, on the basis of either priors or conditioning, to be unlikely.
+    p In addition, for each model parameter a sensitivity range is defined. This range is used in robustness testing of candidate harvest control rules to evaluate how sensitive a rule is to parameter values which are possible but which are determined, on the basis of either priors or conditioning, to be unlikely.
 
     section#priors-weight
         h3 Weight
@@ -325,7 +325,7 @@ section#priors
     section#priors-mortality
         h3 Mortality
 
-        p The instantaneous rate of natural mortality at 1kg, `nu`, the same normal prior as in Sharma et al (2012) was used which has a mean of 0.1 and a standard deviation of 1 (Figure X).
+        p The instantaneous rate of natural mortality at 1kg, `nu`, the same normal prior as in Sharma et al (2012) was used which has a mean of 0.8 and a standard deviation of 1 (Figure X).
 
         p A prior for the allometric exponent of the weight to natural mortality function, `gamma` was based on Lorenzen (1996) who estimated a value on -0.29.
 
@@ -553,7 +553,7 @@ section#data
 section#references
     h2 References
 
-    p Everson, J.P., Million, J., Sardenne, F., Le Croizier, G. (2012) Updated growth estimates for skipjack,yellowfin and bigeye tuna in the Indian Ocean using the most recent tag-recpature and otolith data. IIOOTC-2012-WPT14-23 Rev-1
+    p Everson, J.P., Million, J., Sardenne, F., Le Croizier, G. (2012) Updated growth estimates for skipjack, yellowfin and bigeye tuna in the Indian Ocean using the most recent tag-recapture and otolith data. IIOOTC-2012-WPT14-23 Rev-1
 
     p Grande, M (2013). The reproductive biology, condition and feeding ecology of the skipjack, Katsuwonus pelamis, in the Western Indian Ocean PhD Thesis. Department of Zoology and Animal Cell Biology, Universidad del Pais Vasco.
 
