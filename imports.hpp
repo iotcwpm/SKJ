@@ -38,8 +38,8 @@ using namespace Fsl::Math::Probability;
 using Fsl::Math::Functions::Power;
 #include <fsl/math/functions/logistic.hpp>
 using Fsl::Math::Functions::Logistic;
-#include <fsl/math/functions/spline.hpp>
-using Fsl::Math::Functions::Spline;
+#include <fsl/math/functions/piecewise-spline.hpp>
+using Fsl::Math::Functions::PiecewiseSpline;
 
 //... stock-recruitment relationship
 #include <fsl/population/recruitment/beverton-holt.hpp>

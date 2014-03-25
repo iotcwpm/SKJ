@@ -28,13 +28,16 @@ void startup(void){
  */
 void run_pars(void){
 	Model model;
-	// Get values of parameters at mean
+	// Read in parameter values (and write out for checking)
 	auto parameter_set = parameters.read_set("parameters.tsv");
+	parameters.write_set("output/parameters_read.tsv",parameter_set);
 	// Do tracking
 	Tracker tracker("output/track.tsv");
 	// For each time step...
 	for(uint time=0;time<=time_max;time++){
-		std::cout<<time<<" "<<year(time)<<" "<<quarter(time)<<std::endl;
+		#if DEBUG
+		std::cout<<time<<" "<<year(time)<<" "<<quarter(time)<<" "<<model.biomass_spawning_overall(quarter(time))<<std::endl;
+		#endif
 		//... set model parameters
 		parameters.set(model,time,parameter_set);
 		//... update the model
@@ -59,7 +62,11 @@ void shutdown(void) {
 
 int main(void){
 	startup();
-	run_pars();
+	try{
+		run_pars();
+	} catch(std::exception& e){
+		std::cout<<e.what()<<std::endl;
+	}
 	shutdown();
 	return 0;
 }

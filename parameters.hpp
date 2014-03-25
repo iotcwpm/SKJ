@@ -100,7 +100,19 @@ public:
 	 * These are likely to be well determined from the data and so a U(0,1) prior
 	 * is used for all
 	 */
-	Parameter<Uniform> selectivity = {"selectivity",0,1};
+	Grid<
+		Parameter<Uniform>,
+		SelectivityKnot
+	> selectivity = {
+		Parameter<Uniform>
+		{"selectivity_20",0,0.3},
+		{"selectivity_30",0,0.4},
+		{"selectivity_40",0,0.6},
+		{"selectivity_50",0,1},
+		{"selectivity_60",0,1},
+		{"selectivity_70",0,1},
+		{"selectivity_80",0,1}
+	};
 
 	/**
 	 * Catches by year, quarter, region and method
@@ -169,7 +181,7 @@ public:
 
 			for(auto method : methods){
 				for(auto knot : selectivity_knots){
-					binder(selectivity, model.selectivity_values(method,knot),str(format("%s-%s")%method%knot));
+					binder(selectivity(knot), model.selectivity_values(method,knot),str(format("%s")%method));
 				}
 			}
 		}

@@ -67,7 +67,7 @@ enum {
 	OT = 4
 };
 
-STENCILA_DIM(SelectivityKnot,selectivity_knots,selectivity_knot,5);
+STENCILA_DIM(SelectivityKnot,selectivity_knots,selectivity_knot,7);
 
 STENCILA_DIM(ZSize,z_sizes,z_size,4);
 

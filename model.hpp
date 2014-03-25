@@ -229,7 +229,7 @@ public:
 	/**
 	 * Lengths at each selectivity knot
 	 */
-	Grid<double,SelectivityKnot> selectivity_lengths = {0,20,40,60,80};
+	Grid<double,SelectivityKnot> selectivity_lengths = {20,30,40,50,60,70,80};
 
 	/**
 	 * Proportion selected at each selectivity knot for each method
@@ -393,16 +393,20 @@ public:
 			Grid<double,SelectivityKnot> proportions;
 			for(auto knot : selectivity_knots) proportions(knot) = selectivity_values(method,knot);
 			// Create a spline
-			Spline<double,double> selectivity_spline(selectivity_lengths,proportions);
+			PiecewiseSpline selectivity_spline(selectivity_lengths,proportions);
 			// Iterpolate with spline
-			// Ensure that selectivity is between 0 and 1 since the spline
+			// Ensure that selectivity is between 0 and 1 since cubic spline
 			// can produce values outside this range even if knots are not
+			double max = 0;
 			for(auto size : sizes){
-				double selectivity = selectivity_spline.interpolate(lengths(size));
+				double selectivity;
+				if(lengths(size)<selectivity_lengths(0)) selectivity = 0;
+				else selectivity = selectivity_spline.interpolate(lengths(size));
 				if(selectivity<0) selectivity = 0;
-				else if(selectivity>1) selectivity = 1;				
+				else if(selectivity>max) max = selectivity;
 				selectivities(method,size) = selectivity;
 			}
+			for(auto size : sizes) selectivities(method,size) /= max;
 		}
 
 		// Normalise the recruits_region grid so that it sums to one
@@ -627,6 +631,7 @@ public:
 
 		numbers.write("output/numbers.tsv");
 
+		selectivity_values.write("output/selectivity_values.tsv");
 		selectivities.write("output/selectivities.tsv");
 	}
 };
