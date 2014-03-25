@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['recruits_5funiform',['recruits_uniform',['../classIOSKJ_1_1Model.html#ae74437cf19859e4f38dd50b6edf958b4',1,'IOSKJ::Model']]]
+  ['initialise',['initialise',['../classIOSKJ_1_1Model.html#ae15f7b02094c380aeec9464d626705fb',1,'IOSKJ::Model']]]
 ];
