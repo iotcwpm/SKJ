@@ -101,14 +101,18 @@ sf = within(sf,{
     # Used LargeGroup on CodeGear sheet in SF_Reference.xlxs as a guide
     Method = NA
     Method[Gear %in% c('PS','PSS','RIN')] = 'PS'
+    
     Method[Gear=='BB'] = 'PL'
+    # During 1997,98,99 there is no BB samples for maldives, only UNCL samples
+    # Assume that those are PL
+    Method[Fleet=='MDV' & Gear=='UNCL'] = 'PL'
+    
     Method[Gear %in% c('GILL','GIHA','G/L')] = 'GN'
+    
     Method[Gear %in% c('HAND','HATR','HOOK','LLCO','TROL')] = 'LI'
-    Method[Gear %in% c(
-        'BS','HARP','TRAW','UNCL',
-        # Longline has very minor catches in all areas so inclue in other.. 
-        'ELL','FLL','LL','LLEX','LLHA','LLOB'
-    )] = 'OT'
+    
+    Method[is.na(Method)] = 'OT'
+    
     Method = factor(Method,levels=c(
         'PS','PL','GN','LI','OT'
     ))
@@ -118,6 +122,8 @@ sf = within(sf,{
 })
 # Check no NAs or drop NAs
 table(sf$Region,sf$Fleet)
+table(sf$Method,sf$Fleet)
+table(sf$Gear,sf$Fleet)
 if(sum(is.na(sf$Region))) stop()
 if(sum(is.na(sf$Method))) stop()
 if(sum(is.na(sf$Year))) stop()
