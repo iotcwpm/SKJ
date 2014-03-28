@@ -63,7 +63,7 @@ enum {
 	PS = 0,
 	PL = 1,
 	GN = 2,
-	LI = 3,
+	TR = 3,
 	OT = 4
 };
 

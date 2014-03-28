@@ -84,9 +84,8 @@ sf$SizeInterval <- NULL
 sum(sf$GridSize>=5)/nrow(sf)
 sf = subset(sf,GridSize>=5)
 
+# Assign to an operating model region
 sf = within(sf,{
-    
-    # Region
     # Because a 5x5 grid will straddle the 77 Lon line that is used to separate
     # Sri Lanka and Maldives, put all LKA records in E
     Region = NA
@@ -96,7 +95,41 @@ sf = within(sf,{
     Region = factor(Region,levels=c(
         'W','M','E'
     ))
-    
+})
+
+# Summarise size frequencies by gear to better determine how to aggregate to methods
+cs = sprintf('C%03d',10:70)
+sizes_gear = ddply(sf,.(Gear),function(sub)colSums(sub[,cs]))
+total = rowSums(sizes_gear[,cs])
+totals = data.frame(Gear=sizes_gear$Gear,n=total)
+sizes_gear[,cs] = sizes_gear[,cs]/total
+sizes_gear = melt(sizes_gear)
+sizes_gear = within(sizes_gear,{
+  size = as.character(variable)
+  size = as.integer(substr(size,2,nchar(size)))
+  size = size + 10
+})
+sizes_gear = subset(sizes_gear,Gear %in% subset(totals,n>100)$Gear)
+sizes_gear = within(sizes_gear,{
+  Method = NA
+  
+  Method[Gear %in% c('PS','PSS','RIN')] = 'PS'
+  
+  Method[Gear=='BB'] = 'PL'
+  Method[Gear=='UNCL'] = 'PL'
+  
+  Method[Gear %in% c('GILL','GIHA','G/L')] = 'GN'
+  
+  Method[Gear=='TROL'] = 'TR'
+  
+  Method[is.na(Method)] = 'OT'
+})
+ggplot(sizes_gear,aes(x=size,y=value,colour=Gear)) + 
+  geom_point() + geom_line() + 
+  facet_wrap(~Method)
+
+# Assign method and quarter
+sf = within(sf,{
     # Method
     # Used LargeGroup on CodeGear sheet in SF_Reference.xlxs as a guide
     Method = NA
@@ -109,12 +142,12 @@ sf = within(sf,{
     
     Method[Gear %in% c('GILL','GIHA','G/L')] = 'GN'
     
-    Method[Gear %in% c('HAND','HATR','HOOK','LLCO','TROL')] = 'LI'
+    Method[Gear=='TROL'] = 'TR'
     
     Method[is.na(Method)] = 'OT'
     
     Method = factor(Method,levels=c(
-        'PS','PL','GN','LI','OT'
+        'PS','PL','GN','TR','OT'
     ))
     
     # Quarter
@@ -128,6 +161,9 @@ if(sum(is.na(sf$Region))) stop()
 if(sum(is.na(sf$Method))) stop()
 if(sum(is.na(sf$Year))) stop()
 if(sum(is.na(sf$Quarter))) stop()
+
+temp = subset(sf,Region=='E'&Method=='LI')
+cast(ddply(temp,.(Year,Gear),summarise,n=sum(TnoFish)),Year~Gear)
 
 ########################################
 # Determine which size classes to keep (little point in keeping size classes
@@ -164,7 +200,7 @@ ggplot(sums) +
     labs(y='Number',x='Year')
 
 par(mfrow=c(3,2))
-for(method in c('PL','PS','GN','LI','OT')) plot(20:80,colMeans(sums[sums$Method==method,keep]),main=method,ylab="",xlab="")
+for(method in c('PL','PS','GN','TR','OT')) plot(20:80,colMeans(sums[sums$Method==method,keep]),main=method,ylab="",xlab="")
 
 #################################
 # Prepare data for outputting to model

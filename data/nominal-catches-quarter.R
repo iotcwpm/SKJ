@@ -7,52 +7,61 @@ library(ggplot2)
 
 # Read in data
 nc = read.table('source-data/CAS_Tables_SKJ_2013.txt',header=T,sep='\t',as.is=T)
+nc$tmt = as.numeric(nc$tmt)
 
-# Assign to operatng model areas and methods and quarters
+# Assign to operating model regions
 nc = within(nc,{
-  # Assign to an area based on Area and Fleet
+  # Assign to an region based on IOTC_Area and Fleet
   # use unique(nc[,c('Fleet','EName')]) to get a Fleet name
-  Area = NA
-  Area[IOTC_Area=='IO_Eastern'] = 'E'
-  Area[IOTC_Area=='IO_Western' & Fleet=='MDV'] = 'M'
-  Area[IOTC_Area=='IO_Western' & Fleet!='MDV'] = 'W'
-  Area = factor(Area,levels=c(
+  Region = NA
+  Region[IOTC_Area=='IO_Eastern'] = 'E'
+  Region[IOTC_Area=='IO_Western' & Fleet=='MDV'] = 'M'
+  Region[IOTC_Area=='IO_Western' & Fleet!='MDV'] = 'W'
+  Region = factor(Region,levels=c(
     'W','M','E'
   ))
-  
-  # Assign to a method
+})
+
+# Summary to check above method coding
+cast(ddply(nc,.(Region,Gear),summarise,catch=sum(tmt)),Gear~Region)
+ggplot(ddply(nc,.(Region,Gear,Year),summarise,catch=log10(sum(tmt)))) + 
+  geom_line(aes(x=Year,y=catch,colour=Gear,shape=Gear)) + 
+  geom_point(aes(x=Year,y=catch,colour=Gear,shape=Gear),size=3) + 
+  scale_shape_manual(values=1:27) +
+  facet_wrap(~Region)
+
+# Assign to operating model methods
+nc = within(nc,{
   # Based on GearGroup defined in GearCode sheet of NCTROP.xlsx
   Method = NA
   Method[Gear %in% c('PS','PSS','RIN')] = 'PS'
   Method[Gear %in% c('BB','BBM','BBN')] = 'PL'
   Method[Gear %in% c('GILL','GIOF','GL')] = 'GN'
-  Method[Gear %in% c('HAND','LLCO','SPOR','TROL','TROLM','TROLN')] = 'LI'
+  Method[Gear %in% c('TROL','TROLM','TROLN')] = 'TR'
   # Longline has very minor catches in all areas so inclue in other 
   Method[is.na(Method)] = 'OT'
   Method = factor(Method,levels=c(
-    'PS','PL','GN','LI','OT'
+    'PS','PL','GN','TR','OT'
   ))
-  
-  tmt = as.numeric(tmt)
 })
 
 # Aggregate by OM areas, methods, years and quarters
-sums = ddply(nc,.(Area,Method,Year,Quarter),summarise,Catch=sum(tmt,na.rm=T))
+sums = ddply(nc,.(Region,Method,Year,Quarter),summarise,Catch=sum(tmt,na.rm=T))
 
 # Plot
 svg("nominal-catches-quarter.svg",width=25/2.54,height=18/2.54)
 ggplot(sums) + 
   geom_line(aes(x=Year,y=Catch,color=Method),alpha=0.5) + 
   geom_point(aes(x=Year,y=Catch,color=Method,shape=Method),size=3,alpha=0.5) +
-  facet_wrap(~Area) + 
+  facet_wrap(~Region) + 
   labs(y='Catch (t)')
 dev.off()
 
 svg("nominal-catches-quarter-annual.svg",width=25/2.54,height=18/2.54)
-ggplot(ddply(nc,.(Area,Method,Year),summarise,Catch=sum(tmt,na.rm=T))) + 
+ggplot(ddply(nc,.(Region,Method,Year),summarise,Catch=sum(tmt,na.rm=T))) + 
   geom_line(aes(x=Year,y=Catch,color=Method),alpha=0.5) + 
   geom_point(aes(x=Year,y=Catch,color=Method,shape=Method),size=3,alpha=0.5) +
-  facet_wrap(~Area) + 
+  facet_wrap(~Region) + 
   labs(y='Catch (t)')
 dev.off()
 
