@@ -58,13 +58,12 @@ STENCILA_DIM(Age,ages,age,24);
 STENCILA_DIM(Size,sizes,size,40);
 STENCILA_DIM(SizeFrom,size_froms,size_from,40);
 
-STENCILA_DIM(Method,methods,method,5);
+STENCILA_DIM(Method,methods,method,4);
 enum {
 	PS = 0,
 	PL = 1,
 	GN = 2,
-	TR = 3,
-	OT = 4
+	OT = 3
 };
 
 STENCILA_DIM(SelectivityKnot,selectivity_knots,selectivity_knot,7);

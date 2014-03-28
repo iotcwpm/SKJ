@@ -120,8 +120,6 @@ sizes_gear = within(sizes_gear,{
   
   Method[Gear %in% c('GILL','GIHA','G/L')] = 'GN'
   
-  Method[Gear=='TROL'] = 'TR'
-  
   Method[is.na(Method)] = 'OT'
 })
 ggplot(sizes_gear,aes(x=size,y=value,colour=Gear)) + 
@@ -141,13 +139,11 @@ sf = within(sf,{
     Method[Fleet=='MDV' & Gear=='UNCL'] = 'PL'
     
     Method[Gear %in% c('GILL','GIHA','G/L')] = 'GN'
-    
-    Method[Gear=='TROL'] = 'TR'
-    
+ 
     Method[is.na(Method)] = 'OT'
     
     Method = factor(Method,levels=c(
-        'PS','PL','GN','TR','OT'
+        'PS','PL','GN','OT'
     ))
     
     # Quarter
@@ -162,7 +158,7 @@ if(sum(is.na(sf$Method))) stop()
 if(sum(is.na(sf$Year))) stop()
 if(sum(is.na(sf$Quarter))) stop()
 
-temp = subset(sf,Region=='E'&Method=='LI')
+temp = subset(sf,Region=='E'&Method=='OT')
 cast(ddply(temp,.(Year,Gear),summarise,n=sum(TnoFish)),Year~Gear)
 
 ########################################
@@ -200,7 +196,7 @@ ggplot(sums) +
     labs(y='Number',x='Year')
 
 par(mfrow=c(3,2))
-for(method in c('PL','PS','GN','TR','OT')) plot(20:80,colMeans(sums[sums$Method==method,keep]),main=method,ylab="",xlab="")
+for(method in c('PL','PS','GN','OT')) plot(20:80,colMeans(sums[sums$Method==method,keep]),main=method,ylab="",xlab="")
 
 #################################
 # Prepare data for outputting to model

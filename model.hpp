@@ -289,6 +289,26 @@ public:
 	/**
 	 * @}
 	 */
+	
+
+	/**
+	 * @name Data related "nuisance" parameters
+	 * 
+	 * @{
+	 */
+	
+	/**
+	 * Lengths at each selectivity knot
+	 *
+	 * The default values below are simply the means of the observed 
+	 * standardised CPUE index by quarter.
+	 */
+	Grid<double,Quarter> m_pl_quarter = {0.97,0.87,0.97,1.19};
+
+	/**
+	 * @}
+	 */
+	
 
 	/**
 	 * Set exploitation rate. Used in testing and in 

@@ -37,11 +37,9 @@ nc = within(nc,{
   Method[Gear %in% c('PS','PSS','RIN')] = 'PS'
   Method[Gear %in% c('BB','BBM','BBN')] = 'PL'
   Method[Gear %in% c('GILL','GIOF','GL')] = 'GN'
-  Method[Gear %in% c('TROL','TROLM','TROLN')] = 'TR'
-  # Longline has very minor catches in all areas so inclue in other 
   Method[is.na(Method)] = 'OT'
   Method = factor(Method,levels=c(
-    'PS','PL','GN','TR','OT'
+    'PS','PL','GN','OT'
   ))
 })
 
