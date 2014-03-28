@@ -5,18 +5,31 @@
 namespace IOSKJ {
 
 /**
- * Class for defining data against which the model is conditioned
+ * Data against which the model is conditioned
+ * 
  * See the `get()` method which "gets" model variables corresponding to data points at specific times.
  */
 class Data : public DataGroup<Data,Model> {
 public:
 
+	/**
+	 * Maldive pole and line quarterly CPUE
+	 */
 	Fits<Lognormal,DataYear,Quarter> m_pl_cpue = 0.2;
 
+	/**
+	 * West purse seine annual CPUE
+	 */
 	Fits<Lognormal,DataYear> w_ps_cpue = 0.3;
 
+	/**
+	 * Size frequencies
+	 */
 	Fits<Normal,DataYear,Quarter,Region,Method,Size> size_freqs = 0.01;
 
+	/**
+	 * Z-estimates
+	 */
 	Fits<Normal,DataYear,Quarter,ZSize> z_ests = 0.05;
 
 	/**
@@ -119,15 +132,13 @@ public:
 	/**
 	 * Calculate the log-likelihood of the fits to the data
 	 */
-	double likelihood(void){
-		double likelihood = 0;
-
-		likelihood += m_pl_cpue.likelihood();
-		likelihood += w_ps_cpue.likelihood();
-		likelihood += size_freqs.likelihood();
-		likelihood += z_ests.likelihood();
-
-		return likelihood;
+	std::vector<double> likelihoods(void) {
+		return {
+			m_pl_cpue.likelihood(),
+			w_ps_cpue.likelihood(),
+			size_freqs.likelihood(),
+			z_ests.likelihood()
+		};
 	}
 
 	/**

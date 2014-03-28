@@ -50,6 +50,14 @@ void run_pars(void){
 }
 
 /**
+ * Do slices of likelihoods for a parameter
+ */
+void profile(std::string parameter){ 
+	auto set = parameters.read_set("parameters.tsv");
+	parameters.profile(parameter,set,data,"profile.tsv");
+}
+
+/**
  * Tasks that are usually done at shutdown
  */
 void shutdown(void) {
@@ -64,6 +72,9 @@ int main(void){
 	startup();
 	try{
 		run_pars();
+		//profile("recruits_steepness");
+		profile("recruits_unfished");
+		//profile("growth_assymptote");
 	} catch(std::exception& e){
 		std::cout<<e.what()<<std::endl;
 	}

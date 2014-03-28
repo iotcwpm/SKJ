@@ -29,6 +29,7 @@ size_freqs_over_years = ddply(size_freqs,.(region,method,quarter,length),summari
   expected=mean(expected,na.rm=T)
 )
 ggplot(size_freqs_over_years,aes(x=length,colour=factor(quarter))) + 
+  geom_vline(x=seq(0,80,20),linetype=3,colour='grey') +
   geom_line(aes(y=expected)) + 
   geom_point(aes(y=observed),shape=1,size=3) + 
   geom_hline(y=0,alpha=0) + 
@@ -47,7 +48,7 @@ ggplot(size_freqs_summ,aes(x=data_year+quarter/4,colour=factor(quarter))) +
   geom_line(aes(y=expected)) + 
   geom_point(aes(y=observed),shape=1,size=3) + 
   facet_grid(region~method) +
-  labs(x='Length (cm)',y='Proportion',colour='Quarter')
+  labs(x='Year',y='Mean length (cm)',colour='Quarter')
 
 
 # Size freqs by year and quarter for a particular region & method
@@ -60,6 +61,34 @@ size_freqs_sub <- function(region_,method_){
 }
 size_freqs_sub('W','PS')
 size_freqs_sub('W','GN')
+size_freqs_sub('M','PL')
+size_freqs_sub('M','OT')
+
+size_freqs_by_year = ddply(size_freqs,.(region,method,data_year,length),summarise,
+  observed=mean(observed,na.rm=T),
+  expected=mean(expected,na.rm=T)
+)
+ggplot(subset(size_freqs_by_year,region=='M'&method=='PL'),aes(x=length)) + 
+  geom_line(aes(y=expected)) + 
+  geom_point(aes(y=observed),shape=1,size=2) + 
+  geom_hline(y=0,alpha=0) + 
+  facet_wrap(~data_year)
+
+ggplot(subset(size_freqs,region=='M'&method=='PL'&uncertainty>1000),aes(x=length)) + 
+  geom_line(aes(y=expected)) + 
+  geom_point(aes(y=observed,colour=factor(quarter)),shape=1,size=2) + 
+  geom_hline(y=0,alpha=0) + 
+  facet_wrap(~data_year) +
+  labs(x="Length (cm)",y="Proportion",colour='Quarter')
+
+
+ggplot(subset(size_freqs,region=='W'&method=='PS'&uncertainty>1000),aes(x=length)) + 
+  geom_line(aes(y=expected)) + 
+  geom_point(aes(y=observed,colour=factor(quarter)),shape=1,size=2) + 
+  geom_hline(y=0,alpha=0) + 
+  facet_wrap(~data_year) +
+  labs(x="Length (cm)",y="Proportion",colour='Quarter')
+
 
 z_ests = subset(z_ests,is.finite(expected))
 ggplot(z_ests,aes(x=data_year+quarter/4)) + 

@@ -70,8 +70,8 @@ public:
     /**
      * Mortality parameters
      */
-   	Parameter<Uniform> mortality_base = {"mortality",0.5,0.9};
-	Parameter<Fixed> mortality_exponent = {"mortality_weight_exponent",-0.29};
+   	Parameter<Uniform> mortality_base = {"mortality_base",0.5,0.9};
+	Parameter<Fixed> mortality_exponent = {"mortality_exponent",-0.29};
 
     /**
      * Growth rate parameters

@@ -349,13 +349,15 @@ public:
 			lengths(size) = length;
 			weights(size) = weight_length(length);
 			maturities(size) = maturity_length(length);
+		}
 
-			// Mortality at size
-			// The maximum mortality is determined by the mortality_cap which defines
-			// the _size_ at which mortality is highest
+		// Mortality at size
+		// The maximum mortality is determined by the mortality_cap which defines
+		// the _size_ at which mortality is highest. Because of this, mortalities needs
+		// to be initalised after weights have been initialised
+		for(auto size : sizes){
 			double mortality_weight = (size<mortality_cap_size)?weights(mortality_cap_size):weights(size);
 			mortalities(size) = mortality_base * std::pow(mortality_weight,mortality_exponent);
-
 			mortalities_survival(size) = std::exp(-0.25*mortalities(size));
 		}
 

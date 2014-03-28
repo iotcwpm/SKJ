@@ -9,7 +9,7 @@ load(c(
   'numbers'
 ))
 
-# Growth increments
+# Size of recruits
 ggplot(recruits_sizes,aes(x=length,y=value)) +
   geom_line() +
   labs(x="Length (cm)",y="Proportion")
@@ -17,15 +17,15 @@ ggplot(recruits_sizes,aes(x=length,y=value)) +
 # Growth increments
 ggplot(growth_increments,aes(x=length,y=value)) +
   geom_hline(y=0,colour='grey') +
-  geom_line() + geom_point(size=2) + 
+  geom_line() +
   labs(x="Length (cm)",y="Quarterly growth increment (cm)")
 
 # Growth transition matrix
 ggplot(growth) +
-  geom_tile(aes(y=length_from,x=length,fill=value)) +
+  geom_tile(aes(y=length,x=length_from,fill=value)) +
   scale_fill_gradient(low="white",high="red") + 
   geom_abline(a=0,b=1) + 
-  labs(x="Length to (cm)",y="Length from (cm)")
+  labs(x="Length from (cm)",y="Length to (cm)",fill="Proportion")
 
 # Mortalities
 ggplot(mortalities,aes(x=length,y=value)) +
