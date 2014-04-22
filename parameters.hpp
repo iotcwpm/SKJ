@@ -99,7 +99,7 @@ public:
 	 * These are likely to be well determined from the data and so a U(0,1) prior
 	 * is used for all
 	 */
-	Grid<
+	Array<
 		Parameter<Uniform>,
 		SelectivityKnot
 	> selectivity = {
@@ -116,7 +116,7 @@ public:
 	/**
 	 * Catches by year, quarter, region and method
 	 */
-	Grid<
+	Array<
 		Parameter<Fixed>,
 		Year,Quarter,Region,Method
 	> catches;

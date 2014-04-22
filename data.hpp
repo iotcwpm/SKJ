@@ -65,7 +65,7 @@ public:
 		// West PS annual CPUE
 		if(year>=1985 and year<=2013){
 			// Currently take a mean of vulnerable biomass over all quarters in the year...
-			static Grid<double,Quarter> cpue_quarters;
+			static Array<double,Quarter> cpue_quarters;
 			// ... get this quarter's CPUE and save it
 			cpue_quarters(quarter) = model.biomass_vulnerable(W,PS);
 			// ... if this is the last quarter then take the geometric mean
@@ -90,7 +90,7 @@ public:
 			// region regardless of whether there is observed data or not
 			for(auto region : regions){
 				for(auto method : methods){
-					Grid<double,Size> composition = 0;
+					Array<double,Size> composition = 0;
 					// Calculate selected numbers by size accumulated over ages
 					for(auto size : sizes){
 						for(auto age : ages){

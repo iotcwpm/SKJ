@@ -18,8 +18,8 @@ using boost::format;
 
 // Stencila library (https://github.com/stencila/stencila) for ...
 
-//... grid and query classes
-#include <stencila/grid.hpp>
+//... array and query classes
+#include <stencila/array.hpp>
 #include <stencila/query.hpp>
 using namespace Stencila;
 

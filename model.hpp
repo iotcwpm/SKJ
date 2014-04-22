@@ -14,12 +14,12 @@ public:
 	/**
 	 * Fish numbers by region, age and size
 	 */
-	Grid<double,Region,Age,Size> numbers;
+	Array<double,Region,Age,Size> numbers;
 
 	/**
 	 * Total biomass by region
 	 */
-	Grid<double,Region> biomass;
+	Array<double,Region> biomass;
 	
 	/**
 	 * @{
@@ -29,26 +29,26 @@ public:
 	/**
 	 * The spawning fraction by quarter
 	 */
-	Grid<double,Quarter> spawning;
+	Array<double,Quarter> spawning;
 	
 
 	/**
 	 * The total spawning biomass by region
 	 */
-	Grid<double,Region> biomass_spawning;
+	Array<double,Region> biomass_spawning;
 
 	/**
 	 * Total spawning biomass in each of the most recent quarters
 	 * This is recorded in `update()` so that the biomass_spawning_unfished
 	 * can be set by `initialise()`
 	 */
-	Grid<double,Quarter> biomass_spawning_overall;
+	Array<double,Quarter> biomass_spawning_overall;
 
 	/**
 	 * Unfished spawning biomass by quarter. It is necessary to have this by quarter
 	 * because the proportion of mature fish that spawn varies by quarter.
 	 */
-	Grid<double,Quarter> biomass_spawning_unfished;
+	Array<double,Quarter> biomass_spawning_unfished;
 
 	/**
 	 * @}
@@ -109,14 +109,14 @@ public:
 	/**
 	 * Proportion of recruits by region
 	 */
-	Grid<double,Region> recruits_regions;
+	Array<double,Region> recruits_regions;
 
 	/**
 	 * Proportion of recruits by size class
 	 */
 	double recruits_lengths_mean;
 	double recruits_lengths_cv;
-	Grid<double,Size> recruits_sizes;
+	Array<double,Size> recruits_sizes;
 
 	/**
 	 * @}
@@ -130,7 +130,7 @@ public:
 	/**
 	 * Length at size s
 	 */
-	Grid<double,Size> lengths;
+	Array<double,Size> lengths;
 	const double lengths_step = 2;
 
 	/**
@@ -141,7 +141,7 @@ public:
 	/**
 	 * Weight at size
 	 */
-	Grid<double,Size> weights;
+	Array<double,Size> weights;
 	
 	/**
 	 * Maturity at length logistic function
@@ -151,7 +151,7 @@ public:
 	/**
 	 * Maturity at size
 	 */
-	Grid<double,Size> maturities;
+	Array<double,Size> maturities;
 
 	/**
 	 * @}
@@ -183,12 +183,12 @@ public:
 	/**
 	 * Instantaneous rate of natural mortality for size s
 	 */
-	Grid<double,Size> mortalities;
+	Array<double,Size> mortalities;
 
 	/**
 	 * Quarterly rate of survival from natural mortality for size s
 	 */
-	Grid<double,Size> mortalities_survival;
+	Array<double,Size> mortalities_survival;
 
 	/**
 	 * @}
@@ -203,8 +203,8 @@ public:
 	double growth_assymptote;
 	double growth_sd;
 	double growth_cv;
-	Grid<double,Size> growth_increments;
-	Grid<double,SizeFrom,Size> growth;
+	Array<double,Size> growth_increments;
+	Array<double,SizeFrom,Size> growth;
 
 	/**
 	 * @}
@@ -215,8 +215,8 @@ public:
 	 * @name Movement
 	 */
 	
-	Grid<double,RegionFrom,Region> movement_pars;
-	Grid<double,RegionFrom,Region> movement;
+	Array<double,RegionFrom,Region> movement_pars;
+	Array<double,RegionFrom,Region> movement;
 
 	/**
 	 * @}
@@ -230,17 +230,17 @@ public:
 	/**
 	 * Lengths at each selectivity knot
 	 */
-	Grid<double,SelectivityKnot> selectivity_lengths = {20,30,40,50,60,70,80};
+	Array<double,SelectivityKnot> selectivity_lengths = {20,30,40,50,60,70,80};
 
 	/**
 	 * Proportion selected at each selectivity knot for each method
 	 */
-	Grid<double,Method,SelectivityKnot> selectivity_values;
+	Array<double,Method,SelectivityKnot> selectivity_values;
 
 	/**
 	 * Selectivities by method and size
 	 */
-	Grid<double,Method,Size> selectivities;
+	Array<double,Method,Size> selectivities;
 
 	/**
 	 * A switch used to turn on/off exploitation dynamics
@@ -263,28 +263,28 @@ public:
 	/**
 	 * Vulnerable biomass by region and method
 	 */
-	Grid<double,Region,Method> biomass_vulnerable;
+	Array<double,Region,Method> biomass_vulnerable;
 
 	/**
 	 * Catches by region and method
 	 */
-	Grid<double,Region,Method> catches;
+	Array<double,Region,Method> catches;
 
 	/**
 	 * Catches by region and method given maximimum exploitation rate of
 	 * one. This variable is useful for penalising against impossible dynamics.
 	 */
-	Grid<double,Region,Method> catches_taken;
+	Array<double,Region,Method> catches_taken;
 
 	/**
 	 * Exploitation rate by region and method for current time step
 	 */
-	Grid<double,Region,Method> exploitation_rate;
+	Array<double,Region,Method> exploitation_rate;
 
 	/**
 	 * Exploitation survival
 	 */
-	Grid<double,Region,Size> exploitation_survival;
+	Array<double,Region,Size> exploitation_survival;
 
 	/**
 	 * @}
@@ -303,7 +303,7 @@ public:
 	 * The default values below are simply the means of the observed 
 	 * standardised CPUE index by quarter.
 	 */
-	Grid<double,Quarter> m_pl_quarter = {0.97,0.87,0.97,1.19};
+	Array<double,Quarter> m_pl_quarter = {0.97,0.87,0.97,1.19};
 
 	/**
 	 * @}
@@ -419,7 +419,7 @@ public:
 		// Initialise selectivity
 		for(auto method : methods){
 			// Extract proportion selected at each knots
-			Grid<double,SelectivityKnot> proportions;
+			Array<double,SelectivityKnot> proportions;
 			for(auto knot : selectivity_knots) proportions(knot) = selectivity_values(method,knot);
 			// Create a spline
 			PiecewiseSpline selectivity_spline(selectivity_lengths,proportions);
@@ -613,7 +613,7 @@ public:
 		// Iterate until there is a very minor change in biomass
 		uint steps = 0;
 		const uint steps_max = 1000;
-		Grid<double,Region> biomass_prev = 1;
+		Array<double,Region> biomass_prev = 1;
 		while(steps<steps_max){
 			// It is necessary to update the model for each quarter so that quarterly differences
 			// in dynamics (e.g. spawning proportion) are incorporated
