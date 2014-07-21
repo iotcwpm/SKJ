@@ -1,4 +1,4 @@
-year	quarter	zsize	mu	sd
+data_year	quarter	z_size	mean	sd
 2005	3	0	0.180531	0.013013
 2005	3	1	0.336424	0.014981
 2005	3	2	0.531102	0.046234
