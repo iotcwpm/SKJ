@@ -9,37 +9,43 @@
  
 using namespace IOSKJ;
 
-// Instantiate helper classes
-Parameters parameters;
-Data data;
+// Instantiate components
+IOSKJ::Model model;
+IOSKJ::Params params;
+IOSKJ::Data data;
 
 /**
  * Tasks that need to be done at startup
  */
 void startup(void){
-	// Read in parameters (including catches)
-	parameters.read();
-	// Read in data
+	// Read parameters and data
+	params.read();
 	data.read();
 }
 
 /**
- * Run the model with a parameters set read from the "parameters.tsv" file
+ * Tasks that are usually done at shutdown
  */
-void run_pars(void){
-	Model model;
-	// Read in parameter values (and write out for checking)
-	auto parameter_set = parameters.read_set("parameters.tsv");
-	parameters.write_set("output/parameters_read.tsv",parameter_set);
+void shutdown(void) {
+	// Write parameters and data
+	params.write();
+	data.write();
+	model.write();
+}
+
+/**
+ * Run the model with a parameters set read from the "parameters/input/list.tsv" file
+ */
+void run(void){
 	// Do tracking
-	Tracker tracker("output/track.tsv");
+	Tracker tracker("model/output/track.tsv");
 	// For each time step...
 	for(uint time=0;time<=time_max;time++){
 		#if DEBUG
 		std::cout<<time<<" "<<year(time)<<" "<<quarter(time)<<" "<<model.biomass_spawning_overall(quarter(time))<<std::endl;
 		#endif
 		//... set model parameters
-		parameters.set(model,time,parameter_set);
+		params.set(model,time);
 		//... update the model
 		model.update(time);
 		//... get model variables corresponding to data
@@ -53,30 +59,24 @@ void run_pars(void){
  * Do slices of likelihoods for a parameter
  */
 void profile(std::string parameter){ 
-	auto set = parameters.read_set("parameters.tsv");
-	parameters.profile(parameter,set,data,"profile.tsv");
+	//!auto set = params.read_set("parameters.tsv");
+	//!params.profile(parameter,set,data,"profile.tsv");
 }
 
-/**
- * Tasks that are usually done at shutdown
- */
-void shutdown(void) {
-	// Output parameter details
-	parameters.write();
-	// Output data
-	data.write();
-}
-
-
-int main(void){
+int main(int argc, char** argv){
 	startup();
 	try{
-		run_pars();
-		//profile("recruits_steepness");
-		profile("recruits_unfished");
-		//profile("growth_assymptote");
-	} catch(std::exception& e){
-		std::cout<<e.what()<<std::endl;
+		for(int arg=1;arg<argc;arg++){
+            std::string task = argv[arg];
+            std::cout<<"-------------Task-------------\n"
+                    <<task<<"\n"
+                    <<"-------------------------------\n";
+            if(task=="run") run();
+        }
+	} catch(std::exception& error){
+        std::cout<<"************Error************\n"
+                <<error.what()<<"\n"
+                <<"******************************\n";
 	}
 	shutdown();
 	return 0;

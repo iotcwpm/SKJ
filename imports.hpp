@@ -46,8 +46,5 @@ using Fsl::Math::Functions::PiecewiseSpline;
 using Fsl::Population::Recruitment::BevertonHolt;
 
 //... estimation scaffolding
-#include <fsl/estimation/parameters.hpp>
-#include <fsl/estimation/data.hpp>
+#include <fsl/estimation/estimation.hpp>
 using namespace Fsl::Estimation;
-using Fsl::Estimation::Links::Log;
-using Fsl::Estimation::Priors::Fixed;

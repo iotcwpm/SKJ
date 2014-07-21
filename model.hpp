@@ -385,7 +385,7 @@ public:
 		Normal recruits_lengths_dist(recruits_lengths_mean,recruits_lengths_mean*recruits_lengths_cv);
 		for(auto size : sizes){
 			double length = lengths(size);
-			recruits_sizes(size) = recruits_lengths_dist.integrate(length-1,length+1);
+			recruits_sizes(size) = recruits_lengths_dist.integral(length-1,length+1);
 		};
 
 		// Initialise growth size transition matrix
@@ -402,7 +402,7 @@ public:
 			Normal distribution(mean,sd);
 			for(auto size : sizes){
 				double length_to = lengths(size);
-				growth(size_from,size) = distribution.integrate(length_to-1,length_to+1);
+				growth(size_from,size) = distribution.integral(length_to-1,length_to+1);
 			}
 		}
 
@@ -608,6 +608,9 @@ public:
 	 * time until biomass in each region remains stable
 	 */
 	void equilibrium(void){
+		#if DEBUG
+			std::cout<<"************equilibrium()**************\n";
+		#endif
 		// Turn off recruitment variation
 		recruits_variation_on = false;
 		// Iterate until there is a very minor change in biomass
@@ -642,26 +645,26 @@ public:
 	 * Write model attributes to files for examination
 	 */
 	void write(void){
-		lengths.write("output/lengths.tsv");
-		recruits_sizes.write("output/recruits_sizes.tsv");
+		lengths.write("model/output/lengths.tsv");
+		recruits_sizes.write("model/output/recruits_sizes.tsv");
 
-		growth_increments.write("output/growth_increments.tsv");
-		growth.write("output/growth.tsv");
+		growth_increments.write("model/output/growth_increments.tsv");
+		growth.write("model/output/growth.tsv");
 
-		mortalities.write("output/mortalities.tsv");
+		mortalities.write("model/output/mortalities.tsv");
 
-		weights.write("output/weights.tsv");
-		maturities.write("output/maturities.tsv");
+		weights.write("model/output/weights.tsv");
+		maturities.write("model/output/maturities.tsv");
 		
-		spawning.write("output/spawning.tsv");
-		biomass_spawning_unfished.write("output/biomass_spawning_unfished.tsv");
+		spawning.write("model/output/spawning.tsv");
+		biomass_spawning_unfished.write("model/output/biomass_spawning_unfished.tsv");
 		
-		movement.write("output/movement.tsv");
+		movement.write("model/output/movement.tsv");
 
-		numbers.write("output/numbers.tsv");
+		numbers.write("model/output/numbers.tsv");
 
-		selectivity_values.write("output/selectivity_values.tsv");
-		selectivities.write("output/selectivities.tsv");
+		selectivity_values.write("model/output/selectivity_values.tsv");
+		selectivities.write("model/output/selectivities.tsv");
 	}
 };
 

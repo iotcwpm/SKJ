@@ -7,30 +7,52 @@ namespace IOSKJ {
 /**
  * Data against which the model is conditioned
  * 
- * See the `get()` method which "gets" model variables corresponding to data points at specific times.
+ * See the `get()` method which "gets" model variables corresponding to data at specific times.
  */
-class Data : public DataGroup<Data,Model> {
+class Data : public DataSet<Data> {
 public:
+
+	typedef DataSet<Data> Base;
 
 	/**
 	 * Maldive pole and line quarterly CPUE
 	 */
-	Fits<Lognormal,DataYear,Quarter> m_pl_cpue = 0.2;
+	Datums<Lognormal,DataYear,Quarter> m_pl_cpue;
 
 	/**
 	 * West purse seine annual CPUE
 	 */
-	Fits<Lognormal,DataYear> w_ps_cpue = 0.3;
+	Datums<Lognormal,DataYear> w_ps_cpue;
 
 	/**
 	 * Size frequencies
 	 */
-	Fits<Normal,DataYear,Quarter,Region,Method,Size> size_freqs = 0.01;
+	Datums<Normal,DataYear,Quarter,Region,Method,Size> size_freqs;
 
 	/**
 	 * Z-estimates
 	 */
-	Fits<Normal,DataYear,Quarter,ZSize> z_ests = 0.05;
+	Datums<Normal,DataYear,Quarter,ZSize> z_ests;
+
+    /**
+     * Reflection
+     */
+    template<class Mirror>
+    void reflect(Mirror& mirror){
+        mirror
+            .data(m_pl_cpue,"m_pl_cpue")
+            .data(w_ps_cpue,"w_ps_cpue")
+            .data(size_freqs,"size_freqs")
+            .data(z_ests,"z_ests")
+        ;
+    }
+
+	/**
+	 * Read in observed data and set any default values
+	 */
+	void read(void){
+		Base::read();
+	}
 
 	/**
 	 * Get model variables corresponding to data at a particular time
@@ -40,25 +62,25 @@ public:
 	 * and are added to data files the model will already be set up to fit that it). 
 	 * There will be a small computational cost to this.
 	 */
-	void get(const Model& model,uint time){
+	void get(const Model& model, uint time){
 		uint year = IOSKJ::year(time);
 		uint quarter = IOSKJ::quarter(time);
 		
 		// Maldive PL quarterly CPUE
 		if(year>=2000 and year<=2013){
 			// Just get M/PL vulnerable biomass
-			m_pl_cpue(year,quarter).expected = model.biomass_vulnerable(M,PL) * model.m_pl_quarter(quarter);	
+			m_pl_cpue(year,quarter) = model.biomass_vulnerable(M,PL) * model.m_pl_quarter(quarter);	
 			
 			// At end, scale expected by geometric mean over period 2004-2012
 			if(year==2013 and quarter==3){
 				GeometricMean geomean;
 				for(uint year=2004;year<=2012;year++){
 					for(uint quarter=0;quarter<4;quarter++){
-						geomean.append(m_pl_cpue(year,quarter).expected);
+						geomean.append(m_pl_cpue(year,quarter));
 					}
 				}
 				double scaler = 1/geomean.result();
-				for(auto& fit : m_pl_cpue) fit.expected *= scaler;
+				for(auto& fit : m_pl_cpue) fit *= scaler;
 			}
 		}
 
@@ -70,17 +92,17 @@ public:
 			cpue_quarters(quarter) = model.biomass_vulnerable(W,PS);
 			// ... if this is the last quarter then take the geometric mean
 			if(quarter==3){
-				w_ps_cpue(year).expected = geomean(cpue_quarters);
+				w_ps_cpue(year) = geomean(cpue_quarters);
 			}	
 
 			// At end, scale expected by geometric mean over period 1991-2010
 			if(year==2013 and quarter==3){
 				GeometricMean geomean;
 				for(uint year=1991;year<=2010;year++){
-					geomean.append(w_ps_cpue(year,quarter).expected);
+					geomean.append(w_ps_cpue(year,quarter));
 				}
 				double scaler = 1/geomean.result();
-				for(auto& fit : w_ps_cpue) fit.expected *= scaler;
+				for(auto& fit : w_ps_cpue) fit *= scaler;
 			}	
 		}
 
@@ -100,7 +122,7 @@ public:
 					// Proportionalise
 					composition /= sum(composition);
 					// Store
-					for(auto size : sizes) size_freqs(year,quarter,region,method,size).expected = composition(size);
+					for(auto size : sizes) size_freqs(year,quarter,region,method,size) = composition(size);
 				}
 			}
 		}
@@ -120,47 +142,17 @@ public:
 				uint size_class = (z_lower-1)/2;
 				for(uint size=size_class;size<size_class+3;size++){
 					double survival = model.mortalities_survival(size) * model.exploitation_survival(W,size);
-					z += -log(survival);
+					// Capture cases where survuval is estimated to be zero to prevent overflow
+					if(survival>0) z += -log(survival);
+					else z += -log(0.000001);
 				}
 				z /= 3;
 				// Store
-				z_ests(year,quarter,z_size).expected = z;
+				z_ests(year,quarter,z_size) = z;
 			}
 		}
 	}
 
-	/**
-	 * Calculate the log-likelihood of the fits to the data
-	 */
-	std::vector<double> likelihoods(void) {
-		return {
-			m_pl_cpue.likelihood(),
-			w_ps_cpue.likelihood(),
-			size_freqs.likelihood(),
-			z_ests.likelihood()
-		};
-	}
-
-	/**
-	 * Read in observed data
-	 */
-	void read(void){
-		m_pl_cpue.read_observed("data/processed-data/m-pl-cpue.tsv");
-		w_ps_cpue.read_observed("data/processed-data/w-ps-cpue.tsv");
-		size_freqs.read_observed_uncertainty("data/processed-data/size-frequencies.tsv");
-		z_ests.read_observed_uncertainty("data/processed-data/z-estimates.tsv");
-	}
-
-	/**
-	 * Write out fits
-	 */
-	void write(void){
-		m_pl_cpue.write("output/m_pl_cpue.tsv");
-		w_ps_cpue.write("output/w_ps_cpue.tsv");
-		size_freqs.write("output/size_freqs.tsv");
-		z_ests.write("output/z_ests.tsv");
-	}
-
 }; // class Data
 
-}
+} // namespace IOSKJ

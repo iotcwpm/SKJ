@@ -45,6 +45,8 @@ public:
 } data_years;
 
 
+STENCILA_DIM_RANGE(RecdevYear,recdev_years,recdev_year,1990,2012);
+
 STENCILA_DIM(Region,regions,region,3);
 STENCILA_DIM(RegionFrom,region_froms,region_from,3);
 enum {
