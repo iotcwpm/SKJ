@@ -507,13 +507,13 @@ public:
 
 		// Recruits
 		if(recruits_relation_on){
-			// Stock-recruitment realtion is active so calculate recruits based on 
+			// Stock-recruitment relation is active so calculate recruits based on 
 			// the spawning biomass in the previous time step
-			BevertonHolt recruits_stock;
-			recruits_stock.steepness = recruits_steepness;
-			recruits_stock.r0 = recruits_unfished;
-			recruits_stock.s0 = biomass_spawning_unfished(quarter);
-			recruits_determ = recruits_stock(biomass_spawning_overall(quarter));
+			double h = recruits_steepness;
+			double r0 = recruits_unfished;
+			double s0 = biomass_spawning_unfished(quarter);
+			double s = biomass_spawning_overall(quarter);
+			recruits_determ =  4*h*r0*s/((5*h-1)*s+s0*(1-h));
 		} else {
 			// Stock-recruitment relation is not active so recruitment is just r0.
 			recruits_determ = recruits_unfished;

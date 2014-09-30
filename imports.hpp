@@ -41,10 +41,6 @@ using Fsl::Math::Functions::Logistic;
 #include <fsl/math/functions/piecewise-spline.hpp>
 using Fsl::Math::Functions::PiecewiseSpline;
 
-//... stock-recruitment relationship
-#include <fsl/population/recruitment/beverton-holt.hpp>
-using Fsl::Population::Recruitment::BevertonHolt;
-
 //... estimation scaffolding
 #include <fsl/estimation/estimation.hpp>
 using namespace Fsl::Estimation;
