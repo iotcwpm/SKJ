@@ -33,10 +33,6 @@ using namespace Stencila;
 #include <fsl/math/probability/truncated.hpp>
 using namespace Fsl::Math::Probability;
 
-//... functions
-#include <fsl/math/functions/piecewise-spline.hpp>
-using Fsl::Math::Functions::PiecewiseSpline;
-
 //... estimation scaffolding
 #include <fsl/estimation/estimation.hpp>
 using namespace Fsl::Estimation;

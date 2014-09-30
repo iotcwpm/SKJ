@@ -420,19 +420,24 @@ public:
 
 		// Initialise selectivity
 		for(auto method : methods){
-			// Extract proportion selected at each knots
-			Array<double,SelectivityKnot> proportions;
-			for(auto knot : selectivity_knots) proportions(knot) = selectivity_values(method,knot);
-			// Create a spline
-			PiecewiseSpline selectivity_spline(selectivity_lengths,proportions);
-			// Iterpolate with spline
-			// Ensure that selectivity is between 0 and 1 since cubic spline
+			// Iterpolate with piecewise spline
+			// Ensure that selectivity is between 0 and 1 since spline
 			// can produce values outside this range even if knots are not
 			double max = 0;
 			for(auto size : sizes){
+				double length = lengths(size);
 				double selectivity;
-				if(lengths(size)<selectivity_lengths(0)) selectivity = 0;
-				else selectivity = selectivity_spline.interpolate(lengths(size));
+				if(length<selectivity_lengths(0)) selectivity = 0;
+				else{
+					for(uint knot=0;knot<selectivity_knots.size()-1;knot++){
+						if(selectivity_lengths(knot)<=length and length<selectivity_lengths(knot+1)){
+							selectivity = selectivity_values(method,knot) + (length-selectivity_lengths(knot)) * (
+								selectivity_values(method,knot+1)-selectivity_values(method,knot))/(
+								selectivity_lengths(knot+1)-selectivity_lengths(knot)
+							);
+						}
+					}
+				}
 				if(selectivity<0) selectivity = 0;
 				else if(selectivity>max) max = selectivity;
 				selectivities(method,size) = selectivity;
