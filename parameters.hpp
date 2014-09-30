@@ -184,8 +184,8 @@ public:
 			model.recruits_lengths_mean = recruits_lengths_mean;
 			model.recruits_lengths_cv = recruits_lengths_cv;
 
-			model.weight_length.a = weight_a;
-			model.weight_length.b = weight_b;
+			model.weight_length_a = weight_a;
+			model.weight_length_b = weight_b;
 
 			model.maturity_length.inflection = maturity_inflection;
 			model.maturity_length.steepness = maturity_steepness;

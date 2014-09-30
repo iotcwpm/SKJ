@@ -136,7 +136,8 @@ public:
 	/**
 	 * Weight at length power funciton
 	 */
-	Power weight_length;
+	double weight_length_a;
+	double weight_length_b;
 
 	/**
 	 * Weight at size
@@ -367,7 +368,7 @@ public:
 		for(auto size : sizes){
 			double length = 2*size.index()+1;
 			lengths(size) = length;
-			weights(size) = weight_length(length);
+			weights(size) = weight_length_a*std::pow(length,weight_length_b);
 			maturities(size) = maturity_length(length);
 		}
 

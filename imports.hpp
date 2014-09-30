@@ -34,8 +34,6 @@ using namespace Stencila;
 using namespace Fsl::Math::Probability;
 
 //... functions
-#include <fsl/math/functions/power.hpp>
-using Fsl::Math::Functions::Power;
 #include <fsl/math/functions/logistic.hpp>
 using Fsl::Math::Functions::Logistic;
 #include <fsl/math/functions/piecewise-spline.hpp>
