@@ -187,8 +187,8 @@ public:
 			model.weight_length_a = weight_a;
 			model.weight_length_b = weight_b;
 
-			model.maturity_length.inflection = maturity_inflection;
-			model.maturity_length.steepness = maturity_steepness;
+			model.maturity_length_inflection = maturity_inflection;
+			model.maturity_length_steepness = maturity_steepness;
 
 			model.mortality_base = mortality_base;
 			model.mortality_exponent = mortality_exponent;

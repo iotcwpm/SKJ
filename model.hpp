@@ -147,7 +147,8 @@ public:
 	/**
 	 * Maturity at length logistic function
 	 */
-	Logistic maturity_length;
+	double maturity_length_inflection;
+	double maturity_length_steepness;
 
 	/**
 	 * Maturity at size
@@ -369,7 +370,7 @@ public:
 			double length = 2*size.index()+1;
 			lengths(size) = length;
 			weights(size) = weight_length_a*std::pow(length,weight_length_b);
-			maturities(size) = maturity_length(length);
+			maturities(size) = 1.0/(1.0+std::pow(19,(maturity_length_inflection-length)/maturity_length_steepness));
 		}
 
 		// Mortality at size
