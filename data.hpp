@@ -1,6 +1,7 @@
 #pragma once
 
 #include "model.hpp"
+#include "variate.hpp"
 
 namespace IOSKJ {
 
@@ -9,30 +10,28 @@ namespace IOSKJ {
  * 
  * See the `get()` method which "gets" model variables corresponding to data at specific times.
  */
-class Data : public DataSet<Data> {
+class Data : public Reflector<Data> {
 public:
-
-	typedef DataSet<Data> Base;
 
 	/**
 	 * Maldive pole and line quarterly CPUE
 	 */
-	Datums<Lognormal,DataYear,Quarter> m_pl_cpue;
+	Array<Variate,DataYear,Quarter> m_pl_cpue;
 
 	/**
 	 * West purse seine annual CPUE
 	 */
-	Datums<Lognormal,DataYear> w_ps_cpue;
+	Array<Variate,DataYear> w_ps_cpue;
 
 	/**
 	 * Size frequencies
 	 */
-	Datums<Normal,DataYear,Quarter,Region,Method,Size> size_freqs;
+	Array<Variate,DataYear,Quarter,Region,Method,Size> size_freqs;
 
 	/**
 	 * Z-estimates
 	 */
-	Datums<Normal,DataYear,Quarter,ZSize> z_ests;
+	Array<Variate,DataYear,Quarter,ZSize> z_ests;
 
     /**
      * Reflection
@@ -46,13 +45,6 @@ public:
             .data(z_ests,"z_ests")
         ;
     }
-
-	/**
-	 * Read in observed data and set any default values
-	 */
-	void read(void){
-		Base::read();
-	}
 
 	/**
 	 * Get model variables corresponding to data at a particular time

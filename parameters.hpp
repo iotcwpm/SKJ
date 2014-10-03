@@ -1,6 +1,7 @@
 #pragma once
 
 #include "model.hpp"
+#include "variate.hpp"
 
 namespace IOSKJ {
 
@@ -8,69 +9,67 @@ namespace IOSKJ {
  * Class for defining model parameters, their priors, transformations etc.
  * See the `set()` method which "binds" parameters defined here to model variables.
  */
-class Params : public ParameterSet<Params> {
+class Parameters : public Reflector<Parameters> {
 public:
-
-	typedef ParameterSet<Params> Base;
 	
 	/**
 	 * Parameters of the stock-recruitment relationship
 	 */
-	Parameter<Uniform> recruits_unfished = {21,15,25};
-	Parameter<Uniform> recruits_steepness = {0.9,0.7,1.0};
-	Parameter<Uniform> recruits_sd = {0.6,0.4,0.8};
+	Variate recruits_unfished;
+	Variate recruits_steepness;
+	Variate recruits_sd;
 
 	/**
 	 * Recruitment deviations
 	 */
-	Parameters<Truncated<Normal>,RecdevYear> recruits_deviations;
+	Array<Variate,RecdevYear> recruits_deviations;
 
 	/**
 	 * Proportion of mature fish spawning by quarter
 	 */
-	Parameter<Uniform> spawning_0 = {0.8,0.7,1};
-	Parameter<Uniform> spawning_1 = {0.5,0.3,0.7};
-	Parameter<Uniform> spawning_2 = {0.8,0.7,1};
-	Parameter<Uniform> spawning_3 = {0.5,0.3,0.7};
+	Variate spawning_0;
+	Variate spawning_1;
+	Variate spawning_2;
+	Variate spawning_3;
 
 	/**
 	 * Proportion of recruits by region
 	 * Prior same for all regions. These are normalised in the model initialisation
 	 * so that they sum to one.
 	 */
-	Parameter<Uniform> recruits_regions = {0.5,0.1,0.9};
+	Variate recruits_regions;
 
 	/**
-	 * Parameters of the distribution of the lengths of recruits
+	 * Variates of the distribution of the lengths of recruits
 	 */
-	Parameter<Uniform> recruits_lengths_mean = {5,1,10};
-	Parameter<Uniform> recruits_lengths_cv = {0.15,0.1,0.2};
+	Variate recruits_lengths_mean ;
+	Variate recruits_lengths_cv;
 
 	/**
 	 * Length-weight parameters
 	 */
-    Parameter<Uniform> weight_a = {5.32e-6,5.32e-6,5.32001e-6};
-    Parameter<Uniform> weight_b = {3.35,3.35,3.35001};
+    Variate weight_a;
+    Variate weight_b;
 
     /**
      * Maturity parameters
      */
-    Parameter<Uniform> maturity_inflection = {42,40,45};
-    Parameter<Uniform> maturity_steepness = {5,4,6};
+    Variate maturity_inflection;
+    Variate maturity_steepness;
 
     /**
      * Mortality parameters
      */
-   	Parameter<Uniform> mortality_base = {0.7,0.5,0.9};
-	Parameter<Fixed> mortality_exponent = -0.29;
+   	Variate mortality_base;
+	Variate mortality_exponent;
 
     /**
      * Growth rate parameters
      */
-	Parameter<Fixed> growth_rate = 0.3;
-	Parameter<Fixed> growth_assymptote = 75;
-	Parameter<Fixed> growth_sd = 1;
-	Parameter<Fixed> growth_cv = 0.2;
+	Variate growth_rate;
+	Variate growth_assymptote;
+	Variate growth_sd;
+	Variate growth_cv;
 
     /**
      * Movements parameters
@@ -79,20 +78,20 @@ public:
      * into 4 priors. `movement_stay` defines a prior on the proportion of fish
      * that remain in an area.
      */
-	Parameter<Uniform> movement_stay = {0.8,0.6,1.0};
-	Parameter<Uniform> movement_w_m = {0.2,0.0,0.4};
-	Parameter<Uniform> movement_m_e = {0.2,0.0,0.4};
-	Parameter<Uniform> movement_w_e = {0.1,0.0,0.2};
+	Variate movement_stay;
+	Variate movement_w_m;
+	Variate movement_m_e;
+	Variate movement_w_e;
 
 	/**
 	 * Selectivity parameters
 	 */
-	Parameters<Uniform,SelectivityKnot> selectivities;
+	Array<Variate,SelectivityKnot> selectivities;
 
 	/**
 	 * Catches by year, quarter, region and method
 	 */
-	Parameters<Fixed,Year,Quarter,Region,Method> catches;
+	Array<Variate,Year,Quarter,Region,Method> catches;
 
     /**
      * Reflection
@@ -137,29 +136,6 @@ public:
             .data(catches,"catches")
         ;
     }
-
-	void read(void){
-		// Read in any input files as usual
-		Base::read();
-
-		// Set default value and priors for recruitment deviations
-		for(auto& recdev : recruits_deviations) recdev = Variate<Truncated<Normal>> {0,0,0.6,-3,3};
-
-		// Set default value and priors for selectivities
-		typedef Level<SelectivityKnot> knot;
-		selectivities(knot(0)) = Variate<Uniform> {0.1,0,0.3}; // 20cm
-		selectivities(knot(1)) = Variate<Uniform> {0.2,0,0.4}; // 30cm
-		selectivities(knot(2)) = Variate<Uniform> {0.3,0,0.6}; // 40cm
-		selectivities(knot(3)) = Variate<Uniform> {0.5,0,1.0}; // 50cm
-		selectivities(knot(4)) = Variate<Uniform> {0.9,0,1.0}; // 60cm
-		selectivities(knot(5)) = Variate<Uniform> {1.0,0,1.0}; // 70cm
-		selectivities(knot(6)) = Variate<Uniform> {1.0,0,1.0}; // 80cm
-
-		// Set missing catches to zero
-		for(auto& catche : catches){
-			if(not catche.valid()) catche = 0;
-		}
-	}
 
 	/**
 	 * Set model variables
@@ -242,6 +218,6 @@ public:
 		// Initialise in the first year
 		if(time==0) model.initialise();
 	}
-}; // class IoskjParameters
+}; // class Parameters
 
 } //namespace IOSKJ
