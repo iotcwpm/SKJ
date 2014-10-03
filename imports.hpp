@@ -8,31 +8,25 @@
 #include <cmath>
 #include <fstream>
 
-
 // Boost library (http://www.boost.org/) for ...
-
-// ... string conversion
+//... string conversion
 #include <boost/format.hpp>
 using boost::format;
-
+//... random number scaffolding...
+#include <boost/random/mersenne_twister.hpp>
+#include <boost/random/variate_generator.hpp>
+//... distributions
+#include <boost/math/distributions/uniform.hpp>
+#include <boost/random/uniform_real.hpp>
+#include <boost/math/distributions/normal.hpp>
+#include <boost/random/normal_distribution.hpp>
+#include <boost/math/distributions/lognormal.hpp>
+#include <boost/random/lognormal_distribution.hpp>
 
 // Stencila library (https://github.com/stencila/stencila) for ...
-
 //... array and query classes
 #include <stencila/array.hpp>
 #include <stencila/query.hpp>
+//... reflection
+#include <stencila/reflector.hpp>
 using namespace Stencila;
-
-
-// Fisheries Simulation Library (https://github.com/trident-systems/fsl) for...
-
-//... probability distributions
-#include <fsl/math/probability/uniform.hpp>
-#include <fsl/math/probability/normal.hpp>
-#include <fsl/math/probability/lognormal.hpp>
-#include <fsl/math/probability/truncated.hpp>
-using namespace Fsl::Math::Probability;
-
-//... estimation scaffolding
-#include <fsl/estimation/estimation.hpp>
-using namespace Fsl::Estimation;
