@@ -1,0 +1,131 @@
+section Stock recruitment relation
+
+	#recruits_unfished
+		#value 21
+		#lower 15
+		#upper 25
+
+	#recruits_steepness
+		#value 0.9
+		#lower 0.7
+		#upper 1
+
+	#recruits_sd
+		#value 0.6
+		#lower 0.4
+		#upper 0.8
+
+
+section Seasonal spawning fractions
+
+	#spawning_0
+		#value 0.8
+		#lower 0.7
+		#upper 1
+
+	#spawning_1
+		#value 0.5
+		#lower 0.3
+		#upper 0.7
+
+	#spawning_2
+		#value 0.8
+		#lower 0.7
+		#upper 1
+
+	#spawning_3
+		#value 0.5
+		#lower 0.3
+		#upper 0.7
+
+
+section Distribution of recruits by region
+
+	#recruits_regions
+		#value 0.33
+		#lower 0.1
+		#upper 0.9
+
+
+section Distributions of lengths of recruits
+
+	#recruits_lengths_mean
+		#value 5
+		#lower 1
+		#upper 10
+
+	#recruits_lengths_cv
+		#value 0.15
+		#lower 0.1
+		#upper 0.2
+
+
+section Weight at length
+
+	#weight_a
+		#value 5.32e-6
+
+	#weight_b
+		#value 3.35
+
+
+section Maturity at length
+
+	#maturity_inflection
+		#value 42
+		#lower 40
+		#upper 45
+
+	#maturity_steepness
+		#value 5
+		#lower 4
+		#upper 6
+
+
+section Natural mortality
+
+	#mortality_base
+		#value 0.7
+		#lower 0.5
+		#upper 0.9
+
+	#mortality_exponent
+		#value -0.29
+
+
+section Length at age
+
+	#growth_rate
+		#value 0.3
+
+	#growth_assymptote
+		#value 75
+
+	#growth_sd
+		#value 1
+
+	#growth_cv
+		#value 0.2
+
+
+section Movement
+
+	#movement_stay
+		#value 0.8
+		#lower 0.6
+		#upper 1.0
+
+	#movement_w_m
+		#value 0.2
+		#lower 0
+		#upper 0.4
+
+	#movement_m_e
+		#value 0.2
+		#lower 0
+		#upper 0.4
+
+	#movement_w_e
+		#value 0.1
+		#lower 0
+		#upper 0.2
