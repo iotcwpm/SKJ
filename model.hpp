@@ -1,6 +1,7 @@
 #pragma once
 
 #include "dimensions.hpp"
+#include "distributions.hpp"
 
 namespace IOSKJ {
 
@@ -643,7 +644,7 @@ public:
 			steps++;
 		}
 		// Throw an error if there was no convergence
-		assert(steps<steps_max);
+		if(steps>steps_max) throw std::runtime_error("No convergence in equilibrium() function");
 		// Turn on recruitment deviation again
 		recruits_variation_on = true;
 	}
