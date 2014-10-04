@@ -1,7 +1,7 @@
 #pragma once
 
 #include "model.hpp"
-#include "variate.hpp"
+#include "variable.hpp"
 
 namespace IOSKJ {
 
@@ -16,22 +16,22 @@ public:
 	/**
 	 * Maldive pole and line quarterly CPUE
 	 */
-	Array<Variate,DataYear,Quarter> m_pl_cpue;
+	Array<Variable<Lognormal>,DataYear,Quarter> m_pl_cpue;
 
 	/**
 	 * West purse seine annual CPUE
 	 */
-	Array<Variate,DataYear> w_ps_cpue;
+	Array<Variable<Lognormal>,DataYear> w_ps_cpue;
 
 	/**
 	 * Size frequencies
 	 */
-	Array<Variate,DataYear,Quarter,Region,Method,Size> size_freqs;
+	Array<Variable<Normal>,DataYear,Quarter,Region,Method,Size> size_freqs;
 
 	/**
 	 * Z-estimates
 	 */
-	Array<Variate,DataYear,Quarter,ZSize> z_ests;
+	Array<Variable<Normal>,DataYear,Quarter,ZSize> z_ests;
 
     /**
      * Reflection
@@ -44,6 +44,20 @@ public:
             .data(size_freqs,"size_freqs")
             .data(z_ests,"z_ests")
         ;
+    }
+
+    void read(void){
+    	m_pl_cpue.read("data/input/m_pl_cpue.tsv",true);
+    	w_ps_cpue.read("data/input/w_ps_cpue.tsv",true);
+    	size_freqs.read("data/input/size_freqs.tsv",true);
+    	z_ests.read("data/input/z_ests.tsv",true);
+    }
+
+    void write(void){
+    	m_pl_cpue.write("data/output/m_pl_cpue.tsv",true);
+    	w_ps_cpue.write("data/output/w_ps_cpue.tsv",true);
+    	size_freqs.write("data/output/size_freqs.tsv",true);
+    	z_ests.write("data/output/z_ests.tsv",true);
     }
 
 	/**
