@@ -385,7 +385,10 @@ public:
 		}
 
 		// Initialise proportion of recruits by size
-		Normal recruits_lengths_dist(recruits_lengths_mean,recruits_lengths_mean*recruits_lengths_cv);
+		Normal recruits_lengths_dist(
+			recruits_lengths_mean,
+			recruits_lengths_mean*recruits_lengths_cv
+		);
 		for(auto size : sizes){
 			double length = lengths(size);
 			recruits_sizes(size) = recruits_lengths_dist.integral(length-1,length+1);
