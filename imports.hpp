@@ -24,9 +24,9 @@ using boost::format;
 #include <boost/random/lognormal_distribution.hpp>
 
 // Stencila library (https://github.com/stencila/stencila) for ...
-//... array and query classes
+//... structure, array, frame and query classes
+#include <stencila/structure.hpp>
 #include <stencila/array.hpp>
+#include <stencila/frame.hpp>
 #include <stencila/query.hpp>
-//... reflection
-#include <stencila/reflector.hpp>
 using namespace Stencila;

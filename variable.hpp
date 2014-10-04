@@ -1,11 +1,11 @@
 #pragma once
 
 template<class Distribution>
-class Variable : public Distribution, public Reflector<Variable<Distribution>> {
+class Variable : public Distribution, public Structure<Variable<Distribution>> {
 public:
 
-    using Reflector<Variable<Distribution>>::derived;
-    using Reflector<Variable<Distribution>>::derived_nullptr;
+    using Structure<Variable<Distribution>>::derived;
+    using Structure<Variable<Distribution>>::derived_nullptr;
 
 	Variable(void):
 		value_(NAN){

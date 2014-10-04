@@ -10,7 +10,7 @@ namespace IOSKJ {
  * 
  * See the `get()` method which "gets" model variables corresponding to data at specific times.
  */
-class Data : public Reflector<Data> {
+class Data : public Structure<Data> {
 public:
 
 	/**

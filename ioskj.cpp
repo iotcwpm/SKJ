@@ -35,9 +35,9 @@ void shutdown(void) {
 }
 
 /**
- * Run the model with a parameters set read from the "parameters/input/list.tsv" file
+ * Run the model with a parameters set read from "parameters/input"
  */
-void run(void){
+void run(int sample=0){
 	// Do tracking
 	Tracker tracker("model/output/track.tsv");
 	// For each time step...
@@ -54,6 +54,9 @@ void run(void){
 		//... get model variables of interest for tracking
 		tracker.get(model,time);
 	}
+
+	Frame<> samples = Frame<>::of<Parameters>();
+	samples.write("parameters/output/samples.tsv");
 }
 
 /**
