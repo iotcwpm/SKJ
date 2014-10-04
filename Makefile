@@ -1,22 +1,25 @@
-all: ioskj.exe ioskj.debug
+all: ioskj.debug
 
 .PHONY: docs tests
 
 HPPS := $(shell find . -name "*.hpp")
 CPPS := $(shell find . -name "*.cpp")
 
-INCLUDES := -I. -I/home/nbentley/Trophia/P12013_Trident/Code/fsl/
+CXX_FLAGS := -std=c++11 -Wall -Wno-unused-local-typedefs
 
-LIBS := -lboost_filesystem -lboost_system
+LIBS := -lstencila -lboost_filesystem -lboost_system -lpugixml -ltidy-html5
+
+# Include local Makefile for setting or overriding make variables
+include Makefile.local
 
 ioskj.exe: $(HPPS) $(CPPS)
-	$(CXX) -std=c++11 -O3 -Wall $(INCLUDES) -oioskj.exe ioskj.cpp $(LIBS)
+	$(CXX) $(CXX_FLAGS) -O3 $(INC_DIRS) -oioskj.exe ioskj.cpp $(LIB_DIRS) $(LIBS)
 
 ioskj.debug: $(HPPS) $(CPPS)
-	$(CXX) -std=c++11 -g -O0 -Wall $(INCLUDES) -oioskj.debug ioskj.cpp $(LIBS)
+	$(CXX) $(CXX_FLAGS) -g -O0 $(INC_DIRS) -oioskj.debug ioskj.cpp $(LIB_DIRS) $(LIBS)
 
 tests.exe: tests.cpp
-	$(CXX) -std=c++11 -O3 -Wall $(INCLUDES) -otests.exe tests.cpp $(LIBS) -lboost_unit_test_framework
+	$(CXX) $(CXX_FLAGS) -O3 $(INC_DIRS) -otests.exe tests.cpp $(LIBS) -lboost_unit_test_framework
 
 # Run the tests
 tests.out : tests.exe
