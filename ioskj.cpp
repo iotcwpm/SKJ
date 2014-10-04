@@ -3,15 +3,15 @@
 #include "imports.hpp"
 #include "dimensions.hpp"
 #include "model.hpp"
-#include "parameters.hpp"
+#include "parameters.hpp" 
 #include "data.hpp"
 #include "tracker.hpp"
- 
+
 using namespace IOSKJ;
 
 // Instantiate components
 IOSKJ::Model model;
-IOSKJ::Params params;
+IOSKJ::Parameters parameters;
 IOSKJ::Data data;
 
 /**
@@ -19,7 +19,7 @@ IOSKJ::Data data;
  */
 void startup(void){
 	// Read parameters and data
-	params.read();
+	parameters.read();
 	data.read();
 }
 
@@ -28,8 +28,9 @@ void startup(void){
  */
 void shutdown(void) {
 	// Write parameters and data
-	params.write();
+	parameters.write();
 	data.write();
+	// Write model
 	model.write();
 }
 
@@ -45,7 +46,7 @@ void run(void){
 		std::cout<<time<<" "<<year(time)<<" "<<quarter(time)<<" "<<model.biomass_spawning_overall(quarter(time))<<std::endl;
 		#endif
 		//... set model parameters
-		params.set(model,time);
+		parameters.set(model,time);
 		//... update the model
 		model.update(time);
 		//... get model variables corresponding to data
@@ -63,7 +64,7 @@ void profile(std::string parameter){
 	//!params.profile(parameter,set,data,"profile.tsv");
 }
 
-int main(int argc, char** argv){
+int main(int argc, char** argv){ 
 	startup();
 	try{
 		for(int arg=1;arg<argc;arg++){
@@ -77,6 +78,8 @@ int main(int argc, char** argv){
         std::cout<<"************Error************\n"
                 <<error.what()<<"\n"
                 <<"******************************\n";
+	} catch(...){
+        std::cout<<"************Unknown error************\n";
 	}
 	shutdown();
 	return 0;
