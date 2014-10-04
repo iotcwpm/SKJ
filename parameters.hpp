@@ -151,7 +151,7 @@ public:
 
     void write(void){
     	Reflector<Parameters>::write("parameters/output/parameters.cila");
-    	recruits_deviations.read("parameters/output/recruits_deviations.tsv",true);
+    	recruits_deviations.write("parameters/output/recruits_deviations.tsv",true);
     	selectivities.write("parameters/output/selectivities.tsv",true);
     	catches.write("parameters/output/catches.tsv",true);
     }
