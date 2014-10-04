@@ -1,7 +1,7 @@
 #pragma once
 
 #include "model.hpp"
-#include "variate.hpp"
+#include "variable.hpp"
 
 namespace IOSKJ {
 
@@ -15,61 +15,61 @@ public:
 	/**
 	 * Parameters of the stock-recruitment relationship
 	 */
-	Variate recruits_unfished;
-	Variate recruits_steepness;
-	Variate recruits_sd;
+	Variable<Uniform> recruits_unfished;
+	Variable<Uniform> recruits_steepness;
+	Variable<Uniform> recruits_sd;
 
 	/**
 	 * Recruitment deviations
 	 */
-	Array<Variate,RecdevYear> recruits_deviations;
+	Array<Variable<Normal>,RecdevYear> recruits_deviations;
 
 	/**
 	 * Proportion of mature fish spawning by quarter
 	 */
-	Variate spawning_0;
-	Variate spawning_1;
-	Variate spawning_2;
-	Variate spawning_3;
+	Variable<Uniform> spawning_0;
+	Variable<Uniform> spawning_1;
+	Variable<Uniform> spawning_2;
+	Variable<Uniform> spawning_3;
 
 	/**
 	 * Proportion of recruits by region
 	 * Prior same for all regions. These are normalised in the model initialisation
 	 * so that they sum to one.
 	 */
-	Variate recruits_regions;
+	Variable<Uniform> recruits_regions;
 
 	/**
-	 * Variates of the distribution of the lengths of recruits
+	 * Variables of the distribution of the lengths of recruits
 	 */
-	Variate recruits_lengths_mean ;
-	Variate recruits_lengths_cv;
+	Variable<Uniform> recruits_lengths_mean ;
+	Variable<Uniform> recruits_lengths_cv;
 
 	/**
 	 * Length-weight parameters
 	 */
-    Variate weight_a;
-    Variate weight_b;
+    Variable<Fixed> weight_a;
+    Variable<Fixed> weight_b;
 
     /**
      * Maturity parameters
      */
-    Variate maturity_inflection;
-    Variate maturity_steepness;
+    Variable<Uniform> maturity_inflection;
+    Variable<Uniform> maturity_steepness;
 
     /**
      * Mortality parameters
      */
-   	Variate mortality_base;
-	Variate mortality_exponent;
+   	Variable<Uniform> mortality_base;
+	Variable<Fixed> mortality_exponent;
 
     /**
      * Growth rate parameters
      */
-	Variate growth_rate;
-	Variate growth_assymptote;
-	Variate growth_sd;
-	Variate growth_cv;
+	Variable<Fixed> growth_rate;
+	Variable<Fixed> growth_assymptote;
+	Variable<Fixed> growth_sd;
+	Variable<Fixed> growth_cv;
 
     /**
      * Movements parameters
@@ -78,20 +78,20 @@ public:
      * into 4 priors. `movement_stay` defines a prior on the proportion of fish
      * that remain in an area.
      */
-	Variate movement_stay;
-	Variate movement_w_m;
-	Variate movement_m_e;
-	Variate movement_w_e;
+	Variable<Uniform> movement_stay;
+	Variable<Uniform> movement_w_m;
+	Variable<Uniform> movement_m_e;
+	Variable<Uniform> movement_w_e;
 
 	/**
 	 * Selectivity parameters
 	 */
-	Array<Variate,SelectivityKnot> selectivities;
+	Array<Variable<Uniform>,SelectivityKnot> selectivities;
 
 	/**
 	 * Catches by year, quarter, region and method
 	 */
-	Array<Variate,Year,Quarter,Region,Method> catches;
+	Array<Variable<Fixed>,Year,Quarter,Region,Method> catches;
 
     /**
      * Reflection
@@ -108,6 +108,8 @@ public:
             .data(spawning_1,"spawning_1")
             .data(spawning_2,"spawning_2")
             .data(spawning_3,"spawning_3")
+
+            .data(recruits_regions,"recruits_regions")
 
             .data(recruits_lengths_mean,"recruits_lengths_mean")
             .data(recruits_lengths_cv,"recruits_lengths_cv")
@@ -135,6 +137,23 @@ public:
 
             .data(catches,"catches")
         ;
+    }
+
+    void read(void){
+    	Reflector<Parameters>::read("parameters/input/parameters.cila");
+    	recruits_deviations.read("parameters/input/recruits_deviations.tsv",true);
+    	selectivities.read("parameters/input/selectivities.tsv",true);
+    	catches.read("parameters/input/catches.tsv",true);
+		catches.each([](Variable<Fixed>& catche){
+			if(catche.is_na()) catche = 0;
+		});
+    }
+
+    void write(void){
+    	Reflector<Parameters>::write("parameters/output/parameters.cila");
+    	recruits_deviations.read("parameters/output/recruits_deviations.tsv",true);
+    	selectivities.write("parameters/output/selectivities.tsv",true);
+    	catches.write("parameters/output/catches.tsv",true);
     }
 
 	/**
