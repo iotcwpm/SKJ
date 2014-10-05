@@ -10,9 +10,9 @@
 using namespace IOSKJ;
 
 // Instantiate components
-IOSKJ::Model model;
-IOSKJ::Parameters parameters;
-IOSKJ::Data data;
+Model model;
+Parameters parameters;
+Data data;
 
 /**
  * Tasks that need to be done at startup
@@ -37,7 +37,8 @@ void shutdown(void) {
 /**
  * Run the model with a parameters set read from "parameters/input"
  */
-void run(int sample=0){
+void run(void){
+
 	// Do tracking
 	Tracker tracker("model/output/track.tsv");
 	// For each time step...
@@ -54,17 +55,12 @@ void run(int sample=0){
 		//... get model variables of interest for tracking
 		tracker.get(model,time);
 	}
-
-	Frame<> samples = Frame<>::of<Parameters>();
-	samples.write("parameters/output/samples.tsv");
 }
 
-/**
- * Do slices of likelihoods for a parameter
- */
-void profile(std::string parameter){ 
-	//!auto set = params.read_set("parameters.tsv");
-	//!params.profile(parameter,set,data,"profile.tsv");
+void priors(int replicates=1000){
+	Frame<> samples = parameters.sample(replicates);
+	std::cout<<samples.rows();
+	samples.write("parameters/output/priors.tsv");
 }
 
 int main(int argc, char** argv){ 
@@ -76,6 +72,7 @@ int main(int argc, char** argv){
                     <<task<<"\n"
                     <<"-------------------------------\n";
             if(task=="run") run();
+            else if(task=="priors") priors();
         }
 	} catch(std::exception& error){
         std::cout<<"************Error************\n"

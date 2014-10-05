@@ -237,6 +237,82 @@ public:
 		// Initialise in the first year
 		if(time==0) model.initialise();
 	}
+
+	/**
+	 * Get a list of parameter names
+	 *
+	 * This method differs from `Structure::labels` in that it does not
+	 * add the inner names of variables, just the variable names themselves,
+	 * and ignores `Variable<Fixed>`
+	 */
+	std::vector<std::string> labels(void) {
+		return Labeller(*this).labels;
+	}
+	struct Labeller {
+		std::string prefix;
+		std::vector<std::string> labels;
+		Labeller(Parameters& parameters){
+			parameters.reflect(*this);
+		}
+		template<class Reflector>
+		Labeller& data(Reflector& reflector, const std::string& name){
+			reflector.reflect(*this);
+			return *this;
+		}
+		template<class... Args>
+		Labeller& data(Array<Args...>& array, const std::string& name){
+			prefix = name;
+			array.reflect(*this);
+			prefix = "";
+			return *this;
+		}
+		template<class Distribution>
+		Labeller& data(Variable<Distribution>& variable, const std::string& name){
+			labels.push_back(prefix+name);
+			return *this;
+		}
+		Labeller& data(Variable<Fixed>& variable, const std::string& name){
+			return *this;
+		}
+	};
+
+	/**
+	 * Get a sample from the parameter prior distributions
+	 *
+	 * @parameter number Number of samples to get
+	 */
+	Frame<> sample(unsigned int number){
+		auto labs = labels();
+		unsigned int cols = labs.size();
+		Frame<> samples(number,labs);
+		for(unsigned int row=0;row<number;row++){
+			auto sample = Sampler(*this).sample;
+			for(unsigned int col=0;col<cols;col++){
+				samples(row,col) = sample[col];
+			}
+		}
+		return samples;
+	}
+	struct Sampler {
+		std::vector<double> sample;
+		Sampler(Parameters& parameters){
+			parameters.reflect(*this);
+		}
+		template<class Reflector>
+		Sampler& data(Reflector& reflector, const std::string& name){
+			reflector.reflect(*this);
+			return *this;
+		}
+		template<class Distribution>
+		Sampler& data(Variable<Distribution>& variable, const std::string& name){
+			sample.push_back(variable.random());
+			return *this;
+		}
+		Sampler& data(Variable<Fixed>& variable, const std::string& name){
+			return *this;
+		}
+	};
+
 }; // class Parameters
 
 } //namespace IOSKJ
