@@ -7,23 +7,16 @@ public:
     using Structure<Variable<Distribution>>::derived;
     using Structure<Variable<Distribution>>::derived_nullptr;
 
-	Variable(void):
-		value_(NAN){
-	}
-
-	Variable(const double& value):
-		value_(value){
-	}
+    bool is_na(void) const {
+        return std::isnan(value_);
+    }
 
 	operator double(void) const {
 		return value_;
 	}
 
-    bool is_na(void) const {
-        return std::isnan(value_);
-    }
-
     #define OP_(op) void operator op(const double& other){ value_ op other; }
+        OP_(=)
         OP_(+=)
         OP_(-=)
         OP_(*=)

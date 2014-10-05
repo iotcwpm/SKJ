@@ -3,7 +3,7 @@ section Stock recruitment relation
 	#recruits_unfished
 		#value 21
 		#lower 15
-		#upper 25
+		#upper 24
 
 	#recruits_steepness
 		#value 0.9
