@@ -239,6 +239,37 @@ public:
 	}
 
 	/**
+	 * A base Mirror class used for mirroring only variables that are not fixed
+	 */
+	template<class Derived>
+	struct Variabler : Mirrors::Mirror<Derived> {
+		using Polymorph<Derived>::derived;
+
+		Derived& mirror(Parameters& parameters){
+			parameters.reflect(derived());
+			return derived();
+		}
+
+		template<class Distribution, class... Dimensions>
+		Derived& data(Array<Variable<Distribution>,Dimensions...>& array, const std::string& name){
+			// Recurse into arrays of variables
+			array.reflect(derived());
+			return derived();
+		}
+
+		template<class... Dimensions>
+		Derived& data(Array<Variable<Fixed>,Dimensions...>& array, const std::string& name){
+			// Ignore arrays of fixed variables
+			return derived();
+		}
+
+		Derived& data(Variable<Fixed>& variable, const std::string& name){
+			// Ignore fixed variables
+			return derived();
+		}
+	};
+
+	/**
 	 * Get a list of parameter names
 	 *
 	 * This method differs from `Structure::labels` in that it does not
@@ -246,32 +277,24 @@ public:
 	 * and ignores `Variable<Fixed>`
 	 */
 	std::vector<std::string> labels(void) {
-		return Labeller(*this).labels;
+		return Labeller().mirror(*this).labels;
 	}
-	struct Labeller {
+	struct Labeller : Variabler<Labeller> {
+		using Variabler<Labeller>::data;
 		std::string prefix;
 		std::vector<std::string> labels;
-		Labeller(Parameters& parameters){
-			parameters.reflect(*this);
-		}
-		template<class Reflector>
-		Labeller& data(Reflector& reflector, const std::string& name){
-			reflector.reflect(*this);
-			return *this;
-		}
-		template<class... Args>
-		Labeller& data(Array<Args...>& array, const std::string& name){
+
+		template<class Distribution, class... Dimensions>
+		Labeller& data(Array<Variable<Distribution>,Dimensions...>& array, const std::string& name){
 			prefix = name;
 			array.reflect(*this);
 			prefix = "";
 			return *this;
 		}
+
 		template<class Distribution>
 		Labeller& data(Variable<Distribution>& variable, const std::string& name){
 			labels.push_back(prefix+name);
-			return *this;
-		}
-		Labeller& data(Variable<Fixed>& variable, const std::string& name){
 			return *this;
 		}
 	};
@@ -281,34 +304,58 @@ public:
 	 *
 	 * @parameter number Number of samples to get
 	 */
-	Frame<> sample(unsigned int number){
+	Frame<> sample(unsigned int number=1){
 		auto labs = labels();
 		unsigned int cols = labs.size();
 		Frame<> samples(number,labs);
 		for(unsigned int row=0;row<number;row++){
-			auto sample = Sampler(*this).sample;
+			auto sample = Sampler().mirror(*this).sample;
 			for(unsigned int col=0;col<cols;col++){
 				samples(row,col) = sample[col];
 			}
 		}
 		return samples;
 	}
-	struct Sampler {
+	struct Sampler : Variabler<Sampler> {
+		using Variabler<Sampler>::data;
 		std::vector<double> sample;
-		Sampler(Parameters& parameters){
-			parameters.reflect(*this);
-		}
-		template<class Reflector>
-		Sampler& data(Reflector& reflector, const std::string& name){
-			reflector.reflect(*this);
-			return *this;
-		}
+
 		template<class Distribution>
 		Sampler& data(Variable<Distribution>& variable, const std::string& name){
 			sample.push_back(variable.random());
 			return *this;
 		}
-		Sampler& data(Variable<Fixed>& variable, const std::string& name){
+	};
+
+	/**
+	 * Randomise the values of variables
+	 */
+	void randomise(void){
+		Randomiser().mirror(*this);
+	}
+	struct Randomiser : Variabler<Randomiser> {
+		using Variabler<Randomiser>::data;
+
+		template<class Distribution>
+		Randomiser& data(Variable<Distribution>& variable, const std::string& name){
+			variable = variable.random();
+			return *this;
+		}
+	};
+
+	/**
+	 * Get the values of variables
+	 */
+	std::vector<double> values(void){
+		return Values().mirror(*this).values;
+	}
+	struct Values : Variabler<Values> {
+		using Variabler<Values>::data;
+		std::vector<double> values;
+
+		template<class Distribution>
+		Values& data(Variable<Distribution>& variable, const std::string& name){
+			values.push_back(variable);
 			return *this;
 		}
 	};
