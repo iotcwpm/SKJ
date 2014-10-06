@@ -2,6 +2,7 @@
 
 require(ggplot2)
 require(plyr)
+require(reshape)
 
 theme_set(theme_bw())
 theme_update(

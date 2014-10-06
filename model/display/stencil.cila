@@ -1,6 +1,8 @@
-#title Displays of model outputs
+#title Model outputs
 
-This document displays model outputs (files in the `model/outputs` folder) which are generated from the default parameter values defined in `parameters/input/parameters.cila` using `./ioskj.exe run`.
+This document displays model outputs generated from the `run` task (i.e. `./ioskj.exe run`)
+which uses the default parameter values (those marked `#value`) defined in `parameters/input/parameters.cila`.
+This is primarily intended for checking and illustrating the model.
 
 r
 	source('../../common.R',local=T)
@@ -10,7 +12,8 @@ r
 		'mortalities',
 		'weights','maturities','selectivities',
 		'movement',
-		'numbers'
+		'numbers',
+		'track'
 	),from='../output')
 
 # Recruits
@@ -18,7 +21,7 @@ r
 figure
 	r png 17x10cm
 		print(
-	 		ggplot(recruits_sizes,aes(x=length,y=value)) +
+			ggplot(recruits_sizes,aes(x=length,y=value)) +
 				geom_line() +
 				labs(x="Length (cm)",y="Proportion")
 		)
@@ -132,3 +135,66 @@ figure
 				labs(x="Length (cm)",y="Selectivity (prop.)",colour='Method')
 		)
 	figcaption Selectivity at length by fishing method.
+
+
+# Catches
+
+figure
+	r png
+		temp <- melt(track[,c('year','quarter','catches_w_ps','catches_m_pl','catches_e_gn')],id.vars=c('year','quarter'))
+		print(
+			ggplot(temp,aes(x=year+quarter/4,y=value,fill=variable)) + geom_bar(stat='identity') +
+				geom_vline(x=2015,alpha=0.6,linetype=2) +
+				labs(x='Year',y='Catch (t)')
+		)
+
+r
+	plot_track <- function(what,label){
+		print(
+			ggplot(track,aes(x=year+quarter/4)) + 
+				geom_line(aes_string(y=what)) + 
+				geom_hline(y=0,alpha=0) +
+				geom_vline(x=2015,alpha=0.6,linetype=2) +
+				labs(x='Year',y=label)
+		)
+	}
+
+# Recruitment
+
+figure
+	r png 17x10cm
+		plot_track('recruits_determ/1e6','Deterministic recruitment (mil.)')
+
+figure
+	r png 17x10cm
+		plot_track('recruits_deviation','Recruitment deviation')
+
+figure
+	r png 17x10cm
+		plot_track('recruits/1e6','Recruitment (mil.)')
+
+# Spawning biomass
+
+figure
+	r png 17x10cm
+		plot_track('biomass_spawning_overall','Overall spawning biomass')
+
+figure
+	r png 17x10cm
+		print(
+			ggplot(track,aes(x=year+quarter/4)) + 
+				geom_line(aes(y=biomass_spawning_w,colour='W')) + 
+				geom_line(aes(y=biomass_spawning_m,colour='M')) + 
+				geom_line(aes(y=biomass_spawning_e,colour='E')) + 
+				geom_hline(y=0,alpha=0) +
+				geom_vline(x=2015,alpha=0.6,linetype=2) +
+				labs(x='Year',y='Spawning biomass in region',colour='Region')
+		)
+
+figure
+	r png 17x10cm
+		plot_track('biomass_vulnerable_m_pl','Maldives pole and line vulnerable biomass')
+
+figure
+	r png 17x10cm
+		plot_track('exp_rate_m_pl','Maldives pole and line exploitation rate')
