@@ -3,6 +3,10 @@
 
 output
 
+# Generated HTML and images
+*.html
+*.png
+
 *.svg
 
 # Ignore text editor and iDE files
