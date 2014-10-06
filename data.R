@@ -39,6 +39,7 @@ ggplot(size_freqs_over_years,aes(x=length,colour=factor(quarter))) +
 # Summary statistics of size frequencies
 size_freqs_summ = ddply(size_freqs,.(region,method,data_year,quarter),summarise,
   observed=sum(length*observed,na.rm=T),
+  uncertainty=mean(uncertainty,na.rm=T),
   expected=sum(length*expected,na.rm=T)
 )
 size_freqs_summ = within(size_freqs_summ,{
@@ -46,7 +47,7 @@ size_freqs_summ = within(size_freqs_summ,{
 })
 ggplot(size_freqs_summ,aes(x=data_year+quarter/4,colour=factor(quarter))) + 
   geom_line(aes(y=expected)) + 
-  geom_point(aes(y=observed),shape=1,size=3) + 
+  geom_point(aes(y=observed,size=log(uncertainty)),shape=1) + 
   facet_grid(region~method) +
   labs(x='Year',y='Mean length (cm)',colour='Quarter')
 
@@ -62,32 +63,22 @@ size_freqs_sub <- function(region_,method_){
 size_freqs_sub('W','PS')
 size_freqs_sub('W','GN')
 size_freqs_sub('M','PL')
-size_freqs_sub('M','OT')
+size_freqs_sub('E','OT')
 
 size_freqs_by_year = ddply(size_freqs,.(region,method,data_year,length),summarise,
   observed=mean(observed,na.rm=T),
   expected=mean(expected,na.rm=T)
 )
-ggplot(subset(size_freqs_by_year,region=='M'&method=='PL'),aes(x=length)) + 
-  geom_line(aes(y=expected)) + 
-  geom_point(aes(y=observed),shape=1,size=2) + 
-  geom_hline(y=0,alpha=0) + 
-  facet_wrap(~data_year)
-
-ggplot(subset(size_freqs,region=='M'&method=='PL'&uncertainty>1000),aes(x=length)) + 
-  geom_line(aes(y=expected)) + 
-  geom_point(aes(y=observed,colour=factor(quarter)),shape=1,size=2) + 
-  geom_hline(y=0,alpha=0) + 
-  facet_wrap(~data_year) +
-  labs(x="Length (cm)",y="Proportion",colour='Quarter')
-
-
-ggplot(subset(size_freqs,region=='W'&method=='PS'&uncertainty>1000),aes(x=length)) + 
-  geom_line(aes(y=expected)) + 
-  geom_point(aes(y=observed,colour=factor(quarter)),shape=1,size=2) + 
-  geom_hline(y=0,alpha=0) + 
-  facet_wrap(~data_year) +
-  labs(x="Length (cm)",y="Proportion",colour='Quarter')
+size_freqs_by_year_sub <- function(region_,method_){
+  ggplot(subset(size_freqs_by_year,region==region_&method==method_),aes(x=length)) + 
+    geom_line(aes(y=expected)) + 
+    geom_point(aes(y=observed),shape=1,size=2) + 
+    geom_hline(y=0,alpha=0) + 
+    facet_wrap(~data_year) +
+    labs(x='Length (cm)',y='Proportion')
+}
+size_freqs_by_year_sub('M','PL')
+size_freqs_by_year_sub('E','OT')
 
 
 z_ests = subset(z_ests,is.finite(expected))

@@ -34,7 +34,7 @@ dimensions <- function(data){
       levels = switch(name,
         region = c('W','M','E'),
         region_from = c('W','M','E'),
-        method = c('PS','PL','GN','LI','OT'),
+        method = c('PS','PL','GN','OT'),
         z_size = c('45-50','50-55','55-60','60-65'),
         NULL
       )
@@ -46,10 +46,10 @@ dimensions <- function(data){
 
 #' Function to load a set of files that have been written by C++ to the output directory,
 #' and assign them to workspace variables
-load <- function(names){
+load <- function(names,from){
   for(name in names){
     # Read in data
-    data = read.table(paste("output/",name,".tsv",sep=''),header=T)
+    data = read.table(file.path(from,paste0(name,".tsv")),header=T,sep='\t')
     # Convert dimensions into factors
     data = dimensions(data)
     # Assign the variable
