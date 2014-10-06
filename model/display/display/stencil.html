@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Displays of model outputs</title>
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" type="text/css" href="/core/stencils/themes/default/theme.css" />
+	</head>
+	<body>
+		
+		<main id="content">
+			 
+			<div id="title">Displays of model outputs</div>
+			<p>
+				This document displays model outputs (files in the 
+				<code>model/outputs</code>
+				 folder) which are generated from the default parameter values defined in 
+				<code>parameters/input/parameters.cila</code>
+				 using 
+				<code>./ioskj.exe run</code>
+				.
+			</p>
+			<pre data-code="r">
+source('../../common.R',local=T)
+load(c(
+	'lengths','recruits_sizes',
+	'growth_increments','growth',
+	'mortalities',
+	'weights','maturities','selectivities',
+	'movement',
+	'numbers'
+),from='../output')
+
+</pre>
+			<h1>Recruits</h1>
+			<figure>
+				<pre data-code="r" data-format="png" data-size="17x10cm">
+print(
+		ggplot(recruits_sizes,aes(x=length,y=value)) +
+		geom_line() +
+		labs(x="Length (cm)",y="Proportion")
+)
+</pre>
+				<img src="1.png" data-output="true" />
+				<figcaption>
+					<span class="label">
+						<span class="type">Figure</span>
+						<span class="number">1</span>
+						<span class="separator">:</span>
+					</span>
+					Distribution of the length of recruits. Recruits are added to the model following this distribution.
+				</figcaption>
+			</figure>
+			<h1>Growth</h1>
+			<figure>
+				<pre data-code="r" data-format="png" data-size="17x10cm">
+print(
+	ggplot(growth_increments,aes(x=length,y=value)) +
+		geom_hline(y=0,colour='grey') +
+		geom_line() +
+		labs(x="Length (cm)",y="Quarterly growth increment (cm)")
+)
+</pre>
+				<img src="2.png" data-output="true" />
+				<figcaption>
+					<span class="label">
+						<span class="type">Figure</span>
+						<span class="number">2</span>
+						<span class="separator">:</span>
+					</span>
+					Growth increments by length.
+				</figcaption>
+			</figure>
+			<figure>
+				<pre data-code="r" data-format="png" data-size="17x15cm">
+print(
+	ggplot(growth) +
+		geom_tile(aes(y=length,x=length_from,fill=value)) +
+		scale_fill_gradient(low="white",high="red") + 
+		geom_abline(a=0,b=1) + 
+		labs(x="Length from (cm)",y="Length to (cm)",fill="Proportion")
+)
+</pre>
+				<img src="3.png" data-output="true" />
+				<figcaption>
+					<span class="label">
+						<span class="type">Figure</span>
+						<span class="number">3</span>
+						<span class="separator">:</span>
+					</span>
+					Growth transition matrix indicating the proportion of fish that transition from one length class to other length classes in one quarter.
+				</figcaption>
+			</figure>
+			<h1>Weight</h1>
+			<figure>
+				<pre data-code="r" data-format="png" data-size="17x10cm">
+print(
+	ggplot(weights,aes(x=length,y=value)) +
+		geom_line() +
+		labs(x="Length (cm)",y="Weight (kg)")
+)
+</pre>
+				<img src="4.png" data-output="true" />
+				<figcaption>
+					<span class="label">
+						<span class="type">Figure</span>
+						<span class="number">4</span>
+						<span class="separator">:</span>
+					</span>
+					Weight at length.
+				</figcaption>
+			</figure>
+			<h1>Maturity</h1>
+			<figure>
+				<pre data-code="r" data-format="png" data-size="17x10cm">
+print(
+	ggplot(maturities,aes(x=length,y=value)) +
+		geom_line() +
+		labs(x="Length (cm)",y="Proportion mature")
+)
+</pre>
+				<img src="5.png" data-output="true" />
+				<figcaption>
+					<span class="label">
+						<span class="type">Figure</span>
+						<span class="number">5</span>
+						<span class="separator">:</span>
+					</span>
+					Maturity at length
+				</figcaption>
+			</figure>
+			<h1>Mortality</h1>
+			<figure>
+				<pre data-code="r" data-format="png" data-size="17x10cm">
+print(
+	ggplot(mortalities,aes(x=length,y=value)) +
+		geom_hline(y=0,colour='grey') +
+		geom_line() +
+		labs(x="Length (cm)",y="Instantaneous annual rate or natural mortality")
+)
+</pre>
+				<img src="6.png" data-output="true" />
+				<figcaption>
+					<span class="label">
+						<span class="type">Figure</span>
+						<span class="number">6</span>
+						<span class="separator">:</span>
+					</span>
+					Mortality at length
+				</figcaption>
+			</figure>
+			<h1>Movement</h1>
+			<figure>
+				<pre data-code="r" data-format="png" data-size="16x16cm">
+print(
+	ggplot(movement,aes(y=region_from,x=region,fill=value,label=round(value,4))) +
+		geom_tile() +
+		scale_fill_gradient(low="white",high="red") + 
+		geom_text() +
+		labs(y="Region from",x="Region to",fill="Proportion")
+)
+</pre>
+				<img src="7.png" data-output="true" />
+				<figcaption>
+					<span class="label">
+						<span class="type">Figure</span>
+						<span class="number">7</span>
+						<span class="separator">:</span>
+					</span>
+					Movement proportion by quarter. Each cell indicates the proportion of fish moving from one region to another in one quarter.
+				</figcaption>
+			</figure>
+			<h1>Unfished equilbrium state</h1>
+			<p>The following figures show the distributions of lengths in the population in an unfished state.</p>
+			<figure>
+				<pre data-code="r" data-format="png" data-size="17x25cm">
+print(
+	ggplot(numbers) + 
+		geom_line(aes(x=length,y=value/1e6)) +
+		facet_grid(age~region,scale='free_y') + 
+		labs(x="Length (cm)",y="Number (mil.)")
+)
+</pre>
+				<img src="8.png" data-output="true" />
+				<figcaption>
+					<span class="label">
+						<span class="type">Figure</span>
+						<span class="number">8</span>
+						<span class="separator">:</span>
+					</span>
+					Unfished equilbrium numbers at age and size and region. Each panel shows the length ditribution for a particular age (in quarters) and region.
+				</figcaption>
+			</figure>
+			<figure>
+				<pre data-code="r" data-format="png" data-size="17x10cm">
+print(
+	ggplot(ddply(numbers,.(region,length),summarise,numbers=sum(value)/1e6)) +
+		geom_line(aes(x=length,y=numbers)) +
+		facet_grid(.~region) + 
+		labs(x="Length (cm)",y="Number (mil.)")
+)
+</pre>
+				<img src="9.png" data-output="true" />
+				<figcaption>
+					<span class="label">
+						<span class="type">Figure</span>
+						<span class="number">9</span>
+						<span class="separator">:</span>
+					</span>
+					Unfished equilibrium numbers at size by region. Each panel is the aggregated length distribtuion across all ages within a particular region.
+				</figcaption>
+			</figure>
+			<h1>Selectivities</h1>
+			<figure>
+				<pre data-code="r" data-format="png" data-size="17x10cm">
+print(
+	ggplot(selectivities,aes(x=length,y=value,colour=method))+
+		geom_line() + 
+		labs(x="Length (cm)",y="Selectivity (prop.)",colour='Method')
+)
+</pre>
+				<img src="10.png" data-output="true" />
+				<figcaption>
+					<span class="label">
+						<span class="type">Figure</span>
+						<span class="number">10</span>
+						<span class="separator">:</span>
+					</span>
+					Selectivity at length by fishing method.
+				</figcaption>
+			</figure>
+		</main>
+		<script src="/core/themes/boot.js"> </script>
+		<script>if(!window.Stencila){window.StencilaHost='http://stenci.la';document.write(unescape('%3Cscript src="http://stenci.la/core/themes/boot.js"%3E%3C/script%3E'))}</script>
+		<script>window.Stencila.Booter.theme('core/stencils/themes/default');</script>
+	</body>
+</html>
