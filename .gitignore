@@ -7,10 +7,13 @@ output
 *.html
 *.png
 
+# Doxygen output
+doxygen
+!doxygen/Doxyfile
+
 *.svg
 
-# Ignore text editor and iDE files
-
+# Ignore text editor and IDE files
 *.sublime-project
 *.sublime-workspace
 .Rhistory
