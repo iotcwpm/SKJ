@@ -245,11 +245,6 @@ public:
 	struct Variabler : Mirrors::Mirror<Derived> {
 		using Polymorph<Derived>::derived;
 
-		Derived& mirror(Parameters& parameters){
-			parameters.reflect(derived());
-			return derived();
-		}
-
 		template<class Distribution, class... Dimensions>
 		Derived& data(Array<Variable<Distribution>,Dimensions...>& array, const std::string& name){
 			// Recurse into arrays of variables
