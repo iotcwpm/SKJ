@@ -1,7 +1,8 @@
-#title Data
+#title Indian Ocean skipjack model : data fits
 
 This document displays fits to the data generated from the `run` task (i.e. `./ioskj.exe run`)
-which uses the default parameter values (those marked `#value`) defined in `parameters/input/parameters.cila`.
+which uses the default parameter values (those marked `#value`) defined in `parameters/input/parameters.cila`. 
+Since those values are user inputs the following may not reflect best parameter estimates.
 In the following plots the lines indicate values expected from the model while the points represent the observed data.
 
 r
@@ -85,7 +86,7 @@ figure
 		print(ggplot(size_freqs_over_years,aes(x=length,colour=factor(quarter))) + 
 			geom_vline(x=seq(0,80,20),linetype=3,colour='grey') +
 			geom_line(aes(y=expected),alpha=0.7) + 
-			geom_point(aes(y=observed),shape=1,size=3) + 
+			geom_point(aes(y=observed),shape=1,size=2) + 
 			geom_hline(y=0,alpha=0) + 
 			facet_grid(method~region) +
 			labs(x='Length (cm)',y='Proportion',colour='Quarter'))

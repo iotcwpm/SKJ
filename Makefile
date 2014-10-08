@@ -46,7 +46,9 @@ docs:
 publish:
 	mkdir -p pages/doxygen pages/model/description pages/model/display
 	cp -fr model/description/. pages/model/description/
+	cp -fr parameters/description/. pages/parameters/description/
 	cp -fr model/display/. pages/model/display/
+	cp -fr data/display/. pages/data/display/
 	cp -fr doxygen/html/. pages/doxygen/
 	ghp-import -m "Updated pages" -p pages
 

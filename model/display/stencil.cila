@@ -1,7 +1,8 @@
-#title Model outputs
+#title Indian Ocean skipjack model : general outputs
 
 This document displays model outputs generated from the `run` task (i.e. `./ioskj.exe run`)
 which uses the default parameter values (those marked `#value`) defined in `parameters/input/parameters.cila`.
+Since those values are user inputs the following may not reflect best parameter estimates.
 This is primarily intended for checking and illustrating the model.
 
 r
