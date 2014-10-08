@@ -1,0 +1,147 @@
+#title Data
+
+This document displays fits to the data generated from the `run` task (i.e. `./ioskj.exe run`)
+which uses the default parameter values (those marked `#value`) defined in `parameters/input/parameters.cila`.
+In the following plots the lines indicate values expected from the model while the points represent the observed data.
+
+r
+	source('../../common.R',local=T)
+	load(c(
+		'm_pl_cpue','w_ps_cpue','size_freqs','z_ests'
+	),from='../output')
+
+# Maldive (M) pole and line (PL) CPUE
+
+figure
+	r png 17x12cm
+		m_pl_cpue = subset(m_pl_cpue,data_year>2000)
+		print(ggplot(m_pl_cpue,aes(x=data_year+quarter/4)) + 
+			geom_line(aes(y=value),alpha=0.7) + 
+			geom_point(aes(y=location,colour=factor(quarter),shape=factor(quarter)),size=3) + 
+			geom_hline(y=0,alpha=0) +
+			scale_shape_manual(values=1:4) +
+			labs(x='Year',y='Maldive pole and line CPUE index',colour='Quarter',shape='Quarter'))
+	figcaption
+		Observed (points) and expected (lines) Maldive (M) pole and line (PL) CPUE.
+
+# Western (W) purse seine (PS) CPUE
+
+figure
+	r png 17x12cm
+		print(ggplot(w_ps_cpue,aes(x=data_year)) + 
+			geom_line(aes(y=value),alpha=0.7) + 
+			geom_point(aes(y=location),shape=1,size=3) + 
+			geom_hline(y=0,alpha=0) +
+			labs(x='Year',y='West purse siene CPUE index'))
+	figcaption
+		Observed (points) and expected (lines) western (W) purse seine (PS) CPUE.
+
+# Western (W) purse seine (PS) tagging Z estimates
+
+figure
+	r png
+		z_ests = subset(z_ests,is.finite(value))
+		print(ggplot(z_ests,aes(x=data_year+quarter/4)) + 
+			geom_line(aes(y=value),alpha=0.7) + 
+			geom_point(aes(y=mean,colour=factor(quarter)),shape=1,size=3) + 
+			geom_errorbar(aes(ymin=mean-sd,ymax=mean+sd,colour=factor(quarter)),width=0) +
+			geom_hline(y=0,alpha=0) +
+			facet_grid(z_size~.) +
+			labs(x='Year',y='Instantaneous rate of total mortality (Z)',colour='Quarter'))
+	figcaption
+		Observed (points) and expected (lines) western (W) purse seine (PS) tagging Z estimates. Error bars indicate +/- one standard error in estimates.
+
+
+# Size frequencies
+
+## Mean length by region, method, year and quarter
+
+figure
+	r png
+		size_freqs_summ = ddply(size_freqs,.(region,method,data_year,quarter),summarise,
+			observed=sum(length*proportion,na.rm=T),
+			uncertainty=mean(sd,na.rm=T),
+			expected=sum(length*value,na.rm=T)
+		)
+		size_freqs_summ = within(size_freqs_summ,{
+			observed[observed==0] = NA
+		})
+		print(ggplot(size_freqs_summ,aes(x=data_year+quarter/4,colour=factor(quarter))) + 
+			geom_line(aes(y=expected),alpha=0.7) + 
+			geom_point(aes(y=observed,size=log(uncertainty)),shape=1,size=2) + 
+			facet_grid(method~region) +
+			labs(x='Year',y='Mean length (cm)',colour='Quarter'))
+	figcaption
+		Observed (points) and expected (lines) mean length of catch by region, method, year and quarter.
+
+##  By region, method & quarter (aggregated over years)
+
+figure
+	r png
+		size_freqs_over_years = ddply(size_freqs,.(region,method,quarter,length),summarise,
+			observed=mean(proportion,na.rm=T),
+			expected=mean(value,na.rm=T)
+		)
+		print(ggplot(size_freqs_over_years,aes(x=length,colour=factor(quarter))) + 
+			geom_vline(x=seq(0,80,20),linetype=3,colour='grey') +
+			geom_line(aes(y=expected),alpha=0.7) + 
+			geom_point(aes(y=observed),shape=1,size=3) + 
+			geom_hline(y=0,alpha=0) + 
+			facet_grid(method~region) +
+			labs(x='Length (cm)',y='Proportion',colour='Quarter'))
+	figcaption
+		Observed (points) and expected (lines) proportion of catch in each length class by region, method & quarter (aggregated over years).
+
+## By year for a particular region & method (aggregated over quarters)
+
+r
+	size_freqs_by_year = ddply(size_freqs,.(region,method,data_year,length),summarise,
+		observed=mean(proportion,na.rm=T),
+		expected=mean(value,na.rm=T)
+	)
+	size_freqs_by_year_sub <- function(region_,method_){
+		print(ggplot(subset(size_freqs_by_year,region==region_&method==method_),aes(x=length)) + 
+			geom_point(aes(y=observed),shape=16,size=2,colour='grey') + 
+			geom_line(aes(y=expected),alpha=0.7) + 
+			geom_hline(y=0,alpha=0) + 
+			facet_wrap(~data_year) +
+			labs(x='Length (cm)',y='Proportion'))
+	}
+	items <- list(
+		list(region='W',method='PS',desc='purse seine (PS) in the western region (W)'),
+		list(region='W',method='GN',desc='gillnet (GN) in the western region (W)'),
+		list(region='M',method='PL',desc='pole and line (PL) in the Maldive region (M)'),
+		list(region='E',method='OT',desc='other methods (OT) in the eastern region (E)')
+	)
+	
+for item in items
+	figure
+		r png
+			size_freqs_by_year_sub(item$region,item$method)
+		figcaption
+			Observed (points) and expected (lines) size frequency distributions for {span!text item$desc} aggregated over quarters.
+
+## By year and quarter for a particular region & method (unaggregated)
+
+r
+	size_freqs_sub <- function(region_,method_){
+		print(ggplot(subset(size_freqs,region==region_&method==method_),aes(x=length)) + 
+			geom_point(aes(y=proportion),shape=16,size=2,colour='grey') + 
+			geom_line(aes(y=value),alpha=0.7) + 
+			geom_hline(y=0,alpha=0) + 
+			facet_grid(data_year~quarter) + 
+			labs(y="Proportion",x="Length (cm)"))
+	}
+	items <- list(
+		list(region='W',method='PS',desc='purse seine (PS) in the western region (W)'),
+		list(region='W',method='GN',desc='gillnet (GN) in the western region (W)'),
+		list(region='M',method='PL',desc='pole and line (PL) in the Maldive region (M)'),
+		list(region='E',method='OT',desc='other methods (OT) in the eastern region (E)')
+	)
+	
+for item in items
+	figure
+		r png 17x27cm
+			size_freqs_sub(item$region,item$method)
+		figcaption
+			Observed (points) and expected (lines) size frequency distributions for {span!text item$desc} aggregated over quarters.
