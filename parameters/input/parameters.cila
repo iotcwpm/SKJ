@@ -1,7 +1,7 @@
 section Stock recruitment relation
 
 	#recruits_unfished
-		#value 21
+		#value 20.8
 		#lower 15
 		#upper 24
 

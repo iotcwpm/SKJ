@@ -86,7 +86,7 @@ public:
 	/**
 	 * Selectivity parameters
 	 */
-	Array<Variable<Uniform>,SelectivityKnot> selectivities;
+	Array<Variable<Uniform>,Method,SelectivityKnot> selectivities;
 
 	/**
 	 * Catches by year, quarter, region and method
@@ -205,7 +205,7 @@ public:
 
 			for(auto method : methods){
 				for(auto knot : selectivity_knots){
-					model.selectivity_values(method,knot) = selectivities(knot);
+					model.selectivity_values(method,knot) = selectivities(method,knot);
 				}
 			}
 		}
