@@ -24,14 +24,15 @@ public:
 	Array<Variable<Lognormal>,DataYear> w_ps_cpue;
 
 	/**
-	 * Size frequencies
-	 */
-	Array<Variable<Normal>,DataYear,Quarter,Region,Method,Size> size_freqs;
-
-	/**
 	 * Z-estimates
 	 */
 	Array<Variable<Normal>,DataYear,Quarter,ZSize> z_ests;
+
+	/**
+	 * Size frequencies
+	 */
+	typedef Variable<FournierRobustifiedMultivariateNormal> SizeFreqVariable;
+	Array<SizeFreqVariable,DataYear,Quarter,Region,Method,Size> size_freqs;
 
     /**
      * Reflection
@@ -41,8 +42,8 @@ public:
         mirror
             .data(m_pl_cpue,"m_pl_cpue")
             .data(w_ps_cpue,"w_ps_cpue")
-            .data(size_freqs,"size_freqs")
             .data(z_ests,"z_ests")
+            .data(size_freqs,"size_freqs")
         ;
     }
 
@@ -56,8 +57,13 @@ public:
     void write(void){
     	m_pl_cpue.write("data/output/m_pl_cpue.tsv",true);
     	w_ps_cpue.write("data/output/w_ps_cpue.tsv",true);
-    	size_freqs.write("data/output/size_freqs.tsv",true);
     	z_ests.write("data/output/z_ests.tsv",true);
+    	size_freqs.write("data/output/size_freqs.tsv",
+    		{"value","proportion","size","sd"},
+    		[](std::ostream& stream, const SizeFreqVariable& var){
+    			stream<<var<<"\t"<<var.proportion<<"\t"<<var.size<<"\t"<<var.sd();
+    		}
+    	);
     }
 
 	/**
