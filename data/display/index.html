@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Indian Ocean skipjack model : data fits</title>
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" type="text/css" href="/core/stencils/themes/default/theme.css" />
+	</head>
+	<body>
+		
+		<main id="content">
+			 
+			<div id="title">Indian Ocean skipjack model : data fits</div>
+			<p>
+				This document displays fits to the data generated from the 
+				<code>run</code>
+				 task (i.e. 
+				<code>./ioskj.exe run</code>
+				)
+			</p>
+			which uses the default parameter values (those marked 
+			<code>#value</code>
+			) defined in 
+			<code>parameters/input/parameters.cila</code>
+			. 
+			Since those values are user inputs the following may not reflect best parameter estimates.
+			In the following plots the lines indicate values expected from the model while the points represent the observed data.
+			<pre data-code="r">
+source('../../common.R',local=T)
+load(c(
+	'm_pl_cpue','w_ps_cpue','size_freqs','z_ests'
+),from='../output')
+
+</pre>
+			<h1>Maldive (M) pole and line (PL) CPUE</h1>
+			<figure>
+				<pre data-code="r" data-format="png" data-size="17x12cm">
+m_pl_cpue = subset(m_pl_cpue,data_year&gt;2000)
+print(ggplot(m_pl_cpue,aes(x=data_year+quarter/4)) + 
+	geom_line(aes(y=value),alpha=0.7) + 
+	geom_point(aes(y=location,colour=factor(quarter),shape=factor(quarter)),size=3) + 
+	geom_hline(y=0,alpha=0) +
+	scale_shape_manual(values=1:4) +
+	labs(x='Year',y='Maldive pole and line CPUE index',colour='Quarter',shape='Quarter'))
+</pre>
+				<img src="1.png" data-output="true" />
+				<figcaption>
+					<span class="label">
+						<span class="type">Figure</span>
+						<span class="number">1</span>
+						<span class="separator">:</span>
+					</span>
+					Observed (points) and expected (lines) Maldive (M) pole and line (PL) CPUE.
+				</figcaption>
+			</figure>
+			<h1>Western (W) purse seine (PS) CPUE</h1>
+			<figure>
+				<pre data-code="r" data-format="png" data-size="17x12cm">
+print(ggplot(w_ps_cpue,aes(x=data_year)) + 
+	geom_line(aes(y=value),alpha=0.7) + 
+	geom_point(aes(y=location),shape=1,size=3) + 
+	geom_hline(y=0,alpha=0) +
+	labs(x='Year',y='West purse siene CPUE index'))
+</pre>
+				<img src="2.png" data-output="true" />
+				<figcaption>
+					<span class="label">
+						<span class="type">Figure</span>
+						<span class="number">2</span>
+						<span class="separator">:</span>
+					</span>
+					Observed (points) and expected (lines) western (W) purse seine (PS) CPUE.
+				</figcaption>
+			</figure>
+			<h1>Western (W) purse seine (PS) tagging Z estimates</h1>
+			<figure>
+				<pre data-code="r" data-format="png">
+z_ests = subset(z_ests,is.finite(value))
+print(ggplot(z_ests,aes(x=data_year+quarter/4)) + 
+	geom_line(aes(y=value),alpha=0.7) + 
+	geom_point(aes(y=mean,colour=factor(quarter)),shape=1,size=3) + 
+	geom_errorbar(aes(ymin=mean-sd,ymax=mean+sd,colour=factor(quarter)),width=0) +
+	geom_hline(y=0,alpha=0) +
+	facet_grid(z_size~.) +
+	labs(x='Year',y='Instantaneous rate of total mortality (Z)',colour='Quarter'))
+</pre>
+				<img src="3.png" data-output="true" />
+				<figcaption>
+					<span class="label">
+						<span class="type">Figure</span>
+						<span class="number">3</span>
+						<span class="separator">:</span>
+					</span>
+					Observed (points) and expected (lines) western (W) purse seine (PS) tagging Z estimates. Error bars indicate +/- one standard error in estimates.
+				</figcaption>
+			</figure>
+			<h1>Size frequencies</h1>
+			<h2>Mean length by region, method, year and quarter</h2>
+			<figure>
+				<pre data-code="r" data-format="png">
+size_freqs_summ = ddply(size_freqs,.(region,method,data_year,quarter),summarise,
+	observed=sum(length*proportion,na.rm=T),
+	uncertainty=mean(sd,na.rm=T),
+	expected=sum(length*value,na.rm=T)
+)
+size_freqs_summ = within(size_freqs_summ,{
+	observed[observed==0] = NA
+})
+print(ggplot(size_freqs_summ,aes(x=data_year+quarter/4,colour=factor(quarter))) + 
+	geom_line(aes(y=expected),alpha=0.7) + 
+	geom_point(aes(y=observed,size=log(uncertainty)),shape=1,size=2) + 
+	facet_grid(method~region) +
+	labs(x='Year',y='Mean length (cm)',colour='Quarter'))
+</pre>
+				<img src="4.png" data-output="true" />
+				<figcaption>
+					<span class="label">
+						<span class="type">Figure</span>
+						<span class="number">4</span>
+						<span class="separator">:</span>
+					</span>
+					Observed (points) and expected (lines) mean length of catch by region, method, year and quarter.
+				</figcaption>
+			</figure>
+			<h2>By region, method &amp; quarter (aggregated over years)</h2>
+			<figure>
+				<pre data-code="r" data-format="png">
+size_freqs_over_years = ddply(size_freqs,.(region,method,quarter,length),summarise,
+	observed=mean(proportion,na.rm=T),
+	expected=mean(value,na.rm=T)
+)
+print(ggplot(size_freqs_over_years,aes(x=length,colour=factor(quarter))) + 
+	geom_vline(x=seq(0,80,20),linetype=3,colour='grey') +
+	geom_line(aes(y=expected),alpha=0.7) + 
+	geom_point(aes(y=observed),shape=1,size=2) + 
+	geom_hline(y=0,alpha=0) + 
+	facet_grid(method~region) +
+	labs(x='Length (cm)',y='Proportion',colour='Quarter'))
+</pre>
+				<img src="5.png" data-output="true" />
+				<figcaption>
+					<span class="label">
+						<span class="type">Figure</span>
+						<span class="number">5</span>
+						<span class="separator">:</span>
+					</span>
+					Observed (points) and expected (lines) proportion of catch in each length class by region, method &amp; quarter (aggregated over years).
+				</figcaption>
+			</figure>
+			<h2>By year for a particular region &amp; method (aggregated over quarters)</h2>
+			<pre data-code="r">
+size_freqs_by_year = ddply(size_freqs,.(region,method,data_year,length),summarise,
+	observed=mean(proportion,na.rm=T),
+	expected=mean(value,na.rm=T)
+)
+size_freqs_by_year_sub &lt;- function(region_,method_){
+	print(ggplot(subset(size_freqs_by_year,region==region_&amp;method==method_),aes(x=length)) + 
+		geom_point(aes(y=observed),shape=16,size=2,colour='grey') + 
+		geom_line(aes(y=expected),alpha=0.7) + 
+		geom_hline(y=0,alpha=0) + 
+		facet_wrap(~data_year) +
+		labs(x='Length (cm)',y='Proportion'))
+}
+items &lt;- list(
+	list(region='W',method='PS',desc='purse seine (PS) in the western region (W)'),
+	list(region='W',method='GN',desc='gillnet (GN) in the western region (W)'),
+	list(region='M',method='PL',desc='pole and line (PL) in the Maldive region (M)'),
+	list(region='E',method='OT',desc='other methods (OT) in the eastern region (E)')
+)
+
+</pre>
+			<div data-for="item:items">
+				<figure data-off="true">
+					<pre data-code="r" data-format="png">
+size_freqs_by_year_sub(item$region,item$method)
+</pre>
+					<figcaption>
+						Observed (points) and expected (lines) size frequency distributions for 
+						<span data-text="item$desc">aggregated over quarters.</span>
+					</figcaption>
+				</figure>
+				<figure data-index="0">
+					<pre data-code="r" data-format="png">
+size_freqs_by_year_sub(item$region,item$method)
+</pre>
+					<img src="6.png" data-output="true" />
+					<figcaption>
+						<span class="label">
+							<span class="type">Figure</span>
+							<span class="number">6</span>
+							<span class="separator">:</span>
+						</span>
+						Observed (points) and expected (lines) size frequency distributions for 
+						<span data-text="item$desc">purse seine (PS) in the western region (W)</span>
+					</figcaption>
+				</figure>
+				<figure data-index="1">
+					<pre data-code="r" data-format="png">
+size_freqs_by_year_sub(item$region,item$method)
+</pre>
+					<img src="7.png" data-output="true" />
+					<figcaption>
+						<span class="label">
+							<span class="type">Figure</span>
+							<span class="number">7</span>
+							<span class="separator">:</span>
+						</span>
+						Observed (points) and expected (lines) size frequency distributions for 
+						<span data-text="item$desc">gillnet (GN) in the western region (W)</span>
+					</figcaption>
+				</figure>
+				<figure data-index="2">
+					<pre data-code="r" data-format="png">
+size_freqs_by_year_sub(item$region,item$method)
+</pre>
+					<img src="8.png" data-output="true" />
+					<figcaption>
+						<span class="label">
+							<span class="type">Figure</span>
+							<span class="number">8</span>
+							<span class="separator">:</span>
+						</span>
+						Observed (points) and expected (lines) size frequency distributions for 
+						<span data-text="item$desc">pole and line (PL) in the Maldive region (M)</span>
+					</figcaption>
+				</figure>
+				<figure data-index="3">
+					<pre data-code="r" data-format="png">
+size_freqs_by_year_sub(item$region,item$method)
+</pre>
+					<img src="9.png" data-output="true" />
+					<figcaption>
+						<span class="label">
+							<span class="type">Figure</span>
+							<span class="number">9</span>
+							<span class="separator">:</span>
+						</span>
+						Observed (points) and expected (lines) size frequency distributions for 
+						<span data-text="item$desc">other methods (OT) in the eastern region (E)</span>
+					</figcaption>
+				</figure>
+			</div>
+			<h2>By year and quarter for a particular region &amp; method (unaggregated)</h2>
+			<pre data-code="r">
+size_freqs_sub &lt;- function(region_,method_){
+	print(ggplot(subset(size_freqs,region==region_&amp;method==method_),aes(x=length)) + 
+		geom_point(aes(y=proportion),shape=16,size=2,colour='grey') + 
+		geom_line(aes(y=value),alpha=0.7) + 
+		geom_hline(y=0,alpha=0) + 
+		facet_grid(data_year~quarter) + 
+		labs(y="Proportion",x="Length (cm)"))
+}
+items &lt;- list(
+	list(region='W',method='PS',desc='purse seine (PS) in the western region (W)'),
+	list(region='W',method='GN',desc='gillnet (GN) in the western region (W)'),
+	list(region='M',method='PL',desc='pole and line (PL) in the Maldive region (M)'),
+	list(region='E',method='OT',desc='other methods (OT) in the eastern region (E)')
+)
+
+</pre>
+			<div data-for="item:items">
+				<figure data-off="true">
+					<pre data-code="r" data-format="png" data-size="17x27cm">
+size_freqs_sub(item$region,item$method)
+</pre>
+					<figcaption>
+						Observed (points) and expected (lines) size frequency distributions for 
+						<span data-text="item$desc">aggregated over quarters.</span>
+					</figcaption>
+				</figure>
+				<figure data-index="0">
+					<pre data-code="r" data-format="png" data-size="17x27cm">
+size_freqs_sub(item$region,item$method)
+</pre>
+					<img src="10.png" data-output="true" />
+					<figcaption>
+						<span class="label">
+							<span class="type">Figure</span>
+							<span class="number">10</span>
+							<span class="separator">:</span>
+						</span>
+						Observed (points) and expected (lines) size frequency distributions for 
+						<span data-text="item$desc">purse seine (PS) in the western region (W)</span>
+					</figcaption>
+				</figure>
+				<figure data-index="1">
+					<pre data-code="r" data-format="png" data-size="17x27cm">
+size_freqs_sub(item$region,item$method)
+</pre>
+					<img src="11.png" data-output="true" />
+					<figcaption>
+						<span class="label">
+							<span class="type">Figure</span>
+							<span class="number">11</span>
+							<span class="separator">:</span>
+						</span>
+						Observed (points) and expected (lines) size frequency distributions for 
+						<span data-text="item$desc">gillnet (GN) in the western region (W)</span>
+					</figcaption>
+				</figure>
+				<figure data-index="2">
+					<pre data-code="r" data-format="png" data-size="17x27cm">
+size_freqs_sub(item$region,item$method)
+</pre>
+					<img src="12.png" data-output="true" />
+					<figcaption>
+						<span class="label">
+							<span class="type">Figure</span>
+							<span class="number">12</span>
+							<span class="separator">:</span>
+						</span>
+						Observed (points) and expected (lines) size frequency distributions for 
+						<span data-text="item$desc">pole and line (PL) in the Maldive region (M)</span>
+					</figcaption>
+				</figure>
+				<figure data-index="3">
+					<pre data-code="r" data-format="png" data-size="17x27cm">
+size_freqs_sub(item$region,item$method)
+</pre>
+					<img src="13.png" data-output="true" />
+					<figcaption>
+						<span class="label">
+							<span class="type">Figure</span>
+							<span class="number">13</span>
+							<span class="separator">:</span>
+						</span>
+						Observed (points) and expected (lines) size frequency distributions for 
+						<span data-text="item$desc">other methods (OT) in the eastern region (E)</span>
+					</figcaption>
+				</figure>
+			</div>
+		</main>
+		<script src="/core/themes/boot.js"> </script>
+		<script>if(!window.Stencila){window.StencilaHost='http://stenci.la';document.write(unescape('%3Cscript src="http://stenci.la/core/themes/boot.js"%3E%3C/script%3E'))}</script>
+		<script>window.Stencila.Booter.theme('core/stencils/themes/default');</script>
+	</body>
+</html>

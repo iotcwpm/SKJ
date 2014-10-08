@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<title>Displays of model outputs</title>
+		<title>Indian Ocean skipjack model : general outputs</title>
 		<meta charset="UTF-8" />
 		<link rel="stylesheet" type="text/css" href="/core/stencils/themes/default/theme.css" />
 	</head>
@@ -9,16 +9,21 @@
 		
 		<main id="content">
 			 
-			<div id="title">Displays of model outputs</div>
+			<div id="title">Indian Ocean skipjack model : general outputs</div>
 			<p>
-				This document displays model outputs (files in the 
-				<code>model/outputs</code>
-				 folder) which are generated from the default parameter values defined in 
-				<code>parameters/input/parameters.cila</code>
-				 using 
+				This document displays model outputs generated from the 
+				<code>run</code>
+				 task (i.e. 
 				<code>./ioskj.exe run</code>
-				.
+				)
 			</p>
+			which uses the default parameter values (those marked 
+			<code>#value</code>
+			) defined in 
+			<code>parameters/input/parameters.cila</code>
+			.
+			Since those values are user inputs the following may not reflect best parameter estimates.
+			This is primarily intended for checking and illustrating the model.
 			<pre data-code="r">
 source('../../common.R',local=T)
 load(c(
@@ -27,7 +32,8 @@ load(c(
 	'mortalities',
 	'weights','maturities','selectivities',
 	'movement',
-	'numbers'
+	'numbers',
+	'track'
 ),from='../output')
 
 </pre>
@@ -35,7 +41,7 @@ load(c(
 			<figure>
 				<pre data-code="r" data-format="png" data-size="17x10cm">
 print(
-		ggplot(recruits_sizes,aes(x=length,y=value)) +
+	ggplot(recruits_sizes,aes(x=length,y=value)) +
 		geom_line() +
 		labs(x="Length (cm)",y="Proportion")
 )
@@ -227,6 +233,89 @@ print(
 					</span>
 					Selectivity at length by fishing method.
 				</figcaption>
+			</figure>
+			<h1>Catches</h1>
+			<figure>
+				<pre data-code="r" data-format="png">
+temp &lt;- melt(track[,c('year','quarter','catches_w_ps','catches_m_pl','catches_e_gn')],id.vars=c('year','quarter'))
+print(
+	ggplot(temp,aes(x=year+quarter/4,y=value,fill=variable)) + geom_bar(stat='identity') +
+		geom_vline(x=2015,alpha=0.6,linetype=2) +
+		labs(x='Year',y='Catch (t)')
+)
+
+</pre>
+				<img src="11.png" data-output="true" />
+			</figure>
+			<pre data-code="r">
+plot_track &lt;- function(what,label){
+	print(
+		ggplot(track,aes(x=year+quarter/4)) + 
+			geom_line(aes_string(y=what)) + 
+			geom_hline(y=0,alpha=0) +
+			geom_vline(x=2015,alpha=0.6,linetype=2) +
+			labs(x='Year',y=label)
+	)
+}
+
+</pre>
+			<h1>Recruitment</h1>
+			<figure>
+				<pre data-code="r" data-format="png" data-size="17x10cm">
+plot_track('recruits_determ/1e6','Deterministic recruitment (mil.)')
+
+</pre>
+				<img src="12.png" data-output="true" />
+			</figure>
+			<figure>
+				<pre data-code="r" data-format="png" data-size="17x10cm">
+plot_track('recruits_deviation','Recruitment deviation')
+
+</pre>
+				<img src="13.png" data-output="true" />
+			</figure>
+			<figure>
+				<pre data-code="r" data-format="png" data-size="17x10cm">
+plot_track('recruits/1e6','Recruitment (mil.)')
+
+</pre>
+				<img src="14.png" data-output="true" />
+			</figure>
+			<h1>Spawning biomass</h1>
+			<figure>
+				<pre data-code="r" data-format="png" data-size="17x10cm">
+plot_track('biomass_spawning_overall','Overall spawning biomass')
+
+</pre>
+				<img src="15.png" data-output="true" />
+			</figure>
+			<figure>
+				<pre data-code="r" data-format="png" data-size="17x10cm">
+print(
+	ggplot(track,aes(x=year+quarter/4)) + 
+		geom_line(aes(y=biomass_spawning_w,colour='W')) + 
+		geom_line(aes(y=biomass_spawning_m,colour='M')) + 
+		geom_line(aes(y=biomass_spawning_e,colour='E')) + 
+		geom_hline(y=0,alpha=0) +
+		geom_vline(x=2015,alpha=0.6,linetype=2) +
+		labs(x='Year',y='Spawning biomass in region',colour='Region')
+)
+
+</pre>
+				<img src="16.png" data-output="true" />
+			</figure>
+			<figure>
+				<pre data-code="r" data-format="png" data-size="17x10cm">
+plot_track('biomass_vulnerable_m_pl','Maldives pole and line vulnerable biomass')
+
+</pre>
+				<img src="17.png" data-output="true" />
+			</figure>
+			<figure>
+				<pre data-code="r" data-format="png" data-size="17x10cm">
+plot_track('exp_rate_m_pl','Maldives pole and line exploitation rate')
+</pre>
+				<img src="18.png" data-output="true" />
 			</figure>
 		</main>
 		<script src="/core/themes/boot.js"> </script>
