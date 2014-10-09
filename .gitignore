@@ -20,3 +20,9 @@ pages
 *.sublime-project
 *.sublime-workspace
 .Rhistory
+
+# Ignore local files
+*.local
+
+# Ignore dependencies
+stencila

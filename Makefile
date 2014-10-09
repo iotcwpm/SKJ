@@ -2,15 +2,15 @@ all: ioskj.debug
 
 .PHONY: docs tests
 
-HPPS := $(shell find . -name "*.hpp")
-CPPS := $(shell find . -name "*.cpp")
+# Define options and required libraries
+CXX_FLAGS := -std=c++11 -Wall -Wno-unused-function -Wno-unused-local-typedefs
+INC_DIRS := -I. -Istencila
+LIB_DIRS := -Lstencila
+LIBS := -lstencila
 
-CXX_FLAGS := -std=c++11 -Wall -Wno-unused-local-typedefs
-
-LIBS := -lstencila -lboost_filesystem -lboost_system -lpugixml -ltidy-html5
-
-# Include local Makefile for setting or overriding make variables
-include Makefile.local
+# Find all .hpp and .cpp files (to save time don't recurse into subdirectories)
+HPPS := $(shell find . -maxdepth 1 -name "*.hpp")
+CPPS := $(shell find . -maxdepth 1 -name "*.cpp")
 
 ioskj.exe: $(HPPS) $(CPPS)
 	$(CXX) $(CXX_FLAGS) -O3 $(INC_DIRS) -oioskj.exe ioskj.cpp $(LIB_DIRS) $(LIBS)
@@ -23,7 +23,7 @@ run: ioskj.exe
 
 
 tests.exe: tests.cpp
-	$(CXX) $(CXX_FLAGS) -O3 $(INC_DIRS) -otests.exe tests.cpp $(LIBS) -lboost_unit_test_framework
+	$(CXX) $(CXX_FLAGS) -O3 $(INC_DIRS) -otests.exe tests.cpp $(LIB_DIRS) $(LIBS) -lboost_unit_test_framework
 
 # Run the tests
 tests.out : tests.exe
@@ -44,13 +44,12 @@ docs:
 # and the "ghp-import" script
 # 	sudo pip install ghp-import
 publish:
-	mkdir -p pages/doxygen pages/model/description pages/model/display
-	cp -fr model/description/. pages/model/description/
-	cp -fr parameters/description/. pages/parameters/description/
-	cp -fr model/display/. pages/model/display/
-	cp -fr data/display/. pages/data/display/
-	cp -fr doxygen/html/. pages/doxygen/
-	ghp-import -m "Updated pages" -p pages
+	mkdir -p .pages/model/description ; cp -fr model/description/. .pages/model/description/
+	mkdir -p .pages/parameters/description ; cp -fr parameters/description/. .pages/parameters/description/
+	mkdir -p .pages/model/display ; cp -fr model/display/. .pages/model/display/
+	mkdir -p .pages/data/display ; cp -fr data/display/. .pages/data/display/
+	mkdir -p .pages/doxygen  ; cp -fr doxygen/html/. .pages/doxygen/
+	ghp-import -m "Updated pages" -p .pages
 
 clean:
 	rm -f *.debug *.exe *.o
