@@ -5,14 +5,7 @@
 
 using namespace IOSKJ;
 
-struct modelFixture { 
-	Model model;
-
-	modelFixture(){
-	} 
-};
-
-BOOST_FIXTURE_TEST_SUITE(model,modelFixture)
+BOOST_AUTO_TEST_SUITE(model)
 
 	/**
 	 * @class IOSKJ::Model
@@ -22,6 +15,7 @@ BOOST_FIXTURE_TEST_SUITE(model,modelFixture)
 	 * conditions given further simulation.
 	 */
 	BOOST_AUTO_TEST_CASE(equilibrium_stable){
+		Model model;
 		model.track_open("equilibrium_stable.txt");
 
 		model.inititialise();
@@ -46,6 +40,7 @@ BOOST_FIXTURE_TEST_SUITE(model,modelFixture)
 	 * is equal in all areas
 	 */
 	BOOST_AUTO_TEST_CASE(equilibrium_uniform){
+		Model model;
 		model.recruits_uniform();
 		model.movement_none();
 		model.initialise();
@@ -64,6 +59,7 @@ BOOST_FIXTURE_TEST_SUITE(model,modelFixture)
 	 * standard deviation.
 	 */
 	BOOST_AUTO_TEST_CASE(recruiment_variation){
+		Model model;
 		model.track_open("recruiment_variation.txt");
 
 		model.initialise();
@@ -85,6 +81,7 @@ BOOST_FIXTURE_TEST_SUITE(model,modelFixture)
 	 * 
 	 */
 	BOOST_AUTO_TEST_CASE(exploitation_specified){
+		Model model;
 		model.track_open("exploitation_specified.txt");
 
 		model.initialise();

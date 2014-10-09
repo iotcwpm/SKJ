@@ -68,11 +68,20 @@ void priors(int replicates=1000){
 
 int check_feasible(uint time, uint year, uint quarter){
 
+	// Stock status ...
 	auto status = model.biomass_spawning_overall(quarter)/model.biomass_spawning_unfished(quarter);
-	// Stock status must always be >20% B0
-	if(status<0.2) return 1;
-	// Stock status since 2005 must be less than 100% B0
-	if(year>2005 and status>1) return 2;
+	// ... must always be >10% B0
+	if(status<0.1) return 1;
+	// ... since 2008 must be less than 100% B0
+	if(year>2008 and status>1) return 2;
+
+	// M PL CPUE ...
+	static double m_pl_cpue_base;
+	if(year==2004 and quarter==2) m_pl_cpue_base = data.m_pl_cpue(year,quarter);
+	// ... must have increased from 2004 to 2006
+	if(year==2006 and quarter==2 and data.m_pl_cpue(year,quarter)/m_pl_cpue_base<1) return 3;
+	// ... must have decreased from 2004 to 2011
+	if(year==2011 and quarter==2 and data.m_pl_cpue(year,quarter)/m_pl_cpue_base>1) return 4;
 
 	return 0;
 }
@@ -120,14 +129,14 @@ void condition_feasible(int trials=100){
 int main(int argc, char** argv){ 
 	startup();
 	try{
-		for(int arg=1;arg<argc;arg++){
-            std::string task = argv[arg];
-            std::cout<<"-------------Task-------------\n"<<task<<"\n";
-            if(task=="run") run();
-            else if(task=="priors") priors();
-            else if(task=="feasible") condition_feasible();
-            std::cout<<"-------------------------------\n";
-        }
+        if(argc==1) throw std::runtime_error("No task given");
+        std::string task = argv[1];
+        uint num = (argc>2)?boost::lexical_cast<uint>(argv[2]):0;
+        std::cout<<"-------------Task-------------\n"<<task<<"\n";
+        if(task=="run") run();
+        else if(task=="priors") priors();
+        else if(task=="feasible") condition_feasible(num);
+        std::cout<<"-------------------------------\n";
 	} catch(std::exception& error){
         std::cout<<"************Error************\n"
                 <<error.what()<<"\n"

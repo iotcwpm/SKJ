@@ -12,7 +12,7 @@ doxygen
 !doxygen/Doxyfile
 
 # Pages directory used for collating what gets published
-pages
+.pages
 
 *.svg
 
