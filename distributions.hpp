@@ -220,6 +220,11 @@ public:
 
     double lower = NAN;
     double upper = NAN;
+
+    Uniform(double lower = NAN,double upper = NAN):
+        lower(lower),
+        upper(upper){
+    }
     
     bool valid(void) const {
         return std::isfinite(lower) and std::isfinite(upper) and lower<upper;

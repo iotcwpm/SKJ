@@ -19,6 +19,7 @@ uint quarter(uint time){
 	return time%4;
 }
 
+const uint time_now = time(2014,3);
 const uint time_max = time(year_max,3);
 
 class Year : public Dimension<Year,year_max-year_min+1,year_min> {

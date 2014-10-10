@@ -139,6 +139,8 @@ public:
         ;
     }
 
+    using Structure<Parameters>::read;
+
     void read(void){
     	Structure<Parameters>::read("parameters/input/parameters.cila");
     	recruits_deviations.read("parameters/input/recruits_deviations.tsv",true);
@@ -151,6 +153,7 @@ public:
 
     void write(void){
     	Structure<Parameters>::write("parameters/output/parameters.cila");
+    	values().write("parameters/output/values.tsv");
     	recruits_deviations.write("parameters/output/recruits_deviations.tsv",true);
     	selectivities.write("parameters/output/selectivities.tsv",true);
     	catches.write("parameters/output/catches.tsv",true);
@@ -265,64 +268,6 @@ public:
 	};
 
 	/**
-	 * Get a list of parameter names
-	 *
-	 * This method differs from `Structure::labels` in that it does not
-	 * add the inner names of variables, just the variable names themselves,
-	 * and ignores `Variable<Fixed>`
-	 */
-	std::vector<std::string> labels(void) {
-		return Labeller().mirror(*this).labels;
-	}
-	struct Labeller : Variabler<Labeller> {
-		using Variabler<Labeller>::data;
-		std::string prefix;
-		std::vector<std::string> labels;
-
-		template<class Distribution, class... Dimensions>
-		Labeller& data(Array<Variable<Distribution>,Dimensions...>& array, const std::string& name){
-			prefix = name;
-			array.reflect(*this);
-			prefix = "";
-			return *this;
-		}
-
-		template<class Distribution>
-		Labeller& data(Variable<Distribution>& variable, const std::string& name){
-			labels.push_back(prefix+name);
-			return *this;
-		}
-	};
-
-	/**
-	 * Get a sample from the parameter prior distributions
-	 *
-	 * @parameter number Number of samples to get
-	 */
-	Frame<> sample(unsigned int number=1){
-		auto labs = labels();
-		unsigned int cols = labs.size();
-		Frame<> samples(number,labs);
-		for(unsigned int row=0;row<number;row++){
-			auto sample = Sampler().mirror(*this).sample;
-			for(unsigned int col=0;col<cols;col++){
-				samples(row,col) = sample[col];
-			}
-		}
-		return samples;
-	}
-	struct Sampler : Variabler<Sampler> {
-		using Variabler<Sampler>::data;
-		std::vector<double> sample;
-
-		template<class Distribution>
-		Sampler& data(Variable<Distribution>& variable, const std::string& name){
-			sample.push_back(variable.random());
-			return *this;
-		}
-	};
-
-	/**
 	 * Randomise the values of variables
 	 */
 	void randomise(void){
@@ -333,7 +278,7 @@ public:
 
 		template<class Distribution>
 		Randomiser& data(Variable<Distribution>& variable, const std::string& name){
-			variable = variable.random();
+			variable.value = variable.random();
 			return *this;
 		}
 	};
@@ -341,16 +286,27 @@ public:
 	/**
 	 * Get the values of variables
 	 */
-	std::vector<double> values(void){
+	Frame values(void){
 		return Values().mirror(*this).values;
 	}
 	struct Values : Variabler<Values> {
 		using Variabler<Values>::data;
-		std::vector<double> values;
+		Frame values;
+		std::string prefix;
+
+		Values():values(1){}
+
+		template<class Distribution, class... Dimensions>
+		Values& data(Array<Variable<Distribution>,Dimensions...>& array, const std::string& name){
+			prefix = name;
+			array.reflect(*this);
+			prefix = "";
+			return *this;
+		}
 
 		template<class Distribution>
 		Values& data(Variable<Distribution>& variable, const std::string& name){
-			values.push_back(variable);
+			values.add(prefix+name+".value",Real,variable.value);
 			return *this;
 		}
 	};
