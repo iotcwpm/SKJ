@@ -311,21 +311,28 @@ public:
 	/**
 	 * @}
 	 */
-	
+
 
 	/**
-	 * Set exploitation rate. Used in testing and in 
-	 * equilibrium exploitation i.e. MSY/BMSY calculations
+	 * @name Variable getting methods
+	 * 
+	 * @{
 	 */
-	void exploitation_rate_set(double value){
-		exploitation_on = true;
-		catches_on = false;
-		exploitation_rate_specified = value;
+	
+	/**
+	 * Get the stock status (spawning biomass as a fraction of pristine)
+	 */
+	double biomass_status(uint time){
+		uint quarter = IOSKJ::quarter(time);
+		return biomass_spawning_overall(quarter)/biomass_spawning_unfished(quarter);
 	}
 
+	//! @}
+
 	/**
-	 * @{
 	 * @name Parameter setting methods
+	 * 
+	 * @{
 	 */
 
 	/**
@@ -357,10 +364,30 @@ public:
 	//! @}
 
 	/**
-	 * Sample parameter values from prior probability distributions
+	 * @name Dynamics setting methods
+	 * 
+	 * @{
 	 */
-	void sample(void){
+	
+	/**
+	 * Set exploitation rate. Used in testing and in 
+	 * equilibrium exploitation i.e. MSY/BMSY calculations
+	 */
+	void exploitation_rate_set(double value){
+		exploitation_on = true;
+		catches_on = false;
+		exploitation_rate_specified = value;
 	}
+
+	/**
+	 * Set instantaneous rate of fishing mortality (F).
+	 * Like `exploitation_rate_set` but uses F insted of exp. rate.
+	 */
+	void fishing_mortality_set(double value){
+		exploitation_rate_set(1-std::exp(-value));
+	}
+
+	//! @}
 
 	/**
 	 * Initialise various model variables based on current parameter values
