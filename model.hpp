@@ -406,7 +406,7 @@ public:
 		for(auto size : sizes){
 			double length = 2*size.index()+1;
 			lengths(size) = length;
-			weights(size) = 1;//weight_length_a*std::pow(length,weight_length_b);
+			weights(size) = weight_length_a*std::pow(length,weight_length_b);
 			maturities(size) = 1.0/(1.0+std::pow(19,(maturity_length_inflection-length)/maturity_length_steepness));
 		}
 

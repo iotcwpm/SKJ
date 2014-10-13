@@ -1,6 +1,6 @@
 #title Indian Ocean skipjack model : yield curve and MSY
 
-This document summarises output from the `yield` task which is primarily intended for checking MSY calculations and the shape of the yield curve. The shape of the yield curve is dependent on the model's parameters (in this case read in from `parameters/input/parameters.cila`).
+This document summarises output from the `yield` task which is primarily intended for checking MSY calculations and the shape of the yield curve. The shape of the yield curve is dependent on the model's parameters (in this case read in from `parameters/input/parameters.cila`) including selectivity parameters (shown below).
 
 r
 	source('../../common.R',local=T)
@@ -12,6 +12,30 @@ r
 	load(c(
 		'maturities','selectivities'
 	),from='../../model/output')
+
+table
+	caption Yield curve related variables.
+	tbody!with model
+		tr
+			td |E_{msy}|
+			td Exploitation rate which produces MSY
+			td!text e_msy
+		tr
+			td |F_{msy}|
+			td Instantaneous rate of fishing mortality which produces MSY
+			td!text f_msy
+		tr
+			td |MSY|
+			td Maximum sustainable yield (quarterly)
+			td!text msy
+		tr
+			td |B_{msy}|
+			td Total spawning biomass associated with maximum sustainable yield
+			td!text biomass_spawning_msy
+		tr
+			td
+			td Number of iterations used to find MSY
+			td!text msy_trials
 
 figure
 	r png 17x10cm
@@ -38,6 +62,6 @@ figure
 			ggplot() +
 				geom_line(data=maturities,aes(x=length,y=value),colour='black',linetype=2) +
 				geom_line(data=selectivities,aes(x=length,y=value,colour=method)) +
-				labs(x="Length (cm)",y="Proportion mature / selected")
+				labs(x="Length (cm)",y="Proportion mature / selected",colour="Method")
 		)
-	figcaption Maturity at length and selectivity at length (by method).
+	figcaption Maturity at length (dotted line) and selectivity at length (by method).
