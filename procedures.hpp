@@ -12,28 +12,28 @@ public:
 	virtual void write(std::ofstream& stream) = 0;
 };
 
-class ProcedureA : public Procedure, public Structure<ProcedureA> {
+class BRule : public Procedure, public Structure<BRule> {
 public:
 
 	/**
 	 * Precision with which B (stock status) is estimated
 	 */
-	double B_precision;
+	double precision;
 
 	/**
 	 * Target (maximum) F (fishing mortality)
 	 */
-	double F_target;
+	double target;
 
 	/**
 	 * Theshold B (stock status) below which F is reduced
 	 */
-	double B_thresh;
+	double thresh;
 
 	/**
 	 * Limit B (stock status) below which F is 0
 	 */
-	double B_limit;
+	double limit;
 
 	/**
 	 * Reflection
@@ -41,33 +41,33 @@ public:
 	template<class Mirror>
 	void reflect(Mirror& mirror){
 		mirror
-			.data(B_precision,"B_precision")
-			.data(F_target,"F_target")
-			.data(B_thresh,"B_thresh")
-			.data(B_limit,"B_limit")
+			.data(precision,"precision")
+			.data(target,"target")
+			.data(thresh,"thresh")
+			.data(limit,"limit")
 		;
 	}
 
 	void write(std::ofstream& stream){
 		stream
-			<<"A"<<"\t"
-			<<B_precision<<"\t"
-			<<F_target<<"\t"
-			<<B_thresh<<"\t"
-			<<B_limit<<"\t\t\t\t\t\t\n";
+			<<"BRule"<<"\t"
+			<<precision<<"\t"
+			<<target<<"\t"
+			<<thresh<<"\t"
+			<<limit<<"\t\t\t\t\t\t\n";
 	}
 
 	double f_calc(double b){
-	    if(b<B_limit) return 0;
-    	else if(b>B_thresh) return F_target;
-    	else return F_target/(B_thresh-B_limit)*(b-B_limit);
+	    if(b<limit) return 0;
+    	else if(b>thresh) return target;
+    	else return target/(thresh-limit)*(b-limit);
     }
 
 	virtual void operate(uint time, Model& model){
 		// Get stock status
 		double b = model.biomass_status(time);
 		// Add imprecision
-		Lognormal imprecision(1,B_precision);
+		Lognormal imprecision(1,precision);
 		b *= imprecision.random();
 		// Calculate F
 		double f = f_calc(b);
@@ -77,19 +77,111 @@ public:
 
 };
 
+class FRange : public Procedure, public Structure<FRange> {
+public:
+
+	/**
+	 * Frequency of F estimates
+	 */
+	int frequency;
+
+	/**
+	 * Precision of F estimate
+	 */
+	double precision;
+
+	/**
+	 * Target F
+	 */
+	double target;
+
+	/**
+	 * Buffer around target F
+	 */
+	double buffer;
+
+	/**
+	 * Reflection
+	 */
+	template<class Mirror>
+	void reflect(Mirror& mirror){
+		mirror
+			.data(frequency,"frequency")
+			.data(precision,"precision")
+			.data(target,"target")
+			.data(buffer,"buffer")
+		;
+	}
+
+	void write(std::ofstream& stream){
+		stream
+			<<"FRange"<<"\t"
+			<<frequency<<"\t"
+			<<precision<<"\t"
+			<<target<<"\t"
+			<<buffer<<"\t\t\t\t\t\t\n";
+	}
+
+	virtual void reset(void){
+		last_ = -1; 
+	}
+
+	virtual void operate(uint time, Model& model){
+		int year = IOSKJ::year(time);
+		if(last_<0 or year-last_>frequency){
+			// Get an estimate of F
+			double f = model.biomass_status(time);
+			// Add imprecision
+			Lognormal imprecision(1,precision);
+			f *= imprecision.random();
+			// Check to see if F is outside of range
+			if(f<target-buffer or f>target+buffer){
+				// Calculate ratio between current estimated F and target
+				// and adjust effort accordingly
+				double ratio = f/target;
+				//model.effort_adjust(ratio);
+			}
+			last_ = year;
+		}
+	}
+
+private:
+
+	/**
+	 * Time that the last F estimate was made
+	 */
+	int last_;
+};
+
 class Procedures : public Array<Procedure*> {
 public:
 
 	void populate(void){
+		// BRule
 		for(double precision : {0.0}){
 			for(auto target : {0.1,0.2,0.3}){
 				for(auto thresh : {0.3,0.5}){
 					for(auto limit : {0.1,0.2}){
-						auto& proc = * new ProcedureA;
-						proc.B_precision = precision;
-						proc.F_target = target;
-						proc.B_thresh = thresh;
-						proc.B_limit = limit;
+						auto& proc = * new BRule;
+						proc.precision = precision;
+						proc.target = target;
+						proc.thresh = thresh;
+						proc.limit = limit;
+						append(&proc);
+					}
+				}
+			}
+		}
+		// FRange
+		for(int frequency : {3,5,7}){
+			for(double precision : {0.0,0.1}){
+				for(auto target : {0.1,0.2,0.3}){
+					for(auto buffer : {0.1,0.2}){
+						auto& proc = * new FRange;
+						proc.frequency = frequency;
+						proc.precision = precision;
+						proc.target = target;
+						proc.buffer = buffer;
 						append(&proc);
 					}
 				}

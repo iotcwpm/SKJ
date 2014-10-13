@@ -1,0 +1,64 @@
+#title Indian Ocean skipjack model : management procedure evaluations
+
+r
+	source('../../common.R',local=T)
+	
+	load(c(
+		'procedures','samples',
+		'performances',
+		'track'
+	),from='../output')
+
+	perfs <- merge(procedures, 
+				ddply(performances,.(procedure),summarise,
+				   catches_total = mean(catches_total),
+				   catches_mapc = mean(catches_mapc),
+				   status_mean = mean(status_mean),
+				   status_b10 = mean(status_b10),
+				   status_b20 = mean(status_b20)
+				)
+			)
+
+	track <- within(track,{
+		procedure <- factor(procedure)
+	})
+
+# Track
+
+figure
+	r png 17x10cm
+		print(
+			ggplot(subset(track,replicate<4),aes(x=year+quarter/4,y=catches_total)) +
+				geom_line(aes(colour=procedure)) +
+				facet_wrap(~replicate) +
+				geom_vline(x=2015,linetype=2) +
+				labs(x="Year",y="Total catch")
+		)
+	figcaption Catches
+
+figure
+	r png 17x10cm
+		print(
+			ggplot(subset(track,replicate<10 & quarter==0),aes(x=year+quarter/4,y=biomass_spawning_overall)) +
+				geom_line(aes(colour=procedure)) +
+				facet_wrap(~replicate) +
+				geom_vline(x=2015,linetype=2) +
+				labs(x="Year",y="Total catch")
+		)
+	figcaption Catches
+
+ggplot(perfs,aes(x=catches_total/1000,y=1-status_b20)) +
+	geom_point(aes(colour=class)) + 
+	geom_vline(x=0,alpha=0) + 
+	geom_hline(y=0,alpha=0) + 
+	labs(x="Yield (mean total catch, `000 t)",y="Safety (P(B>20%B0))")
+
+
+ggplot(subset(perfs,class="A"),aes(x=catches_total/1000,y=1-status_b20)) +
+	geom_point(aes(colour=factor(p2),shape=factor(p3))) + 
+	geom_vline(x=0,alpha=0) + 
+	geom_hline(y=0,alpha=0) + 
+	labs(x="Yield (mean total catch, `000 t)",y="Safety (P(B>20%B0))")
+
+
+
