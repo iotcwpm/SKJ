@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['initialise',['initialise',['../classIOSKJ_1_1Model.html#ae15f7b02094c380aeec9464d626705fb',1,'IOSKJ::Model']]]
+  ['fishing_5fmortality_5fset',['fishing_mortality_set',['../classIOSKJ_1_1Model.html#a99cdfa3685dc57db46cf66037171cfbf',1,'IOSKJ::Model']]]
 ];

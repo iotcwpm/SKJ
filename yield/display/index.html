@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Indian Ocean skipjack model : yield curve and MSY</title>
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" type="text/css" href="/core/stencils/themes/default/theme.css" />
+	</head>
+	<body>
+		
+		<main id="content">
+			 
+			<div id="title">Indian Ocean skipjack model : yield curve and MSY</div>
+			<p>
+				This document summarises output from the 
+				<code>yield</code>
+				 task which is primarily intended for checking MSY calculations and the shape of the yield curve. The shape of the yield curve is dependent on the model's parameters (in this case read in from 
+				<code>parameters/input/parameters.cila</code>
+				).
+			</p>
+			<pre data-code="r">
+source('../../common.R',local=T)
+
+load(c(
+	'curve','model'
+),from='../output')
+
+load(c(
+	'maturities','selectivities'
+),from='../../model/output')
+
+</pre>
+			<figure>
+				<pre data-code="r" data-format="png" data-size="17x10cm">
+print(
+	ggplot(curve,aes(x=exprate,y=yield/1000)) +
+		geom_line() +
+		geom_point(data=model,aes(x=e_msy,y=msy/1000),shape=16,size=3,colour=hsv(0.3,0.7,0.7)) +
+		labs(x="Exploitation rate",y="Yield (`000 t, quarterly)")
+)
+</pre>
+				<img src="1.png" data-output="true" />
+				<figcaption>
+					<span class="label">
+						<span class="type">Figure</span>
+						<span class="number">1</span>
+						<span class="separator">:</span>
+					</span>
+					Yield curve: equilibrium yield versus equilibrium exploitation rate. The green point indicates the MSY calculated by the model's 
+					<code>msy_find</code>
+					 method hich uses Brent's minimisation algorithm.
+				</figcaption>
+			</figure>
+			<figure>
+				<pre data-code="r" data-format="png" data-size="17x10cm">
+print(
+	ggplot(curve,aes(x=depletion,y=yield/1000)) +
+		geom_line() +
+		labs(x="Depletion (B/B0)",y="Yield (`000 t, quarterly)")
+)
+</pre>
+				<img src="2.png" data-output="true" />
+				<figcaption>
+					<span class="label">
+						<span class="type">Figure</span>
+						<span class="number">2</span>
+						<span class="separator">:</span>
+					</span>
+					Yield curve: equilibrium yield versus equilibrium depletion levels (%B0).
+				</figcaption>
+			</figure>
+			<figure>
+				<pre data-code="r" data-format="png" data-size="17x10cm">
+print(
+	ggplot() +
+		geom_line(data=maturities,aes(x=length,y=value),colour='black',linetype=2) +
+		geom_line(data=selectivities,aes(x=length,y=value,colour=method)) +
+		labs(x="Length (cm)",y="Proportion mature / selected")
+)
+</pre>
+				<img src="3.png" data-output="true" />
+				<figcaption>
+					<span class="label">
+						<span class="type">Figure</span>
+						<span class="number">3</span>
+						<span class="separator">:</span>
+					</span>
+					Maturity at length and selectivity at length (by method).
+				</figcaption>
+			</figure>
+		</main>
+		<script src="/core/themes/boot.js"> </script>
+		<script>if(!window.Stencila){window.StencilaHost='http://stenci.la';document.write(unescape('%3Cscript src="http://stenci.la/core/themes/boot.js"%3E%3C/script%3E'))}</script>
+		<script>window.Stencila.Booter.theme('core/stencils/themes/default');</script>
+	</body>
+</html>

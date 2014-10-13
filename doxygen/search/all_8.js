@@ -12,5 +12,7 @@ var searchData=
   ['mortality_5fcap_5fsize',['mortality_cap_size',['../classIOSKJ_1_1Model.html#a21e3b545b434eafa1b2db1ec8a9f5242',1,'IOSKJ::Model']]],
   ['mortality_5fexponent',['mortality_exponent',['../classIOSKJ_1_1Model.html#a63c3f5065a88d9d1f3d310539c39e7b8',1,'IOSKJ::Model']]],
   ['movement_5fstay',['movement_stay',['../classIOSKJ_1_1Parameters.html#a6bf2dd27453a6b4098d7aefa154dd2bf',1,'IOSKJ::Parameters']]],
-  ['movement_5funiform',['movement_uniform',['../classIOSKJ_1_1Model.html#a0278c3e4893f0891856dc4df93d3306f',1,'IOSKJ::Model']]]
+  ['movement_5funiform',['movement_uniform',['../classIOSKJ_1_1Model.html#a0278c3e4893f0891856dc4df93d3306f',1,'IOSKJ::Model']]],
+  ['msy',['msy',['../classIOSKJ_1_1Model.html#aeb1010a45bdd1229ec3e3547481c37b1',1,'IOSKJ::Model']]],
+  ['msy_5ffind',['msy_find',['../classIOSKJ_1_1Model.html#ab866cdbb2797465558eedad59a0e9b61',1,'IOSKJ::Model']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['movement_5funiform',['movement_uniform',['../classIOSKJ_1_1Model.html#a0278c3e4893f0891856dc4df93d3306f',1,'IOSKJ::Model']]]
+  ['initialise',['initialise',['../classIOSKJ_1_1Model.html#ae15f7b02094c380aeec9464d626705fb',1,'IOSKJ::Model']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['lengths',['lengths',['../classIOSKJ_1_1Model.html#ab26d2c0b3da23a380d21bbfafa236cff',1,'IOSKJ::Model']]]
+  ['growth_5frate',['growth_rate',['../classIOSKJ_1_1Parameters.html#a960e3f2bea57986e452ed1705e421442',1,'IOSKJ::Parameters']]]
 ];
