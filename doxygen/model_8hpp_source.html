@@ -229,7 +229,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;        <span class="keywordflow">for</span>(<span class="keyword">auto</span> size : sizes){</div>
 <div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;            <span class="keywordtype">double</span> length = 2*size.index()+1;</div>
 <div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;            <a class="code" href="classIOSKJ_1_1Model.html#ab26d2c0b3da23a380d21bbfafa236cff">lengths</a>(size) = length;</div>
-<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;            <a class="code" href="classIOSKJ_1_1Model.html#a9befb275d915c5cec6b1e0e7a4bc8791">weights</a>(size) = 1;<span class="comment">//weight_length_a*std::pow(length,weight_length_b);</span></div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;            <a class="code" href="classIOSKJ_1_1Model.html#a9befb275d915c5cec6b1e0e7a4bc8791">weights</a>(size) = <a class="code" href="classIOSKJ_1_1Model.html#a84fb39fdf2cfe838312c0d406be4282a">weight_length_a</a>*std::pow(length,weight_length_b);</div>
 <div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;            <a class="code" href="classIOSKJ_1_1Model.html#a374c4b48c908c40b7401e484cc49c767">maturities</a>(size) = 1.0/(1.0+std::pow(19,(<a class="code" href="classIOSKJ_1_1Model.html#a608d7f7572e14fef180db8b060cad283">maturity_length_inflection</a>-length)/maturity_length_steepness));</div>
 <div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;        }</div>
 <div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;</div>
@@ -627,7 +627,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Oct 13 2014 15:09:24 for Indian Ocean Skipjack by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Oct 13 2014 15:19:00 for Indian Ocean Skipjack by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>
