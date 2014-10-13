@@ -6,6 +6,7 @@
 #include "parameters.hpp" 
 #include "data.hpp"
 #include "procedures.hpp"
+#include "performance.hpp"
 #include "tracker.hpp"
 
 using namespace IOSKJ;
@@ -27,13 +28,13 @@ void run(void){
 	for(uint time=0;time<=time_max;time++){
 		std::cout<<time<<"\t"<<year(time)<<"\t"<<quarter(time)<<std::endl;
 		//... set model parameters
-		parameters.set(model,time);
+		parameters.set(time,model);
 		//... update the model
 		model.update(time);
 		//... get model variables corresponding to data
-		data.get(model,time);
+		data.get(time,model);
 		//... get model variables of interest for tracking
-		tracker.get(model,time);
+		tracker.get(0,0,time,model);
 	}
 	// Write out
 	model.write();
@@ -104,11 +105,11 @@ void condition_feasible(int trials=100){
 		for(;time<=time_end;time++){
 			// Do the time step
 			//... set parameters
-			parameters.set(model,time);
+			parameters.set(time,model);
 			//... update the model
 			model.update(time);
 			//... get data
-			data.get(model,time);
+			data.get(time,model);
 			// Check feasibility
 			uint year = IOSKJ::year(time);
 			uint quarter = IOSKJ::quarter(time);
@@ -139,22 +140,27 @@ void evaluate(int replicates=1000){
 	parameters.read();
 	Data data;
 	data.read();
+	// Read in samples from conditioning and 
+	// create a frame for storing selected samples
+	Frame samples_all;
+	samples_all.read("feasible/output/accepted.tsv");
+	samples_all.type<double>();
+	Frame samples;
 	// Setup procedures
 	Procedures procedures;
-	// Read in samples from conditioning
-	Frame samples;
-	samples.read("feasible/output/accepted.tsv");
-	samples.type<double>();
-	// Create a frame for storing selected samples
-	Frame selected;
+	procedures.populate();
+	// Setup performance statistics
+	Array<Performance> performances;
+	// Do tracking (for a subset of replicates)
+	Tracker tracker("evaluate/output/track.tsv");
 	// For each replicate...
 	for(int replicate=0;replicate<replicates;replicate++){
 		std::cout<<replicate<<std::endl;
 		// Randomly select a parameter sample
-		Frame sample = samples.row(
-			Uniform(0,samples.rows()).random()
+		Frame sample = samples_all.row(
+			Uniform(0,samples_all.rows()).random()
 		);
-		selected.append(sample);
+		samples.append(sample);
 		// Read parameters from sample 
 		// (to save time don't attempt to read catches array)
 		parameters.read(sample,{"catches"});
@@ -163,9 +169,11 @@ void evaluate(int replicates=1000){
 		Model current;
 		for(uint time=0;time<=time_now;time++){
 			//... set parameters
-			parameters.set(current,time);
+			parameters.set(time,current); 
 			//... update the model
 			current.update(time);
+			//... track the model (for speed, only track some replicates)
+			if(replicate<100) tracker.get(replicate,-1,time,current);
 		}
 		// Generate a random seed to be used to ensure future
 		// variability is same for all procedures
@@ -175,20 +183,32 @@ void evaluate(int replicates=1000){
 			// Create a model with current state to use to 
 			// simulate procedure
 			Model future = current;
+			// Set up performance statistics
+			Performance performance(replicate,procedure);
 			// Reset random seed
 			Generator.seed(seed);
 			// Reset the procedure
 			procedures.reset(procedure);
 			// Iterate over years...
 			for(uint time=time_now+1;time<=time_max;time++){
+				//... set parameters
+				parameters.set(time,current);
 				//... update the model
 				future.update(time);
+				//... track the model (for speed, only some replicates)
+				if(replicate<100) tracker.get(replicate,procedure,time,future);
 				//... operate the procedure
 				procedures.operate(procedure,time,future);
+				//... record performance
+				performance.record(time,future);
 			}
+			// Save performance
+			performances.append(performance);
 		}
 	}
-	selected.write("evaluate/output/samples.tsv");
+	procedures.write("evaluate/output/procedures.tsv");
+	samples.write("evaluate/output/samples.tsv");
+	performances.write("evaluate/output/performances.tsv");
 }
 
 int main(int argc, char** argv){ 

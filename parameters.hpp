@@ -162,7 +162,7 @@ public:
 	/**
 	 * Set model variables
 	 */
-	void set(Model& model, uint time) {
+	void set(uint time, Model& model) const {
 		uint year = IOSKJ::year(time);
 		uint quarter = IOSKJ::quarter(time);
 		
@@ -224,12 +224,13 @@ public:
 			model.recruits_variation_on = false;
 			model.recruits_deviation = std::exp(recruits_deviations(year));
 		} else {
-			// Stochastic recruitment defined by recruits_sd and recruits_auto as bound in time==0
+			// Stochastic recruitment defined by recruits_sd and recruits_auto
 			model.recruits_variation_on = true;
 		}
 
 		// Bind quarterly catch history to the model's catches
 		if(year>=1950 and year<=2012){
+			model.catches_on = true;
 			for(auto region : regions){
 				for(auto method : methods){
 					model.catches(region,method) = catches(year,quarter,region,method);

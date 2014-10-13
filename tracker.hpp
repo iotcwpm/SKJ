@@ -15,6 +15,8 @@ struct Tracker {
 	Tracker(std::string path){
 		file.open(path);
 		file
+			<<"replicate\t"
+			<<"procedure\t"
 			<<"year\t"
 			<<"quarter\t"
 			<<"recruits_determ\t"
@@ -24,6 +26,7 @@ struct Tracker {
 			<<"biomass_spawning_w\t"
 			<<"biomass_spawning_m\t"
 			<<"biomass_spawning_e\t"
+			<<"catches_total\t"
 			<<"catches_w_ps\t"
 			<<"catches_m_pl\t"
 			<<"catches_e_gn\t"
@@ -33,10 +36,12 @@ struct Tracker {
 			<<std::endl;
 	}
 
-	void get(const Model& model, uint time){
+	void get(int replicate, int procedure, int time, const Model& model){
 		uint year = IOSKJ::year(time);
 		uint quarter = IOSKJ::quarter(time);
 		file
+			<<replicate<<"\t"
+			<<procedure<<"\t"
 			<<year<<"\t"
 			<<quarter<<"\t"
 			<<model.recruits_determ<<"\t"
@@ -46,9 +51,10 @@ struct Tracker {
 			<<model.biomass_spawning(W)<<"\t"
 			<<model.biomass_spawning(M)<<"\t"
 			<<model.biomass_spawning(E)<<"\t"
-			<<model.catches(W,PS)<<"\t"
-			<<model.catches(M,PL)<<"\t"
-			<<model.catches(E,GN)<<"\t"
+			<<model.catches_taken(sum)<<"\t"
+			<<model.catches_taken(W,PS)<<"\t"
+			<<model.catches_taken(M,PL)<<"\t"
+			<<model.catches_taken(E,GN)<<"\t"
 			<<model.exploitation_survival(M,20)<<"\t"
 			<<model.biomass_vulnerable(M,PL)<<"\t"
 			<<model.exploitation_rate(M,PL)<<"\t"

@@ -397,7 +397,7 @@ public:
 		for(auto size : sizes){
 			double length = 2*size.index()+1;
 			lengths(size) = length;
-			weights(size) = weight_length_a*std::pow(length,weight_length_b);
+			weights(size) = 1;//weight_length_a*std::pow(length,weight_length_b);
 			maturities(size) = 1.0/(1.0+std::pow(19,(maturity_length_inflection-length)/maturity_length_steepness));
 		}
 
@@ -441,7 +441,7 @@ public:
 
 		// Initialise movement matrix
 		// Normalise so that movement proportions always sum to 1 for a particular region
-		auto movement_sums = movement_pars(sum(),by(region_froms));
+		auto movement_sums = movement_pars(sum,by(region_froms));
 		for(auto region_from : region_froms){
 			for(auto region : regions){
 				movement(region_from,region) = 
@@ -477,13 +477,13 @@ public:
 		}
 
 		// Normalise the recruits_region grid so that it sums to one
-		recruits_regions /= sum(recruits_regions);
+		recruits_regions /= recruits_regions(sum);
 
 		// Initialise recruits_variation
 		recruits_variation = Lognormal(1,recruits_sd);
 
 		// During debug mode dump the model here for easy inspection
-		// Done here before quilibrium() in case that fails
+		// Done here before equilibrium() in case that fails
 		#if DEBUG
 			write();
 		#endif
@@ -541,7 +541,7 @@ public:
 			biomass_spawning(region) = biomass_spawning_;
 
 		} 
-		biomass_spawning_overall(quarter) = sum(biomass_spawning);
+		biomass_spawning_overall(quarter) = biomass_spawning(sum);
 
 		// Recruits
 		if(recruits_relation_on){
@@ -582,28 +582,29 @@ public:
 
 		// Exploitation rate
 		if(exploitation_on){
-			if(catches_on){
-				for(auto region : regions){
-					for(auto method : methods){
-						// Calculate vulnerable biomass in this region
-						double biomass_vuln = 0;
-						for(auto age : ages){
-							for(auto size : sizes){
-								biomass_vuln += numbers(region,age,size) * weights(size)/1000 * selectivities(method,size);
-							}
+			// Calculate vulnerable biomass
+			for(auto region : regions){
+				for(auto method : methods){
+					double biomass_vuln = 0;
+					for(auto age : ages){
+						for(auto size : sizes){
+							biomass_vuln += numbers(region,age,size) * weights(size)/1000 * 
+								selectivities(method,size);
 						}
-						// Calculate exploitation rate
-						double er = 0;
+					}
+					biomass_vulnerable(region,method) = biomass_vuln;
+					double er = 0;
+					if(catches_on){
+						// Calculate exploitation_rate from catches and biomass_vulnerable
 						if(biomass_vuln>0) er = catches(region,method)/biomass_vuln;
 						if(er>1) er = 1;
-						// Assign to variables
-						biomass_vulnerable(region,method) = biomass_vuln;
-						exploitation_rate(region,method) = er;
-						catches_taken(region,method) = er * biomass_vuln;
+					} else {
+						// Use specified exp rate
+						er = exploitation_rate_specified;
 					}
+					exploitation_rate(region,method) = er;
+					catches_taken(region,method) = er * biomass_vuln;
 				}
-			} else {
-				exploitation_rate = exploitation_rate_specified;
 			}
 			// Pre-calculate the exploitation_survival for each region and size
 			for(auto region : regions){
@@ -649,7 +650,9 @@ public:
 		#if DEBUG
 			std::cout<<"************equilibrium()**************\n";
 		#endif
-		// Turn off recruitment variation
+		// Turn off recruitment variation (saving current setting
+		// for putting back at the end of this method)
+		bool recruits_variation_on_setting = recruits_variation_on;
 		recruits_variation_on = false;
 		// Iterate until there is a very minor change in biomass
 		uint steps = 0;
@@ -671,12 +674,15 @@ public:
 				std::cout<<steps<<"\t"<<biomass(W)<<"\t"<<biomass(M)<<"\t"<<biomass(E)<<"\t"<<diffs<<std::endl;
 			#endif
 
+			// Throw an error if undefined biomass
+			if(not std::isfinite(biomass(W)+biomass(M)+biomass(E))) throw std::runtime_error("Biomass is not finite. Check inputs");
+
 			steps++;
 		}
 		// Throw an error if there was no convergence
 		if(steps>steps_max) throw std::runtime_error("No convergence in equilibrium() function");
 		// Turn on recruitment deviation again
-		recruits_variation_on = true;
+		recruits_variation_on = recruits_variation_on_setting;
 	}
 
 	/**

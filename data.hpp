@@ -74,7 +74,7 @@ public:
 	 * and are added to data files the model will already be set up to fit that it). 
 	 * There will be a small computational cost to this.
 	 */
-	void get(const Model& model, uint time){
+	void get(uint time, const Model& model){
 		uint year = IOSKJ::year(time);
 		uint quarter = IOSKJ::quarter(time);
 		
