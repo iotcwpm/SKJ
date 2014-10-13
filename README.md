@@ -17,6 +17,7 @@ The following document the model structure and code,
 The following are based on model outputs (and should be updated after each model run; see below),
 
 - http://iotcwpm.github.io/SKJ/model/display : a display of model outputs (e.g. ogives, biomass trajectories)
+- http://iotcwpm.github.io/SKJ/yield/display : a display of yield curve and MSY calculations
 - http://iotcwpm.github.io/SKJ/data/display : a display of model fits to observed data (e.g. CPUE, size frequencies)
 
 

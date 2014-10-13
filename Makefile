@@ -13,14 +13,22 @@ HPPS := $(shell find . -maxdepth 1 -name "*.hpp")
 CPPS := $(shell find . -maxdepth 1 -name "*.cpp")
 
 ioskj.exe: $(HPPS) $(CPPS)
-	$(CXX) $(CXX_FLAGS) -O3 $(INC_DIRS) -oioskj.exe ioskj.cpp $(LIB_DIRS) $(LIBS)
-
-ioskj.debug: $(HPPS) $(CPPS)
-	$(CXX) $(CXX_FLAGS) -g -O0 $(INC_DIRS) -oioskj.debug ioskj.cpp $(LIB_DIRS) $(LIBS)
+	$(CXX) $(CXX_FLAGS) -O3 $(INC_DIRS) -o$@ ioskj.cpp $(LIB_DIRS) $(LIBS)
 
 run: ioskj.exe
 	./ioskj.exe
 
+ioskj.debug: $(HPPS) $(CPPS)
+	$(CXX) $(CXX_FLAGS) -g -O0 $(INC_DIRS) -o$@ ioskj.cpp $(LIB_DIRS) $(LIBS)
+
+# Generate an execuatable for profiling
+ioskj.prof: $(HPPS) $(CPPS)
+	$(CXX) $(CXX_FLAGS) -pg -O3 $(INC_DIRS) -o$@ ioskj.cpp $(LIB_DIRS) $(LIBS)
+
+# Profile
+profile:
+	./ioskj.prof
+	gprof ioskj.prof gmon.out > profiling.txt
 
 tests.exe: tests.cpp
 	$(CXX) $(CXX_FLAGS) -O3 $(INC_DIRS) -otests.exe tests.cpp $(LIB_DIRS) $(LIBS) -lboost_unit_test_framework
@@ -47,6 +55,7 @@ publish:
 	mkdir -p .pages/model/description ; cp -fr model/description/. .pages/model/description/
 	mkdir -p .pages/parameters/description ; cp -fr parameters/description/. .pages/parameters/description/
 	mkdir -p .pages/model/display ; cp -fr model/display/. .pages/model/display/
+	mkdir -p .pages/model/yield ; cp -fr model/yield/. .pages/model/yield/
 	mkdir -p .pages/data/display ; cp -fr data/display/. .pages/data/display/
 	mkdir -p .pages/doxygen  ; cp -fr doxygen/html/. .pages/doxygen/
 	ghp-import -m "Updated pages" -p .pages

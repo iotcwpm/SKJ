@@ -1,4 +1,4 @@
-#define DEBUG 0
+#define DEBUG 1
 
 #include "imports.hpp"
 #include "dimensions.hpp"
@@ -40,6 +40,24 @@ void run(void){
 	model.write();
 	parameters.write();
 	data.write();
+}
+
+void yield(void){
+	boost::filesystem::create_directories("yield/output");
+
+	Model model;
+	// Read in and set parameters
+	Parameters parameters;
+	parameters.read();
+	parameters.set(0,model);
+	// Generate and output yield curve
+	Frame yc = model.yield_curve();
+	yc.write("yield/output/curve.tsv");
+	// Find MSY and output
+	model.msy_find();
+	std::ofstream file("yield/output/model.tsv");
+	file<<"e_msy\tf_msy\tmsy\tbiomass_spawning_msy\tmsy_trials\n";
+	file<<model.e_msy<<"\t"<<model.f_msy<<"\t"<<model.msy<<"\t"<<model.biomass_spawning_msy<<"\t"<<model.msy_trials<<"\n";
 }
 
 /**
@@ -218,6 +236,7 @@ int main(int argc, char** argv){
         uint num = (argc>2)?boost::lexical_cast<uint>(argv[2]):0;
         std::cout<<"-------------"<<task<<"-------------\n";
         if(task=="run") run();
+        else if(task=="yield") yield();
         else if(task=="priors") priors();
         else if(task=="feasible") condition_feasible(num);
         else if(task=="evaluate") evaluate(num);

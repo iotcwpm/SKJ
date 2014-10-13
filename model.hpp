@@ -295,6 +295,15 @@ public:
 	
 
 	/**
+	 * MSY related variables
+	 */
+	double msy;
+	double e_msy;
+	double f_msy;
+	double biomass_spawning_msy;
+	int msy_trials;
+
+	/**
 	 * @name Data related "nuisance" parameters
 	 * 
 	 * @{
@@ -580,11 +589,11 @@ public:
 			}
 		}
 
-		// Exploitation rate
 		if(exploitation_on){
-			// Calculate vulnerable biomass
+			// For each region and method
 			for(auto region : regions){
 				for(auto method : methods){
+					// Calculate vulnerable biomass
 					double biomass_vuln = 0;
 					for(auto age : ages){
 						for(auto size : sizes){
@@ -593,6 +602,7 @@ public:
 						}
 					}
 					biomass_vulnerable(region,method) = biomass_vuln;
+					// Calculate exploitation rate
 					double er = 0;
 					if(catches_on){
 						// Calculate exploitation_rate from catches and biomass_vulnerable
@@ -654,6 +664,8 @@ public:
 		// for putting back at the end of this method)
 		bool recruits_variation_on_setting = recruits_variation_on;
 		recruits_variation_on = false;
+		// Seed the population
+		numbers = 1;	
 		// Iterate until there is a very minor change in biomass
 		uint steps = 0;
 		const uint steps_max = 1000;
@@ -663,10 +675,16 @@ public:
 			// in dynamics (e.g. spawning proportion) are incorporated
 			for(uint quarter=0;quarter<4;quarter++) update(quarter);
 
+			// Break if biomass has gone to very low levels (as happens when this method
+			// is called with high exploitation rates from yield_curve) since the proportional
+			// diffs minimise to a low level
+			if(biomass(sum)<0.01) break;
+
 			double diffs = 0;
 			for(auto region : regions){
 				diffs += fabs(biomass(region)-biomass_prev(region))/biomass_prev(region);
 			}
+			diffs /= regions.size();
 			if(diffs<0.0001) break;
 			biomass_prev = biomass;
 
@@ -683,6 +701,46 @@ public:
 		if(steps>steps_max) throw std::runtime_error("No convergence in equilibrium() function");
 		// Turn on recruitment deviation again
 		recruits_variation_on = recruits_variation_on_setting;
+	}
+
+	/**
+	 * Generate a yield curve
+	 */
+	Frame yield_curve(double step = 0.05){
+		Frame curve({"exprate","yield","depletion"});
+		curve.append({0,0,1});
+		for(double exprate=step;exprate<1;exprate+=step){
+			#if DEBUG
+				std::cout<<"************yield_curve "<<exprate<<"**************\n";
+			#endif
+			exploitation_rate_set(exprate);
+			equilibrium();
+			double yield = catches_taken(sum);
+			double depletion = biomass_spawning_overall(sum)/biomass_spawning_unfished(sum);
+			curve.append({exprate,yield,depletion});
+		}
+		return curve;
+	}
+
+	/**
+	 * Find Fmsy and Bmsy for this model
+	 */
+	void msy_find(void){
+		int count = 0;
+		auto result = boost::math::tools::brent_find_minima([&](double exprate){
+			count++;
+			exploitation_rate_set(exprate);
+			equilibrium();
+			return -catches_taken(sum);
+		},0.01,0.99,8);
+		e_msy = result.first;
+		f_msy = -std::log(1-e_msy);
+		msy = -result.second;
+		msy_trials = count;
+		// Go to equilibrium with maximum so that Bmsy can be determined
+		exploitation_rate_set(e_msy);
+		equilibrium();
+		biomass_spawning_msy = biomass_spawning_overall(sum);
 	}
 
 	/**

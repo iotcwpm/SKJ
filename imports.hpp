@@ -8,10 +8,7 @@
 #include <cmath>
 #include <fstream>
 
-// Boost library (http://www.boost.org/) for ...
-//... string conversion
-#include <boost/format.hpp>
-using boost::format;
+// Boost library (http://www.boost.org/) for...
 //... random number scaffolding...
 #include <boost/random/mersenne_twister.hpp>
 #include <boost/random/variate_generator.hpp>
@@ -22,6 +19,8 @@ using boost::format;
 #include <boost/random/normal_distribution.hpp>
 #include <boost/math/distributions/lognormal.hpp>
 #include <boost/random/lognormal_distribution.hpp>
+//... optimisation
+#include <boost/math/tools/minima.hpp>
 
 // Stencila library (https://github.com/stencila/stencila) for ...
 //... structure, array, frame and query classes
