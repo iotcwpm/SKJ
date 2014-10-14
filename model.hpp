@@ -609,8 +609,14 @@ public:
 						if(biomass_vuln>0) er = catches(region,method)/biomass_vuln;
 						if(er>1) er = 1;
 					} else {
-						// Use specified exp rate
-						er = exploitation_rate_specified;
+						// Use specified exp rate for the main region/methods
+						// and assume others are at zero
+						if(
+							(region==W and method==PS) or 
+							(region==M and method==PL) or 
+							(region==E and method==GN)
+						) er = exploitation_rate_specified;
+						else er = 0;
 					}
 					exploitation_rate(region,method) = er;
 					catches_taken(region,method) = er * biomass_vuln;

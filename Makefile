@@ -58,6 +58,7 @@ publish:
 	mkdir -p .pages/yield/display ; cp -fr yield/display/. .pages/yield/display/
 	mkdir -p .pages/data/display ; cp -fr data/display/. .pages/data/display/
 	mkdir -p .pages/feasible/display ; cp -fr feasible/display/. .pages/feasible/display/
+	mkdir -p .pages/evaluate/display ; cp -fr evaluate/display/. .pages/evaluate/display/
 	mkdir -p .pages/doxygen  ; cp -fr doxygen/html/. .pages/doxygen/
 	ghp-import -m "Updated pages" -p .pages
 

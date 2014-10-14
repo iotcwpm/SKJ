@@ -160,6 +160,9 @@ void condition_feasible(int trials=100){
 	rejected.write("feasible/output/rejected.tsv");
 }
 
+/**
+ * Evaluate management procedures
+ */
 void evaluate(int replicates=1000){
 	boost::filesystem::create_directories("evaluate/output");
 	// Setup parameters and data

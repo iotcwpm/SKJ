@@ -138,8 +138,10 @@ public:
 			if(f<target-buffer or f>target+buffer){
 				// Calculate ratio between current estimated F and target
 				// and adjust effort accordingly
-				double ratio = f/target;
-				//model.effort_adjust(ratio);
+				// double ratio = f/target;
+				//! @todo Currently just setting to target F
+				//! but should be adjusting effort
+				model.exploitation_rate_set(f);
 			}
 			last_ = year;
 		}
@@ -160,8 +162,8 @@ public:
 		// BRule
 		for(double precision : {0.0}){
 			for(auto target : {0.1,0.2,0.3}){
-				for(auto thresh : {0.3,0.5}){
-					for(auto limit : {0.1,0.2}){
+				for(auto thresh : {0.1,0.2,0.3}){
+					for(auto limit : {0.05,0.1}){
 						auto& proc = * new BRule;
 						proc.precision = precision;
 						proc.target = target;
@@ -176,7 +178,7 @@ public:
 		for(int frequency : {3,5,7}){
 			for(double precision : {0.0,0.1}){
 				for(auto target : {0.1,0.2,0.3}){
-					for(auto buffer : {0.1,0.2}){
+					for(auto buffer : {0.0,0.1}){
 						auto& proc = * new FRange;
 						proc.frequency = frequency;
 						proc.precision = precision;
