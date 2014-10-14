@@ -20,14 +20,14 @@ public:
 	int replicate;
 
 	/**
-	 * Candisate procedure which this performance 
+	 * Candidate procedure which this performance 
 	 * relates to
 	 */
 	int procedure;
 
 	/**
 	 * Number of time steps where performance measures
-	 * were recorded. Maily used for testing.
+	 * were recorded. Mainly used for testing.
 	 */
 	Count times;
 
