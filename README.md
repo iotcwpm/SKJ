@@ -20,7 +20,7 @@ The following are based on model outputs (and should be updated after each model
 - [data/display](http://iotcwpm.github.io/SKJ/data/display) : model fits to observed data (e.g. CPUE, size frequencies)
 - [yield/display](http://iotcwpm.github.io/SKJ/yield/display) : yield curve and MSY calculations
 - [feasible/display](http://iotcwpm.github.io/SKJ/feasible/display) : results from conditioning using the FST algorithm
-- [evaluate/display](http://iotcwpm.github.io/SKJ/feasible/display) : results from evaluations of management procedures
+- [evaluate/display](http://iotcwpm.github.io/SKJ/evaluate/display) : results from evaluations of management procedures
 
 ## Status
 
