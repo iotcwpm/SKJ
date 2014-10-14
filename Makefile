@@ -55,8 +55,9 @@ publish:
 	mkdir -p .pages/model/description ; cp -fr model/description/. .pages/model/description/
 	mkdir -p .pages/parameters/description ; cp -fr parameters/description/. .pages/parameters/description/
 	mkdir -p .pages/model/display ; cp -fr model/display/. .pages/model/display/
-	mkdir -p .pages/model/yield ; cp -fr model/yield/. .pages/model/yield/
+	mkdir -p .pages/yield/display ; cp -fr yield/display/. .pages/yield/display/
 	mkdir -p .pages/data/display ; cp -fr data/display/. .pages/data/display/
+	mkdir -p .pages/feasible/display ; cp -fr feasible/display/. .pages/feasible/display/
 	mkdir -p .pages/doxygen  ; cp -fr doxygen/html/. .pages/doxygen/
 	ghp-import -m "Updated pages" -p .pages
 

@@ -100,6 +100,8 @@ section Length at age
 
 	#growth_assymptote
 		#value 75
+		#lower 0.6
+		#upper 1.0
 
 	#growth_sd
 		#value 1
@@ -116,7 +118,7 @@ section Movement
 		#upper 1.0
 
 	#movement_w_m
-		#value 0.2
+		#value 0.3
 		#lower 0
 		#upper 0.4
 

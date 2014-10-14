@@ -1,4 +1,4 @@
-#define DEBUG 1
+#define DEBUG 0
 
 #include "imports.hpp"
 #include "dimensions.hpp"
@@ -98,6 +98,11 @@ int check_feasible(const Model& model, const Data& data, uint time, uint year, u
 	// ... must have decreased from 2004 to 2011
 	if(year==2011 and quarter==2 and data.m_pl_cpue(year,quarter)/m_pl_cpue_base>1) return 4;
 
+	// Z-estimates
+	if(year>=2006 and year<=2009){
+		if(data.z_ests(year,quarter,1)<0.2 or data.z_ests(year,quarter,1)>0.7) return 5;
+	}
+
 	return 0;
 }
 
@@ -114,6 +119,8 @@ void condition_feasible(int trials=100){
 	// Frames for accepted and rejected parameter samples
 	Frame accepted;
 	Frame rejected;
+	// Do tracking (for a subset of trials)
+	Tracker tracker("feasible/output/track.tsv");
 	// Do a number of trial parameter samples
 	for(int trial=0;trial<trials;trial++){
 		parameters.randomise();
@@ -128,7 +135,9 @@ void condition_feasible(int trials=100){
 			model.update(time);
 			//... get data
 			data.get(time,model);
-			// Check feasibility
+			//... do tracking
+			if(trial<100) tracker.get(trial,-1,time,model);
+			//... check feasibility
 			uint year = IOSKJ::year(time);
 			uint quarter = IOSKJ::quarter(time);
 			int criterion = check_feasible(model,data,time,year,quarter);
