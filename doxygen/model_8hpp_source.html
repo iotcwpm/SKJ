@@ -420,155 +420,161 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00609"></a><span class="lineno">  609</span>&#160;                        <span class="keywordflow">if</span>(biomass_vuln&gt;0) er = <a class="code" href="classIOSKJ_1_1Model.html#a07f257056f7d36f71ff8d8efa162a775">catches</a>(region,method)/biomass_vuln;</div>
 <div class="line"><a name="l00610"></a><span class="lineno">  610</span>&#160;                        <span class="keywordflow">if</span>(er&gt;1) er = 1;</div>
 <div class="line"><a name="l00611"></a><span class="lineno">  611</span>&#160;                    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00612"></a><span class="lineno">  612</span>&#160;                        <span class="comment">// Use specified exp rate</span></div>
-<div class="line"><a name="l00613"></a><span class="lineno">  613</span>&#160;                        er = <a class="code" href="classIOSKJ_1_1Model.html#a015194a0ad0bfe298215636d04cdb7f0">exploitation_rate_specified</a>;</div>
-<div class="line"><a name="l00614"></a><span class="lineno">  614</span>&#160;                    }</div>
-<div class="line"><a name="l00615"></a><span class="lineno">  615</span>&#160;                    <a class="code" href="classIOSKJ_1_1Model.html#a1a9a5c48d57ab9f2bb0a7c50ac241c20">exploitation_rate</a>(region,method) = er;</div>
-<div class="line"><a name="l00616"></a><span class="lineno">  616</span>&#160;                    <a class="code" href="classIOSKJ_1_1Model.html#a63a4ac2ba1d1e3a7f5fd7e90d7b7ce54">catches_taken</a>(region,method) = er * biomass_vuln;</div>
-<div class="line"><a name="l00617"></a><span class="lineno">  617</span>&#160;                }</div>
-<div class="line"><a name="l00618"></a><span class="lineno">  618</span>&#160;            }</div>
-<div class="line"><a name="l00619"></a><span class="lineno">  619</span>&#160;            <span class="comment">// Pre-calculate the exploitation_survival for each region and size</span></div>
-<div class="line"><a name="l00620"></a><span class="lineno">  620</span>&#160;            <span class="keywordflow">for</span>(<span class="keyword">auto</span> region : regions){</div>
-<div class="line"><a name="l00621"></a><span class="lineno">  621</span>&#160;                <span class="keywordflow">for</span>(<span class="keyword">auto</span> size : sizes){</div>
-<div class="line"><a name="l00622"></a><span class="lineno">  622</span>&#160;                    <span class="keywordtype">double</span> proportion_taken = 0;</div>
-<div class="line"><a name="l00623"></a><span class="lineno">  623</span>&#160;                    <span class="keywordflow">for</span>(<span class="keyword">auto</span> method : methods){</div>
-<div class="line"><a name="l00624"></a><span class="lineno">  624</span>&#160;                        proportion_taken += <a class="code" href="classIOSKJ_1_1Model.html#a1a9a5c48d57ab9f2bb0a7c50ac241c20">exploitation_rate</a>(region,method) * <a class="code" href="classIOSKJ_1_1Model.html#aa59ec2970e6ab5478b29d68ad89b67d9">selectivities</a>(method,size);</div>
-<div class="line"><a name="l00625"></a><span class="lineno">  625</span>&#160;                    }</div>
-<div class="line"><a name="l00626"></a><span class="lineno">  626</span>&#160;                    <a class="code" href="classIOSKJ_1_1Model.html#adfa83eaea6c889c57b0277e721630223">exploitation_survival</a>(region,size) = (proportion_taken&lt;1)?(1-proportion_taken):0;</div>
-<div class="line"><a name="l00627"></a><span class="lineno">  627</span>&#160;                }</div>
-<div class="line"><a name="l00628"></a><span class="lineno">  628</span>&#160;            }</div>
-<div class="line"><a name="l00629"></a><span class="lineno">  629</span>&#160;        }</div>
-<div class="line"><a name="l00630"></a><span class="lineno">  630</span>&#160;    </div>
-<div class="line"><a name="l00631"></a><span class="lineno">  631</span>&#160;        <span class="comment">// Mortality, growth and movement</span></div>
-<div class="line"><a name="l00632"></a><span class="lineno">  632</span>&#160;        <span class="keyword">auto</span> numbers_temp = <a class="code" href="classIOSKJ_1_1Model.html#aa90edf75b7c9ebf8e50a30f3779b9664">numbers</a>;</div>
-<div class="line"><a name="l00633"></a><span class="lineno">  633</span>&#160;        <span class="keywordflow">for</span>(<span class="keyword">auto</span> region : regions){</div>
-<div class="line"><a name="l00634"></a><span class="lineno">  634</span>&#160;            <span class="keywordflow">for</span>(<span class="keyword">auto</span> age : ages){</div>
-<div class="line"><a name="l00635"></a><span class="lineno">  635</span>&#160;                <span class="keywordflow">for</span>(<span class="keyword">auto</span> size : sizes){</div>
-<div class="line"><a name="l00636"></a><span class="lineno">  636</span>&#160;                    <span class="keywordtype">double</span> number = 0;</div>
-<div class="line"><a name="l00637"></a><span class="lineno">  637</span>&#160;                    <span class="keywordflow">for</span>(<span class="keyword">auto</span> region_from : region_froms){</div>
-<div class="line"><a name="l00638"></a><span class="lineno">  638</span>&#160;                        <span class="keywordflow">for</span>(<span class="keyword">auto</span> size_from : size_froms){ </div>
-<div class="line"><a name="l00639"></a><span class="lineno">  639</span>&#160;                            Level&lt;Region&gt; rf(region_from);</div>
-<div class="line"><a name="l00640"></a><span class="lineno">  640</span>&#160;                            Level&lt;Size&gt; sf(size_from);</div>
-<div class="line"><a name="l00641"></a><span class="lineno">  641</span>&#160;                            number +=   <a class="code" href="classIOSKJ_1_1Model.html#aa90edf75b7c9ebf8e50a30f3779b9664">numbers</a>(rf,age,sf) * </div>
-<div class="line"><a name="l00642"></a><span class="lineno">  642</span>&#160;                                        growth(size_from,size) * </div>
-<div class="line"><a name="l00643"></a><span class="lineno">  643</span>&#160;                                        <a class="code" href="classIOSKJ_1_1Model.html#aa23252cbcab017a40cf3c864c872e7b2">mortalities_survival</a>(sf) * </div>
-<div class="line"><a name="l00644"></a><span class="lineno">  644</span>&#160;                                        (<a class="code" href="classIOSKJ_1_1Model.html#ab9afc5bae0ac8e16817802e54bdfa60d">exploitation_on</a>?<a class="code" href="classIOSKJ_1_1Model.html#adfa83eaea6c889c57b0277e721630223">exploitation_survival</a>(rf,sf):1) * </div>
-<div class="line"><a name="l00645"></a><span class="lineno">  645</span>&#160;                                        movement(region_from,region);</div>
-<div class="line"><a name="l00646"></a><span class="lineno">  646</span>&#160;                        }</div>
-<div class="line"><a name="l00647"></a><span class="lineno">  647</span>&#160;                    }</div>
-<div class="line"><a name="l00648"></a><span class="lineno">  648</span>&#160;                    numbers_temp(region,age,size) = number;</div>
-<div class="line"><a name="l00649"></a><span class="lineno">  649</span>&#160;                }</div>
-<div class="line"><a name="l00650"></a><span class="lineno">  650</span>&#160;            }</div>
-<div class="line"><a name="l00651"></a><span class="lineno">  651</span>&#160;        }</div>
-<div class="line"><a name="l00652"></a><span class="lineno">  652</span>&#160;        <a class="code" href="classIOSKJ_1_1Model.html#aa90edf75b7c9ebf8e50a30f3779b9664">numbers</a> = numbers_temp;</div>
-<div class="line"><a name="l00653"></a><span class="lineno">  653</span>&#160;    }</div>
-<div class="line"><a name="l00654"></a><span class="lineno">  654</span>&#160;</div>
-<div class="line"><a name="l00659"></a><span class="lineno"><a class="line" href="classIOSKJ_1_1Model.html#a58e460b456d7affc4f6a8af785f6e82c">  659</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classIOSKJ_1_1Model.html#a58e460b456d7affc4f6a8af785f6e82c">equilibrium</a>(<span class="keywordtype">void</span>){</div>
-<div class="line"><a name="l00660"></a><span class="lineno">  660</span>&#160;<span class="preprocessor">        #if DEBUG</span></div>
-<div class="line"><a name="l00661"></a><span class="lineno">  661</span>&#160;<span class="preprocessor"></span>            std::cout&lt;&lt;<span class="stringliteral">&quot;************equilibrium()**************\n&quot;</span>;</div>
-<div class="line"><a name="l00662"></a><span class="lineno">  662</span>&#160;<span class="preprocessor">        #endif</span></div>
-<div class="line"><a name="l00663"></a><span class="lineno">  663</span>&#160;<span class="preprocessor"></span>        <span class="comment">// Turn off recruitment variation (saving current setting</span></div>
-<div class="line"><a name="l00664"></a><span class="lineno">  664</span>&#160;        <span class="comment">// for putting back at the end of this method)</span></div>
-<div class="line"><a name="l00665"></a><span class="lineno">  665</span>&#160;        <span class="keywordtype">bool</span> recruits_variation_on_setting = <a class="code" href="classIOSKJ_1_1Model.html#a164e3c054caea071da7079d5ff27833b">recruits_variation_on</a>;</div>
-<div class="line"><a name="l00666"></a><span class="lineno">  666</span>&#160;        <a class="code" href="classIOSKJ_1_1Model.html#a164e3c054caea071da7079d5ff27833b">recruits_variation_on</a> = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00667"></a><span class="lineno">  667</span>&#160;        <span class="comment">// Seed the population</span></div>
-<div class="line"><a name="l00668"></a><span class="lineno">  668</span>&#160;        <a class="code" href="classIOSKJ_1_1Model.html#aa90edf75b7c9ebf8e50a30f3779b9664">numbers</a> = 1;    </div>
-<div class="line"><a name="l00669"></a><span class="lineno">  669</span>&#160;        <span class="comment">// Iterate until there is a very minor change in biomass</span></div>
-<div class="line"><a name="l00670"></a><span class="lineno">  670</span>&#160;        uint steps = 0;</div>
-<div class="line"><a name="l00671"></a><span class="lineno">  671</span>&#160;        <span class="keyword">const</span> uint steps_max = 1000;</div>
-<div class="line"><a name="l00672"></a><span class="lineno">  672</span>&#160;        Array&lt;double,Region&gt; biomass_prev = 1;</div>
-<div class="line"><a name="l00673"></a><span class="lineno">  673</span>&#160;        <span class="keywordflow">while</span>(steps&lt;steps_max){</div>
-<div class="line"><a name="l00674"></a><span class="lineno">  674</span>&#160;            <span class="comment">// It is necessary to update the model for each quarter so that quarterly differences</span></div>
-<div class="line"><a name="l00675"></a><span class="lineno">  675</span>&#160;            <span class="comment">// in dynamics (e.g. spawning proportion) are incorporated</span></div>
-<div class="line"><a name="l00676"></a><span class="lineno">  676</span>&#160;            <span class="keywordflow">for</span>(uint quarter=0;quarter&lt;4;quarter++) <a class="code" href="classIOSKJ_1_1Model.html#a5a9a40056b58e0830d7e4fbc349dd900">update</a>(quarter);</div>
-<div class="line"><a name="l00677"></a><span class="lineno">  677</span>&#160;</div>
-<div class="line"><a name="l00678"></a><span class="lineno">  678</span>&#160;            <span class="comment">// Break if biomass has gone to very low levels (as happens when this method</span></div>
-<div class="line"><a name="l00679"></a><span class="lineno">  679</span>&#160;            <span class="comment">// is called with high exploitation rates from yield_curve) since the proportional</span></div>
-<div class="line"><a name="l00680"></a><span class="lineno">  680</span>&#160;            <span class="comment">// diffs minimise to a low level</span></div>
-<div class="line"><a name="l00681"></a><span class="lineno">  681</span>&#160;            <span class="keywordflow">if</span>(<a class="code" href="classIOSKJ_1_1Model.html#a05da71e81b1a0a7ecbba4d417f4ba727">biomass</a>(sum)&lt;0.01) <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00682"></a><span class="lineno">  682</span>&#160;</div>
-<div class="line"><a name="l00683"></a><span class="lineno">  683</span>&#160;            <span class="keywordtype">double</span> diffs = 0;</div>
-<div class="line"><a name="l00684"></a><span class="lineno">  684</span>&#160;            <span class="keywordflow">for</span>(<span class="keyword">auto</span> region : regions){</div>
-<div class="line"><a name="l00685"></a><span class="lineno">  685</span>&#160;                diffs += fabs(<a class="code" href="classIOSKJ_1_1Model.html#a05da71e81b1a0a7ecbba4d417f4ba727">biomass</a>(region)-biomass_prev(region))/biomass_prev(region);</div>
-<div class="line"><a name="l00686"></a><span class="lineno">  686</span>&#160;            }</div>
-<div class="line"><a name="l00687"></a><span class="lineno">  687</span>&#160;            diffs /= regions.size();</div>
-<div class="line"><a name="l00688"></a><span class="lineno">  688</span>&#160;            <span class="keywordflow">if</span>(diffs&lt;0.0001) <span class="keywordflow">break</span>;</div>
-<div class="line"><a name="l00689"></a><span class="lineno">  689</span>&#160;            biomass_prev = <a class="code" href="classIOSKJ_1_1Model.html#a05da71e81b1a0a7ecbba4d417f4ba727">biomass</a>;</div>
-<div class="line"><a name="l00690"></a><span class="lineno">  690</span>&#160;</div>
-<div class="line"><a name="l00691"></a><span class="lineno">  691</span>&#160;<span class="preprocessor">            #if DEBUG</span></div>
-<div class="line"><a name="l00692"></a><span class="lineno">  692</span>&#160;<span class="preprocessor"></span>                std::cout&lt;&lt;steps&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span>&lt;&lt;<a class="code" href="classIOSKJ_1_1Model.html#a05da71e81b1a0a7ecbba4d417f4ba727">biomass</a>(W)&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span>&lt;&lt;<a class="code" href="classIOSKJ_1_1Model.html#a05da71e81b1a0a7ecbba4d417f4ba727">biomass</a>(M)&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span>&lt;&lt;<a class="code" href="classIOSKJ_1_1Model.html#a05da71e81b1a0a7ecbba4d417f4ba727">biomass</a>(E)&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span>&lt;&lt;diffs&lt;&lt;std::endl;</div>
-<div class="line"><a name="l00693"></a><span class="lineno">  693</span>&#160;<span class="preprocessor">            #endif</span></div>
-<div class="line"><a name="l00694"></a><span class="lineno">  694</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00695"></a><span class="lineno">  695</span>&#160;            <span class="comment">// Throw an error if undefined biomass</span></div>
-<div class="line"><a name="l00696"></a><span class="lineno">  696</span>&#160;            <span class="keywordflow">if</span>(not std::isfinite(<a class="code" href="classIOSKJ_1_1Model.html#a05da71e81b1a0a7ecbba4d417f4ba727">biomass</a>(W)+<a class="code" href="classIOSKJ_1_1Model.html#a05da71e81b1a0a7ecbba4d417f4ba727">biomass</a>(M)+<a class="code" href="classIOSKJ_1_1Model.html#a05da71e81b1a0a7ecbba4d417f4ba727">biomass</a>(E))) <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Biomass is not finite. Check inputs&quot;</span>);</div>
-<div class="line"><a name="l00697"></a><span class="lineno">  697</span>&#160;</div>
-<div class="line"><a name="l00698"></a><span class="lineno">  698</span>&#160;            steps++;</div>
-<div class="line"><a name="l00699"></a><span class="lineno">  699</span>&#160;        }</div>
-<div class="line"><a name="l00700"></a><span class="lineno">  700</span>&#160;        <span class="comment">// Throw an error if there was no convergence</span></div>
-<div class="line"><a name="l00701"></a><span class="lineno">  701</span>&#160;        <span class="keywordflow">if</span>(steps&gt;steps_max) <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;No convergence in equilibrium() function&quot;</span>);</div>
-<div class="line"><a name="l00702"></a><span class="lineno">  702</span>&#160;        <span class="comment">// Turn on recruitment deviation again</span></div>
-<div class="line"><a name="l00703"></a><span class="lineno">  703</span>&#160;        <a class="code" href="classIOSKJ_1_1Model.html#a164e3c054caea071da7079d5ff27833b">recruits_variation_on</a> = recruits_variation_on_setting;</div>
-<div class="line"><a name="l00704"></a><span class="lineno">  704</span>&#160;    }</div>
-<div class="line"><a name="l00705"></a><span class="lineno">  705</span>&#160;</div>
-<div class="line"><a name="l00709"></a><span class="lineno"><a class="line" href="classIOSKJ_1_1Model.html#aeeca74d2a498fa5828961ce20b025379">  709</a></span>&#160;    Frame <a class="code" href="classIOSKJ_1_1Model.html#aeeca74d2a498fa5828961ce20b025379">yield_curve</a>(<span class="keywordtype">double</span> step = 0.05){</div>
-<div class="line"><a name="l00710"></a><span class="lineno">  710</span>&#160;        Frame curve({<span class="stringliteral">&quot;exprate&quot;</span>,<span class="stringliteral">&quot;yield&quot;</span>,<span class="stringliteral">&quot;depletion&quot;</span>});</div>
-<div class="line"><a name="l00711"></a><span class="lineno">  711</span>&#160;        curve.append({0,0,1});</div>
-<div class="line"><a name="l00712"></a><span class="lineno">  712</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">double</span> exprate=step;exprate&lt;1;exprate+=step){</div>
-<div class="line"><a name="l00713"></a><span class="lineno">  713</span>&#160;<span class="preprocessor">            #if DEBUG</span></div>
-<div class="line"><a name="l00714"></a><span class="lineno">  714</span>&#160;<span class="preprocessor"></span>                std::cout&lt;&lt;<span class="stringliteral">&quot;************yield_curve &quot;</span>&lt;&lt;exprate&lt;&lt;<span class="stringliteral">&quot;**************\n&quot;</span>;</div>
-<div class="line"><a name="l00715"></a><span class="lineno">  715</span>&#160;<span class="preprocessor">            #endif</span></div>
-<div class="line"><a name="l00716"></a><span class="lineno">  716</span>&#160;<span class="preprocessor"></span>            <a class="code" href="classIOSKJ_1_1Model.html#a6a817ac1baefd2142fe8fdd5d150d1f0">exploitation_rate_set</a>(exprate);</div>
-<div class="line"><a name="l00717"></a><span class="lineno">  717</span>&#160;            <a class="code" href="classIOSKJ_1_1Model.html#a58e460b456d7affc4f6a8af785f6e82c">equilibrium</a>();</div>
-<div class="line"><a name="l00718"></a><span class="lineno">  718</span>&#160;            <span class="keywordtype">double</span> yield = <a class="code" href="classIOSKJ_1_1Model.html#a63a4ac2ba1d1e3a7f5fd7e90d7b7ce54">catches_taken</a>(sum);</div>
-<div class="line"><a name="l00719"></a><span class="lineno">  719</span>&#160;            <span class="keywordtype">double</span> depletion = <a class="code" href="classIOSKJ_1_1Model.html#a2e2376de2347bb24f9cd18c6cb6b71a5">biomass_spawning_overall</a>(sum)/<a class="code" href="classIOSKJ_1_1Model.html#a2fe8d9737c54dcba326f0d6d73e50d28">biomass_spawning_unfished</a>(sum);</div>
-<div class="line"><a name="l00720"></a><span class="lineno">  720</span>&#160;            curve.append({exprate,yield,depletion});</div>
-<div class="line"><a name="l00721"></a><span class="lineno">  721</span>&#160;        }</div>
-<div class="line"><a name="l00722"></a><span class="lineno">  722</span>&#160;        <span class="keywordflow">return</span> curve;</div>
-<div class="line"><a name="l00723"></a><span class="lineno">  723</span>&#160;    }</div>
-<div class="line"><a name="l00724"></a><span class="lineno">  724</span>&#160;</div>
-<div class="line"><a name="l00728"></a><span class="lineno"><a class="line" href="classIOSKJ_1_1Model.html#ab866cdbb2797465558eedad59a0e9b61">  728</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classIOSKJ_1_1Model.html#ab866cdbb2797465558eedad59a0e9b61">msy_find</a>(<span class="keywordtype">void</span>){</div>
-<div class="line"><a name="l00729"></a><span class="lineno">  729</span>&#160;        <span class="keywordtype">int</span> count = 0;</div>
-<div class="line"><a name="l00730"></a><span class="lineno">  730</span>&#160;        <span class="keyword">auto</span> result = boost::math::tools::brent_find_minima([&amp;](<span class="keywordtype">double</span> exprate){</div>
-<div class="line"><a name="l00731"></a><span class="lineno">  731</span>&#160;            count++;</div>
-<div class="line"><a name="l00732"></a><span class="lineno">  732</span>&#160;            <a class="code" href="classIOSKJ_1_1Model.html#a6a817ac1baefd2142fe8fdd5d150d1f0">exploitation_rate_set</a>(exprate);</div>
-<div class="line"><a name="l00733"></a><span class="lineno">  733</span>&#160;            <a class="code" href="classIOSKJ_1_1Model.html#a58e460b456d7affc4f6a8af785f6e82c">equilibrium</a>();</div>
-<div class="line"><a name="l00734"></a><span class="lineno">  734</span>&#160;            <span class="keywordflow">return</span> -<a class="code" href="classIOSKJ_1_1Model.html#a63a4ac2ba1d1e3a7f5fd7e90d7b7ce54">catches_taken</a>(sum);</div>
-<div class="line"><a name="l00735"></a><span class="lineno">  735</span>&#160;        },0.01,0.99,8);</div>
-<div class="line"><a name="l00736"></a><span class="lineno">  736</span>&#160;        e_msy = result.first;</div>
-<div class="line"><a name="l00737"></a><span class="lineno">  737</span>&#160;        f_msy = -std::log(1-e_msy);</div>
-<div class="line"><a name="l00738"></a><span class="lineno">  738</span>&#160;        <a class="code" href="classIOSKJ_1_1Model.html#aeb1010a45bdd1229ec3e3547481c37b1">msy</a> = -result.second;</div>
-<div class="line"><a name="l00739"></a><span class="lineno">  739</span>&#160;        msy_trials = count;</div>
-<div class="line"><a name="l00740"></a><span class="lineno">  740</span>&#160;        <span class="comment">// Go to equilibrium with maximum so that Bmsy can be determined</span></div>
-<div class="line"><a name="l00741"></a><span class="lineno">  741</span>&#160;        <a class="code" href="classIOSKJ_1_1Model.html#a6a817ac1baefd2142fe8fdd5d150d1f0">exploitation_rate_set</a>(e_msy);</div>
-<div class="line"><a name="l00742"></a><span class="lineno">  742</span>&#160;        <a class="code" href="classIOSKJ_1_1Model.html#a58e460b456d7affc4f6a8af785f6e82c">equilibrium</a>();</div>
-<div class="line"><a name="l00743"></a><span class="lineno">  743</span>&#160;        biomass_spawning_msy = <a class="code" href="classIOSKJ_1_1Model.html#a2e2376de2347bb24f9cd18c6cb6b71a5">biomass_spawning_overall</a>(sum);</div>
-<div class="line"><a name="l00744"></a><span class="lineno">  744</span>&#160;    }</div>
-<div class="line"><a name="l00745"></a><span class="lineno">  745</span>&#160;</div>
-<div class="line"><a name="l00749"></a><span class="lineno"><a class="line" href="classIOSKJ_1_1Model.html#abfc09c1b2d6bfe2802835cd5fd58c3b3">  749</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classIOSKJ_1_1Model.html#abfc09c1b2d6bfe2802835cd5fd58c3b3">write</a>(<span class="keywordtype">void</span>){</div>
-<div class="line"><a name="l00750"></a><span class="lineno">  750</span>&#160;        <a class="code" href="classIOSKJ_1_1Model.html#ab26d2c0b3da23a380d21bbfafa236cff">lengths</a>.write(<span class="stringliteral">&quot;model/output/lengths.tsv&quot;</span>);</div>
-<div class="line"><a name="l00751"></a><span class="lineno">  751</span>&#160;        recruits_sizes.write(<span class="stringliteral">&quot;model/output/recruits_sizes.tsv&quot;</span>);</div>
-<div class="line"><a name="l00752"></a><span class="lineno">  752</span>&#160;</div>
-<div class="line"><a name="l00753"></a><span class="lineno">  753</span>&#160;        growth_increments.write(<span class="stringliteral">&quot;model/output/growth_increments.tsv&quot;</span>);</div>
-<div class="line"><a name="l00754"></a><span class="lineno">  754</span>&#160;        growth.write(<span class="stringliteral">&quot;model/output/growth.tsv&quot;</span>);</div>
-<div class="line"><a name="l00755"></a><span class="lineno">  755</span>&#160;</div>
-<div class="line"><a name="l00756"></a><span class="lineno">  756</span>&#160;        <a class="code" href="classIOSKJ_1_1Model.html#a822cf91410ee9cbef92a3ddcf6702577">mortalities</a>.write(<span class="stringliteral">&quot;model/output/mortalities.tsv&quot;</span>);</div>
-<div class="line"><a name="l00757"></a><span class="lineno">  757</span>&#160;</div>
-<div class="line"><a name="l00758"></a><span class="lineno">  758</span>&#160;        <a class="code" href="classIOSKJ_1_1Model.html#a9befb275d915c5cec6b1e0e7a4bc8791">weights</a>.write(<span class="stringliteral">&quot;model/output/weights.tsv&quot;</span>);</div>
-<div class="line"><a name="l00759"></a><span class="lineno">  759</span>&#160;        <a class="code" href="classIOSKJ_1_1Model.html#a374c4b48c908c40b7401e484cc49c767">maturities</a>.write(<span class="stringliteral">&quot;model/output/maturities.tsv&quot;</span>);</div>
-<div class="line"><a name="l00760"></a><span class="lineno">  760</span>&#160;        </div>
-<div class="line"><a name="l00761"></a><span class="lineno">  761</span>&#160;        <a class="code" href="classIOSKJ_1_1Model.html#a81bffc6707aa313f87bf21dbbf1d8143">spawning</a>.write(<span class="stringliteral">&quot;model/output/spawning.tsv&quot;</span>);</div>
-<div class="line"><a name="l00762"></a><span class="lineno">  762</span>&#160;        <a class="code" href="classIOSKJ_1_1Model.html#a2fe8d9737c54dcba326f0d6d73e50d28">biomass_spawning_unfished</a>.write(<span class="stringliteral">&quot;model/output/biomass_spawning_unfished.tsv&quot;</span>);</div>
-<div class="line"><a name="l00763"></a><span class="lineno">  763</span>&#160;        </div>
-<div class="line"><a name="l00764"></a><span class="lineno">  764</span>&#160;        movement.write(<span class="stringliteral">&quot;model/output/movement.tsv&quot;</span>);</div>
-<div class="line"><a name="l00765"></a><span class="lineno">  765</span>&#160;</div>
-<div class="line"><a name="l00766"></a><span class="lineno">  766</span>&#160;        <a class="code" href="classIOSKJ_1_1Model.html#aa90edf75b7c9ebf8e50a30f3779b9664">numbers</a>.write(<span class="stringliteral">&quot;model/output/numbers.tsv&quot;</span>);</div>
-<div class="line"><a name="l00767"></a><span class="lineno">  767</span>&#160;</div>
-<div class="line"><a name="l00768"></a><span class="lineno">  768</span>&#160;        <a class="code" href="classIOSKJ_1_1Model.html#a1df5e2bf4fa4560baf73c97733c2d850">selectivity_values</a>.write(<span class="stringliteral">&quot;model/output/selectivity_values.tsv&quot;</span>);</div>
-<div class="line"><a name="l00769"></a><span class="lineno">  769</span>&#160;        <a class="code" href="classIOSKJ_1_1Model.html#aa59ec2970e6ab5478b29d68ad89b67d9">selectivities</a>.write(<span class="stringliteral">&quot;model/output/selectivities.tsv&quot;</span>);</div>
-<div class="line"><a name="l00770"></a><span class="lineno">  770</span>&#160;    }</div>
-<div class="line"><a name="l00771"></a><span class="lineno">  771</span>&#160;};</div>
-<div class="line"><a name="l00772"></a><span class="lineno">  772</span>&#160;</div>
-<div class="line"><a name="l00773"></a><span class="lineno">  773</span>&#160;}</div>
+<div class="line"><a name="l00612"></a><span class="lineno">  612</span>&#160;                        <span class="comment">// Use specified exp rate for the main region/methods</span></div>
+<div class="line"><a name="l00613"></a><span class="lineno">  613</span>&#160;                        <span class="comment">// and assume others are at zero</span></div>
+<div class="line"><a name="l00614"></a><span class="lineno">  614</span>&#160;                        <span class="keywordflow">if</span>(</div>
+<div class="line"><a name="l00615"></a><span class="lineno">  615</span>&#160;                            (region==W and method==PS) or </div>
+<div class="line"><a name="l00616"></a><span class="lineno">  616</span>&#160;                            (region==M and method==PL) or </div>
+<div class="line"><a name="l00617"></a><span class="lineno">  617</span>&#160;                            (region==E and method==GN)</div>
+<div class="line"><a name="l00618"></a><span class="lineno">  618</span>&#160;                        ) er = <a class="code" href="classIOSKJ_1_1Model.html#a015194a0ad0bfe298215636d04cdb7f0">exploitation_rate_specified</a>;</div>
+<div class="line"><a name="l00619"></a><span class="lineno">  619</span>&#160;                        <span class="keywordflow">else</span> er = 0;</div>
+<div class="line"><a name="l00620"></a><span class="lineno">  620</span>&#160;                    }</div>
+<div class="line"><a name="l00621"></a><span class="lineno">  621</span>&#160;                    <a class="code" href="classIOSKJ_1_1Model.html#a1a9a5c48d57ab9f2bb0a7c50ac241c20">exploitation_rate</a>(region,method) = er;</div>
+<div class="line"><a name="l00622"></a><span class="lineno">  622</span>&#160;                    <a class="code" href="classIOSKJ_1_1Model.html#a63a4ac2ba1d1e3a7f5fd7e90d7b7ce54">catches_taken</a>(region,method) = er * biomass_vuln;</div>
+<div class="line"><a name="l00623"></a><span class="lineno">  623</span>&#160;                }</div>
+<div class="line"><a name="l00624"></a><span class="lineno">  624</span>&#160;            }</div>
+<div class="line"><a name="l00625"></a><span class="lineno">  625</span>&#160;            <span class="comment">// Pre-calculate the exploitation_survival for each region and size</span></div>
+<div class="line"><a name="l00626"></a><span class="lineno">  626</span>&#160;            <span class="keywordflow">for</span>(<span class="keyword">auto</span> region : regions){</div>
+<div class="line"><a name="l00627"></a><span class="lineno">  627</span>&#160;                <span class="keywordflow">for</span>(<span class="keyword">auto</span> size : sizes){</div>
+<div class="line"><a name="l00628"></a><span class="lineno">  628</span>&#160;                    <span class="keywordtype">double</span> proportion_taken = 0;</div>
+<div class="line"><a name="l00629"></a><span class="lineno">  629</span>&#160;                    <span class="keywordflow">for</span>(<span class="keyword">auto</span> method : methods){</div>
+<div class="line"><a name="l00630"></a><span class="lineno">  630</span>&#160;                        proportion_taken += <a class="code" href="classIOSKJ_1_1Model.html#a1a9a5c48d57ab9f2bb0a7c50ac241c20">exploitation_rate</a>(region,method) * <a class="code" href="classIOSKJ_1_1Model.html#aa59ec2970e6ab5478b29d68ad89b67d9">selectivities</a>(method,size);</div>
+<div class="line"><a name="l00631"></a><span class="lineno">  631</span>&#160;                    }</div>
+<div class="line"><a name="l00632"></a><span class="lineno">  632</span>&#160;                    <a class="code" href="classIOSKJ_1_1Model.html#adfa83eaea6c889c57b0277e721630223">exploitation_survival</a>(region,size) = (proportion_taken&lt;1)?(1-proportion_taken):0;</div>
+<div class="line"><a name="l00633"></a><span class="lineno">  633</span>&#160;                }</div>
+<div class="line"><a name="l00634"></a><span class="lineno">  634</span>&#160;            }</div>
+<div class="line"><a name="l00635"></a><span class="lineno">  635</span>&#160;        }</div>
+<div class="line"><a name="l00636"></a><span class="lineno">  636</span>&#160;    </div>
+<div class="line"><a name="l00637"></a><span class="lineno">  637</span>&#160;        <span class="comment">// Mortality, growth and movement</span></div>
+<div class="line"><a name="l00638"></a><span class="lineno">  638</span>&#160;        <span class="keyword">auto</span> numbers_temp = <a class="code" href="classIOSKJ_1_1Model.html#aa90edf75b7c9ebf8e50a30f3779b9664">numbers</a>;</div>
+<div class="line"><a name="l00639"></a><span class="lineno">  639</span>&#160;        <span class="keywordflow">for</span>(<span class="keyword">auto</span> region : regions){</div>
+<div class="line"><a name="l00640"></a><span class="lineno">  640</span>&#160;            <span class="keywordflow">for</span>(<span class="keyword">auto</span> age : ages){</div>
+<div class="line"><a name="l00641"></a><span class="lineno">  641</span>&#160;                <span class="keywordflow">for</span>(<span class="keyword">auto</span> size : sizes){</div>
+<div class="line"><a name="l00642"></a><span class="lineno">  642</span>&#160;                    <span class="keywordtype">double</span> number = 0;</div>
+<div class="line"><a name="l00643"></a><span class="lineno">  643</span>&#160;                    <span class="keywordflow">for</span>(<span class="keyword">auto</span> region_from : region_froms){</div>
+<div class="line"><a name="l00644"></a><span class="lineno">  644</span>&#160;                        <span class="keywordflow">for</span>(<span class="keyword">auto</span> size_from : size_froms){ </div>
+<div class="line"><a name="l00645"></a><span class="lineno">  645</span>&#160;                            Level&lt;Region&gt; rf(region_from);</div>
+<div class="line"><a name="l00646"></a><span class="lineno">  646</span>&#160;                            Level&lt;Size&gt; sf(size_from);</div>
+<div class="line"><a name="l00647"></a><span class="lineno">  647</span>&#160;                            number +=   <a class="code" href="classIOSKJ_1_1Model.html#aa90edf75b7c9ebf8e50a30f3779b9664">numbers</a>(rf,age,sf) * </div>
+<div class="line"><a name="l00648"></a><span class="lineno">  648</span>&#160;                                        growth(size_from,size) * </div>
+<div class="line"><a name="l00649"></a><span class="lineno">  649</span>&#160;                                        <a class="code" href="classIOSKJ_1_1Model.html#aa23252cbcab017a40cf3c864c872e7b2">mortalities_survival</a>(sf) * </div>
+<div class="line"><a name="l00650"></a><span class="lineno">  650</span>&#160;                                        (<a class="code" href="classIOSKJ_1_1Model.html#ab9afc5bae0ac8e16817802e54bdfa60d">exploitation_on</a>?<a class="code" href="classIOSKJ_1_1Model.html#adfa83eaea6c889c57b0277e721630223">exploitation_survival</a>(rf,sf):1) * </div>
+<div class="line"><a name="l00651"></a><span class="lineno">  651</span>&#160;                                        movement(region_from,region);</div>
+<div class="line"><a name="l00652"></a><span class="lineno">  652</span>&#160;                        }</div>
+<div class="line"><a name="l00653"></a><span class="lineno">  653</span>&#160;                    }</div>
+<div class="line"><a name="l00654"></a><span class="lineno">  654</span>&#160;                    numbers_temp(region,age,size) = number;</div>
+<div class="line"><a name="l00655"></a><span class="lineno">  655</span>&#160;                }</div>
+<div class="line"><a name="l00656"></a><span class="lineno">  656</span>&#160;            }</div>
+<div class="line"><a name="l00657"></a><span class="lineno">  657</span>&#160;        }</div>
+<div class="line"><a name="l00658"></a><span class="lineno">  658</span>&#160;        <a class="code" href="classIOSKJ_1_1Model.html#aa90edf75b7c9ebf8e50a30f3779b9664">numbers</a> = numbers_temp;</div>
+<div class="line"><a name="l00659"></a><span class="lineno">  659</span>&#160;    }</div>
+<div class="line"><a name="l00660"></a><span class="lineno">  660</span>&#160;</div>
+<div class="line"><a name="l00665"></a><span class="lineno"><a class="line" href="classIOSKJ_1_1Model.html#a58e460b456d7affc4f6a8af785f6e82c">  665</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classIOSKJ_1_1Model.html#a58e460b456d7affc4f6a8af785f6e82c">equilibrium</a>(<span class="keywordtype">void</span>){</div>
+<div class="line"><a name="l00666"></a><span class="lineno">  666</span>&#160;<span class="preprocessor">        #if DEBUG</span></div>
+<div class="line"><a name="l00667"></a><span class="lineno">  667</span>&#160;<span class="preprocessor"></span>            std::cout&lt;&lt;<span class="stringliteral">&quot;************equilibrium()**************\n&quot;</span>;</div>
+<div class="line"><a name="l00668"></a><span class="lineno">  668</span>&#160;<span class="preprocessor">        #endif</span></div>
+<div class="line"><a name="l00669"></a><span class="lineno">  669</span>&#160;<span class="preprocessor"></span>        <span class="comment">// Turn off recruitment variation (saving current setting</span></div>
+<div class="line"><a name="l00670"></a><span class="lineno">  670</span>&#160;        <span class="comment">// for putting back at the end of this method)</span></div>
+<div class="line"><a name="l00671"></a><span class="lineno">  671</span>&#160;        <span class="keywordtype">bool</span> recruits_variation_on_setting = <a class="code" href="classIOSKJ_1_1Model.html#a164e3c054caea071da7079d5ff27833b">recruits_variation_on</a>;</div>
+<div class="line"><a name="l00672"></a><span class="lineno">  672</span>&#160;        <a class="code" href="classIOSKJ_1_1Model.html#a164e3c054caea071da7079d5ff27833b">recruits_variation_on</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00673"></a><span class="lineno">  673</span>&#160;        <span class="comment">// Seed the population</span></div>
+<div class="line"><a name="l00674"></a><span class="lineno">  674</span>&#160;        <a class="code" href="classIOSKJ_1_1Model.html#aa90edf75b7c9ebf8e50a30f3779b9664">numbers</a> = 1;    </div>
+<div class="line"><a name="l00675"></a><span class="lineno">  675</span>&#160;        <span class="comment">// Iterate until there is a very minor change in biomass</span></div>
+<div class="line"><a name="l00676"></a><span class="lineno">  676</span>&#160;        uint steps = 0;</div>
+<div class="line"><a name="l00677"></a><span class="lineno">  677</span>&#160;        <span class="keyword">const</span> uint steps_max = 1000;</div>
+<div class="line"><a name="l00678"></a><span class="lineno">  678</span>&#160;        Array&lt;double,Region&gt; biomass_prev = 1;</div>
+<div class="line"><a name="l00679"></a><span class="lineno">  679</span>&#160;        <span class="keywordflow">while</span>(steps&lt;steps_max){</div>
+<div class="line"><a name="l00680"></a><span class="lineno">  680</span>&#160;            <span class="comment">// It is necessary to update the model for each quarter so that quarterly differences</span></div>
+<div class="line"><a name="l00681"></a><span class="lineno">  681</span>&#160;            <span class="comment">// in dynamics (e.g. spawning proportion) are incorporated</span></div>
+<div class="line"><a name="l00682"></a><span class="lineno">  682</span>&#160;            <span class="keywordflow">for</span>(uint quarter=0;quarter&lt;4;quarter++) <a class="code" href="classIOSKJ_1_1Model.html#a5a9a40056b58e0830d7e4fbc349dd900">update</a>(quarter);</div>
+<div class="line"><a name="l00683"></a><span class="lineno">  683</span>&#160;</div>
+<div class="line"><a name="l00684"></a><span class="lineno">  684</span>&#160;            <span class="comment">// Break if biomass has gone to very low levels (as happens when this method</span></div>
+<div class="line"><a name="l00685"></a><span class="lineno">  685</span>&#160;            <span class="comment">// is called with high exploitation rates from yield_curve) since the proportional</span></div>
+<div class="line"><a name="l00686"></a><span class="lineno">  686</span>&#160;            <span class="comment">// diffs minimise to a low level</span></div>
+<div class="line"><a name="l00687"></a><span class="lineno">  687</span>&#160;            <span class="keywordflow">if</span>(<a class="code" href="classIOSKJ_1_1Model.html#a05da71e81b1a0a7ecbba4d417f4ba727">biomass</a>(sum)&lt;0.01) <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00688"></a><span class="lineno">  688</span>&#160;</div>
+<div class="line"><a name="l00689"></a><span class="lineno">  689</span>&#160;            <span class="keywordtype">double</span> diffs = 0;</div>
+<div class="line"><a name="l00690"></a><span class="lineno">  690</span>&#160;            <span class="keywordflow">for</span>(<span class="keyword">auto</span> region : regions){</div>
+<div class="line"><a name="l00691"></a><span class="lineno">  691</span>&#160;                diffs += fabs(<a class="code" href="classIOSKJ_1_1Model.html#a05da71e81b1a0a7ecbba4d417f4ba727">biomass</a>(region)-biomass_prev(region))/biomass_prev(region);</div>
+<div class="line"><a name="l00692"></a><span class="lineno">  692</span>&#160;            }</div>
+<div class="line"><a name="l00693"></a><span class="lineno">  693</span>&#160;            diffs /= regions.size();</div>
+<div class="line"><a name="l00694"></a><span class="lineno">  694</span>&#160;            <span class="keywordflow">if</span>(diffs&lt;0.0001) <span class="keywordflow">break</span>;</div>
+<div class="line"><a name="l00695"></a><span class="lineno">  695</span>&#160;            biomass_prev = <a class="code" href="classIOSKJ_1_1Model.html#a05da71e81b1a0a7ecbba4d417f4ba727">biomass</a>;</div>
+<div class="line"><a name="l00696"></a><span class="lineno">  696</span>&#160;</div>
+<div class="line"><a name="l00697"></a><span class="lineno">  697</span>&#160;<span class="preprocessor">            #if DEBUG</span></div>
+<div class="line"><a name="l00698"></a><span class="lineno">  698</span>&#160;<span class="preprocessor"></span>                std::cout&lt;&lt;steps&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span>&lt;&lt;<a class="code" href="classIOSKJ_1_1Model.html#a05da71e81b1a0a7ecbba4d417f4ba727">biomass</a>(W)&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span>&lt;&lt;<a class="code" href="classIOSKJ_1_1Model.html#a05da71e81b1a0a7ecbba4d417f4ba727">biomass</a>(M)&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span>&lt;&lt;<a class="code" href="classIOSKJ_1_1Model.html#a05da71e81b1a0a7ecbba4d417f4ba727">biomass</a>(E)&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span>&lt;&lt;diffs&lt;&lt;std::endl;</div>
+<div class="line"><a name="l00699"></a><span class="lineno">  699</span>&#160;<span class="preprocessor">            #endif</span></div>
+<div class="line"><a name="l00700"></a><span class="lineno">  700</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00701"></a><span class="lineno">  701</span>&#160;            <span class="comment">// Throw an error if undefined biomass</span></div>
+<div class="line"><a name="l00702"></a><span class="lineno">  702</span>&#160;            <span class="keywordflow">if</span>(not std::isfinite(<a class="code" href="classIOSKJ_1_1Model.html#a05da71e81b1a0a7ecbba4d417f4ba727">biomass</a>(W)+<a class="code" href="classIOSKJ_1_1Model.html#a05da71e81b1a0a7ecbba4d417f4ba727">biomass</a>(M)+<a class="code" href="classIOSKJ_1_1Model.html#a05da71e81b1a0a7ecbba4d417f4ba727">biomass</a>(E))) <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;Biomass is not finite. Check inputs&quot;</span>);</div>
+<div class="line"><a name="l00703"></a><span class="lineno">  703</span>&#160;</div>
+<div class="line"><a name="l00704"></a><span class="lineno">  704</span>&#160;            steps++;</div>
+<div class="line"><a name="l00705"></a><span class="lineno">  705</span>&#160;        }</div>
+<div class="line"><a name="l00706"></a><span class="lineno">  706</span>&#160;        <span class="comment">// Throw an error if there was no convergence</span></div>
+<div class="line"><a name="l00707"></a><span class="lineno">  707</span>&#160;        <span class="keywordflow">if</span>(steps&gt;steps_max) <span class="keywordflow">throw</span> std::runtime_error(<span class="stringliteral">&quot;No convergence in equilibrium() function&quot;</span>);</div>
+<div class="line"><a name="l00708"></a><span class="lineno">  708</span>&#160;        <span class="comment">// Turn on recruitment deviation again</span></div>
+<div class="line"><a name="l00709"></a><span class="lineno">  709</span>&#160;        <a class="code" href="classIOSKJ_1_1Model.html#a164e3c054caea071da7079d5ff27833b">recruits_variation_on</a> = recruits_variation_on_setting;</div>
+<div class="line"><a name="l00710"></a><span class="lineno">  710</span>&#160;    }</div>
+<div class="line"><a name="l00711"></a><span class="lineno">  711</span>&#160;</div>
+<div class="line"><a name="l00715"></a><span class="lineno"><a class="line" href="classIOSKJ_1_1Model.html#aeeca74d2a498fa5828961ce20b025379">  715</a></span>&#160;    Frame <a class="code" href="classIOSKJ_1_1Model.html#aeeca74d2a498fa5828961ce20b025379">yield_curve</a>(<span class="keywordtype">double</span> step = 0.05){</div>
+<div class="line"><a name="l00716"></a><span class="lineno">  716</span>&#160;        Frame curve({<span class="stringliteral">&quot;exprate&quot;</span>,<span class="stringliteral">&quot;yield&quot;</span>,<span class="stringliteral">&quot;depletion&quot;</span>});</div>
+<div class="line"><a name="l00717"></a><span class="lineno">  717</span>&#160;        curve.append({0,0,1});</div>
+<div class="line"><a name="l00718"></a><span class="lineno">  718</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">double</span> exprate=step;exprate&lt;1;exprate+=step){</div>
+<div class="line"><a name="l00719"></a><span class="lineno">  719</span>&#160;<span class="preprocessor">            #if DEBUG</span></div>
+<div class="line"><a name="l00720"></a><span class="lineno">  720</span>&#160;<span class="preprocessor"></span>                std::cout&lt;&lt;<span class="stringliteral">&quot;************yield_curve &quot;</span>&lt;&lt;exprate&lt;&lt;<span class="stringliteral">&quot;**************\n&quot;</span>;</div>
+<div class="line"><a name="l00721"></a><span class="lineno">  721</span>&#160;<span class="preprocessor">            #endif</span></div>
+<div class="line"><a name="l00722"></a><span class="lineno">  722</span>&#160;<span class="preprocessor"></span>            <a class="code" href="classIOSKJ_1_1Model.html#a6a817ac1baefd2142fe8fdd5d150d1f0">exploitation_rate_set</a>(exprate);</div>
+<div class="line"><a name="l00723"></a><span class="lineno">  723</span>&#160;            <a class="code" href="classIOSKJ_1_1Model.html#a58e460b456d7affc4f6a8af785f6e82c">equilibrium</a>();</div>
+<div class="line"><a name="l00724"></a><span class="lineno">  724</span>&#160;            <span class="keywordtype">double</span> yield = <a class="code" href="classIOSKJ_1_1Model.html#a63a4ac2ba1d1e3a7f5fd7e90d7b7ce54">catches_taken</a>(sum);</div>
+<div class="line"><a name="l00725"></a><span class="lineno">  725</span>&#160;            <span class="keywordtype">double</span> depletion = <a class="code" href="classIOSKJ_1_1Model.html#a2e2376de2347bb24f9cd18c6cb6b71a5">biomass_spawning_overall</a>(sum)/<a class="code" href="classIOSKJ_1_1Model.html#a2fe8d9737c54dcba326f0d6d73e50d28">biomass_spawning_unfished</a>(sum);</div>
+<div class="line"><a name="l00726"></a><span class="lineno">  726</span>&#160;            curve.append({exprate,yield,depletion});</div>
+<div class="line"><a name="l00727"></a><span class="lineno">  727</span>&#160;        }</div>
+<div class="line"><a name="l00728"></a><span class="lineno">  728</span>&#160;        <span class="keywordflow">return</span> curve;</div>
+<div class="line"><a name="l00729"></a><span class="lineno">  729</span>&#160;    }</div>
+<div class="line"><a name="l00730"></a><span class="lineno">  730</span>&#160;</div>
+<div class="line"><a name="l00734"></a><span class="lineno"><a class="line" href="classIOSKJ_1_1Model.html#ab866cdbb2797465558eedad59a0e9b61">  734</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classIOSKJ_1_1Model.html#ab866cdbb2797465558eedad59a0e9b61">msy_find</a>(<span class="keywordtype">void</span>){</div>
+<div class="line"><a name="l00735"></a><span class="lineno">  735</span>&#160;        <span class="keywordtype">int</span> count = 0;</div>
+<div class="line"><a name="l00736"></a><span class="lineno">  736</span>&#160;        <span class="keyword">auto</span> result = boost::math::tools::brent_find_minima([&amp;](<span class="keywordtype">double</span> exprate){</div>
+<div class="line"><a name="l00737"></a><span class="lineno">  737</span>&#160;            count++;</div>
+<div class="line"><a name="l00738"></a><span class="lineno">  738</span>&#160;            <a class="code" href="classIOSKJ_1_1Model.html#a6a817ac1baefd2142fe8fdd5d150d1f0">exploitation_rate_set</a>(exprate);</div>
+<div class="line"><a name="l00739"></a><span class="lineno">  739</span>&#160;            <a class="code" href="classIOSKJ_1_1Model.html#a58e460b456d7affc4f6a8af785f6e82c">equilibrium</a>();</div>
+<div class="line"><a name="l00740"></a><span class="lineno">  740</span>&#160;            <span class="keywordflow">return</span> -<a class="code" href="classIOSKJ_1_1Model.html#a63a4ac2ba1d1e3a7f5fd7e90d7b7ce54">catches_taken</a>(sum);</div>
+<div class="line"><a name="l00741"></a><span class="lineno">  741</span>&#160;        },0.01,0.99,8);</div>
+<div class="line"><a name="l00742"></a><span class="lineno">  742</span>&#160;        e_msy = result.first;</div>
+<div class="line"><a name="l00743"></a><span class="lineno">  743</span>&#160;        f_msy = -std::log(1-e_msy);</div>
+<div class="line"><a name="l00744"></a><span class="lineno">  744</span>&#160;        <a class="code" href="classIOSKJ_1_1Model.html#aeb1010a45bdd1229ec3e3547481c37b1">msy</a> = -result.second;</div>
+<div class="line"><a name="l00745"></a><span class="lineno">  745</span>&#160;        msy_trials = count;</div>
+<div class="line"><a name="l00746"></a><span class="lineno">  746</span>&#160;        <span class="comment">// Go to equilibrium with maximum so that Bmsy can be determined</span></div>
+<div class="line"><a name="l00747"></a><span class="lineno">  747</span>&#160;        <a class="code" href="classIOSKJ_1_1Model.html#a6a817ac1baefd2142fe8fdd5d150d1f0">exploitation_rate_set</a>(e_msy);</div>
+<div class="line"><a name="l00748"></a><span class="lineno">  748</span>&#160;        <a class="code" href="classIOSKJ_1_1Model.html#a58e460b456d7affc4f6a8af785f6e82c">equilibrium</a>();</div>
+<div class="line"><a name="l00749"></a><span class="lineno">  749</span>&#160;        biomass_spawning_msy = <a class="code" href="classIOSKJ_1_1Model.html#a2e2376de2347bb24f9cd18c6cb6b71a5">biomass_spawning_overall</a>(sum);</div>
+<div class="line"><a name="l00750"></a><span class="lineno">  750</span>&#160;    }</div>
+<div class="line"><a name="l00751"></a><span class="lineno">  751</span>&#160;</div>
+<div class="line"><a name="l00755"></a><span class="lineno"><a class="line" href="classIOSKJ_1_1Model.html#abfc09c1b2d6bfe2802835cd5fd58c3b3">  755</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classIOSKJ_1_1Model.html#abfc09c1b2d6bfe2802835cd5fd58c3b3">write</a>(<span class="keywordtype">void</span>){</div>
+<div class="line"><a name="l00756"></a><span class="lineno">  756</span>&#160;        <a class="code" href="classIOSKJ_1_1Model.html#ab26d2c0b3da23a380d21bbfafa236cff">lengths</a>.write(<span class="stringliteral">&quot;model/output/lengths.tsv&quot;</span>);</div>
+<div class="line"><a name="l00757"></a><span class="lineno">  757</span>&#160;        recruits_sizes.write(<span class="stringliteral">&quot;model/output/recruits_sizes.tsv&quot;</span>);</div>
+<div class="line"><a name="l00758"></a><span class="lineno">  758</span>&#160;</div>
+<div class="line"><a name="l00759"></a><span class="lineno">  759</span>&#160;        growth_increments.write(<span class="stringliteral">&quot;model/output/growth_increments.tsv&quot;</span>);</div>
+<div class="line"><a name="l00760"></a><span class="lineno">  760</span>&#160;        growth.write(<span class="stringliteral">&quot;model/output/growth.tsv&quot;</span>);</div>
+<div class="line"><a name="l00761"></a><span class="lineno">  761</span>&#160;</div>
+<div class="line"><a name="l00762"></a><span class="lineno">  762</span>&#160;        <a class="code" href="classIOSKJ_1_1Model.html#a822cf91410ee9cbef92a3ddcf6702577">mortalities</a>.write(<span class="stringliteral">&quot;model/output/mortalities.tsv&quot;</span>);</div>
+<div class="line"><a name="l00763"></a><span class="lineno">  763</span>&#160;</div>
+<div class="line"><a name="l00764"></a><span class="lineno">  764</span>&#160;        <a class="code" href="classIOSKJ_1_1Model.html#a9befb275d915c5cec6b1e0e7a4bc8791">weights</a>.write(<span class="stringliteral">&quot;model/output/weights.tsv&quot;</span>);</div>
+<div class="line"><a name="l00765"></a><span class="lineno">  765</span>&#160;        <a class="code" href="classIOSKJ_1_1Model.html#a374c4b48c908c40b7401e484cc49c767">maturities</a>.write(<span class="stringliteral">&quot;model/output/maturities.tsv&quot;</span>);</div>
+<div class="line"><a name="l00766"></a><span class="lineno">  766</span>&#160;        </div>
+<div class="line"><a name="l00767"></a><span class="lineno">  767</span>&#160;        <a class="code" href="classIOSKJ_1_1Model.html#a81bffc6707aa313f87bf21dbbf1d8143">spawning</a>.write(<span class="stringliteral">&quot;model/output/spawning.tsv&quot;</span>);</div>
+<div class="line"><a name="l00768"></a><span class="lineno">  768</span>&#160;        <a class="code" href="classIOSKJ_1_1Model.html#a2fe8d9737c54dcba326f0d6d73e50d28">biomass_spawning_unfished</a>.write(<span class="stringliteral">&quot;model/output/biomass_spawning_unfished.tsv&quot;</span>);</div>
+<div class="line"><a name="l00769"></a><span class="lineno">  769</span>&#160;        </div>
+<div class="line"><a name="l00770"></a><span class="lineno">  770</span>&#160;        movement.write(<span class="stringliteral">&quot;model/output/movement.tsv&quot;</span>);</div>
+<div class="line"><a name="l00771"></a><span class="lineno">  771</span>&#160;</div>
+<div class="line"><a name="l00772"></a><span class="lineno">  772</span>&#160;        <a class="code" href="classIOSKJ_1_1Model.html#aa90edf75b7c9ebf8e50a30f3779b9664">numbers</a>.write(<span class="stringliteral">&quot;model/output/numbers.tsv&quot;</span>);</div>
+<div class="line"><a name="l00773"></a><span class="lineno">  773</span>&#160;</div>
+<div class="line"><a name="l00774"></a><span class="lineno">  774</span>&#160;        <a class="code" href="classIOSKJ_1_1Model.html#a1df5e2bf4fa4560baf73c97733c2d850">selectivity_values</a>.write(<span class="stringliteral">&quot;model/output/selectivity_values.tsv&quot;</span>);</div>
+<div class="line"><a name="l00775"></a><span class="lineno">  775</span>&#160;        <a class="code" href="classIOSKJ_1_1Model.html#aa59ec2970e6ab5478b29d68ad89b67d9">selectivities</a>.write(<span class="stringliteral">&quot;model/output/selectivities.tsv&quot;</span>);</div>
+<div class="line"><a name="l00776"></a><span class="lineno">  776</span>&#160;    }</div>
+<div class="line"><a name="l00777"></a><span class="lineno">  777</span>&#160;};</div>
+<div class="line"><a name="l00778"></a><span class="lineno">  778</span>&#160;</div>
+<div class="line"><a name="l00779"></a><span class="lineno">  779</span>&#160;}</div>
 <div class="ttc" id="classIOSKJ_1_1Model_html_a735f9a4288dc9fc4ca836c9ad3af3161"><div class="ttname"><a href="classIOSKJ_1_1Model.html#a735f9a4288dc9fc4ca836c9ad3af3161">IOSKJ::Model::recruits_regions</a></div><div class="ttdeci">Array&lt; double, Region &gt; recruits_regions</div><div class="ttdef"><b>Definition:</b> model.hpp:113</div></div>
 <div class="ttc" id="classIOSKJ_1_1Model_html_ae74437cf19859e4f38dd50b6edf958b4"><div class="ttname"><a href="classIOSKJ_1_1Model.html#ae74437cf19859e4f38dd50b6edf958b4">IOSKJ::Model::recruits_uniform</a></div><div class="ttdeci">void recruits_uniform(void)</div><div class="ttdef"><b>Definition:</b> model.hpp:350</div></div>
 <div class="ttc" id="classIOSKJ_1_1Model_html_ae15f7b02094c380aeec9464d626705fb"><div class="ttname"><a href="classIOSKJ_1_1Model.html#ae15f7b02094c380aeec9464d626705fb">IOSKJ::Model::initialise</a></div><div class="ttdeci">void initialise(void)</div><div class="ttdef"><b>Definition:</b> model.hpp:404</div></div>
@@ -591,8 +597,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="classIOSKJ_1_1Model_html_a63a4ac2ba1d1e3a7f5fd7e90d7b7ce54"><div class="ttname"><a href="classIOSKJ_1_1Model.html#a63a4ac2ba1d1e3a7f5fd7e90d7b7ce54">IOSKJ::Model::catches_taken</a></div><div class="ttdeci">Array&lt; double, Region, Method &gt; catches_taken</div><div class="ttdef"><b>Definition:</b> model.hpp:280</div></div>
 <div class="ttc" id="classIOSKJ_1_1Model_html_a2fe8d9737c54dcba326f0d6d73e50d28"><div class="ttname"><a href="classIOSKJ_1_1Model.html#a2fe8d9737c54dcba326f0d6d73e50d28">IOSKJ::Model::biomass_spawning_unfished</a></div><div class="ttdeci">Array&lt; double, Quarter &gt; biomass_spawning_unfished</div><div class="ttdef"><b>Definition:</b> model.hpp:52</div></div>
 <div class="ttc" id="classIOSKJ_1_1Model_html_a822cf91410ee9cbef92a3ddcf6702577"><div class="ttname"><a href="classIOSKJ_1_1Model.html#a822cf91410ee9cbef92a3ddcf6702577">IOSKJ::Model::mortalities</a></div><div class="ttdeci">Array&lt; double, Size &gt; mortalities</div><div class="ttdef"><b>Definition:</b> model.hpp:189</div></div>
-<div class="ttc" id="classIOSKJ_1_1Model_html_aeeca74d2a498fa5828961ce20b025379"><div class="ttname"><a href="classIOSKJ_1_1Model.html#aeeca74d2a498fa5828961ce20b025379">IOSKJ::Model::yield_curve</a></div><div class="ttdeci">Frame yield_curve(double step=0.05)</div><div class="ttdef"><b>Definition:</b> model.hpp:709</div></div>
-<div class="ttc" id="classIOSKJ_1_1Model_html_a58e460b456d7affc4f6a8af785f6e82c"><div class="ttname"><a href="classIOSKJ_1_1Model.html#a58e460b456d7affc4f6a8af785f6e82c">IOSKJ::Model::equilibrium</a></div><div class="ttdeci">void equilibrium(void)</div><div class="ttdef"><b>Definition:</b> model.hpp:659</div></div>
+<div class="ttc" id="classIOSKJ_1_1Model_html_aeeca74d2a498fa5828961ce20b025379"><div class="ttname"><a href="classIOSKJ_1_1Model.html#aeeca74d2a498fa5828961ce20b025379">IOSKJ::Model::yield_curve</a></div><div class="ttdeci">Frame yield_curve(double step=0.05)</div><div class="ttdef"><b>Definition:</b> model.hpp:715</div></div>
+<div class="ttc" id="classIOSKJ_1_1Model_html_a58e460b456d7affc4f6a8af785f6e82c"><div class="ttname"><a href="classIOSKJ_1_1Model.html#a58e460b456d7affc4f6a8af785f6e82c">IOSKJ::Model::equilibrium</a></div><div class="ttdeci">void equilibrium(void)</div><div class="ttdef"><b>Definition:</b> model.hpp:665</div></div>
 <div class="ttc" id="classIOSKJ_1_1Model_html_a99cdfa3685dc57db46cf66037171cfbf"><div class="ttname"><a href="classIOSKJ_1_1Model.html#a99cdfa3685dc57db46cf66037171cfbf">IOSKJ::Model::fishing_mortality_set</a></div><div class="ttdeci">void fishing_mortality_set(double value)</div><div class="ttdef"><b>Definition:</b> model.hpp:395</div></div>
 <div class="ttc" id="classIOSKJ_1_1Model_html_ac507a33d868bbf1b74a6e098f32eb49f"><div class="ttname"><a href="classIOSKJ_1_1Model.html#ac507a33d868bbf1b74a6e098f32eb49f">IOSKJ::Model::biomass_spawning</a></div><div class="ttdeci">Array&lt; double, Region &gt; biomass_spawning</div><div class="ttdef"><b>Definition:</b> model.hpp:39</div></div>
 <div class="ttc" id="classIOSKJ_1_1Model_html_a84fb39fdf2cfe838312c0d406be4282a"><div class="ttname"><a href="classIOSKJ_1_1Model.html#a84fb39fdf2cfe838312c0d406be4282a">IOSKJ::Model::weight_length_a</a></div><div class="ttdeci">double weight_length_a</div><div class="ttdef"><b>Definition:</b> model.hpp:140</div></div>
@@ -613,11 +619,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="classIOSKJ_1_1Model_html_aa90edf75b7c9ebf8e50a30f3779b9664"><div class="ttname"><a href="classIOSKJ_1_1Model.html#aa90edf75b7c9ebf8e50a30f3779b9664">IOSKJ::Model::numbers</a></div><div class="ttdeci">Array&lt; double, Region, Age, Size &gt; numbers</div><div class="ttdef"><b>Definition:</b> model.hpp:18</div></div>
 <div class="ttc" id="classIOSKJ_1_1Model_html_a1a9a5c48d57ab9f2bb0a7c50ac241c20"><div class="ttname"><a href="classIOSKJ_1_1Model.html#a1a9a5c48d57ab9f2bb0a7c50ac241c20">IOSKJ::Model::exploitation_rate</a></div><div class="ttdeci">Array&lt; double, Region, Method &gt; exploitation_rate</div><div class="ttdef"><b>Definition:</b> model.hpp:285</div></div>
 <div class="ttc" id="classIOSKJ_1_1Model_html_a21e3b545b434eafa1b2db1ec8a9f5242"><div class="ttname"><a href="classIOSKJ_1_1Model.html#a21e3b545b434eafa1b2db1ec8a9f5242">IOSKJ::Model::mortality_cap_size</a></div><div class="ttdeci">Level&lt; Size &gt; mortality_cap_size</div><div class="ttdef"><b>Definition:</b> model.hpp:184</div></div>
-<div class="ttc" id="classIOSKJ_1_1Model_html_abfc09c1b2d6bfe2802835cd5fd58c3b3"><div class="ttname"><a href="classIOSKJ_1_1Model.html#abfc09c1b2d6bfe2802835cd5fd58c3b3">IOSKJ::Model::write</a></div><div class="ttdeci">void write(void)</div><div class="ttdef"><b>Definition:</b> model.hpp:749</div></div>
+<div class="ttc" id="classIOSKJ_1_1Model_html_abfc09c1b2d6bfe2802835cd5fd58c3b3"><div class="ttname"><a href="classIOSKJ_1_1Model.html#abfc09c1b2d6bfe2802835cd5fd58c3b3">IOSKJ::Model::write</a></div><div class="ttdeci">void write(void)</div><div class="ttdef"><b>Definition:</b> model.hpp:755</div></div>
 <div class="ttc" id="classIOSKJ_1_1Model_html_adfa83eaea6c889c57b0277e721630223"><div class="ttname"><a href="classIOSKJ_1_1Model.html#adfa83eaea6c889c57b0277e721630223">IOSKJ::Model::exploitation_survival</a></div><div class="ttdeci">Array&lt; double, Region, Size &gt; exploitation_survival</div><div class="ttdef"><b>Definition:</b> model.hpp:290</div></div>
 <div class="ttc" id="classIOSKJ_1_1Model_html_ae04fad38e291a476bec70ff67bbfd9b6"><div class="ttname"><a href="classIOSKJ_1_1Model.html#ae04fad38e291a476bec70ff67bbfd9b6">IOSKJ::Model::spawning_uniform</a></div><div class="ttdeci">void spawning_uniform(void)</div><div class="ttdef"><b>Definition:</b> model.hpp:369</div></div>
 <div class="ttc" id="classIOSKJ_1_1Model_html_a0aa015def5316af0f5ce23bdaecbf67c"><div class="ttname"><a href="classIOSKJ_1_1Model.html#a0aa015def5316af0f5ce23bdaecbf67c">IOSKJ::Model::biomass_vulnerable</a></div><div class="ttdeci">Array&lt; double, Region, Method &gt; biomass_vulnerable</div><div class="ttdef"><b>Definition:</b> model.hpp:269</div></div>
-<div class="ttc" id="classIOSKJ_1_1Model_html_ab866cdbb2797465558eedad59a0e9b61"><div class="ttname"><a href="classIOSKJ_1_1Model.html#ab866cdbb2797465558eedad59a0e9b61">IOSKJ::Model::msy_find</a></div><div class="ttdeci">void msy_find(void)</div><div class="ttdef"><b>Definition:</b> model.hpp:728</div></div>
+<div class="ttc" id="classIOSKJ_1_1Model_html_ab866cdbb2797465558eedad59a0e9b61"><div class="ttname"><a href="classIOSKJ_1_1Model.html#ab866cdbb2797465558eedad59a0e9b61">IOSKJ::Model::msy_find</a></div><div class="ttdeci">void msy_find(void)</div><div class="ttdef"><b>Definition:</b> model.hpp:734</div></div>
 <div class="ttc" id="classIOSKJ_1_1Model_html_a5a9a40056b58e0830d7e4fbc349dd900"><div class="ttname"><a href="classIOSKJ_1_1Model.html#a5a9a40056b58e0830d7e4fbc349dd900">IOSKJ::Model::update</a></div><div class="ttdeci">void update(uint time)</div><div class="ttdef"><b>Definition:</b> model.hpp:535</div></div>
 <div class="ttc" id="classIOSKJ_1_1Model_html_a164e3c054caea071da7079d5ff27833b"><div class="ttname"><a href="classIOSKJ_1_1Model.html#a164e3c054caea071da7079d5ff27833b">IOSKJ::Model::recruits_variation_on</a></div><div class="ttdeci">bool recruits_variation_on</div><div class="ttdef"><b>Definition:</b> model.hpp:92</div></div>
 <div class="ttc" id="classLognormal_html"><div class="ttname"><a href="classLognormal.html">Lognormal</a></div><div class="ttdef"><b>Definition:</b> distributions.hpp:188</div></div>
@@ -627,7 +633,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Oct 14 2014 05:18:11 for Indian Ocean Skipjack by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Oct 14 2014 08:16:23 for Indian Ocean Skipjack by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

@@ -138,17 +138,6 @@ figure
 	figcaption Selectivity at length by fishing method.
 
 
-# Catches
-
-figure
-	r png
-		temp <- melt(track[,c('year','quarter','catches_w_ps','catches_m_pl','catches_e_gn')],id.vars=c('year','quarter'))
-		print(
-			ggplot(temp,aes(x=year+quarter/4,y=value,fill=variable)) + geom_bar(stat='identity') +
-				geom_vline(x=2015,alpha=0.6,linetype=2) +
-				labs(x='Year',y='Catch (t)')
-		)
-
 r
 	plot_track <- function(what,label){
 		print(
@@ -183,7 +172,7 @@ figure
 figure
 	r png 17x10cm
 		print(
-			ggplot(track,aes(x=year+quarter/4)) + 
+			ggplot(subset(track,quarter==0),aes(x=year+quarter/4)) + 
 				geom_line(aes(y=biomass_spawning_w,colour='W')) + 
 				geom_line(aes(y=biomass_spawning_m,colour='M')) + 
 				geom_line(aes(y=biomass_spawning_e,colour='E')) + 
@@ -191,11 +180,37 @@ figure
 				geom_vline(x=2015,alpha=0.6,linetype=2) +
 				labs(x='Year',y='Spawning biomass in region',colour='Region')
 		)
+	figcaption
+		Spawning biomass by region for the first quarter
+
+# Fishery
 
 figure
-	r png 17x10cm
-		plot_track('biomass_vulnerable_m_pl','Maldives pole and line vulnerable biomass')
+	r png
+		temp <- melt(track[,c('year','quarter','catches_w_ps','catches_m_pl','catches_e_gn')],id.vars=c('year','quarter'))
+		print(
+			ggplot(temp,aes(x=year+quarter/4,y=value,fill=variable)) + geom_bar(stat='identity') +
+				geom_vline(x=2015,alpha=0.6,linetype=2) +
+				labs(x='Year',y='Catch (t)')
+		)
 
-figure
-	r png 17x10cm
-		plot_track('exp_rate_m_pl','Maldives pole and line exploitation rate')
+r
+	items <- list(
+		c('w_ps','West (W) pusrse siene (PS)'),
+		c('m_pl','Maldive (M) pole and line (PL)'),
+		c('e_gn','East (E) gill net (GN)')
+	)
+
+for item in items
+	div
+		figure
+			r png 17x10cm
+				plot_track(paste0('biomass_vulnerable_',item[1]),'Vulnerable biomass')
+			figcaption
+				Vulnerable biomass trajectory for {span!text item[2]}
+
+		figure
+			r png 17x10cm
+				plot_track(paste0('exp_rate_',item[1]),'Exploitation rate')
+			figcaption
+				Exploitation rate trajectory for {span!text item[2]}

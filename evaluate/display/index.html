@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Indian Ocean skipjack model : management procedure evaluations</title>
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" type="text/css" href="/core/stencils/themes/default/theme.css" />
+	</head>
+	<body>
+		
+		<main id="content">
+			 
+			<div id="title">Indian Ocean skipjack model : management procedure evaluations</div>
+			<pre data-code="r">
+source('../../common.R',local=T)
+
+load(c(
+	'procedures','samples',
+	'performances',
+	'track'
+),from='../output')
+
+perfs &lt;- merge(procedures, 
+			ddply(performances,.(procedure),summarise,
+			   yield = mean(catches_total)/1000*4,
+			   stability = -mean(catches_mapc),
+			   status = mean(status_mean),
+			   safety10 = 1-mean(status_b10),
+			   safety20 = 1-mean(status_b20)
+			)
+		)
+
+track &lt;- within(track,{
+	procedure &lt;- factor(procedure)
+})
+
+plot_tradeoff &lt;- function(data,x,y,colour,shape){
+	data &lt;- within(data,{
+		x = data[,names(x)]
+		y = data[,names(y)]
+		colour = factor(data[,names(colour)])
+		shape = factor(data[,names(shape)])
+	})
+	print(
+		ggplot(data,aes(x=x,y=y,colour=colour,shape=shape)) +
+			geom_point(size=3,alpha=0.7) + 
+			geom_vline(x=0,alpha=0) + 
+			geom_hline(y=0,alpha=0) + 
+			scale_shape_manual(values=1:10) + 
+			labs(x=x[[1]],y=y[[1]],colour=colour[[1]],shape=shape[[1]])
+	)
+}
+
+</pre>
+			<figure>
+				<pre data-code="r" data-format="png" data-size="17x10cm">
+print(
+	ggplot(subset(track,replicate&lt;4 &amp; quarter==0),aes(x=year+quarter/4,y=biomass_spawning_overall/1e6)) +
+		geom_line(aes(colour=procedure)) +
+		facet_wrap(~replicate,scales='free_y') +
+		geom_vline(x=2015,linetype=2) +
+		labs(x="Year",y="Spawning biomass (mil. t)") + 
+		theme(legend.position='none')
+)
+</pre>
+				<img src="1.png" data-output="true" />
+				<figcaption>
+					<span class="label">
+						<span class="type">Figure</span>
+						<span class="number">1</span>
+						<span class="separator">:</span>
+					</span>
+					Spawning biomass trajectories for four example replicates
+				</figcaption>
+			</figure>
+			<figure>
+				<pre data-code="r" data-format="png" data-size="17x10cm">
+plot_tradeoff(
+	perfs,
+	x = list(yield='Yield (mean annual catch, `000 t)'),
+	y = list(status='Status (mean of B/B0)'),
+	colour = list(class='Class'),
+	shape = list(class='Class')
+)
+</pre>
+				<img src="2.png" data-output="true" />
+				<figcaption>
+					<span class="label">
+						<span class="type">Figure</span>
+						<span class="number">2</span>
+						<span class="separator">:</span>
+					</span>
+					Trade-off between yield and stock status across the management procedures evaluated.
+				</figcaption>
+			</figure>
+			<figure>
+				<pre data-code="r" data-format="png" data-size="17x10cm">
+plot_tradeoff(
+	subset(perfs,class=="BRule"),
+	x = list(yield='Yield (mean annual catch, `000 t)'),
+	y = list(status='Status (mean of B/B0)'),
+	colour = list(p2='Target'),
+	shape = list(p3='Threshold')
+)
+</pre>
+				<img src="3.png" data-output="true" />
+				<figcaption>
+					<span class="label">
+						<span class="type">Figure</span>
+						<span class="number">3</span>
+						<span class="separator">:</span>
+					</span>
+					Trade-off between yield and stock status for alternative instances of the the BRule class of management procedure.
+				</figcaption>
+			</figure>
+			<figure>
+				<pre data-code="r" data-format="png" data-size="17x10cm">
+plot_tradeoff(
+	subset(perfs,class=="FRange"),
+	x = list(yield='Yield (mean annual catch, `000 t)'),
+	y = list(status='Status (mean of B/B0)'),
+	colour = list(p3='Target'),
+	shape = list(p4='Buffer')
+)
+</pre>
+				<img src="4.png" data-output="true" />
+				<figcaption>
+					<span class="label">
+						<span class="type">Figure</span>
+						<span class="number">4</span>
+						<span class="separator">:</span>
+					</span>
+					Trade-off between yield and stock status for alternative instances of the the FRange class of management procedure.
+				</figcaption>
+			</figure>
+		</main>
+		<script src="/core/themes/boot.js"> </script>
+		<script>if(!window.Stencila){window.StencilaHost='http://stenci.la';document.write(unescape('%3Cscript src="http://stenci.la/core/themes/boot.js"%3E%3C/script%3E'))}</script>
+		<script>window.Stencila.Booter.theme('core/stencils/themes/default');</script>
+	</body>
+</html>

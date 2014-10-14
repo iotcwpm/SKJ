@@ -112,45 +112,51 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;            &lt;&lt;<span class="stringliteral">&quot;catches_w_ps\t&quot;</span></div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;            &lt;&lt;<span class="stringliteral">&quot;catches_m_pl\t&quot;</span></div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            &lt;&lt;<span class="stringliteral">&quot;catches_e_gn\t&quot;</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            &lt;&lt;<span class="stringliteral">&quot;exploitation_survival_m_20\t&quot;</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            &lt;&lt;<span class="stringliteral">&quot;biomass_vulnerable_m_pl\t&quot;</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            &lt;&lt;<span class="stringliteral">&quot;exp_rate_m_pl\t&quot;</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            &lt;&lt;std::endl;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    }</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordtype">void</span> <span class="keyword">get</span>(<span class="keywordtype">int</span> replicate, <span class="keywordtype">int</span> procedure, <span class="keywordtype">int</span> time, <span class="keyword">const</span> <a class="code" href="classIOSKJ_1_1Model.html">Model</a>&amp; model){</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;        uint year = IOSKJ::year(time);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;        uint quarter = IOSKJ::quarter(time);</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        file</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;            &lt;&lt;replicate&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;            &lt;&lt;procedure&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;            &lt;&lt;year&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            &lt;&lt;quarter&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            &lt;&lt;model.recruits_determ&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            &lt;&lt;model.recruits_deviation&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            &lt;&lt;model.recruits&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            &lt;&lt;model.biomass_spawning_overall(quarter)&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            &lt;&lt;model.biomass_spawning(W)&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            &lt;&lt;model.biomass_spawning(M)&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            &lt;&lt;model.biomass_spawning(E)&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            &lt;&lt;model.catches_taken(sum)&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            &lt;&lt;model.catches_taken(W,PS)&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            &lt;&lt;model.catches_taken(M,PL)&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            &lt;&lt;model.catches_taken(E,GN)&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            &lt;&lt;model.exploitation_survival(M,20)&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            &lt;&lt;model.biomass_vulnerable(M,PL)&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            &lt;&lt;model.exploitation_rate(M,PL)&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            &lt;&lt;std::endl;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    }</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;};</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;} <span class="comment">// namespace IOSKJ</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            &lt;&lt;<span class="stringliteral">&quot;biomass_vulnerable_w_ps\t&quot;</span></div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            &lt;&lt;<span class="stringliteral">&quot;exp_rate_w_ps\t&quot;</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            &lt;&lt;<span class="stringliteral">&quot;biomass_vulnerable_m_pl\t&quot;</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            &lt;&lt;<span class="stringliteral">&quot;exp_rate_m_pl\t&quot;</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            &lt;&lt;<span class="stringliteral">&quot;biomass_vulnerable_e_gn\t&quot;</span></div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            &lt;&lt;<span class="stringliteral">&quot;exp_rate_e_gn\t&quot;</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            &lt;&lt;std::endl;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    }</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    <span class="keywordtype">void</span> <span class="keyword">get</span>(<span class="keywordtype">int</span> replicate, <span class="keywordtype">int</span> procedure, <span class="keywordtype">int</span> time, <span class="keyword">const</span> <a class="code" href="classIOSKJ_1_1Model.html">Model</a>&amp; model){</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;        uint year = IOSKJ::year(time);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;        uint quarter = IOSKJ::quarter(time);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        file</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            &lt;&lt;replicate&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span></div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            &lt;&lt;procedure&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span></div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            &lt;&lt;year&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            &lt;&lt;quarter&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span></div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;            &lt;&lt;model.recruits_determ&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            &lt;&lt;model.recruits_deviation&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span></div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            &lt;&lt;model.recruits&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span></div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;            &lt;&lt;model.biomass_spawning_overall(quarter)&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;            &lt;&lt;model.biomass_spawning(W)&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span></div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;            &lt;&lt;model.biomass_spawning(M)&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;            &lt;&lt;model.biomass_spawning(E)&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            &lt;&lt;model.catches_taken(sum)&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span></div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            &lt;&lt;model.catches_taken(W,PS)&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;            &lt;&lt;model.catches_taken(M,PL)&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span></div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            &lt;&lt;model.catches_taken(E,GN)&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span></div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            &lt;&lt;model.biomass_vulnerable(W,PS)&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span></div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;            &lt;&lt;model.exploitation_rate(W,PS)&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span></div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;            &lt;&lt;model.biomass_vulnerable(M,PL)&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span></div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;            &lt;&lt;model.exploitation_rate(M,PL)&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span></div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;            &lt;&lt;model.biomass_vulnerable(E,GN)&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            &lt;&lt;model.exploitation_rate(E,GN)&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span></div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            &lt;&lt;std::endl;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    }</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;};</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;} <span class="comment">// namespace IOSKJ</span></div>
 <div class="ttc" id="classIOSKJ_1_1Model_html"><div class="ttname"><a href="classIOSKJ_1_1Model.html">IOSKJ::Model</a></div><div class="ttdef"><b>Definition:</b> model.hpp:12</div></div>
 <div class="ttc" id="structIOSKJ_1_1Tracker_html"><div class="ttname"><a href="structIOSKJ_1_1Tracker.html">IOSKJ::Tracker</a></div><div class="ttdef"><b>Definition:</b> tracker.hpp:11</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Oct 14 2014 05:18:11 for Indian Ocean Skipjack by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Oct 14 2014 08:16:23 for Indian Ocean Skipjack by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

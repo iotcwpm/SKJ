@@ -1,0 +1,90 @@
+#title Indian Ocean skipjack model : management procedure evaluations
+
+r
+	source('../../common.R',local=T)
+	
+	load(c(
+		'procedures','samples',
+		'performances',
+		'track'
+	),from='../output')
+
+	perfs <- merge(procedures, 
+				ddply(performances,.(procedure),summarise,
+				   yield = mean(catches_total)/1000*4,
+				   stability = -mean(catches_mapc),
+				   status = mean(status_mean),
+				   safety10 = 1-mean(status_b10),
+				   safety20 = 1-mean(status_b20)
+				)
+			)
+
+	track <- within(track,{
+		procedure <- factor(procedure)
+	})
+
+	plot_tradeoff <- function(data,x,y,colour,shape){
+		data <- within(data,{
+			x = data[,names(x)]
+			y = data[,names(y)]
+			colour = factor(data[,names(colour)])
+			shape = factor(data[,names(shape)])
+		})
+		print(
+			ggplot(data,aes(x=x,y=y,colour=colour,shape=shape)) +
+				geom_point(size=3,alpha=0.7) + 
+				geom_vline(x=0,alpha=0) + 
+				geom_hline(y=0,alpha=0) + 
+				scale_shape_manual(values=1:10) + 
+				labs(x=x[[1]],y=y[[1]],colour=colour[[1]],shape=shape[[1]])
+		)
+	}
+
+figure
+	r png 17x10cm
+		print(
+			ggplot(subset(track,replicate<4 & quarter==0),aes(x=year+quarter/4,y=biomass_spawning_overall/1e6)) +
+				geom_line(aes(colour=procedure)) +
+				facet_wrap(~replicate,scales='free_y') +
+				geom_vline(x=2015,linetype=2) +
+				labs(x="Year",y="Spawning biomass (mil. t)") + 
+				theme(legend.position='none')
+		)
+	figcaption
+		Spawning biomass trajectories for four example replicates
+
+figure
+	r png 17x10cm
+		plot_tradeoff(
+			perfs,
+			x = list(yield='Yield (mean annual catch, `000 t)'),
+			y = list(status='Status (mean of B/B0)'),
+			colour = list(class='Class'),
+			shape = list(class='Class')
+		)
+	figcaption
+		Trade-off between yield and stock status across the management procedures evaluated.
+
+figure
+	r png 17x10cm
+		plot_tradeoff(
+			subset(perfs,class=="BRule"),
+			x = list(yield='Yield (mean annual catch, `000 t)'),
+			y = list(status='Status (mean of B/B0)'),
+			colour = list(p2='Target'),
+			shape = list(p3='Threshold')
+		)
+	figcaption
+		Trade-off between yield and stock status for alternative instances of the the BRule class of management procedure.
+
+figure
+	r png 17x10cm
+		plot_tradeoff(
+			subset(perfs,class=="FRange"),
+			x = list(yield='Yield (mean annual catch, `000 t)'),
+			y = list(status='Status (mean of B/B0)'),
+			colour = list(p3='Target'),
+			shape = list(p4='Buffer')
+		)
+	figcaption
+		Trade-off between yield and stock status for alternative instances of the the FRange class of management procedure.

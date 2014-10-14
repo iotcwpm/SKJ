@@ -234,19 +234,6 @@ print(
 					Selectivity at length by fishing method.
 				</figcaption>
 			</figure>
-			<h1>Catches</h1>
-			<figure>
-				<pre data-code="r" data-format="png">
-temp &lt;- melt(track[,c('year','quarter','catches_w_ps','catches_m_pl','catches_e_gn')],id.vars=c('year','quarter'))
-print(
-	ggplot(temp,aes(x=year+quarter/4,y=value,fill=variable)) + geom_bar(stat='identity') +
-		geom_vline(x=2015,alpha=0.6,linetype=2) +
-		labs(x='Year',y='Catch (t)')
-)
-
-</pre>
-				<img src="11.png" data-output="true" />
-			</figure>
 			<pre data-code="r">
 plot_track &lt;- function(what,label){
 	print(
@@ -265,21 +252,21 @@ plot_track &lt;- function(what,label){
 plot_track('recruits_determ/1e6','Deterministic recruitment (mil.)')
 
 </pre>
-				<img src="12.png" data-output="true" />
+				<img src="11.png" data-output="true" />
 			</figure>
 			<figure>
 				<pre data-code="r" data-format="png" data-size="17x10cm">
 plot_track('recruits_deviation','Recruitment deviation')
 
 </pre>
-				<img src="13.png" data-output="true" />
+				<img src="12.png" data-output="true" />
 			</figure>
 			<figure>
 				<pre data-code="r" data-format="png" data-size="17x10cm">
 plot_track('recruits/1e6','Recruitment (mil.)')
 
 </pre>
-				<img src="14.png" data-output="true" />
+				<img src="13.png" data-output="true" />
 			</figure>
 			<h1>Spawning biomass</h1>
 			<figure>
@@ -287,12 +274,12 @@ plot_track('recruits/1e6','Recruitment (mil.)')
 plot_track('biomass_spawning_overall','Overall spawning biomass')
 
 </pre>
-				<img src="15.png" data-output="true" />
+				<img src="14.png" data-output="true" />
 			</figure>
 			<figure>
 				<pre data-code="r" data-format="png" data-size="17x10cm">
 print(
-	ggplot(track,aes(x=year+quarter/4)) + 
+	ggplot(subset(track,quarter==0),aes(x=year+quarter/4)) + 
 		geom_line(aes(y=biomass_spawning_w,colour='W')) + 
 		geom_line(aes(y=biomass_spawning_m,colour='M')) + 
 		geom_line(aes(y=biomass_spawning_e,colour='E')) + 
@@ -300,23 +287,156 @@ print(
 		geom_vline(x=2015,alpha=0.6,linetype=2) +
 		labs(x='Year',y='Spawning biomass in region',colour='Region')
 )
+</pre>
+				<img src="15.png" data-output="true" />
+				<figcaption>
+					<span class="label">
+						<span class="type">Figure</span>
+						<span class="number">11</span>
+						<span class="separator">:</span>
+					</span>
+					Spawning biomass by region for the first quarter
+				</figcaption>
+			</figure>
+			<h1>Fishery</h1>
+			<figure>
+				<pre data-code="r" data-format="png">
+temp &lt;- melt(track[,c('year','quarter','catches_w_ps','catches_m_pl','catches_e_gn')],id.vars=c('year','quarter'))
+print(
+	ggplot(temp,aes(x=year+quarter/4,y=value,fill=variable)) + geom_bar(stat='identity') +
+		geom_vline(x=2015,alpha=0.6,linetype=2) +
+		labs(x='Year',y='Catch (t)')
+)
 
 </pre>
 				<img src="16.png" data-output="true" />
 			</figure>
-			<figure>
-				<pre data-code="r" data-format="png" data-size="17x10cm">
-plot_track('biomass_vulnerable_m_pl','Maldives pole and line vulnerable biomass')
+			<pre data-code="r">
+items &lt;- list(
+	c('w_ps','West (W) pusrse siene (PS)'),
+	c('m_pl','Maldive (M) pole and line (PL)'),
+	c('e_gn','East (E) gill net (GN)')
+)
 
 </pre>
-				<img src="17.png" data-output="true" />
-			</figure>
-			<figure>
-				<pre data-code="r" data-format="png" data-size="17x10cm">
-plot_track('exp_rate_m_pl','Maldives pole and line exploitation rate')
+			<div data-for="item:items">
+				<div data-off="true">
+					<figure>
+						<pre data-code="r" data-format="png" data-size="17x10cm">
+plot_track(paste0('biomass_vulnerable_',item[1]),'Vulnerable biomass')
 </pre>
-				<img src="18.png" data-output="true" />
-			</figure>
+						<figcaption>
+							Vulnerable biomass trajectory for 
+							<span data-text="item[2]"></span>
+						</figcaption>
+					</figure>
+					<figure>
+						<pre data-code="r" data-format="png" data-size="17x10cm">
+plot_track(paste0('exp_rate_',item[1]),'Exploitation rate')
+</pre>
+						<figcaption>
+							Exploitation rate trajectory for 
+							<span data-text="item[2]"></span>
+						</figcaption>
+					</figure>
+				</div>
+				<div data-index="0">
+					<figure>
+						<pre data-code="r" data-format="png" data-size="17x10cm">
+plot_track(paste0('biomass_vulnerable_',item[1]),'Vulnerable biomass')
+</pre>
+						<img src="17.png" data-output="true" />
+						<figcaption>
+							<span class="label">
+								<span class="type">Figure</span>
+								<span class="number">12</span>
+								<span class="separator">:</span>
+							</span>
+							Vulnerable biomass trajectory for 
+							<span data-text="item[2]">West (W) pusrse siene (PS)</span>
+						</figcaption>
+					</figure>
+					<figure>
+						<pre data-code="r" data-format="png" data-size="17x10cm">
+plot_track(paste0('exp_rate_',item[1]),'Exploitation rate')
+</pre>
+						<img src="18.png" data-output="true" />
+						<figcaption>
+							<span class="label">
+								<span class="type">Figure</span>
+								<span class="number">13</span>
+								<span class="separator">:</span>
+							</span>
+							Exploitation rate trajectory for 
+							<span data-text="item[2]">West (W) pusrse siene (PS)</span>
+						</figcaption>
+					</figure>
+				</div>
+				<div data-index="1">
+					<figure>
+						<pre data-code="r" data-format="png" data-size="17x10cm">
+plot_track(paste0('biomass_vulnerable_',item[1]),'Vulnerable biomass')
+</pre>
+						<img src="19.png" data-output="true" />
+						<figcaption>
+							<span class="label">
+								<span class="type">Figure</span>
+								<span class="number">14</span>
+								<span class="separator">:</span>
+							</span>
+							Vulnerable biomass trajectory for 
+							<span data-text="item[2]">Maldive (M) pole and line (PL)</span>
+						</figcaption>
+					</figure>
+					<figure>
+						<pre data-code="r" data-format="png" data-size="17x10cm">
+plot_track(paste0('exp_rate_',item[1]),'Exploitation rate')
+</pre>
+						<img src="20.png" data-output="true" />
+						<figcaption>
+							<span class="label">
+								<span class="type">Figure</span>
+								<span class="number">15</span>
+								<span class="separator">:</span>
+							</span>
+							Exploitation rate trajectory for 
+							<span data-text="item[2]">Maldive (M) pole and line (PL)</span>
+						</figcaption>
+					</figure>
+				</div>
+				<div data-index="2">
+					<figure>
+						<pre data-code="r" data-format="png" data-size="17x10cm">
+plot_track(paste0('biomass_vulnerable_',item[1]),'Vulnerable biomass')
+</pre>
+						<img src="21.png" data-output="true" />
+						<figcaption>
+							<span class="label">
+								<span class="type">Figure</span>
+								<span class="number">16</span>
+								<span class="separator">:</span>
+							</span>
+							Vulnerable biomass trajectory for 
+							<span data-text="item[2]">East (E) gill net (GN)</span>
+						</figcaption>
+					</figure>
+					<figure>
+						<pre data-code="r" data-format="png" data-size="17x10cm">
+plot_track(paste0('exp_rate_',item[1]),'Exploitation rate')
+</pre>
+						<img src="22.png" data-output="true" />
+						<figcaption>
+							<span class="label">
+								<span class="type">Figure</span>
+								<span class="number">17</span>
+								<span class="separator">:</span>
+							</span>
+							Exploitation rate trajectory for 
+							<span data-text="item[2]">East (E) gill net (GN)</span>
+						</figcaption>
+					</figure>
+				</div>
+			</div>
 		</main>
 		<script src="/core/themes/boot.js"> </script>
 		<script>if(!window.Stencila){window.StencilaHost='http://stenci.la';document.write(unescape('%3Cscript src="http://stenci.la/core/themes/boot.js"%3E%3C/script%3E'))}</script>
