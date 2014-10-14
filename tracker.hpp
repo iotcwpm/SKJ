@@ -30,9 +30,12 @@ struct Tracker {
 			<<"catches_w_ps\t"
 			<<"catches_m_pl\t"
 			<<"catches_e_gn\t"
-			<<"exploitation_survival_m_20\t"
+			<<"biomass_vulnerable_w_ps\t"
+			<<"exp_rate_w_ps\t"
 			<<"biomass_vulnerable_m_pl\t"
 			<<"exp_rate_m_pl\t"
+			<<"biomass_vulnerable_e_gn\t"
+			<<"exp_rate_e_gn\t"
 			<<std::endl;
 	}
 
@@ -55,9 +58,12 @@ struct Tracker {
 			<<model.catches_taken(W,PS)<<"\t"
 			<<model.catches_taken(M,PL)<<"\t"
 			<<model.catches_taken(E,GN)<<"\t"
-			<<model.exploitation_survival(M,20)<<"\t"
+			<<model.biomass_vulnerable(W,PS)<<"\t"
+			<<model.exploitation_rate(W,PS)<<"\t"
 			<<model.biomass_vulnerable(M,PL)<<"\t"
 			<<model.exploitation_rate(M,PL)<<"\t"
+			<<model.biomass_vulnerable(E,GN)<<"\t"
+			<<model.exploitation_rate(E,GN)<<"\t"
 			<<std::endl;
 	}
 };
