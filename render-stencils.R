@@ -9,7 +9,8 @@ for(address in c(
 	'parameters/description',
 	'model/display',
 	'data/display',
-	'yield/display'
+	'yield/display',
+	'feasible/display'
 )){
 	Stencil(address)$render()$export(paste0(address,'/index.html'))
 }
