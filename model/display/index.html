@@ -4,13 +4,13 @@
 		<title>Indian Ocean skipjack model : general outputs</title>
 		<meta charset="UTF-8" />
 		<link rel="stylesheet" type="text/css" href="/core/stencils/themes/default/theme.css" />
-		<script type="text/javascript">(function(){
-	var d=document,s,l,c;
-	s=d.styleSheets[0];try{if(s.cssRules.length)return;}catch(e){};
-	l=d.createElement('link');l.rel='stylesheet';l.type='text/css';l.href='http://stenci.la/core/stencils/themes/default/theme.css';
+		<script type="text/javascript">(function(c){
+	var d=document,s,i,l;
+	s=d.styleSheets;for(i=0;i!=s.length;i++){if(s[i].href.match(c)){try{if(s[i].cssRules.length)return;}catch(e){}}}
+	l=d.createElement('link');l.rel='stylesheet';l.type='text/css';l.href='http://stenci.la'+c;
 	d.documentElement.className='unready';l.onload=function(){d.documentElement.className='';};
 	d.getElementsByTagName('head')[0].appendChild(l);
-})();</script>
+})('/core/stencils/themes/default/theme.css');</script>
 		<style type="text/css">.unready{display:none;}</style>
 	</head>
 	<body>
@@ -449,5 +449,6 @@ plot_track(paste0('exp_rate_',item[1]),'Exploitation rate')
 		<script src="/core/themes/boot.js"> </script>
 		<script>if(!window.Stencila){window.StencilaHost='http://stenci.la';document.write(unescape('%3Cscript src="http://stenci.la/core/themes/boot.js"%3E%3C/script%3E'))}</script>
 		<script>window.Stencila.Booter.theme('core/stencils/themes/default');</script>
+		<script>window.setTimeout(function(){document.documentElement.className='';},10000)</script>
 	</body>
 </html>
