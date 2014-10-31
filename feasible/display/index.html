@@ -6,7 +6,7 @@
 		<link rel="stylesheet" type="text/css" href="/core/stencils/themes/default/theme.css" />
 		<script type="text/javascript">(function(c){
 	var d=document,s,i,l;
-	s=d.styleSheets;for(i=0;i!=s.length;i++){if(s[i].href.match(c)){try{if(s[i].cssRules.length)return;}catch(e){}}}
+	s=d.styleSheets;for(i=0;i!=s.length;i++){if((s[i].href||).match(c)){try{if(s[i].cssRules.length)return;}catch(e){}}}
 	l=d.createElement('link');l.rel='stylesheet';l.type='text/css';l.href='http://stenci.la'+c;
 	d.documentElement.className='unready';l.onload=function(){d.documentElement.className='';};
 	d.getElementsByTagName('head')[0].appendChild(l);
