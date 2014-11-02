@@ -42,6 +42,9 @@ void run(void){
 	data.write();
 }
 
+/**
+ * Perform yield curve and MSY calculations with a parameters set read from "parameters/input"
+ */
 void yield(void){
 	boost::filesystem::create_directories("yield/output");
 
@@ -143,10 +146,10 @@ void condition_feasible(int trials=100){
 			int criterion = check_feasible(model,data,time,year,quarter);
 			if(criterion!=0){
 				Frame values = parameters.values();
-				values.add("time",Integer,int(time));
-				values.add("year",Integer,int(year));
-				values.add("quarter",Integer,int(quarter));
-				values.add("criterion",Integer,int(criterion));
+				values.add("time",time);
+				values.add("year",year);
+				values.add("quarter",quarter);
+				values.add("criterion",criterion);
 				rejected.append(values);
 				break;
 			}
@@ -174,7 +177,7 @@ void evaluate(int replicates=1000){
 	// create a frame for storing selected samples
 	Frame samples_all;
 	samples_all.read("feasible/output/accepted.tsv");
-	samples_all.type<double>();
+	samples_all.write("evaluate/output/samples_all.tsv");
 	Frame samples;
 	// Setup procedures
 	Procedures procedures;
@@ -187,7 +190,7 @@ void evaluate(int replicates=1000){
 	for(int replicate=0;replicate<replicates;replicate++){
 		std::cout<<replicate<<std::endl;
 		// Randomly select a parameter sample
-		Frame sample = samples_all.row(
+		Frame sample = samples_all.slice(
 			Uniform(0,samples_all.rows()).random()
 		);
 		samples.append(sample);

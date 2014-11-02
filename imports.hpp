@@ -9,6 +9,8 @@
 #include <fstream>
 
 // Boost library (http://www.boost.org/) for...
+//... file system utilities
+#include <boost/filesystem.hpp>
 //... random number scaffolding...
 #include <boost/random/mersenne_twister.hpp>
 #include <boost/random/variate_generator.hpp>

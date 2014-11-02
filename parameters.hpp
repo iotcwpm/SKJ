@@ -307,7 +307,7 @@ public:
 
 		template<class Distribution>
 		Values& data(Variable<Distribution>& variable, const std::string& name){
-			values.add(prefix+name+".value",Real,variable.value);
+			values.add(prefix+name+".value",variable.value);
 			return *this;
 		}
 	};

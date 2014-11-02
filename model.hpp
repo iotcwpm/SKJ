@@ -31,7 +31,6 @@ public:
 	 * The spawning fraction by quarter
 	 */
 	Array<double,Quarter> spawning;
-	
 
 	/**
 	 * The total spawning biomass by region
