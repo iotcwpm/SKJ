@@ -214,7 +214,7 @@ public:
 		}
 
 		// Alternative parameterisation of recruitment variation depending on year..
-		if(year<1990){
+		if(year<1985){
 			// Deterministric recruitment
 			model.recruits_variation_on = false;
 			model.recruits_deviation = 1;
