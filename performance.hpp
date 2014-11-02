@@ -108,7 +108,7 @@ public:
 	 * Record performance measures
 	 */
 	virtual void record(uint time, const Model& model){
-		uint year = IOSKJ::quarter(year);
+		uint year = IOSKJ::year(time);
 		uint quarter = IOSKJ::quarter(time);
 
 		times.append();
