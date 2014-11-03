@@ -5,6 +5,7 @@ var searchData=
   ['selectivity_5fvalues',['selectivity_values',['../classIOSKJ_1_1Model.html#a1df5e2bf4fa4560baf73c97733c2d850',1,'IOSKJ::Model']]],
   ['set',['set',['../classIOSKJ_1_1Parameters.html#a253618e00502701d332ee424d071c18d',1,'IOSKJ::Parameters']]],
   ['sizefreqvariable',['SizeFreqVariable',['../classIOSKJ_1_1Data.html#aa714e047ae348ab45179b8a5a8397efa',1,'IOSKJ::Data']]],
+  ['spawners_5funfished',['spawners_unfished',['../classIOSKJ_1_1Parameters.html#a229792646babbdf0649703d28a99781b',1,'IOSKJ::Parameters']]],
   ['spawning',['spawning',['../classIOSKJ_1_1Model.html#a81bffc6707aa313f87bf21dbbf1d8143',1,'IOSKJ::Model']]],
   ['spawning_5f0',['spawning_0',['../classIOSKJ_1_1Parameters.html#a36006c6d379e5e00fb10b8f64c91565d',1,'IOSKJ::Parameters']]],
   ['spawning_5funiform',['spawning_uniform',['../classIOSKJ_1_1Model.html#ae04fad38e291a476bec70ff67bbfd9b6',1,'IOSKJ::Model']]],

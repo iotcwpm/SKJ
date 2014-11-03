@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Indian Ocean skipjack model : Parameter distributions</title>
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" type="text/css" href="/core/stencils/themes/default/theme.css" />
+		<script type="text/javascript">(function(c){
+	var d=document,s,i,l;
+	s=d.styleSheets;for(i=0;i!=s.length;i++){if((s[i].href||'').match(c)){try{if(s[i].cssRules.length)return;}catch(e){}}}
+	l=d.createElement('link');l.rel='stylesheet';l.type='text/css';l.href='http://stenci.la'+c;
+	d.documentElement.className='unready';l.onload=function(){d.documentElement.className='';};
+	d.getElementsByTagName('head')[0].appendChild(l);
+})('/core/stencils/themes/default/theme.css');</script>
+		<style type="text/css">.unready{display:none;}</style>
+	</head>
+	<body>
+		
+		<main id="content">
+			 
+			<div id="title">Indian Ocean skipjack model : Parameter distributions</div>
+			<pre data-code="r">
+source('../../common.R',local=T)
+require(stringr)
+load(c(
+	'samples'
+),from='../output')
+
+</pre>
+			<pre data-code="r">
+# Function for plotting densities of parameters
+plot_densities &lt;- function(param){
+	print(
+		ggplot(data.frame(
+			value = samples[,paste0(param,'.value')],
+			m = factor(samples$mortality_base.value)
+		)) + 
+			geom_bar(aes(x=value,fill=m)) + 
+			labs(x="Value",y="Count")
+	)
+}
+
+</pre>
+			<div data-for="param:c('spawners_unfished','recruits_steepness','recruits_sd','mortality_base','movement_stay','selectivities.0.3.','recruits_deviations.2004.','recruits_deviations.2005.')">
+				<figure data-off="true">
+					<pre data-code="r" data-format="png" data-size="17x10cm">
+plot_densities(param)
+</pre>
+					<figcaption>
+						Distribution of values of the "
+						<span data-text="param"></span>
+						" parameter.
+					</figcaption>
+				</figure>
+				<figure data-index="0">
+					<pre data-code="r" data-format="png" data-size="17x10cm">
+plot_densities(param)
+</pre>
+					<img src="1.png" data-output="true" />
+					<figcaption>
+						<span class="label">
+							<span class="type">Figure</span>
+							<span class="number">1</span>
+							<span class="separator">:</span>
+						</span>
+						Distribution of values of the "
+						<span data-text="param">spawners_unfished</span>
+						" parameter.
+					</figcaption>
+				</figure>
+				<figure data-index="1">
+					<pre data-code="r" data-format="png" data-size="17x10cm">
+plot_densities(param)
+</pre>
+					<img src="2.png" data-output="true" />
+					<figcaption>
+						<span class="label">
+							<span class="type">Figure</span>
+							<span class="number">2</span>
+							<span class="separator">:</span>
+						</span>
+						Distribution of values of the "
+						<span data-text="param">recruits_steepness</span>
+						" parameter.
+					</figcaption>
+				</figure>
+				<figure data-index="2">
+					<pre data-code="r" data-format="png" data-size="17x10cm">
+plot_densities(param)
+</pre>
+					<img src="3.png" data-output="true" />
+					<figcaption>
+						<span class="label">
+							<span class="type">Figure</span>
+							<span class="number">3</span>
+							<span class="separator">:</span>
+						</span>
+						Distribution of values of the "
+						<span data-text="param">recruits_sd</span>
+						" parameter.
+					</figcaption>
+				</figure>
+				<figure data-index="3">
+					<pre data-code="r" data-format="png" data-size="17x10cm">
+plot_densities(param)
+</pre>
+					<img src="4.png" data-output="true" />
+					<figcaption>
+						<span class="label">
+							<span class="type">Figure</span>
+							<span class="number">4</span>
+							<span class="separator">:</span>
+						</span>
+						Distribution of values of the "
+						<span data-text="param">mortality_base</span>
+						" parameter.
+					</figcaption>
+				</figure>
+				<figure data-index="4">
+					<pre data-code="r" data-format="png" data-size="17x10cm">
+plot_densities(param)
+</pre>
+					<img src="5.png" data-output="true" />
+					<figcaption>
+						<span class="label">
+							<span class="type">Figure</span>
+							<span class="number">5</span>
+							<span class="separator">:</span>
+						</span>
+						Distribution of values of the "
+						<span data-text="param">movement_stay</span>
+						" parameter.
+					</figcaption>
+				</figure>
+				<figure data-index="5">
+					<pre data-code="r" data-format="png" data-size="17x10cm">
+plot_densities(param)
+</pre>
+					<img src="6.png" data-output="true" />
+					<figcaption>
+						<span class="label">
+							<span class="type">Figure</span>
+							<span class="number">6</span>
+							<span class="separator">:</span>
+						</span>
+						Distribution of values of the "
+						<span data-text="param">selectivities.0.3.</span>
+						" parameter.
+					</figcaption>
+				</figure>
+				<figure data-index="6">
+					<pre data-code="r" data-format="png" data-size="17x10cm">
+plot_densities(param)
+</pre>
+					<img src="7.png" data-output="true" />
+					<figcaption>
+						<span class="label">
+							<span class="type">Figure</span>
+							<span class="number">7</span>
+							<span class="separator">:</span>
+						</span>
+						Distribution of values of the "
+						<span data-text="param">recruits_deviations.2004.</span>
+						" parameter.
+					</figcaption>
+				</figure>
+				<figure data-index="7">
+					<pre data-code="r" data-format="png" data-size="17x10cm">
+plot_densities(param)
+</pre>
+					<img src="8.png" data-output="true" />
+					<figcaption>
+						<span class="label">
+							<span class="type">Figure</span>
+							<span class="number">8</span>
+							<span class="separator">:</span>
+						</span>
+						Distribution of values of the "
+						<span data-text="param">recruits_deviations.2005.</span>
+						" parameter.
+					</figcaption>
+				</figure>
+			</div>
+			<figure>
+				<pre data-code="r" data-format="png" data-size="17x10cm">
+temp &lt;- melt(samples[,paste0("recruits_deviations.",1985:2012,"..value")])
+temp$year &lt;- str_extract(temp$variable,"\\d+")
+print(ggplot(temp,aes(x=year,y=value)) + 
+	geom_violin(fill='grey') +
+	geom_point(data=ddply(temp,.(year),summarise,y=mean(value)),aes(y=y)) +
+	geom_hline(y=0,linetype=2) + 
+	labs(x='Year',y='Value'))
+</pre>
+				<img src="9.png" data-output="true" />
+				<figcaption>
+					<span class="label">
+						<span class="type">Figure</span>
+						<span class="number">9</span>
+						<span class="separator">:</span>
+					</span>
+					Distribution of values of 
+					<code>recruits_deviations</code>
+					 parameters. The dots represent the mean of each distribution.	
+				</figcaption>
+			</figure>
+		</main>
+		<script src="/core/themes/boot.js"> </script>
+		<script>if(!window.Stencila){window.StencilaHost='http://stenci.la';document.write(unescape('%3Cscript src="http://stenci.la/core/themes/boot.js"%3E%3C/script%3E'))}</script>
+		<script>window.Stencila.Booter.theme('core/stencils/themes/default');</script>
+		<script>window.setTimeout(function(){document.documentElement.className='';},10000)</script>
+	</body>
+</html>

@@ -276,13 +276,43 @@ plot_track('recruits/1e6','Recruitment (mil.)')
 </pre>
 				<img src="13.png" data-output="true" />
 			</figure>
+			<h1>Biomass of mature fish</h1>
+			<figure>
+				<pre data-code="r" data-format="png" data-size="17x10cm">
+plot_track('biomass_status','Stock status (biomass of mature fish relative to unfished levels)')
+
+</pre>
+				<img src="14.png" data-output="true" />
+			</figure>
+			<figure>
+				<pre data-code="r" data-format="png" data-size="17x10cm">
+print(
+	ggplot(subset(track,quarter==0),aes(x=year+quarter/4)) + 
+		geom_line(aes(y=biomass_spawners_w,colour='W')) + 
+		geom_line(aes(y=biomass_spawners_m,colour='M')) + 
+		geom_line(aes(y=biomass_spawners_e,colour='E')) + 
+		geom_hline(y=0,alpha=0) +
+		geom_vline(x=2015,alpha=0.6,linetype=2) +
+		labs(x='Year',y='Mature biomass in region',colour='Region')
+)
+</pre>
+				<img src="15.png" data-output="true" />
+				<figcaption>
+					<span class="label">
+						<span class="type">Figure</span>
+						<span class="number">11</span>
+						<span class="separator">:</span>
+					</span>
+					Biomass of mature fish by region for the first quarter
+				</figcaption>
+			</figure>
 			<h1>Spawning biomass</h1>
 			<figure>
 				<pre data-code="r" data-format="png" data-size="17x10cm">
 plot_track('biomass_spawning_overall','Overall spawning biomass')
 
 </pre>
-				<img src="14.png" data-output="true" />
+				<img src="16.png" data-output="true" />
 			</figure>
 			<figure>
 				<pre data-code="r" data-format="png" data-size="17x10cm">
@@ -296,11 +326,11 @@ print(
 		labs(x='Year',y='Spawning biomass in region',colour='Region')
 )
 </pre>
-				<img src="15.png" data-output="true" />
+				<img src="17.png" data-output="true" />
 				<figcaption>
 					<span class="label">
 						<span class="type">Figure</span>
-						<span class="number">11</span>
+						<span class="number">12</span>
 						<span class="separator">:</span>
 					</span>
 					Spawning biomass by region for the first quarter
@@ -317,7 +347,7 @@ print(
 )
 
 </pre>
-				<img src="16.png" data-output="true" />
+				<img src="18.png" data-output="true" />
 			</figure>
 			<pre data-code="r">
 items &lt;- list(
@@ -353,11 +383,11 @@ plot_track(paste0('exp_rate_',item[1]),'Exploitation rate')
 						<pre data-code="r" data-format="png" data-size="17x10cm">
 plot_track(paste0('biomass_vulnerable_',item[1]),'Vulnerable biomass')
 </pre>
-						<img src="17.png" data-output="true" />
+						<img src="19.png" data-output="true" />
 						<figcaption>
 							<span class="label">
 								<span class="type">Figure</span>
-								<span class="number">12</span>
+								<span class="number">13</span>
 								<span class="separator">:</span>
 							</span>
 							Vulnerable biomass trajectory for 
@@ -368,11 +398,11 @@ plot_track(paste0('biomass_vulnerable_',item[1]),'Vulnerable biomass')
 						<pre data-code="r" data-format="png" data-size="17x10cm">
 plot_track(paste0('exp_rate_',item[1]),'Exploitation rate')
 </pre>
-						<img src="18.png" data-output="true" />
+						<img src="20.png" data-output="true" />
 						<figcaption>
 							<span class="label">
 								<span class="type">Figure</span>
-								<span class="number">13</span>
+								<span class="number">14</span>
 								<span class="separator">:</span>
 							</span>
 							Exploitation rate trajectory for 
@@ -385,11 +415,11 @@ plot_track(paste0('exp_rate_',item[1]),'Exploitation rate')
 						<pre data-code="r" data-format="png" data-size="17x10cm">
 plot_track(paste0('biomass_vulnerable_',item[1]),'Vulnerable biomass')
 </pre>
-						<img src="19.png" data-output="true" />
+						<img src="21.png" data-output="true" />
 						<figcaption>
 							<span class="label">
 								<span class="type">Figure</span>
-								<span class="number">14</span>
+								<span class="number">15</span>
 								<span class="separator">:</span>
 							</span>
 							Vulnerable biomass trajectory for 
@@ -400,11 +430,11 @@ plot_track(paste0('biomass_vulnerable_',item[1]),'Vulnerable biomass')
 						<pre data-code="r" data-format="png" data-size="17x10cm">
 plot_track(paste0('exp_rate_',item[1]),'Exploitation rate')
 </pre>
-						<img src="20.png" data-output="true" />
+						<img src="22.png" data-output="true" />
 						<figcaption>
 							<span class="label">
 								<span class="type">Figure</span>
-								<span class="number">15</span>
+								<span class="number">16</span>
 								<span class="separator">:</span>
 							</span>
 							Exploitation rate trajectory for 
@@ -417,11 +447,11 @@ plot_track(paste0('exp_rate_',item[1]),'Exploitation rate')
 						<pre data-code="r" data-format="png" data-size="17x10cm">
 plot_track(paste0('biomass_vulnerable_',item[1]),'Vulnerable biomass')
 </pre>
-						<img src="21.png" data-output="true" />
+						<img src="23.png" data-output="true" />
 						<figcaption>
 							<span class="label">
 								<span class="type">Figure</span>
-								<span class="number">16</span>
+								<span class="number">17</span>
 								<span class="separator">:</span>
 							</span>
 							Vulnerable biomass trajectory for 
@@ -432,11 +462,11 @@ plot_track(paste0('biomass_vulnerable_',item[1]),'Vulnerable biomass')
 						<pre data-code="r" data-format="png" data-size="17x10cm">
 plot_track(paste0('exp_rate_',item[1]),'Exploitation rate')
 </pre>
-						<img src="22.png" data-output="true" />
+						<img src="24.png" data-output="true" />
 						<figcaption>
 							<span class="label">
 								<span class="type">Figure</span>
-								<span class="number">17</span>
+								<span class="number">18</span>
 								<span class="separator">:</span>
 							</span>
 							Exploitation rate trajectory for 

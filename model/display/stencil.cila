@@ -163,6 +163,26 @@ figure
 	r png 17x10cm
 		plot_track('recruits/1e6','Recruitment (mil.)')
 
+# Biomass of mature fish
+
+figure
+	r png 17x10cm
+		plot_track('biomass_status','Stock status (biomass of mature fish relative to unfished levels)')
+
+figure
+	r png 17x10cm
+		print(
+			ggplot(subset(track,quarter==0),aes(x=year+quarter/4)) + 
+				geom_line(aes(y=biomass_spawners_w,colour='W')) + 
+				geom_line(aes(y=biomass_spawners_m,colour='M')) + 
+				geom_line(aes(y=biomass_spawners_e,colour='E')) + 
+				geom_hline(y=0,alpha=0) +
+				geom_vline(x=2015,alpha=0.6,linetype=2) +
+				labs(x='Year',y='Mature biomass in region',colour='Region')
+		)
+	figcaption
+		Biomass of mature fish by region for the first quarter
+
 # Spawning biomass
 
 figure

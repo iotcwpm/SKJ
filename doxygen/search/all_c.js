@@ -12,7 +12,7 @@ var searchData=
   ['recruits_5frelation_5fon',['recruits_relation_on',['../classIOSKJ_1_1Model.html#a88f9a0d53e76f9a88bf0d81c30bdb612',1,'IOSKJ::Model']]],
   ['recruits_5fsd',['recruits_sd',['../classIOSKJ_1_1Model.html#aff3f79494f94a20043a0c57009129dea',1,'IOSKJ::Model']]],
   ['recruits_5fsteepness',['recruits_steepness',['../classIOSKJ_1_1Model.html#ae3660f3f79edc131d7b96cf391f6a902',1,'IOSKJ::Model']]],
-  ['recruits_5funfished',['recruits_unfished',['../classIOSKJ_1_1Model.html#a780f4e69674141e96e028765004608ea',1,'IOSKJ::Model::recruits_unfished()'],['../classIOSKJ_1_1Parameters.html#a54047d8c820dcc459bf024323e32d9a9',1,'IOSKJ::Parameters::recruits_unfished()']]],
+  ['recruits_5funfished',['recruits_unfished',['../classIOSKJ_1_1Model.html#a780f4e69674141e96e028765004608ea',1,'IOSKJ::Model']]],
   ['recruits_5funiform',['recruits_uniform',['../classIOSKJ_1_1Model.html#ae74437cf19859e4f38dd50b6edf958b4',1,'IOSKJ::Model']]],
   ['recruits_5fvariation',['recruits_variation',['../classIOSKJ_1_1Model.html#ad9518caa30a28b5ae7afa7677e33bca2',1,'IOSKJ::Model']]],
   ['recruits_5fvariation_5fon',['recruits_variation_on',['../classIOSKJ_1_1Model.html#a164e3c054caea071da7079d5ff27833b',1,'IOSKJ::Model']]],
