@@ -109,5 +109,5 @@ pars$mortality_base.value <- runs$m
 pars$recruits_steepness.value <- runs$h
 
 # Write to file
-write.table(runs,file='runs.tsv',col.names=T,row.names=F,quote=F)
-write.table(pars,file='pars.tsv',col.names=T,row.names=F,quote=F)
+write.table(runs,file='runs.tsv',col.names=T,row.names=F,quote=F,sep='\t')
+write.table(pars,file='pars.tsv',col.names=T,row.names=F,quote=F,sep='\t')
