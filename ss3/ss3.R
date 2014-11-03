@@ -105,8 +105,8 @@ for(index in 1:nrow(runs)){
 	pars <- rbind(pars,pars_)
 }
 # Insert the fixed M and h
-pars$m <- runs$m
-pars$h <- runs$h
+pars$mortality_base.value <- runs$m
+pars$recruits_steepness.value <- runs$h
 
 # Write to file
 write.table(runs,file='runs.tsv',col.names=T,row.names=F,quote=F)
