@@ -1,9 +1,9 @@
 section Stock recruitment relation
 
-	#recruits_unfished
-		#value 20.8
-		#lower 20.5
-		#upper 21.2
+	#spawners_unfished
+		#value 3e6
+		#lower 1e6
+		#upper 5e6
 
 	#recruits_steepness
 		#value 0.9

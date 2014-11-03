@@ -15,7 +15,7 @@ public:
 	/**
 	 * Parameters of the stock-recruitment relationship
 	 */
-	Variable<Uniform> recruits_unfished;
+	Variable<Uniform> spawners_unfished;
 	Variable<Uniform> recruits_steepness;
 	Variable<Uniform> recruits_sd;
 
@@ -99,7 +99,7 @@ public:
     template<class Mirror>
     void reflect(Mirror& mirror){
         mirror
-            .data(recruits_unfished,"recruits_unfished")
+            .data(spawners_unfished,"spawners_unfished")
             .data(recruits_steepness,"recruits_steepness")
             .data(recruits_sd,"recruits_sd")
             .data(recruits_deviations,"recruits_deviations")
@@ -168,7 +168,7 @@ public:
 		
 		// Bind invariant parameters
 		if(time==0){
-			model.recruits_unfished = std::exp(recruits_unfished);
+			model.biomass_spawners_unfished = spawners_unfished;
 			model.recruits_steepness = recruits_steepness;
 			model.recruits_sd = recruits_sd;
 

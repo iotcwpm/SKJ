@@ -21,6 +21,11 @@ public:
 	 * Total biomass by region
 	 */
 	Array<double,Region> biomass;
+
+	/**
+	 * Total biomass of spawners
+	 */
+	Array<double,Region> biomass_spawners;
 	
 	/**
 	 * @{
@@ -58,6 +63,14 @@ public:
 	 * @{
 	 * @name Recruitment
 	 */
+	
+	/**
+	 * Unfished equlibrium spawners (biomass)
+	 *
+	 * This differs from `biomass_spawning_unfished` in that it is not affected by the proportion
+	 * spawning in a season
+	 */
+	double biomass_spawners_unfished;
 
 	/**
 	 * Unfished equlibrium recruitment (numbers)
@@ -330,9 +343,8 @@ public:
 	/**
 	 * Get the stock status (spawning biomass as a fraction of pristine)
 	 */
-	double biomass_status(uint time){
-		uint quarter = IOSKJ::quarter(time);
-		return biomass_spawning_overall(quarter)/biomass_spawning_unfished(quarter);
+	double biomass_status(uint time) const{
+		return biomass_spawners(sum)/biomass_spawners_unfished;
 	}
 
 	//! @}
@@ -496,30 +508,24 @@ public:
 			write();
 		#endif
 
-		/**
-		 * The population is initialised to an unfished state
-		 * by iterating with virgin recruitment until it reaches equibrium
-		 * defined by less than 0.01% change in total biomass.
-		 */
-		// Turn off recruitment relationship, variation and exploitation
+		// Calculate unfished state
+		// Turn off recruitment relationship and exploitation
 		recruits_relation_on = false;
 		exploitation_on = false;
-		// Reset the population, noting that with recruits_relation_on==false 
-		// the population gets R0 each year
-		numbers = 0.0;
+		// Set unfished recruitment to an arbitrarily high number so it can be calculated in terms of biomass_spawners_unfished
+		recruits_unfished = 1e10;
 		// Go to equilibrium
 		equilibrium();
+		// Scale up unfished recruitment and biomass_spawning_unfished (by quarter) to match biomass_spawners_unfished
+		double scalar = biomass_spawners_unfished/biomass_spawners(sum);
+		recruits_unfished *= scalar;
+		numbers *= scalar;
+		for(auto quarter : quarters) biomass_spawning_unfished(quarter) = biomass_spawning_overall(quarter)*scalar;
+
+		// Calculate the 
 		// Turn on recruitment relationship etc again
 		recruits_relation_on = true;
 		exploitation_on = true;
-
-		/**
-		 * Once the population has converged to unfished equilibrium, the virgin
-		 * spawning biomass in each quarter can be set.
-		 */
-		for(auto quarter : quarters){
-			biomass_spawning_unfished(quarter) = biomass_spawning_overall(quarter);
-		}
 
 		// During debug mode dump the model here for easy inspection
 		// Done after equilibrium() and biomass_spawning_unfished has been set
@@ -534,18 +540,22 @@ public:
 	void update(uint time){
 		uint quarter = IOSKJ::quarter(time);
 
-		// Calculate total biomass and spawning biomass by region
+		// Calculate total biomass, spawners biomass and spawning biomass by region
 		for(auto region : regions){
 			double biomass_ = 0;
+			double biomass_spawners_ = 0;
 			double biomass_spawning_ = 0;
 			for(auto age : ages){
 				for(auto size : sizes){
 					double biomass = numbers(region,age,size) * weights(size)/1000;
 					biomass_ += biomass;
-					biomass_spawning_ += biomass * maturities(size) * spawning(quarter);
+					double spawners = biomass * maturities(size);
+					biomass_spawners_ += spawners;
+					biomass_spawning_ += spawners * spawning(quarter);
 				}
 			}
 			biomass(region) = biomass_;
+			biomass_spawners(region) = biomass_spawners_;
 			biomass_spawning(region) = biomass_spawning_;
 
 		} 
@@ -669,7 +679,7 @@ public:
 		// for putting back at the end of this method)
 		bool recruits_variation_on_setting = recruits_variation_on;
 		recruits_variation_on = false;
-		// Seed the population
+		// Seed the population with a small population in each partition
 		numbers = 1;	
 		// Iterate until there is a very minor change in biomass
 		uint steps = 0;
