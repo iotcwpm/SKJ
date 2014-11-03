@@ -164,6 +164,37 @@ void condition_feasible(int trials=100){
 }
 
 /**
+ * Generate samples based on the SS3 assessment grid with priors used for those
+ * paramters not available from there.
+ */
+void condition_ss3(int replicates=1000){
+	// Create output directory
+	boost::filesystem::create_directories("ss3/output");
+	// Read in parameter priors and default values
+	Parameters parameters;
+	parameters.read();
+	// Read in parameter values from SS3 grid
+	Frame grid;
+	grid.read("ss3/pars.tsv");
+	// For each replicate...
+	Frame samples;
+	for(int replicate=0;replicate<replicates;replicate++){
+		//... randomise parameter values from priors
+		parameters.randomise();
+		//... randomly choose a grid cell
+		Frame cell = grid.slice(
+			Uniform(0,grid.rows()).random()
+		);
+		//... overwrite parameters avialable from grid
+		parameters.read(cell,{"catches"});
+		//... store
+		samples.append(parameters.values());
+	}
+	samples.write("ss3/output/samples.tsv");
+}
+
+
+/**
  * Evaluate management procedures
  */
 void evaluate(int replicates=1000){
@@ -245,7 +276,7 @@ void evaluate(int replicates=1000){
 }
 
 int main(int argc, char** argv){ 
-	try{
+	try {
         if(argc==1) throw std::runtime_error("No task given");
         std::string task = argv[1];
         uint num = (argc>2)?boost::lexical_cast<uint>(argv[2]):0;
@@ -253,7 +284,8 @@ int main(int argc, char** argv){
         if(task=="run") run();
         else if(task=="yield") yield();
         else if(task=="priors") priors();
-        else if(task=="feasible") condition_feasible(num);
+        else if(task=="condition_feasible") condition_feasible(num);
+        else if(task=="condition_ss3") condition_ss3(num);
         else if(task=="evaluate") evaluate(num);
         else throw std::runtime_error("Unrecognised task");
         std::cout<<"-------------------------------\n";
