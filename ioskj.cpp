@@ -60,7 +60,7 @@ void yield(void){
 	model.msy_find();
 	std::ofstream file("yield/output/model.tsv");
 	file<<"e_msy\tf_msy\tmsy\tbiomass_spawning_msy\tmsy_trials\n";
-	file<<model.e_msy<<"\t"<<model.f_msy<<"\t"<<model.msy<<"\t"<<model.biomass_spawning_msy<<"\t"<<model.msy_trials<<"\n";
+	file<<model.e_msy<<"\t"<<model.f_msy<<"\t"<<model.msy<<"\t"<<model.biomass_spawners_msy<<"\t"<<model.msy_trials<<"\n";
 }
 
 /**
@@ -239,6 +239,8 @@ void evaluate(int replicates=1000){
 			//... track the model (for speed, only track some replicates)
 			if(replicate<100) tracker.get(replicate,-1,time,current);
 		}
+		// Determine MSY related reference points
+		current.msy_find();
 		// Generate a random seed to be used to ensure future
 		// variability is same for all procedures
 		uint seed = Uniform(0,1e10).random();

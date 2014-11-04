@@ -300,6 +300,7 @@ public:
 	 * Exploitation survival
 	 */
 	Array<double,Region,Size> exploitation_survival;
+	Array<double,Region> exploitation_survival_regions;
 
 	/**
 	 * @}
@@ -312,7 +313,7 @@ public:
 	double msy;
 	double e_msy;
 	double f_msy;
-	double biomass_spawning_msy;
+	double biomass_spawners_msy;
 	int msy_trials;
 
 	/**
@@ -390,7 +391,7 @@ public:
 	 */
 	
 	/**
-	 * Set exploitation rate. Used in testing and in 
+	 * Set overall exploitation rate. Used in testing and in 
 	 * equilibrium exploitation i.e. MSY/BMSY calculations
 	 */
 	void exploitation_rate_set(double value){
@@ -400,11 +401,26 @@ public:
 	}
 
 	/**
-	 * Set instantaneous rate of fishing mortality (F).
-	 * Like `exploitation_rate_set` but uses F insted of exp. rate.
+	 * Get overall exploitation rate.
+	 */
+	double exploitation_rate_get(void) const {
+		return 1 - exploitation_survival_regions(prod);
+	}
+
+	/**
+	 * Set overall instantaneous rate of fishing mortality (F).
+	 * Like `exploitation_rate_set` but uses F instead of exp. rate.
 	 */
 	void fishing_mortality_set(double value){
 		exploitation_rate_set(1-std::exp(-value));
+	}
+
+	/**
+	 * Get overall instantaneous rate of fishing mortality (F).
+	 * Like `exploitation_rate_get` but gives F instead of exp. rate.
+	 */
+	double fishing_mortality_get(void) const {
+		return -std::log(1-exploitation_rate_get());
 	}
 
 	//! @}
@@ -633,13 +649,17 @@ public:
 			}
 			// Pre-calculate the exploitation_survival for each region and size
 			for(auto region : regions){
+				double product = 1;
 				for(auto size : sizes){
 					double proportion_taken = 0;
 					for(auto method : methods){
 						proportion_taken += exploitation_rate(region,method) * selectivities(method,size);
 					}
-					exploitation_survival(region,size) = (proportion_taken<1)?(1-proportion_taken):0;
+					auto survival = (proportion_taken>1)?0:(1-proportion_taken);
+					exploitation_survival(region,size) = survival;
+					product *= survival;
 				}
+				exploitation_survival_regions(region) = product;
 			}
 		}
 	
@@ -755,7 +775,7 @@ public:
 		// Go to equilibrium with maximum so that Bmsy can be determined
 		exploitation_rate_set(e_msy);
 		equilibrium();
-		biomass_spawning_msy = biomass_spawning_overall(sum);
+		biomass_spawners_msy = biomass_spawners(sum);
 	}
 
 	/**
