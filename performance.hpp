@@ -83,6 +83,20 @@ public:
 	Mean status_b20;
 
 	/**
+	 * Baseline CPUE for regions/gears used to calculate relative
+	 * catch rates
+	 */
+	Array<double,Region,Method> cpue_baseline;
+
+	/**
+	 * Mean CPUE
+	 *
+	 * Only the three main region/method combinations are
+	 * output (see `reflect()` method)
+	 */
+	Array<GeometricMean,Region,Method> cpue_mean;
+
+	/**
 	 * Reflection
 	 */
 	template<class Mirror>
@@ -101,13 +115,16 @@ public:
 			.data(status_mean,"status_mean")
 			.data(status_b10,"status_b10")
 			.data(status_b20,"status_b20")
+			.data(cpue_mean(W,PS),"cpue_mean_w_ps")
+			.data(cpue_mean(M,PL),"cpue_mean_m_pl")
+			.data(cpue_mean(E,GN),"cpue_mean_e_gn")
 		;
 	}
 
 	/**
 	 * Record performance measures
 	 */
-	virtual void record(uint time, const Model& model){
+	void record(uint time, const Model& model){
 		uint year = IOSKJ::year(time);
 		uint quarter = IOSKJ::quarter(time);
 
@@ -133,6 +150,27 @@ public:
 		status_mean.append(status);
 		status_b10.append(status<0.1);
 		status_b20.append(status<0.2);
+
+		// Catch rates 
+		// Use vulnerable (i.e. selected) biomass for the three main regions/gears
+		// relative to the start year as a measure of catch rates (CPUE)
+		if(times==1){
+			// Record baselines
+			for(auto region : regions){
+				for(auto method : methods){
+					cpue_baseline(region,method) = model.biomass_vulnerable(region,method);
+				}
+			}
+		} else {
+			// Record relative to baseline
+			for(auto region : regions){
+				for(auto method : methods){
+					cpue_mean(region,method).append(
+						model.biomass_vulnerable(region,method)/cpue_baseline(region,method)
+					);
+				}
+			}
+		}
 	}
 
 };
