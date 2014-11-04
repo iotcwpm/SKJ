@@ -11,7 +11,9 @@ class Performance : public Structure<Performance> {
 public:
 
 	Performance(int replicate,int procedure):
-		replicate(replicate),procedure(procedure){}
+		replicate(replicate),
+		procedure(procedure)
+		{}
 
 	/**
 	 * Replicate evaluation which this performance 
@@ -83,6 +85,36 @@ public:
 	Mean status_b20;
 
 	/**
+	 * Mean ratio of F/Fmsy
+	 */
+	GeometricMean f_ratio;
+
+	/**
+	 * Mean ratio of B/Bmsy
+	 */
+	GeometricMean b_ratio;
+
+	/**
+	 * Proportion of time spent in each Kobe plot quadrant:
+	 * 
+	 * 	A (green)  : B>Bmsy F<Fmsy
+	 * 	B (yellow) : B>Bmsy F>Fmsy
+	 * 	C (yellow) : B<Bmsy F<Fmsy
+	 * 	D (red)    : B<Bmsy F>Fmsy
+	 */
+	Mean kobe_a;
+	Mean kobe_b;
+	Mean kobe_c;
+	Mean kobe_d;
+
+	/**
+	 * Number of years taken to move from Kobe plot 
+	 * quadrants B,C or D back into A
+	 */
+	Mean kobe_to_a;
+		int kobe_out_a;
+
+	/**
 	 * Baseline CPUE for regions/gears used to calculate relative
 	 * catch rates
 	 */
@@ -115,6 +147,13 @@ public:
 			.data(status_mean,"status_mean")
 			.data(status_b10,"status_b10")
 			.data(status_b20,"status_b20")
+			.data(f_ratio,"f_ratio")
+			.data(b_ratio,"b_ratio")
+			.data(kobe_a,"kobe_a")
+			.data(kobe_b,"kobe_b")
+			.data(kobe_c,"kobe_c")
+			.data(kobe_d,"kobe_d")
+			.data(kobe_to_a,"kobe_to_a")
 			.data(cpue_mean(W,PS),"cpue_mean_w_ps")
 			.data(cpue_mean(M,PL),"cpue_mean_m_pl")
 			.data(cpue_mean(E,GN),"cpue_mean_e_gn")
@@ -145,11 +184,46 @@ public:
 		}
 		catches_shut.append(catch_total==0);
 
-		// Stock status
-		auto status = model.biomass_spawning_overall(quarter)/model.biomass_spawning_unfished(quarter);
+		// Stock status relative to unfished
+		auto status = model.biomass_status(time);
 		status_mean.append(status);
 		status_b10.append(status<0.1);
 		status_b20.append(status<0.2);
+
+		// Biomass relative to Bmsy
+		auto b = model.biomass_spawners(sum)/model.biomass_spawners_msy;
+		b_ratio.append(b);
+		// F relative to Fmsy
+		auto f = model.fishing_mortality_get()/model.f_msy;
+		f_ratio.append(f);
+
+		// Kobe plot
+		// Determine quadrant
+		char quadrant;
+		if(b>=1){
+			if(f<=1) quadrant = 'a';
+			else quadrant = 'b';
+		} else {
+			if(f<=1) quadrant = 'c';
+			else quadrant = 'd';
+		}
+		// Update performance measures for proportion of time spent in each quadrant
+		kobe_a.append(quadrant=='a');
+		kobe_b.append(quadrant=='b');
+		kobe_c.append(quadrant=='c');
+		kobe_d.append(quadrant=='d');
+		// Update performance measure for time taken to get back into quadrant A
+		if(quadrant=='a'){
+			// If previously outside of A then append the time that 
+			// have been outside to the mean and reset time counter to zero.
+			if(kobe_out_a>0){
+				kobe_to_a.append(kobe_out_a);
+				kobe_out_a = 0;
+			}
+		} else {
+			// Outside of A so increment time counter.
+			kobe_out_a++;
+		}
 
 		// Catch rates 
 		// Use vulnerable (i.e. selected) biomass for the three main regions/gears
