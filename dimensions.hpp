@@ -7,7 +7,7 @@ namespace IOSKJ {
 typedef unsigned int uint;
 
 const uint year_min = 1950;
-const uint year_max = 2040;
+const uint year_max = 2039;
 
 uint time(uint year,uint quarter){
 	return (year-year_min)*4+quarter;
