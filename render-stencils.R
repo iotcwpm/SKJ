@@ -7,10 +7,13 @@ require(stencila)
 for(address in c(
 	'model/description',
 	'parameters/description',
+	'procedures/description',
+	
 	'model/display',
 	'data/display',
 	'yield/display',
 	'feasible/display',
+	'ss3/display',
 	'evaluate/display'
 )){
 	Stencil(address)$render()$export(paste0(address,'/index.html'))
