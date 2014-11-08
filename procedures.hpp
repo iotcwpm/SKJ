@@ -26,7 +26,7 @@ public:
 	double target;
 
 	/**
-	 * Theshold B (stock status) below which F is reduced
+	 * Threshold B (stock status) below which F is reduced
 	 */
 	double thresh;
 
