@@ -42,7 +42,7 @@ public:
 	/**
 	 * Variables of the distribution of the lengths of recruits
 	 */
-	Variable<Uniform> recruits_lengths_mean ;
+	Variable<Uniform> recruits_lengths_mean;
 	Variable<Uniform> recruits_lengths_cv;
 
 	/**

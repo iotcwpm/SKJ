@@ -8,7 +8,7 @@ This documentation is a draft under active development. As such, it may not exac
 
 This document describes the management procedures (MPs) evaluated in this study. Several classes of MP are considered with each _class_ having several _control parameters_ which can be varied to alter it's behaviour. We refer to a particular combination of control parameters for a class of MP as an instance of that class.
 
-The classes of management procedure used here are mainly intended to illutrate the wide variety of possible MPs : the data inputs they use, their algorithmic form and the magagement controls which they alter (e.g. effort versus catch). The 
+The classes of management procedure used here are mainly intended to illutrate the wide variety of possible MPs: the data inputs they use, their algorithmic form and the management controls which they alter (e.g. effort versus catch). The 
 
 # BRule class
 
