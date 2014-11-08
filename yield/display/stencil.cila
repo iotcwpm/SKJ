@@ -2,7 +2,7 @@
 
 # DRAFT
 
-This documentation is a draft under active development. As such, it may not exactly mirror what is in the current version of the code. Separate documentation, generated from the model's C++ source code, is also [available](../../doxygen/html/index.html).
+This documentation is a draft under active development. As such, it may not exactly mirror what is in the current version of the code. Separate documentation, generated from the model's C++ source code, is also [available](../../doxygen/).
 
 
 This document summarises output from the `yield` task which is primarily intended for checking MSY calculations and the shape of the yield curve. The shape of the yield curve is dependent on the model's parameters (in this case read in from `parameters/input/parameters.cila`) including selectivity parameters (shown below).
