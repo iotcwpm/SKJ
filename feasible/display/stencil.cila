@@ -1,5 +1,11 @@
 #title Indian Ocean skipjack model : conditioning based on feasibility constraints
 
+# DRAFT
+
+This documentation is a draft under active development. As such, it may not exactly mirror what is in the current version of the code. Separate documentation, generated from the model's C++ source code, is also [available](../../doxygen/).
+
+# Introduction
+
 This document presents the results from the `feasible` task. This task performs model conditioning using the Feasible Stock Trajectories (FST) algorithm (Bentley and Langley 2012). Rather than estimating parameters using full likelihoods, FST uses feasibility criterion to accept or reject sets of parameters drawn from their prior distributions. Feasibility criteria can be based on a priori beliefs about the stock or on "features" of the observed data. FST is an unsophisticated, brute force method but provides a means of pragmatically conditioning an operating model.
 
 N Bentley, AD Langley (2012) Feasible stock trajectories: a flexible and efficient sequential estimator for use in fisheries management procedures. Canadian Journal of Fisheries and Aquatic Sciences 69 (1), 161-177. 
