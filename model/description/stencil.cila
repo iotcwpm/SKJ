@@ -1,4 +1,6 @@
-#title Model description
+#title Indian Ocean skipjack model : Model description
+
+# DRAFT
 
 This documentation is a draft under active development. As such, it may not exactly mirror what is in the current version of the code. Separate documentation, generated from the model's C++ source code, is also [available](../../doxygen/html/index.html).
 
@@ -219,7 +221,7 @@ The proportion of fish growing from size |dot(s)| to size |s| in one quarter is 
 
 The proportion of fish moving from region |dot(r)| to region |r| in one quarter is described by the movement matrix defined by six off-diagonal parameters,
 
-	|M_{dot(r),r} = [[1-omega_{ea,ma}-omega_{ea,we},omega_{ea,ma},omega_{ea,we}],[omega_{ma,ea},1-omega_{ma,ea}-omega_{ma,we},omega_{ma,we}],[omega_{we,ea},omega_{we,ma},1-omega_{we,ea}-omega_{we,ma}]]|
+|M_{dot(r),r} = [[1-omega_{ea,ma}-omega_{ea,we},omega_{ea,ma},omega_{ea,we}],[omega_{ma,ea},1-omega_{ma,ea}-omega_{ma,we},omega_{ma,we}],[omega_{we,ea},omega_{we,ma},1-omega_{we,ea}-omega_{we,ma}]]|
 
 .note There could be separate movement parameters for each age (or size) e.g. |omega_{ma,we,a}|, or more simply, the relative proportion of fish moving could vary by age (or size).
 

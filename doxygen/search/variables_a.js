@@ -1,12 +1,16 @@
 var searchData=
 [
-  ['selectivities',['selectivities',['../classIOSKJ_1_1Model.html#aa59ec2970e6ab5478b29d68ad89b67d9',1,'IOSKJ::Model::selectivities()'],['../classIOSKJ_1_1Parameters.html#a61d82bdb906e127b8abd2c8972f7816b',1,'IOSKJ::Parameters::selectivities()']]],
-  ['selectivity_5flengths',['selectivity_lengths',['../classIOSKJ_1_1Model.html#a9430c5b815edc725316dd1a1c306c702',1,'IOSKJ::Model']]],
-  ['selectivity_5fvalues',['selectivity_values',['../classIOSKJ_1_1Model.html#a1df5e2bf4fa4560baf73c97733c2d850',1,'IOSKJ::Model']]],
-  ['spawners_5funfished',['spawners_unfished',['../classIOSKJ_1_1Parameters.html#a229792646babbdf0649703d28a99781b',1,'IOSKJ::Parameters']]],
-  ['spawning',['spawning',['../classIOSKJ_1_1Model.html#a81bffc6707aa313f87bf21dbbf1d8143',1,'IOSKJ::Model']]],
-  ['spawning_5f0',['spawning_0',['../classIOSKJ_1_1Parameters.html#a36006c6d379e5e00fb10b8f64c91565d',1,'IOSKJ::Parameters']]],
-  ['status_5fb10',['status_b10',['../classIOSKJ_1_1Performance.html#a878186299483e5ee3f7c7d40caaf1abb',1,'IOSKJ::Performance']]],
-  ['status_5fb20',['status_b20',['../classIOSKJ_1_1Performance.html#aaf4cc72da057fcb651d7c66e06fc2150',1,'IOSKJ::Performance']]],
-  ['status_5fmean',['status_mean',['../classIOSKJ_1_1Performance.html#af66c30ba6fb06caebf9430f474c91292',1,'IOSKJ::Performance']]]
+  ['recruits',['recruits',['../classIOSKJ_1_1Model.html#a8ffa15a7aea7598d5a6c91bec5779ef3',1,'IOSKJ::Model']]],
+  ['recruits_5fdeterm',['recruits_determ',['../classIOSKJ_1_1Model.html#ad2450f5604c657cbe259b7b49e8f905a',1,'IOSKJ::Model']]],
+  ['recruits_5fdeviation',['recruits_deviation',['../classIOSKJ_1_1Model.html#a639afa6cd0480ad8c6dbac286bdaa55c',1,'IOSKJ::Model']]],
+  ['recruits_5fdeviations',['recruits_deviations',['../classIOSKJ_1_1Parameters.html#abbbea45f8d2205a71a09c7eee05ad06a',1,'IOSKJ::Parameters']]],
+  ['recruits_5flengths_5fmean',['recruits_lengths_mean',['../classIOSKJ_1_1Model.html#a6bb5b6a203c92c799dd2c34cf0fe1423',1,'IOSKJ::Model::recruits_lengths_mean()'],['../classIOSKJ_1_1Parameters.html#ae7daac71e30213c131ddb7b25afe2f74',1,'IOSKJ::Parameters::recruits_lengths_mean()']]],
+  ['recruits_5fregions',['recruits_regions',['../classIOSKJ_1_1Model.html#a735f9a4288dc9fc4ca836c9ad3af3161',1,'IOSKJ::Model::recruits_regions()'],['../classIOSKJ_1_1Parameters.html#ada645e93dacc224d36e47d456930d286',1,'IOSKJ::Parameters::recruits_regions()']]],
+  ['recruits_5frelation_5fon',['recruits_relation_on',['../classIOSKJ_1_1Model.html#a88f9a0d53e76f9a88bf0d81c30bdb612',1,'IOSKJ::Model']]],
+  ['recruits_5fsd',['recruits_sd',['../classIOSKJ_1_1Model.html#aff3f79494f94a20043a0c57009129dea',1,'IOSKJ::Model']]],
+  ['recruits_5fsteepness',['recruits_steepness',['../classIOSKJ_1_1Model.html#ae3660f3f79edc131d7b96cf391f6a902',1,'IOSKJ::Model']]],
+  ['recruits_5funfished',['recruits_unfished',['../classIOSKJ_1_1Model.html#a780f4e69674141e96e028765004608ea',1,'IOSKJ::Model']]],
+  ['recruits_5fvariation',['recruits_variation',['../classIOSKJ_1_1Model.html#ad9518caa30a28b5ae7afa7677e33bca2',1,'IOSKJ::Model']]],
+  ['recruits_5fvariation_5fon',['recruits_variation_on',['../classIOSKJ_1_1Model.html#a164e3c054caea071da7079d5ff27833b',1,'IOSKJ::Model']]],
+  ['replicate',['replicate',['../classIOSKJ_1_1Performance.html#a0a3f2c267ce34b22afb62685cdca534c',1,'IOSKJ::Performance']]]
 ];

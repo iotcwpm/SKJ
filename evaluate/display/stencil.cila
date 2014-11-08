@@ -1,28 +1,38 @@
 #title Indian Ocean skipjack model : management procedure evaluations
 
+# DRAFT
+
+This documentation is a draft under active development. As such, it may not exactly mirror what is in the current version of the code. Separate documentation, generated from the model's C++ source code, is also [available](../../doxygen/html/index.html).
+
 r
 	source('../../common.R',local=T)
-	
+	# Load in model outputs
 	load(c(
-		'procedures','samples',
+		'procedures',
+		'samples',
 		'performances',
 		'track'
 	),from='../output')
-
-	perfs <- merge(procedures, 
-				ddply(performances,.(procedure),summarise,
-				   yield = mean(catches_total)/1000*4,
-				   stability = -mean(catches_mapc),
-				   status = mean(status_mean),
-				   safety10 = 1-mean(status_b10),
-				   safety20 = 1-mean(status_b20)
-				)
-			)
-
+	# Calculate performance statistics from performance measures
+	perfs <- ddply(performances,.(procedure),summarise,
+		yield = mean(catches_total)/1000*4,
+		stability = -mean(catches_mapc),
+		status = mean(status_mean),
+		safety10 = 1-mean(status_b10),
+		safety20 = 1-mean(status_b20),
+		cpue_w_ps = mean(cpue_mean_w_ps),
+		cpue_m_pl = mean(cpue_mean_m_pl),
+		cpue_e_gn = mean(cpue_mean_e_gn)
+	)
+	# List of names of performance statistics
+	stats <- c('yield','stability','status','safety10','safety20','cpue_w_ps','cpue_m_pl','cpue_e_gn')
+	# Merge in procedures to facilitate summaries by procedure parameters
+	perfs <- merge(procedures,perfs)
+	# Augment track
 	track <- within(track,{
 		procedure <- factor(procedure)
 	})
-
+	# Plot of tradeoff between two performance statistics
 	plot_tradeoff <- function(data,x,y,colour,shape){
 		data <- within(data,{
 			x = data[,names(x)]
@@ -52,6 +62,22 @@ figure
 		)
 	figcaption
 		Spawning biomass trajectories for four example replicates
+
+figure
+	r png 17x17cm
+		print(
+			ggplot(melt(perfs[,stats]),aes(x=value)) + geom_density(fill='grey') + facet_wrap(~variable,scales='free')
+		)
+	figcaption
+		Distributions of performance statistics over all evaluations. This figure is intended principally to provide an indication of the range of performance statistics outcomes across all replicates and procedures.
+
+figure
+	r png 17x17cm
+		print(
+			ggplot(perfs,aes(x=cpue_w_ps,y=cpue_m_pl)) + geom_point() + geom_abline(linetype=3)
+		)
+	figcaption
+		Correlation between the CPUE performance statistics for W-PS and M_PL
 
 figure
 	r png 17x10cm

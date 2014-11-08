@@ -1,5 +1,6 @@
 var searchData=
 [
+  ['b_5fratio',['b_ratio',['../classIOSKJ_1_1Performance.html#ab49ced1d5f9a6ad6d6582101bdeba753',1,'IOSKJ::Performance']]],
   ['biomass',['biomass',['../classIOSKJ_1_1Model.html#a05da71e81b1a0a7ecbba4d417f4ba727',1,'IOSKJ::Model']]],
   ['biomass_5fspawners',['biomass_spawners',['../classIOSKJ_1_1Model.html#a48f62f3047e7830b2aa50b5715c1ffa0',1,'IOSKJ::Model']]],
   ['biomass_5fspawners_5funfished',['biomass_spawners_unfished',['../classIOSKJ_1_1Model.html#acb369d6776cf65a969823f89d2c3d726',1,'IOSKJ::Model']]],

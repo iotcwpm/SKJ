@@ -1,0 +1,131 @@
+#title Indian Ocean skipjack model : description of management procedures
+
+# DRAFT
+
+This documentation is a draft under active development. As such, it may not exactly mirror what is in the current version of the code. Separate documentation, generated from the model's C++ source code, is also [available](../../doxygen/html/index.html).
+
+# Introduction
+
+This document describes the management procedures (MPs) evaluated in this study. Several classes of MP are considered with each _class_ having several _control parameters_ which can be varied to alter it's behaviour. We refer to a particular combination of control parameters for a class of MP as an instance of that class.
+
+The classes of management procedure used here are mainly intended to illutrate the wide variety of possible MPs : the data inputs they use, their algorithmic form and the magagement controls which they alter (e.g. effort versus catch). The 
+
+# BRule class
+
+The `BRule` class of MP is similar to generic harvest control rules that have been suggested in other tuna fisheries (e.g. SCRS 2011, Scott et al 2013). It assumes that an estimate of stock status is available each year (although the same MP could be altered to have less frequent updates) and uses a simple relation between stock status and fishing intensity. Here we define relative stock status as ratio of current spawning biomass over the spawning biomass associated with maximum sustainable yield, |B_t/B_{msy}|, and relative fishing intensity as the ratio of the current instantaneous rate of fishing mortality and the rate associated with MSY, |F_t/F_{msy}|. For this study we have investigated the impact of alternative levels of stock assessment precision and implementation error on performance statistics.
+
+In each year the relative biomass is estimated through a stock assessment,
+
+|hat S = B_t/B_{msy} epsilon |
+
+where |epsilon| is a lognormally distributed multiplicative error with mean of 1 and standard deviation of |p|,
+
+|epsilon ~ LN(1,p)|
+
+Using |hat S| the recommended fishing intensity (|bar F|) is calculated. If |hat S < s_l| then,
+
+|bar F = 0|
+
+If |hat S > s_t| then,
+
+|bar F = f|
+
+Otherwise,
+
+|bar F = f/(s_t-s_l)(hat S-s_l)|
+
+The recommended fishing intensity is applied to the fishery in the following year,
+
+|F_{t+1} = bar F phi|
+
+where |phi| is a lognormally distributed multiplicative error with mean of 1 and standard deviation of |e|,
+
+|phi ~ LN(1,e)|
+
+Table 1 provides a summary of each of the control parameters of `BRule` and their respective values evaluated in this study. Note that IOTC Resolution 13/10 set an interim limit target biomass of |B_{msy}| (i.e. |b_t = 1|) and an interim limit biomass of |0.4B_{msy}| (i.e. |b_l| = 0.4). Analogous values have been tested. IOTC Resolution 13/10 also includes a limit reference point of |1.5F_{msy}|. Such a limit reference point on |F| is not a feature of this MP which instead is based on relative biomass reference points.
+
+
+table
+	caption Control parameters of the BRule management procedure : description an values evaluated.
+	thead
+		tr
+			th Parameter
+			th Symbol
+			th Description
+			th Values evaluated
+	tbody
+		tr
+			td Estimation precision
+			td |p|
+			td Precision with which relative stock status is estimated
+			td 0, 0.2, 0.4, 0.6
+		tr
+			td Threshold stock status
+			td |s_t|
+			td Relative stock status below which recommended fishing intensity is reduced
+			td 0.7, 0.8, 0.9, 1.0
+		tr
+			td Limit stock status
+			td |s_l|
+			td Relative stock status below which recommended fishing intensity is zero
+			td 0.2, 0.3, 0.4, 0.5
+		tr
+			td Target fishing intensity
+			td |f|
+			td Relative fishing intensity
+			td 0.8, 0.9, 1.0, 1.1
+		tr
+			td Implementation precision
+			td |e|
+			td Precision with which recommended fishing intensity is applied
+			td 0, 0.2, 0.4, 0.6
+
+figure
+	r png 16x10cm
+		s_l <- 0.3
+		s_t <- 0.8
+		f <- 0.9
+		s_hats <- seq(0,1.5,0.01)
+		f_dots <- f/(s_t-s_l)*(s_hats-s_l)
+		f_dots[s_hats<s_l] <- 0
+		f_dots[s_hats>s_t] <- f
+		par(mar=c(4,4,1,1))
+		plot(s_hats,f_dots,type='l',ylab='F',xlab='S',las=1,ylim=c(0,1.2),xlim=c(0,1.2))
+		abline(h=1,lty=3)
+		abline(v=1,lty=3)
+	figcaption
+		An example instance of the BRule management prodedure with |s_l=0.3|, |s_t=0.9|, |f=0.9| showing the relation between |hat S| and |bar F|.
+
+# FRange class
+
+`FRange` seeks to maintain the fishing mortality rate within a defined range. At periodic intervals, defined by the control parameter |i|, |F| is estimated (e.g. from a stock assessment or a tagging study) with a defined level of precision, |p|,
+
+| hat F = F epsilon |
+
+where |epsilon| is a lognormally distributed multiplicative error with mean of 1 and standard deviation of |p|,
+
+|epsilon ~ LN(1,p)|
+
+The estimated fishing mortality is compared to a range defined by two control parameters, |f| the centre of the range and |b| the buffer, or width, of the range.
+
+figure
+	r png 16x10cm
+		f <- 0.5
+		b <- 0.1
+		t <- 0.9
+		ts <- c(2020,2025,2030,2035,2040,2045,2050)
+		f_hats <- c(0.45,0.51,0.63,0.58,0.55,0.49,0.38)
+		colours <- hcl(c(120,240,0))[c(2,2,3,2,2,2,1)]
+		par(mar=c(4,4,1,1))
+		plot(ts,f_hats,col=colours,cex=1.5,pch=16,xlab='Year',ylab='F',las=1,ylim=c(0,0.8))
+		abline(h=f,lty=1)
+		abline(h=c(f-b,f+b),lty=3)
+	figcaption
+		An example instance of the BRule management prodedure with |i=5|, |f=0.5|, |b=0.1| illustrating how total allowable catches are increased (green circles) or decreased (red circles) when the estimated fishing mortality is below or above the target range.
+
+
+# References
+
+Gerald P Scott, Gorka Merino, Haritz Arrizabalaga, Hilario Murua, Josu Santiago and Victor R. Restrepo, 2013.  A Framework for Promoting Dialogue on Parameterizing a Harvest Control Rule with Limit and Target Reference Points for North Atlantic Albacore. SCRS/2013/120
+
+SCRS, 2011. Report of the 2011 joint meeting of the ICCAT Working Group on Stock Assessment Methods and Bluefin tuna Species Group to analyze assessment methods developed under the GBYP and electronic tagging. http://www.iccat.int/Documents/Meetings/Docs/2011_WG%20METHODS-ENG.pdf

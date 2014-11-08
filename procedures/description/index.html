@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>Indian Ocean skipjack model : description of management procedures</title>
+		<meta charset="UTF-8" />
+		<link rel="stylesheet" type="text/css" href="/core/stencils/themes/default/theme.css" />
+		<script type="text/javascript">(function(c){
+	var d=document,s,i,l;
+	s=d.styleSheets;for(i=0;i!=s.length;i++){if((s[i].href||'').match(c)){try{if(s[i].cssRules.length)return;}catch(e){}}}
+	l=d.createElement('link');l.rel='stylesheet';l.type='text/css';l.href='http://stenci.la'+c;
+	d.documentElement.className='unready';l.onload=function(){d.documentElement.className='';};
+	d.getElementsByTagName('head')[0].appendChild(l);
+})('/core/stencils/themes/default/theme.css');</script>
+		<style type="text/css">.unready{display:none;}</style>
+	</head>
+	<body>
+		
+		<main id="content">
+			 
+			<div id="title">Indian Ocean skipjack model : description of management procedures</div>
+			<h1>DRAFT</h1>
+			<p>
+				This documentation is a draft under active development. As such, it may not exactly mirror what is in the current version of the code. Separate documentation, generated from the model's C++ source code, is also 
+				<a href="../../doxygen/html/index.html">available</a>
+				.
+			</p>
+			<h1>Introduction</h1>
+			<p>
+				This document describes the management procedures (MPs) evaluated in this study. Several classes of MP are considered with each 
+				<em>class</em>
+				 having several 
+				<em>control parameters</em>
+				 which can be varied to alter it's behaviour. We refer to a particular combination of control parameters for a class of MP as an instance of that class.
+			</p>
+			<p>The classes of management procedure used here are mainly intended to illutrate the wide variety of possible MPs : the data inputs they use, their algorithmic form and the magagement controls which they alter (e.g. effort versus catch). The </p>
+			<h1>BRule class</h1>
+			<p>
+				The 
+				<code>BRule</code>
+				 class of MP is similar to generic harvest control rules that have been suggested in other tuna fisheries (e.g. SCRS 2011, Scott et al 2013). It assumes that an estimate of stock status is available each year (although the same MP could be altered to have less frequent updates) and uses a simple relation between stock status and fishing intensity. Here we define relative stock status as ratio of current spawning biomass over the spawning biomass associated with maximum sustainable yield, 
+				<script type="math/asciimath">B_t/B_{msy}</script>
+				, and relative fishing intensity as the ratio of the current instantaneous rate of fishing mortality and the rate associated with MSY, 
+				<script type="math/asciimath">F_t/F_{msy}</script>
+				. For this study we have investigated the impact of alternative levels of stock assessment precision and implementation error on performance statistics.
+			</p>
+			<p>In each year the relative biomass is estimated through a stock assessment,</p>
+			<p class="equation">
+				<script type="math/asciimath; mode=display">hat S = B_t/B_{msy} epsilon </script>
+			</p>
+			<p>
+				where 
+				<script type="math/asciimath">epsilon</script>
+				 is a lognormally distributed multiplicative error with mean of 1 and standard deviation of 
+				<script type="math/asciimath">p</script>
+				,
+			</p>
+			<p class="equation">
+				<script type="math/asciimath; mode=display">epsilon ~ LN(1,p)</script>
+			</p>
+			<p>
+				Using 
+				<script type="math/asciimath">hat S</script>
+				 the recommended fishing intensity (
+				<script type="math/asciimath">bar F</script>
+				) is calculated. If 
+				<script type="math/asciimath">hat S &lt; s_l</script>
+				 then,
+			</p>
+			<p class="equation">
+				<script type="math/asciimath; mode=display">bar F = 0</script>
+			</p>
+			<p>
+				If 
+				<script type="math/asciimath">hat S &gt; s_t</script>
+				 then,
+			</p>
+			<p class="equation">
+				<script type="math/asciimath; mode=display">bar F = f</script>
+			</p>
+			<p>Otherwise,</p>
+			<p class="equation">
+				<script type="math/asciimath; mode=display">bar F = f/(s_t-s_l)(hat S-s_l)</script>
+			</p>
+			<p>The recommended fishing intensity is applied to the fishery in the following year,</p>
+			<p class="equation">
+				<script type="math/asciimath; mode=display">F_{t+1} = bar F phi</script>
+			</p>
+			<p>
+				where 
+				<script type="math/asciimath">phi</script>
+				 is a lognormally distributed multiplicative error with mean of 1 and standard deviation of 
+				<script type="math/asciimath">e</script>
+				,
+			</p>
+			<p class="equation">
+				<script type="math/asciimath; mode=display">phi ~ LN(1,e)</script>
+			</p>
+			<p>
+				Table 1 provides a summary of each of the control parameters of 
+				<code>BRule</code>
+				 and their respective values evaluated in this study. Note that IOTC Resolution 13/10 set an interim limit target biomass of 
+				<script type="math/asciimath">B_{msy}</script>
+				 (i.e. 
+				<script type="math/asciimath">b_t = 1</script>
+				) and an interim limit biomass of 
+				<script type="math/asciimath">0.4B_{msy}</script>
+				 (i.e. 
+				<script type="math/asciimath">b_l</script>
+				 = 0.4). Analogous values have been tested. IOTC Resolution 13/10 also includes a limit reference point of 
+				<script type="math/asciimath">1.5F_{msy}</script>
+				. Such a limit reference point on 
+				<script type="math/asciimath">F</script>
+				 is not a feature of this MP which instead is based on relative biomass reference points.
+			</p>
+			<table>
+				<caption>
+					<span class="label">
+						<span class="type">Table</span>
+						<span class="number">1</span>
+						<span class="separator">:</span>
+					</span>
+					Control parameters of the BRule management procedure : description an values evaluated.
+				</caption>
+				<thead>
+					<tr>
+						<th>Parameter</th>
+						<th>Symbol</th>
+						<th>Description</th>
+						<th>Values evaluated</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Estimation precision</td>
+						<td>
+							<script type="math/asciimath">p</script>
+						</td>
+						<td>Precision with which relative stock status is estimated</td>
+						<td>0, 0.2, 0.4, 0.6</td>
+					</tr>
+					<tr>
+						<td>Threshold stock status</td>
+						<td>
+							<script type="math/asciimath">s_t</script>
+						</td>
+						<td>Relative stock status below which recommended fishing intensity is reduced</td>
+						<td>0.7, 0.8, 0.9, 1.0</td>
+					</tr>
+					<tr>
+						<td>Limit stock status</td>
+						<td>
+							<script type="math/asciimath">s_l</script>
+						</td>
+						<td>Relative stock status below which recommended fishing intensity is zero</td>
+						<td>0.2, 0.3, 0.4, 0.5</td>
+					</tr>
+					<tr>
+						<td>Target fishing intensity</td>
+						<td>
+							<script type="math/asciimath">f</script>
+						</td>
+						<td>Relative fishing intensity</td>
+						<td>0.8, 0.9, 1.0, 1.1</td>
+					</tr>
+					<tr>
+						<td>Implementation precision</td>
+						<td>
+							<script type="math/asciimath">e</script>
+						</td>
+						<td>Precision with which recommended fishing intensity is applied</td>
+						<td>0, 0.2, 0.4, 0.6</td>
+					</tr>
+				</tbody>
+			</table>
+			<figure>
+				<pre data-code="r" data-format="png" data-size="16x10cm">
+s_l &lt;- 0.3
+s_t &lt;- 0.8
+f &lt;- 0.9
+s_hats &lt;- seq(0,1.5,0.01)
+f_dots &lt;- f/(s_t-s_l)*(s_hats-s_l)
+f_dots[s_hats&lt;s_l] &lt;- 0
+f_dots[s_hats&gt;s_t] &lt;- f
+par(mar=c(4,4,1,1))
+plot(s_hats,f_dots,type='l',ylab='F',xlab='S',las=1,ylim=c(0,1.2),xlim=c(0,1.2))
+abline(h=1,lty=3)
+abline(v=1,lty=3)
+</pre>
+				<img src="1.png" data-output="true" />
+				<figcaption>
+					<span class="label">
+						<span class="type">Figure</span>
+						<span class="number">1</span>
+						<span class="separator">:</span>
+					</span>
+					An example instance of the BRule management prodedure with 
+					<script type="math/asciimath">s_l=0.3</script>
+					, 
+					<script type="math/asciimath">s_t=0.9</script>
+					, 
+					<script type="math/asciimath">f=0.9</script>
+					 showing the relation between 
+					<script type="math/asciimath">hat S</script>
+					 and 
+					<script type="math/asciimath">bar F</script>
+					.
+				</figcaption>
+			</figure>
+			<h1>FRange class</h1>
+			<p>
+				<code>FRange</code>
+				 seeks to maintain the fishing mortality rate within a defined range. At periodic intervals, defined by the control parameter 
+				<script type="math/asciimath">i</script>
+				, 
+				<script type="math/asciimath">F</script>
+				 is estimated (e.g. from a stock assessment or a tagging study) with a defined level of precision, 
+				<script type="math/asciimath">p</script>
+				,
+			</p>
+			<p class="equation">
+				<script type="math/asciimath; mode=display"> hat F = F epsilon </script>
+			</p>
+			<p>
+				where 
+				<script type="math/asciimath">epsilon</script>
+				 is a lognormally distributed multiplicative error with mean of 1 and standard deviation of 
+				<script type="math/asciimath">p</script>
+				,
+			</p>
+			<p class="equation">
+				<script type="math/asciimath; mode=display">epsilon ~ LN(1,p)</script>
+			</p>
+			<p>
+				The estimated fishing mortality is compared to a range defined by two control parameters, 
+				<script type="math/asciimath">f</script>
+				 the centre of the range and 
+				<script type="math/asciimath">b</script>
+				 the buffer, or width, of the range.
+			</p>
+			<figure>
+				<pre data-code="r" data-format="png" data-size="16x10cm">
+f &lt;- 0.5
+b &lt;- 0.1
+t &lt;- 0.9
+ts &lt;- c(2020,2025,2030,2035,2040,2045,2050)
+f_hats &lt;- c(0.45,0.51,0.63,0.58,0.55,0.49,0.38)
+colours &lt;- hcl(c(120,240,0))[c(2,2,3,2,2,2,1)]
+par(mar=c(4,4,1,1))
+plot(ts,f_hats,col=colours,cex=1.5,pch=16,xlab='Year',ylab='F',las=1,ylim=c(0,0.8))
+abline(h=f,lty=1)
+abline(h=c(f-b,f+b),lty=3)
+</pre>
+				<img src="2.png" data-output="true" />
+				<figcaption>
+					<span class="label">
+						<span class="type">Figure</span>
+						<span class="number">2</span>
+						<span class="separator">:</span>
+					</span>
+					An example instance of the BRule management prodedure with 
+					<script type="math/asciimath">i=5</script>
+					, 
+					<script type="math/asciimath">f=0.5</script>
+					, 
+					<script type="math/asciimath">b=0.1</script>
+					 illustrating how total allowable catches are increased (green circles) or decreased (red circles) when the estimated fishing mortality is below or above the target range.
+				</figcaption>
+			</figure>
+			<h1>References</h1>
+			<p>Gerald P Scott, Gorka Merino, Haritz Arrizabalaga, Hilario Murua, Josu Santiago and Victor R. Restrepo, 2013.  A Framework for Promoting Dialogue on Parameterizing a Harvest Control Rule with Limit and Target Reference Points for North Atlantic Albacore. SCRS/2013/120</p>
+			<p>SCRS, 2011. Report of the 2011 joint meeting of the ICCAT Working Group on Stock Assessment Methods and Bluefin tuna Species Group to analyze assessment methods developed under the GBYP and electronic tagging. http://www.iccat.int/Documents/Meetings/Docs/2011_WG%20METHODS-ENG.pdf</p>
+		</main>
+		<script src="/core/themes/boot.js"> </script>
+		<script>if(!window.Stencila){window.StencilaHost='http://stenci.la';document.write(unescape('%3Cscript src="http://stenci.la/core/themes/boot.js"%3E%3C/script%3E'))}</script>
+		<script>window.Stencila.Booter.theme('core/stencils/themes/default');</script>
+		<script>window.setTimeout(function(){document.documentElement.className='';},10000)</script>
+	</body>
+</html>

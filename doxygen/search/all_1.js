@@ -9,5 +9,7 @@ var searchData=
   ['catches_5fshut',['catches_shut',['../classIOSKJ_1_1Performance.html#af14ef97d0ee749e714caad59c959debe',1,'IOSKJ::Performance']]],
   ['catches_5ftaken',['catches_taken',['../classIOSKJ_1_1Model.html#a63a4ac2ba1d1e3a7f5fd7e90d7b7ce54',1,'IOSKJ::Model']]],
   ['catches_5ftotal',['catches_total',['../classIOSKJ_1_1Performance.html#ae93c77013570b2233bd0dc80fb6d7a93',1,'IOSKJ::Performance']]],
-  ['catches_5fvar',['catches_var',['../classIOSKJ_1_1Performance.html#ac51dcad02ac2af6d58d3a1d65f3e7c5c',1,'IOSKJ::Performance']]]
+  ['catches_5fvar',['catches_var',['../classIOSKJ_1_1Performance.html#ac51dcad02ac2af6d58d3a1d65f3e7c5c',1,'IOSKJ::Performance']]],
+  ['cpue_5fbaseline',['cpue_baseline',['../classIOSKJ_1_1Performance.html#ac8a5aee1fc0f9bc58ed36e4bbf3e0b05',1,'IOSKJ::Performance']]],
+  ['cpue_5fmean',['cpue_mean',['../classIOSKJ_1_1Performance.html#a4c720a38fa32266003e64ee5d29fc7f6',1,'IOSKJ::Performance']]]
 ];
