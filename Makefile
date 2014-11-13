@@ -4,10 +4,8 @@ all: ioskj.debug
 
 # Define options and required libraries
 CXX_FLAGS := -std=c++11 -Wall -Wno-unused-function -Wno-unused-local-typedefs
-#INC_DIRS := -I. -Istencila
-INC_DIRS := -I. -I/home/nbentley/Stencila/source/stencila/cpp/stencila -I/home/nbentley/Stencila/source/stencila/build/current/cpp/requires/boost/include/ -I/home/nbentley/Stencila/source/stencila/build/current/cpp/requires/rapidjson/include/
-#LIB_DIRS := -Lstencila
-LIB_DIRS := -L. -L/home/nbentley/Stencila/source/stencila/build/current/cpp/library
+INC_DIRS := -I. -Irequires/stencila -Irequires/boost
+LIB_DIRS := -Lrequires/stencila
 LIBS := -lstencila
 
 # Find all .hpp and .cpp files (to save time don't recurse into subdirectories)
