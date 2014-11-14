@@ -155,6 +155,73 @@ private:
 	int last_;
 };
 
+class IRate : public Procedure, public Structure<IRate> {
+public:
+
+	/**
+	 * Degree of smoothing of biomass index
+	 */
+	double responsiveness;
+
+	/**
+	 * Target harvest rate relative to historic levels i.e 0.9 = 90% of historic average
+	 */
+	double multiplier;
+
+	/**
+	 * Threshold biomass index
+	 */
+	double threshold;
+
+	/**
+	 * Limit biomass index
+	 */
+	double limit;
+
+	/**
+	 * Buffer around target F
+	 */
+	double maximum;
+
+	/**
+	 * Reflection
+	 */
+	template<class Mirror>
+	void reflect(Mirror& mirror){
+		mirror
+			.data(responsiveness,"responsiveness")
+			.data(multiplier,"multiplier")
+			.data(threshold,"threshold")
+			.data(limit,"limit")
+			.data(maximum,"maximum")
+		;
+	}
+
+	void write(std::ofstream& stream){
+		stream
+			<<"FRange"<<"\t"
+			<<responsiveness<<"\t"
+			<<multiplier<<"\t"
+			<<threshold<<"\t"
+			<<limit<<"\t"
+			<<maximum<<"\t\t\t\t\t\n";
+	}
+
+	virtual void reset(void){
+	}
+
+	virtual void operate(uint time, Model& model){
+	}
+
+private:
+
+	/**
+	 * Smoothed biomass index
+	 */
+	double index_;
+};
+
+
 class Procedures : public Array<Procedure*> {
 public:
 
@@ -185,6 +252,24 @@ public:
 						proc.target = target;
 						proc.buffer = buffer;
 						append(&proc);
+					}
+				}
+			}
+		}
+		// IRate
+		for(double responsiveness : {0.5, 0.65, 0.8, 1.0}){
+			for(double multiplier : {0.8, 0.9, 1.0, 1.1}){
+				for(auto threshold : {0.5, 0.6, 0.7, 0.8}){
+					for(auto limit : {0.1, 0.2, 0.3, 0.4}){
+						for(auto maximum : {300, 400, 500, 600}){
+							auto& proc = * new IRate;
+							proc.responsiveness = responsiveness;
+							proc.multiplier = multiplier;
+							proc.threshold = threshold;
+							proc.limit = limit;
+							proc.maximum = maximum;
+							append(&proc);
+						}
 					}
 				}
 			}

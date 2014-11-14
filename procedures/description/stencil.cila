@@ -12,7 +12,7 @@ The classes of management procedure used here are mainly intended to illutrate t
 
 # BRule class
 
-The `BRule` class of MP is similar to generic harvest control rules that have been suggested in other tuna fisheries (e.g. SCRS 2011, Scott et al 2013). It assumes that an estimate of stock status is available each year (although the same MP could be altered to have less frequent updates) and uses a simple relation between stock status and fishing intensity. Here we define relative stock status as ratio of current spawning biomass over the spawning biomass associated with maximum sustainable yield, |B_t/B_{msy}|, and relative fishing intensity as the ratio of the current instantaneous rate of fishing mortality and the rate associated with MSY, |F_t/F_{msy}|. For this study we have investigated the impact of alternative levels of stock assessment precision and implementation error on performance statistics.
+The `BRule` class of MP is similar to generic harvest control rules that have been suggested in other tuna fisheries (e.g. SCRS 2011, Scott et al 2013). It assumes that an estimate of stock status is available each year (although the same MP could be altered to have less frequent updates) and uses a simple relation between stock status and fishing intensity. Here we define relative stock status as ratio of current spawning biomass over the spawning biomass associated with maximum sustainable yield, |B_t//B_{msy}|, and relative fishing intensity as the ratio of the current instantaneous rate of fishing mortality and the rate associated with MSY, |F_t//F_{msy}|. For this study we have investigated the impact of alternative levels of stock assessment precision and implementation error on performance statistics.
 
 In each year the relative biomass is estimated through a stock assessment,
 
@@ -22,11 +22,11 @@ where |epsilon| is a lognormally distributed multiplicative error with mean of 1
 
 |epsilon ~ LN(1,p)|
 
-Using |hat S| the recommended fishing intensity (|bar F|) is calculated. If |hat S < s_l| then,
+Using |hat S| the recommended fishing intensity (|bar F|) is calculated. If |hat S lt s_l| then,
 
 |bar F = 0|
 
-If |hat S > s_t| then,
+If |hat S gt s_t| then,
 
 |bar F = f|
 
@@ -175,11 +175,11 @@ In each year, a smoothed CPUE, |bar I| is calculated using an exponential moving
 
 Higher values of |r| produce greater responsiveness because they put more weight on more recent values of CPUE and produce a index that is less smoothed. When |r=1| there is no smoothing and |bar I_t = r I_t|. Smoothing may be advantageous in that it reduces the influence of annual random variation in CPUE due catchability or operational variations. However, smooting also reduces adds a lag to the index.
 
-Using |bar I| the recommended harvest rate (|bar R|) is calculated. If |bar I < i_l| then,
+Using |bar I| the recommended harvest rate (|bar R|) is calculated. If |bar I lt i_l| then,
 
 |bar R = 0|
 
-If |bar I > i_t| then,
+If |bar I gt i_t| then,
 
 |bar R = m hat R|
 
