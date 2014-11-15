@@ -12,6 +12,9 @@ public:
 	virtual void write(std::ofstream& stream) = 0;
 };
 
+/**
+ * `BRule` management procedure
+ */
 class BRule : public Procedure, public Structure<BRule> {
 public:
 
@@ -77,6 +80,9 @@ public:
 
 };
 
+/**
+ * `FRange` management procedure
+ */
 class FRange : public Procedure, public Structure<FRange> {
 public:
 
@@ -155,8 +161,16 @@ private:
 	int last_;
 };
 
+/**
+ * `IRate` management procedure
+ */
 class IRate : public Procedure, public Structure<IRate> {
 public:
+
+	/**
+	 * Precision of CPUE in reflecting vulnerable biomass
+	 */
+	double precision = 0.2;
 
 	/**
 	 * Degree of smoothing of biomass index
@@ -211,6 +225,25 @@ public:
 	}
 
 	virtual void operate(uint time, Model& model){
+		int year = IOSKJ::year(time);
+		int quarter = IOSKJ::quarter(time);
+		// Operate once per year in the third quarter
+		if(quarter==3){
+			// Get CPUE; currently for M-PL but could use any region/method
+			double cpue = model.biomass_vulnerable(M,PL);
+			// Add observation error
+			Lognormal imprecision(1,precision);
+			cpue *= imprecision.random();
+			// Update smoothed index
+			index_ = responsiveness*cpue + (1-responsiveness)*index_;
+			// Calculate recommended harvest rate
+			double rate;
+			if(index_<limit) rate = 0;
+			else if(index_>threshold) rate = multiplier;
+			else rate = multiplier/(threshold-limit)*(index_-limit);
+			// Apply harvest rate
+			double tac = std::min(rate*cpue,maximum);			
+		}
 	}
 
 private:
