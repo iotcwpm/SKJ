@@ -1,24 +1,20 @@
 #pragma once
 
-// Ransom number generator
+namespace Utilities {
+namespace Distributions {
+
+/**
+ * Random number generator
+ */
 struct Generator : boost::mt19937 {
 	Generator(void){
 		seed(static_cast<unsigned int>(std::time(0)));
 	}
 } Generator;
 
-/*!
-A base implementation class for all probability distributions
-	
-All probability distributions have a member called data_ which is a boost::math distribution.
-(The alternative of deriving from both boost::math distributions caused a mysterious memory bug in testing).
-Random variates are produced using boost::random distributions within the random() method.
-Specific classes might overide the random() method to provide greate efficiency (?) by using the boost::random distributions directly, rather than using quantile().
-
-Boost::math defines a number of non-member properties that are common to all distributions:
-	'cdf','complement','chf','hazard','kurtosis','kurtosis_excess','mean','median','mode','pdf','range','quantile','skewness','standard_deviation','support','variance'
-these are wrapped into methods.
-*/
+/**
+ * Base class for all probability distributions
+ */
 template<
 	typename Derived
 >
@@ -301,3 +297,6 @@ public:
         ;
     }
 };
+
+} // namespace Distributions
+} // namespace IOSKJ

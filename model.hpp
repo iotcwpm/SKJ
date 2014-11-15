@@ -2,6 +2,7 @@
 
 #include "dimensions.hpp"
 #include "distributions.hpp"
+using namespace Utilities::Distributions;
 
 namespace IOSKJ {
 
