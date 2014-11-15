@@ -9,7 +9,7 @@ runs <-  within(data.frame(
 	dir = paste0('runs/',gsub('/ss3.par','',list.files('runs',pattern='ss3.par',recursive=T))),
 	stringsAsFactors = F
 ),{
-	opts <- as.factor(str_match(dir,'updated2014(.+)/')[,2])
+	opts <- as.factor(str_match(dir,'runs/(.+)/')[,2])
 	m <- as.numeric(str_match(dir,'M(\\d\\.\\d)')[,2])
 	h <- as.numeric(str_match(dir,'steepness(\\d\\.\\d)')[,2])
 	ps <- as.factor(str_match(dir,'PS(\\d)')[,2])
