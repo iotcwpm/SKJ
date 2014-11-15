@@ -193,15 +193,16 @@ In each year, a smoothed CPUE, |bar I| is calculated using an exponential moving
 
 figure
 	r png 17x10cm
+		temp <- subset(temp,!is.na(combined))
 		smooths <- NULL
 		for(r in c(0.5, 0.65, 0.8, 1.0)){
-			index <- m_pl_cpue$m_pl_cpue[1]
-			for(row in 2:nrow(m_pl_cpue)){
-				c <- m_pl_cpue$m_pl_cpue[row]
+			index <- temp$combined[1]
+			for(row in 2:nrow(temp)){
+				c <- temp$combined[row]
 				i <- r*c + (1-r)*index[row-1]
 				index <- c(index,i)
 			}
-			smooths <- rbind(smooths,data.frame(r=r,year=m_pl_cpue$data_year,smooth=index))
+			smooths <- rbind(smooths,data.frame(r=r,year=temp$year,smooth=index))
 		}
 		names(smooths) <- c('r','year','smooth')
 		smooths$r <- factor(smooths$r)
