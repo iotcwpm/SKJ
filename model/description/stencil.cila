@@ -27,6 +27,23 @@ The model uses a quarterly, i.e. three month, time step (|t|). Each time step, |
 
 There are three regions (|r|), West (|we|), Maldives (|ma|) and East (|ea|). The term "region" is used in preference to "area" because using the latter would confound the |a| subscript which is also used for age.
 
+figure
+	r png 17x13cm
+		regions <- read.table('../../data/area-polygons.txt',header=T)
+		names(regions) <- c('region','lat','lon')
+			
+		print(
+			ggplot(subset(map_data("world"),long>30 & long<130 & lat<30 & lat>-40)) +
+				geom_polygon(data=regions,aes(x=lon,y=lat,fill=region),colour='grey30',alpha=0.5) +
+				geom_polygon(aes(x=long, y=lat, group=group),fill='white',colour='grey60') +
+				scale_y_continuous('',expand=c(0,0)) +
+				scale_x_continuous('',expand=c(0,0)) + 
+				coord_map('mercator') + 
+				labs(fill='Region')
+		)
+	figcaption
+		Map of the regions used in the model
+
 ## Age
 
 Fish recruit to the model in each quarter and the model keeps track of their numbers by their age (|a|), in quarters up to six years i.e. |0,1,2,...,23|
