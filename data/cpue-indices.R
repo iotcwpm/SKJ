@@ -6,6 +6,8 @@
 #
 # Uses the "Model 3: Standardized FAD" index from Table 1 of Sharma et al (2014)
 # Sharma, R, Geehan, J., Adam, M.S. (2014) Maldives Skipjack Pole and Line Fishery Catch Rate Standardization 2004-2012: Reconstructing Historic CPUE till 1985. IOTC-2014-WPTT-15-XX
+#
+# File: CPUEseriesusedinassessmentSKPFigure3.xlsx (provided by Rishi Sharma)# 
 cat(
 "year	quarter	index
 2004	0	1.18
@@ -50,7 +52,7 @@ file = "processed-data/m-pl-cpue.tsv"
 
 # Purse seine CPUE
 #
-# This uses the "PSLS" index produced by Soto (2014)
+# This is the "PSLS" index produced by Soto (2014)
 # File: CPUEseriesusedinassessmentSKPFigure3.xlsx (provided by Rishi Sharma)
 cat(
 "year	index
