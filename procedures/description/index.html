@@ -32,15 +32,15 @@
 				<em>control parameters</em>
 				 which can be varied to alter it's behaviour. We refer to a particular combination of control parameters for a class of MP as an instance of that class.
 			</p>
-			<p>The classes of management procedure used here are mainly intended to illutrate the wide variety of possible MPs : the data inputs they use, their algorithmic form and the magagement controls which they alter (e.g. effort versus catch). The </p>
+			<p>The classes of management procedure used here are mainly intended to illutrate the wide variety of possible MPs: the data inputs they use, their algorithmic form and the management controls which they alter (e.g. effort versus catch). The </p>
 			<h1>BRule class</h1>
 			<p>
 				The 
 				<code>BRule</code>
 				 class of MP is similar to generic harvest control rules that have been suggested in other tuna fisheries (e.g. SCRS 2011, Scott et al 2013). It assumes that an estimate of stock status is available each year (although the same MP could be altered to have less frequent updates) and uses a simple relation between stock status and fishing intensity. Here we define relative stock status as ratio of current spawning biomass over the spawning biomass associated with maximum sustainable yield, 
-				<script type="math/asciimath">B_t/B_{msy}</script>
+				<script type="math/asciimath">B_t//B_{msy}</script>
 				, and relative fishing intensity as the ratio of the current instantaneous rate of fishing mortality and the rate associated with MSY, 
-				<script type="math/asciimath">F_t/F_{msy}</script>
+				<script type="math/asciimath">F_t//F_{msy}</script>
 				. For this study we have investigated the impact of alternative levels of stock assessment precision and implementation error on performance statistics.
 			</p>
 			<p>In each year the relative biomass is estimated through a stock assessment,</p>
@@ -63,7 +63,7 @@
 				 the recommended fishing intensity (
 				<script type="math/asciimath">bar F</script>
 				) is calculated. If 
-				<script type="math/asciimath">hat S &lt; s_l</script>
+				<script type="math/asciimath">hat S lt s_l</script>
 				 then,
 			</p>
 			<p class="equation">
@@ -71,7 +71,7 @@
 			</p>
 			<p>
 				If 
-				<script type="math/asciimath">hat S &gt; s_t</script>
+				<script type="math/asciimath">hat S gt s_t</script>
 				 then,
 			</p>
 			<p class="equation">
@@ -119,7 +119,7 @@
 						<span class="number">1</span>
 						<span class="separator">:</span>
 					</span>
-					Control parameters of the BRule management procedure : description an values evaluated.
+					Control parameters of the BRule management procedure : descriptions and values evaluated.
 				</caption>
 				<thead>
 					<tr>
@@ -266,6 +266,200 @@ abline(h=c(f-b,f+b),lty=3)
 					 illustrating how total allowable catches are increased (green circles) or decreased (red circles) when the estimated fishing mortality is below or above the target range.
 				</figcaption>
 			</figure>
+			<h1>IRate class</h1>
+			<p>This management procedure uses CPUE as an index of biomass and sets a total allowable catch (TAC) that, over most of the range of CPUE, is proportional to that index.</p>
+			<pre data-code="r">
+# Some preparatory code for figures below
+require(plyr)
+require(ggplot2)
+
+catch &lt;- read.table('../../parameters/input/catches.tsv',header=T)
+catch &lt;- ddply(catch,.(year),summarise,catch=sum(value))
+m_pl_cpue &lt;- read.table('../../data/input/m_pl_cpue.tsv',header=T)
+m_pl_cpue &lt;- ddply(m_pl_cpue,.(data_year),summarise,m_pl_cpue=exp(mean(log(location))))
+temp &lt;- merge(catch,m_pl_cpue,by.x='year',by.y='data_year',all.x=T)
+w_ps_cpue &lt;- read.table('../../data/input/w_ps_cpue.tsv',header=T)
+w_ps_cpue &lt;- ddply(w_ps_cpue,.(data_year),summarise,w_ps_cpue=exp(mean(log(location))))
+temp &lt;- merge(temp,w_ps_cpue,by.x='year',by.y='data_year',all.x=T)
+
+</pre>
+			<figure>
+				<pre data-code="r" data-format="png" data-size="17x10cm">
+m_pl_rate &lt;- with(temp,exp(mean(log(catch/m_pl_cpue),na.rm=T)))/1000
+print(
+	ggplot(temp,aes(x=m_pl_cpue,y=catch/1000)) + 
+		geom_point(colour='grey') + 
+		geom_text(aes(label=year),size=4) + 
+		geom_hline(y=0,alpha=0) + geom_vline(x=0,alpha=0) +
+		geom_abline(intercept=0,slope=m_pl_rate,linetype=2) +
+		labs(x='Maldive PL CPUE',y='Catch (overall, 1000 tonnes)')
+)
+</pre>
+				<img src="3.png" data-output="true" />
+				<figcaption>
+					<span class="label">
+						<span class="type">Figure</span>
+						<span class="number">3</span>
+						<span class="separator">:</span>
+					</span>
+					Historic relation between Maldive pole and line CPUE and overall catch.
+				</figcaption>
+			</figure>
+			<figure>
+				<pre data-code="r" data-format="png" data-size="17x10cm">
+w_ps_rate &lt;- with(temp,exp(mean(log(catch/w_ps_cpue),na.rm=T)))/1000
+print(
+	ggplot(temp,aes(x=w_ps_cpue,y=catch/1000)) + 
+		geom_point(colour='grey') + 
+		geom_text(aes(label=year),size=4)  + 
+		geom_hline(y=0,alpha=0) + geom_vline(x=0,alpha=0) +
+		geom_abline(intercept=0,slope=w_ps_rate,linetype=2) +
+		labs(x='Western PS CPUE',y='Catch (overall, 1000 tonnes)')
+)
+</pre>
+				<img src="4.png" data-output="true" />
+				<figcaption>
+					<span class="label">
+						<span class="type">Figure</span>
+						<span class="number">4</span>
+						<span class="separator">:</span>
+					</span>
+					Historic relation between Western purse seine CPUE and overall catch.
+				</figcaption>
+			</figure>
+			<p>
+				In each year, a smoothed CPUE, 
+				<script type="math/asciimath">bar I</script>
+				 is calculated using an exponential moving average with the responsivesness control parameter, 
+				<script type="math/asciimath">r</script>
+				:
+			</p>
+			<p class="equation">
+				<script type="math/asciimath; mode=display"> bar I_t = r I_t + (1-r) bar I_{t+1} </script>
+			</p>
+			<p>
+				Higher values of 
+				<script type="math/asciimath">r</script>
+				 produce greater responsiveness because they put more weight on more recent values of CPUE and produce a index that is less smoothed. When 
+				<script type="math/asciimath">r=1</script>
+				 there is no smoothing and 
+				<script type="math/asciimath">bar I_t = r I_t</script>
+				. Smoothing may be advantageous in that it reduces the influence of annual random variation in CPUE due catchability or operational variations. However, smooting also reduces adds a lag to the index.
+			</p>
+			<p>
+				Using 
+				<script type="math/asciimath">bar I</script>
+				 the recommended harvest rate (
+				<script type="math/asciimath">bar R</script>
+				) is calculated. If 
+				<script type="math/asciimath">bar I lt i_l</script>
+				 then,
+			</p>
+			<p class="equation">
+				<script type="math/asciimath; mode=display">bar R = 0</script>
+			</p>
+			<p>
+				If 
+				<script type="math/asciimath">bar I gt i_t</script>
+				 then,
+			</p>
+			<p class="equation">
+				<script type="math/asciimath; mode=display">bar R = m hat R</script>
+			</p>
+			<p>Otherwise,</p>
+			<p class="equation">
+				<script type="math/asciimath; mode=display">bar R = (m hat R)/(i_t-i_l)(bar I-i_l)</script>
+			</p>
+			<p>
+				The recommended harvest rate is used to calculate a recommended TAC, 
+				<script type="math/asciimath">bar C</script>
+				, by multiplying the harvest rate by the biomass index,
+			</p>
+			<p class="equation">
+				<script type="math/asciimath; mode=display">bar C = min(bar R bar I, u)</script>
+			</p>
+			<p>which is applied to the fishery in the following year,</p>
+			<p class="equation">
+				<script type="math/asciimath; mode=display">C_{t+1} = bar C phi</script>
+			</p>
+			<p>
+				where 
+				<script type="math/asciimath">phi</script>
+				 is a lognormally distributed multiplicative error with mean of 1 and standard deviation of 
+				<script type="math/asciimath">e</script>
+				,
+			</p>
+			<p class="equation">
+				<script type="math/asciimath; mode=display">phi ~ LN(1,e)</script>
+			</p>
+			<table>
+				<caption>
+					<span class="label">
+						<span class="type">Table</span>
+						<span class="number">2</span>
+						<span class="separator">:</span>
+					</span>
+					Control parameters of the IRate management procedure : descriptions and values evaluated.
+				</caption>
+				<thead>
+					<tr>
+						<th>Parameter</th>
+						<th>Symbol</th>
+						<th>Description</th>
+						<th>Values evaluated</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Responsiveness</td>
+						<td>
+							<script type="math/asciimath">r</script>
+						</td>
+						<td>Degree of smoothing in biomass index</td>
+						<td>0.5, 0.65, 0.8, 1.0</td>
+					</tr>
+					<tr>
+						<td>Target harvest rate muliplier</td>
+						<td>
+							<script type="math/asciimath">m</script>
+						</td>
+						<td>Target harvest rate relative to historic levels i.e 0.9 = 90% of historic average</td>
+						<td>0.8, 0.9, 1.0, 1.1</td>
+					</tr>
+					<tr>
+						<td>Threshold biomass index</td>
+						<td>
+							<script type="math/asciimath">i_t</script>
+						</td>
+						<td>Biomass index at which the harvest rate is reduced relative to historic levels i.e. 0.7 = reduce harvest rate when the biomas index is at 70% of historic levels</td>
+						<td>0.5, 0.6, 0.7, 0.8</td>
+					</tr>
+					<tr>
+						<td>Limit biomass index</td>
+						<td>
+							<script type="math/asciimath">i_l</script>
+						</td>
+						<td>Biomass index at which harvest rate is zero relative to historic levels i.e. 0.2 = close the fishery when the biomas index is at 20% of historic levels</td>
+						<td>0.1, 0.2, 0.3, 0.4</td>
+					</tr>
+					<tr>
+						<td>Maximum TAC</td>
+						<td>
+							<script type="math/asciimath">u</script>
+						</td>
+						<td>Maximum total allowable catch (thousand tonnes)</td>
+						<td>300, 400, 500, 600</td>
+					</tr>
+					<tr>
+						<td>Implementation precision</td>
+						<td>
+							<script type="math/asciimath">e</script>
+						</td>
+						<td>Precision with which recommended TAC is applied</td>
+						<td>0, 0.1, 0.2, 0.3</td>
+					</tr>
+				</tbody>
+			</table>
 			<h1>References</h1>
 			<p>Gerald P Scott, Gorka Merino, Haritz Arrizabalaga, Hilario Murua, Josu Santiago and Victor R. Restrepo, 2013.  A Framework for Promoting Dialogue on Parameterizing a Harvest Control Rule with Limit and Target Reference Points for North Atlantic Albacore. SCRS/2013/120</p>
 			<p>SCRS, 2011. Report of the 2011 joint meeting of the ICCAT Working Group on Stock Assessment Methods and Bluefin tuna Species Group to analyze assessment methods developed under the GBYP and electronic tagging. http://www.iccat.int/Documents/Meetings/Docs/2011_WG%20METHODS-ENG.pdf</p>

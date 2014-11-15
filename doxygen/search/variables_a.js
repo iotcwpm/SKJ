@@ -12,5 +12,6 @@ var searchData=
   ['recruits_5funfished',['recruits_unfished',['../classIOSKJ_1_1Model.html#a780f4e69674141e96e028765004608ea',1,'IOSKJ::Model']]],
   ['recruits_5fvariation',['recruits_variation',['../classIOSKJ_1_1Model.html#ad9518caa30a28b5ae7afa7677e33bca2',1,'IOSKJ::Model']]],
   ['recruits_5fvariation_5fon',['recruits_variation_on',['../classIOSKJ_1_1Model.html#a164e3c054caea071da7079d5ff27833b',1,'IOSKJ::Model']]],
-  ['replicate',['replicate',['../classIOSKJ_1_1Performance.html#a0a3f2c267ce34b22afb62685cdca534c',1,'IOSKJ::Performance']]]
+  ['replicate',['replicate',['../classIOSKJ_1_1Performance.html#a0a3f2c267ce34b22afb62685cdca534c',1,'IOSKJ::Performance']]],
+  ['responsiveness',['responsiveness',['../classIOSKJ_1_1IRate.html#a5f1e02d4c86bdb67e59293e2d1cd256b',1,'IOSKJ::IRate']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['lognormal',['Lognormal',['../classLognormal.html',1,'']]]
+  ['irate',['IRate',['../classIOSKJ_1_1IRate.html',1,'IOSKJ']]]
 ];

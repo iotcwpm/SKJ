@@ -5,6 +5,7 @@ var searchData=
   ['maturities',['maturities',['../classIOSKJ_1_1Model.html#a374c4b48c908c40b7401e484cc49c767',1,'IOSKJ::Model']]],
   ['maturity_5finflection',['maturity_inflection',['../classIOSKJ_1_1Parameters.html#af3b6a989eadf78d7c28237837912bbff',1,'IOSKJ::Parameters']]],
   ['maturity_5flength_5finflection',['maturity_length_inflection',['../classIOSKJ_1_1Model.html#a608d7f7572e14fef180db8b060cad283',1,'IOSKJ::Model']]],
+  ['maximum',['maximum',['../classIOSKJ_1_1IRate.html#aa9fcaad49e4257fb938a9453bffaea95',1,'IOSKJ::IRate']]],
   ['model',['Model',['../classIOSKJ_1_1Model.html',1,'IOSKJ']]],
   ['mortalities',['mortalities',['../classIOSKJ_1_1Model.html#a822cf91410ee9cbef92a3ddcf6702577',1,'IOSKJ::Model']]],
   ['mortalities_5fsurvival',['mortalities_survival',['../classIOSKJ_1_1Model.html#aa23252cbcab017a40cf3c864c872e7b2',1,'IOSKJ::Model']]],
@@ -14,5 +15,6 @@ var searchData=
   ['movement_5fstay',['movement_stay',['../classIOSKJ_1_1Parameters.html#a6bf2dd27453a6b4098d7aefa154dd2bf',1,'IOSKJ::Parameters']]],
   ['movement_5funiform',['movement_uniform',['../classIOSKJ_1_1Model.html#a0278c3e4893f0891856dc4df93d3306f',1,'IOSKJ::Model']]],
   ['msy',['msy',['../classIOSKJ_1_1Model.html#aeb1010a45bdd1229ec3e3547481c37b1',1,'IOSKJ::Model']]],
-  ['msy_5ffind',['msy_find',['../classIOSKJ_1_1Model.html#ab866cdbb2797465558eedad59a0e9b61',1,'IOSKJ::Model']]]
+  ['msy_5ffind',['msy_find',['../classIOSKJ_1_1Model.html#ab866cdbb2797465558eedad59a0e9b61',1,'IOSKJ::Model']]],
+  ['multiplier',['multiplier',['../classIOSKJ_1_1IRate.html#a3cb0c0c168dc279a874116d88508413d',1,'IOSKJ::IRate']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['tracker',['Tracker',['../structIOSKJ_1_1Tracker.html',1,'IOSKJ']]]
+  ['randomiser',['Randomiser',['../structIOSKJ_1_1Parameters_1_1Randomiser.html',1,'IOSKJ::Parameters']]]
 ];
