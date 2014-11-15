@@ -9,6 +9,7 @@ ss3/runs
 # Generated HTML and images
 *.html
 *.png
+*.svg
 
 # Doxygen output
 doxygen
@@ -16,8 +17,6 @@ doxygen
 
 # Pages directory used for collating what gets published
 .pages
-
-*.svg
 
 # Ignore text editor and IDE files
 *.sublime-project
@@ -28,4 +27,4 @@ doxygen
 *.local
 
 # Ignore dependencies
-stencila
+requires

@@ -45,6 +45,10 @@ docs:
 	./render-stencils.R
 	doxygen doxygen/Doxyfile
 
+# Render a stencil
+%/index.html: %/stencil.cila
+	cd $(dir $<) && Rscript -e "require(stencila); Stencil('.')$$ render()$$ export('index.html')"
+
 # Publish documentation
 # Aggregates alternative documentation into a single place for publishing using Github pages 
 # Requires the a branch called "gh-pages":
