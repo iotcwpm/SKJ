@@ -150,34 +150,42 @@ r
 	w_ps_cpue <- read.table('../../data/input/w_ps_cpue.tsv',header=T)
 	w_ps_cpue <- ddply(w_ps_cpue,.(data_year),summarise,w_ps_cpue=exp(mean(log(location))))
 	temp <- merge(temp,w_ps_cpue,by.x='year',by.y='data_year',all.x=T)
+	# Create a combined CPUE series
+	temp <- within(temp,{
+		# Geometric mean combination
+		combined <- sqrt(m_pl_cpue*w_ps_cpue)
+		combined[is.na(m_pl_cpue)] <- w_ps_cpue[is.na(m_pl_cpue)]
+	})
 
 figure
 	r png 17x10cm
-		m_pl_rate <- with(temp,exp(mean(log(catch/m_pl_cpue),na.rm=T)))/1000
 		print(
-			ggplot(temp,aes(x=m_pl_cpue,y=catch/1000)) + 
-				geom_point(colour='grey') + 
-				geom_text(aes(label=year),size=4) + 
-				geom_hline(y=0,alpha=0) + geom_vline(x=0,alpha=0) +
-				geom_abline(intercept=0,slope=m_pl_rate,linetype=2) +
-				labs(x='Maldive PL CPUE',y='Catch (overall, 1000 tonnes)')
+			ggplot(melt(subset(temp,year>1980)[,c('year','m_pl_cpue','w_ps_cpue','combined')],id.vars=c('year')),
+				   aes(x=year,y=value,colour=variable,shape=variable)) + 
+				geom_point(size=3,alpha=0.6) + 
+				geom_line(alpha=0.6) + 
+				geom_hline(y=0,alpha=0) +
+				scale_shape_manual(values=1:3) +
+				labs(x='Year',y='CPUE index',colour='Index',shape='Index')
 		)
 	figcaption
-		Historical relation between Maldive pole and line CPUE and overall catch. The dashed line has a slope of the geometric mean of the ratio of CPUE and catches ({span!text round(m_pl_rate,2)}).
+		Western purse seine, Maldive pole and line and combined CPUE series.
+
 
 figure
 	r png 17x10cm
-		w_ps_rate <- with(temp,exp(mean(log(catch/w_ps_cpue),na.rm=T)))/1000
+		scalar <- with(subset(temp,year>=1994),exp(mean(log(catch/combined),na.rm=T)))/1000
 		print(
-			ggplot(temp,aes(x=w_ps_cpue,y=catch/1000)) + 
+			ggplot(temp,aes(x=combined,y=catch/1000)) + 
 				geom_point(colour='grey') + 
-				geom_text(aes(label=year),size=4)  + 
+				geom_text(aes(label=year,colour=year>=1994),size=4) + 
 				geom_hline(y=0,alpha=0) + geom_vline(x=0,alpha=0) +
-				geom_abline(intercept=0,slope=w_ps_rate,linetype=2) +
-				labs(x='Western PS CPUE',y='Catch (overall, 1000 tonnes)')
+				geom_abline(intercept=0,slope=scalar,linetype=2) +
+				labs(x='Combined CPUE index',y='Catch (overall, 1000 tonnes)',colour='Used')
 		)
 	figcaption
-		Historical relation between Western purse seine CPUE and overall catch. The dashed line has a slope of the geometric mean of the ratio of CPUE and catches ({span!text round(w_ps_rate,2)}).
+		Historical relation between combined CPUE and overall catch. 
+		The dashed line has a slope of the catch scalar = {span!text round(scalar,2)} (geometric mean of the ratio of catches over CPUE).
 
 In each year, a smoothed CPUE, |bar I| is calculated using an exponential moving average with the responsivesness control parameter, |r|:
 
