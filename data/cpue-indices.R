@@ -54,8 +54,8 @@ file = "input/m_pl_cpue.tsv"
 #
 # This is the "PSLS" index produced by Soto (2014)
 # File: CPUEseriesusedinassessmentSKPFigure3.xlsx (provided by Rishi Sharma)
-cat(
-"data_year	location	dispersion
+w_ps <- read.table(text="
+data_year	location	dispersion
 1984	0.53	0.3
 1985	0.54	0.3
 1986	0.74	0.3
@@ -86,6 +86,10 @@ cat(
 2011	0.49	0.3
 2012	0.38	0.3
 2013	0.40	0.3
-",
-file = "input/w_ps_cpue.tsv"
-)
+",header=T)
+# Normalise to a geometric mean of 1
+w_ps <- within(w_ps,{
+	location <- location/exp(mean(log(location)))
+})
+# Write out
+write.table(w_ps,file="input/w_ps_cpue.tsv",row.names=F,quote=F)
