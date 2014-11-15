@@ -53,10 +53,11 @@ r
 figure
 	r png 17x10cm
 		print(
-			ggplot(subset(track,replicate<4 & quarter==0),aes(x=year+quarter/4,y=biomass_spawning_overall/1e6)) +
+			ggplot(subset(track,replicate<10 & quarter==0),aes(x=year+quarter/4,y=biomass_spawning_overall/1e6)) +
 				geom_line(aes(colour=procedure)) +
 				facet_wrap(~replicate,scales='free_y') +
 				geom_vline(x=2015,linetype=2) +
+				geom_hline(v=0,alpha=0) +
 				labs(x="Year",y="Spawning biomass (mil. t)") + 
 				theme(legend.position='none')
 		)

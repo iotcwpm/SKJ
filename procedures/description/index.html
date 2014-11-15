@@ -24,6 +24,11 @@
 				<a href="../../doxygen/">available</a>
 				.
 			</p>
+			<pre data-code="r">
+# Include common R settings and functions for this project
+source('../../common.R',local=T)
+
+</pre>
 			<h1>Introduction</h1>
 			<p>
 				This document describes the management procedures (MPs) evaluated in this study. Several classes of MP are considered with each 
@@ -182,7 +187,12 @@ f_dots &lt;- f/(s_t-s_l)*(s_hats-s_l)
 f_dots[s_hats&lt;s_l] &lt;- 0
 f_dots[s_hats&gt;s_t] &lt;- f
 par(mar=c(4,4,1,1))
-plot(s_hats,f_dots,type='l',ylab='F',xlab='S',las=1,ylim=c(0,1.2),xlim=c(0,1.2))
+plot(
+	s_hats,f_dots,type='l',
+	ylab='Relative fishing intensity (F/Fmsy)',
+	xlab='Relative stock status (B/Bmsy)',
+	las=1,ylim=c(0,1.2),xlim=c(0,1.2)
+)
 abline(h=1,lty=3)
 abline(v=1,lty=3)
 </pre>
@@ -193,7 +203,7 @@ abline(v=1,lty=3)
 						<span class="number">1</span>
 						<span class="separator">:</span>
 					</span>
-					An example instance of the BRule management prodedure with 
+					An example instance of the BRule management procedure with 
 					<script type="math/asciimath">s_l=0.3</script>
 					, 
 					<script type="math/asciimath">s_t=0.9</script>
@@ -246,7 +256,11 @@ ts &lt;- c(2020,2025,2030,2035,2040,2045,2050)
 f_hats &lt;- c(0.45,0.51,0.63,0.58,0.55,0.49,0.38)
 colours &lt;- hcl(c(120,240,0))[c(2,2,3,2,2,2,1)]
 par(mar=c(4,4,1,1))
-plot(ts,f_hats,col=colours,cex=1.5,pch=16,xlab='Year',ylab='F',las=1,ylim=c(0,0.8))
+plot(
+	ts,f_hats,col=colours,cex=1.5,pch=16,
+	xlab='Year',ylab='Estimated fishing mortality (F)',
+	las=1,ylim=c(0,0.8)
+)
 abline(h=f,lty=1)
 abline(h=c(f-b,f+b),lty=3)
 </pre>
@@ -257,7 +271,7 @@ abline(h=c(f-b,f+b),lty=3)
 						<span class="number">2</span>
 						<span class="separator">:</span>
 					</span>
-					An example instance of the BRule management prodedure with 
+					An example instance of the BRule management procedure with 
 					<script type="math/asciimath">i=5</script>
 					, 
 					<script type="math/asciimath">f=0.5</script>
@@ -270,9 +284,6 @@ abline(h=c(f-b,f+b),lty=3)
 			<p>This management procedure uses CPUE as an index of biomass and sets a total allowable catch (TAC) that, over most of the range of CPUE, is proportional to that index.</p>
 			<pre data-code="r">
 # Some preparatory code for figures below
-require(plyr)
-require(ggplot2)
-
 catch &lt;- read.table('../../parameters/input/catches.tsv',header=T)
 catch &lt;- ddply(catch,.(year),summarise,catch=sum(value))
 m_pl_cpue &lt;- read.table('../../data/input/m_pl_cpue.tsv',header=T)
@@ -281,18 +292,24 @@ temp &lt;- merge(catch,m_pl_cpue,by.x='year',by.y='data_year',all.x=T)
 w_ps_cpue &lt;- read.table('../../data/input/w_ps_cpue.tsv',header=T)
 w_ps_cpue &lt;- ddply(w_ps_cpue,.(data_year),summarise,w_ps_cpue=exp(mean(log(location))))
 temp &lt;- merge(temp,w_ps_cpue,by.x='year',by.y='data_year',all.x=T)
+# Create a combined CPUE series
+temp &lt;- within(temp,{
+	# Geometric mean combination
+	combined &lt;- sqrt(m_pl_cpue*w_ps_cpue)
+	combined[is.na(m_pl_cpue)] &lt;- w_ps_cpue[is.na(m_pl_cpue)]
+})
 
 </pre>
 			<figure>
 				<pre data-code="r" data-format="png" data-size="17x10cm">
-m_pl_rate &lt;- with(temp,exp(mean(log(catch/m_pl_cpue),na.rm=T)))/1000
 print(
-	ggplot(temp,aes(x=m_pl_cpue,y=catch/1000)) + 
-		geom_point(colour='grey') + 
-		geom_text(aes(label=year),size=4) + 
-		geom_hline(y=0,alpha=0) + geom_vline(x=0,alpha=0) +
-		geom_abline(intercept=0,slope=m_pl_rate,linetype=2) +
-		labs(x='Maldive PL CPUE',y='Catch (overall, 1000 tonnes)')
+	ggplot(melt(subset(temp,year&gt;1980)[,c('year','m_pl_cpue','w_ps_cpue','combined')],id.vars=c('year')),
+		   aes(x=year,y=value,colour=variable,shape=variable)) + 
+		geom_point(size=3,alpha=0.6) + 
+		geom_line(alpha=0.6) + 
+		geom_hline(y=0,alpha=0) +
+		scale_shape_manual(values=1:3) +
+		labs(x='Year',y='CPUE index',colour='Index',shape='Index')
 )
 </pre>
 				<img src="3.png" data-output="true" />
@@ -302,19 +319,19 @@ print(
 						<span class="number">3</span>
 						<span class="separator">:</span>
 					</span>
-					Historic relation between Maldive pole and line CPUE and overall catch.
+					Western purse seine, Maldive pole and line and combined CPUE series.
 				</figcaption>
 			</figure>
 			<figure>
 				<pre data-code="r" data-format="png" data-size="17x10cm">
-w_ps_rate &lt;- with(temp,exp(mean(log(catch/w_ps_cpue),na.rm=T)))/1000
+scalar &lt;- with(subset(temp,year&gt;=1994),exp(mean(log(catch/combined),na.rm=T)))/1000
 print(
-	ggplot(temp,aes(x=w_ps_cpue,y=catch/1000)) + 
+	ggplot(temp,aes(x=combined,y=catch/1000)) + 
 		geom_point(colour='grey') + 
-		geom_text(aes(label=year),size=4)  + 
+		geom_text(aes(label=year,colour=year&gt;=1994),size=4) + 
 		geom_hline(y=0,alpha=0) + geom_vline(x=0,alpha=0) +
-		geom_abline(intercept=0,slope=w_ps_rate,linetype=2) +
-		labs(x='Western PS CPUE',y='Catch (overall, 1000 tonnes)')
+		geom_abline(intercept=0,slope=scalar,linetype=2) +
+		labs(x='Combined CPUE index',y='Catch (overall, 1000 tonnes)',colour='Used')
 )
 </pre>
 				<img src="4.png" data-output="true" />
@@ -324,7 +341,9 @@ print(
 						<span class="number">4</span>
 						<span class="separator">:</span>
 					</span>
-					Historic relation between Western purse seine CPUE and overall catch.
+					Historical relation between combined CPUE and overall catch. 
+					The dashed line has a slope of the catch scalar = 
+					<span data-text="round(scalar,2)">415.7</span>
 				</figcaption>
 			</figure>
 			<p>
@@ -337,6 +356,39 @@ print(
 			<p class="equation">
 				<script type="math/asciimath; mode=display"> bar I_t = r I_t + (1-r) bar I_{t+1} </script>
 			</p>
+			<figure>
+				<pre data-code="r" data-format="png" data-size="17x10cm">
+temp &lt;- subset(temp,!is.na(combined))
+smooths &lt;- NULL
+for(r in c(0.5, 0.65, 0.8, 1.0)){
+	index &lt;- temp$combined[1]
+	for(row in 2:nrow(temp)){
+		c &lt;- temp$combined[row]
+		i &lt;- r*c + (1-r)*index[row-1]
+		index &lt;- c(index,i)
+	}
+	smooths &lt;- rbind(smooths,data.frame(r=r,year=temp$year,smooth=index))
+}
+names(smooths) &lt;- c('r','year','smooth')
+smooths$r &lt;- factor(smooths$r)
+print(
+	ggplot(smooths,aes(x=year,y=smooth,colour=r,shape=r)) + 
+		geom_line() +
+		geom_point(data=subset(smooths,r==1),shape=1,colour='black') + 
+		geom_hline(y=0,alpha=0) + 
+		labs(x='Year',y='CPUE index',colour='Responsiveness')
+)
+</pre>
+				<img src="5.png" data-output="true" />
+				<figcaption>
+					<span class="label">
+						<span class="type">Figure</span>
+						<span class="number">5</span>
+						<span class="separator">:</span>
+					</span>
+					Illustration of the alternative smoothing of CPUE index using the responsiveness parameter.
+				</figcaption>
+			</figure>
 			<p>
 				Higher values of 
 				<script type="math/asciimath">r</script>
@@ -344,19 +396,19 @@ print(
 				<script type="math/asciimath">r=1</script>
 				 there is no smoothing and 
 				<script type="math/asciimath">bar I_t = r I_t</script>
-				. Smoothing may be advantageous in that it reduces the influence of annual random variation in CPUE due catchability or operational variations. However, smooting also reduces adds a lag to the index.
+				. Smoothing may be advantageous in that it reduces the influence of annual random variation in CPUE due catchability or operational variations. However, smoothing also reduces adds a lag to the index.
 			</p>
 			<p>
 				Using 
 				<script type="math/asciimath">bar I</script>
-				 the recommended harvest rate (
-				<script type="math/asciimath">bar R</script>
+				 the recommended catch scaler (
+				<script type="math/asciimath">bar S</script>
 				) is calculated. If 
 				<script type="math/asciimath">bar I lt i_l</script>
 				 then,
 			</p>
 			<p class="equation">
-				<script type="math/asciimath; mode=display">bar R = 0</script>
+				<script type="math/asciimath; mode=display">bar S = 0</script>
 			</p>
 			<p>
 				If 
@@ -364,19 +416,74 @@ print(
 				 then,
 			</p>
 			<p class="equation">
-				<script type="math/asciimath; mode=display">bar R = m hat R</script>
+				<script type="math/asciimath; mode=display">bar S = m hat S</script>
 			</p>
 			<p>Otherwise,</p>
 			<p class="equation">
-				<script type="math/asciimath; mode=display">bar R = (m hat R)/(i_t-i_l)(bar I-i_l)</script>
+				<script type="math/asciimath; mode=display">bar S = (m hat S)/(i_t-i_l)(bar I-i_l)</script>
 			</p>
+			<figure>
+				<pre data-code="r" data-format="png" data-size="16x17cm">
+i_l &lt;- 0.2
+i_t &lt;- 0.8
+m &lt;- 1.1
+i &lt;- seq(0,1.5,0.01)
+s_hat &lt;- 440
+s &lt;- (m*s_hat)/(i_t-i_l)*(i-i_l)
+s[i&lt;i_l] &lt;- 0
+s[i&gt;i_t] &lt;- m*s_hat
+tac &lt;- i*s
+tac[tac&gt;600] &lt;- 600
+layout(matrix(c(1,2), 2, 1, byrow=F))
+par(mar=c(4,4,0,0),oma=rep(1,4))
+# TAC versus CPUE
+plot(
+	i,s,type='l',
+	ylab='Biomass index to Catch scaler',
+	xlab='',
+	las=1,ylim=c(0,s_hat*1.2),xlim=c(0,1.5)
+)
+abline(h=s_hat,lty=3)
+abline(v=1,lty=3)
+# TAC versus CPUE
+plot(
+	i,tac,type='l',
+	ylab='Recommended TAC (t)',
+	xlab='CPUE index',
+	las=1,xlim=c(0,1.5)
+)
+abline(0,b=s_hat,lty=3)
+abline(v=1,lty=3)
+</pre>
+				<img src="6.png" data-output="true" />
+				<figcaption>
+					<span class="label">
+						<span class="type">Figure</span>
+						<span class="number">6</span>
+						<span class="separator">:</span>
+					</span>
+					An example instance of the IRate management procedure with 
+					<script type="math/asciimath">i_l=0.2</script>
+					, 
+					<script type="math/asciimath">i_t=0.8</script>
+					, 
+					<script type="math/asciimath">m=1.1</script>
+					, 
+					<script type="math/asciimath">u=600</script>
+					 showing the relation between the CPUE index (
+					<script type="math/asciimath">bar I</script>
+					) and the catch scalar (
+					<script type="math/asciimath">bar S</script>
+					) and the recommended TAC.
+				</figcaption>
+			</figure>
 			<p>
-				The recommended harvest rate is used to calculate a recommended TAC, 
-				<script type="math/asciimath">bar C</script>
+				The recommended catch scaler is used to calculate a recommended TAC, 
+				<script type="math/asciimath">bar S</script>
 				, by multiplying the harvest rate by the biomass index,
 			</p>
 			<p class="equation">
-				<script type="math/asciimath; mode=display">bar C = min(bar R bar I, u)</script>
+				<script type="math/asciimath; mode=display">bar C = min(bar S bar I, u)</script>
 			</p>
 			<p>which is applied to the fishery in the following year,</p>
 			<p class="equation">

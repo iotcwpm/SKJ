@@ -234,7 +234,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;</div>
 <div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;    <span class="keywordtype">void</span> write(std::ofstream&amp; stream){</div>
 <div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;        stream</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;            &lt;&lt;<span class="stringliteral">&quot;FRange&quot;</span>&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span></div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;            &lt;&lt;<span class="stringliteral">&quot;IRate&quot;</span>&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span></div>
 <div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;            &lt;&lt;<a class="code" href="classIOSKJ_1_1IRate.html#a5f1e02d4c86bdb67e59293e2d1cd256b">responsiveness</a>&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span></div>
 <div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;            &lt;&lt;<a class="code" href="classIOSKJ_1_1IRate.html#a3cb0c0c168dc279a874116d88508413d">multiplier</a>&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span></div>
 <div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;            &lt;&lt;<a class="code" href="classIOSKJ_1_1IRate.html#a02a6ecb1015d7c28b367726c8a6cc0b7">threshold</a>&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span></div>
@@ -262,91 +262,92 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;            <span class="keywordflow">if</span>(index_&lt;<a class="code" href="classIOSKJ_1_1IRate.html#a429a018f3a0402b7405acb74e5654fa2">limit</a>) rate = 0;</div>
 <div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160;            <span class="keywordflow">else</span> <span class="keywordflow">if</span>(index_&gt;<a class="code" href="classIOSKJ_1_1IRate.html#a02a6ecb1015d7c28b367726c8a6cc0b7">threshold</a>) rate = <a class="code" href="classIOSKJ_1_1IRate.html#a3cb0c0c168dc279a874116d88508413d">multiplier</a>;</div>
 <div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;            <span class="keywordflow">else</span> rate = <a class="code" href="classIOSKJ_1_1IRate.html#a3cb0c0c168dc279a874116d88508413d">multiplier</a>/(<a class="code" href="classIOSKJ_1_1IRate.html#a02a6ecb1015d7c28b367726c8a6cc0b7">threshold</a>-<a class="code" href="classIOSKJ_1_1IRate.html#a429a018f3a0402b7405acb74e5654fa2">limit</a>)*(index_-<a class="code" href="classIOSKJ_1_1IRate.html#a429a018f3a0402b7405acb74e5654fa2">limit</a>);</div>
-<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;            <span class="comment">// Apply harvest rate</span></div>
-<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;            <span class="keywordtype">double</span> tac = std::min(rate*cpue,<a class="code" href="classIOSKJ_1_1IRate.html#aa9fcaad49e4257fb938a9453bffaea95">maximum</a>);           </div>
-<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;        }</div>
-<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;    }</div>
-<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;</div>
-<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;</div>
-<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;    <span class="keywordtype">double</span> index_;</div>
-<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;};</div>
-<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;            <span class="comment">// Calculate recommended TAC</span></div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;            <span class="keywordtype">double</span> tac = std::min(rate*cpue,<a class="code" href="classIOSKJ_1_1IRate.html#aa9fcaad49e4257fb938a9453bffaea95">maximum</a>);   </div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;                    </div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;        }</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    }</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;</div>
+<div class="line"><a name="l00255"></a><span class="lineno">  255</span>&#160;    <span class="keywordtype">double</span> index_;</div>
+<div class="line"><a name="l00256"></a><span class="lineno">  256</span>&#160;};</div>
 <div class="line"><a name="l00257"></a><span class="lineno">  257</span>&#160;</div>
-<div class="line"><a name="l00258"></a><span class="lineno"><a class="line" href="classIOSKJ_1_1Procedures.html">  258</a></span>&#160;<span class="keyword">class </span><a class="code" href="classIOSKJ_1_1Procedures.html">Procedures</a> : <span class="keyword">public</span> Array&lt;Procedure*&gt; {</div>
-<div class="line"><a name="l00259"></a><span class="lineno">  259</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;</div>
-<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;    <span class="keywordtype">void</span> populate(<span class="keywordtype">void</span>){</div>
-<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;        <span class="comment">// BRule</span></div>
-<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">double</span> precision : {0.0}){</div>
-<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;            <span class="keywordflow">for</span>(<span class="keyword">auto</span> target : {0.1,0.2,0.3}){</div>
-<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;                <span class="keywordflow">for</span>(<span class="keyword">auto</span> thresh : {0.1,0.2,0.3}){</div>
-<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;                    <span class="keywordflow">for</span>(<span class="keyword">auto</span> limit : {0.05,0.1}){</div>
-<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;                        <span class="keyword">auto</span>&amp; proc = * <span class="keyword">new</span> <a class="code" href="classIOSKJ_1_1BRule.html">BRule</a>;</div>
-<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;                        proc.<a class="code" href="classIOSKJ_1_1BRule.html#a0bda153df8d542054a68ffe3c5b9ec58">precision</a> = precision;</div>
-<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;                        proc.target = target;</div>
-<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;                        proc.thresh = thresh;</div>
-<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;                        proc.limit = limit;</div>
-<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;                        append(&amp;proc);</div>
-<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;                    }</div>
-<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;                }</div>
-<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;            }</div>
-<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;        }</div>
-<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;        <span class="comment">// FRange</span></div>
-<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> frequency : {3,5,7}){</div>
-<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;            <span class="keywordflow">for</span>(<span class="keywordtype">double</span> precision : {0.0,0.1}){</div>
-<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;                <span class="keywordflow">for</span>(<span class="keyword">auto</span> target : {0.1,0.2,0.3}){</div>
-<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;                    <span class="keywordflow">for</span>(<span class="keyword">auto</span> buffer : {0.0,0.1}){</div>
-<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;                        <span class="keyword">auto</span>&amp; proc = * <span class="keyword">new</span> <a class="code" href="classIOSKJ_1_1FRange.html">FRange</a>;</div>
-<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;                        proc.<a class="code" href="classIOSKJ_1_1FRange.html#a4f9443dc8de8430fc64d74953f5861d3">frequency</a> = frequency;</div>
-<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;                        proc.precision = precision;</div>
-<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;                        proc.target = target;</div>
-<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;                        proc.buffer = buffer;</div>
-<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;                        append(&amp;proc);</div>
-<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;                    }</div>
-<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;                }</div>
-<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;            }</div>
-<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;        }</div>
-<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;        <span class="comment">// IRate</span></div>
-<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">double</span> responsiveness : {0.5, 0.65, 0.8, 1.0}){</div>
-<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;            <span class="keywordflow">for</span>(<span class="keywordtype">double</span> multiplier : {0.8, 0.9, 1.0, 1.1}){</div>
-<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;                <span class="keywordflow">for</span>(<span class="keyword">auto</span> threshold : {0.5, 0.6, 0.7, 0.8}){</div>
-<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;                    <span class="keywordflow">for</span>(<span class="keyword">auto</span> limit : {0.1, 0.2, 0.3, 0.4}){</div>
-<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;                        <span class="keywordflow">for</span>(<span class="keyword">auto</span> maximum : {300, 400, 500, 600}){</div>
-<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;                            <span class="keyword">auto</span>&amp; proc = * <span class="keyword">new</span> <a class="code" href="classIOSKJ_1_1IRate.html">IRate</a>;</div>
-<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;                            proc.<a class="code" href="classIOSKJ_1_1IRate.html#a5f1e02d4c86bdb67e59293e2d1cd256b">responsiveness</a> = responsiveness;</div>
-<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;                            proc.multiplier = multiplier;</div>
-<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;                            proc.threshold = threshold;</div>
-<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;                            proc.limit = limit;</div>
-<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;                            proc.maximum = maximum;</div>
-<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;                            append(&amp;proc);</div>
-<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;                        }</div>
-<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;                    }</div>
-<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;                }</div>
-<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;            }</div>
-<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;        }</div>
-<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;    }</div>
-<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;</div>
-<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;    <span class="keywordtype">void</span> reset(<span class="keywordtype">int</span> procedure){</div>
-<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;        operator[](procedure)-&gt;reset();</div>
-<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;    }</div>
-<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;</div>
-<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;    <span class="keywordtype">void</span> operate(<span class="keywordtype">int</span> procedure, uint time, <a class="code" href="classIOSKJ_1_1Model.html">Model</a>&amp; model){</div>
-<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;        operator[](procedure)-&gt;operate(time,model);</div>
-<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;    }</div>
-<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;</div>
-<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;    <span class="keywordtype">void</span> write(<span class="keyword">const</span> std::string&amp; path){</div>
-<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;        std::ofstream file(path);</div>
-<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;        file&lt;&lt;<span class="stringliteral">&quot;procedure\tclass\tp1\tp2\tp3\tp4\tp5\tp6\tp7\tp8\tp9\tp10\n&quot;</span>;</div>
-<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;        <span class="keywordtype">int</span> index = 0;</div>
-<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;        <span class="keywordflow">for</span>(<a class="code" href="classIOSKJ_1_1Procedure.html">Procedure</a>* procedure : *<span class="keyword">this</span>) {</div>
-<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;            file&lt;&lt;index++&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span>;</div>
-<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;            procedure-&gt;write(file);</div>
-<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;        }</div>
-<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;    }</div>
-<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;};</div>
-<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;</div>
-<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;}</div>
+<div class="line"><a name="l00258"></a><span class="lineno">  258</span>&#160;</div>
+<div class="line"><a name="l00259"></a><span class="lineno"><a class="line" href="classIOSKJ_1_1Procedures.html">  259</a></span>&#160;<span class="keyword">class </span><a class="code" href="classIOSKJ_1_1Procedures.html">Procedures</a> : <span class="keyword">public</span> Array&lt;Procedure*&gt; {</div>
+<div class="line"><a name="l00260"></a><span class="lineno">  260</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;    <span class="keywordtype">void</span> populate(<span class="keywordtype">void</span>){</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;        <span class="comment">// BRule</span></div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">double</span> precision : {0.0,0.1}){</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;            <span class="keywordflow">for</span>(<span class="keyword">auto</span> target : {0.2,0.3}){</div>
+<div class="line"><a name="l00266"></a><span class="lineno">  266</span>&#160;                <span class="keywordflow">for</span>(<span class="keyword">auto</span> thresh : {0.6,0.7}){</div>
+<div class="line"><a name="l00267"></a><span class="lineno">  267</span>&#160;                    <span class="keywordflow">for</span>(<span class="keyword">auto</span> limit : {0.1,0.2}){</div>
+<div class="line"><a name="l00268"></a><span class="lineno">  268</span>&#160;                        <span class="keyword">auto</span>&amp; proc = * <span class="keyword">new</span> <a class="code" href="classIOSKJ_1_1BRule.html">BRule</a>;</div>
+<div class="line"><a name="l00269"></a><span class="lineno">  269</span>&#160;                        proc.<a class="code" href="classIOSKJ_1_1BRule.html#a0bda153df8d542054a68ffe3c5b9ec58">precision</a> = precision;</div>
+<div class="line"><a name="l00270"></a><span class="lineno">  270</span>&#160;                        proc.target = target;</div>
+<div class="line"><a name="l00271"></a><span class="lineno">  271</span>&#160;                        proc.thresh = thresh;</div>
+<div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;                        proc.limit = limit;</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;                        append(&amp;proc);</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;                    }</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;                }</div>
+<div class="line"><a name="l00276"></a><span class="lineno">  276</span>&#160;            }</div>
+<div class="line"><a name="l00277"></a><span class="lineno">  277</span>&#160;        }</div>
+<div class="line"><a name="l00278"></a><span class="lineno">  278</span>&#160;        <span class="comment">// FRange</span></div>
+<div class="line"><a name="l00279"></a><span class="lineno">  279</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">int</span> frequency : {2,5}){</div>
+<div class="line"><a name="l00280"></a><span class="lineno">  280</span>&#160;            <span class="keywordflow">for</span>(<span class="keywordtype">double</span> precision : {0.0,0.1}){</div>
+<div class="line"><a name="l00281"></a><span class="lineno">  281</span>&#160;                <span class="keywordflow">for</span>(<span class="keyword">auto</span> target : {0.2,0.3}){</div>
+<div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;                    <span class="keywordflow">for</span>(<span class="keyword">auto</span> buffer : {0.1,0.2}){</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;                        <span class="keyword">auto</span>&amp; proc = * <span class="keyword">new</span> <a class="code" href="classIOSKJ_1_1FRange.html">FRange</a>;</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;                        proc.<a class="code" href="classIOSKJ_1_1FRange.html#a4f9443dc8de8430fc64d74953f5861d3">frequency</a> = frequency;</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;                        proc.precision = precision;</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;                        proc.target = target;</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160;                        proc.buffer = buffer;</div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;                        append(&amp;proc);</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;                    }</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;                }</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;            }</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160;        }</div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;        <span class="comment">// IRate</span></div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;        <span class="keywordflow">for</span>(<span class="keywordtype">double</span> responsiveness : {0.65, 1.0}){</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;            <span class="keywordflow">for</span>(<span class="keywordtype">double</span> multiplier : {0.9, 1.0}){</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;                <span class="keywordflow">for</span>(<span class="keyword">auto</span> threshold : {0.6, 0.7}){</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;                    <span class="keywordflow">for</span>(<span class="keyword">auto</span> limit : {0.1, 0.2}){</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;                        <span class="keywordflow">for</span>(<span class="keyword">auto</span> maximum : {600}){</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;                            <span class="keyword">auto</span>&amp; proc = * <span class="keyword">new</span> <a class="code" href="classIOSKJ_1_1IRate.html">IRate</a>;</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;                            proc.<a class="code" href="classIOSKJ_1_1IRate.html#a5f1e02d4c86bdb67e59293e2d1cd256b">responsiveness</a> = responsiveness;</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;                            proc.multiplier = multiplier;</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;                            proc.threshold = threshold;</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;                            proc.limit = limit;</div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;                            proc.maximum = maximum;</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;                            append(&amp;proc);</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;                        }</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;                    }</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;                }</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;            }</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;        }</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;    }</div>
+<div class="line"><a name="l00312"></a><span class="lineno">  312</span>&#160;</div>
+<div class="line"><a name="l00313"></a><span class="lineno">  313</span>&#160;    <span class="keywordtype">void</span> reset(<span class="keywordtype">int</span> procedure){</div>
+<div class="line"><a name="l00314"></a><span class="lineno">  314</span>&#160;        operator[](procedure)-&gt;reset();</div>
+<div class="line"><a name="l00315"></a><span class="lineno">  315</span>&#160;    }</div>
+<div class="line"><a name="l00316"></a><span class="lineno">  316</span>&#160;</div>
+<div class="line"><a name="l00317"></a><span class="lineno">  317</span>&#160;    <span class="keywordtype">void</span> operate(<span class="keywordtype">int</span> procedure, uint time, <a class="code" href="classIOSKJ_1_1Model.html">Model</a>&amp; model){</div>
+<div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;        operator[](procedure)-&gt;operate(time,model);</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;    }</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;    <span class="keywordtype">void</span> write(<span class="keyword">const</span> std::string&amp; path){</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160;        std::ofstream file(path);</div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;        file&lt;&lt;<span class="stringliteral">&quot;procedure\tclass\tp1\tp2\tp3\tp4\tp5\tp6\tp7\tp8\tp9\tp10\n&quot;</span>;</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;        <span class="keywordtype">int</span> index = 0;</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160;        <span class="keywordflow">for</span>(<a class="code" href="classIOSKJ_1_1Procedure.html">Procedure</a>* procedure : *<span class="keyword">this</span>) {</div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;            file&lt;&lt;index++&lt;&lt;<span class="stringliteral">&quot;\t&quot;</span>;</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160;            procedure-&gt;write(file);</div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;        }</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;    }</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;};</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;}</div>
 <div class="ttc" id="classIOSKJ_1_1BRule_html_a81245b3a35dd1fd9f2b7f93fa6a3d268"><div class="ttname"><a href="classIOSKJ_1_1BRule.html#a81245b3a35dd1fd9f2b7f93fa6a3d268">IOSKJ::BRule::target</a></div><div class="ttdeci">double target</div><div class="ttdef"><b>Definition:</b> procedures.hpp:29</div></div>
 <div class="ttc" id="classIOSKJ_1_1Model_html"><div class="ttname"><a href="classIOSKJ_1_1Model.html">IOSKJ::Model</a></div><div class="ttdef"><b>Definition:</b> model.hpp:13</div></div>
 <div class="ttc" id="classIOSKJ_1_1FRange_html_afaefba98b7bbc5e6f14cda2e0b4b00c9"><div class="ttname"><a href="classIOSKJ_1_1FRange.html#afaefba98b7bbc5e6f14cda2e0b4b00c9">IOSKJ::FRange::operate</a></div><div class="ttdeci">virtual void operate(uint time, Model &amp;model)</div><div class="ttdef"><b>Definition:</b> procedures.hpp:135</div></div>
@@ -354,7 +355,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="ttc" id="classIOSKJ_1_1IRate_html_a5f1e02d4c86bdb67e59293e2d1cd256b"><div class="ttname"><a href="classIOSKJ_1_1IRate.html#a5f1e02d4c86bdb67e59293e2d1cd256b">IOSKJ::IRate::responsiveness</a></div><div class="ttdeci">double responsiveness</div><div class="ttdef"><b>Definition:</b> procedures.hpp:178</div></div>
 <div class="ttc" id="classIOSKJ_1_1BRule_html_a0bda153df8d542054a68ffe3c5b9ec58"><div class="ttname"><a href="classIOSKJ_1_1BRule.html#a0bda153df8d542054a68ffe3c5b9ec58">IOSKJ::BRule::precision</a></div><div class="ttdeci">double precision</div><div class="ttdef"><b>Definition:</b> procedures.hpp:24</div></div>
 <div class="ttc" id="classIOSKJ_1_1FRange_html_a5afdf5399c7751c8bef39856c526f178"><div class="ttname"><a href="classIOSKJ_1_1FRange.html#a5afdf5399c7751c8bef39856c526f178">IOSKJ::FRange::buffer</a></div><div class="ttdeci">double buffer</div><div class="ttdef"><b>Definition:</b> procedures.hpp:107</div></div>
-<div class="ttc" id="classIOSKJ_1_1Procedures_html"><div class="ttname"><a href="classIOSKJ_1_1Procedures.html">IOSKJ::Procedures</a></div><div class="ttdef"><b>Definition:</b> procedures.hpp:258</div></div>
+<div class="ttc" id="classIOSKJ_1_1Procedures_html"><div class="ttname"><a href="classIOSKJ_1_1Procedures.html">IOSKJ::Procedures</a></div><div class="ttdef"><b>Definition:</b> procedures.hpp:259</div></div>
 <div class="ttc" id="classIOSKJ_1_1IRate_html"><div class="ttname"><a href="classIOSKJ_1_1IRate.html">IOSKJ::IRate</a></div><div class="ttdef"><b>Definition:</b> procedures.hpp:167</div></div>
 <div class="ttc" id="classIOSKJ_1_1FRange_html_a4f9443dc8de8430fc64d74953f5861d3"><div class="ttname"><a href="classIOSKJ_1_1FRange.html#a4f9443dc8de8430fc64d74953f5861d3">IOSKJ::FRange::frequency</a></div><div class="ttdeci">int frequency</div><div class="ttdef"><b>Definition:</b> procedures.hpp:92</div></div>
 <div class="ttc" id="classIOSKJ_1_1IRate_html_acc8905d99479763c430683d66173f5a2"><div class="ttname"><a href="classIOSKJ_1_1IRate.html#acc8905d99479763c430683d66173f5a2">IOSKJ::IRate::precision</a></div><div class="ttdeci">double precision</div><div class="ttdef"><b>Definition:</b> procedures.hpp:173</div></div>
@@ -377,7 +378,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Nov 15 2014 08:24:27 for Indian Ocean Skipjack by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Nov 15 2014 21:01:00 for Indian Ocean Skipjack by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>
