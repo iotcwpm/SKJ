@@ -213,7 +213,7 @@ public:
 
 	void write(std::ofstream& stream){
 		stream
-			<<"FRange"<<"\t"
+			<<"IRate"<<"\t"
 			<<responsiveness<<"\t"
 			<<multiplier<<"\t"
 			<<threshold<<"\t"
@@ -241,8 +241,9 @@ public:
 			if(index_<limit) rate = 0;
 			else if(index_>threshold) rate = multiplier;
 			else rate = multiplier/(threshold-limit)*(index_-limit);
-			// Apply harvest rate
-			double tac = std::min(rate*cpue,maximum);			
+			// Calculate recommended TAC
+			double tac = std::min(rate*cpue,maximum);	
+					
 		}
 	}
 
@@ -260,10 +261,10 @@ public:
 
 	void populate(void){
 		// BRule
-		for(double precision : {0.0}){
-			for(auto target : {0.1,0.2,0.3}){
-				for(auto thresh : {0.1,0.2,0.3}){
-					for(auto limit : {0.05,0.1}){
+		for(double precision : {0.0,0.1}){
+			for(auto target : {0.2,0.3}){
+				for(auto thresh : {0.6,0.7}){
+					for(auto limit : {0.1,0.2}){
 						auto& proc = * new BRule;
 						proc.precision = precision;
 						proc.target = target;
@@ -275,10 +276,10 @@ public:
 			}
 		}
 		// FRange
-		for(int frequency : {3,5,7}){
+		for(int frequency : {2,5}){
 			for(double precision : {0.0,0.1}){
-				for(auto target : {0.1,0.2,0.3}){
-					for(auto buffer : {0.0,0.1}){
+				for(auto target : {0.2,0.3}){
+					for(auto buffer : {0.1,0.2}){
 						auto& proc = * new FRange;
 						proc.frequency = frequency;
 						proc.precision = precision;
@@ -290,11 +291,11 @@ public:
 			}
 		}
 		// IRate
-		for(double responsiveness : {0.5, 0.65, 0.8, 1.0}){
-			for(double multiplier : {0.8, 0.9, 1.0, 1.1}){
-				for(auto threshold : {0.5, 0.6, 0.7, 0.8}){
-					for(auto limit : {0.1, 0.2, 0.3, 0.4}){
-						for(auto maximum : {300, 400, 500, 600}){
+		for(double responsiveness : {0.65, 1.0}){
+			for(double multiplier : {0.9, 1.0}){
+				for(auto threshold : {0.6, 0.7}){
+					for(auto limit : {0.1, 0.2}){
+						for(auto maximum : {600}){
 							auto& proc = * new IRate;
 							proc.responsiveness = responsiveness;
 							proc.multiplier = multiplier;
