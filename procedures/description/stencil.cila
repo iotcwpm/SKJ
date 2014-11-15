@@ -4,6 +4,10 @@
 
 This documentation is a draft under active development. As such, it may not exactly mirror what is in the current version of the code. Separate documentation, generated from the model's C++ source code, is also [available](../../doxygen/).
 
+r
+	# Include common R settings and functions for this project
+	source('../../common.R',local=T)
+
 # Introduction
 
 This document describes the management procedures (MPs) evaluated in this study. Several classes of MP are considered with each _class_ having several _control parameters_ which can be varied to alter it's behaviour. We refer to a particular combination of control parameters for a class of MP as an instance of that class.
@@ -90,11 +94,16 @@ figure
 		f_dots[s_hats<s_l] <- 0
 		f_dots[s_hats>s_t] <- f
 		par(mar=c(4,4,1,1))
-		plot(s_hats,f_dots,type='l',ylab='F',xlab='S',las=1,ylim=c(0,1.2),xlim=c(0,1.2))
+		plot(
+			s_hats,f_dots,type='l',
+			ylab='Relative fishing intensity (F/Fmsy)',
+			xlab='Relative stock status (B/Bmsy)',
+			las=1,ylim=c(0,1.2),xlim=c(0,1.2)
+		)
 		abline(h=1,lty=3)
 		abline(v=1,lty=3)
 	figcaption
-		An example instance of the BRule management prodedure with |s_l=0.3|, |s_t=0.9|, |f=0.9| showing the relation between |hat S| and |bar F|.
+		An example instance of the BRule management procedure with |s_l=0.3|, |s_t=0.9|, |f=0.9| showing the relation between |hat S| and |bar F|.
 
 # FRange class
 
@@ -117,11 +126,15 @@ figure
 		f_hats <- c(0.45,0.51,0.63,0.58,0.55,0.49,0.38)
 		colours <- hcl(c(120,240,0))[c(2,2,3,2,2,2,1)]
 		par(mar=c(4,4,1,1))
-		plot(ts,f_hats,col=colours,cex=1.5,pch=16,xlab='Year',ylab='F',las=1,ylim=c(0,0.8))
+		plot(
+			ts,f_hats,col=colours,cex=1.5,pch=16,
+			xlab='Year',ylab='Estimated fishing mortality (F)',
+			las=1,ylim=c(0,0.8)
+		)
 		abline(h=f,lty=1)
 		abline(h=c(f-b,f+b),lty=3)
 	figcaption
-		An example instance of the BRule management prodedure with |i=5|, |f=0.5|, |b=0.1| illustrating how total allowable catches are increased (green circles) or decreased (red circles) when the estimated fishing mortality is below or above the target range.
+		An example instance of the BRule management procedure with |i=5|, |f=0.5|, |b=0.1| illustrating how total allowable catches are increased (green circles) or decreased (red circles) when the estimated fishing mortality is below or above the target range.
 
 # IRate class
 
@@ -129,9 +142,6 @@ This management procedure uses CPUE as an index of biomass and sets a total allo
 
 r
 	# Some preparatory code for figures below
-	require(plyr)
-	require(ggplot2)
-	
 	catch <- read.table('../../parameters/input/catches.tsv',header=T)
 	catch <- ddply(catch,.(year),summarise,catch=sum(value))
 	m_pl_cpue <- read.table('../../data/input/m_pl_cpue.tsv',header=T)
@@ -153,7 +163,7 @@ figure
 				labs(x='Maldive PL CPUE',y='Catch (overall, 1000 tonnes)')
 		)
 	figcaption
-		Historic relation between Maldive pole and line CPUE and overall catch.
+		Historical relation between Maldive pole and line CPUE and overall catch. The dashed line has a slope of the geometric mean of the ratio of CPUE and catches ({span!text round(m_pl_rate,2)}).
 
 figure
 	r png 17x10cm
@@ -167,29 +177,88 @@ figure
 				labs(x='Western PS CPUE',y='Catch (overall, 1000 tonnes)')
 		)
 	figcaption
-		Historic relation between Western purse seine CPUE and overall catch.
+		Historical relation between Western purse seine CPUE and overall catch. The dashed line has a slope of the geometric mean of the ratio of CPUE and catches ({span!text round(w_ps_rate,2)}).
 
 In each year, a smoothed CPUE, |bar I| is calculated using an exponential moving average with the responsivesness control parameter, |r|:
 
 | bar I_t = r I_t + (1-r) bar I_{t+1} |
 
-Higher values of |r| produce greater responsiveness because they put more weight on more recent values of CPUE and produce a index that is less smoothed. When |r=1| there is no smoothing and |bar I_t = r I_t|. Smoothing may be advantageous in that it reduces the influence of annual random variation in CPUE due catchability or operational variations. However, smooting also reduces adds a lag to the index.
+figure
+	r png 17x10cm
+		smooths <- NULL
+		for(r in c(0.5, 0.65, 0.8, 1.0)){
+			index <- m_pl_cpue$m_pl_cpue[1]
+			for(row in 2:nrow(m_pl_cpue)){
+				c <- m_pl_cpue$m_pl_cpue[row]
+				i <- r*c + (1-r)*index[row-1]
+				index <- c(index,i)
+			}
+			smooths <- rbind(smooths,data.frame(r=r,year=m_pl_cpue$data_year,smooth=index))
+		}
+		names(smooths) <- c('r','year','smooth')
+		smooths$r <- factor(smooths$r)
+		print(
+			ggplot(smooths,aes(x=year,y=smooth,colour=r,shape=r)) + 
+				geom_line() +
+				geom_point(data=subset(smooths,r==1),shape=1,colour='black') + 
+				geom_hline(y=0,alpha=0) + 
+				labs(x='Year',y='CPUE index',colour='Responsiveness')
+		)
+	figcaption
+		Illustration of the alternative smoothing of CPUE index using the responsiveness parameter.
 
-Using |bar I| the recommended harvest rate (|bar R|) is calculated. If |bar I lt i_l| then,
+Higher values of |r| produce greater responsiveness because they put more weight on more recent values of CPUE and produce a index that is less smoothed. When |r=1| there is no smoothing and |bar I_t = r I_t|. Smoothing may be advantageous in that it reduces the influence of annual random variation in CPUE due catchability or operational variations. However, smoothing also reduces adds a lag to the index.
 
-|bar R = 0|
+Using |bar I| the recommended catch scaler (|bar S|) is calculated. If |bar I lt i_l| then,
+
+|bar S = 0|
 
 If |bar I gt i_t| then,
 
-|bar R = m hat R|
+|bar S = m hat S|
 
 Otherwise,
 
-|bar R = (m hat R)/(i_t-i_l)(bar I-i_l)|
+|bar S = (m hat S)/(i_t-i_l)(bar I-i_l)|
 
-The recommended harvest rate is used to calculate a recommended TAC, |bar C|, by multiplying the harvest rate by the biomass index,
+figure
+	r png 16x17cm
+		i_l <- 0.2
+		i_t <- 0.8
+		m <- 1.1
+		i <- seq(0,1.5,0.01)
+		s_hat <- 440
+		s <- (m*s_hat)/(i_t-i_l)*(i-i_l)
+		s[i<i_l] <- 0
+		s[i>i_t] <- m*s_hat
+		tac <- i*s
+		tac[tac>600] <- 600
+		layout(matrix(c(1,2), 2, 1, byrow=F))
+		par(mar=c(4,4,0,0),oma=rep(1,4))
+		# TAC versus CPUE
+		plot(
+			i,s,type='l',
+			ylab='Biomass index to Catch scaler',
+			xlab='',
+			las=1,ylim=c(0,s_hat*1.2),xlim=c(0,1.5)
+		)
+		abline(h=s_hat,lty=3)
+		abline(v=1,lty=3)
+		# TAC versus CPUE
+		plot(
+			i,tac,type='l',
+			ylab='Recommended TAC (t)',
+			xlab='CPUE index',
+			las=1,xlim=c(0,1.5)
+		)
+		abline(0,b=s_hat,lty=3)
+		abline(v=1,lty=3)
+	figcaption
+		An example instance of the IRate management procedure with |i_l=0.2|, |i_t=0.8|, |m=1.1|, |u=600| showing the relation between the CPUE index (|bar I|) and the catch scalar (|bar S|) and the recommended TAC.
 
-|bar C = min(bar R bar I, u)|
+The recommended catch scaler is used to calculate a recommended TAC, |bar S|, by multiplying the harvest rate by the biomass index,
+
+|bar C = min(bar S bar I, u)|
 
 which is applied to the fishery in the following year,
 
