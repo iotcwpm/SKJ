@@ -6,7 +6,7 @@ section Stock recruitment relation
 		#upper 5e6
 
 	#recruits_steepness
-		#value 0.9
+		#value 0.8
 		#lower 0.7
 		#upper 1
 
@@ -100,8 +100,6 @@ section Length at age
 
 	#growth_assymptote
 		#value 75
-		#lower 0.6
-		#upper 1.0
 
 	#growth_sd
 		#value 1
