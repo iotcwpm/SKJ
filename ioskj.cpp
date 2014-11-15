@@ -13,17 +13,33 @@ using namespace IOSKJ;
 
 /**
  * Run the model with a parameters set read from "parameters/input"
+ *
+ * @param samples_file A filesystem path to a TSV file of parameter samples
+ * @parameters samples_row Row index of samples to select
  */
-void run(void){
+void run(const std::string& samples_file="", int samples_row=0){
+	// Create output directories
 	boost::filesystem::create_directories("model/output");
-
-	Model model;
+	// Read in parameters
 	Parameters parameters;
 	parameters.read();
+	// If samples is specified, read them in and select the desired row
+	if(samples_file!=""){
+		// Read in samples
+		Frame samples;
+		samples.read(samples_file);
+		//... select desired row
+		Frame row = samples.slice(samples_row);
+		//... overwrite parameters available, ignoring catches
+		parameters.read(row,{"catches"});
+	}
+	// Read in data
 	Data data;
 	data.read();
 	// Do tracking
 	Tracker tracker("model/output/track.tsv");
+	// Instantiate a model
+	Model model;
 	// For each time step...
 	for(uint time=0;time<=time_max;time++){
 		std::cout<<time<<"\t"<<year(time)<<"\t"<<quarter(time)<<std::endl;
@@ -321,6 +337,7 @@ int main(int argc, char** argv){
         uint num = (argc>2)?boost::lexical_cast<uint>(argv[2]):0;
         std::cout<<"-------------"<<task<<"-------------\n";
         if(task=="run") run();
+        else if(task=="run_ss3") run("ss3/pars.tsv",num);
         else if(task=="yield") yield();
         else if(task=="priors") priors();
         else if(task=="condition_feasible") condition_feasible(num);
