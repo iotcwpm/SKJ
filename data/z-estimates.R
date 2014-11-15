@@ -15,7 +15,7 @@ times = seq(2005.25,2009.50,0.25)
 classes = c(20,30,40,45,50,55,60,65,70,75)
 
 # Load estimates
-load('source-data/SKJ_Z_psmixed.RData')
+load('source/SKJ_Z_psmixed.RData')
 
 # Assign quarters and size class labels...
 
@@ -57,5 +57,5 @@ data = within(data,{
 data = cast(data,year+quarter+zsize~what)
 
 # Output
-write.table(data,file="processed-data/z-estimates.tsv",row.names=F,quote=F,sep='\t')
+write.table(data,file="input/z_ests.tsv",row.names=F,quote=F,sep='\t')
 

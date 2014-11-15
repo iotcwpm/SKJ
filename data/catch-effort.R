@@ -19,7 +19,7 @@ library(maps)
 fields = c("Fleet","Gear","Year","MonthStart","MonthEnd","iGrid","Grid","Effort","EffortUnits","QualityCode","Source")
 
 # CEPSBB.csv
-psbb = read.csv('source-data/CEALL/CEPSBB.csv',header=T)
+psbb = read.csv('source/CEALL/CEPSBB.csv',header=T)
 # Relevant fields are:
 #   SKJ-FS    Catches of skipjack tuna recorded under free schools
 #   SKJ-LS	Catches of skipjack tuna recorded under associated schools
@@ -38,7 +38,7 @@ psbb = within(psbb,{
 psbb = psbb[!is.na(psbb$Catch),]
 
 # CELL.csv
-ll = read.csv('source-data/CEALL/CELL.csv',header=T)
+ll = read.csv('source/CEALL/CELL.csv',header=T)
 # Relevant fields are:
 #   SKJ-NO    Catches of skipjack tuna recorded in number of specimens
 #   SKJ-MT	Catches of skipjack tuna recorded in weight (tonnes)
@@ -50,7 +50,7 @@ ll = ll[!is.na(ll$Catch),]
 ll$School = NA
 
 # CEOTHR.csv
-other = read.csv('source-data/CEALL/CEOTHR.csv',header=T)
+other = read.csv('source/CEALL/CEOTHR.csv',header=T)
 # Relevant fields are:
 #   SKJ-NO    Catches of skipjack tuna recorded in number of specimens
 #   SKJ-MT	Catches of skipjack tuna recorded in weight (tonnes)

@@ -9,7 +9,7 @@ library(ggplot2)
 # Load and normalise data
 
 # Read in data
-sf = read.table('source-data/FL_SKJ.txt',header=T)
+sf = read.table('source/FL_SKJ.txt',header=T)
 
 #   Notes on fields from FL_SKJ.xlsx 
 #
@@ -239,6 +239,6 @@ data = data[,c('year','quarter','region','method','class','proportion','count')]
 # Re-sort
 data = data[with(data,order(year,quarter,region,method)),]
 # Write
-write.table(data,file='processed-data/size-frequencies.tsv',row.names=F,quote=F,sep='\t')
+write.table(data,file='input/size_freqs.tsv',row.names=F,quote=F,sep='\t')
 
 
