@@ -80,12 +80,50 @@ void priors(int replicates=1000){
 }
 
 /**
+ * Check feasibility constraints for a model
+ */
+typedef int (Check)(const Model& model, const Data& data, uint time, uint year, uint quarter);
+void check(Check check, int trial, Parameters& parameters, Data& data, Tracker& tracker, Frame& accepted, Frame& rejected){
+	Model model;
+	uint time = 0;
+	uint time_end = IOSKJ::time(2013,3);
+	for(;time<=time_end;time++){
+		// Do the time step
+		//... set parameters
+		parameters.set(time,model);
+		//... update the model
+		model.update(time);
+		//... get data
+		data.get(time,model);
+		//... do tracking
+		if(trial<100) tracker.get(trial,-1,time,model);
+		//... check model
+		uint year = IOSKJ::year(time);
+		uint quarter = IOSKJ::quarter(time);
+		int criterion = check(model,data,time,year,quarter);
+		if(criterion!=0){
+			Frame values = parameters.values();
+			values.add("time",time);
+			values.add("year",year);
+			values.add("quarter",quarter);
+			values.add("criterion",criterion);
+			rejected.append(values);
+			break;
+		}
+		if(time==time_end){
+			accepted.append(parameters.values());
+		}
+	}
+	if(trial>0 and trial%10==0) std::cout<<trial<<" "<<accepted.rows()/float(trial)<<std::endl;
+}
+
+
+/**
  * Check feasibility constraints
  *
  * Used in the `condition _feasible` method
  */
 int check_feasible(const Model& model, const Data& data, uint time, uint year, uint quarter){
-
 	// Stock status ...
 	auto status = model.biomass_spawning_overall(quarter)/model.biomass_spawning_unfished(quarter);
 	// ... must always be >10% B0
@@ -113,10 +151,12 @@ int check_feasible(const Model& model, const Data& data, uint time, uint year, u
  * Condition based on feasibility constraints
  */
 void condition_feasible(int trials=100){
+	// Create output directory
 	boost::filesystem::create_directories("feasible/output");
-
+	// Read in parameter priors and default values
 	Parameters parameters;
 	parameters.read();
+	// Read in data
 	Data data;
 	data.read();
 	// Frames for accepted and rejected parameter samples
@@ -126,41 +166,31 @@ void condition_feasible(int trials=100){
 	Tracker tracker("feasible/output/track.tsv");
 	// Do a number of trial parameter samples
 	for(int trial=0;trial<trials;trial++){
+		// Randomly sample parameters from priors
 		parameters.randomise();
-		Model model;
-		uint time = 0;
-		uint time_end = IOSKJ::time(2013,3);
-		for(;time<=time_end;time++){
-			// Do the time step
-			//... set parameters
-			parameters.set(time,model);
-			//... update the model
-			model.update(time);
-			//... get data
-			data.get(time,model);
-			//... do tracking
-			if(trial<100) tracker.get(trial,-1,time,model);
-			//... check feasibility
-			uint year = IOSKJ::year(time);
-			uint quarter = IOSKJ::quarter(time);
-			int criterion = check_feasible(model,data,time,year,quarter);
-			if(criterion!=0){
-				Frame values = parameters.values();
-				values.add("time",time);
-				values.add("year",year);
-				values.add("quarter",quarter);
-				values.add("criterion",criterion);
-				rejected.append(values);
-				break;
-			}
-			if(time==time_end){
-				accepted.append(parameters.values());
-			}
-		}
-		if(trial>0 and trial%10==0) std::cout<<trial<<" "<<accepted.rows()/float(trial)<<std::endl;
+		// Check feasibility of parameters
+		check(check_feasible,trial,parameters,data,tracker,accepted,rejected);
 	}
+	// Write out
 	accepted.write("feasible/output/accepted.tsv");
 	rejected.write("feasible/output/rejected.tsv");
+}
+
+/**
+ * Check SS3 model run
+ *
+ * Used in the `condition_ss3` method
+ */
+int check_ss3(const Model& model, const Data& data, uint time, uint year, uint quarter){
+
+	// Stock status ...
+	auto status = model.biomass_spawning_overall(quarter)/model.biomass_spawning_unfished(quarter);
+	// ... must always be >10% B0
+	if(status<0.1) return 1;
+	// ... since 2008 must be less than 100% B0
+	if(year>2008 and status>1) return 2;
+
+	return 0;
 }
 
 /**
@@ -173,11 +203,18 @@ void condition_ss3(int replicates=1000){
 	// Read in parameter priors and default values
 	Parameters parameters;
 	parameters.read();
+	// Read in data
+	Data data;
+	data.read();
 	// Read in parameter values from SS3 grid
 	Frame grid;
 	grid.read("ss3/pars.tsv");
+	// Frames for accepted and rejected parameter samples
+	Frame accepted;
+	Frame rejected;
+	// Do tracking (for a subset of trials)
+	Tracker tracker("ss3/output/track.tsv");
 	// For each replicate...
-	Frame samples;
 	for(int replicate=0;replicate<replicates;replicate++){
 		//... randomise parameter values from priors
 		parameters.randomise();
@@ -187,17 +224,17 @@ void condition_ss3(int replicates=1000){
 		);
 		//... overwrite parameters avialable from grid
 		parameters.read(cell,{"catches"});
-		//... store
-		samples.append(parameters.values());
+		//... check feasibility of parameters
+		check(check_ss3,replicate,parameters,data,tracker,accepted,rejected);
 	}
-	samples.write("ss3/output/samples.tsv");
+	accepted.write("ss3/output/accepted.tsv");
+	rejected.write("ss3/output/rejected.tsv");
 }
-
 
 /**
  * Evaluate management procedures
  */
-void evaluate(int replicates=1000){
+void evaluate(const std::string& samples_file, int replicates=1000){
 	boost::filesystem::create_directories("evaluate/output");
 	// Setup parameters and data
 	Parameters parameters;
@@ -207,7 +244,7 @@ void evaluate(int replicates=1000){
 	// Read in samples from conditioning and 
 	// create a frame for storing selected samples
 	Frame samples_all;
-	samples_all.read("feasible/output/accepted.tsv");
+	samples_all.read(samples_file);
 	samples_all.write("evaluate/output/samples_all.tsv");
 	Frame samples;
 	// Setup procedures
@@ -288,7 +325,8 @@ int main(int argc, char** argv){
         else if(task=="priors") priors();
         else if(task=="condition_feasible") condition_feasible(num);
         else if(task=="condition_ss3") condition_ss3(num);
-        else if(task=="evaluate") evaluate(num);
+        else if(task=="evaluate_feasible") evaluate("feasible/output/accepted.tsv",num);
+        else if(task=="evaluate_ss3") evaluate("ss3/output/accepted.tsv",num);
         else throw std::runtime_error("Unrecognised task");
         std::cout<<"-------------------------------\n";
 	} catch(std::exception& error){
