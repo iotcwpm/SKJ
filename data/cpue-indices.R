@@ -92,4 +92,4 @@ w_ps <- within(w_ps,{
 	location <- location/exp(mean(log(location)))
 })
 # Write out
-write.table(w_ps,file="input/w_ps_cpue.tsv",row.names=F,quote=F)
+write.table(w_ps,file="input/w_ps_cpue.tsv",sep='\t',row.names=F,quote=F)
