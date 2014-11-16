@@ -59,7 +59,7 @@ public:
 	Variance catches_var;
 
 	/**
-	 * Mean absolute of catches
+	 * Mean absolute percentage changes in catches
 	 */
 	Mapc catches_mapc;
 
