@@ -6,7 +6,7 @@ library(reshape)
 library(ggplot2)
 
 # Read in data
-nc = read.table('source-data/CAS_Tables_SKJ_2013.txt',header=T,sep='\t',as.is=T)
+nc = read.table('source/CAS_Tables_SKJ_2013.txt',header=T,sep='\t',as.is=T)
 nc$tmt = as.numeric(nc$tmt)
 
 # Assign to operating model regions
@@ -72,4 +72,4 @@ sums = within(sums,{
   region = as.integer(region)-1
   method = as.integer(method)-1
 })
-write.table(sums,file='processed-data/nominal-catches.tsv',row.names=F,quote=F,sep='\t')
+write.table(sums,file='nominal-catches.tsv',row.names=F,quote=F,sep='\t')
