@@ -249,8 +249,11 @@ void condition_ss3(int replicates=1000){
 
 /**
  * Evaluate management procedures
+ *
+ * @param vary Should replicates vary? Should only be set to false for testing
+ * @param msy Should msy be calculated for each replicate?
  */
-void evaluate(const std::string& samples_file, int replicates=1000){
+void evaluate(const std::string& samples_file, int replicates=1000, bool vary=true, bool msy=true){
 	boost::filesystem::create_directories("evaluate/output");
 	// Setup parameters and data
 	Parameters parameters;
@@ -275,12 +278,17 @@ void evaluate(const std::string& samples_file, int replicates=1000){
 		std::cout<<replicate<<std::endl;
 		// Randomly select a parameter sample
 		Frame sample = samples_all.slice(
-			Uniform(0,samples_all.rows()).random()
+			vary?Uniform(0,samples_all.rows()).random():0
 		);
 		samples.append(sample);
 		// Read parameters from sample 
 		// (to save time don't attempt to read catches array)
 		parameters.read(sample,{"catches"});
+		// Generate a random seed to be used to ensure any stochastic
+		// variations is same for all procedures. Placed here so, if necessary
+		// can be made constant for all replicates for testing purposes
+		uint seed = vary?Uniform(0,1e10).random():10000;
+		Generator.seed(seed);
 		// Create a model representing current state by iterating
 		// from time 0 to now...
 		Model current;
@@ -293,10 +301,7 @@ void evaluate(const std::string& samples_file, int replicates=1000){
 			if(replicate<100) tracker.get(replicate,-1,time,current);
 		}
 		// Determine MSY related reference points
-		current.msy_find();
-		// Generate a random seed to be used to ensure future
-		// variability is same for all procedures
-		uint seed = Uniform(0,1e10).random();
+		if(msy) current.msy_find();
 		// For each candidate procedure...
 		for(uint procedure=0;procedure<procedures.size();procedure++){
 			// Create a model with current state to use to 

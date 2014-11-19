@@ -279,6 +279,7 @@ public:
 	void populate(void){
 		// DoNothing
 		append(new DoNothing);
+		append(new DoNothing);
 		/*!!!!!!!!!!!!
 		// BRule
 		for(double precision : {0.0,0.1}){

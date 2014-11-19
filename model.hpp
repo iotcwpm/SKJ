@@ -759,9 +759,9 @@ public:
 	}
 
 	/**
-	 * Find Fmsy and Bmsy for this model
+	 * Take this model to a equilibirum state associated with MSY 
 	 */
-	void msy_find(void){
+	void msy_go(void){
 		int count = 0;
 		auto result = boost::math::tools::brent_find_minima([&](double exprate){
 			count++;
@@ -777,6 +777,22 @@ public:
 		exploitation_rate_set(e_msy);
 		equilibrium();
 		biomass_spawners_msy = biomass_spawners(sum);
+	}
+
+	/**
+	 * Calculate MSY related reference points
+	 */
+	void msy_find(void){
+		// Create a copy of this model and take it
+		// to MSY
+		Model calc = *this;
+		calc.msy_go();
+		// Copy over values
+		e_msy = calc.e_msy;
+		f_msy = calc.f_msy;
+		msy = calc.msy;
+		msy_trials = calc.msy_trials;
+		biomass_spawners_msy = calc.biomass_spawners_msy;
 	}
 
 	/**
