@@ -13,6 +13,23 @@ public:
 };
 
 /**
+ * `DoNothing` management procedure
+ *
+ * A management procedure that does nothing; used for testing
+ */
+class DoNothing : public Procedure, public Structure<DoNothing> {
+public:
+
+	virtual void write(std::ofstream& stream){
+		stream
+			<<"DoNothing"<<"\t\t\t\t\t\t\t\t\t\t\n";
+	}
+
+	virtual void operate(uint time, Model& model){
+	}
+};
+
+/**
  * `BRule` management procedure
  */
 class BRule : public Procedure, public Structure<BRule> {
@@ -260,6 +277,9 @@ class Procedures : public Array<Procedure*> {
 public:
 
 	void populate(void){
+		// DoNothing
+		append(new DoNothing);
+		/*!!!!!!!!!!!!
 		// BRule
 		for(double precision : {0.0,0.1}){
 			for(auto target : {0.2,0.3}){
@@ -308,6 +328,7 @@ public:
 				}
 			}
 		}
+		*/
 	}
 
 	void reset(int procedure){
