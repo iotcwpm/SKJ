@@ -213,9 +213,9 @@ public:
 			}
 		}
 
-		// Alternative parameterisation of recruitment variation depending on year..
+		// Alternative parameterization of recruitment variation depending on year..
 		if(year<1985){
-			// Deterministric recruitment
+			// Deterministic recruitment
 			model.recruits_variation_on = false;
 			model.recruits_deviation = 1;
 		}
