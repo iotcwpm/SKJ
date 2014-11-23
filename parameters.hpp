@@ -34,10 +34,11 @@ public:
 
 	/**
 	 * Proportion of recruits by region
-	 * Prior same for all regions. These are normalised in the model initialisation
+	 * 
+	 * These are normalised in the model initialisation
 	 * so that they sum to one.
 	 */
-	Variable<Uniform> recruits_regions;
+	Array<Variable<Uniform>,Region> recruits_regions;
 
 	/**
 	 * Variables of the distribution of the lengths of recruits
@@ -143,6 +144,8 @@ public:
 
     void read(void){
     	Structure<Parameters>::read("parameters/input/parameters.cila");
+    	
+    	recruits_regions.read("parameters/input/recruits_regions.tsv",true);
     	recruits_deviations.read("parameters/input/recruits_deviations.tsv",true);
     	selectivities.read("parameters/input/selectivities.tsv",true);
     	catches.read("parameters/input/catches.tsv",true);
@@ -153,10 +156,13 @@ public:
 
     void write(void){
     	Structure<Parameters>::write("parameters/output/parameters.cila");
-    	values().write("parameters/output/values.tsv");
+
+    	recruits_regions.write("parameters/output/recruits_regions.tsv",true);
     	recruits_deviations.write("parameters/output/recruits_deviations.tsv",true);
     	selectivities.write("parameters/output/selectivities.tsv",true);
     	catches.write("parameters/output/catches.tsv",true);
+
+    	values().write("parameters/output/values.tsv");
     }
 
 	/**
@@ -177,7 +183,7 @@ public:
 			model.spawning(2) = spawning_2;
 			model.spawning(3) = spawning_3;
 
-			for(auto region : regions) model.recruits_regions(region) = recruits_regions;
+			for(auto region : regions) model.recruits_regions(region) = recruits_regions(region);
 
 			model.recruits_lengths_mean = recruits_lengths_mean;
 			model.recruits_lengths_cv = recruits_lengths_cv;
