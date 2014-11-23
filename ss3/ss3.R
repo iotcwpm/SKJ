@@ -95,9 +95,9 @@ for(index in 1:nrow(runs)){
 	# Interpolate selectivity at length of the knots used in ioskj
 	# Create parameter names and values
 	knots <- 0:6
-	for(method in 0:3){
-		names <- c(names,paste0('selectivities(',method,',',knots,').value'))
-		values <- c(values,with(subset(selects,method==0),round(approx(x=variable,y=value,(knots*10)+20)$y,6)))
+	for(meth in unique(selects$method)){
+		names <- c(names,paste0('selectivities(',meth,',',knots,').value'))
+		values <- c(values,with(subset(selects,method==meth),round(approx(x=variable,y=value,(knots*10)+20)$y,6)))
 	}
 	
 	pars_ <- as.data.frame(matrix(values,nrow=1))
