@@ -200,18 +200,18 @@ void condition_feasible(int trials=100){
 int check_ss3(const Model& model, const Data& data, uint time, uint year, uint quarter){
 
 	// Stock status ...
-	auto status = model.biomass_spawning_overall(quarter)/model.biomass_spawning_unfished(quarter);
+	auto status = model.biomass_status(time);
 	// ... must always be >10% B0
 	if(status<0.1) return 1;
 	// ... since 2008 must be less than 100% B0
-	if(year>2008 and status>1) return 2;
+	if(year>=2008 and status>1) return 2;
 
 	return 0;
 }
 
 /**
  * Generate samples based on the SS3 assessment grid with priors used for those
- * paramters not available from there.
+ * parameters not available from there.
  */
 void condition_ss3(int replicates=1000){
 	// Create output directory
