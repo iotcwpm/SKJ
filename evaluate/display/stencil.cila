@@ -53,11 +53,54 @@ r
 figure
 	r png 17x10cm
 		print(
-			ggplot(subset(track,replicate<4 & quarter==0),aes(x=year+quarter/4,y=biomass_spawning_overall/1e6)) +
+			ggplot(subset(track,quarter==0 & procedure %in% c(-1,0)),aes(x=year+quarter/4,y=biomass_spawning_overall/1e6)) +
+				geom_line(aes(colour=factor(paste(procedure,replicate))),alpha=0.3) +
+				geom_vline(x=2015,linetype=2) +
+				geom_hline(v=0,alpha=0) +
+				labs(x="Year",y="Spawning biomass (mil. t)") + 
+				theme(legend.position='none')
+		)
+	figcaption
+		Spawning biomass trajectories from multiple replicates for test management procedure 0. 
+		All replicates whould be the same.
+
+figure
+	r png 17x10cm
+		print(
+			ggplot(subset(track,replicate==0 & quarter==0),aes(x=year+quarter/4,y=biomass_spawning_overall/1e6)) +
+				geom_line(aes(colour=procedure),alpha=0.3) +
+				geom_vline(x=2015,linetype=2) +
+				geom_hline(v=0,alpha=0) +
+				labs(x="Year",y="Spawning biomass (mil. t)") + 
+				theme(legend.position='none')
+		)
+	figcaption
+		Spawning biomass trajectories from a single replicate for multiple management procedure.
+
+
+figure
+	r png 17x10cm
+		print(
+			ggplot(subset(track,replicate %in% 0:11 & quarter==0),aes(x=year+quarter/4,y=biomass_spawning_overall/1e6)) +
 				geom_line(aes(colour=procedure)) +
 				facet_wrap(~replicate,scales='free_y') +
 				geom_vline(x=2015,linetype=2) +
+				geom_hline(v=0,alpha=0) +
 				labs(x="Year",y="Spawning biomass (mil. t)") + 
+				theme(legend.position='none')
+		)
+	figcaption
+		Spawning biomass trajectories for four example replicates
+figure
+	r png 17x10cm
+		print(
+			ggplot(subset(track,replicate %in% 0:11 & quarter==0),
+					aes(x=year+quarter/4,y=catches_total/1000)) +
+				geom_line(aes(colour=procedure)) +
+				facet_wrap(~replicate,scales='free_y') +
+				geom_vline(x=2015,linetype=2) +
+				geom_hline(v=0,alpha=0) +
+				labs(x="Year",y="Catch '000t") + 
 				theme(legend.position='none')
 		)
 	figcaption
