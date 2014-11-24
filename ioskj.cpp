@@ -198,13 +198,24 @@ void condition_feasible(int trials=100){
  * Used in the `condition_ss3` method
  */
 int check_ss3(const Model& model, const Data& data, uint time, uint year, uint quarter){
-
 	// Stock status ...
 	auto status = model.biomass_status(time);
 	// ... must always be >10% B0
 	if(status<0.1) return 1;
 	// ... since 2008 must be less than 100% B0
 	if(year>=2008 and status>1) return 2;
+
+	// Exploitation rate must be within broad range
+	// for each of the main region/method combinations. 
+	// This constraint is to prevent infeasible combinations
+	// of `recruits_region` and movement parameters
+	if(year>=2005){
+		if(
+			model.exploitation_rate(W,PS)>0.5 or
+			model.exploitation_rate(M,PL)>0.5 or
+			model.exploitation_rate(E,GN)>0.5 
+		) return 3;
+	}
 
 	return 0;
 }
