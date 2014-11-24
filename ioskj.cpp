@@ -335,20 +335,24 @@ void evaluate(const std::string& samples_file, int replicates=1000, bool vary=tr
 	performances.write("evaluate/output/performances.tsv");
 }
 
+template<typename Type>
+Type arg(char** argv,int which){
+	return boost::lexical_cast<Type>(argv[which]);
+}
+
 int main(int argc, char** argv){ 
 	try {
         if(argc==1) throw std::runtime_error("No task given");
         std::string task = argv[1];
-        uint num = (argc>2)?boost::lexical_cast<uint>(argv[2]):0;
         std::cout<<"-------------"<<task<<"-------------\n";
-        if(task=="run") run();
-        else if(task=="run_ss3") run("ss3/pars.tsv",num);
+        if(task=="run") run(arg<std::string>(argv,2),arg<int>(argv,3));
+        else if(task=="run_ss3") run("ss3/pars.tsv",arg<int>(argv,2));
         else if(task=="yield") yield();
         else if(task=="priors") priors();
-        else if(task=="condition_feasible") condition_feasible(num);
-        else if(task=="condition_ss3") condition_ss3(num);
-        else if(task=="evaluate_feasible") evaluate("feasible/output/accepted.tsv",num);
-        else if(task=="evaluate_ss3") evaluate("ss3/output/accepted.tsv",num);
+        else if(task=="condition_feasible") condition_feasible(arg<int>(argv,2));
+        else if(task=="condition_ss3") condition_ss3(arg<int>(argv,2));
+        else if(task=="evaluate_feasible") evaluate("feasible/output/accepted.tsv",arg<int>(argv,2));
+        else if(task=="evaluate_ss3") evaluate("ss3/output/accepted.tsv",arg<int>(argv,2));
         else throw std::runtime_error("Unrecognised task");
         std::cout<<"-------------------------------\n";
 	} catch(std::exception& error){
