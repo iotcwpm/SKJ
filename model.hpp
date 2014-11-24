@@ -274,7 +274,7 @@ public:
 	/**
 	 * The exploitation rate specified, for example, when calculating MSY/Bmsy
 	 */
-	double exploitation_rate_specified;
+	Array<double,Region,Method> exploitation_rate_specified;
 
 	/**
 	 * Vulnerable biomass by region and method
@@ -390,6 +390,11 @@ public:
 	 * 
 	 * @{
 	 */
+	
+	void catch_set(double catches){
+		exploitation_on = true;
+		catches_on = true;
+	}
 	
 	/**
 	 * Set overall exploitation rate. Used in testing and in 
@@ -623,26 +628,24 @@ public:
 					double biomass_vuln = 0;
 					for(auto age : ages){
 						for(auto size : sizes){
-							biomass_vuln += numbers(region,age,size) * weights(size)/1000 * 
-								selectivities(method,size);
+							biomass_vuln += numbers(region,age,size) * 
+							                weights(size)/1000 * 
+								            selectivities(method,size);
 						}
 					}
 					biomass_vulnerable(region,method) = biomass_vuln;
-					// Calculate exploitation rate
+					// Determine exploitation rate
 					double er = 0;
 					if(catches_on){
-						// Calculate exploitation_rate from catches and biomass_vulnerable
-						if(biomass_vuln>0) er = catches(region,method)/biomass_vuln;
-						if(er>1) er = 1;
+						// Calculate exploitation rate from catches and biomass_vulnerable
+						if(biomass_vuln>0){
+							er = catches(region,method)/biomass_vuln;
+							if(er>1) er = 1;
+						}
+						else er = 1;
 					} else {
-						// Use specified exp rate for the main region/methods
-						// and assume others are at zero
-						if(
-							(region==W and method==PS) or 
-							(region==M and method==PL) or 
-							(region==E and method==GN)
-						) er = exploitation_rate_specified;
-						else er = 0;
+						// Use the exploitation rate specified
+						er = exploitation_rate_specified(region,method);
 					}
 					exploitation_rate(region,method) = er;
 					catches_taken(region,method) = er * biomass_vuln;
@@ -656,7 +659,7 @@ public:
 					for(auto method : methods){
 						proportion_taken += exploitation_rate(region,method) * selectivities(method,size);
 					}
-					auto survival = (proportion_taken>1)?0:(1-proportion_taken);
+					double survival = (proportion_taken>1)?0:(1-proportion_taken);
 					exploitation_survival(region,size) = survival;
 					product *= survival;
 				}

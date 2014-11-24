@@ -77,12 +77,6 @@ public:
 			<<limit<<"\t\t\t\t\t\t\n";
 	}
 
-	double f_calc(double b){
-	    if(b<limit) return 0;
-    	else if(b>thresh) return target;
-    	else return target/(thresh-limit)*(b-limit);
-    }
-
 	virtual void operate(uint time, Model& model){
 		// Get stock status
 		double b = model.biomass_status(time);
@@ -90,7 +84,10 @@ public:
 		Lognormal imprecision(1,precision);
 		b *= imprecision.random();
 		// Calculate F
-		double f = f_calc(b);
+		double f;
+		if(b<limit) f = 0;
+		else if(b>thresh) f = target;
+		else f = target/(thresh-limit)*(b-limit);
 		// Apply F
 		model.fishing_mortality_set(f);
 	}
@@ -161,10 +158,10 @@ public:
 			if(f<target-buffer or f>target+buffer){
 				// Calculate ratio between current estimated F and target
 				// and adjust effort accordingly
-				// double ratio = f/target;
-				//! @todo Currently just setting to target F
-				//! but should be adjusting effort
-				model.exploitation_rate_set(f);
+				double adjust = target/f;
+				// Adjust effort by adjusting exploitation rate
+				double er = model.exploitation_rate_get() * adjust;
+				model.exploitation_rate_set(er);
 			}
 			last_ = year;
 		}
@@ -259,8 +256,9 @@ public:
 			else if(index_>threshold) rate = multiplier;
 			else rate = multiplier/(threshold-limit)*(index_-limit);
 			// Calculate recommended TAC
-			double tac = std::min(rate*cpue,maximum);	
-					
+			double tac = std::min(rate*cpue,maximum);
+			// Apply recommended TAC
+			model.catch_set(tac);
 		}
 	}
 
