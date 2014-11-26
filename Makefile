@@ -40,14 +40,38 @@ tests.out : tests.exe
 tests:
 	$(MAKE) -C tests
 
-# Generate documentation
-docs:
-	./render-stencils.R
+############################################################################
+# Documentation
+
+# Generate Doxygen documentation
+doxygen-html:
 	doxygen doxygen/Doxyfile
 
-# Render a stencil
+# Stencil list for rendering
+STENCILS := \
+	model/description parameters/description procedures/description \
+	model/display data/display yield/display \
+	feasible/display ss3/display evaluate/display
+# Stencil output list
+STENCILS_HTML := $(patsubst %,%/index.html,$(STENCILS))
+# Stencil `.pages` folders list
+STENCILS_PAGES := $(patsubst %,.pages/%,$(STENCILS))
+
+# Render a stencil: Cila -> HTML
 %/index.html: %/stencil.cila
 	cd $(dir $<) && Rscript -e "require(stencila); Stencil('.')$$ render()$$ export('index.html')"
+# Copy a stencil to `.pages`
+.pages/%: %/index.html
+	mkdir -p $@  ; cp -fr $(dir $<). $@
+
+# Render all stencils
+stencils-html: $(STENCILS_HTML)
+
+# Copy all stencils to `.pages` folder in preparation for publishing
+stencils-pages: $(STENCILS_PAGES)
+
+# Generate all documentation
+docs: doxygen-html stencils-html
 
 # Publish documentation
 # Aggregates alternative documentation into a single place for publishing using Github pages 
@@ -55,16 +79,7 @@ docs:
 #	git branch gh-pages
 # and the "ghp-import" script
 # 	sudo pip install ghp-import
-publish:
-	mkdir -p .pages/model/description ; cp -fr model/description/. .pages/model/description/
-	mkdir -p .pages/parameters/description ; cp -fr parameters/description/. .pages/parameters/description/
-	mkdir -p .pages/procedures/description ; cp -fr procedures/description/. .pages/procedures/description/
-	mkdir -p .pages/model/display ; cp -fr model/display/. .pages/model/display/
-	mkdir -p .pages/yield/display ; cp -fr yield/display/. .pages/yield/display/
-	mkdir -p .pages/data/display ; cp -fr data/display/. .pages/data/display/
-	mkdir -p .pages/feasible/display ; cp -fr feasible/display/. .pages/feasible/display/
-	mkdir -p .pages/ss3/display ; cp -fr ss3/display/. .pages/ss3/display/
-	mkdir -p .pages/evaluate/display ; cp -fr evaluate/display/. .pages/evaluate/display/
+publish: stencils-pages
 	mkdir -p .pages/doxygen  ; cp -fr doxygen/html/. .pages/doxygen/
 	ghp-import -m "Updated pages" -p .pages
 
