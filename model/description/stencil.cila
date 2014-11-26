@@ -1,5 +1,8 @@
 #title Indian Ocean skipjack model : Model description
 
+r
+	source('../../common.R',local=T)
+
 # DRAFT
 
 This documentation is a draft under active development. As such, it may not exactly mirror what is in the current version of the code. Separate documentation, generated from the model's C++ source code, is also [available](../../doxygen/).
@@ -13,7 +16,6 @@ The model, and consequently this document, are under development. The general ap
 The following convention is used for assigning symbols for the model: Greek lower case letters (e.g. |alpha|) for model parameters, Roman capital letters (e.g. |N|) for model variables, and Roman lower case letters for variable or parameter array subscripts (e.g. |N_{r,a,s}|, |phi_{r}|). Using this convention means that in some instances model parameters are given different symbols that usual but has the advantage of clearly distinguishing model parameters (which are independent of other parameters or variables and are usually estimated) from model variables (which are dependent upon parameter values).
 
 The subscript for time, |t|, is usually omitted from the model equations below except where it is necessary to be explicit regarding the time step involved.
-
 
 # Dimensions
 

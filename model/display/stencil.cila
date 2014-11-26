@@ -214,7 +214,7 @@ figure
 # Fishery
 
 figure
-	r png
+	r png 17x10cm
 		temp <- melt(subset(
 					track,quarter==0,select=c('year','biomass_vulnerable_w_ps','biomass_vulnerable_m_pl','biomass_vulnerable_e_gn')
 				),id.vars='year')
@@ -225,7 +225,7 @@ figure
 		)
 
 figure
-	r png
+	r png 17x10cm
 		temp <- ddply(track,.(year),summarise,
 			w_ps = sum(catches_w_ps),
 			m_pl = sum(catches_m_pl),
@@ -239,7 +239,7 @@ figure
 		)
 
 figure
-	r png
+	r png 17x10cm
 		temp <- melt(subset(
 					track,quarter==0,select=c('year','exp_rate_w_ps','exp_rate_m_pl','exp_rate_e_gn')
 				),id.vars='year')

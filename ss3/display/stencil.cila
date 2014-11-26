@@ -29,11 +29,11 @@ table
 	tr
 		td 1
 		td Stock status must always be >10% B0
-		td!text rejects[1]
+		td text rejects[1]
 	tr
 		td 2
 		td Stock status must be less than 100% B0 since 2008
-		td!text rejects[2]
+		td text rejects[2]
 
 figure
 	r png 17x10cm const
@@ -70,7 +70,7 @@ for param in c('spawners_unfished','mortality_base','movement_stay','recruits_de
 		r png 17x10cm const
 			plot_densities(param)
 		figcaption
-			Distribution of values of the "{span!text param}" according to feasibility criteria (0 indicates the trial met all criteria).
+			Distribution of values of the parameter "{span text param}" according to feasibility criteria (0 indicates the trial met all criteria).
 
 figure
 	r png 17x10cm const

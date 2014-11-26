@@ -278,13 +278,13 @@ where |phi| is a lognormally distributed multiplicative error with mean of 1 and
 |phi ~ LN(1,e)|
 
 table
-	caption Control parameters of the IRate management procedure : descriptions and values evaluated.
+	caption: Control parameters of the IRate management procedure : descriptions and values evaluated.
 	thead
 		tr
-			th Parameter
-			th Symbol
-			th Description
-			th Values evaluated
+			th: Parameter
+			th: Symbol
+			th: Description
+			th: Values evaluated
 	tbody
 		tr
 			td Responsiveness
