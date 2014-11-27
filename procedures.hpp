@@ -316,9 +316,35 @@ class Procedures : public Array<Procedure*> {
 public:
 
 	void populate(void){
-		// DoNothing
+		// DoNothing procedure mainly for testing
 		append(new DoNothing);
-		append(new DoNothing);
+		// Examples of each MP mainly for testing
+		{
+			auto& proc = * new BRule;
+			proc.precision = 0.1;
+			proc.target = 0.2;
+			proc.thresh = 0.6;
+			proc.limit = 0.1;
+			append(&proc);
+		}
+		{
+			auto& proc = * new FRange;
+			proc.frequency = 3;
+			proc.precision = 0.1;
+			proc.target = 0.7;
+			proc.buffer = 0.1;
+			append(&proc);
+		}
+		{
+			auto& proc = * new IRate;
+			proc.responsiveness = 1;
+			proc.multiplier = 1;
+			proc.threshold = 0.7;
+			proc.limit = 0.1;
+			proc.maximum = 600;
+			append(&proc);
+		}
+
 		/*!!!!!!!!!!!!
 		// BRule
 		for(double precision : {0.0,0.1}){

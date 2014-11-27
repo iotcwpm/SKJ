@@ -17,7 +17,7 @@ using namespace IOSKJ;
  * @param samples_file A filesystem path to a TSV file of parameter samples
  * @parameters samples_row Row index of samples to select
  */
-void run(const std::string& samples_file="", int samples_row=0){
+void run(const std::string& samples_file="",int samples_row=0,int procedure=0){
 	// Create output directories
 	boost::filesystem::create_directories("model/output");
 	// Read in parameters
@@ -36,6 +36,9 @@ void run(const std::string& samples_file="", int samples_row=0){
 	// Read in data
 	Data data;
 	data.read();
+	// Setup procedures
+	Procedures procedures;
+	procedures.populate();
 	// Do tracking
 	Tracker tracker("model/output/track.tsv");
 	// Instantiate a model
@@ -47,6 +50,11 @@ void run(const std::string& samples_file="", int samples_row=0){
 		parameters.set(time,model);
 		//... update the model
 		model.update(time);
+		//... operate the procedure
+		if(time>time_now){
+			if(time==time_now+1) procedures.reset(procedure);
+			procedures.operate(procedure,time,model);
+		}
 		//... get model variables corresponding to data
 		data.get(time,model);
 		//... get model variables of interest for tracking
@@ -356,7 +364,7 @@ int main(int argc, char** argv){
         if(argc==1) throw std::runtime_error("No task given");
         std::string task = argv[1];
         std::cout<<"-------------"<<task<<"-------------\n";
-        if(task=="run") run(arg<std::string>(argv,2),arg<int>(argv,3));
+        if(task=="run") run(arg<std::string>(argv,2),arg<int>(argv,3),arg<int>(argv,4));
         else if(task=="run_ss3") run("ss3/pars.tsv",arg<int>(argv,2));
         else if(task=="yield") yield();
         else if(task=="priors") priors();
