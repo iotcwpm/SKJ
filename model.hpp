@@ -397,13 +397,25 @@ public:
 	}
 	
 	/**
-	 * Set overall exploitation rate. Used in testing and in 
-	 * equilibrium exploitation i.e. MSY/BMSY calculations
+	 * Set exploitation rate. Used in testing and in 
+	 * equilibrium exploitation e.g. MSY/BMSY calculations
+	 *
+	 * Currently assumes an equal explotation rate is applied to the
+	 * three main methods in each region (W/PS,M/PL,E/GN).
+	 * An alternative would be to assume equal exploitation rates
+	 * in each region and use current partial exploitation rates by method
+	 * within each region.
 	 */
 	void exploitation_rate_set(double value){
 		exploitation_on = true;
 		catches_on = false;
-		exploitation_rate_specified = value;
+		// Set exploitation rate to be zero for most areas
+		// but to `value` for the three main methods in each
+		// region.
+		exploitation_rate_specified = 0;
+		exploitation_rate_specified(E,PS) = value;
+		exploitation_rate_specified(M,PL) = value;
+		exploitation_rate_specified(E,GN) = value;
 	}
 
 	/**
