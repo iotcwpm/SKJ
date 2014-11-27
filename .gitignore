@@ -10,6 +10,7 @@ ss3/runs
 *.html
 *.png
 *.svg
+*.pdf
 
 # Doxygen output
 doxygen

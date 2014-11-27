@@ -1,0 +1,65 @@
+#title Management procedure evaluation for the Indian Ocean skipjack tuna fishery : simulation model description and conditioning
+
+Nokome Bentley{sup 1} and M. Shiham Adam{sup 2}
+
+1 Trophia Limited, New Zealand nbentley@trophia.com
+2 Marine Research Centre, Maldives msadam@mrc.gov.mv
+
+h1 Abstract
+
+A simulation model of the Indian Ocean skipjack tuna fishery was developed for the evaluation of alternative fisheries management procedures. The model partitions the skipjack population by three regions, 24 quarterly ages, and fourty, 2cm size bins and the fishery by three regions and four gear types (purse seine, pole-and-line, gill net, others). Where possible, parameter estimates from the 2014 stock assessment for skipjack have been used. For those parameters not estimated or assumed in the assessment (e.g. regional recruitment dispersal, movement) prior distributions are used along with constraints to exclude infeasible parameter combinations.
+
+h1 Outline
+
+#outline
+
+section
+	h1 Introduction
+
+	This report describes progress towards management strategy evaluation (MSE) for the Indian Ocean skipjack fishery. This work has been progressed by the Maldives pole-and-line fishery in partial fulfilment of the conditions of its Marine Stewardship Council (MSC) certification. Adam et al (2013) provided a background and rationale for the project.
+
+	A simulation model for the skipjack fishery in the Indian Ocean. The model has been designed for use in simulation based evaluation of alternative management strategies for the fishery. This document outlines the structure of the model, describes prior probability distributions for model parameters, model conditioning algorithms and conditioning results.
+
+	The model, and consequently this document, are under development. The general approach to model development has been to start simple and add complexity as required. Potential alternative model formulations are noted throughout the document.
+
+section
+	h1 Structure
+	include "../../model/description"
+		delete #title
+
+section
+	h1 Parameter priors and sensitivity ranges
+	include "../../parameters/description"
+		delete #title
+
+section
+	h1 Estimation
+
+	section
+		h1 FST-based 
+		include "../../feasible/display"
+			delete #title
+
+	section
+		h1 SS3-based
+		include "../../ss3/display"
+			delete #title
+
+section
+	h1 Ouputs
+	include "../../model/display"
+		delete #title
+
+section
+	h1 Fits to data
+	include "../../data/display"
+		delete #title
+
+section
+	h1 Yield curve and MSY estimation 
+	include "../../yield/display"
+		delete #title
+
+section
+	h1 References
+	include "../refs"
