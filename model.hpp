@@ -424,7 +424,7 @@ public:
 		// but to `value` for the three main methods in each
 		// region.
 		exploitation_rate_specified = 0;
-		exploitation_rate_specified(E,PS) = value;
+		exploitation_rate_specified(W,PS) = value;
 		exploitation_rate_specified(M,PL) = value;
 		exploitation_rate_specified(E,GN) = value;
 	}
