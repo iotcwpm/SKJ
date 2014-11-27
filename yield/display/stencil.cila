@@ -1,46 +1,41 @@
 #title Indian Ocean skipjack model : yield curve and MSY
 
-# DRAFT
-
-This documentation is a draft under active development. As such, it may not exactly mirror what is in the current version of the code. Separate documentation, generated from the model's C++ source code, is also [available](../../doxygen/).
-
-
-This document summarises output from the `yield` task which is primarily intended for checking MSY calculations and the shape of the yield curve. The shape of the yield curve is dependent on the model's parameters (in this case read in from `parameters/input/parameters.cila`) including selectivity parameters (shown below).
+This section summarises output from the `yield` task which is primarily intended for checking MSY calculations and the shape of the yield curve. The shape of the yield curve is dependent on the model's parameters (in this case read in from `parameters/input/parameters.cila`) including selectivity parameters (shown below).
 
 r
 	source('../../common.R',local=T)
-
+	
 	load(c(
 		'curve','model'
-	),from='../output')
-
+	),from='../../yield/output')
+	
 	load(c(
 		'maturities','selectivities'
 	),from='../../model/output')
 
 table
 	caption Yield curve related variables.
-	tbody!with model
+	tbody with model
 		tr
 			td |E_{msy}|
 			td Exploitation rate which produces MSY
-			td!text e_msy
+			td text e_msy
 		tr
 			td |F_{msy}|
 			td Instantaneous rate of fishing mortality which produces MSY
-			td!text f_msy
+			td text f_msy
 		tr
 			td |MSY|
 			td Maximum sustainable yield (quarterly)
-			td!text msy
+			td text msy
 		tr
 			td |B_{msy}|
 			td Total spawning biomass associated with maximum sustainable yield
-			td!text biomass_spawning_msy
+			td text biomass_spawning_msy
 		tr
 			td
 			td Number of iterations used to find MSY
-			td!text msy_trials
+			td text msy_trials
 
 figure
 	r png 17x10cm
@@ -50,7 +45,8 @@ figure
 				geom_point(data=model,aes(x=e_msy,y=msy/1000),shape=16,size=3,colour=hsv(0.3,0.7,0.7)) +
 				labs(x="Exploitation rate",y="Yield (`000 t, quarterly)")
 		)
-	figcaption Yield curve: equilibrium yield versus equilibrium exploitation rate. The green point indicates the MSY calculated by the model's `msy_find` method hich uses Brent's minimisation algorithm.
+	figcaption
+		Yield curve: equilibrium yield versus equilibrium exploitation rate. The green point indicates the MSY calculated by the model's `msy_find` method hich uses Brent's minimisation algorithm.
 
 figure
 	r png 17x10cm
@@ -59,7 +55,8 @@ figure
 				geom_line() +
 				labs(x="Depletion (B/B0)",y="Yield (`000 t, quarterly)")
 		)
-	figcaption Yield curve: equilibrium yield versus equilibrium depletion levels (%B0).
+	figcaption
+		Yield curve: equilibrium yield versus equilibrium depletion levels (%B0).
 
 figure
 	r png 17x10cm
@@ -69,4 +66,5 @@ figure
 				geom_line(data=selectivities,aes(x=length,y=value,colour=method)) +
 				labs(x="Length (cm)",y="Proportion mature / selected",colour="Method")
 		)
-	figcaption Maturity at length (dotted line) and selectivity at length (by method).
+	figcaption
+		Maturity at length (dotted line) and selectivity at length (by method).

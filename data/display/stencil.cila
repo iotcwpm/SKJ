@@ -9,7 +9,7 @@ r
 	source('../../common.R',local=T)
 	load(c(
 		'm_pl_cpue','w_ps_cpue','size_freqs','z_ests'
-	),from='../output')
+	),from='../../data/output')
 
 # Maldive (M) pole and line (PL) CPUE
 

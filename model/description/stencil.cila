@@ -3,260 +3,223 @@
 r
 	source('../../common.R',local=T)
 
-# DRAFT
-
-This documentation is a draft under active development. As such, it may not exactly mirror what is in the current version of the code. Separate documentation, generated from the model's C++ source code, is also [available](../../doxygen/).
-
-# Introduction
-
-This document describes a simulation model for the skipjack fishery in the Indian Ocean. The model has been designed for use in simulation based evaluation of alternative management strategies for the fishery. This document outlines the structure of the model, describes prior probability distributions for model parameters, model conditioning algorithms and conditioning results.
-
-The model, and consequently this document, are under development. The general approach to model development has been to start simple and add complexity as required. Potential alternative model formulations are noted throughout the document.
-
 The following convention is used for assigning symbols for the model: Greek lower case letters (e.g. |alpha|) for model parameters, Roman capital letters (e.g. |N|) for model variables, and Roman lower case letters for variable or parameter array subscripts (e.g. |N_{r,a,s}|, |phi_{r}|). Using this convention means that in some instances model parameters are given different symbols that usual but has the advantage of clearly distinguishing model parameters (which are independent of other parameters or variables and are usually estimated) from model variables (which are dependent upon parameter values).
 
 The subscript for time, |t|, is usually omitted from the model equations below except where it is necessary to be explicit regarding the time step involved.
 
-# Dimensions
-
-Several dimensions are used to partition aspects of the model (e.g. fish numbers, catches).
-
-## Time
-
-The model uses a quarterly, i.e. three month, time step (|t|). Each time step, |t|, has an associated calendar year (|y|) and calendar quarter (|q|).
-
-## Region
-
-There are three regions (|r|), West (|we|), Maldives (|ma|) and East (|ea|). The term "region" is used in preference to "area" because using the latter would confound the |a| subscript which is also used for age.
-
-figure
-	r png 17x13cm
-		regions <- read.table('../../data/area-polygons.txt',header=T)
-		names(regions) <- c('region','lat','lon')
-			
-		print(
-			ggplot(subset(map_data("world"),long>30 & long<130 & lat<30 & lat>-40)) +
-				geom_polygon(data=regions,aes(x=lon,y=lat,fill=region),colour='grey30',alpha=0.5) +
-				geom_polygon(aes(x=long, y=lat, group=group),fill='white',colour='grey60') +
-				scale_y_continuous('',expand=c(0,0)) +
-				scale_x_continuous('',expand=c(0,0)) + 
-				coord_map('mercator') + 
-				labs(fill='Region')
-		)
-	figcaption
-		Map of the regions used in the model
-
-## Age
-
-Fish recruit to the model in each quarter and the model keeps track of their numbers by their age (|a|), in quarters up to six years i.e. |0,1,2,...,23|
-
-## Size
-
-Fish size (|s|) is represented in forty, 2cm bins, |0-2, 2-4, ..., 78-80cm|.
-
-## Method
-
-Five fishing methods (|m|) are defined (Table 1).
+section
+	h1 Dimensions
+
+	Several dimensions are used to partition aspects of the model (e.g. fish numbers, catches). The model uses a quarterly, i.e. three month, time step (|t|). Each time step, |t|, has an associated calendar year (|y|) and calendar quarter (|q|).
+
+	There are three regions (|r|), West (|we|), Maldives (|ma|) and East (|ea|) ({ref #figure-regions}). The term "region" is used in preference to "area" because using the latter would confound the |a| subscript which is also used for age.
+
+	Fish recruit to the model in each quarter and the model keeps track of their numbers by their age (|a|), in quarters up to six years i.e. |0,1,2,...,23|. Fish size (|s|) is represented in forty, 2cm bins, |0-2, 2-4, ..., 78-80cm|.
+
+	Four fishing methods (|m|) are defined : purse seine, pole and line, gill net and other ({ref #table-dimensions}).
+
+	table #table-dimensions
+		caption
+			Symbols used for model dimensions
+		tbody
+			tr
+				th Time
+			tr
+				td |t|
+				td Time step
+			tr
+				td |y|
+				td Calendar year
+			tr
+				td |q|
+				td Calendar quarter; 1 = Jan-Mar
+
+			tr
+				th Regions
+			tr
+				td |r|
+				td Region subscript
+			tr
+				td |we|
+				td West region
+			tr
+				td |ma|
+				td Maldives region
+			tr
+				td |ea|
+				td East region
+
+			tr
+				th Fish age and size
+			tr
+				td |a|
+				td Fish age group
+			tr
+				td |vec(a)|
+				td Maximum age in the model
+			tr
+				td |s|
+				td Fish size group
+			tr
+				td |vec(s)|
+				td Largest size group in the model
 
-table
-	caption
-		Symbols used for model dimensions
-	tr
-		td |t|
-		td Time step
-	tr
-		td |y|
-		td Calendar year
-	tr
-		td |q|
-		td Calendar quarter; 1 = Jan-Mar
-	tr
-		td
+			tr
+				th Fishing methods
+			tr
+				td |m|
+				td Fishing method subscript
+			tr
+				td |ps| 
+				td Purse seine
+			tr 
+				td |pl|
+				td Pole and line
+			tr
+				td |gn| 
+				td Gill net
+			tr 
+				td |ot| 
+				td Other
 
-	tr
-		td |r|
-		td Region subscript
-	tr
-		td |we|
-		td West region
-	tr
-		td |ma|
-		td Maldives region
-	tr
-		td |ea|
-		td East region
-	tr
-		td
+	figure #figure-regions
+		r png 17x13cm
+			regions <- read.table('../../data/area-polygons.txt',header=T)
+			names(regions) <- c('region','lat','lon')
+				
+			print(
+				ggplot(subset(map_data("world"),long>30 & long<130 & lat<30 & lat>-40)) +
+					geom_polygon(data=regions,aes(x=lon,y=lat,fill=region),colour='grey30',alpha=0.5) +
+					geom_polygon(aes(x=long, y=lat, group=group),fill='white',colour='grey60') +
+					scale_y_continuous('',expand=c(0,0)) +
+					scale_x_continuous('',expand=c(0,0)) + 
+					coord_map('mercator') + 
+					labs(fill='Region')
+			)
+		figcaption
+			Map of the regions used in the model
 
-	tr
-		td |a|
-		td Fish age group
-	tr
-		td |vec(a)|
-		td Maximum age in the model
-	tr
-		td |s|
-		td Fish size group
-	tr
-		td |vec(s)|
-		td Largest size group in the model
-	tr
-		td
+section
+	h1 Fish population
 
-	tr
-		td |m|
-		td Fishing method subscript
-	tr
-		td |ps| 
-		td Purse seine
-	tr 
-		td |pl|
-		td Pole and line
-	tr
-		td |gn| 
-		td Gill net
-	tr
-		td |li|
-		td Line
-	tr 
-		td |ot| 
-		td Other
+	section
+		h1 Numbers
 
+		Fish numbers are partitioned by region, age and size, |N_{r,a,s}|. In each quarter, recruitment to the model and ageing occur as follows.
 
-# Fish
+		The maximum age group, |vec(a)|, accumulates fish from the previous age, |vec(a)-1|,
 
-## Numbers
+		|N_{r,vec(a),s} = N_{r,vec(a),s} + N_{r,vec(a)-1,s}|
 
-Fish numbers are partitioned by region, age and size, |N_{r,a,s}|. In each quarter, recruitment to the model and ageing occur as follows.
+		For ages |1| to |vec(a)-1|, simple ageing occurs, 
 
-The maximum age group, |vec(a)|, accumulates fish from the previous age, |vec(a)-1|,
+		|N_{r,a,s} = N_{r,a-1,s}|
 
-|N_{r,vec(a),s} = N_{r,vec(a),s} + N_{r,vec(a)-1,s}|
+		For age |0|, recruitment occurs,
 
-For ages |1| to |vec(a)-1|, simple ageing occurs, 
+		|N_{r,0,s} = R_{r,s}|
 
-|N_{r,a,s} = N_{r,a-1,s}|
+		where |R_{r,s}| is the number of fish recruiting to age 0 in region |r| at size |s|.
 
-For age |0|, recruitment occurs,
+		Numbers are updated by applying growth, survival, exploitation and movement. The numbers in each region, in each age class and size class are determined by summing over all regions and size classes,
 
-|N_{r,0,s} = R_{r,s}|
+		|N_{r,a,s} = sum_{dot(r) in {we,ma,ea},dot(s)=0...vec(s)}( dot(N)_{dot(r),a,dot(s)} G_{dot(s),s} D (1-E_{dot(r),dot(s)}) M_{dot(r),r} )|
 
-where |R_{r,s}| is the number of fish recruiting to age 0 in region |r| at size |s|.
+		where |G| is the growth transition matrix, |D| is the natural survival rate, |E| is the exploitation rate, and |M| is the movement transition matrix.
 
-Numbers are updated by applying growth, survival, exploitation and movement. The numbers in each region, in each age class and size class are determined by summing over all regions and size classes,
+	section
+		h1 Length, weight and maturity
 
-|N_{r,a,s} = sum_{dot(r) in {we,ma,ea},dot(s)=0...vec(s)}( dot(N)_{dot(r),a,dot(s)} G_{dot(s),s} D (1-E_{dot(r),dot(s)}) M_{dot(r),r} )|
+		The length of fish of size |s| is the midpoint of the bin size,
 
-where |G| is the growth transition matrix, |D| is the natural survival rate, |E| is the exploitation rate, and |M| is the movement transition matrix.
+		|L_s = 2s+1|
 
+		The weight of fish of size |s| is modelled as an exponential curve,
 
-## Length
+		|W_s = alpha (L_s)^beta|
 
-The length of fish of size |s| is the midpoint of the bin size,
+		.note Parameters of the length-weight relationship could vary by region i.e. |alpha_{r}, beta_{r}|
 
-|L_s = 2s+1|
+		The proportion of fish of size |s| that are mature is modelled as a logistic curve,
 
-## Weight
+		|O_s = 1/(1+19^(tau-L_s)/upsilon)|
 
-The weight of fish of size |s| is modelled as an exponential curve,
+		.note Maturity could be a function of age, rather than size, i.e. |O_a|, and/or vary by region e.g. |tau_{r}|
 
-|W_s = alpha (L_s)^beta|
+	section
+		h1 Spawning and Recruitment
 
-.note Parameters of the length-weight relationship could vary by region i.e. |alpha_{r}, beta_{r}|
+		The proportion of mature fish that spawn in each quarter is allowed to vary according to a model parameter, |rho_q|.
 
+		Recruitment occurs in each quarter and is partitioned by region and size, |R_{r,s}|. The total number of recruits is based on the total spawning biomass in the previous quarter,
 
-## Maturity
+		|S = sum_{r in {we,ma,ea},a=0...vec(a),s=0...vec(s)} N_{r,a,s} O_s W_s rho_q|
 
-The proportion of fish of size |s| that are mature is modelled as a logistic curve,
+		where |O_s| is the proportion of fish that are mature at size |s|, |W_s| is the weight of fish at size |s|, and |rho_q| is the proportion of fish that spawn in quarter |q|.
 
-|O_s = 1/(1+19^(tau-L_s)/upsilon)|
+		The total spawning biomass is used as the basis for determining a recruitment over all three regions, |bar(R)| based on the Beverton-Holt stock recruitment function,
 
-.note Maturity could be a function of age, rather than size, i.e. |O_a|, and/or vary by region e.g. |tau_{r}|
+		|bar(R) = 4 eta theta S/((5 eta-1) S + dot(S)  (1-eta)) D_t|
 
+		where |eta| is steepness, |theta| and |dot(S)| are the respectively the recruitment and spawning biomass in the absence of fishing, and |D_t| is the recruitment deviation at time t which is lognormally distributed with mean of 1 and standard deviation of |sigma|.
 
-## Spawning
+		This total recruitment is distributed across the three regions,
 
-The proportion of mature fish that spawn in each quarter is allowed to vary according to a model parameter, |rho_q|.
+		|R_{r,s} = bar(R) * chi_r * A_s|
 
+		where |chi_r| is the proportion of recruits which recruit into region |r| and |A_s| is the proportion of recruits of size |s| which is based on a normal distribution with mean, |mu| and standard deviation |zeta|,
 
-## Recruitment
+		|A_s = 1/sqrt(2 pi zeta^2) e^(-((L_s-mu)^2)// 2 zeta^2)|
 
-Recruitment occurs in each quarter and is partitioned by region and size, |R_{r,s}|. The total number of recruits is based on the total spawning biomass in the previous quarter,
+	section
+		h1 Natural mortality
 
-|S = sum_{r in {we,ma,ea},a=0...vec(a),s=0...vec(s)} N_{r,a,s} O_s W_s rho_q|
+		The instantaneous rate of natural mortality at size |s| is modelled as a function of weight at size |s|,
 
-where |O_s| is the proportion of fish that are mature at size |s|, |W_s| is the weight of fish at size |s|, and |rho_q| is the proportion of fish that spawn in quarter |q|.
+		|M_s = nu W_s^gamma|
 
-The total spawning biomass is used as the basis for determining a recruitment over all three regions, |bar(R)| based on the Beverton-Holt stock recruitment function,
+		To prevent |M_s| going to very high levels at low |s|, |M_s| is restricted to be a maximum of |M_10| (i.e. the mortality at a length of 21cm). The survival rate in one quarter is thus,
 
-|bar(R) = 4 eta theta S/((5 eta-1) S + dot(S)  (1-eta)) D_t|
+		|D_s = e^{-0.25 M_s}|
 
-where |eta| is steepness, |theta| and |dot(S)| are the respectively the recruitment and spawning biomass in the absence of fishing, and |D_t| is the recruitment deviation at time t which is lognormally distributed with mean of 1 and standard deviation of |sigma|.
+	section
+		h1 Growth
 
-.todo To do : add in recruitment autocorrelation
+		Growth is described using a size transition matrix which is calculated based on the von Bertallanfy growth function. The mean increment in one quarter is,
 
-This total recruitment is distributed across the three regions,
+		|I_s = (lambda-L_s)(1-e^{-0.25kappa})|
 
-|R_{r,s} = bar(R) * chi_r * A_s|
+		Variation in growth is modelled as a normal distribution with a constant standard deviation, |zeta|, and a coefficient of variation, |varphi|, on the increment. The standard deviation of the growth increment for a fish of size |s| is thus,
 
-where |chi_r| is the proportion of recruits which recruit into region |r| and |A_s| is the proportion of recruits of size |s| which is based on a normal distribution with mean, |mu| and standard deviation |zeta|,
+		|J_s = sqrt(zeta^2 + (varphi I_s)^2)|
 
-|A_s = 1/sqrt(2 pi zeta^2) e^(-((L_s-mu)^2)// 2 zeta^2)|
+		The proportion of fish growing from size |dot(s)| to size |s| in one quarter is thus,
 
-.note Currently, recruitment is pooled across all areas. This could be changed via a recruitment dispersal matrix.
+		|G_{dot(s),s} = int_{l=2s}^{l=2(s+1)} 1/(sqrt(2 pi) J_dot(s))e^(-(L_dot(s)+I_dot(s)-l)^2)/(2 (J_dot(s))^2)|
 
+		Growth could vary by region and/or time e.g |lambda_{r}|, |kappa_{t}|
 
-## Natural mortality
+		An alternative to the vonB model would be to use the two-stanza growth model and parameter estimates of Everson et al (2012).
 
-The instantaneous rate of natural mortality at size |s| is modelled as a function of weight at size |s|,
+	section
+		h1 Movement
 
-|M_s = nu W_s^gamma|
+		The proportion of fish moving from region |dot(r)| to region |r| in one quarter is described by the movement matrix defined by six off-diagonal parameters,
 
-To prevent |M_s| going to very high levels at low |s|, |M_s| is restricted to be a maximum of |M_10| (i.e. the mortality at a length of 21cm). The survival rate in one quarter is thus,
+		|M_{dot(r),r} = [[1-omega_{ea,ma}-omega_{ea,we},omega_{ea,ma},omega_{ea,we}],[omega_{ma,ea},1-omega_{ma,ea}-omega_{ma,we},omega_{ma,we}],[omega_{we,ea},omega_{we,ma},1-omega_{we,ea}-omega_{we,ma}]]|
 
-|D_s = e^{-0.25 M_s}|
+		There could be separate movement parameters for each age (or size) e.g. |omega_{ma,we,a}|, or more simply, the relative proportion of fish moving could vary by age (or size).
 
 
-## Growth
+section
+	h1 Fishing
 
-Growth is described using a size transition matrix which is calculated based on the von Bertallanfy growth function. The mean increment in one quarter is,
+	The biomass that is vulnerable to each method, |m| in each region |r|, is calculated by summing over ages and sizes,
 
-|I_s = (lambda-L_s)(1-e^{-0.25kappa})|
+	|V_{r,m} = sum_{a=0,...,vec(a),s=0,...,vec(s)} N_{r,a,s} W_s P_{m,s}|
 
-Variation in growth is modelled as a normal distribution with a constant standard deviation, |zeta|, and a coefficient of variation, |varphi|, on the increment. The standard deviation of the growth increment for a fish of size |s| is thus,
+	where |P_{m,s}| is the relative selectivity of method |m| for fish of size, |s|.
 
-|J_s = sqrt(zeta^2 + (varphi I_s)^2)|
+	The exploitation rate in region |r| of method |m| is then,
 
-The proportion of fish growing from size |dot(s)| to size |s| in one quarter is thus,
-
-|G_{dot(s),s} = int_{l=2s}^{l=2(s+1)} 1/(sqrt(2 pi) J_dot(s))e^(-(L_dot(s)+I_dot(s)-l)^2)/(2 (J_dot(s))^2)|
-
-.note Growth could vary by region and/or time e.g |lambda_{r}|, |kappa_{t}|
-
-.note An alternative to the vonB model would be to use the two-stanza growth model and parameter estimates of Everson et al (2012).
-
-
-## Movement
-
-The proportion of fish moving from region |dot(r)| to region |r| in one quarter is described by the movement matrix defined by six off-diagonal parameters,
-
-|M_{dot(r),r} = [[1-omega_{ea,ma}-omega_{ea,we},omega_{ea,ma},omega_{ea,we}],[omega_{ma,ea},1-omega_{ma,ea}-omega_{ma,we},omega_{ma,we}],[omega_{we,ea},omega_{we,ma},1-omega_{we,ea}-omega_{we,ma}]]|
-
-.note There could be separate movement parameters for each age (or size) e.g. |omega_{ma,we,a}|, or more simply, the relative proportion of fish moving could vary by age (or size).
-
-
-# Fishing
-
-## Exploitation rate
-
-The biomass that is vulnerable to each method, |m| in each region |r|, is calculated by summing over ages and sizes,
-
-|V_{r,m} = sum_{a=0,...,vec(a),s=0,...,vec(s)} N_{r,a,s} W_s P_{m,s}|
-
-where |P_{m,s}| is the relative selectivity of method |m| for fish of size, |s|.
-
-.todo Determine best way to parameterize selectivity ogives e.g. logistic, splines etc.
-
-The exploitation rate in region |r| of method |m| is then,
-
-|E_{r,m} = C_{r,m}/V_{r,m}|
+	|E_{r,m} = C_{r,m}/V_{r,m}|

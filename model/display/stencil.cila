@@ -1,12 +1,6 @@
 #title Indian Ocean skipjack model : general outputs
 
-# DRAFT
-
-This documentation is a draft under active development. As such, it may not exactly mirror what is in the current version of the code. Separate documentation, generated from the model's C++ source code, is also [available](../../doxygen/).
-
-# Introduction
-
-This document displays model outputs generated from the `run` task (i.e. `./ioskj.exe run`)
+Model outputs generated from the `run` task (i.e. `./ioskj.exe run`)
 which uses the default parameter values (those marked `#value`) defined in `parameters/input/parameters.cila`.
 Since those values are user inputs the following may not reflect best parameter estimates.
 This is primarily intended for checking and illustrating the model.
@@ -21,7 +15,7 @@ r
 		'movement',
 		'numbers',
 		'track'
-	),from='../output')
+	),from='../../model/output')
 
 # Recruits
 

@@ -1,325 +1,315 @@
 #title Indian Ocean skipjack model : description of management procedures
 
-# DRAFT
-
-This documentation is a draft under active development. As such, it may not exactly mirror what is in the current version of the code. Separate documentation, generated from the model's C++ source code, is also [available](../../doxygen/).
-
 r
 	# Include common R settings and functions for this project
 	source('../../common.R',local=T)
 
-# Introduction
-
-This document describes the management procedures (MPs) evaluated in this study. Several classes of MP are considered with each _class_ having several _control parameters_ which can be varied to alter it's behaviour. We refer to a particular combination of control parameters for a class of MP as an instance of that class.
+Several classes of management procedure (MP) are considered with each _class_ having several _control parameters_ which can be varied to alter it's behaviour. We refer to a particular combination of control parameters for a class of MP as an instance of that class.
 
 The classes of management procedure used here are mainly intended to illutrate the wide variety of possible MPs: the data inputs they use, their algorithmic form and the management controls which they alter (e.g. effort versus catch). The 
 
-# BRule class
+section
+	# BRule class
 
-The `BRule` class of MP is similar to generic harvest control rules that have been suggested in other tuna fisheries (e.g. SCRS 2011, Scott et al 2013). It assumes that an estimate of stock status is available each year (although the same MP could be altered to have less frequent updates) and uses a simple relation between stock status and fishing intensity. Here we define relative stock status as ratio of current spawning biomass over the spawning biomass associated with maximum sustainable yield, |B_t//B_{msy}|, and relative fishing intensity as the ratio of the current instantaneous rate of fishing mortality and the rate associated with MSY, |F_t//F_{msy}|. For this study we have investigated the impact of alternative levels of stock assessment precision and implementation error on performance statistics.
+	The `BRule` class of MP is similar to generic harvest control rules that have been suggested in other tuna fisheries (e.g. SCRS 2011, Scott et al 2013). It assumes that an estimate of stock status is available each year (although the same MP could be altered to have less frequent updates) and uses a simple relation between stock status and fishing intensity. Here we define relative stock status as ratio of current spawning biomass over the spawning biomass associated with maximum sustainable yield, |B_t//B_{msy}|, and relative fishing intensity as the ratio of the current instantaneous rate of fishing mortality and the rate associated with MSY, |F_t//F_{msy}|. For this study we have investigated the impact of alternative levels of stock assessment precision and implementation error on performance statistics.
 
-In each year the relative biomass is estimated through a stock assessment,
+	In each year the relative biomass is estimated through a stock assessment,
 
-|hat S = B_t/B_{msy} epsilon |
+	|hat S = B_t/B_{msy} epsilon |
 
-where |epsilon| is a lognormally distributed multiplicative error with mean of 1 and standard deviation of |p|,
+	where |epsilon| is a lognormally distributed multiplicative error with mean of 1 and standard deviation of |p|,
 
-|epsilon ~ LN(1,p)|
+	|epsilon ~ LN(1,p)|
 
-Using |hat S| the recommended fishing intensity (|bar F|) is calculated. If |hat S lt s_l| then,
+	Using |hat S| the recommended fishing intensity (|bar F|) is calculated. If |hat S lt s_l| then,
 
-|bar F = 0|
+	|bar F = 0|
 
-If |hat S gt s_t| then,
+	If |hat S gt s_t| then,
 
-|bar F = f|
+	|bar F = f|
 
-Otherwise,
+	Otherwise,
 
-|bar F = f/(s_t-s_l)(hat S-s_l)|
+	|bar F = f/(s_t-s_l)(hat S-s_l)|
 
-The recommended fishing intensity is applied to the fishery in the following year,
+	The recommended fishing intensity is applied to the fishery in the following year,
 
-|F_{t+1} = bar F phi|
+	|F_{t+1} = bar F phi|
 
-where |phi| is a lognormally distributed multiplicative error with mean of 1 and standard deviation of |e|,
+	where |phi| is a lognormally distributed multiplicative error with mean of 1 and standard deviation of |e|,
 
-|phi ~ LN(1,e)|
+	|phi ~ LN(1,e)|
 
-Table 1 provides a summary of each of the control parameters of `BRule` and their respective values evaluated in this study. Note that IOTC Resolution 13/10 set an interim limit target biomass of |B_{msy}| (i.e. |b_t = 1|) and an interim limit biomass of |0.4B_{msy}| (i.e. |b_l| = 0.4). Analogous values have been tested. IOTC Resolution 13/10 also includes a limit reference point of |1.5F_{msy}|. Such a limit reference point on |F| is not a feature of this MP which instead is based on relative biomass reference points.
-
-
-table
-	caption Control parameters of the BRule management procedure : descriptions and values evaluated.
-	thead
-		tr
-			th Parameter
-			th Symbol
-			th Description
-			th Values evaluated
-	tbody
-		tr
-			td Estimation precision
-			td |p|
-			td Precision with which relative stock status is estimated
-			td 0, 0.2, 0.4, 0.6
-		tr
-			td Threshold stock status
-			td |s_t|
-			td Relative stock status below which recommended fishing intensity is reduced
-			td 0.7, 0.8, 0.9, 1.0
-		tr
-			td Limit stock status
-			td |s_l|
-			td Relative stock status below which recommended fishing intensity is zero
-			td 0.2, 0.3, 0.4, 0.5
-		tr
-			td Target fishing intensity
-			td |f|
-			td Relative fishing intensity
-			td 0.8, 0.9, 1.0, 1.1
-		tr
-			td Implementation precision
-			td |e|
-			td Precision with which recommended fishing intensity is applied
-			td 0, 0.2, 0.4, 0.6
-
-figure
-	r png 16x10cm
-		s_l <- 0.3
-		s_t <- 0.8
-		f <- 0.9
-		s_hats <- seq(0,1.5,0.01)
-		f_dots <- f/(s_t-s_l)*(s_hats-s_l)
-		f_dots[s_hats<s_l] <- 0
-		f_dots[s_hats>s_t] <- f
-		par(mar=c(4,4,1,1))
-		plot(
-			s_hats,f_dots,type='l',
-			ylab='Relative fishing intensity (F/Fmsy)',
-			xlab='Relative stock status (B/Bmsy)',
-			las=1,ylim=c(0,1.2),xlim=c(0,1.2)
-		)
-		abline(h=1,lty=3)
-		abline(v=1,lty=3)
-	figcaption
-		An example instance of the BRule management procedure with |s_l=0.3|, |s_t=0.9|, |f=0.9| showing the relation between |hat S| and |bar F|.
-
-# FRange class
-
-`FRange` seeks to maintain the fishing mortality rate within a defined range. At periodic intervals, defined by the control parameter |i|, |F| is estimated (e.g. from a stock assessment or a tagging study) with a defined level of precision, |p|,
-
-| hat F = F epsilon |
-
-where |epsilon| is a lognormally distributed multiplicative error with mean of 1 and standard deviation of |p|,
-
-|epsilon ~ LN(1,p)|
-
-The estimated fishing mortality is compared to a range defined by two control parameters, |f| the centre of the range and |b| the buffer, or width, of the range.
-
-figure
-	r png 16x10cm
-		f <- 0.5
-		b <- 0.1
-		t <- 0.9
-		ts <- c(2020,2025,2030,2035,2040,2045,2050)
-		f_hats <- c(0.45,0.51,0.63,0.58,0.55,0.49,0.38)
-		colours <- hcl(c(120,240,0))[c(2,2,3,2,2,2,1)]
-		par(mar=c(4,4,1,1))
-		plot(
-			ts,f_hats,col=colours,cex=1.5,pch=16,
-			xlab='Year',ylab='Estimated fishing mortality (F)',
-			las=1,ylim=c(0,0.8)
-		)
-		abline(h=f,lty=1)
-		abline(h=c(f-b,f+b),lty=3)
-	figcaption
-		An example instance of the BRule management procedure with |i=5|, |f=0.5|, |b=0.1| illustrating how total allowable catches are increased (green circles) or decreased (red circles) when the estimated fishing mortality is below or above the target range.
-
-# IRate class
-
-This management procedure uses CPUE as an index of biomass and sets a total allowable catch (TAC) that, over most of the range of CPUE, is proportional to that index.
-
-r
-	# Some preparatory code for figures below
-	catch <- read.table('../../parameters/input/catches.tsv',header=T)
-	catch <- ddply(catch,.(year),summarise,catch=sum(value))
-	m_pl_cpue <- read.table('../../data/input/m_pl_cpue.tsv',header=T)
-	m_pl_cpue <- ddply(m_pl_cpue,.(data_year),summarise,m_pl_cpue=exp(mean(log(location))))
-	temp <- merge(catch,m_pl_cpue,by.x='year',by.y='data_year',all.x=T)
-	w_ps_cpue <- read.table('../../data/input/w_ps_cpue.tsv',header=T)
-	w_ps_cpue <- ddply(w_ps_cpue,.(data_year),summarise,w_ps_cpue=exp(mean(log(location))))
-	temp <- merge(temp,w_ps_cpue,by.x='year',by.y='data_year',all.x=T)
-	# Create a combined CPUE series
-	temp <- within(temp,{
-		# Geometric mean combination
-		combined <- sqrt(m_pl_cpue*w_ps_cpue)
-		combined[is.na(m_pl_cpue)] <- w_ps_cpue[is.na(m_pl_cpue)]
-	})
-
-figure
-	r png 17x10cm
-		print(
-			ggplot(melt(subset(temp,year>1980)[,c('year','m_pl_cpue','w_ps_cpue','combined')],id.vars=c('year')),
-				   aes(x=year,y=value,colour=variable,shape=variable)) + 
-				geom_point(size=3,alpha=0.6) + 
-				geom_line(alpha=0.6) + 
-				geom_hline(y=0,alpha=0) +
-				scale_shape_manual(values=1:3) +
-				labs(x='Year',y='CPUE index',colour='Index',shape='Index')
-		)
-	figcaption
-		Western purse seine, Maldive pole and line and combined CPUE series.
+	Table 1 provides a summary of each of the control parameters of `BRule` and their respective values evaluated in this study. Note that IOTC Resolution 13/10 set an interim limit target biomass of |B_{msy}| (i.e. |b_t = 1|) and an interim limit biomass of |0.4B_{msy}| (i.e. |b_l| = 0.4). Analogous values have been tested. IOTC Resolution 13/10 also includes a limit reference point of |1.5F_{msy}|. Such a limit reference point on |F| is not a feature of this MP which instead is based on relative biomass reference points.
 
 
-figure
-	r png 17x10cm
-		scalar <- with(subset(temp,year>=1994),exp(mean(log(catch/combined),na.rm=T)))/1000
-		print(
-			ggplot(temp,aes(x=combined,y=catch/1000)) + 
-				geom_point(colour='grey') + 
-				geom_text(aes(label=year,colour=year>=1994),size=4) + 
-				geom_hline(y=0,alpha=0) + geom_vline(x=0,alpha=0) +
-				geom_abline(intercept=0,slope=scalar,linetype=2) +
-				labs(x='Combined CPUE index',y='Catch (overall, 1000 tonnes)',colour='Used')
-		)
-	figcaption
-		Historical relation between combined CPUE and overall catch. 
-		The dashed line has a slope of the catch scalar = {span!text round(scalar,2)} (geometric mean of the ratio of catches over CPUE).
+	table
+		caption Control parameters of the BRule management procedure : descriptions and values evaluated.
+		thead
+			tr
+				th Parameter
+				th Symbol
+				th Description
+				th Values evaluated
+		tbody
+			tr
+				td Estimation precision
+				td |p|
+				td Precision with which relative stock status is estimated
+				td 0, 0.2, 0.4, 0.6
+			tr
+				td Threshold stock status
+				td |s_t|
+				td Relative stock status below which recommended fishing intensity is reduced
+				td 0.7, 0.8, 0.9, 1.0
+			tr
+				td Limit stock status
+				td |s_l|
+				td Relative stock status below which recommended fishing intensity is zero
+				td 0.2, 0.3, 0.4, 0.5
+			tr
+				td Target fishing intensity
+				td |f|
+				td Relative fishing intensity
+				td 0.8, 0.9, 1.0, 1.1
+			tr
+				td Implementation precision
+				td |e|
+				td Precision with which recommended fishing intensity is applied
+				td 0, 0.2, 0.4, 0.6
 
-In each year, a smoothed CPUE, |bar I| is calculated using an exponential moving average with the responsivesness control parameter, |r|:
+	figure
+		r png 16x10cm
+			s_l <- 0.3
+			s_t <- 0.8
+			f <- 0.9
+			s_hats <- seq(0,1.5,0.01)
+			f_dots <- f/(s_t-s_l)*(s_hats-s_l)
+			f_dots[s_hats<s_l] <- 0
+			f_dots[s_hats>s_t] <- f
+			par(mar=c(4,4,1,1))
+			plot(
+				s_hats,f_dots,type='l',
+				ylab='Relative fishing intensity (F/Fmsy)',
+				xlab='Relative stock status (B/Bmsy)',
+				las=1,ylim=c(0,1.2),xlim=c(0,1.2)
+			)
+			abline(h=1,lty=3)
+			abline(v=1,lty=3)
+		figcaption
+			An example instance of the BRule management procedure with |s_l=0.3|, |s_t=0.9|, |f=0.9| showing the relation between |hat S| and |bar F|.
 
-| bar I_t = r I_t + (1-r) bar I_{t+1} |
+section
+	# FRange class
 
-figure
-	r png 17x10cm
-		temp <- subset(temp,!is.na(combined))
-		smooths <- NULL
-		for(r in c(0.5, 0.65, 0.8, 1.0)){
-			index <- temp$combined[1]
-			for(row in 2:nrow(temp)){
-				c <- temp$combined[row]
-				i <- r*c + (1-r)*index[row-1]
-				index <- c(index,i)
+	`FRange` seeks to maintain the fishing mortality rate within a defined range. At periodic intervals, defined by the control parameter |i|, |F| is estimated (e.g. from a stock assessment or a tagging study) with a defined level of precision, |p|,
+
+	| hat F = F epsilon |
+
+	where |epsilon| is a lognormally distributed multiplicative error with mean of 1 and standard deviation of |p|,
+
+	|epsilon ~ LN(1,p)|
+
+	The estimated fishing mortality is compared to a range defined by two control parameters, |f| the centre of the range and |b| the buffer, or width, of the range.
+
+	figure
+		r png 16x10cm
+			f <- 0.5
+			b <- 0.1
+			t <- 0.9
+			ts <- c(2020,2025,2030,2035,2040,2045,2050)
+			f_hats <- c(0.45,0.51,0.63,0.58,0.55,0.49,0.38)
+			colours <- hcl(c(120,240,0))[c(2,2,3,2,2,2,1)]
+			par(mar=c(4,4,1,1))
+			plot(
+				ts,f_hats,col=colours,cex=1.5,pch=16,
+				xlab='Year',ylab='Estimated fishing mortality (F)',
+				las=1,ylim=c(0,0.8)
+			)
+			abline(h=f,lty=1)
+			abline(h=c(f-b,f+b),lty=3)
+		figcaption
+			An example instance of the BRule management procedure with |i=5|, |f=0.5|, |b=0.1| illustrating how total allowable catches are increased (green circles) or decreased (red circles) when the estimated fishing mortality is below or above the target range.
+
+section
+	# IRate class
+
+	This management procedure uses CPUE as an index of biomass and sets a total allowable catch (TAC) that, over most of the range of CPUE, is proportional to that index.
+
+	r
+		# Some preparatory code for figures below
+		catch <- read.table('../../parameters/input/catches.tsv',header=T)
+		catch <- ddply(catch,.(year),summarise,catch=sum(value))
+		m_pl_cpue <- read.table('../../data/input/m_pl_cpue.tsv',header=T)
+		m_pl_cpue <- ddply(m_pl_cpue,.(data_year),summarise,m_pl_cpue=exp(mean(log(location))))
+		temp <- merge(catch,m_pl_cpue,by.x='year',by.y='data_year',all.x=T)
+		w_ps_cpue <- read.table('../../data/input/w_ps_cpue.tsv',header=T)
+		w_ps_cpue <- ddply(w_ps_cpue,.(data_year),summarise,w_ps_cpue=exp(mean(log(location))))
+		temp <- merge(temp,w_ps_cpue,by.x='year',by.y='data_year',all.x=T)
+		# Create a combined CPUE series
+		temp <- within(temp,{
+			# Geometric mean combination
+			combined <- sqrt(m_pl_cpue*w_ps_cpue)
+			combined[is.na(m_pl_cpue)] <- w_ps_cpue[is.na(m_pl_cpue)]
+		})
+
+	figure
+		r png 17x10cm
+			print(
+				ggplot(melt(subset(temp,year>1980)[,c('year','m_pl_cpue','w_ps_cpue','combined')],id.vars=c('year')),
+					   aes(x=year,y=value,colour=variable,shape=variable)) + 
+					geom_point(size=3,alpha=0.6) + 
+					geom_line(alpha=0.6) + 
+					geom_hline(y=0,alpha=0) +
+					scale_shape_manual(values=1:3) +
+					labs(x='Year',y='CPUE index',colour='Index',shape='Index')
+			)
+		figcaption
+			Western purse seine, Maldive pole and line and combined CPUE series.
+
+
+	figure
+		r png 17x10cm
+			scalar <- with(subset(temp,year>=1994),exp(mean(log(catch/combined),na.rm=T)))/1000
+			print(
+				ggplot(temp,aes(x=combined,y=catch/1000)) + 
+					geom_point(colour='grey') + 
+					geom_text(aes(label=year,colour=year>=1994),size=4) + 
+					geom_hline(y=0,alpha=0) + geom_vline(x=0,alpha=0) +
+					geom_abline(intercept=0,slope=scalar,linetype=2) +
+					labs(x='Combined CPUE index',y='Catch (overall, 1000 tonnes)',colour='Used')
+			)
+		figcaption
+			Historical relation between combined CPUE and overall catch. 
+			The dashed line has a slope of the catch scalar = {span!text round(scalar,2)} (geometric mean of the ratio of catches over CPUE).
+
+	In each year, a smoothed CPUE, |bar I| is calculated using an exponential moving average with the responsivesness control parameter, |r|:
+
+	| bar I_t = r I_t + (1-r) bar I_{t+1} |
+
+	figure
+		r png 17x10cm
+			temp <- subset(temp,!is.na(combined))
+			smooths <- NULL
+			for(r in c(0.5, 0.65, 0.8, 1.0)){
+				index <- temp$combined[1]
+				for(row in 2:nrow(temp)){
+					c <- temp$combined[row]
+					i <- r*c + (1-r)*index[row-1]
+					index <- c(index,i)
+				}
+				smooths <- rbind(smooths,data.frame(r=r,year=temp$year,smooth=index))
 			}
-			smooths <- rbind(smooths,data.frame(r=r,year=temp$year,smooth=index))
-		}
-		names(smooths) <- c('r','year','smooth')
-		smooths$r <- factor(smooths$r)
-		print(
-			ggplot(smooths,aes(x=year,y=smooth,colour=r,shape=r)) + 
-				geom_line() +
-				geom_point(data=subset(smooths,r==1),shape=1,colour='black') + 
-				geom_hline(y=0,alpha=0) + 
-				labs(x='Year',y='CPUE index',colour='Responsiveness')
-		)
-	figcaption
-		Illustration of the alternative smoothing of CPUE index using the responsiveness parameter.
+			names(smooths) <- c('r','year','smooth')
+			smooths$r <- factor(smooths$r)
+			print(
+				ggplot(smooths,aes(x=year,y=smooth,colour=r,shape=r)) + 
+					geom_line() +
+					geom_point(data=subset(smooths,r==1),shape=1,colour='black') + 
+					geom_hline(y=0,alpha=0) + 
+					labs(x='Year',y='CPUE index',colour='Responsiveness')
+			)
+		figcaption
+			Illustration of the alternative smoothing of CPUE index using the responsiveness parameter.
 
-Higher values of |r| produce greater responsiveness because they put more weight on more recent values of CPUE and produce a index that is less smoothed. When |r=1| there is no smoothing and |bar I_t = r I_t|. Smoothing may be advantageous in that it reduces the influence of annual random variation in CPUE due catchability or operational variations. However, smoothing also reduces adds a lag to the index.
+	Higher values of |r| produce greater responsiveness because they put more weight on more recent values of CPUE and produce a index that is less smoothed. When |r=1| there is no smoothing and |bar I_t = r I_t|. Smoothing may be advantageous in that it reduces the influence of annual random variation in CPUE due catchability or operational variations. However, smoothing also reduces adds a lag to the index.
 
-Using |bar I| the recommended catch scaler (|bar S|) is calculated. If |bar I lt i_l| then,
+	Using |bar I| the recommended catch scaler (|bar S|) is calculated. If |bar I lt i_l| then,
 
-|bar S = 0|
+	|bar S = 0|
 
-If |bar I gt i_t| then,
+	If |bar I gt i_t| then,
 
-|bar S = m hat S|
+	|bar S = m hat S|
 
-Otherwise,
+	Otherwise,
 
-|bar S = (m hat S)/(i_t-i_l)(bar I-i_l)|
+	|bar S = (m hat S)/(i_t-i_l)(bar I-i_l)|
 
-figure
-	r png 16x17cm
-		i_l <- 0.2
-		i_t <- 0.8
-		m <- 1.1
-		i <- seq(0,1.5,0.01)
-		s_hat <- 440
-		s <- (m*s_hat)/(i_t-i_l)*(i-i_l)
-		s[i<i_l] <- 0
-		s[i>i_t] <- m*s_hat
-		tac <- i*s
-		tac[tac>600] <- 600
-		layout(matrix(c(1,2), 2, 1, byrow=F))
-		par(mar=c(4,4,0,0),oma=rep(1,4))
-		# TAC versus CPUE
-		plot(
-			i,s,type='l',
-			ylab='Biomass index to Catch scaler',
-			xlab='',
-			las=1,ylim=c(0,s_hat*1.2),xlim=c(0,1.5)
-		)
-		abline(h=s_hat,lty=3)
-		abline(v=1,lty=3)
-		# TAC versus CPUE
-		plot(
-			i,tac,type='l',
-			ylab='Recommended TAC (t)',
-			xlab='CPUE index',
-			las=1,xlim=c(0,1.5)
-		)
-		abline(0,b=s_hat,lty=3)
-		abline(v=1,lty=3)
-	figcaption
-		An example instance of the IRate management procedure with |i_l=0.2|, |i_t=0.8|, |m=1.1|, |u=600| showing the relation between the CPUE index (|bar I|) and the catch scalar (|bar S|) and the recommended TAC.
+	figure
+		r png 16x17cm
+			i_l <- 0.2
+			i_t <- 0.8
+			m <- 1.1
+			i <- seq(0,1.5,0.01)
+			s_hat <- 440
+			s <- (m*s_hat)/(i_t-i_l)*(i-i_l)
+			s[i<i_l] <- 0
+			s[i>i_t] <- m*s_hat
+			tac <- i*s
+			tac[tac>600] <- 600
+			layout(matrix(c(1,2), 2, 1, byrow=F))
+			par(mar=c(4,4,0,0),oma=rep(1,4))
+			# TAC versus CPUE
+			plot(
+				i,s,type='l',
+				ylab='Biomass index to Catch scaler',
+				xlab='',
+				las=1,ylim=c(0,s_hat*1.2),xlim=c(0,1.5)
+			)
+			abline(h=s_hat,lty=3)
+			abline(v=1,lty=3)
+			# TAC versus CPUE
+			plot(
+				i,tac,type='l',
+				ylab='Recommended TAC (t)',
+				xlab='CPUE index',
+				las=1,xlim=c(0,1.5)
+			)
+			abline(0,b=s_hat,lty=3)
+			abline(v=1,lty=3)
+		figcaption
+			An example instance of the IRate management procedure with |i_l=0.2|, |i_t=0.8|, |m=1.1|, |u=600| showing the relation between the CPUE index (|bar I|) and the catch scalar (|bar S|) and the recommended TAC.
 
-The recommended catch scaler is used to calculate a recommended TAC, |bar S|, by multiplying the harvest rate by the biomass index,
+	The recommended catch scaler is used to calculate a recommended TAC, |bar S|, by multiplying the harvest rate by the biomass index,
 
-|bar C = min(bar S bar I, u)|
+	|bar C = min(bar S bar I, u)|
 
-which is applied to the fishery in the following year,
+	which is applied to the fishery in the following year,
 
-|C_{t+1} = bar C phi|
+	|C_{t+1} = bar C phi|
 
-where |phi| is a lognormally distributed multiplicative error with mean of 1 and standard deviation of |e|,
+	where |phi| is a lognormally distributed multiplicative error with mean of 1 and standard deviation of |e|,
 
-|phi ~ LN(1,e)|
+	|phi ~ LN(1,e)|
 
-table
-	caption: Control parameters of the IRate management procedure : descriptions and values evaluated.
-	thead
-		tr
-			th: Parameter
-			th: Symbol
-			th: Description
-			th: Values evaluated
-	tbody
-		tr
-			td Responsiveness
-			td |r|
-			td Degree of smoothing in biomass index
-			td 0.5, 0.65, 0.8, 1.0
-		tr
-			td Target harvest rate muliplier
-			td |m|
-			td Target harvest rate relative to historic levels i.e 0.9 = 90% of historic average
-			td 0.8, 0.9, 1.0, 1.1
-		tr
-			td Threshold biomass index
-			td |i_t|
-			td Biomass index at which the harvest rate is reduced relative to historic levels i.e. 0.7 = reduce harvest rate when the biomas index is at 70% of historic levels
-			td 0.5, 0.6, 0.7, 0.8
-		tr
-			td Limit biomass index
-			td |i_l|
-			td Biomass index at which harvest rate is zero relative to historic levels i.e. 0.2 = close the fishery when the biomas index is at 20% of historic levels
-			td 0.1, 0.2, 0.3, 0.4
-		tr
-			td Maximum TAC
-			td |u|
-			td Maximum total allowable catch (thousand tonnes)
-			td 300, 400, 500, 600
-		tr
-			td Implementation precision
-			td |e|
-			td Precision with which recommended TAC is applied
-			td 0, 0.1, 0.2, 0.3
-
-
-# References
-
-Gerald P Scott, Gorka Merino, Haritz Arrizabalaga, Hilario Murua, Josu Santiago and Victor R. Restrepo, 2013.  A Framework for Promoting Dialogue on Parameterizing a Harvest Control Rule with Limit and Target Reference Points for North Atlantic Albacore. SCRS/2013/120
-
-SCRS, 2011. Report of the 2011 joint meeting of the ICCAT Working Group on Stock Assessment Methods and Bluefin tuna Species Group to analyze assessment methods developed under the GBYP and electronic tagging. http://www.iccat.int/Documents/Meetings/Docs/2011_WG%20METHODS-ENG.pdf
+	table
+		caption Control parameters of the IRate management procedure : descriptions and values evaluated.
+		thead
+			tr
+				th Parameter
+				th Symbol
+				th Description
+				th Values evaluated
+		tbody
+			tr
+				td Responsiveness
+				td |r|
+				td Degree of smoothing in biomass index
+				td 0.5, 0.65, 0.8, 1.0
+			tr
+				td Target harvest rate muliplier
+				td |m|
+				td Target harvest rate relative to historic levels i.e 0.9 = 90% of historic average
+				td 0.8, 0.9, 1.0, 1.1
+			tr
+				td Threshold biomass index
+				td |i_t|
+				td Biomass index at which the harvest rate is reduced relative to historic levels i.e. 0.7 = reduce harvest rate when the biomas index is at 70% of historic levels
+				td 0.5, 0.6, 0.7, 0.8
+			tr
+				td Limit biomass index
+				td |i_l|
+				td Biomass index at which harvest rate is zero relative to historic levels i.e. 0.2 = close the fishery when the biomas index is at 20% of historic levels
+				td 0.1, 0.2, 0.3, 0.4
+			tr
+				td Maximum TAC
+				td |u|
+				td Maximum total allowable catch (thousand tonnes)
+				td 300, 400, 500, 600
+			tr
+				td Implementation precision
+				td |e|
+				td Precision with which recommended TAC is applied
+				td 0, 0.1, 0.2, 0.3

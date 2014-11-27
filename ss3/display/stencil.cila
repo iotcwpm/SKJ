@@ -8,7 +8,7 @@ r
 		'accepted',
 		'rejected',
 		'track'
-	),from='../output')
+	),from='../../ss3/output')
 	# Add columns to accepted to allow rbinding
 	accepted$time <- NA
 	accepted$year <- NA

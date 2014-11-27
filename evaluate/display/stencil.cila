@@ -1,9 +1,5 @@
 #title Indian Ocean skipjack model : management procedure evaluations
 
-# DRAFT
-
-This documentation is a draft under active development. As such, it may not exactly mirror what is in the current version of the code. Separate documentation, generated from the model's C++ source code, is also [available](../../doxygen/).
-
 r
 	source('../../common.R',local=T)
 	# Load in model outputs
@@ -12,7 +8,7 @@ r
 		'samples',
 		'performances',
 		'track'
-	),from='../output')
+	),from='../../evaluate/output')
 	# Calculate performance statistics from performance measures
 	perfs <- ddply(performances,.(procedure),summarise,
 		yield = mean(catches_total)/1000*4,
