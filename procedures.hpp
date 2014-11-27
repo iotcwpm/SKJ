@@ -12,11 +12,13 @@ public:
 	virtual void write(std::ofstream& stream) = 0;
 
 	/**
-	 * Set the catch by region method assuming a 
+	 * Set the catch by region/method assuming a 
 	 * certain allocation, currently based on the 
 	 * period 2003-2012 (see `data/nominal-catches-quarter.R`)
 	 */
 	void catches_set(Model& model,double catches){
+		model.exploit = model.exploit_catch;
+
 		model.catches(W,PS) = 0.354 * catches;
 		model.catches(W,PL) = 0.018 * catches;
 		model.catches(W,GN) = 0.117 * catches;
@@ -31,6 +33,17 @@ public:
 		model.catches(E,PL) = 0.006 * catches;
 		model.catches(E,GN) = 0.141 * catches;
 		model.catches(E,OT) = 0.078 * catches;
+	}
+
+	/**
+	 * Set the number of effort units by region/method
+	 */
+	void effort_set(Model& model,double effort){
+		model.exploit = model.exploit_effort;
+		// Since effort units are currently nominal
+		// for each region/method relative to the period
+		// 2004-2013, effort is set the same for all region/methods
+		model.effort = effort;
 	}
 };
 
@@ -165,7 +178,8 @@ public:
 	}
 
 	virtual void reset(void){
-		last_ = -1; 
+		last_ = -1;
+		effort = 100;
 	}
 
 	virtual void operate(uint time, Model& model){
@@ -181,9 +195,9 @@ public:
 				// Calculate ratio between current estimated F and target
 				// and adjust effort accordingly
 				double adjust = target/f;
-				// Adjust effort by adjusting exploitation rate
-				double er = model.exploitation_rate_get() * adjust;
-				model.exploitation_rate_set(er);
+				// Adjust effort
+				effort *= adjust;
+				effort_set(model,effort);
 			}
 			last_ = year;
 		}
@@ -195,6 +209,11 @@ private:
 	 * Time that the last F estimate was made
 	 */
 	int last_;
+
+	/**
+	 * Total allowable effort
+	 */
+	double effort;
 };
 
 /**

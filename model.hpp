@@ -259,22 +259,20 @@ public:
 	Array<double,Method,Size> selectivities;
 
 	/**
-	 * A switch used to turn on/off exploitation dynamics
-	 * (e.g turn off for virgin equilibrium)
+	 * 
 	 */
-	bool exploitation_on = true;
-
-	/**
-	 * A switch used to turn on/off the calculation
-	 * of exploitation rates from catches. Turned off to specify a particular
-	 * exploitation rate when calculating MSY/Bmsy
-	 */
-	bool catches_on = true;
-
-	/**
-	 * The exploitation rate specified, for example, when calculating MSY/Bmsy
-	 */
-	Array<double,Region,Method> exploitation_rate_specified;
+	enum {
+		// For determining pristine conditions
+		exploit_none = 0,
+		// For determining MSY related reference points
+		// and F based MPs
+		exploit_rate = 1,
+		// For conditioning with historical catches and
+		// TAC based MPs
+		exploit_catch = 2,
+		// For TAE based MPs
+		exploit_effort = 3,
+	} exploit;
 
 	/**
 	 * Vulnerable biomass by region and method
@@ -285,6 +283,26 @@ public:
 	 * Catches by region and method
 	 */
 	Array<double,Region,Method> catches;
+
+	/**
+	 * Effort by region and method
+	 *
+	 * Currently these are nominal units relative
+	 * to the period 2004-2013
+	 */
+	Array<double,Region,Method> effort;
+
+	/**
+	 * Estimated catchability by region and method
+	 */
+	Array<double,Region,Method> catchability;
+	Array<GeometricMean,Region,Method> catchability_estim;
+
+
+	/**
+	 * The exploitation rate specified, for example, when calculating MSY/Bmsy
+	 */
+	Array<double,Region,Method> exploitation_rate_specified;
 
 	/**
 	 * Catches by region and method given maximimum exploitation rate of
@@ -306,7 +324,6 @@ public:
 	/**
 	 * @}
 	 */
-	
 
 	/**
 	 * MSY related variables
@@ -402,8 +419,7 @@ public:
 	 * within each region.
 	 */
 	void exploitation_rate_set(double value){
-		exploitation_on = true;
-		catches_on = false;
+		exploit = exploit_rate;
 		// Set exploitation rate to be zero for most areas
 		// but to `value` for the three main methods in each
 		// region.
@@ -540,7 +556,7 @@ public:
 		// Calculate unfished state
 		// Turn off recruitment relationship and exploitation
 		recruits_relation_on = false;
-		exploitation_on = false;
+		exploit = exploit_none;
 		// Set unfished recruitment to an arbitrarily high number so it can be calculated in terms of biomass_spawners_unfished
 		recruits_unfished = 1e10;
 		// Go to equilibrium
@@ -554,7 +570,7 @@ public:
 		// Calculate the 
 		// Turn on recruitment relationship etc again
 		recruits_relation_on = true;
-		exploitation_on = true;
+		exploit = exploit_catch;
 
 		// During debug mode dump the model here for easy inspection
 		// Done after equilibrium() and biomass_spawning_unfished has been set
@@ -567,6 +583,7 @@ public:
 	 * Perform a single time step
 	 */
 	void update(uint time){
+		uint year = IOSKJ::year(time);
 		uint quarter = IOSKJ::quarter(time);
 
 		// Calculate total biomass, spawners biomass and spawning biomass by region
@@ -627,7 +644,7 @@ public:
 			}
 		}
 
-		if(exploitation_on){
+		if(exploit!=exploit_none){
 			// For each region and method
 			for(auto region : regions){
 				for(auto method : methods){
@@ -643,13 +660,34 @@ public:
 					biomass_vulnerable(region,method) = biomass_vuln;
 					// Determine exploitation rate
 					double er = 0;
-					if(catches_on){
+					if(exploit==exploit_catch){
 						// Calculate exploitation rate from catches and biomass_vulnerable
-						if(biomass_vuln>0){
-							er = catches(region,method)/biomass_vuln;
-							if(er>1) er = 1;
+						double c = catches(region,method);
+						if(c>0){
+							if(biomass_vuln>0){
+								er = c/biomass_vuln;
+								if(er>1) er = 1;
+							} else er = 1;
+						} else er = 0;
+						// Update estimate of catchability
+						double e = effort(region,method);
+						if(e>0){
+							double q = er/e;
+							if(year==2004) catchability_estim(region,method).reset();
+							if(q>0 and year>=2004 and year<=2013) catchability_estim(region,method).append(q);
+							if(year==2013){
+								catchability(region,method) = catchability_estim(region,method);
+								// Where no catches for a region method make catchability 0
+								if(not std::isfinite(catchability(region,method))){
+									catchability(region,method) = 0;
+								}
+							}
 						}
-						else er = 1;
+					}
+					else if(exploit==exploit_effort){
+						// Calculate exploitation rate from number of
+						// effort units
+						er = catchability(region,method) * effort(region,method);
 					} else {
 						// Use the exploitation rate specified
 						er = exploitation_rate_specified(region,method);
@@ -672,6 +710,9 @@ public:
 				}
 				exploitation_survival_regions(region) = product;
 			}
+		} else {
+			exploitation_survival = 1;
+			exploitation_survival_regions = 1;
 		}
 	
 		// Mortality, growth and movement
@@ -687,7 +728,7 @@ public:
 							number += 	numbers(rf,age,sf) * 
 										growth(size_from,size) * 
 										mortalities_survival(sf) * 
-										(exploitation_on?exploitation_survival(rf,sf):1) * 
+										exploitation_survival(rf,sf) * 
 										movement(region_from,region);
 						}
 					}
@@ -829,6 +870,8 @@ public:
 
 		selectivity_values.write("model/output/selectivity_values.tsv");
 		selectivities.write("model/output/selectivities.tsv");
+
+		catchability.write("model/output/catchability.tsv");
 	}
 };
 

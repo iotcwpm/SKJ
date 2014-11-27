@@ -236,13 +236,18 @@ public:
 
 		// Bind quarterly catch history to the model's catches
 		if(year>=1950 and year<=2012){
-			model.catches_on = true;
+			model.exploit = model.exploit_catch;
 			for(auto region : regions){
 				for(auto method : methods){
 					model.catches(region,method) = catches(year,quarter,region,method);
 				}
 			}
 		}
+
+		// Set effort for all regions and methods
+		// at a nominal 100 units
+		if(year<2004) model.effort = 0;
+		if(year>=2004 and year<=2013) model.effort = 100;
 
 		// Initialise in the first year
 		if(time==0) model.initialise();
