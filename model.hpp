@@ -391,13 +391,8 @@ public:
 	 * @{
 	 */
 	
-	void catch_set(double catches){
-		exploitation_on = true;
-		catches_on = true;
-	}
-	
 	/**
-	 * Set exploitation rate. Used in testing and in 
+	 * Set overall exploitation rate. Used in testing and in 
 	 * equilibrium exploitation e.g. MSY/BMSY calculations
 	 *
 	 * Currently assumes an equal explotation rate is applied to the

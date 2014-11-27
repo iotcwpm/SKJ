@@ -10,6 +10,28 @@ public:
 	virtual void reset(void){};
 	virtual void operate(uint time, Model& model) = 0;
 	virtual void write(std::ofstream& stream) = 0;
+
+	/**
+	 * Set the catch by region method assuming a 
+	 * certain allocation, currently based on the 
+	 * period 2003-2012 (see `data/nominal-catches-quarter.R`)
+	 */
+	void catches_set(Model& model,double catches){
+		model.catches(W,PS) = 0.354 * catches;
+		model.catches(W,PL) = 0.018 * catches;
+		model.catches(W,GN) = 0.117 * catches;
+		model.catches(W,OT) = 0.024 * catches;
+
+		model.catches(M,PS) = 0.000 * catches;
+		model.catches(M,PL) = 0.198 * catches;
+		model.catches(M,GN) = 0.000 * catches;
+		model.catches(M,OT) = 0.005 * catches;
+
+		model.catches(E,PS) = 0.058 * catches;
+		model.catches(E,PL) = 0.006 * catches;
+		model.catches(E,GN) = 0.141 * catches;
+		model.catches(E,OT) = 0.078 * catches;
+	}
 };
 
 /**
@@ -258,7 +280,7 @@ public:
 			// Calculate recommended TAC
 			double tac = std::min(rate*cpue,maximum);
 			// Apply recommended TAC
-			model.catch_set(tac);
+			catches_set(model,tac);
 		}
 	}
 

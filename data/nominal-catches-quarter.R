@@ -73,3 +73,13 @@ sums = within(sums,{
   method = as.integer(method)-1
 })
 write.table(sums,file='nominal-catches.tsv',row.names=F,quote=F,sep='\t')
+
+# Calculate catch proportions by region/method for last 10 years
+temp <- ddply(subset(sums,year>max(sums$year)-10),.(region,method),summarise,catch=sum(catch))
+temp$value <- with(temp,round(catch/sum(catch),3))
+temp <- merge(expand.grid(region=0:2,method=0:3),temp,all.x=T)
+temp$catch <- NULL
+temp$value[is.na(temp$value)]<- 0
+write.table(temp,file='catches-allocations.tsv',row.names=F,quote=F,sep='\t')
+
+
