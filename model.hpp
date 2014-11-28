@@ -280,6 +280,13 @@ public:
 	Array<double,Region,Method> biomass_vulnerable;
 
 	/**
+	 * CPUE. Simply `biomass_vulnerable` scaled to
+	 * its geometric mean for the period 1985-2013
+	 */
+	Array<double,Region,Method> cpue;
+	Array<GeometricMean,Region,Method> cpue_base;
+
+	/**
 	 * Catches by region and method
 	 */
 	Array<double,Region,Method> catches;
@@ -319,7 +326,6 @@ public:
 	 * Exploitation survival
 	 */
 	Array<double,Region,Size> exploitation_survival;
-	Array<double,Region> exploitation_survival_regions;
 
 	/**
 	 * @}
@@ -433,7 +439,8 @@ public:
 	 * Get overall exploitation rate.
 	 */
 	double exploitation_rate_get(void) const {
-		return 1 - exploitation_survival_regions(prod);
+		double survival = exploitation_survival(geomean);
+		return 1 - survival;
 	}
 
 	/**
@@ -658,6 +665,17 @@ public:
 						}
 					}
 					biomass_vulnerable(region,method) = biomass_vuln;
+
+					// Update CPUE
+					if(quarter==3){
+						if(year==1985) cpue_base(region,method).reset();
+						if(year>=1985 and year<=2013){
+							cpue_base(region,method).append(biomass_vuln);
+						} else {
+							cpue(region,method) = biomass_vuln/cpue_base(region,method);
+						}
+					}
+
 					// Determine exploitation rate
 					double er = 0;
 					if(exploit==exploit_catch){
@@ -698,21 +716,16 @@ public:
 			}
 			// Pre-calculate the exploitation_survival for each region and size
 			for(auto region : regions){
-				double product = 1;
 				for(auto size : sizes){
 					double proportion_taken = 0;
 					for(auto method : methods){
 						proportion_taken += exploitation_rate(region,method) * selectivities(method,size);
 					}
-					double survival = (proportion_taken>1)?0:(1-proportion_taken);
-					exploitation_survival(region,size) = survival;
-					product *= survival;
+					exploitation_survival(region,size) = (proportion_taken>1)?0:(1-proportion_taken);
 				}
-				exploitation_survival_regions(region) = product;
 			}
 		} else {
 			exploitation_survival = 1;
-			exploitation_survival_regions = 1;
 		}
 	
 		// Mortality, growth and movement

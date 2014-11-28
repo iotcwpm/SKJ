@@ -71,9 +71,14 @@ class BRule : public Procedure, public Structure<BRule> {
 public:
 
 	/**
+	 * Frequency of stock status estimates
+	 */
+	int frequency = 2;
+
+	/**
 	 * Precision with which B (stock status) is estimated
 	 */
-	double precision;
+	double precision = 0.1;
 
 	/**
 	 * Target (maximum) F (fishing mortality)
@@ -96,6 +101,7 @@ public:
 	template<class Mirror>
 	void reflect(Mirror& mirror){
 		mirror
+			.data(frequency,"frequency")
 			.data(precision,"precision")
 			.data(target,"target")
 			.data(thresh,"thresh")
@@ -106,27 +112,41 @@ public:
 	void write(std::ofstream& stream){
 		stream
 			<<"BRule"<<"\t"
+			<<frequency<<"\t"
 			<<precision<<"\t"
 			<<target<<"\t"
 			<<thresh<<"\t"
 			<<limit<<"\t\t\t\t\t\t\n";
 	}
 
-	virtual void operate(uint time, Model& model){
-		// Get stock status
-		double b = model.biomass_status(time);
-		// Add imprecision
-		Lognormal imprecision(1,precision);
-		b *= imprecision.random();
-		// Calculate F
-		double f;
-		if(b<limit) f = 0;
-		else if(b>thresh) f = target;
-		else f = target/(thresh-limit)*(b-limit);
-		// Apply F
-		model.fishing_mortality_set(f);
+	virtual void reset(void){
+		last_ = -1;
 	}
 
+	virtual void operate(uint time, Model& model){
+		int year = IOSKJ::year(time);
+		int quarter = IOSKJ::quarter(time);
+		if(quarter==3 and (last_<0 or year-last_>frequency)){
+			// Get stock status
+			double b = model.biomass_status(time);
+			// Add imprecision
+			Lognormal imprecision(1,precision);
+			b *= imprecision.random();
+			// Calculate F
+			double f;
+			if(b<limit) f = 0;
+			else if(b>thresh) f = target;
+			else f = target/(thresh-limit)*(b-limit);
+			// Apply F
+			model.fishing_mortality_set(f);
+		}
+	}
+
+private:
+	/**
+	 * Time that the status estimate was made
+	 */
+	int last_;
 };
 
 /**
@@ -136,24 +156,30 @@ class FRange : public Procedure, public Structure<FRange> {
 public:
 
 	/**
-	 * Frequency of F estimates
+	 * Frequency of exp. rate estimates
 	 */
-	int frequency;
+	int frequency = 2;
 
 	/**
-	 * Precision of F estimate
+	 * Precision of exp. rate estimate
 	 */
-	double precision;
+	double precision = 0.1;
 
 	/**
-	 * Target F
+	 * Target exp. rate
 	 */
 	double target;
 
 	/**
-	 * Buffer around target F
+	 * Buffer around target exp. rate
 	 */
 	double buffer;
+
+	/**
+	 * Restriction on multiplicative changes
+	 * in effort
+	 */
+	double change_max = 0.3;
 
 	/**
 	 * Reflection
@@ -165,6 +191,7 @@ public:
 			.data(precision,"precision")
 			.data(target,"target")
 			.data(buffer,"buffer")
+			.data(change_max,"change_max")
 		;
 	}
 
@@ -174,7 +201,8 @@ public:
 			<<frequency<<"\t"
 			<<precision<<"\t"
 			<<target<<"\t"
-			<<buffer<<"\t\t\t\t\t\t\n";
+			<<buffer<<"\t"
+			<<change_max<<"\t\t\t\t\t\n";
 	}
 
 	virtual void reset(void){
@@ -184,17 +212,19 @@ public:
 
 	virtual void operate(uint time, Model& model){
 		int year = IOSKJ::year(time);
-		if(last_<0 or year-last_>frequency){
-			// Get an estimate of F
-			double f = model.biomass_status(time);
+		int quarter = IOSKJ::quarter(time);
+		if(quarter==3 and (last_<0 or year-last_>frequency)){
+			// Get an estimate of exploitation rate
+			double f = model.exploitation_rate_get();
 			// Add imprecision
 			Lognormal imprecision(1,precision);
 			f *= imprecision.random();
 			// Check to see if F is outside of range
 			if(f<target-buffer or f>target+buffer){
 				// Calculate ratio between current estimated F and target
-				// and adjust effort accordingly
 				double adjust = target/f;
+				if(adjust>(1+change_max)) adjust = 1+change_max;
+				else if(adjust<1/(1+change_max)) adjust = 1/(1+change_max);
 				// Adjust effort
 				effort *= adjust;
 				effort_set(model,effort);
@@ -206,7 +236,7 @@ public:
 private:
 
 	/**
-	 * Time that the last F estimate was made
+	 * Time that the last exp. rate estimate was made
 	 */
 	int last_;
 
@@ -230,27 +260,32 @@ public:
 	/**
 	 * Degree of smoothing of biomass index
 	 */
-	double responsiveness;
+	double responsiveness = 1;
 
 	/**
 	 * Target harvest rate relative to historic levels i.e 0.9 = 90% of historic average
 	 */
-	double multiplier;
+	double multiplier = 400000;
 
 	/**
 	 * Threshold biomass index
 	 */
-	double threshold;
+	double threshold = 0.3;
 
 	/**
 	 * Limit biomass index
 	 */
-	double limit;
+	double limit = 0.1;
+
+	/**
+	 * Maximum change
+	 */
+	double change_max = 0.3;
 
 	/**
 	 * Buffer around target F
 	 */
-	double maximum;
+	double maximum = 600000;
 
 	/**
 	 * Reflection
@@ -258,10 +293,12 @@ public:
 	template<class Mirror>
 	void reflect(Mirror& mirror){
 		mirror
+			.data(precision,"precision")
 			.data(responsiveness,"responsiveness")
 			.data(multiplier,"multiplier")
 			.data(threshold,"threshold")
 			.data(limit,"limit")
+			.data(change_max,"change_max")
 			.data(maximum,"maximum")
 		;
 	}
@@ -269,14 +306,17 @@ public:
 	void write(std::ofstream& stream){
 		stream
 			<<"IRate"<<"\t"
+			<<precision<<"\t"
 			<<responsiveness<<"\t"
 			<<multiplier<<"\t"
 			<<threshold<<"\t"
 			<<limit<<"\t"
-			<<maximum<<"\t\t\t\t\t\n";
+			<<change_max<<"\t"
+			<<maximum<<"\t\t\t\t\n";
 	}
 
 	virtual void reset(void){
+		last_ = -1;
 	}
 
 	virtual void operate(uint time, Model& model){
@@ -284,8 +324,11 @@ public:
 		int quarter = IOSKJ::quarter(time);
 		// Operate once per year in the third quarter
 		if(quarter==3){
-			// Get CPUE; currently for M-PL but could use any region/method
-			double cpue = model.biomass_vulnerable(M,PL);
+			// Get CPUE as a combination of W/PS and M/PL
+			GeometricMean combined;
+			combined.append(model.cpue(W,PS));
+			combined.append(model.cpue(M,PL));
+			double cpue = combined;
 			// Add observation error
 			Lognormal imprecision(1,precision);
 			cpue *= imprecision.random();
@@ -298,6 +341,15 @@ public:
 			else rate = multiplier/(threshold-limit)*(index_-limit);
 			// Calculate recommended TAC
 			double tac = std::min(rate*cpue,maximum);
+			// Restrict changes in TAC
+			if(last_!=-1){
+				double change = tac/last_;
+				double max = 1 + change_max;
+				if(change>max) change = max;
+				else if(change<1/max) change = 1/max;
+				tac = last_*change;
+			}
+			last_ = tac;
 			// Apply recommended TAC
 			catches_set(model,tac);
 		}
@@ -309,6 +361,11 @@ private:
 	 * Smoothed biomass index
 	 */
 	double index_;
+
+	/**
+	 * Last TAC value
+	 */
+	double last_;
 };
 
 
@@ -331,21 +388,21 @@ public:
 			auto& proc = * new FRange;
 			proc.frequency = 3;
 			proc.precision = 0.1;
-			proc.target = 0.7;
-			proc.buffer = 0.1;
+			proc.target = 0.25;
+			proc.buffer = 0.05;
+			proc.change_max = 0.3;
 			append(&proc);
 		}
 		{
 			auto& proc = * new IRate;
-			proc.responsiveness = 1;
-			proc.multiplier = 1;
-			proc.threshold = 0.7;
+			proc.responsiveness = 0.6;
+			proc.multiplier = 415000;
+			proc.threshold = 0.4;
 			proc.limit = 0.1;
-			proc.maximum = 600;
+			proc.change_max = 0.3;
 			append(&proc);
 		}
 
-		/*!!!!!!!!!!!!
 		// BRule
 		for(double precision : {0.0,0.1}){
 			for(auto target : {0.2,0.3}){
@@ -378,23 +435,19 @@ public:
 		}
 		// IRate
 		for(double responsiveness : {0.65, 1.0}){
-			for(double multiplier : {0.9, 1.0}){
+			for(double multiplier : {400000,450000}){
 				for(auto threshold : {0.6, 0.7}){
 					for(auto limit : {0.1, 0.2}){
-						for(auto maximum : {600}){
-							auto& proc = * new IRate;
-							proc.responsiveness = responsiveness;
-							proc.multiplier = multiplier;
-							proc.threshold = threshold;
-							proc.limit = limit;
-							proc.maximum = maximum;
-							append(&proc);
-						}
+						auto& proc = * new IRate;
+						proc.responsiveness = responsiveness;
+						proc.multiplier = multiplier;
+						proc.threshold = threshold;
+						proc.limit = limit;
+						append(&proc);
 					}
 				}
 			}
 		}
-		*/
 	}
 
 	void reset(int procedure){

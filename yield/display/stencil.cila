@@ -18,12 +18,12 @@ table
 	tbody with model
 		tr
 			td |E_{msy}|
-			td Exploitation rate which produces MSY
-			td text e_msy
+			td Exploitation rate which produces MSY (quarterly)
+			td text round(e_msy,3)
 		tr
 			td |F_{msy}|
-			td Instantaneous rate of fishing mortality which produces MSY
-			td text f_msy
+			td Instantaneous rate of fishing mortality which produces MSY (quarterly)
+			td text round(f_msy,3)
 		tr
 			td |MSY|
 			td Maximum sustainable yield (quarterly)
@@ -43,20 +43,30 @@ figure
 			ggplot(curve,aes(x=exprate,y=yield/1000)) +
 				geom_line() +
 				geom_point(data=model,aes(x=e_msy,y=msy/1000),shape=16,size=3,colour=hsv(0.3,0.7,0.7)) +
-				labs(x="Exploitation rate",y="Yield (`000 t, quarterly)")
+				labs(x="Exploitation rate (quarterly)",y="Yield (`000 t, quarterly)")
 		)
 	figcaption
-		Yield curve: equilibrium yield versus equilibrium exploitation rate. The green point indicates the MSY calculated by the model's `msy_find` method hich uses Brent's minimisation algorithm.
+		Equilibrium yield versus equilibrium exploitation rate. The green point indicates the MSY calculated by the model's `msy_find` method hich uses Brent's minimisation algorithm.
 
 figure
 	r png 17x10cm
 		print(
 			ggplot(curve,aes(x=depletion,y=yield/1000)) +
 				geom_line() +
-				labs(x="Depletion (B/B0)",y="Yield (`000 t, quarterly)")
+				labs(x="Status (B/B0)",y="Yield (`000 t, quarterly)")
 		)
 	figcaption
-		Yield curve: equilibrium yield versus equilibrium depletion levels (%B0).
+		Equilibrium yield versus equilibrium stock status.
+
+figure
+	r png 17x10cm
+		print(
+			ggplot(curve,aes(x=exprate,y=depletion)) +
+				geom_line() +
+				labs(x="Exploitation rate (quarterly)", y="Status (B/B0)")
+		)
+	figcaption
+		Equilibrium stock status versus equilbrium exploitation rate.
 
 figure
 	r png 17x10cm
