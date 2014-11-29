@@ -11,17 +11,36 @@ r
 	),from='../../evaluate/output')
 	# Calculate performance statistics from performance measures
 	perfs <- ddply(performances,.(procedure),summarise,
-		yield = mean(catches_total)/1000*4,
+		yield = mean(catches_total/1000*4),
+		yield_sd = sd(catches_total/1000*4),
 		stability = -mean(catches_mapc),
+		stability_sd = sd(catches_mapc),
 		status = mean(status_mean),
+		status_sd = sd(status_mean),
 		safety10 = 1-mean(status_b10),
+		safety10_sd = sd(status_b10),
 		safety20 = 1-mean(status_b20),
+		safety20_sd = sd(status_b20),
+		kobe_a = mean(kobe_a),
+		kobe_a_sd = sd(kobe_a),
+		kobe_d = mean(kobe_d),
+		kobe_d_sd = sd(kobe_d),
+		kobe_to_a = mean(kobe_to_a,na.rm=T),
+		kobe_to_a_sd = sd(kobe_to_a),
 		cpue_w_ps = mean(cpue_mean_w_ps),
+		cpue_w_ps_sd = sd(cpue_mean_w_ps),
 		cpue_m_pl = mean(cpue_mean_m_pl),
-		cpue_e_gn = mean(cpue_mean_e_gn)
+		cpue_m_pl_sd = sd(cpue_mean_m_pl),
+		cpue_e_gn = mean(cpue_mean_e_gn),
+		cpue_e_gn_sd = sd(cpue_mean_e_gn)
 	)
 	# List of names of performance statistics
-	stats <- c('yield','stability','status','safety10','safety20','cpue_w_ps','cpue_m_pl','cpue_e_gn')
+	stats <- c(
+		'yield','stability',
+		'status','safety10','safety20',
+		'kobe_a','kobe_d','kobe_to_a',
+		'cpue_w_ps','cpue_m_pl','cpue_e_gn'
+	)
 	# Merge in procedures to facilitate summaries by procedure parameters
 	perfs <- merge(procedures,perfs)
 	# Augment track
@@ -31,14 +50,18 @@ r
 	# Plot of tradeoff between two performance statistics
 	plot_tradeoff <- function(data,x,y,colour,shape){
 		data <- within(data,{
-			x = data[,names(x)]
-			y = data[,names(y)]
+			xm = data[,names(x)]
+			xsd = data[,paste0(names(x),'_sd')]
+			ym = data[,names(y)]
+			ysd = data[,paste0(names(y),'_sd')]
 			colour = factor(data[,names(colour)])
 			shape = factor(data[,names(shape)])
 		})
 		print(
-			ggplot(data,aes(x=x,y=y,colour=colour,shape=shape)) +
-				geom_point(size=3,alpha=0.7) + 
+			ggplot(data,aes(colour=colour,shape=shape)) +
+				geom_point(aes(x=xm,y=ym),size=3,alpha=0.7) + 
+				geom_segment(aes(x=xm-xsd,xend=xm+xsd,y=ym,yend=ym),alpha=0.5) +
+				geom_segment(aes(x=xm,xend=xm,y=ym-ysd,yend=ym+ysd),alpha=0.5) +
 				geom_vline(x=0,alpha=0) + 
 				geom_hline(y=0,alpha=0) + 
 				scale_shape_manual(values=1:10) + 
@@ -153,3 +176,16 @@ figure
 		)
 	figcaption
 		Trade-off between yield and stock status for alternative instances of the the FRange class of management procedure.
+
+
+figure
+	r png 17x10cm
+		plot_tradeoff(
+			subset(perfs,class=="IRate"),
+			x = list(yield='Yield (mean annual catch, `000 t)'),
+			y = list(status='Status (mean of B/B0)'),
+			colour = list(p3='Target'),
+			shape = list(p4='Buffer')
+		)
+	figcaption
+		Trade-off between yield and stock status for alternative instances of the the IRate class of management procedure.
