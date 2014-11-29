@@ -667,7 +667,7 @@ public:
 					biomass_vulnerable(region,method) = biomass_vuln;
 
 					// Update CPUE
-					if(quarter==3){
+					if(quarter==0){
 						if(year==1985) cpue_base(region,method).reset();
 						if(year>=1985 and year<=2013){
 							cpue_base(region,method).append(biomass_vuln);

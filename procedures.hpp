@@ -65,6 +65,57 @@ public:
 };
 
 /**
+ * Constant catch management procedure
+ *
+ * Used as a illustrative reference case
+ */
+class ConstCatch : public Procedure, public Structure<ConstCatch> {
+public:
+
+	/**
+	 * Total allowable catch (quarterly)
+	 *
+	 * This is the mean catch over last 5 years (t) (2009–2013) from Table 7
+	 * of IOTC–2014–WPTT16
+	 */
+	double tac = 429564.0/4;
+
+	virtual void write(std::ofstream& stream){
+		stream
+			<<"ConstCatch\t"<<tac<<"\t\t\t\t\t\t\t\t\t\n";
+	}
+
+	virtual void operate(uint time, Model& model){
+		catches_set(model,tac);
+	}
+};
+
+/**
+ * Constant effort management procedure
+ *
+ * Used as a illustrative reference case
+ */
+class ConstEffort : public Procedure, public Structure<ConstEffort> {
+public:
+
+	/**
+	 * Total allowable effort (quarterly)
+	 *
+	 * Nominal number of effort units for each region/method
+	 */
+	double tae = 100;
+
+	virtual void write(std::ofstream& stream){
+		stream
+			<<"ConstEffort\t"<<tae<<"\t\t\t\t\t\t\t\t\t\n";
+	}
+
+	virtual void operate(uint time, Model& model){
+		effort_set(model,tae);
+	}
+};
+
+/**
  * `BRule` management procedure
  */
 class BRule : public Procedure, public Structure<BRule> {
@@ -126,7 +177,7 @@ public:
 	virtual void operate(uint time, Model& model){
 		int year = IOSKJ::year(time);
 		int quarter = IOSKJ::quarter(time);
-		if(quarter==3 and (last_<0 or year-last_>frequency)){
+		if(quarter==0 and (last_<0 or year-last_>=frequency)){
 			// Get stock status
 			double b = model.biomass_status(time);
 			// Add imprecision
@@ -139,6 +190,8 @@ public:
 			else f = target/(thresh-limit)*(b-limit);
 			// Apply F
 			model.fishing_mortality_set(f);
+			// Update last
+			last_ = year;
 		}
 	}
 
@@ -207,13 +260,13 @@ public:
 
 	virtual void reset(void){
 		last_ = -1;
-		effort = 100;
+		effort_ = 100;
 	}
 
 	virtual void operate(uint time, Model& model){
 		int year = IOSKJ::year(time);
 		int quarter = IOSKJ::quarter(time);
-		if(quarter==3 and (last_<0 or year-last_>frequency)){
+		if(quarter==0 and (last_<0 or year-last_>=frequency)){
 			// Get an estimate of exploitation rate
 			double f = model.exploitation_rate_get();
 			// Add imprecision
@@ -226,9 +279,10 @@ public:
 				if(adjust>(1+change_max)) adjust = 1+change_max;
 				else if(adjust<1/(1+change_max)) adjust = 1/(1+change_max);
 				// Adjust effort
-				effort *= adjust;
-				effort_set(model,effort);
+				effort_ *= adjust;
+				effort_set(model,effort_);
 			}
+			// Update last
 			last_ = year;
 		}
 	}
@@ -243,7 +297,7 @@ private:
 	/**
 	 * Total allowable effort
 	 */
-	double effort;
+	double effort_;
 };
 
 /**
@@ -265,7 +319,7 @@ public:
 	/**
 	 * Target harvest rate relative to historic levels i.e 0.9 = 90% of historic average
 	 */
-	double multiplier = 400000;
+	double multiplier = 100000;
 
 	/**
 	 * Threshold biomass index
@@ -285,7 +339,7 @@ public:
 	/**
 	 * Buffer around target F
 	 */
-	double maximum = 600000;
+	double maximum = 150000;
 
 	/**
 	 * Reflection
@@ -317,12 +371,13 @@ public:
 
 	virtual void reset(void){
 		last_ = -1;
+		index_ = -1;
 	}
 
 	virtual void operate(uint time, Model& model){
 		int quarter = IOSKJ::quarter(time);
 		// Operate once per year in the third quarter
-		if(quarter==3){
+		if(quarter==0){
 			// Get CPUE as a combination of W/PS and M/PL
 			GeometricMean combined;
 			combined.append(model.cpue(W,PS));
@@ -332,7 +387,8 @@ public:
 			Lognormal imprecision(1,precision);
 			cpue *= imprecision.random();
 			// Update smoothed index
-			index_ = responsiveness*cpue + (1-responsiveness)*index_;
+			if(index_==-1) index_ = cpue;
+			else index_ = responsiveness*cpue + (1-responsiveness)*index_;
 			// Calculate recommended harvest rate
 			double rate;
 			if(index_<limit) rate = 0;
@@ -372,15 +428,17 @@ class Procedures : public Array<Procedure*> {
 public:
 
 	void populate(void){
-		// DoNothing procedure mainly for testing
-		append(new DoNothing);
-		// Examples of each MP mainly for testing
+		// Examples of each MP mainly used for testing
+		// and illustration
+		append(new ConstCatch);
+		append(new ConstEffort);
 		{
 			auto& proc = * new BRule;
-			proc.precision = 0.1;
-			proc.target = 0.2;
-			proc.thresh = 0.6;
-			proc.limit = 0.1;
+			proc.frequency = 2;
+			proc.precision = 0.2;
+			proc.target = 0.25;
+			proc.thresh = 0.3;
+			proc.limit = 0.05;
 			append(&proc);
 		}
 		{
@@ -395,12 +453,14 @@ public:
 		{
 			auto& proc = * new IRate;
 			proc.responsiveness = 0.6;
-			proc.multiplier = 415000;
+			proc.multiplier = 100000;
 			proc.threshold = 0.4;
 			proc.limit = 0.1;
 			proc.change_max = 0.3;
 			append(&proc);
 		}
+
+		return;
 
 		// BRule
 		for(int frequency : {1,2,5}){
