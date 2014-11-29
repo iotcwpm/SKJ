@@ -272,7 +272,7 @@ void condition_ss3(int replicates=1000){
  * @param vary Should replicates vary? Should only be set to false for testing
  * @param msy Should msy be calculated for each replicate?
  */
-void evaluate(const std::string& samples_file, int replicates=1000, bool vary=true, bool msy=true){
+void evaluate(const std::string& samples_file, int replicates=1000, int procedure_select=-1, bool vary=true, bool msy=true){
 	boost::filesystem::create_directories("evaluate/output");
 	// Setup parameters and data
 	Parameters parameters;
@@ -285,6 +285,10 @@ void evaluate(const std::string& samples_file, int replicates=1000, bool vary=tr
 	samples_all.read(samples_file);
 	samples_all.write("evaluate/output/samples_all.tsv");
 	Frame samples;
+	// Frame for hoding reference points
+	Frame references({
+		"b0","e_msy","f_msy","msy","b_msy"
+	});
 	// Setup procedures
 	Procedures procedures;
 	procedures.populate();
@@ -321,8 +325,22 @@ void evaluate(const std::string& samples_file, int replicates=1000, bool vary=tr
 		}
 		// Determine MSY related reference points
 		if(msy) current.msy_find();
+		// Record reference points for replicate
+		references.append({
+			current.biomass_spawners_unfished,
+			current.e_msy,
+			current.f_msy,
+			current.msy,
+			current.biomass_spawners_msy,
+		});
 		// For each candidate procedure...
-		for(uint procedure=0;procedure<procedures.size();procedure++){
+		uint procedure_begin = 0;
+		uint procedure_end = procedures.size()-1;
+		if(procedure_select>=0){
+			procedure_begin = procedure_select;
+			procedure_end = procedure_select;
+		}
+		for(uint procedure=procedure_begin;procedure<=procedure_end;procedure++){
 			// Create a model with current state to use to 
 			// simulate procedure
 			Model future = current;
@@ -351,6 +369,7 @@ void evaluate(const std::string& samples_file, int replicates=1000, bool vary=tr
 	}
 	procedures.write("evaluate/output/procedures.tsv");
 	samples.write("evaluate/output/samples.tsv");
+	references.write("evaluate/output/references.tsv");
 	performances.write("evaluate/output/performances.tsv");
 }
 

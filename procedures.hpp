@@ -116,7 +116,7 @@ public:
 			<<precision<<"\t"
 			<<target<<"\t"
 			<<thresh<<"\t"
-			<<limit<<"\t\t\t\t\t\t\n";
+			<<limit<<"\t\t\t\t\t\n";
 	}
 
 	virtual void reset(void){
@@ -312,7 +312,7 @@ public:
 			<<threshold<<"\t"
 			<<limit<<"\t"
 			<<change_max<<"\t"
-			<<maximum<<"\t\t\t\t\n";
+			<<maximum<<"\t\t\t\n";
 	}
 
 	virtual void reset(void){
@@ -320,7 +320,6 @@ public:
 	}
 
 	virtual void operate(uint time, Model& model){
-		int year = IOSKJ::year(time);
 		int quarter = IOSKJ::quarter(time);
 		// Operate once per year in the third quarter
 		if(quarter==3){
@@ -404,30 +403,34 @@ public:
 		}
 
 		// BRule
-		for(double precision : {0.0,0.1}){
-			for(auto target : {0.2,0.3}){
-				for(auto thresh : {0.6,0.7}){
-					for(auto limit : {0.1,0.2}){
-						auto& proc = * new BRule;
-						proc.precision = precision;
-						proc.target = target;
-						proc.thresh = thresh;
-						proc.limit = limit;
-						append(&proc);
+		for(int frequency : {1,2,5}){
+			for(double precision : {0.0,0.1,0.2}){
+				for(auto target : {0.2,0.25,0.3}){
+					for(auto thresh : {0.6,0.7}){
+						for(auto limit : {0.05,0.1,0.2}){
+							auto& proc = * new BRule;
+							proc.frequency = frequency;
+							proc.precision = precision;
+							proc.target = target;
+							proc.thresh = thresh;
+							proc.limit = limit;
+							append(&proc);
+						}
 					}
 				}
 			}
 		}
 		// FRange
-		for(int frequency : {2,5}){
+		for(int frequency : {1,2,5}){
 			for(double precision : {0.0,0.1}){
-				for(auto target : {0.2,0.3}){
-					for(auto buffer : {0.1,0.2}){
+				for(auto target : {0.2,0.25,0.3}){
+					for(auto buffer : {0.01,0.02,0.05}){
 						auto& proc = * new FRange;
 						proc.frequency = frequency;
 						proc.precision = precision;
 						proc.target = target;
 						proc.buffer = buffer;
+						proc.change_max = 0.4;
 						append(&proc);
 					}
 				}
@@ -439,10 +442,12 @@ public:
 				for(auto threshold : {0.6, 0.7}){
 					for(auto limit : {0.1, 0.2}){
 						auto& proc = * new IRate;
+						proc.precision = 0.2;
 						proc.responsiveness = responsiveness;
 						proc.multiplier = multiplier;
 						proc.threshold = threshold;
 						proc.limit = limit;
+						proc.change_max = 0.4;
 						append(&proc);
 					}
 				}

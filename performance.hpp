@@ -164,9 +164,6 @@ public:
 	 * Record performance measures
 	 */
 	void record(uint time, const Model& model){
-		uint year = IOSKJ::year(time);
-		uint quarter = IOSKJ::quarter(time);
-
 		times.append();
 
 		// Catch magnitude
