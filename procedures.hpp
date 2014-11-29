@@ -463,11 +463,11 @@ public:
 		return;
 
 		// BRule
-		for(int frequency : {1,2,5}){
-			for(double precision : {0.0,0.1,0.2}){
+		for(int frequency : {2}){
+			for(double precision : {0.2}){
 				for(auto target : {0.2,0.25,0.3}){
-					for(auto thresh : {0.6,0.7}){
-						for(auto limit : {0.05,0.1,0.2}){
+					for(auto thresh : {0.2,0.3,0.4}){
+						for(auto limit : {0.025,0.05,0.1}){
 							auto& proc = * new BRule;
 							proc.frequency = frequency;
 							proc.precision = precision;
@@ -481,8 +481,8 @@ public:
 			}
 		}
 		// FRange
-		for(int frequency : {1,2,5}){
-			for(double precision : {0.0,0.1}){
+		for(int frequency : {2,5,7}){
+			for(double precision : {0.2}){
 				for(auto target : {0.2,0.25,0.3}){
 					for(auto buffer : {0.01,0.02,0.05}){
 						auto& proc = * new FRange;
@@ -497,10 +497,10 @@ public:
 			}
 		}
 		// IRate
-		for(double responsiveness : {0.65, 1.0}){
-			for(double multiplier : {400000,450000}){
-				for(auto threshold : {0.6, 0.7}){
-					for(auto limit : {0.1, 0.2}){
+		for(double responsiveness : {0.5}){
+			for(double multiplier : {80000,100000,120000}){
+				for(auto threshold : {0.5, 0.6, 0.7}){
+					for(auto limit : {0.05, 0.1,0.2}){
 						auto& proc = * new IRate;
 						proc.precision = 0.2;
 						proc.responsiveness = responsiveness;
@@ -508,6 +508,7 @@ public:
 						proc.threshold = threshold;
 						proc.limit = limit;
 						proc.change_max = 0.4;
+						proc.maximum = 150000;
 						append(&proc);
 					}
 				}
