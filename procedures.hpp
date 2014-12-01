@@ -460,8 +460,6 @@ public:
 			append(&proc);
 		}
 
-		return;
-
 		// BRule
 		for(int frequency : {2}){
 			for(double precision : {0.2}){
@@ -498,7 +496,7 @@ public:
 		}
 		// IRate
 		for(double responsiveness : {0.5}){
-			for(double multiplier : {80000,100000,120000}){
+			for(double multiplier : {100000,120000,140000}){
 				for(auto threshold : {0.5, 0.6, 0.7}){
 					for(auto limit : {0.05, 0.1,0.2}){
 						auto& proc = * new IRate;
