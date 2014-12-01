@@ -366,11 +366,16 @@ void evaluate(const std::string& samples_file, int replicates=1000, int procedur
 			// Save performance
 			performances.append(performance);
 		}
+
+		// Write out every 10 replicates (so results stored if aborted)
+		// or if at end
+		if(replicate%10==0 or replicate==replicates-1){
+			procedures.write("evaluate/output/procedures.tsv");
+			samples.write("evaluate/output/samples.tsv");
+			references.write("evaluate/output/references.tsv");
+			performances.write("evaluate/output/performances.tsv");
+		}
 	}
-	procedures.write("evaluate/output/procedures.tsv");
-	samples.write("evaluate/output/samples.tsv");
-	references.write("evaluate/output/references.tsv");
-	performances.write("evaluate/output/performances.tsv");
 }
 
 template<typename Type>
