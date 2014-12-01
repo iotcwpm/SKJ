@@ -19,6 +19,6 @@ section
 		delete #title
 
 section
-	h1 Evaluation results
+	h1 Evaluations
 	include "../../evaluate/display"
 		delete #title
