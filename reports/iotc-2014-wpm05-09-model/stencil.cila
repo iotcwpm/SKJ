@@ -1,4 +1,4 @@
-#title Management procedure evaluation for the Indian Ocean skipjack tuna fishery : simulation model description and conditioning
+#title Management procedure evaluation for the Indian Ocean skipjack tuna fishery : model description and conditioning
 
 Nokome Bentley{sup 1} and M. Shiham Adam{sup 2}
 
@@ -23,9 +23,18 @@ section
 	The model, and consequently this document, are under development. The general approach to model development has been to start simple and add complexity as required. Potential alternative model formulations are noted throughout the document.
 
 section
-	h1 Structure
+	h1 Structure and assumptions
 	include "../../model/description"
 		delete #title
+
+section
+	h1 Implementation
+
+	The source code for this project is managed using the Git distributed version control system and is publically available at (https://github.com/iotcwpm/SKJ)[https://github.com/iotcwpm/SKJ]. The `README.md` file of the repository provides a useful entry point for understanding the organisation of the code.
+
+	The model has been implemented using the C++ programming language. C++ was chosen for its high computational speed, considered an important requirement for a model of this complexity, which is to be used to evaluate numerous candidate management procedures, several thousand times. The C++ code is generally well documented and web navigatible documentation, generated using the tool [Doxygen](), is available at ()[]. As the model is being refined this documentation is updated and as such it should be considered more up-to-date than the above descriptions and equations which may have been superceded.
+
+	In addition to the core C++ code, R scripts for the preparation of input data and for the generation of output summaries are available in the repository.
 
 section
 	h1 Parameter priors and sensitivity ranges
