@@ -78,13 +78,16 @@ void yield(void){
 	parameters.read();
 	parameters.set(0,model);
 	// Generate and output yield curve
-	Frame yc = model.yield_curve();
-	yc.write("yield/output/curve.tsv");
+	model.yield_curve().write("yield/output/curve.tsv");
 	// Find MSY and output
 	model.msy_find();
-	std::ofstream file("yield/output/model.tsv");
-	file<<"e_msy\tf_msy\tmsy\tbiomass_spawner_msy\tmsy_trials\n";
-	file<<model.e_msy<<"\t"<<model.f_msy<<"\t"<<model.msy<<"\t"<<model.biomass_spawners_msy<<"\t"<<model.msy_trials<<"\n";
+	Frame msy(
+		{"e_msy","f_msy","msy","biomass_spawner_msy","msy_trials"},
+		{model.e_msy,model.f_msy,model.msy,model.biomass_spawners_msy,double(model.msy_trials)}
+	);
+	msy.write("yield/output/msy.tsv");
+	// Generate and output yield per recruit curve
+	model.yield_per_recruit().write("yield/output/per_recruit.tsv");
 }
 
 /**

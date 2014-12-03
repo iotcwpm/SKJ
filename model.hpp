@@ -560,24 +560,8 @@ public:
 			write();
 		#endif
 
-		// Calculate unfished state
-		// Turn off recruitment relationship and exploitation
-		recruits_relation_on = false;
-		exploit = exploit_none;
-		// Set unfished recruitment to an arbitrarily high number so it can be calculated in terms of biomass_spawners_unfished
-		recruits_unfished = 1e10;
-		// Go to equilibrium
-		equilibrium();
-		// Scale up unfished recruitment and biomass_spawning_unfished (by quarter) to match biomass_spawners_unfished
-		double scalar = biomass_spawners_unfished/biomass_spawners(sum);
-		recruits_unfished *= scalar;
-		numbers *= scalar;
-		for(auto quarter : quarters) biomass_spawning_unfished(quarter) = biomass_spawning_overall(quarter)*scalar;
-
-		// Calculate the 
-		// Turn on recruitment relationship etc again
-		recruits_relation_on = true;
-		exploit = exploit_catch;
+		// Go to pristine
+		pristine_go();
 
 		// During debug mode dump the model here for easy inspection
 		// Done after equilibrium() and biomass_spawning_unfished has been set
@@ -803,12 +787,33 @@ public:
 		recruits_variation_on = recruits_variation_on_setting;
 	}
 
+	void pristine_go(void){
+		// Calculate unfished state
+		// Turn off recruitment relationship and exploitation
+		recruits_relation_on = false;
+		exploit = exploit_none;
+		// Set unfished recruitment to an arbitrarily high number so it can be calculated in terms of biomass_spawners_unfished
+		recruits_unfished = 1e10;
+		// Go to equilibrium
+		equilibrium();
+		// Scale up unfished recruitment and biomass_spawning_unfished (by quarter) to match biomass_spawners_unfished
+		double scalar = biomass_spawners_unfished/biomass_spawners(sum);
+		recruits_unfished *= scalar;
+		numbers *= scalar;
+		for(auto quarter : quarters) biomass_spawning_unfished(quarter) = biomass_spawning_overall(quarter)*scalar;
+
+		// Calculate the 
+		// Turn on recruitment relationship etc again
+		recruits_relation_on = true;
+		exploit = exploit_catch;
+	}
+
 	/**
 	 * Generate a yield curve
 	 */
 	Frame yield_curve(double step = 0.05){
 		Frame curve({"exprate","f","yield","depletion"});
-		curve.append({0,0,1});
+		curve.append({0,0,0,1});
 		for(double exprate=step;exprate<1;exprate+=step){
 			#if DEBUG
 				std::cout<<"************yield_curve "<<exprate<<"**************\n";
@@ -821,6 +826,36 @@ public:
 			curve.append({exprate,f,yield,depletion});
 		}
 		return curve;
+	}
+
+	/**
+	 * Generate a yield per recruit curve
+	 *
+	 * Since the model uses a size based transition matrix for growth
+	 * take the population to equilibrium and then calculate numbers, 
+	 * weight etc in each age class. 
+	 * This is really a biomass-per-recruit curve.
+	 */
+	Frame yield_per_recruit(void){
+		pristine_go();
+		Frame ypr({"age","number","length","weight"});
+		for(auto age : ages){
+			double number = 0;
+			double length = 0;
+			double weight = 0;
+			for(auto region : regions){
+				for(auto size : sizes){
+					double n = numbers(region,age,size);
+					number += n;
+					length += lengths(size) * n;
+					weight += weights(size) * n;
+				}
+			}
+			length /= number;
+			weight /= number;
+			ypr.append({double(age.index()),number,length,weight});
+		}
+		return ypr;
 	}
 
 	/**

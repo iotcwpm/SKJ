@@ -3,70 +3,82 @@
 This section summarises output from the `yield` task which is primarily intended for checking MSY calculations and the shape of the yield curve. The shape of the yield curve is dependent on the model's parameters (in this case read in from `parameters/input/parameters.cila`) including selectivity parameters (shown below).
 
 r
+	# Load in source and output files
 	source('../../common.R',local=T)
-	
 	load(c(
-		'curve','model'
+		'curve','msy','per_recruit'
 	),from='../../yield/output')
-	
 	load(c(
 		'maturities','selectivities'
 	),from='../../model/output')
 
+	# Find B40% etc
+	points <- NULL
+	points <- rbind(points,curve[with(curve,which.min(abs(depletion-0.3))),])
+	points <- rbind(points,curve[with(curve,which.min(abs(depletion-0.4))),])
+	points <- rbind(points,curve[with(curve,which.min(abs(depletion-0.5))),])
+	points$level <- c(0.3,0.4,0.5)
+
+	# Normalise to per recruit
+	per_recruit$number <- per_recruit$number/per_recruit$number[1]
+	# Calculate ypr
+	per_recruit$ypr <- with(per_recruit,number*weight)
+	# Remove plus age
+	per_recruit <- per_recruit[-nrow(per_recruit),]
+	# Find maximum
+	ypr_max_age  <- with(per_recruit,age[which.max(ypr)])
+	ypr_max_length  <- with(per_recruit,length[which.max(ypr)])
+
 table
-	caption Yield curve related variables.
-	tbody with model
+	caption Yield curve related variables determined from the reference parameter set
+	thead
 		tr
-			td |E_{msy}|
+			th Symbol
+			th Description
+			th Value	
+	tbody with msy
+		tr
+			td |bar E^{msy}|
 			td Exploitation rate which produces MSY (quarterly)
 			td text round(e_msy,3)
 		tr
-			td |F_{msy}|
+			td |bar F^{msy}|
 			td Instantaneous rate of fishing mortality which produces MSY (quarterly)
 			td text round(f_msy,3)
 		tr
-			td |MSY|
+			td |bar C^{msy}|
 			td Maximum sustainable yield (quarterly)
 			td text msy
 		tr
-			td |B_{msy}|
-			td Total spawning biomass associated with maximum sustainable yield
-			td text biomass_spawning_msy
+			td |bar S^{msy}|
+			td Total spawner biomass associated with maximum sustainable yield
+			td text biomass_spawners_msy
 		tr
-			td
+			td -
 			td Number of iterations used to find MSY
 			td text msy_trials
 
-figure
-	r png 17x10cm
-		print(
-			ggplot(curve,aes(x=exprate,y=yield/1000)) +
-				geom_line() +
-				geom_point(data=model,aes(x=e_msy,y=msy/1000),shape=16,size=3,colour=hsv(0.3,0.7,0.7)) +
-				labs(x="Exploitation rate (quarterly)",y="Yield (`000 t, quarterly)")
-		)
-	figcaption
-		Equilibrium yield versus equilibrium exploitation rate. The green point indicates the MSY calculated by the model's `msy_find` method hich uses Brent's minimisation algorithm.
+
 
 figure
-	r png 17x10cm
-		print(
-			ggplot(curve,aes(x=depletion,y=yield/1000)) +
+	r png 17x20cm
+		p1 = ggplot(curve,aes(x=exprate,y=yield/1000)) +
+				geom_line() +
+				geom_point(data=msy,aes(x=e_msy,y=msy/1000),shape=16,size=3,colour=hsv(0.3,0.7,0.7)) +
+				geom_point(data=points,aes(x=exprate,y=yield/1000,colour=level)) + 
+				labs(x="Exploitation rate (quarterly)",y="Yield (`000 t, quarterly)")
+		p2 = ggplot(curve,aes(x=depletion,y=yield/1000)) +
 				geom_line() +
 				labs(x="Status (B/B0)",y="Yield (`000 t, quarterly)")
-		)
-	figcaption
-		Equilibrium yield versus equilibrium stock status.
-
-figure
-	r png 17x10cm
-		print(
-			ggplot(curve,aes(x=exprate,y=depletion)) +
+		p3 = ggplot(curve,aes(x=exprate,y=depletion)) +
 				geom_line() +
 				labs(x="Exploitation rate (quarterly)", y="Status (B/B0)")
-		)
+		multiplot(p1,p2,p3)
 	figcaption
-		Equilibrium stock status versus equilbrium exploitation rate.
+		(top) Equilibrium yield versus equilibrium exploitation rate. 
+		(middle) Equilibrium yield versus equilibrium stock status.
+		(bottom) Equilibrium stock status versus equilbrium exploitation rate.
+		The green point indicates the MSY calculated by the model's `msy_find` method which uses Brent's minimisation algorithm.
 
 figure
 	r png 17x10cm
@@ -78,3 +90,26 @@ figure
 		)
 	figcaption
 		Maturity at length (dotted line) and selectivity at length (by method).
+
+
+h1 Yield per recruit
+		
+	figure
+		r png 12x17cm
+			par(mfrow=c(4,1),mar=c(0,5,0,0),oma=c(5,0,1,1),las=1)
+			with(per_recruit,{
+				plot(x=age,y=number,xaxt="n",ylab="Survival",type='l')
+				abline(v=ypr_max_age,lty=2)
+				plot(x=age,y=length,xaxt="n",ylab="Length (cm)",type='l')
+				abline(v=ypr_max_age,lty=2)
+				abline(h=ypr_max_length,lty=2)
+				plot(x=age,y=weight,xaxt="n",ylab="Weight (kg)",type='l')
+				abline(v=ypr_max_age,lty=2)
+				plot(x=age,y=ypr,xaxt="n",ylab="Yield-per-recruit (kg)",type='l')
+				abline(v=ypr_max_age,lty=2)
+				axis(side=1,at=seq(0,20,4))
+				mtext("Age (quarters)",side=1,outer=F,line=2,cex=0.7)
+			})
+		figcaption
+			Yield per recruit.
+
