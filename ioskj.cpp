@@ -83,7 +83,7 @@ void yield(void){
 	// Find MSY and output
 	model.msy_find();
 	std::ofstream file("yield/output/model.tsv");
-	file<<"e_msy\tf_msy\tmsy\tbiomass_spawning_msy\tmsy_trials\n";
+	file<<"e_msy\tf_msy\tmsy\tbiomass_spawner_msy\tmsy_trials\n";
 	file<<model.e_msy<<"\t"<<model.f_msy<<"\t"<<model.msy<<"\t"<<model.biomass_spawners_msy<<"\t"<<model.msy_trials<<"\n";
 }
 
