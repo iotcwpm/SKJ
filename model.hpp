@@ -807,7 +807,7 @@ public:
 	 * Generate a yield curve
 	 */
 	Frame yield_curve(double step = 0.05){
-		Frame curve({"exprate","yield","depletion"});
+		Frame curve({"exprate","f","yield","depletion"});
 		curve.append({0,0,1});
 		for(double exprate=step;exprate<1;exprate+=step){
 			#if DEBUG
@@ -815,9 +815,10 @@ public:
 			#endif
 			exploitation_rate_set(exprate);
 			equilibrium();
+			double f = fishing_mortality_get();
 			double yield = catches_taken(sum);
 			double depletion = biomass_spawning_overall(sum)/biomass_spawning_unfished(sum);
-			curve.append({exprate,yield,depletion});
+			curve.append({exprate,f,yield,depletion});
 		}
 		return curve;
 	}
