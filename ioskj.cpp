@@ -17,14 +17,14 @@ using namespace IOSKJ;
  * @param samples_file A filesystem path to a TSV file of parameter samples
  * @parameters samples_row Row index of samples to select
  */
-void run(const std::string& samples_file="",int samples_row=0,int procedure=0){
+void run(const std::string& samples_file="ref",int samples_row=0,int procedure=0){
 	// Create output directories
 	boost::filesystem::create_directories("model/output");
 	// Read in parameters
 	Parameters parameters;
 	parameters.read();
 	// If samples is specified, read them in and select the desired row
-	if(samples_file!=""){
+	if(samples_file!="ref"){
 		// Read in samples
 		Frame samples;
 		samples.read(samples_file);
@@ -388,7 +388,8 @@ void evaluate(const std::string& samples_file, int replicates=1000, int procedur
 }
 
 template<typename Type>
-Type arg(char** argv,int which){
+Type arg(int argc, char** argv, int which){
+	if(argc<=which) return Type();
 	return boost::lexical_cast<Type>(argv[which]);
 }
 
@@ -397,14 +398,13 @@ int main(int argc, char** argv){
         if(argc==1) throw std::runtime_error("No task given");
         std::string task = argv[1];
         std::cout<<"-------------"<<task<<"-------------\n";
-        if(task=="run") run(arg<std::string>(argv,2),arg<int>(argv,3),arg<int>(argv,4));
-        else if(task=="run_ss3") run("ss3/pars.tsv",arg<int>(argv,2));
+        if(task=="run") run(arg<std::string>(argc,argv,2),arg<int>(argc,argv,3),arg<int>(argc,argv,4));
         else if(task=="yield") yield();
         else if(task=="priors") priors();
-        else if(task=="condition_feasible") condition_feasible(arg<int>(argv,2));
-        else if(task=="condition_ss3") condition_ss3(arg<int>(argv,2));
-        else if(task=="evaluate_feasible") evaluate("feasible/output/accepted.tsv",arg<int>(argv,2));
-        else if(task=="evaluate_ss3") evaluate("ss3/output/accepted.tsv",arg<int>(argv,2));
+        else if(task=="condition_feasible") condition_feasible(arg<int>(argc,argv,2));
+        else if(task=="condition_ss3") condition_ss3(arg<int>(argc,argv,2));
+        else if(task=="evaluate_feasible") evaluate("feasible/output/accepted.tsv",arg<int>(argc,argv,2));
+        else if(task=="evaluate_ss3") evaluate("ss3/output/accepted.tsv",arg<int>(argc,argv,2));
         else throw std::runtime_error("Unrecognised task");
         std::cout<<"-------------------------------\n";
 	} catch(std::exception& error){

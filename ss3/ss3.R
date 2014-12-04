@@ -111,3 +111,20 @@ pars$recruits_steepness.value <- runs$h
 # Write to file
 write.table(runs,file='runs.tsv',col.names=T,row.names=F,quote=F,sep='\t')
 write.table(pars,file='pars.tsv',col.names=T,row.names=F,quote=F,sep='\t')
+
+# Calculate some median parameter values for use in a reference set
+pars <- read.table('pars.tsv',header=T,check.names=F)
+pars <- melt(pars)
+# Calculate medians
+medians <- ddply(pars,.(variable),summarise,value=median(value))
+# Calculate medians for recdev only if estimated
+medians[substr(medians$variable,1,12)=="recruits_dev",] <- ddply(
+	subset(pars,substr(variable,1,12)=="recruits_dev" & value!=0),
+	.(variable),summarise,value=median(value)
+)
+# Output
+write.table(
+	medians,
+	file='par-medians.tsv',
+	col.names=T,row.names=F,quote=F,sep='\t'
+)
