@@ -161,8 +161,12 @@ section
 
 section
 	h1 Fishery-specific yield curves
+
+	Each fishing method has a particular size selectivity ({ref #figure-mat-select}) and as such, the yield curve for each fishery will differ in shape. In this section we examine the shape of the yield curve for the three main fisheries. Rather than using the biomass of spawners in these fishery-specific yield curves we use the fishery-specific vulnerable biomass. Vulnerable biomass is directly proportional to catch rates so is a better measure of how alternative exploitation rates may affect the economic performance of the fishery. Each fishery will have a difference vulnerable biomass because of the different selectivity curve.
+
+	For W-PS the yeild curve has its peak at high a much higher exploitation rate than for M-PL or E-GN ({ref #figure-yield-specific} top). This occurs because the W-PS fishery is selecting for smaller fish. Note also that the vulnerable biomass of all three fisheries is similar at very low exploitation rates. As exploitation rates increase the numbers of older, larger fish decreases and as such the vulnerable biomass of both M-PL ad E-GN decreases ({ref #figure-yield-specific} bottom).
 	
-	figure
+	figure #figure-mat-select
 		r png 17x10cm
 			print(
 				ggplot() +
@@ -173,8 +177,8 @@ section
 		figcaption
 			Maturity at length (dotted line) and selectivity at length (by method).
 
-	figure
-		r png 17x15cm
+	figure #figure-yield-specific
+		r png 17x20cm
 			p1 = ggplot(curve,aes(x=exprate)) +
 					geom_line(aes(y=catch_w_ps/1000,colour="W-PS",linetype="W-PS")) +
 					geom_line(aes(y=catch_m_pl/1000,colour="M-PL",linetype="M-PL")) +
@@ -191,12 +195,16 @@ section
 					geom_line(aes(x=exprate,y=vuln_e_gn/1e6,colour="E-GN",linetype="E-GN")) +
 					labs(x="Exploitation rate (quarterly)",y="Vulnerable biomass (Mt)",colour="",linetype="")		
 			multiplot(p1,p2,p3)
+		figcaption
+			Fishery specific yield curves. Each panel provides a separate line for each fishery (region/method) given that the specified exploitation rate is jointly applied in each fishery.
 
 section
 	h1 Yield per recruit
+
+	To further investigate the nature of the yield in the fishery a simple yield per recruit analysis was done {ref #figure-yield-per-recruit}. This suggests that yield per recruit is maximised at an age of 10 quarters (2.5 years) at a size of about 45cm. Note that this maximum will be highly dependent upon the growth curve and the mortality curve both of which are highly uncertain for fish below 45cm. As such, this analysis should be considered ancillary and treated with caution.
 		
-	figure
-		r png 12x17cm
+	figure #figure-yield-per-recruit
+		r png 12x15cm
 			par(mfrow=c(4,1),mar=c(0,5,0,0),oma=c(5,0,1,1),las=1)
 			with(per_recruit,{
 				plot(x=age,y=number,xaxt="n",ylab="Survival",type='l')
@@ -212,5 +220,5 @@ section
 				mtext("Age (quarters)",side=1,outer=F,line=2,cex=0.7)
 			})
 		figcaption
-			Yield per recruit.
+			Yield per recruit analysis.
 
