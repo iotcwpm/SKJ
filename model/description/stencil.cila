@@ -153,9 +153,15 @@ section
 
 		The proportion of mature fish that spawn in each quarter is allowed to vary according to a quarterly parameter, |rho_q|. Currently, this parameter is the same for all regions. Evidence of regional differences in spawning seasonality would suggest making these parameters vary by region.
 
+		The biomass of mature fish is a function of the number of fish by age and size and the maturity and weight ogives by size,
+
+			|B_r = sum_{a=0...vec(a),s=0...vec(s)} N_{r,a,s} O_s W_s|
+
+		We refer to this varable as the biomass of spawners and is used as the basis for determing stock status, |B/B_{0}|.
+
 		Recruitment occurs in each quarter and is partitioned by region and size, |R_{r,s}|. The total number of eggs is based on the total spawning biomass in the previous quarter,
 
-			|E = sum_{r in {we,ma,ea},a=0...vec(a),s=0...vec(s)} N_{r,a,s} O_s W_s rho_q|
+			|E = sum_{r in {we,ma,ea}} B_r rho_q|
 
 		where |O_s| is the proportion of fish that are mature at size |s|, |W_s| is the weight of fish at size |s|, and |rho_q| is the proportion of fish that spawn in quarter |q|.
 

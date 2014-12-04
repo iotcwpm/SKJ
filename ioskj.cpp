@@ -79,11 +79,17 @@ void yield(void){
 	parameters.set(0,model);
 	// Generate and output yield curve
 	model.yield_curve().write("yield/output/curve.tsv");
-	// Find MSY and output
-	model.msy_find();
+	// Go to Bmsy (to get catches by region/method) and output
+	model.msy_go();
 	Frame msy(
-		{"e_msy","f_msy","msy","biomass_spawner_msy","msy_trials"},
-		{model.e_msy,model.f_msy,model.msy,model.biomass_spawners_msy,double(model.msy_trials)}
+		{
+			"e_msy","f_msy","msy","biomass_spawners_msy","biomass_spawners_unfished","msy_trials",
+			"msy_total","msy_w_ps","msy_m_pl","msy_e_gn"
+		},
+		{
+			model.e_msy,model.f_msy,model.msy,model.biomass_spawners_msy,model.biomass_spawners_unfished,double(model.msy_trials),
+			model.catches_taken(sum),model.catches_taken(W,PS),model.catches_taken(M,PL),model.catches_taken(E,GN)
+		}
 	);
 	msy.write("yield/output/msy.tsv");
 	// Generate and output yield per recruit curve

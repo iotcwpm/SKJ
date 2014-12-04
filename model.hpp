@@ -812,18 +812,22 @@ public:
 	 * Generate a yield curve
 	 */
 	Frame yield_curve(double step = 0.05){
-		Frame curve({"exprate","f","yield","depletion"});
-		curve.append({0,0,0,1});
-		for(double exprate=step;exprate<1;exprate+=step){
+		Frame curve({
+			"exprate","f","yield","status","vuln",
+			"catch_w_ps","catch_m_pl","catch_e_gn",
+			"vuln_w_ps","vuln_m_pl","vuln_e_gn"
+		});
+		for(double exprate=0;exprate<1;exprate+=step){
 			#if DEBUG
 				std::cout<<"************yield_curve "<<exprate<<"**************\n";
 			#endif
-			exploitation_rate_set(exprate);
+			exploitation_rate_set(std::max(exprate,1e-6));
 			equilibrium();
-			double f = fishing_mortality_get();
-			double yield = catches_taken(sum);
-			double depletion = biomass_spawning_overall(sum)/biomass_spawning_unfished(sum);
-			curve.append({exprate,f,yield,depletion});
+			curve.append({
+				exprate,fishing_mortality_get(),catches_taken(sum),biomass_status(0),biomass_vulnerable(sum),
+				catches_taken(W,PS),catches_taken(M,PL),catches_taken(E,GN),
+				biomass_vulnerable(W,PS),biomass_vulnerable(M,PL),biomass_vulnerable(E,GN)
+			});
 		}
 		return curve;
 	}
