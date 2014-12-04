@@ -1,7 +1,7 @@
 section Stock recruitment relation
 
 	#spawners_unfished
-		#value 2e6
+		#value 1.8e6
 		#lower 1e6
 		#upper 5e6
 
