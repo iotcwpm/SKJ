@@ -100,9 +100,12 @@ Inheritance diagram for IOSKJ::Procedure:</div>
  <div class="center">
   <img src="classIOSKJ_1_1Procedure.png" usemap="#IOSKJ::Procedure_map" alt=""/>
   <map id="IOSKJ::Procedure_map" name="IOSKJ::Procedure_map">
-<area href="classIOSKJ_1_1BRule.html" alt="IOSKJ::BRule" shape="rect" coords="0,56,114,80"/>
-<area href="classIOSKJ_1_1FRange.html" alt="IOSKJ::FRange" shape="rect" coords="124,56,238,80"/>
-<area href="classIOSKJ_1_1IRate.html" alt="IOSKJ::IRate" shape="rect" coords="248,56,362,80"/>
+<area href="classIOSKJ_1_1BRule.html" alt="IOSKJ::BRule" shape="rect" coords="0,56,119,80"/>
+<area href="classIOSKJ_1_1ConstCatch.html" alt="IOSKJ::ConstCatch" shape="rect" coords="129,56,248,80"/>
+<area href="classIOSKJ_1_1ConstEffort.html" alt="IOSKJ::ConstEffort" shape="rect" coords="258,56,377,80"/>
+<area href="classIOSKJ_1_1DoNothing.html" alt="IOSKJ::DoNothing" shape="rect" coords="387,56,506,80"/>
+<area href="classIOSKJ_1_1FRange.html" alt="IOSKJ::FRange" shape="rect" coords="516,56,635,80"/>
+<area href="classIOSKJ_1_1IRate.html" alt="IOSKJ::IRate" shape="rect" coords="645,56,764,80"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -117,14 +120,89 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>operate</b> (
 <tr class="memitem:a92b7345ee40cee0d7497f3a3a64958da"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a92b7345ee40cee0d7497f3a3a64958da"></a>
 virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>write</b> (std::ofstream &amp;stream)=0</td></tr>
 <tr class="separator:a92b7345ee40cee0d7497f3a3a64958da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4baad2c9a74b91c85a4ef526edf30a0b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIOSKJ_1_1Procedure.html#a4baad2c9a74b91c85a4ef526edf30a0b">catches_set</a> (<a class="el" href="classIOSKJ_1_1Model.html">Model</a> &amp;model, double catches)</td></tr>
+<tr class="separator:a4baad2c9a74b91c85a4ef526edf30a0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade8f7d4a3d9cba97034d2ae4708f6570"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIOSKJ_1_1Procedure.html#ade8f7d4a3d9cba97034d2ae4708f6570">effort_set</a> (<a class="el" href="classIOSKJ_1_1Model.html">Model</a> &amp;model, double effort)</td></tr>
+<tr class="separator:ade8f7d4a3d9cba97034d2ae4708f6570"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a4baad2c9a74b91c85a4ef526edf30a0b"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IOSKJ::Procedure::catches_set </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classIOSKJ_1_1Model.html">Model</a> &amp;&#160;</td>
+          <td class="paramname"><em>model</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>catches</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Set the catch by region/method assuming a certain allocation, currently based on the period 2003-2012 (see <code>data/nominal-catches-quarter.R</code>) </p>
+
+</div>
+</div>
+<a class="anchor" id="ade8f7d4a3d9cba97034d2ae4708f6570"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IOSKJ::Procedure::effort_set </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classIOSKJ_1_1Model.html">Model</a> &amp;&#160;</td>
+          <td class="paramname"><em>model</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>effort</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Set the number of effort units by region/method </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
 <li><a class="el" href="procedures_8hpp_source.html">procedures.hpp</a></li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Nov 15 2014 21:01:00 for Indian Ocean Skipjack by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Dec 4 2014 09:01:22 for Indian Ocean Skipjack by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

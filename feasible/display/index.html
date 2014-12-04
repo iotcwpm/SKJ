@@ -1,37 +1,26 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<title>Indian Ocean skipjack model : conditioning based on feasibility constraints</title>
-		<meta charset="UTF-8" />
-		<link rel="stylesheet" type="text/css" href="/core/stencils/themes/default/theme.css" />
-		<script type="text/javascript">(function(c){
+		<title>Indian Ocean skipjack model : conditioning based on feasibility constraints
+		</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="/core/stencils/themes/default/theme.css"><script type="text/javascript">(function(c){
 	var d=document,s,i,l;
 	s=d.styleSheets;for(i=0;i!=s.length;i++){if((s[i].href||'').match(c)){try{if(s[i].cssRules.length)return;}catch(e){}}}
 	l=d.createElement('link');l.rel='stylesheet';l.type='text/css';l.href='http://stenci.la'+c;
 	d.documentElement.className='unready';l.onload=function(){d.documentElement.className='';};
 	d.getElementsByTagName('head')[0].appendChild(l);
 })('/core/stencils/themes/default/theme.css');</script>
-		<style type="text/css">.unready{display:none;}</style>
+		<style type="text/css">.unready{display:none;}
+		</style>
 	</head>
 	<body>
-		
-		<main id="content">
-			 
-			<div id="title">Indian Ocean skipjack model : conditioning based on feasibility constraints</div>
-			<h1>DRAFT</h1>
-			<p>
-				This documentation is a draft under active development. As such, it may not exactly mirror what is in the current version of the code. Separate documentation, generated from the model's C++ source code, is also 
-				<a href="../../doxygen/">available</a>
-				.
+		<main id="content"> <span id="title">Indian Ocean skipjack model : conditioning based on feasibility constraints</span>
+			<p>This section describes an approach to model conditioning using the Feasible Stock Trajectories (FST) algorithm (Bentley and Langley 2012). Rather than estimating parameters using full likelihoods, FST uses feasibility criterion to accept or reject sets of parameters drawn from their prior distributions. Feasibility criteria can be based on a priori beliefs about the stock or on "features" of the observed data. Although unsophisticated, this approach can provide a pragmatic means for conditioning an operating model.
 			</p>
-			<h1>Introduction</h1>
-			<p>
-				This document presents the results from the 
-				<code>feasible</code>
-				 task. This task performs model conditioning using the Feasible Stock Trajectories (FST) algorithm (Bentley and Langley 2012). Rather than estimating parameters using full likelihoods, FST uses feasibility criterion to accept or reject sets of parameters drawn from their prior distributions. Feasibility criteria can be based on a priori beliefs about the stock or on "features" of the observed data. FST is an unsophisticated, brute force method but provides a means of pragmatically conditioning an operating model.
+			<p>In the Indian Ocean skipjack model
 			</p>
-			<p>N Bentley, AD Langley (2012) Feasible stock trajectories: a flexible and efficient sequential estimator for use in fisheries management procedures. Canadian Journal of Fisheries and Aquatic Sciences 69 (1), 161-177. </p>
-			<pre data-code="r">
+			<pre data-code="r" data-hash="r9hIqMm">
 source('../../common.R',local=T)
 require(stringr)
 
@@ -39,75 +28,83 @@ load(c(
 	'accepted',
 	'rejected',
 	'track'
-),from='../output')
+),from='../../feasible/output')
 
-</pre>
-			<pre data-code="r">
-rejects &lt;- table(rejected$criterion)
-</pre>
-			<table>
-				<caption>
-					<span class="label">
-						<span class="type">Table</span>
-						<span class="number">1</span>
-						<span class="separator">:</span>
-					</span>
-					Feasibility criteria used in the FST algorithm
+
+			</pre>
+			<pre data-code="r" data-hash="b3Tgc1p">
+rejects <- table(rejected$criterion)
+
+			</pre>
+			<table id="table-1">
+				<caption><span class="label"><span class="type">Table</span><span class="number">1</span><span class="separator">:</span></span>Feasibility criteria used in the FST algorithm
 				</caption>
 				<tr>
-					<th>Code</th>
-					<th>Criterion</th>
-					<th>Trials failing this criterion</th>
+					<th>Code
+					</th>
+					<th>Criterion
+					</th>
+					<th>Trials failing this criterion
+					</th>
 				</tr>
 				<tr>
-					<td>1</td>
-					<td>Stock status must always be &gt;10% B0</td>
-					<td data-text="rejects[1]">2128</td>
+					<td>1
+					</td>
+					<td>Stock status must always be >10% B0
+					</td>
+					<td data-text="rejects[1]">2128
+					</td>
 				</tr>
 				<tr>
-					<td>2</td>
-					<td>Stock status must be less than 100% B0 since 2008</td>
-					<td data-text="rejects[2]">22</td>
+					<td>2
+					</td>
+					<td>Stock status must be less than 100% B0 since 2008
+					</td>
+					<td data-text="rejects[2]">22
+					</td>
 				</tr>
 				<tr>
-					<td>3</td>
-					<td>Maldive PL CPUE must increase from 2004 to 2006</td>
-					<td data-text="rejects[3]">2046</td>
+					<td>3
+					</td>
+					<td>Maldive PL CPUE must increase from 2004 to 2006
+					</td>
+					<td data-text="rejects[3]">2046
+					</td>
 				</tr>
 				<tr>
-					<td>4</td>
-					<td>Maldive PL CPUE must decrease from 2004 to 2011</td>
-					<td data-text="rejects[4]">107</td>
+					<td>4
+					</td>
+					<td>Maldive PL CPUE must decrease from 2004 to 2011
+					</td>
+					<td data-text="rejects[4]">107
+					</td>
 				</tr>
 				<tr>
-					<td>5</td>
-					<td>Z-estimates for 50-55cm fish between 2006 and 2009 must be between 0.2 and 0.7 </td>
-					<td data-text="rejects[5]">5584</td>
+					<td>5
+					</td>
+					<td>Z-estimates for 50-55cm fish between 2006 and 2009 must be between 0.2 and 0.7 
+					</td>
+					<td data-text="rejects[5]">5584
+					</td>
 				</tr>
 			</table>
-			<figure>
-				<pre data-code="r" data-format="png" data-size="17x10cm">
+			<figure id="figure-1">
+				<pre data-code="r" data-format="png" data-size="17x10cm" data-hash="IeAgbs">
 print(
 	ggplot(subset(track,quarter==0),aes(x=year+quarter/4,y=biomass_spawning_overall/1000,group=replicate)) + 
 		geom_line(alpha=0.2) +
 		scale_y_log10() + 
 		labs(x="Year",y="Total spawning biomass (`000 t)")
 )
-</pre>
-				<img src="1.png" data-output="true" />
-				<figcaption>
-					<span class="label">
-						<span class="type">Figure</span>
-						<span class="number">1</span>
-						<span class="separator">:</span>
-					</span>
-					Examples of biomass trajectories from the FST algorithm. Those trajectories which end prior to 2013 have failed to meet one of the conditioning criteria.
+
+				</pre><img src="1.png" data-out="true">
+				<figcaption><span class="label"><span class="type">Figure</span><span class="number">1</span><span class="separator">:</span></span>Examples of biomass trajectories from the FST algorithm. Those trajectories which end prior to 2013 have failed to meet one of the conditioning criteria.
 				</figcaption>
 			</figure>
-			<pre data-code="r">
-plot_densities &lt;- function(param){
-	name &lt;- paste0(param,".value")
-	values &lt;- rbind(
+			<pre data-code="r" data-hash="bIBKKrT">
+plot_densities <- function(param){
+	name <- paste0(param,".value")
+	values <- rbind(
 		data.frame(value=accepted[,name],criterion=0),
 		data.frame(value=rejected[,name],criterion=rejected$criterion)
 	)
@@ -119,109 +116,64 @@ plot_densities &lt;- function(param){
 	)
 }
 
-</pre>
+
+			</pre>
 			<div data-for="param:c('recruits_unfished','mortality_base','movement_stay','recruits_deviations.2003.')">
 				<figure data-off="true">
 					<pre data-code="r" data-format="png" data-size="17x10cm">
 plot_densities(param)
-</pre>
-					<figcaption>
-						Distribution of values of the "
-						<span data-text="param"></span>
-						" according to feasibility criteria (0 indicates the trial met all criteria).
+
+					</pre>
+					<figcaption>Distribution of values of the parameter "<span data-text="param"></span>" according to feasibility criteria (0 indicates the trial met all criteria).
 					</figcaption>
 				</figure>
-				<figure data-index="0">
-					<pre data-code="r" data-format="png" data-size="17x10cm">
+				<figure data-index="0" id="figure-2">
+					<pre data-code="r" data-format="png" data-size="17x10cm" data-hash="rxEyB1N">
 plot_densities(param)
-</pre>
-					<img src="2.png" data-output="true" />
-					<figcaption>
-						<span class="label">
-							<span class="type">Figure</span>
-							<span class="number">2</span>
-							<span class="separator">:</span>
-						</span>
-						Distribution of values of the "
-						<span data-text="param">recruits_unfished</span>
-						" according to feasibility criteria (0 indicates the trial met all criteria).
+
+					</pre><img src="2.png" data-out="true">
+					<figcaption><span class="label"><span class="type">Figure</span><span class="number">2</span><span class="separator">:</span></span>Distribution of values of the parameter "<span data-text="param">recruits_unfished</span>" according to feasibility criteria (0 indicates the trial met all criteria).
 					</figcaption>
 				</figure>
-				<figure data-index="1">
-					<pre data-code="r" data-format="png" data-size="17x10cm">
+				<figure data-index="1" id="figure-3">
+					<pre data-code="r" data-format="png" data-size="17x10cm" data-hash="rii9zTj">
 plot_densities(param)
-</pre>
-					<img src="3.png" data-output="true" />
-					<figcaption>
-						<span class="label">
-							<span class="type">Figure</span>
-							<span class="number">3</span>
-							<span class="separator">:</span>
-						</span>
-						Distribution of values of the "
-						<span data-text="param">mortality_base</span>
-						" according to feasibility criteria (0 indicates the trial met all criteria).
+
+					</pre><img src="3.png" data-out="true">
+					<figcaption><span class="label"><span class="type">Figure</span><span class="number">3</span><span class="separator">:</span></span>Distribution of values of the parameter "<span data-text="param">mortality_base</span>" according to feasibility criteria (0 indicates the trial met all criteria).
 					</figcaption>
 				</figure>
-				<figure data-index="2">
-					<pre data-code="r" data-format="png" data-size="17x10cm">
+				<figure data-index="2" id="figure-4">
+					<pre data-code="r" data-format="png" data-size="17x10cm" data-hash="qV5Oosm">
 plot_densities(param)
-</pre>
-					<img src="4.png" data-output="true" />
-					<figcaption>
-						<span class="label">
-							<span class="type">Figure</span>
-							<span class="number">4</span>
-							<span class="separator">:</span>
-						</span>
-						Distribution of values of the "
-						<span data-text="param">movement_stay</span>
-						" according to feasibility criteria (0 indicates the trial met all criteria).
+
+					</pre><img src="4.png" data-out="true">
+					<figcaption><span class="label"><span class="type">Figure</span><span class="number">4</span><span class="separator">:</span></span>Distribution of values of the parameter "<span data-text="param">movement_stay</span>" according to feasibility criteria (0 indicates the trial met all criteria).
 					</figcaption>
 				</figure>
-				<figure data-index="3">
-					<pre data-code="r" data-format="png" data-size="17x10cm">
+				<figure data-index="3" id="figure-5">
+					<pre data-code="r" data-format="png" data-size="17x10cm" data-hash="qGlCqmM">
 plot_densities(param)
-</pre>
-					<img src="5.png" data-output="true" />
-					<figcaption>
-						<span class="label">
-							<span class="type">Figure</span>
-							<span class="number">5</span>
-							<span class="separator">:</span>
-						</span>
-						Distribution of values of the "
-						<span data-text="param">recruits_deviations.2003.</span>
-						" according to feasibility criteria (0 indicates the trial met all criteria).
+
+					</pre><img src="5.png" data-out="true">
+					<figcaption><span class="label"><span class="type">Figure</span><span class="number">5</span><span class="separator">:</span></span>Distribution of values of the parameter "<span data-text="param">recruits_deviations.2003.</span>" according to feasibility criteria (0 indicates the trial met all criteria).
 					</figcaption>
 				</figure>
 			</div>
-			<figure>
-				<pre data-code="r" data-format="png" data-size="17x10cm">
-temp &lt;- melt(accepted[,paste0("recruits_deviations.",1990:2012,"..value")])
-temp$year &lt;- str_extract(temp$variable,"\\d+")
+			<figure id="figure-6">
+				<pre data-code="r" data-format="png" data-size="17x10cm" data-hash="mV7Hn4">
+temp <- melt(accepted[,paste0("recruits_deviations.",1990:2012,"..value")])
+temp$year <- str_extract(temp$variable,"\\d+")
 print(ggplot(temp,aes(x=year,y=value)) + 
 	geom_violin(fill='grey') +
 	geom_point(data=ddply(temp,.(year),summarise,y=mean(value)),aes(y=y)) +
 	geom_hline(y=0,linetype=2) + 
 	labs(x='Year',y='Value'))
-</pre>
-				<img src="6.png" data-output="true" />
-				<figcaption>
-					<span class="label">
-						<span class="type">Figure</span>
-						<span class="number">6</span>
-						<span class="separator">:</span>
-					</span>
-					Distribution of values of 
-					<code>recruits_deviations</code>
-					 parameters that passed all feasibility criteria. The dots represent the mean of each distribution.	
+
+				</pre><img src="6.png" data-out="true">
+				<figcaption><span class="label"><span class="type">Figure</span><span class="number">6</span><span class="separator">:</span></span>Distribution of values of <code>recruits_deviations</code> parameters that passed all feasibility criteria. The dots represent the mean of each distribution.	
 				</figcaption>
 			</figure>
-		</main>
-		<script src="/core/themes/boot.js"> </script>
-		<script>if(!window.Stencila){window.StencilaHost='http://stenci.la';document.write(unescape('%3Cscript src="http://stenci.la/core/themes/boot.js"%3E%3C/script%3E'))}</script>
-		<script>window.Stencila.Booter.theme('core/stencils/themes/default');</script>
-		<script>window.setTimeout(function(){document.documentElement.className='';},10000)</script>
+		</main><script src="/core/themes/boot.js"> </script><script>if(!window.Stencila){window.StencilaHost='http://stenci.la';document.write(unescape('%3Cscript src="http://stenci.la/core/themes/boot.js"%3E%3C/script%3E'))}</script><script>window.Stencila.Booter.theme('core/stencils/themes/default');</script><script>window.setTimeout(function(){document.documentElement.className='';},10000)</script>
 	</body>
 </html>

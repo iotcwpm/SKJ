@@ -5,7 +5,7 @@ var searchData=
   ['recruits_5fdeviation',['recruits_deviation',['../classIOSKJ_1_1Model.html#a639afa6cd0480ad8c6dbac286bdaa55c',1,'IOSKJ::Model']]],
   ['recruits_5fdeviations',['recruits_deviations',['../classIOSKJ_1_1Parameters.html#abbbea45f8d2205a71a09c7eee05ad06a',1,'IOSKJ::Parameters']]],
   ['recruits_5flengths_5fmean',['recruits_lengths_mean',['../classIOSKJ_1_1Model.html#a6bb5b6a203c92c799dd2c34cf0fe1423',1,'IOSKJ::Model::recruits_lengths_mean()'],['../classIOSKJ_1_1Parameters.html#ae7daac71e30213c131ddb7b25afe2f74',1,'IOSKJ::Parameters::recruits_lengths_mean()']]],
-  ['recruits_5fregions',['recruits_regions',['../classIOSKJ_1_1Model.html#a735f9a4288dc9fc4ca836c9ad3af3161',1,'IOSKJ::Model::recruits_regions()'],['../classIOSKJ_1_1Parameters.html#ada645e93dacc224d36e47d456930d286',1,'IOSKJ::Parameters::recruits_regions()']]],
+  ['recruits_5fregions',['recruits_regions',['../classIOSKJ_1_1Model.html#a735f9a4288dc9fc4ca836c9ad3af3161',1,'IOSKJ::Model::recruits_regions()'],['../classIOSKJ_1_1Parameters.html#afbca6d4ef6d19828e78b462461d3a367',1,'IOSKJ::Parameters::recruits_regions()']]],
   ['recruits_5frelation_5fon',['recruits_relation_on',['../classIOSKJ_1_1Model.html#a88f9a0d53e76f9a88bf0d81c30bdb612',1,'IOSKJ::Model']]],
   ['recruits_5fsd',['recruits_sd',['../classIOSKJ_1_1Model.html#aff3f79494f94a20043a0c57009129dea',1,'IOSKJ::Model']]],
   ['recruits_5fsteepness',['recruits_steepness',['../classIOSKJ_1_1Model.html#ae3660f3f79edc131d7b96cf391f6a902',1,'IOSKJ::Model']]],

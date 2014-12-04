@@ -16,5 +16,6 @@ var searchData=
   ['movement_5funiform',['movement_uniform',['../classIOSKJ_1_1Model.html#a0278c3e4893f0891856dc4df93d3306f',1,'IOSKJ::Model']]],
   ['msy',['msy',['../classIOSKJ_1_1Model.html#aeb1010a45bdd1229ec3e3547481c37b1',1,'IOSKJ::Model']]],
   ['msy_5ffind',['msy_find',['../classIOSKJ_1_1Model.html#ab866cdbb2797465558eedad59a0e9b61',1,'IOSKJ::Model']]],
+  ['msy_5fgo',['msy_go',['../classIOSKJ_1_1Model.html#a9926a7f42042d7694907c4dfb576ff56',1,'IOSKJ::Model']]],
   ['multiplier',['multiplier',['../classIOSKJ_1_1IRate.html#a3cb0c0c168dc279a874116d88508413d',1,'IOSKJ::IRate']]]
 ];

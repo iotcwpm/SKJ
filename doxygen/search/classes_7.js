@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['normal',['Normal',['../classUtilities_1_1Distributions_1_1Normal.html',1,'Utilities::Distributions']]]
+  ['model',['Model',['../classIOSKJ_1_1Model.html',1,'IOSKJ']]]
 ];

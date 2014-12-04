@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['irate',['IRate',['../classIOSKJ_1_1IRate.html',1,'IOSKJ']]]
+  ['generator',['Generator',['../structUtilities_1_1Distributions_1_1Generator.html',1,'Utilities::Distributions']]]
 ];

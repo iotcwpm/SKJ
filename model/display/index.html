@@ -1,45 +1,24 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<title>Indian Ocean skipjack model : general outputs</title>
-		<meta charset="UTF-8" />
-		<link rel="stylesheet" type="text/css" href="/core/stencils/themes/default/theme.css" />
-		<script type="text/javascript">(function(c){
+		<title>Indian Ocean skipjack model : general outputs
+		</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="/core/stencils/themes/default/theme.css"><script type="text/javascript">(function(c){
 	var d=document,s,i,l;
 	s=d.styleSheets;for(i=0;i!=s.length;i++){if((s[i].href||'').match(c)){try{if(s[i].cssRules.length)return;}catch(e){}}}
 	l=d.createElement('link');l.rel='stylesheet';l.type='text/css';l.href='http://stenci.la'+c;
 	d.documentElement.className='unready';l.onload=function(){d.documentElement.className='';};
 	d.getElementsByTagName('head')[0].appendChild(l);
 })('/core/stencils/themes/default/theme.css');</script>
-		<style type="text/css">.unready{display:none;}</style>
+		<style type="text/css">.unready{display:none;}
+		</style>
 	</head>
 	<body>
-		
-		<main id="content">
-			 
-			<div id="title">Indian Ocean skipjack model : general outputs</div>
-			<h1>DRAFT</h1>
-			<p>
-				This documentation is a draft under active development. As such, it may not exactly mirror what is in the current version of the code. Separate documentation, generated from the model's C++ source code, is also 
-				<a href="../../doxygen/">available</a>
-				.
-			</p>
-			<h1>Introduction</h1>
-			<p>
-				This document displays model outputs generated from the 
-				<code>run</code>
-				 task (i.e. 
-				<code>./ioskj.exe run</code>
-				)
-			</p>
-			which uses the default parameter values (those marked 
-			<code>#value</code>
-			) defined in 
-			<code>parameters/input/parameters.cila</code>
-			.
-			Since those values are user inputs the following may not reflect best parameter estimates.
-			This is primarily intended for checking and illustrating the model.
-			<pre data-code="r">
+		<main id="content"> <span id="title">Indian Ocean skipjack model : general outputs</span>
+			<p>Model outputs generated from the <code>run</code> task (i.e. <code>./ioskj.exe run</code>)
+			</p>which uses the default parameter values (those marked <code>#value</code>) defined in <code>parameters/input/parameters.cila</code>.Since those values are user inputs the following may not reflect best parameter estimates.This is primarily intended for checking and illustrating the model.
+			<pre data-code="r" data-hash="r778EwA">
 source('../../common.R',local=T)
 load(c(
 	'lengths','recruits_sizes',
@@ -49,50 +28,41 @@ load(c(
 	'movement',
 	'numbers',
 	'track'
-),from='../output')
+),from='../../model/output')
 
-</pre>
-			<h1>Recruits</h1>
-			<figure>
-				<pre data-code="r" data-format="png" data-size="17x10cm">
+
+			</pre>
+			<h1 id="section-" class="level-0"><span class="label"><span class="path"></span><span class="separator"> </span></span>Recruits
+			</h1>
+			<figure id="figure-1">
+				<pre data-code="r" data-format="png" data-size="17x10cm" data-hash="qV3K9sC">
 print(
 	ggplot(recruits_sizes,aes(x=length,y=value)) +
 		geom_line() +
 		labs(x="Length (cm)",y="Proportion")
 )
-</pre>
-				<img src="1.png" data-output="true" />
-				<figcaption>
-					<span class="label">
-						<span class="type">Figure</span>
-						<span class="number">1</span>
-						<span class="separator">:</span>
-					</span>
-					Distribution of the length of recruits. Recruits are added to the model following this distribution.
+
+				</pre><img src="1.png" data-out="true">
+				<figcaption><span class="label"><span class="type">Figure</span><span class="number">1</span><span class="separator">:</span></span>Distribution of the length of recruits. Recruits are added to the model following this distribution.
 				</figcaption>
 			</figure>
-			<h1>Growth</h1>
-			<figure>
-				<pre data-code="r" data-format="png" data-size="17x10cm">
+			<h1>Growth
+			</h1>
+			<figure id="figure-2">
+				<pre data-code="r" data-format="png" data-size="17x10cm" data-hash="cdaxupt">
 print(
 	ggplot(growth_increments,aes(x=length,y=value)) +
 		geom_hline(y=0,colour='grey') +
 		geom_line() +
 		labs(x="Length (cm)",y="Quarterly growth increment (cm)")
 )
-</pre>
-				<img src="2.png" data-output="true" />
-				<figcaption>
-					<span class="label">
-						<span class="type">Figure</span>
-						<span class="number">2</span>
-						<span class="separator">:</span>
-					</span>
-					Growth increments by length.
+
+				</pre><img src="2.png" data-out="true">
+				<figcaption><span class="label"><span class="type">Figure</span><span class="number">2</span><span class="separator">:</span></span>Growth increments by length.
 				</figcaption>
 			</figure>
-			<figure>
-				<pre data-code="r" data-format="png" data-size="17x15cm">
+			<figure id="figure-3">
+				<pre data-code="r" data-format="png" data-size="17x15cm" data-hash="rnGoRsX">
 print(
 	ggplot(growth) +
 		geom_tile(aes(y=length,x=length_from,fill=value)) +
@@ -100,78 +70,58 @@ print(
 		geom_abline(a=0,b=1) + 
 		labs(x="Length from (cm)",y="Length to (cm)",fill="Proportion")
 )
-</pre>
-				<img src="3.png" data-output="true" />
-				<figcaption>
-					<span class="label">
-						<span class="type">Figure</span>
-						<span class="number">3</span>
-						<span class="separator">:</span>
-					</span>
-					Growth transition matrix indicating the proportion of fish that transition from one length class to other length classes in one quarter.
+
+				</pre><img src="3.png" data-out="true">
+				<figcaption><span class="label"><span class="type">Figure</span><span class="number">3</span><span class="separator">:</span></span>Growth transition matrix indicating the proportion of fish that transition from one length class to other length classes in one quarter.
 				</figcaption>
 			</figure>
-			<h1>Weight</h1>
-			<figure>
-				<pre data-code="r" data-format="png" data-size="17x10cm">
+			<h1>Weight
+			</h1>
+			<figure id="figure-4">
+				<pre data-code="r" data-format="png" data-size="17x10cm" data-hash="c2uunx">
 print(
 	ggplot(weights,aes(x=length,y=value)) +
 		geom_line() +
 		labs(x="Length (cm)",y="Weight (kg)")
 )
-</pre>
-				<img src="4.png" data-output="true" />
-				<figcaption>
-					<span class="label">
-						<span class="type">Figure</span>
-						<span class="number">4</span>
-						<span class="separator">:</span>
-					</span>
-					Weight at length.
+
+				</pre><img src="4.png" data-out="true">
+				<figcaption><span class="label"><span class="type">Figure</span><span class="number">4</span><span class="separator">:</span></span>Weight at length.
 				</figcaption>
 			</figure>
-			<h1>Maturity</h1>
-			<figure>
-				<pre data-code="r" data-format="png" data-size="17x10cm">
+			<h1>Maturity
+			</h1>
+			<figure id="figure-5">
+				<pre data-code="r" data-format="png" data-size="17x10cm" data-hash="bDzojGP">
 print(
 	ggplot(maturities,aes(x=length,y=value)) +
 		geom_line() +
 		labs(x="Length (cm)",y="Proportion mature")
 )
-</pre>
-				<img src="5.png" data-output="true" />
-				<figcaption>
-					<span class="label">
-						<span class="type">Figure</span>
-						<span class="number">5</span>
-						<span class="separator">:</span>
-					</span>
-					Maturity at length
+
+				</pre><img src="5.png" data-out="true">
+				<figcaption><span class="label"><span class="type">Figure</span><span class="number">5</span><span class="separator">:</span></span>Maturity at length
 				</figcaption>
 			</figure>
-			<h1>Mortality</h1>
-			<figure>
-				<pre data-code="r" data-format="png" data-size="17x10cm">
+			<h1>Mortality
+			</h1>
+			<figure id="figure-6">
+				<pre data-code="r" data-format="png" data-size="17x10cm" data-hash="RJEA4o">
 print(
 	ggplot(mortalities,aes(x=length,y=value)) +
 		geom_hline(y=0,colour='grey') +
 		geom_line() +
 		labs(x="Length (cm)",y="Instantaneous annual rate or natural mortality")
 )
-</pre>
-				<img src="6.png" data-output="true" />
-				<figcaption>
-					<span class="label">
-						<span class="type">Figure</span>
-						<span class="number">6</span>
-						<span class="separator">:</span>
-					</span>
-					Mortality at length
+
+				</pre><img src="6.png" data-out="true">
+				<figcaption><span class="label"><span class="type">Figure</span><span class="number">6</span><span class="separator">:</span></span>Mortality at length
 				</figcaption>
 			</figure>
-			<h1>Movement</h1>
-			<figure>
-				<pre data-code="r" data-format="png" data-size="16x16cm">
+			<h1>Movement
+			</h1>
+			<figure id="figure-7">
+				<pre data-code="r" data-format="png" data-size="16x16cm" data-hash="bNvHx1s">
 print(
 	ggplot(movement,aes(y=region_from,x=region,fill=value,label=round(value,4))) +
 		geom_tile() +
@@ -179,78 +129,57 @@ print(
 		geom_text() +
 		labs(y="Region from",x="Region to",fill="Proportion")
 )
-</pre>
-				<img src="7.png" data-output="true" />
-				<figcaption>
-					<span class="label">
-						<span class="type">Figure</span>
-						<span class="number">7</span>
-						<span class="separator">:</span>
-					</span>
-					Movement proportion by quarter. Each cell indicates the proportion of fish moving from one region to another in one quarter.
+
+				</pre><img src="7.png" data-out="true">
+				<figcaption><span class="label"><span class="type">Figure</span><span class="number">7</span><span class="separator">:</span></span>Movement proportion by quarter. Each cell indicates the proportion of fish moving from one region to another in one quarter.
 				</figcaption>
 			</figure>
-			<h1>Unfished equilbrium state</h1>
-			<p>The following figures show the distributions of lengths in the population in an unfished state.</p>
-			<figure>
-				<pre data-code="r" data-format="png" data-size="17x25cm">
+			<h1>Unfished equilbrium state
+			</h1>
+			<p>The following figures show the distributions of lengths in the population in an unfished state.
+			</p>
+			<figure id="figure-8">
+				<pre data-code="r" data-format="png" data-size="17x25cm" data-hash="5jHhnX">
 print(
 	ggplot(numbers) + 
 		geom_line(aes(x=length,y=value/1e6)) +
 		facet_grid(age~region,scale='free_y') + 
 		labs(x="Length (cm)",y="Number (mil.)")
 )
-</pre>
-				<img src="8.png" data-output="true" />
-				<figcaption>
-					<span class="label">
-						<span class="type">Figure</span>
-						<span class="number">8</span>
-						<span class="separator">:</span>
-					</span>
-					Unfished equilbrium numbers at age and size and region. Each panel shows the length ditribution for a particular age (in quarters) and region.
+
+				</pre><img src="8.png" data-out="true">
+				<figcaption><span class="label"><span class="type">Figure</span><span class="number">8</span><span class="separator">:</span></span>Unfished equilbrium numbers at age and size and region. Each panel shows the length ditribution for a particular age (in quarters) and region.
 				</figcaption>
 			</figure>
-			<figure>
-				<pre data-code="r" data-format="png" data-size="17x10cm">
+			<figure id="figure-9">
+				<pre data-code="r" data-format="png" data-size="17x10cm" data-hash="q0pI3lo">
 print(
 	ggplot(ddply(numbers,.(region,length),summarise,numbers=sum(value)/1e6)) +
 		geom_line(aes(x=length,y=numbers)) +
 		facet_grid(.~region) + 
 		labs(x="Length (cm)",y="Number (mil.)")
 )
-</pre>
-				<img src="9.png" data-output="true" />
-				<figcaption>
-					<span class="label">
-						<span class="type">Figure</span>
-						<span class="number">9</span>
-						<span class="separator">:</span>
-					</span>
-					Unfished equilibrium numbers at size by region. Each panel is the aggregated length distribtuion across all ages within a particular region.
+
+				</pre><img src="9.png" data-out="true">
+				<figcaption><span class="label"><span class="type">Figure</span><span class="number">9</span><span class="separator">:</span></span>Unfished equilibrium numbers at size by region. Each panel is the aggregated length distribtuion across all ages within a particular region.
 				</figcaption>
 			</figure>
-			<h1>Selectivities</h1>
-			<figure>
-				<pre data-code="r" data-format="png" data-size="17x10cm">
+			<h1>Selectivities
+			</h1>
+			<figure id="figure-10">
+				<pre data-code="r" data-format="png" data-size="17x10cm" data-hash="qXYa1ta">
 print(
 	ggplot(selectivities,aes(x=length,y=value,colour=method))+
 		geom_line() + 
 		labs(x="Length (cm)",y="Selectivity (prop.)",colour='Method')
 )
-</pre>
-				<img src="10.png" data-output="true" />
-				<figcaption>
-					<span class="label">
-						<span class="type">Figure</span>
-						<span class="number">10</span>
-						<span class="separator">:</span>
-					</span>
-					Selectivity at length by fishing method.
+
+				</pre><img src="10.png" data-out="true">
+				<figcaption><span class="label"><span class="type">Figure</span><span class="number">10</span><span class="separator">:</span></span>Selectivity at length by fishing method.
 				</figcaption>
 			</figure>
-			<pre data-code="r">
-plot_track &lt;- function(what,label){
+			<pre data-code="r" data-hash="sJy9Wme">
+plot_track <- function(what,label){
 	print(
 		ggplot(track,aes(x=year+quarter/4)) + 
 			geom_line(aes_string(y=what)) + 
@@ -260,232 +189,129 @@ plot_track &lt;- function(what,label){
 	)
 }
 
-</pre>
-			<h1>Recruitment</h1>
-			<figure>
-				<pre data-code="r" data-format="png" data-size="17x10cm">
-plot_track('recruits_determ/1e6','Deterministic recruitment (mil.)')
 
-</pre>
-				<img src="11.png" data-output="true" />
-			</figure>
-			<figure>
-				<pre data-code="r" data-format="png" data-size="17x10cm">
-plot_track('recruits_deviation','Recruitment deviation')
 
-</pre>
-				<img src="12.png" data-output="true" />
-			</figure>
+			</pre>
+			<h1>Biomass of mature fish
+			</h1>
 			<figure>
-				<pre data-code="r" data-format="png" data-size="17x10cm">
-plot_track('recruits/1e6','Recruitment (mil.)')
-
-</pre>
-				<img src="13.png" data-output="true" />
-			</figure>
-			<h1>Biomass of mature fish</h1>
-			<figure>
-				<pre data-code="r" data-format="png" data-size="17x10cm">
+				<pre data-code="r" data-format="png" data-size="17x10cm" data-hash="b1gHMi">
 plot_track('biomass_status','Stock status (biomass of mature fish relative to unfished levels)')
 
-</pre>
-				<img src="14.png" data-output="true" />
+
+				</pre><img src="11.png" data-out="true">
 			</figure>
-			<figure>
-				<pre data-code="r" data-format="png" data-size="17x10cm">
+			<figure id="figure-11">
+				<pre data-code="r" data-format="png" data-size="17x10cm" data-hash="rCg4VfK">
 print(
 	ggplot(subset(track,quarter==0),aes(x=year+quarter/4)) + 
-		geom_line(aes(y=biomass_spawners_w,colour='W')) + 
-		geom_line(aes(y=biomass_spawners_m,colour='M')) + 
-		geom_line(aes(y=biomass_spawners_e,colour='E')) + 
-		geom_hline(y=0,alpha=0) +
-		geom_vline(x=2015,alpha=0.6,linetype=2) +
-		labs(x='Year',y='Mature biomass in region',colour='Region')
+	geom_line(aes(y=biomass_spawners_w,colour='W')) + 
+	geom_line(aes(y=biomass_spawners_m,colour='M')) + 
+	geom_line(aes(y=biomass_spawners_e,colour='E')) + 
+	geom_hline(y=0,alpha=0) +
+	geom_vline(x=2015,alpha=0.6,linetype=2) +
+	labs(x='Year',y='Mature biomass in region',colour='Region')
 )
-</pre>
-				<img src="15.png" data-output="true" />
-				<figcaption>
-					<span class="label">
-						<span class="type">Figure</span>
-						<span class="number">11</span>
-						<span class="separator">:</span>
-					</span>
-					Biomass of mature fish by region for the first quarter
+
+				</pre><img src="12.png" data-out="true">
+				<figcaption><span class="label"><span class="type">Figure</span><span class="number">11</span><span class="separator">:</span></span>Biomass of mature fish by region for the first quarter
 				</figcaption>
 			</figure>
-			<h1>Spawning biomass</h1>
+			<h1>Spawning biomass
+			</h1>
 			<figure>
-				<pre data-code="r" data-format="png" data-size="17x10cm">
+				<pre data-code="r" data-format="png" data-size="17x10cm" data-hash="5jrHQa">
 plot_track('biomass_spawning_overall','Overall spawning biomass')
 
-</pre>
-				<img src="16.png" data-output="true" />
+
+				</pre><img src="13.png" data-out="true">
 			</figure>
-			<figure>
-				<pre data-code="r" data-format="png" data-size="17x10cm">
+			<figure id="figure-12">
+				<pre data-code="r" data-format="png" data-size="17x10cm" data-hash="bu5ELUZ">
 print(
 	ggplot(subset(track,quarter==0),aes(x=year+quarter/4)) + 
-		geom_line(aes(y=biomass_spawning_w,colour='W')) + 
-		geom_line(aes(y=biomass_spawning_m,colour='M')) + 
-		geom_line(aes(y=biomass_spawning_e,colour='E')) + 
-		geom_hline(y=0,alpha=0) +
-		geom_vline(x=2015,alpha=0.6,linetype=2) +
-		labs(x='Year',y='Spawning biomass in region',colour='Region')
+	geom_line(aes(y=biomass_spawning_w,colour='W')) + 
+	geom_line(aes(y=biomass_spawning_m,colour='M')) + 
+	geom_line(aes(y=biomass_spawning_e,colour='E')) + 
+	geom_hline(y=0,alpha=0) +
+	geom_vline(x=2015,alpha=0.6,linetype=2) +
+	labs(x='Year',y='Spawning biomass in region',colour='Region')
 )
-</pre>
-				<img src="17.png" data-output="true" />
-				<figcaption>
-					<span class="label">
-						<span class="type">Figure</span>
-						<span class="number">12</span>
-						<span class="separator">:</span>
-					</span>
-					Spawning biomass by region for the first quarter
+
+				</pre><img src="14.png" data-out="true">
+				<figcaption><span class="label"><span class="type">Figure</span><span class="number">12</span><span class="separator">:</span></span>Spawning biomass by region for the first quarter
 				</figcaption>
 			</figure>
-			<h1>Fishery</h1>
+			<h1>Recruitment
+			</h1>
 			<figure>
-				<pre data-code="r" data-format="png">
-temp &lt;- melt(track[,c('year','quarter','catches_w_ps','catches_m_pl','catches_e_gn')],id.vars=c('year','quarter'))
-print(
-	ggplot(temp,aes(x=year+quarter/4,y=value,fill=variable)) + geom_bar(stat='identity') +
-		geom_vline(x=2015,alpha=0.6,linetype=2) +
-		labs(x='Year',y='Catch (t)')
-)
+				<pre data-code="r" data-format="png" data-size="17x10cm" data-hash="bApV2GS">
+plot_track('recruits_determ/1e6','Deterministic recruitment (mil.)')
 
-</pre>
-				<img src="18.png" data-output="true" />
+
+				</pre><img src="15.png" data-out="true">
 			</figure>
-			<pre data-code="r">
-items &lt;- list(
-	c('w_ps','West (W) pusrse siene (PS)'),
-	c('m_pl','Maldive (M) pole and line (PL)'),
-	c('e_gn','East (E) gill net (GN)')
+			<figure>
+				<pre data-code="r" data-format="png" data-size="17x10cm" data-hash="bfJSLgu">
+plot_track('recruits_deviation','Recruitment deviation')
+
+
+				</pre><img src="16.png" data-out="true">
+			</figure>
+			<figure>
+				<pre data-code="r" data-format="png" data-size="17x10cm" data-hash="9Lg7Jg">
+plot_track('recruits/1e6','Recruitment (mil.)')
+
+
+				</pre><img src="17.png" data-out="true">
+			</figure>
+			<h1>Fishery
+			</h1>
+			<figure>
+				<pre data-code="r" data-format="png" data-size="17x10cm" data-hash="brmuPiE">
+temp <- melt(subset(
+			track,quarter==0,select=c('year','biomass_vulnerable_w_ps','biomass_vulnerable_m_pl','biomass_vulnerable_e_gn')
+		),id.vars='year')
+print(
+	ggplot(temp,aes(x=year,y=value/1e6,colour=variable)) + geom_line() +
+		geom_vline(x=2015,alpha=0.6,linetype=2) +
+		labs(x='Year',y='Vulnerable biomass (mil. t)',colour='Region/Gear')
 )
 
-</pre>
-			<div data-for="item:items">
-				<div data-off="true">
-					<figure>
-						<pre data-code="r" data-format="png" data-size="17x10cm">
-plot_track(paste0('biomass_vulnerable_',item[1]),'Vulnerable biomass')
-</pre>
-						<figcaption>
-							Vulnerable biomass trajectory for 
-							<span data-text="item[2]"></span>
-						</figcaption>
-					</figure>
-					<figure>
-						<pre data-code="r" data-format="png" data-size="17x10cm">
-plot_track(paste0('exp_rate_',item[1]),'Exploitation rate')
-</pre>
-						<figcaption>
-							Exploitation rate trajectory for 
-							<span data-text="item[2]"></span>
-						</figcaption>
-					</figure>
-				</div>
-				<div data-index="0">
-					<figure>
-						<pre data-code="r" data-format="png" data-size="17x10cm">
-plot_track(paste0('biomass_vulnerable_',item[1]),'Vulnerable biomass')
-</pre>
-						<img src="19.png" data-output="true" />
-						<figcaption>
-							<span class="label">
-								<span class="type">Figure</span>
-								<span class="number">13</span>
-								<span class="separator">:</span>
-							</span>
-							Vulnerable biomass trajectory for 
-							<span data-text="item[2]">West (W) pusrse siene (PS)</span>
-						</figcaption>
-					</figure>
-					<figure>
-						<pre data-code="r" data-format="png" data-size="17x10cm">
-plot_track(paste0('exp_rate_',item[1]),'Exploitation rate')
-</pre>
-						<img src="20.png" data-output="true" />
-						<figcaption>
-							<span class="label">
-								<span class="type">Figure</span>
-								<span class="number">14</span>
-								<span class="separator">:</span>
-							</span>
-							Exploitation rate trajectory for 
-							<span data-text="item[2]">West (W) pusrse siene (PS)</span>
-						</figcaption>
-					</figure>
-				</div>
-				<div data-index="1">
-					<figure>
-						<pre data-code="r" data-format="png" data-size="17x10cm">
-plot_track(paste0('biomass_vulnerable_',item[1]),'Vulnerable biomass')
-</pre>
-						<img src="21.png" data-output="true" />
-						<figcaption>
-							<span class="label">
-								<span class="type">Figure</span>
-								<span class="number">15</span>
-								<span class="separator">:</span>
-							</span>
-							Vulnerable biomass trajectory for 
-							<span data-text="item[2]">Maldive (M) pole and line (PL)</span>
-						</figcaption>
-					</figure>
-					<figure>
-						<pre data-code="r" data-format="png" data-size="17x10cm">
-plot_track(paste0('exp_rate_',item[1]),'Exploitation rate')
-</pre>
-						<img src="22.png" data-output="true" />
-						<figcaption>
-							<span class="label">
-								<span class="type">Figure</span>
-								<span class="number">16</span>
-								<span class="separator">:</span>
-							</span>
-							Exploitation rate trajectory for 
-							<span data-text="item[2]">Maldive (M) pole and line (PL)</span>
-						</figcaption>
-					</figure>
-				</div>
-				<div data-index="2">
-					<figure>
-						<pre data-code="r" data-format="png" data-size="17x10cm">
-plot_track(paste0('biomass_vulnerable_',item[1]),'Vulnerable biomass')
-</pre>
-						<img src="23.png" data-output="true" />
-						<figcaption>
-							<span class="label">
-								<span class="type">Figure</span>
-								<span class="number">17</span>
-								<span class="separator">:</span>
-							</span>
-							Vulnerable biomass trajectory for 
-							<span data-text="item[2]">East (E) gill net (GN)</span>
-						</figcaption>
-					</figure>
-					<figure>
-						<pre data-code="r" data-format="png" data-size="17x10cm">
-plot_track(paste0('exp_rate_',item[1]),'Exploitation rate')
-</pre>
-						<img src="24.png" data-output="true" />
-						<figcaption>
-							<span class="label">
-								<span class="type">Figure</span>
-								<span class="number">18</span>
-								<span class="separator">:</span>
-							</span>
-							Exploitation rate trajectory for 
-							<span data-text="item[2]">East (E) gill net (GN)</span>
-						</figcaption>
-					</figure>
-				</div>
-			</div>
-		</main>
-		<script src="/core/themes/boot.js"> </script>
-		<script>if(!window.Stencila){window.StencilaHost='http://stenci.la';document.write(unescape('%3Cscript src="http://stenci.la/core/themes/boot.js"%3E%3C/script%3E'))}</script>
-		<script>window.Stencila.Booter.theme('core/stencils/themes/default');</script>
-		<script>window.setTimeout(function(){document.documentElement.className='';},10000)</script>
+
+				</pre><img src="18.png" data-out="true">
+			</figure>
+			<figure>
+				<pre data-code="r" data-format="png" data-size="17x10cm" data-hash="sjjRf9c">
+temp <- ddply(track,.(year),summarise,
+	w_ps = sum(catches_w_ps),
+	m_pl = sum(catches_m_pl),
+	e_gn = sum(catches_e_gn)
+)
+temp <- melt(temp,id.vars='year')
+print(
+	ggplot(temp,aes(x=year,y=value,colour=variable)) + geom_line() +
+		geom_vline(x=2015,alpha=0.6,linetype=2) +
+		labs(x='Year',y='Catches (t)',colour='Region/Gear')
+)
+
+
+				</pre><img src="19.png" data-out="true">
+			</figure>
+			<figure>
+				<pre data-code="r" data-format="png" data-size="17x10cm" data-hash="qGQlsYj">
+temp <- melt(subset(
+			track,quarter==0,select=c('year','exp_rate_w_ps','exp_rate_m_pl','exp_rate_e_gn')
+		),id.vars='year')
+print(
+	ggplot(temp,aes(x=year,y=value,colour=variable)) + geom_line() +
+		geom_vline(x=2015,alpha=0.6,linetype=2) +
+		labs(x='Year',y='Exploitation rate',colour='Region/Gear')
+)
+
+
+				</pre><img src="20.png" data-out="true">
+			</figure>
+		</main><script src="/core/themes/boot.js"> </script><script>if(!window.Stencila){window.StencilaHost='http://stenci.la';document.write(unescape('%3Cscript src="http://stenci.la/core/themes/boot.js"%3E%3C/script%3E'))}</script><script>window.Stencila.Booter.theme('core/stencils/themes/default');</script><script>window.setTimeout(function(){document.documentElement.className='';},10000)</script>
 	</body>
 </html>

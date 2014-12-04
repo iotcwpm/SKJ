@@ -106,8 +106,15 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a5a9a40056b58e0830d7e4fbc349dd900"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a58e460b456d7affc4f6a8af785f6e82c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIOSKJ_1_1Model.html#a58e460b456d7affc4f6a8af785f6e82c">equilibrium</a> (void)</td></tr>
 <tr class="separator:a58e460b456d7affc4f6a8af785f6e82c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a969c2bc8b73fc17fc9f9f619bb656041"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a969c2bc8b73fc17fc9f9f619bb656041"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>pristine_go</b> (void)</td></tr>
+<tr class="separator:a969c2bc8b73fc17fc9f9f619bb656041"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeeca74d2a498fa5828961ce20b025379"><td class="memItemLeft" align="right" valign="top">Frame&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIOSKJ_1_1Model.html#aeeca74d2a498fa5828961ce20b025379">yield_curve</a> (double step=0.05)</td></tr>
 <tr class="separator:aeeca74d2a498fa5828961ce20b025379"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b9d46296b79e11580c32070d6f26c8c"><td class="memItemLeft" align="right" valign="top">Frame&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIOSKJ_1_1Model.html#a5b9d46296b79e11580c32070d6f26c8c">yield_per_recruit</a> (void)</td></tr>
+<tr class="separator:a5b9d46296b79e11580c32070d6f26c8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9926a7f42042d7694907c4dfb576ff56"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIOSKJ_1_1Model.html#a9926a7f42042d7694907c4dfb576ff56">msy_go</a> (void)</td></tr>
+<tr class="separator:a9926a7f42042d7694907c4dfb576ff56"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab866cdbb2797465558eedad59a0e9b61"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIOSKJ_1_1Model.html#ab866cdbb2797465558eedad59a0e9b61">msy_find</a> (void)</td></tr>
 <tr class="separator:ab866cdbb2797465558eedad59a0e9b61"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abfc09c1b2d6bfe2802835cd5fd58c3b3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIOSKJ_1_1Model.html#abfc09c1b2d6bfe2802835cd5fd58c3b3">write</a> (void)</td></tr>
@@ -251,7 +258,12 @@ Array&lt; double, RegionFrom, Region &gt;&#160;</td><td class="memItemRight" val
 <tr class="memitem:ac09e002c91144697de6e96bb8beb6d83"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac09e002c91144697de6e96bb8beb6d83"></a>
 Array&lt; double, RegionFrom, Region &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>movement</b></td></tr>
 <tr class="separator:ac09e002c91144697de6e96bb8beb6d83"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr><td colspan="2"><div class="groupHeader">Selectivity and exploitation</div></td></tr>
+<tr><td colspan="2"><div class="groupHeader">Data related "nuisance" parameters</div></td></tr>
+<tr class="memitem:a8c4e91ea2890a09168cba36d8f77611e"><td class="memItemLeft" align="right" valign="top">Array&lt; double, Quarter &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIOSKJ_1_1Model.html#a8c4e91ea2890a09168cba36d8f77611e">m_pl_quarter</a> = {0.97,0.87,0.97,1.19}</td></tr>
+<tr class="separator:a8c4e91ea2890a09168cba36d8f77611e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="member-group"></a>
+Selectivity and exploitation</h2></td></tr>
 <tr class="memitem:a9430c5b815edc725316dd1a1c306c702"><td class="memItemLeft" align="right" valign="top">Array&lt; double, SelectivityKnot &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIOSKJ_1_1Model.html#a9430c5b815edc725316dd1a1c306c702">selectivity_lengths</a> = {20,30,40,50,60,70,80}</td></tr>
 <tr class="separator:a9430c5b815edc725316dd1a1c306c702"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1df5e2bf4fa4560baf73c97733c2d850"><td class="memItemLeft" align="right" valign="top">Array&lt; double, Method, <br class="typebreak"/>
@@ -259,28 +271,39 @@ SelectivityKnot &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class
 <tr class="separator:a1df5e2bf4fa4560baf73c97733c2d850"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa59ec2970e6ab5478b29d68ad89b67d9"><td class="memItemLeft" align="right" valign="top">Array&lt; double, Method, Size &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIOSKJ_1_1Model.html#aa59ec2970e6ab5478b29d68ad89b67d9">selectivities</a></td></tr>
 <tr class="separator:aa59ec2970e6ab5478b29d68ad89b67d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab9afc5bae0ac8e16817802e54bdfa60d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIOSKJ_1_1Model.html#ab9afc5bae0ac8e16817802e54bdfa60d">exploitation_on</a> = true</td></tr>
-<tr class="separator:ab9afc5bae0ac8e16817802e54bdfa60d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a08d60d30e87f40f9b2eb4aa9b2d44490"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIOSKJ_1_1Model.html#a08d60d30e87f40f9b2eb4aa9b2d44490">catches_on</a> = true</td></tr>
-<tr class="separator:a08d60d30e87f40f9b2eb4aa9b2d44490"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a015194a0ad0bfe298215636d04cdb7f0"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIOSKJ_1_1Model.html#a015194a0ad0bfe298215636d04cdb7f0">exploitation_rate_specified</a></td></tr>
-<tr class="separator:a015194a0ad0bfe298215636d04cdb7f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfc0925d3173c59e212a13409297d50f"><td class="memItemLeft" ><a class="anchor" id="abfc0925d3173c59e212a13409297d50f"></a>
+enum IOSKJ::Model::{ <b>exploit_none</b> = 0, 
+<b>exploit_rate</b> = 1, 
+<b>exploit_catch</b> = 2, 
+<b>exploit_effort</b> = 3
+ }&#160;</td><td class="memItemRight" valign="bottom"><b>exploit</b></td></tr>
+<tr class="separator:abfc0925d3173c59e212a13409297d50f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0aa015def5316af0f5ce23bdaecbf67c"><td class="memItemLeft" align="right" valign="top">Array&lt; double, Region, Method &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIOSKJ_1_1Model.html#a0aa015def5316af0f5ce23bdaecbf67c">biomass_vulnerable</a></td></tr>
 <tr class="separator:a0aa015def5316af0f5ce23bdaecbf67c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36673b3e82fe27d8fc9a57c29cc3d904"><td class="memItemLeft" align="right" valign="top">Array&lt; double, Region, Method &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIOSKJ_1_1Model.html#a36673b3e82fe27d8fc9a57c29cc3d904">cpue</a></td></tr>
+<tr class="separator:a36673b3e82fe27d8fc9a57c29cc3d904"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7abc9bb56d7b60ca4004cf932f1363a3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7abc9bb56d7b60ca4004cf932f1363a3"></a>
+Array&lt; GeometricMean, Region, <br class="typebreak"/>
+Method &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>cpue_base</b></td></tr>
+<tr class="separator:a7abc9bb56d7b60ca4004cf932f1363a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a07f257056f7d36f71ff8d8efa162a775"><td class="memItemLeft" align="right" valign="top">Array&lt; double, Region, Method &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIOSKJ_1_1Model.html#a07f257056f7d36f71ff8d8efa162a775">catches</a></td></tr>
 <tr class="separator:a07f257056f7d36f71ff8d8efa162a775"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5fb6db40e04f2d1770bf1cadd9b2521"><td class="memItemLeft" align="right" valign="top">Array&lt; double, Region, Method &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIOSKJ_1_1Model.html#ad5fb6db40e04f2d1770bf1cadd9b2521">effort</a></td></tr>
+<tr class="separator:ad5fb6db40e04f2d1770bf1cadd9b2521"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af685e4a399c62aad750188a5d96f481b"><td class="memItemLeft" align="right" valign="top">Array&lt; double, Region, Method &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIOSKJ_1_1Model.html#af685e4a399c62aad750188a5d96f481b">catchability</a></td></tr>
+<tr class="separator:af685e4a399c62aad750188a5d96f481b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaefc68e3adf5e4266153e01ac74353aa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaefc68e3adf5e4266153e01ac74353aa"></a>
+Array&lt; GeometricMean, Region, <br class="typebreak"/>
+Method &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>catchability_estim</b></td></tr>
+<tr class="separator:aaefc68e3adf5e4266153e01ac74353aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89f9fabbd9c35b02855d5d477b030d24"><td class="memItemLeft" align="right" valign="top">Array&lt; double, Region, Method &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIOSKJ_1_1Model.html#a89f9fabbd9c35b02855d5d477b030d24">exploitation_rate_specified</a></td></tr>
+<tr class="separator:a89f9fabbd9c35b02855d5d477b030d24"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a63a4ac2ba1d1e3a7f5fd7e90d7b7ce54"><td class="memItemLeft" align="right" valign="top">Array&lt; double, Region, Method &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIOSKJ_1_1Model.html#a63a4ac2ba1d1e3a7f5fd7e90d7b7ce54">catches_taken</a></td></tr>
 <tr class="separator:a63a4ac2ba1d1e3a7f5fd7e90d7b7ce54"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1a9a5c48d57ab9f2bb0a7c50ac241c20"><td class="memItemLeft" align="right" valign="top">Array&lt; double, Region, Method &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIOSKJ_1_1Model.html#a1a9a5c48d57ab9f2bb0a7c50ac241c20">exploitation_rate</a></td></tr>
 <tr class="separator:a1a9a5c48d57ab9f2bb0a7c50ac241c20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adfa83eaea6c889c57b0277e721630223"><td class="memItemLeft" align="right" valign="top">Array&lt; double, Region, Size &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIOSKJ_1_1Model.html#adfa83eaea6c889c57b0277e721630223">exploitation_survival</a></td></tr>
 <tr class="separator:adfa83eaea6c889c57b0277e721630223"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1662d8a4dbd83c73f89ac24844659011"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1662d8a4dbd83c73f89ac24844659011"></a>
-Array&lt; double, Region &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>exploitation_survival_regions</b></td></tr>
-<tr class="separator:a1662d8a4dbd83c73f89ac24844659011"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr><td colspan="2"><div class="groupHeader">Data related "nuisance" parameters</div></td></tr>
-<tr class="memitem:a8c4e91ea2890a09168cba36d8f77611e"><td class="memItemLeft" align="right" valign="top">Array&lt; double, Quarter &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIOSKJ_1_1Model.html#a8c4e91ea2890a09168cba36d8f77611e">m_pl_quarter</a> = {0.97,0.87,0.97,1.19}</td></tr>
-<tr class="separator:a8c4e91ea2890a09168cba36d8f77611e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classIOSKJ_1_1Model.html">Model</a> of the Indian Ocean skipjack tuna fishery. This class encapsulates the dynamics of both the fish population and fishing.</p>
@@ -388,7 +411,8 @@ Array&lt; double, Region &gt;&#160;</td><td class="memItemRight" valign="bottom"
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Set overall exploitation rate. Used in testing and in equilibrium exploitation i.e. MSY/BMSY calculations </p>
+<p>Set overall exploitation rate. Used in testing and in equilibrium exploitation e.g. MSY/BMSY calculations</p>
+<p>Currently assumes an equal explotation rate is applied to the three main methods in each region (W/PS,M/PL,E/GN). An alternative would be to assume equal exploitation rates in each region and use current partial exploitation rates by method within each region. </p>
 
 </div>
 </div>
@@ -514,7 +538,32 @@ Array&lt; double, Region &gt;&#160;</td><td class="memItemRight" valign="bottom"
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Find Fmsy and Bmsy for this model </p>
+<p>Calculate MSY related reference points </p>
+
+</div>
+</div>
+<a class="anchor" id="a9926a7f42042d7694907c4dfb576ff56"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void IOSKJ::Model::msy_go </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Take this model to a equilibirum state associated with MSY </p>
 
 </div>
 </div>
@@ -644,6 +693,32 @@ Array&lt; double, Region &gt;&#160;</td><td class="memItemRight" valign="bottom"
 
 </div>
 </div>
+<a class="anchor" id="a5b9d46296b79e11580c32070d6f26c8c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Frame IOSKJ::Model::yield_per_recruit </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Generate a yield per recruit curve</p>
+<p>Since the model uses a size based transition matrix for growth take the population to equilibrium and then calculate numbers, weight etc in each age class. This is really a biomass-per-recruit curve. </p>
+
+</div>
+</div>
 <h2 class="groupheader">Member Data Documentation</h2>
 <a class="anchor" id="a05da71e81b1a0a7ecbba4d417f4ba727"></a>
 <div class="memitem">
@@ -737,6 +812,19 @@ Array&lt; double, Region &gt;&#160;</td><td class="memItemRight" valign="bottom"
 
 </div>
 </div>
+<a class="anchor" id="af685e4a399c62aad750188a5d96f481b"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Array&lt;double,Region,Method&gt; IOSKJ::Model::catchability</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Estimated catchability by region and method </p>
+
+</div>
+</div>
 <a class="anchor" id="a07f257056f7d36f71ff8d8efa162a775"></a>
 <div class="memitem">
 <div class="memproto">
@@ -747,19 +835,6 @@ Array&lt; double, Region &gt;&#160;</td><td class="memItemRight" valign="bottom"
       </table>
 </div><div class="memdoc">
 <p>Catches by region and method </p>
-
-</div>
-</div>
-<a class="anchor" id="a08d60d30e87f40f9b2eb4aa9b2d44490"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool IOSKJ::Model::catches_on = true</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>A switch used to turn on/off the calculation of exploitation rates from catches. Turned off to specify a particular exploitation rate when calculating MSY/Bmsy </p>
 
 </div>
 </div>
@@ -776,16 +851,30 @@ Array&lt; double, Region &gt;&#160;</td><td class="memItemRight" valign="bottom"
 
 </div>
 </div>
-<a class="anchor" id="ab9afc5bae0ac8e16817802e54bdfa60d"></a>
+<a class="anchor" id="a36673b3e82fe27d8fc9a57c29cc3d904"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool IOSKJ::Model::exploitation_on = true</td>
+          <td class="memname">Array&lt;double,Region,Method&gt; IOSKJ::Model::cpue</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>A switch used to turn on/off exploitation dynamics (e.g turn off for virgin equilibrium) </p>
+<p>CPUE. Simply <code>biomass_vulnerable</code> scaled to its geometric mean for the period 1985-2013 </p>
+
+</div>
+</div>
+<a class="anchor" id="ad5fb6db40e04f2d1770bf1cadd9b2521"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Array&lt;double,Region,Method&gt; IOSKJ::Model::effort</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Effort by region and method</p>
+<p>Currently these are nominal units relative to the period 2004-2013 </p>
 
 </div>
 </div>
@@ -802,12 +891,12 @@ Array&lt; double, Region &gt;&#160;</td><td class="memItemRight" valign="bottom"
 
 </div>
 </div>
-<a class="anchor" id="a015194a0ad0bfe298215636d04cdb7f0"></a>
+<a class="anchor" id="a89f9fabbd9c35b02855d5d477b030d24"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">double IOSKJ::Model::exploitation_rate_specified</td>
+          <td class="memname">Array&lt;double,Region,Method&gt; IOSKJ::Model::exploitation_rate_specified</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1199,7 +1288,7 @@ Array&lt; double, Region &gt;&#160;</td><td class="memItemRight" valign="bottom"
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Nov 15 2014 21:01:00 for Indian Ocean Skipjack by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Dec 4 2014 09:01:22 for Indian Ocean Skipjack by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.5
 </small></address>

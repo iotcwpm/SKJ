@@ -1,12 +1,6 @@
 #title Indian Ocean skipjack model : general outputs
 
-# DRAFT
-
-This documentation is a draft under active development. As such, it may not exactly mirror what is in the current version of the code. Separate documentation, generated from the model's C++ source code, is also [available](../../doxygen/).
-
-# Introduction
-
-This document displays model outputs generated from the `run` task (i.e. `./ioskj.exe run`)
+Model outputs generated from the `run` task (i.e. `./ioskj.exe run`)
 which uses the default parameter values (those marked `#value`) defined in `parameters/input/parameters.cila`.
 Since those values are user inputs the following may not reflect best parameter estimates.
 This is primarily intended for checking and illustrating the model.
@@ -21,7 +15,7 @@ r
 		'movement',
 		'numbers',
 		'track'
-	),from='../output')
+	),from='../../model/output')
 
 # Recruits
 
@@ -155,19 +149,6 @@ r
 		)
 	}
 
-# Recruitment
-
-figure
-	r png 17x10cm
-		plot_track('recruits_determ/1e6','Deterministic recruitment (mil.)')
-
-figure
-	r png 17x10cm
-		plot_track('recruits_deviation','Recruitment deviation')
-
-figure
-	r png 17x10cm
-		plot_track('recruits/1e6','Recruitment (mil.)')
 
 # Biomass of mature fish
 
@@ -179,12 +160,12 @@ figure
 	r png 17x10cm
 		print(
 			ggplot(subset(track,quarter==0),aes(x=year+quarter/4)) + 
-				geom_line(aes(y=biomass_spawners_w,colour='W')) + 
-				geom_line(aes(y=biomass_spawners_m,colour='M')) + 
-				geom_line(aes(y=biomass_spawners_e,colour='E')) + 
-				geom_hline(y=0,alpha=0) +
-				geom_vline(x=2015,alpha=0.6,linetype=2) +
-				labs(x='Year',y='Mature biomass in region',colour='Region')
+			geom_line(aes(y=biomass_spawners_w,colour='W')) + 
+			geom_line(aes(y=biomass_spawners_m,colour='M')) + 
+			geom_line(aes(y=biomass_spawners_e,colour='E')) + 
+			geom_hline(y=0,alpha=0) +
+			geom_vline(x=2015,alpha=0.6,linetype=2) +
+			labs(x='Year',y='Mature biomass in region',colour='Region')
 		)
 	figcaption
 		Biomass of mature fish by region for the first quarter
@@ -199,44 +180,66 @@ figure
 	r png 17x10cm
 		print(
 			ggplot(subset(track,quarter==0),aes(x=year+quarter/4)) + 
-				geom_line(aes(y=biomass_spawning_w,colour='W')) + 
-				geom_line(aes(y=biomass_spawning_m,colour='M')) + 
-				geom_line(aes(y=biomass_spawning_e,colour='E')) + 
-				geom_hline(y=0,alpha=0) +
-				geom_vline(x=2015,alpha=0.6,linetype=2) +
-				labs(x='Year',y='Spawning biomass in region',colour='Region')
+			geom_line(aes(y=biomass_spawning_w,colour='W')) + 
+			geom_line(aes(y=biomass_spawning_m,colour='M')) + 
+			geom_line(aes(y=biomass_spawning_e,colour='E')) + 
+			geom_hline(y=0,alpha=0) +
+			geom_vline(x=2015,alpha=0.6,linetype=2) +
+			labs(x='Year',y='Spawning biomass in region',colour='Region')
 		)
 	figcaption
 		Spawning biomass by region for the first quarter
 
+
+# Recruitment
+
+figure
+	r png 17x10cm
+		plot_track('recruits_determ/1e6','Deterministic recruitment (mil.)')
+
+figure
+	r png 17x10cm
+		plot_track('recruits_deviation','Recruitment deviation')
+
+figure
+	r png 17x10cm
+		plot_track('recruits/1e6','Recruitment (mil.)')
+
 # Fishery
 
 figure
-	r png
-		temp <- melt(track[,c('year','quarter','catches_w_ps','catches_m_pl','catches_e_gn')],id.vars=c('year','quarter'))
+	r png 17x10cm
+		temp <- melt(subset(
+					track,quarter==0,select=c('year','biomass_vulnerable_w_ps','biomass_vulnerable_m_pl','biomass_vulnerable_e_gn')
+				),id.vars='year')
 		print(
-			ggplot(temp,aes(x=year+quarter/4,y=value,fill=variable)) + geom_bar(stat='identity') +
+			ggplot(temp,aes(x=year,y=value/1e6,colour=variable)) + geom_line() +
 				geom_vline(x=2015,alpha=0.6,linetype=2) +
-				labs(x='Year',y='Catch (t)')
+				labs(x='Year',y='Vulnerable biomass (mil. t)',colour='Region/Gear')
 		)
 
-r
-	items <- list(
-		c('w_ps','West (W) pusrse siene (PS)'),
-		c('m_pl','Maldive (M) pole and line (PL)'),
-		c('e_gn','East (E) gill net (GN)')
-	)
+figure
+	r png 17x10cm
+		temp <- ddply(track,.(year),summarise,
+			w_ps = sum(catches_w_ps),
+			m_pl = sum(catches_m_pl),
+			e_gn = sum(catches_e_gn)
+		)
+		temp <- melt(temp,id.vars='year')
+		print(
+			ggplot(temp,aes(x=year,y=value,colour=variable)) + geom_line() +
+				geom_vline(x=2015,alpha=0.6,linetype=2) +
+				labs(x='Year',y='Catches (t)',colour='Region/Gear')
+		)
 
-for item in items
-	div
-		figure
-			r png 17x10cm
-				plot_track(paste0('biomass_vulnerable_',item[1]),'Vulnerable biomass')
-			figcaption
-				Vulnerable biomass trajectory for {span!text item[2]}
+figure
+	r png 17x10cm
+		temp <- melt(subset(
+					track,quarter==0,select=c('year','exp_rate_w_ps','exp_rate_m_pl','exp_rate_e_gn')
+				),id.vars='year')
+		print(
+			ggplot(temp,aes(x=year,y=value,colour=variable)) + geom_line() +
+				geom_vline(x=2015,alpha=0.6,linetype=2) +
+				labs(x='Year',y='Exploitation rate',colour='Region/Gear')
+		)
 
-		figure
-			r png 17x10cm
-				plot_track(paste0('exp_rate_',item[1]),'Exploitation rate')
-			figcaption
-				Exploitation rate trajectory for {span!text item[2]}

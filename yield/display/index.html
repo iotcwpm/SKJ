@@ -1,155 +1,325 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<title>Indian Ocean skipjack model : yield curve and MSY</title>
-		<meta charset="UTF-8" />
-		<link rel="stylesheet" type="text/css" href="/core/stencils/themes/default/theme.css" />
-		<script type="text/javascript">(function(c){
+		<title>Indian Ocean skipjack model : yield curve and MSY
+		</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="/core/stencils/themes/default/theme.css"><script type="text/javascript">(function(c){
 	var d=document,s,i,l;
 	s=d.styleSheets;for(i=0;i!=s.length;i++){if((s[i].href||'').match(c)){try{if(s[i].cssRules.length)return;}catch(e){}}}
 	l=d.createElement('link');l.rel='stylesheet';l.type='text/css';l.href='http://stenci.la'+c;
 	d.documentElement.className='unready';l.onload=function(){d.documentElement.className='';};
 	d.getElementsByTagName('head')[0].appendChild(l);
 })('/core/stencils/themes/default/theme.css');</script>
-		<style type="text/css">.unready{display:none;}</style>
+		<style type="text/css">.unready{display:none;}
+		</style>
 	</head>
 	<body>
-		
-		<main id="content">
-			 
-			<div id="title">Indian Ocean skipjack model : yield curve and MSY</div>
-			<h1>DRAFT</h1>
-			<p>
-				This documentation is a draft under active development. As such, it may not exactly mirror what is in the current version of the code. Separate documentation, generated from the model's C++ source code, is also 
-				<a href="../../doxygen/">available</a>
-				.
-			</p>
-			<p>
-				This document summarises output from the 
-				<code>yield</code>
-				 task which is primarily intended for checking MSY calculations and the shape of the yield curve. The shape of the yield curve is dependent on the model's parameters (in this case read in from 
-				<code>parameters/input/parameters.cila</code>
-				) including selectivity parameters (shown below).
-			</p>
-			<pre data-code="r">
+		<main id="content"> <span id="title">Indian Ocean skipjack model : yield curve and MSY</span>
+			<pre data-code="r" data-hash="XadOO2">
+# Load in source and output files
 source('../../common.R',local=T)
-
 load(c(
-	'curve','model'
-),from='../output')
-
+	'curve','msy','per_recruit'
+),from='../../yield/output')
 load(c(
 	'maturities','selectivities'
 ),from='../../model/output')
 
-</pre>
-			<table>
-				<caption>
-					<span class="label">
-						<span class="type">Table</span>
-						<span class="number">1</span>
-						<span class="separator">:</span>
-					</span>
-					Yield curve related variables.
-				</caption>
-				<tbody data-with="model">
-					<tr>
-						<td>
-							<script type="math/asciimath">E_{msy}</script>
-						</td>
-						<td>Exploitation rate which produces MSY</td>
-						<td data-text="e_msy">0.461797</td>
-					</tr>
-					<tr>
-						<td>
-							<script type="math/asciimath">F_{msy}</script>
-						</td>
-						<td>Instantaneous rate of fishing mortality which produces MSY</td>
-						<td data-text="f_msy">0.619519</td>
-					</tr>
-					<tr>
-						<td>
-							<script type="math/asciimath">MSY</script>
-						</td>
-						<td>Maximum sustainable yield (quarterly)</td>
-						<td data-text="msy">119946</td>
-					</tr>
-					<tr>
-						<td>
-							<script type="math/asciimath">B_{msy}</script>
-						</td>
-						<td>Total spawning biomass associated with maximum sustainable yield</td>
-						<td data-text="biomass_spawning_msy">1628810</td>
-					</tr>
-					<tr>
-						<td></td>
-						<td>Number of iterations used to find MSY</td>
-						<td data-text="msy_trials">8</td>
-					</tr>
-				</tbody>
-			</table>
-			<figure>
-				<pre data-code="r" data-format="png" data-size="17x10cm">
-print(
-	ggplot(curve,aes(x=exprate,y=yield/1000)) +
+msy <- within(msy,{
+	status <- biomass_spawners_msy/biomass_spawners_unfished
+})
+
+# Find B40% etc and insert MSY
+points <- NULL
+points <- rbind(points,curve[with(curve,which.min(abs(status-0.3))),c('exprate','f','yield','status')])
+points <- rbind(points,curve[with(curve,which.min(abs(status-0.4))),c('exprate','f','yield','status')])
+points <- rbind(points,curve[with(curve,which.min(abs(status-0.5))),c('exprate','f','yield','status')])
+points <- rbind(points,with(msy,c(e_msy,f_msy,msy,status)))
+points$level <- c('0.3','0.4','0.5','MSY')
+
+
+# Normalise to per recruit
+per_recruit$number <- per_recruit$number/per_recruit$number[1]
+# Calculate ypr
+per_recruit$ypr <- with(per_recruit,number*weight)
+# Remove plus age
+per_recruit <- per_recruit[-nrow(per_recruit),]
+# Find maximum
+ypr_max_age  <- with(per_recruit,age[which.max(ypr)])
+ypr_max_length  <- with(per_recruit,length[which.max(ypr)])
+
+
+			</pre>
+			<section>
+				<h1 id="section-1" class="level-1"><span class="label"><span class="path">1</span><span class="separator"> </span></span>Methods
+				</h1>
+				<p>The <code>ioskj.exe</code> executable has a <code>yield</code> task which generates outputs related to:
+					<ul>
+						<li>the yield curve
+						</li>
+						<li>maximum sustainable yield (MSY) 
+						</li>
+						<li>yield per recruit. 
+						</li>
+					</ul>
+				</p>
+				<p>The yield curve is the equilibrium catch as a function of exploitation rate. This is generated by the model's <code>yield_curve</code> method which takes the model to deterministic equilibrium under a range of exploitation rates from 0 to 1. MSY is determined by the model's <code>msy_find</code> method which uses Brent's minimisation algorithm to find the exploitation rate which maximises yield. 
+				</p>
+				<p>In a simple biomass dynamics model the entire fish population is assumed to be selected by the fishery and thus the yield curve and MSY are a function of only the biological parameters. In the current model, yield is a function of the biological parameters, the fishery selectivity parameters <b>and</b> the distribution of fishing effort (i.e. relative exploitation rates) across fisheries (i.e. region/method subsets). If the shape of the selectivity curves or the relative exploitation rates of the fisheries changes then both MSY and the shape of the yield curve will change. Currently, the yield curve and MSY are calculated assuming that the specified exploitation rate applies to the three main fisheries in each region, western purse seine (W-PS), Maldive pole-and-line (M-PL) and eastern gillnet (E-GN). For all other fisheries, the exploitation rate is assumed to be 0.
+				</p>
+				<p>The model's <code>yield_per_recruit</code> method calculates the numbers at age, mean length and weight at age from which a yield-per-recruit cureve can be derived.
+				</p>
+				<p>All of these yield related outputs are dependent on the parameters used. The results presented in this section are based on the reference parameter set (read in from files in the <code>parameters/input</code> folder). 
+				</p>
+				<p>The results presented here should be considered preliminary. They are based on the reference parameter set only and ideally their sensitivity to alternative parameter values should be investigated. Also, further checking and testing of the model's equilbrium dynamics used for generating these results should be done. The main intention of this section is to promote discusssion regarding the pros and cons of alternative type of reference points (e.g. <span class="math"><script type="math/asciimath">B_{msy}</script></span> v <span class="math"><script type="math/asciimath">B_{0}</script></span> based) for the Indian Ocean skipjack tuna fishery.
+				</p>
+			</section>
+			<section>
+				<h1 id="section-2" class="level-1"><span class="label"><span class="path">2</span><span class="separator"> </span></span>Overall yield curve and MSY
+				</h1>
+				<p>This section describes the overall yield curve and reference points related to maximising sustainable yield. <span data-ref="#table-msy-ref"><a href="#table-msy-ref">Table 1</a></span> provides MSY related reference points and <span data-ref="#table-biomass-ref"><a href="#table-biomass-ref">Table 2</a></span> provides reference points associated with alternative biomass levels. <span data-ref="#figure-yield-curve"><a href="#figure-yield-curve">Figure 1</a></span> presents plots of various variables related to the yield curve.
+				</p>
+				<table id="table-msy-ref">
+					<caption><span class="label"><span class="type">Table</span><span class="number">1</span><span class="separator">:</span></span>Yield curve related variables determined from the reference parameter set.
+					</caption>
+					<thead>
+						<tr>
+							<th>Symbol
+							</th>
+							<th>Description
+							</th>
+							<th>Value	
+							</th>
+						</tr>
+					</thead>
+					<tbody data-with="msy">
+						<tr>
+							<td><span class="math"><script type="math/asciimath">E_{msy}</script></span>
+							</td>
+							<td>Exploitation rate which produces MSY (quarterly)
+							</td>
+							<td data-text="round(e_msy,3)">0.415
+							</td>
+						</tr>
+						<tr>
+							<td><span class="math"><script type="math/asciimath">F_{msy}</script></span>
+							</td>
+							<td>Instantaneous rate of fishing mortality which produces MSY (quarterly)
+							</td>
+							<td data-text="round(f_msy,3)">0.537
+							</td>
+						</tr>
+						<tr>
+							<td><span class="math"><script type="math/asciimath">C_{msy}</script></span>
+							</td>
+							<td>Maximum sustainable yield (quarterly)
+							</td>
+							<td data-text="msy">126094
+							</td>
+						</tr>
+						<tr>
+							<td><span class="math"><script type="math/asciimath">B_{msy}</script></span>
+							</td>
+							<td>Overall spawner biomass associated with maximum sustainable yield
+							</td>
+							<td data-text="biomass_spawners_msy">737618
+							</td>
+						</tr>
+						<tr>
+							<td><span class="math"><script type="math/asciimath">B_{msy}//B_{0}</script></span>
+							</td>
+							<td><span class="math"><script type="math/asciimath">B_{msy}</script></span> as a percentage of pristine biomass
+							</td>
+							<td data-text="round(biomass_spawners_msy/biomass_spawners_unfished*100,1)">24.6
+							</td>
+						</tr>
+						<tr>
+							<td>-
+							</td>
+							<td>Number of iterations used to find MSY
+							</td>
+							<td data-text="msy_trials">8
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<table id="table-biomass-ref">
+					<caption><span class="label"><span class="type">Table</span><span class="number">2</span><span class="separator">:</span></span>Exploitation rate, instantaneous fishing mortality rate, and equilibrium yield associated with alternative biomass levels. Note that for <span class="math"><script type="math/asciimath">30%B_0</script></span> etc, values are approximate because they are taken from the yield curve generated from exploitation rates in increments of 0.05.
+					</caption>
+					<thead>
+						<tr>
+							<th>Biomass level
+							</th>
+							<th>Exploitation rate (quarterly)
+							</th>
+							<th>Fishing mortality rate (quarterly)
+							</th>
+							<th>Yield (quarterly)	
+							</th>
+							<th>Yield/MSY
+							</th>
+							<th><span class="math"><script type="math/asciimath">B//B_{msy}</script></span>
+							</th>
+							<th>Effort/Effort at MSY
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr data-with="msy">
+							<td><span class="math"><script type="math/asciimath">B_{msy}</script></span>
+							</td>
+							<td data-text="round(e_msy,3)">0.415
+							</td>
+							<td data-text="round(f_msy,3)">0.537
+							</td>
+							<td data-text="round(msy)">126094
+							</td>
+							<td>1
+							</td>
+							<td>1
+							</td>
+							<td>1
+							</td>
+						</tr>
+						<tr data-with="subset(points,level==0.3)">
+							<td><span class="math"><script type="math/asciimath">30%B_0</script></span>
+							</td>
+							<td data-text="round(exprate,3)">0.35
+							</td>
+							<td data-text="round(f,3)">0.091
+							</td>
+							<td data-text="round(yield)">125276
+							</td>
+							<td data-text="round(yield/msy$msy,2)">0.99
+							</td>
+							<td data-text="round(status/msy$status,2)">1.16
+							</td>
+							<td data-text="round(exprate/msy$e_msy,3)">0.843
+							</td>
+						</tr>
+						<tr data-with="subset(points,level==0.4)">
+							<td><span class="math"><script type="math/asciimath">40%B_0</script></span>
+							</td>
+							<td data-text="round(exprate,3)">0.2
+							</td>
+							<td data-text="round(f,3)">0.049
+							</td>
+							<td data-text="round(yield)">112842
+							</td>
+							<td data-text="round(yield/msy$msy,2)">0.89
+							</td>
+							<td data-text="round(status/msy$status,2)">1.74
+							</td>
+							<td data-text="round(exprate/msy$e_msy,3)">0.482
+							</td>
+						</tr>
+						<tr data-with="subset(points,level==0.5)">
+							<td><span class="math"><script type="math/asciimath">50%B_0</script></span>
+							</td>
+							<td data-text="round(exprate,3)">0.15
+							</td>
+							<td data-text="round(f,3)">0.036
+							</td>
+							<td data-text="round(yield)">102092
+							</td>
+							<td data-text="round(yield/msy$msy,2)">0.81
+							</td>
+							<td data-text="round(status/msy$status,2)">2.05
+							</td>
+							<td data-text="round(exprate/msy$e_msy,3)">0.361
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<figure id="figure-yield-curve">
+					<pre data-code="r" data-format="png" data-size="17x20cm" data-hash="rvvR9iM">
+p1 = ggplot(curve,aes(x=exprate,y=yield/1000)) +
 		geom_line() +
-		geom_point(data=model,aes(x=e_msy,y=msy/1000),shape=16,size=3,colour=hsv(0.3,0.7,0.7)) +
-		labs(x="Exploitation rate",y="Yield (`000 t, quarterly)")
-)
-</pre>
-				<img src="1.png" data-output="true" />
-				<figcaption>
-					<span class="label">
-						<span class="type">Figure</span>
-						<span class="number">1</span>
-						<span class="separator">:</span>
-					</span>
-					Yield curve: equilibrium yield versus equilibrium exploitation rate. The green point indicates the MSY calculated by the model's 
-					<code>msy_find</code>
-					 method hich uses Brent's minimisation algorithm.
-				</figcaption>
-			</figure>
-			<figure>
-				<pre data-code="r" data-format="png" data-size="17x10cm">
-print(
-	ggplot(curve,aes(x=depletion,y=yield/1000)) +
+		geom_point(data=points,aes(x=exprate,y=yield/1000,colour=level),size=3) + 
+		labs(x="Exploitation rate (quarterly)",y="Yield (kt, quarterly)") +
+		theme(legend.position="none")
+p2 = ggplot(curve,aes(x=status,y=yield/1000)) +
 		geom_line() +
-		labs(x="Depletion (B/B0)",y="Yield (`000 t, quarterly)")
-)
-</pre>
-				<img src="2.png" data-output="true" />
-				<figcaption>
-					<span class="label">
-						<span class="type">Figure</span>
-						<span class="number">2</span>
-						<span class="separator">:</span>
-					</span>
-					Yield curve: equilibrium yield versus equilibrium depletion levels (%B0).
-				</figcaption>
-			</figure>
-			<figure>
-				<pre data-code="r" data-format="png" data-size="17x10cm">
+		geom_point(data=points,aes(x=status,y=yield/1000,colour=level),size=3) +
+		labs(x="Status (B/B0)",y="Yield (kt, quarterly)") +
+		theme(legend.position="none")
+p3 = ggplot(curve,aes(x=exprate,y=status)) +
+		geom_line() +
+		geom_point(data=points,aes(x=exprate,y=status,colour=level),size=3) +
+		labs(x="Exploitation rate (quarterly)", y="Status (B/B0)") +
+		theme(legend.position="none")
+multiplot(p1,p2,p3)
+
+					</pre><img src="1.png" data-out="true">
+					<figcaption><span class="label"><span class="type">Figure</span><span class="number">1</span><span class="separator">:</span></span>Relations between equilibrium yield, stock status and exploitation rate.(top) Equilibrium yield versus equilibrium exploitation rate. (middle) Equilibrium yield versus equilibrium stock status.(bottom) Equilibrium stock status versus equilibrium exploitation rate.
+					</figcaption>
+				</figure>
+			</section>
+			<section>
+				<h1 id="section-3" class="level-1"><span class="label"><span class="path">3</span><span class="separator"> </span></span>Fishery-specific yield curves
+				</h1>
+				<figure id="figure-2">
+					<pre data-code="r" data-format="png" data-size="17x10cm" data-hash="sBCwCMX">
 print(
 	ggplot() +
 		geom_line(data=maturities,aes(x=length,y=value),colour='black',linetype=2) +
 		geom_line(data=selectivities,aes(x=length,y=value,colour=method)) +
 		labs(x="Length (cm)",y="Proportion mature / selected",colour="Method")
 )
-</pre>
-				<img src="3.png" data-output="true" />
-				<figcaption>
-					<span class="label">
-						<span class="type">Figure</span>
-						<span class="number">3</span>
-						<span class="separator">:</span>
-					</span>
-					Maturity at length (dotted line) and selectivity at length (by method).
-				</figcaption>
-			</figure>
-		</main>
-		<script src="/core/themes/boot.js"> </script>
-		<script>if(!window.Stencila){window.StencilaHost='http://stenci.la';document.write(unescape('%3Cscript src="http://stenci.la/core/themes/boot.js"%3E%3C/script%3E'))}</script>
-		<script>window.Stencila.Booter.theme('core/stencils/themes/default');</script>
-		<script>window.setTimeout(function(){document.documentElement.className='';},10000)</script>
+
+					</pre><img src="2.png" data-out="true">
+					<figcaption><span class="label"><span class="type">Figure</span><span class="number">2</span><span class="separator">:</span></span>Maturity at length (dotted line) and selectivity at length (by method).
+					</figcaption>
+				</figure>
+				<figure>
+					<pre data-code="r" data-format="png" data-size="17x15cm" data-hash="bC6GmQ8">
+p1 = ggplot(curve,aes(x=exprate)) +
+		geom_line(aes(y=catch_w_ps/1000,colour="W-PS",linetype="W-PS")) +
+		geom_line(aes(y=catch_m_pl/1000,colour="M-PL",linetype="M-PL")) +
+		geom_line(aes(y=catch_e_gn/1000,colour="E-GN",linetype="E-GN")) +
+		labs(x="Exploitation rate (quarterly)",y="Yield (kt, quarterly)",colour="",linetype="")
+p2 = ggplot(curve) +
+		geom_line(aes(x=vuln_w_ps/1e6,y=catch_w_ps/1000,colour="W-PS",linetype="W-PS")) +
+		geom_line(aes(x=vuln_m_pl/1e6,y=catch_m_pl/1000,colour="M-PL",linetype="M-PL")) +
+		geom_line(aes(x=vuln_e_gn/1e6,y=catch_e_gn/1000,colour="E-GN",linetype="E-GN")) +
+		labs(x="Vulnerable biomass (Mt)",y="Yield (kt, quarterly)",colour="",linetype="")
+p3 = ggplot(curve) +
+		geom_line(aes(x=exprate,y=vuln_w_ps/1e6,colour="W-PS",linetype="W-PS")) +
+		geom_line(aes(x=exprate,y=vuln_m_pl/1e6,colour="M-PL",linetype="M-PL")) +
+		geom_line(aes(x=exprate,y=vuln_e_gn/1e6,colour="E-GN",linetype="E-GN")) +
+		labs(x="Exploitation rate (quarterly)",y="Vulnerable biomass (Mt)",colour="",linetype="")		
+multiplot(p1,p2,p3)
+
+
+					</pre><img src="3.png" data-out="true">
+				</figure>
+			</section>
+			<section>
+				<h1 id="section-4" class="level-1"><span class="label"><span class="path">4</span><span class="separator"> </span></span>Yield per recruit
+				</h1>
+				<figure id="figure-3">
+					<pre data-code="r" data-format="png" data-size="12x17cm" data-hash="sBaInd8">
+par(mfrow=c(4,1),mar=c(0,5,0,0),oma=c(5,0,1,1),las=1)
+with(per_recruit,{
+	plot(x=age,y=number,xaxt="n",ylab="Survival",type='l')
+	abline(v=ypr_max_age,lty=2)
+	plot(x=age,y=length,xaxt="n",ylab="Length (cm)",type='l')
+	abline(v=ypr_max_age,lty=2)
+	abline(h=ypr_max_length,lty=2)
+	plot(x=age,y=weight,xaxt="n",ylab="Weight (kg)",type='l')
+	abline(v=ypr_max_age,lty=2)
+	plot(x=age,y=ypr,xaxt="n",ylab="Yield-per-recruit (kg)",type='l')
+	abline(v=ypr_max_age,lty=2)
+	axis(side=1,at=seq(0,20,4))
+	mtext("Age (quarters)",side=1,outer=F,line=2,cex=0.7)
+})
+
+					</pre><img src="4.png" data-out="true">
+					<figcaption><span class="label"><span class="type">Figure</span><span class="number">3</span><span class="separator">:</span></span>Yield per recruit.
+					</figcaption>
+				</figure>
+			</section>
+		</main><script src="/core/themes/boot.js"> </script><script>if(!window.Stencila){window.StencilaHost='http://stenci.la';document.write(unescape('%3Cscript src="http://stenci.la/core/themes/boot.js"%3E%3C/script%3E'))}</script><script>window.Stencila.Booter.theme('core/stencils/themes/default');</script><script>window.setTimeout(function(){document.documentElement.className='';},10000)</script>
 	</body>
 </html>

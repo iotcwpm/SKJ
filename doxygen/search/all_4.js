@@ -6,5 +6,5 @@ var searchData=
   ['fixed',['Fixed',['../classUtilities_1_1Distributions_1_1Fixed.html',1,'Utilities::Distributions']]],
   ['fournierrobustifiedmultivariatenormal',['FournierRobustifiedMultivariateNormal',['../classUtilities_1_1Distributions_1_1FournierRobustifiedMultivariateNormal.html',1,'Utilities::Distributions']]],
   ['frange',['FRange',['../classIOSKJ_1_1FRange.html',1,'IOSKJ']]],
-  ['frequency',['frequency',['../classIOSKJ_1_1FRange.html#a4f9443dc8de8430fc64d74953f5861d3',1,'IOSKJ::FRange']]]
+  ['frequency',['frequency',['../classIOSKJ_1_1BRule.html#aa05cac364f65817149e8b190e9843ba6',1,'IOSKJ::BRule::frequency()'],['../classIOSKJ_1_1FRange.html#a4f9443dc8de8430fc64d74953f5861d3',1,'IOSKJ::FRange::frequency()']]]
 ];

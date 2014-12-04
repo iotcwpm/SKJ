@@ -1,211 +1,164 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<title>Indian Ocean skipjack model : Parameter distributions</title>
-		<meta charset="UTF-8" />
-		<link rel="stylesheet" type="text/css" href="/core/stencils/themes/default/theme.css" />
-		<script type="text/javascript">(function(c){
+		<title>Indian Ocean skipjack model : Parameter distributions
+		</title>
+		<meta charset="utf-8">
+		<link rel="stylesheet" type="text/css" href="/core/stencils/themes/default/theme.css"><script type="text/javascript">(function(c){
 	var d=document,s,i,l;
 	s=d.styleSheets;for(i=0;i!=s.length;i++){if((s[i].href||'').match(c)){try{if(s[i].cssRules.length)return;}catch(e){}}}
 	l=d.createElement('link');l.rel='stylesheet';l.type='text/css';l.href='http://stenci.la'+c;
 	d.documentElement.className='unready';l.onload=function(){d.documentElement.className='';};
 	d.getElementsByTagName('head')[0].appendChild(l);
 })('/core/stencils/themes/default/theme.css');</script>
-		<style type="text/css">.unready{display:none;}</style>
+		<style type="text/css">.unready{display:none;}
+		</style>
 	</head>
 	<body>
-		
-		<main id="content">
-			 
-			<div id="title">Indian Ocean skipjack model : Parameter distributions</div>
-			<pre data-code="r">
+		<main id="content"> <span id="title">Indian Ocean skipjack model : Parameter distributions</span>
+			<pre data-code="r" data-hash="bhXnnZY">
 source('../../common.R',local=T)
 require(stringr)
+# Read in files
 load(c(
-	'samples'
-),from='../output')
+	'accepted',
+	'rejected',
+	'track'
+),from='../../ss3/output')
+# Add columns to accepted to allow rbinding
+accepted$time <- NA
+accepted$year <- NA
+accepted$quarter <- NA
+accepted$criterion <- 0
+# Bind together
+all <- rbind(accepted,rejected)
 
-</pre>
-			<pre data-code="r">
-# Function for plotting densities of parameters
-plot_densities &lt;- function(param){
+
+			</pre>
+			<pre data-code="r" data-const="true" data-hash="bbjXJy">
+rejects <- table(rejected$criterion)
+
+			</pre>
+			<table id="table-1">
+				<caption><span class="label"><span class="type">Table</span><span class="number">1</span><span class="separator">:</span></span>Feasibility criteria used in the FST algorithm
+				</caption>
+				<tr>
+					<th>Code
+					</th>
+					<th>Criterion
+					</th>
+					<th>Trials failing this criterion
+					</th>
+				</tr>
+				<tr>
+					<td>1
+					</td>
+					<td>Stock status must always be >10% B0
+					</td>
+					<td data-text="rejects[1]">2980
+					</td>
+				</tr>
+				<tr>
+					<td>2
+					</td>
+					<td>Stock status must be less than 100% B0 since 2008
+					</td>
+					<td data-text="rejects[2]">422
+					</td>
+				</tr>
+			</table>
+			<figure id="figure-1">
+				<pre data-code="r" data-format="png" data-size="17x10cm" data-const="true" data-hash="rz1uOJQ">
+print(
+	ggplot(subset(track,quarter==0),aes(x=year+quarter/4,y=biomass_spawning_overall/1000,group=replicate)) + 
+		geom_line(alpha=0.2) +
+		scale_y_log10() + 
+		labs(x="Year",y="Total spawning biomass (`000 t)")
+)
+
+				</pre><img src="1.png" data-out="true">
+				<figcaption><span class="label"><span class="type">Figure</span><span class="number">1</span><span class="separator">:</span></span>Examples of biomass trajectories from the FST algorithm. Those trajectories which end prior to 2013 have failed to meet one of the conditioning criteria.
+				</figcaption>
+			</figure>
+			<pre data-code="r" data-hash="rhwPzPA">
+library(rpart)
+
+
+
+			</pre>
+			<pre data-code="r" data-const="true" data-hash="soXeUCe">
+plot_densities <- function(param){
+	name <- paste0(param,".value")
+	values <- rbind(
+		data.frame(value=accepted[,name],criterion=0),
+		data.frame(value=rejected[,name],criterion=rejected$criterion)
+	)
+	values$criterion = factor(values$criterion)
 	print(
-		ggplot(data.frame(
-			value = samples[,paste0(param,'.value')],
-			m = factor(samples$mortality_base.value)
-		)) + 
-			geom_bar(aes(x=value,fill=m)) + 
-			labs(x="Value",y="Count")
+		ggplot(values,aes(x=value,fill=criterion,colour=criterion)) + 
+			geom_density(adjust=1/2,alpha=0.2) + 
+			labs(x="Value",y="Density")
 	)
 }
 
-</pre>
-			<div data-for="param:c('spawners_unfished','recruits_steepness','recruits_sd','mortality_base','movement_stay','selectivities.0.3.','recruits_deviations.2004.','recruits_deviations.2005.')">
+
+			</pre>
+			<div data-for="param:c('spawners_unfished','mortality_base','movement_stay','recruits_deviations.2003.')">
 				<figure data-off="true">
-					<pre data-code="r" data-format="png" data-size="17x10cm">
+					<pre data-code="r" data-format="png" data-size="17x10cm" data-const="true">
 plot_densities(param)
-</pre>
-					<figcaption>
-						Distribution of values of the "
-						<span data-text="param"></span>
-						" parameter.
+
+					</pre>
+					<figcaption>Distribution of values of the parameter "<span data-text="param"></span>" according to feasibility criteria (0 indicates the trial met all criteria).
 					</figcaption>
 				</figure>
-				<figure data-index="0">
-					<pre data-code="r" data-format="png" data-size="17x10cm">
+				<figure data-index="0" id="figure-2">
+					<pre data-code="r" data-format="png" data-size="17x10cm" data-const="true" data-hash="YyHssd">
 plot_densities(param)
-</pre>
-					<img src="1.png" data-output="true" />
-					<figcaption>
-						<span class="label">
-							<span class="type">Figure</span>
-							<span class="number">1</span>
-							<span class="separator">:</span>
-						</span>
-						Distribution of values of the "
-						<span data-text="param">spawners_unfished</span>
-						" parameter.
+
+					</pre><img src="2.png" data-out="true">
+					<figcaption><span class="label"><span class="type">Figure</span><span class="number">2</span><span class="separator">:</span></span>Distribution of values of the parameter "<span data-text="param">spawners_unfished</span>" according to feasibility criteria (0 indicates the trial met all criteria).
 					</figcaption>
 				</figure>
-				<figure data-index="1">
-					<pre data-code="r" data-format="png" data-size="17x10cm">
+				<figure data-index="1" id="figure-3">
+					<pre data-code="r" data-format="png" data-size="17x10cm" data-const="true" data-hash="YyHssd">
 plot_densities(param)
-</pre>
-					<img src="2.png" data-output="true" />
-					<figcaption>
-						<span class="label">
-							<span class="type">Figure</span>
-							<span class="number">2</span>
-							<span class="separator">:</span>
-						</span>
-						Distribution of values of the "
-						<span data-text="param">recruits_steepness</span>
-						" parameter.
+
+					</pre><img src="3.png" data-out="true">
+					<figcaption><span class="label"><span class="type">Figure</span><span class="number">3</span><span class="separator">:</span></span>Distribution of values of the parameter "<span data-text="param">mortality_base</span>" according to feasibility criteria (0 indicates the trial met all criteria).
 					</figcaption>
 				</figure>
-				<figure data-index="2">
-					<pre data-code="r" data-format="png" data-size="17x10cm">
+				<figure data-index="2" id="figure-4">
+					<pre data-code="r" data-format="png" data-size="17x10cm" data-const="true" data-hash="YyHssd">
 plot_densities(param)
-</pre>
-					<img src="3.png" data-output="true" />
-					<figcaption>
-						<span class="label">
-							<span class="type">Figure</span>
-							<span class="number">3</span>
-							<span class="separator">:</span>
-						</span>
-						Distribution of values of the "
-						<span data-text="param">recruits_sd</span>
-						" parameter.
+
+					</pre><img src="4.png" data-out="true">
+					<figcaption><span class="label"><span class="type">Figure</span><span class="number">4</span><span class="separator">:</span></span>Distribution of values of the parameter "<span data-text="param">movement_stay</span>" according to feasibility criteria (0 indicates the trial met all criteria).
 					</figcaption>
 				</figure>
-				<figure data-index="3">
-					<pre data-code="r" data-format="png" data-size="17x10cm">
+				<figure data-index="3" id="figure-5">
+					<pre data-code="r" data-format="png" data-size="17x10cm" data-const="true" data-hash="YyHssd">
 plot_densities(param)
-</pre>
-					<img src="4.png" data-output="true" />
-					<figcaption>
-						<span class="label">
-							<span class="type">Figure</span>
-							<span class="number">4</span>
-							<span class="separator">:</span>
-						</span>
-						Distribution of values of the "
-						<span data-text="param">mortality_base</span>
-						" parameter.
-					</figcaption>
-				</figure>
-				<figure data-index="4">
-					<pre data-code="r" data-format="png" data-size="17x10cm">
-plot_densities(param)
-</pre>
-					<img src="5.png" data-output="true" />
-					<figcaption>
-						<span class="label">
-							<span class="type">Figure</span>
-							<span class="number">5</span>
-							<span class="separator">:</span>
-						</span>
-						Distribution of values of the "
-						<span data-text="param">movement_stay</span>
-						" parameter.
-					</figcaption>
-				</figure>
-				<figure data-index="5">
-					<pre data-code="r" data-format="png" data-size="17x10cm">
-plot_densities(param)
-</pre>
-					<img src="6.png" data-output="true" />
-					<figcaption>
-						<span class="label">
-							<span class="type">Figure</span>
-							<span class="number">6</span>
-							<span class="separator">:</span>
-						</span>
-						Distribution of values of the "
-						<span data-text="param">selectivities.0.3.</span>
-						" parameter.
-					</figcaption>
-				</figure>
-				<figure data-index="6">
-					<pre data-code="r" data-format="png" data-size="17x10cm">
-plot_densities(param)
-</pre>
-					<img src="7.png" data-output="true" />
-					<figcaption>
-						<span class="label">
-							<span class="type">Figure</span>
-							<span class="number">7</span>
-							<span class="separator">:</span>
-						</span>
-						Distribution of values of the "
-						<span data-text="param">recruits_deviations.2004.</span>
-						" parameter.
-					</figcaption>
-				</figure>
-				<figure data-index="7">
-					<pre data-code="r" data-format="png" data-size="17x10cm">
-plot_densities(param)
-</pre>
-					<img src="8.png" data-output="true" />
-					<figcaption>
-						<span class="label">
-							<span class="type">Figure</span>
-							<span class="number">8</span>
-							<span class="separator">:</span>
-						</span>
-						Distribution of values of the "
-						<span data-text="param">recruits_deviations.2005.</span>
-						" parameter.
+
+					</pre><img src="5.png" data-out="true">
+					<figcaption><span class="label"><span class="type">Figure</span><span class="number">5</span><span class="separator">:</span></span>Distribution of values of the parameter "<span data-text="param">recruits_deviations.2003.</span>" according to feasibility criteria (0 indicates the trial met all criteria).
 					</figcaption>
 				</figure>
 			</div>
-			<figure>
-				<pre data-code="r" data-format="png" data-size="17x10cm">
-temp &lt;- melt(samples[,paste0("recruits_deviations.",1985:2012,"..value")])
-temp$year &lt;- str_extract(temp$variable,"\\d+")
+			<figure id="figure-6">
+				<pre data-code="r" data-format="png" data-size="17x10cm" data-const="true" data-hash="rxvzwNg">
+temp <- melt(accepted[,paste0("recruits_deviations.",1990:2012,"..value")])
+temp$year <- str_extract(temp$variable,"\\d+")
 print(ggplot(temp,aes(x=year,y=value)) + 
 	geom_violin(fill='grey') +
 	geom_point(data=ddply(temp,.(year),summarise,y=mean(value)),aes(y=y)) +
 	geom_hline(y=0,linetype=2) + 
 	labs(x='Year',y='Value'))
-</pre>
-				<img src="9.png" data-output="true" />
-				<figcaption>
-					<span class="label">
-						<span class="type">Figure</span>
-						<span class="number">9</span>
-						<span class="separator">:</span>
-					</span>
-					Distribution of values of 
-					<code>recruits_deviations</code>
-					 parameters. The dots represent the mean of each distribution.	
+
+				</pre><img src="6.png" data-out="true">
+				<figcaption><span class="label"><span class="type">Figure</span><span class="number">6</span><span class="separator">:</span></span>Distribution of values of <code>recruits_deviations</code> parameters that passed all feasibility criteria. The dots represent the mean of each distribution.	
 				</figcaption>
 			</figure>
-		</main>
-		<script src="/core/themes/boot.js"> </script>
-		<script>if(!window.Stencila){window.StencilaHost='http://stenci.la';document.write(unescape('%3Cscript src="http://stenci.la/core/themes/boot.js"%3E%3C/script%3E'))}</script>
-		<script>window.Stencila.Booter.theme('core/stencils/themes/default');</script>
-		<script>window.setTimeout(function(){document.documentElement.className='';},10000)</script>
+		</main><script src="/core/themes/boot.js"> </script><script>if(!window.Stencila){window.StencilaHost='http://stenci.la';document.write(unescape('%3Cscript src="http://stenci.la/core/themes/boot.js"%3E%3C/script%3E'))}</script><script>window.Stencila.Booter.theme('core/stencils/themes/default');</script><script>window.setTimeout(function(){document.documentElement.className='';},10000)</script>
 	</body>
 </html>

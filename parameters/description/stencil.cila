@@ -1,75 +1,64 @@
 #title Indian Ocean skipjack model : parameter prior distributions and sensitivity ranges
 
-# DRAFT
+For each model parameter a prior probability is defined. These priors are used in conditioning algorithms and are intended to represent the prior knowledge and associated uncertainty regarding a parameter. For some parameters, such as stock recruitment steepness |eta|, there is unlikely to be any information in the data and so the prior may be influential.
 
-This documentation is a draft under active development. As such, it may not exactly mirror what is in the current version of the code. Separate documentation, generated from the model's C++ source code, is also [available](../../doxygen/).
+In addition, for each model parameter a sensitivity range is defined. This range is used in robustness testing of candidate harvest control rules to evaluate how sensitive a rule is to parameter values which are possible but which are determined, on the basis of either priors or conditioning, to be unlikely. In the current iteration of this project, this type of rubistness testing has not been implemented, and hence the sensitivity ranges proposed in this section have not be used.
 
-# Introduction
+At present, only some of these prior distributions are used in conditioning because parameter estimates from the latest stock assessment are being used where possible. However, for those parameters which are not estimated or assumed in the assessment (e.g. movement parameters), these priors will be of relevance. The priors described here should not be considered definitive and ideally should be be refined in consultation with a wider group of Indian Ocean tuna scientists. As much as anything, the utility of this section is in providing some documentation on the information available to inform parameter priors.
 
-For each model parameter a prior probability is defined. These priors are used in conditioning algorithmsand are intended to represent the prior knowledge and associated uncertainty. For some parameters, such as stock recruitment steepness |eta|, there is unlikely to be any information in the data and so the prior may be influential.
+section
+	h1 Weight and maturity
 
-In addition, for each model parameter a sensitivity range is defined. This range is used in robustness testing of candidate harvest control rules to evaluate how sensitive a rule is to parameter values which are possible but which are determined, on the basis of either priors or conditioning, to be unlikely.
+	Priors for length-weight parameters, |alpha| and |beta|, were based on the fixed values used in Sharma et al (2012) with a coefficient of variation of 5% ({ref #table-pars}).
 
+	Priors for maturity ogive parameters, |tau| and |upsilon| were based on the results of Grande (2013). For the inflection point, |tau|, based on Grande's estimated a value of 39.9cm, a normal prior with mean of 40cm and a coefficient of variation of 5% was used. Note that Table 4.2 of Grande (2013) indicates that some earlier studies in the Indian Ocean estimated values around 42-43cm for the inflection point. Sharma et al (2012, 2014) assumed 38cm based on Grande et al. (2010).
 
-# Spawning
+	Figure 7.3 of Grande (2013) shows 5% and 95% maturity at about 35cm and 44cm respectively. Given a 50% maturity of 40cm this corresponds to a steepness parameter, |upsilon|, of about 5cm. A normal distribution with a mean of 5cm and a 10% c.v. was used ({ref #table-pars}).
 
-In the western Indian Ocean, skipjack spawning appears to occur all year but with periods of greater activity during the North-east monsoon (November to March) and South-west monsoon (June to July) (Grande 2013 and references cited therein). Grande (2013) summarised the percentage of fish in the "spawning capable" phase in the months January to July. This percentage was highest during January and February (85%) decreasing to 51.9% in May and then increasing again to 82.4% in June and 73.3% in July. These percentages were used as the basis for a uniform prior on each |rho_q| (Table 2). We assumed that the spawning percentage during the fourth quarter, October to December, was similar to that during the second quarter.
+section
+	h1 Spawning and recruitment
 
+	In the western Indian Ocean, skipjack spawning appears to occur all year but with periods of greater activity during the North-east monsoon (November to March) and South-west monsoon (June to July) (Grande 2013 and references cited therein). Grande (2013) summarised the percentage of fish in the "spawning capable" phase in the months January to July. This percentage was highest during January and February (85%) decreasing to 51.9% in May and then increasing again to 82.4% in June and 73.3% in July. These percentages were used as the basis for a uniform prior on each |rho_q| ({ref #table-pars}). We assumed that the spawning percentage during the fourth quarter, October to December, was the same as during the second quarter.
 
-# Recruitment
+	Following Mangel et al. (2010) the prior for stock-recruitment steepness is based on a beta probability distribution function for a precursor parameter
 
-Following Mangel et al. (2010) the prior for stock-recruitment steepness is based on a beta probability distribution function for a precursor parameter
+		|dot(eta) ~ B(10,2)|
+		|eta = (dot(eta)+0.25)/1.25|
 
-	|dot(eta) ~ B(.)|
-	|eta = (dot(eta)+0.25)/1.25|
+	r
+		eta_qs <- round((qbeta(c(0.05,0.2,0.5,0.8,0.95),10,2)+0.2)/1.25,2)
 
-where |B(.)| is the beta distribution. This formulation allows for |eta| to be constrained between 0.2 and 1. 
+	where |B(.)| is the beta distribution. This formulation allows for |eta| to be constrained between 0.2 and 1. The resulting prior for steepness has a median of {span text eta_qs[3]} and 5, 20, 80 and 95th percentiles of {span text eta_qs[c(1,2,4,5)]} respectively.
 
+	For the standard deviation of stock-recruitment deviations, |sigma| a lognormal prior with a mean of 0.6 and a standard deviation of 0.5 was used based on Myers (2002) Figure 6.5 which has a median of about 0.6 for Scombridae.
 
-The resulting prior for steepness has a median of |eta_median| and 5, 20, 80 and 95th percentiles of |eta_qs| respectively (Figure X).
+section
+	h1 Mortality
 
+	The instantaneous rate of natural mortality at 1kg, |nu|, the same normal prior as in Sharma et al (2012) was used which has a mean of 0.8 and a standard deviation of 1 (Figure X).
 
-Everson et al (2012) and Sharma et al (2012) assumed 20cm for age 0 fish.	
+	A prior for the allometric exponent of the weight to natural mortality function, |gamma| was based on Lorenzen (1996) who estimated a value on -0.29.
 
+section
+	h1 Growth
 
-# Mortality
+	The priors for the growth curve parameters were from Hillary (2011). His Table 2 provides estimated posterior distributions for |kappa|, |lambda| and |varphi| from analysis of tagging data. For comparision, Sharma et al(2012) assumed 0.37 and 70 for |kappa|, |lambda| based on Anganuzzi & Million (pers. comm.).
 
-The instantaneous rate of natural mortality at 1kg, |nu|, the same normal prior as in Sharma et al (2012) was used which has a mean of 0.8 and a standard deviation of 1 (Figure X).
+	Hillary's estimate of 78.8 for |varphi| seems to be very high given that this is a coefficient of variation an hence needs to be multiplied by the increment to calculate a standard deviation (although note that Hillary's Equation 1 says multiplied by the length).
 
-A prior for the allometric exponent of the weight to natural mortality function, |gamma| was based on Lorenzen (1996) who estimated a value on -0.29.
+section
+	h1 Movement
 
+	There is little quantitative information on movement rates between the three regions. A uniform prior, |U(0.2,0.8)| was used for all elements of the movement matrix |M_{dot(r),r}|
 
-# Growth
+section
+	h1 Selectivity
 
-The priors for the growth curve parameters were from Hillary (2011). His Table 2 provides estimated posterior distributions for |kappa|, |lambda| and |varphi| from analysis of tagging data. For comparision, Sharma et al(2012) assumed 0.37 and 70 for |kappa|, |lambda| based on Anganuzzi & Million (pers. comm.).
+	Priors for selectivity parameters were based on estimates from the previous assessment (Figure 1 of Appendix 2 in Sharma et al 2012).
 
-.note Hillary's estimate of 78.8 for |varphi| seems to be very high given that this is a coefficient of variation so needs to be multiplied by the increment (? Hillary's Equation 1 says multiplied by the length).
-
-
-# Weight
-
-Priors for length-weight parameters were based on those used in Sharma et al (2012) with a coefficient of variation of 5%.
-
-
-# Maturity
-
-Priors for maturity ogive parameters were based on the results of Grande (2013). For the inflection point a normal prior with mean of 40cm and a coefficient of variation of 5% was used. Note that Table 4.2 of Grande (2013) indicates that some earlier studies in the Indian Ocean estimated values around 42-43cm for the inflection point. 
-
-Figure 7.3 of Grande (2013) shows 5% and 95% maturity at about 35cm and 44cm respectively. Given a 50% maturity of 40cm this corresponds to a steepness of the maturity ogive of about 5cm. A normal distribution with a mean of 5cm and a 10% c.v. was used.
-
-
-# Movement
-
-There is little quantitative information on movement rates between the three regions. A uniform prior, |U(0.2,0.8)| was used for all elements of the movement matrix |M_{dot(r),r}|
-
-
-# Selectivity
-
-Priors for selectivity parameters were based on estimates from the previous assessment (Figure 1 of Appendix 2 in Sharma et al 2012).
-
-table
+table #table-pars
 	caption 
-		Prior probability distributions for model parameters. Distributions are indicated as follows: fixed |F(value)|, uniform |U(lower,upper)|, normal |N(mean,sd)|, lognormal |L(mean,sd)|, beta |B(alpha,beta)|, mesa |M(min,lower,upper,max)|
+		Prior probability distributions and sensitivity rages for model parameters. Note that this table may be incomplete. Distributions are indicated as follows: fixed |F(value)|, uniform |U(lower,upper)|, normal |N(mean,sd)|, lognormal |L(mean,sd)|, beta |B(alpha,beta)|, mesa |M(min,lower,upper,max)|
 
 	tr
 		th Symbol
@@ -77,8 +66,6 @@ table
 		th Units
 		th Prior distribution
 		th Sensitivity range
-		th Notes
-
 
 	tr
 		th Weight
@@ -88,15 +75,12 @@ table
 		td |t*cm^-3*10^-6|
 		td |N(5.32,0.266)|
 		td 4-6
-		td Sharma et al (2012) used |F(5.32)| based on IOTC (2005). C.v. of 5%.
 	tr
 		td |beta|
 		td Exponent of the length-weight relationship
 		td -
 		td |N(3.35,0.1675)|
 		td 3.0-3.6
-		td Sharma et al (2012) used |F(3.35)| based on IOTC (2005). C.v. of 5%.
-
 
 	tr
 		th Maturity
@@ -106,17 +90,12 @@ table
 		td |cm|
 		td |N(40,2)|
 		td 35-55
-		td Grande (2013) estimated a value of 39.9cm. Sharma et al (2012) assumed 38cm based on Grande et al. (2010). C.v. of 5%.
 	tr
 		td |upsilon|
 		td Steepness of the maturity ogive
 		td |cm|
 		td |N(5,0.5)|
-		td
-		td Grande (2013) Fig 7.3. C.v. of 10%.
-	tr
-		td 
-
+		td 2-10
 
 	tr
 		th Spawning
@@ -126,9 +105,6 @@ table
 		td -
 		td |[[rho_1 ~ U(0.8,0.9)],[rho_2 ~ U(0.4,0.6)],[rho_3 ~ U(0.8,0.9)],[rho_4 ~ U(0.4,0.6)]]|
 		td
-		td Based on Grande (2013).
-	tr
-
 
 	tr
 		th Recruitment
@@ -138,43 +114,36 @@ table
 		td -
 		td
 		td 
-		td
 	tr
 		td |eta|
 		td Steepness of the stock-recruitment relationship precursor parameter
 		td -
 		td |B(10,2)|
 		td
-		td 
 	tr
 		td |sigma|
 		td Standard deviation of stock-recruitment deviations
 		td -
 		td |L(0.6,0.5)|
 		td
-		td Based on Myers (2002) Figure 6.5 which has a median of about 0.6 for Scombridae.
 	tr
 		td |chi_r|
 		td Proportion of total recruits that recruit into region |r|
 		td -
 		td
 		td
-		td 
 	tr
 		td |mu|
 		td Mean length of fish at the end of the first quarter
 		td -
 		td
 		td
-		td 
 	tr
 		td |zeta|
 		td Standard deviation of the length of fish at the end of the first quarter
 		td -
 		td
-		td
 		td 
-
 
 	tr
 		th Natural mortality
@@ -184,15 +153,12 @@ table
 		td |yr^-1|
 		td |N(0.8,1)|
 		td 0.4-1.0
-		td 
 	tr
 		td |gamma|
 		td Exponent of weight to natural mortality rate function
 		td 
 		td |N(-0.29,0.07)|
 		td [-0.2,-0.4]
-		td 
-
 
 	tr
 		th Growth
@@ -202,14 +168,12 @@ table
 		td |cm|
 		td |F(20)|
 		td
-		td 
 	tr  
 		td |phi|
 		td Standard deviation of fish in their first quarter
 		td |cm|
 		td |F(5)|
 		td
-		td 
 	tr
 		td |kappa|
 		td Maximum growth rate
@@ -237,15 +201,3 @@ table
 		td 
 		td |U(0.2,0.8)|
 		td 0-1
-
-# References
-
-Everson, J.P., Million, J., Sardenne, F., Le Croizier, G. (2012) Updated growth estimates for skipjack, yellowfin and bigeye tuna in the Indian Ocean using the most recent tag-recapture and otolith data. IIOOTC-2012-WPT14-23 Rev-1
-
-Grande, M (2013). The reproductive biology, condition and feeding ecology of the skipjack, Katsuwonus pelamis, in the Western Indian Ocean PhD Thesis. Department of Zoology and Animal Cell Biology, Universidad del Pais Vasco.
-
-Lorenzen, K. (1996). The relationship between body weight and natural mortality in juvenile and adult fish: a comparison of natural ecosystems and aquaculture. Journal of fish biology, 49(4), 627-642.
-
-Myers, R.A. (2002) Recruitment: understanding density-dependence in fish populations.
-
-Sharma, R., Herrera, M., Million, J. (2012) Indian Ocean skipjack tuna stock assessment 1950-2011 (Stock Synthesis). IOTC-2012-WPTT14-29 Rev-1
