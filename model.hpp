@@ -917,6 +917,7 @@ public:
 		spawning.write("model/output/spawning.tsv");
 		biomass_spawning_unfished.write("model/output/biomass_spawning_unfished.tsv");
 		
+		recruits_regions.write("model/output/recruits_regions.tsv");
 		movement.write("model/output/movement.tsv");
 
 		numbers.write("model/output/numbers.tsv");
