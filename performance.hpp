@@ -72,7 +72,7 @@ public:
 	/**
 	 * Mean of stock status % B0
 	 */
-	Mean status_mean;
+	GeometricMean status_mean;
 
 	/**
 	 * Probability of stock being below 10% BO
