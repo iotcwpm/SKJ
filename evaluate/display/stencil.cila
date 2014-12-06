@@ -1,7 +1,131 @@
 #title Indian Ocean skipjack model : management procedure evaluations
 
 r
-	source('source.R')
+	source('../../common.R',local=T)
+
+	# Load in model outputs
+	load(c(
+		'procedures',
+		'samples',
+		'performances',
+		'track'
+	),from='../../evaluate/output')
+
+	# Calculate performance statistics from performance measures
+	perfs <- ddply(performances,.(procedure),summarise,
+				   yield = mean(catches_total/1000*4),
+				   yield_sd = sd(catches_total/1000*4),
+				   stability = -mean(catches_mapc),
+				   stability_sd = sd(catches_mapc),
+				   status = mean(status_mean),
+				   status_sd = sd(status_mean),
+				   safety10 = 1-mean(status_b10),
+				   safety10_sd = sd(status_b10),
+				   safety20 = 1-mean(status_b20),
+				   safety20_sd = sd(status_b20),
+				   kobe_a = mean(kobe_a),
+				   kobe_a_sd = sd(kobe_a),
+				   kobe_d = mean(kobe_d),
+				   kobe_d_sd = sd(kobe_d),
+				   kobe_to_a = mean(kobe_to_a,na.rm=T),
+				   kobe_to_a_sd = sd(kobe_to_a),
+				   cpue_w_ps = mean(cpue_mean_w_ps),
+				   cpue_w_ps_sd = sd(cpue_mean_w_ps),
+				   cpue_m_pl = mean(cpue_mean_m_pl),
+				   cpue_m_pl_sd = sd(cpue_mean_m_pl),
+				   cpue_e_gn = mean(cpue_mean_e_gn),
+				   cpue_e_gn_sd = sd(cpue_mean_e_gn)
+	)
+	# List of names of performance statistics
+	stats <- c(
+		'yield','stability',
+		'status','safety10','safety20',
+		'kobe_a','kobe_d','kobe_to_a',
+		'cpue_w_ps','cpue_m_pl','cpue_e_gn'
+	)
+	# Merge in procedures to facilitate summaries by procedure parameters
+	perfs <- merge(procedures,perfs)
+
+	# Augment track
+	track <- within(track,{
+		replicate <- factor(replicate)
+		procedure <- factor(procedure)
+		biomass_spawners_overall = biomass_spawners_w + biomass_spawners_m + biomass_spawners_e
+	})
+
+	# Function for creating a signature for a MP instance
+	mp_sig <- function(proc){
+		row <- subset(procedures,procedure==proc)
+		pars <- row[,3:12][!is.na(row[,3:12])]
+		paste0(row$class,'(',paste(pars,collapse=','),')')
+	}
+
+	# Pick some example replicates for use in traces based on
+	# average stock status in projections
+	temp <- subset(track,procedure==1 & year>=2015)
+	temp <- ddply(temp,.(replicate),summarise,by=mean(biomass_status))
+	temp <- temp$replicate[order(temp$by)]
+	replicate_egs <- temp[floor(length(temp)*c(0.2,0.5,0.8))]
+	replicate_egs <- factor(replicate_egs,levels=replicate_egs,ordered=T)
+
+	# Quantile plotting function
+	plot_ribbon <- function(data,y,ylab='Value',xlab='Year'){
+		# Evaluation the y expression
+		data$y <- eval(y,envir=data)
+		# Calculate quantiles
+		quantiles = ddply(data,.(year),function(data){
+			quantiles = quantile(data$y,p=c(0.01,0.05,0.1,0.25,0.5,0.75,0.9,0.95,0.99),na.rm=T)
+			data.frame(
+				p1 = quantiles[1],
+				p5 = quantiles[2],
+				p10 = quantiles[3],
+				p25 = quantiles[4],
+				p50 = quantiles[5],
+				p75 = quantiles[6],
+				p90 = quantiles[7],
+				p95 = quantiles[8],
+				p99 = quantiles[9]
+			)
+		})
+		# Plot
+		temp <- subset(data,replicate %in% replicate_egs)
+		temp$replicate <- factor(temp$replicate,levels=replicate_egs)
+		p = ggplot() +
+			geom_ribbon(data=quantiles,aes(x=year,ymin=p5,ymax=p95),alpha=0.1) + 
+			geom_ribbon(data=quantiles,aes(x=year,ymin=p10,ymax=p90),alpha=0.1) + 
+			geom_ribbon(data=quantiles,aes(x=year,ymin=p25,ymax=p75),alpha=0.1) +
+			geom_line(data=temp,aes(x=year,y=y,colour=replicate),alpha=0.6) +
+			geom_vline(x=2014.8,linetype=2) +
+			geom_hline(y=0,alpha=0) +
+			scale_colour_manual(values=hsv(c(0,0.66,0.33),0.6,0.6)) +
+			labs(x=xlab,y=ylab) +
+			theme(legend.position='none')
+		print(p)
+		p
+	}
+
+	# Plot of tradeoff between two performance statistics
+	plot_tradeoff <- function(data,x,y,colour,shape){
+		data <- within(data,{
+			xm = data[,names(x)]
+			xsd = data[,paste0(names(x),'_sd')]
+			ym = data[,names(y)]
+			ysd = data[,paste0(names(y),'_sd')]
+			colour = factor(data[,names(colour)])
+			shape = factor(data[,names(shape)])
+		})
+		print(
+			ggplot(data,aes(colour=colour,shape=shape)) +
+				geom_point(aes(x=xm,y=ym),size=3,alpha=0.7) + 
+				geom_segment(aes(x=xm-xsd,xend=xm+xsd,y=ym,yend=ym),alpha=0.5) +
+				geom_segment(aes(x=xm,xend=xm,y=ym-ysd,yend=ym+ysd),alpha=0.5) +
+				geom_vline(x=0,alpha=0) + 
+				geom_hline(y=0,alpha=0) + 
+				scale_shape_manual(values=1:10) + 
+				labs(x=x[[1]],y=y[[1]],colour=colour[[1]],shape=shape[[1]])
+		)
+	}
+
 
 section
 	h1 Methods and terminology
@@ -96,98 +220,9 @@ section
 	section
 		h1 Performance measures, performance statistics and management objectives
 
-		A _performance measure_ is any model variable that is used as a basis for a _performance statistic_. That is, a performance statistic, summarises a performance measure over the evaluation period, in this case 25 years.
-
-		The main performance measures used are catches |C|, relative catch rates |A|, and mature biomass |S|. For convenience, where the performance measure represents a summation across all possible model dimensions (e.g. region, method) for the variable we use the bar annotation in mathematical notation. e.g.
-
-		| bar C = sum_{r,m} C_{r,m} |
-
-		We have grouped performance statistics according to broad categories of management objectives : yield, abundance, stability, status and safety {ref #table-perf-stats}. We use these labels in the following summaries and for each category focus on the first performance statistic. For example, when presenting evaluation results relating to the stability management objective we mostly summarise the MAPC performance statistic. In accordance with the desire to maximise these objectives we present "positive" versions of each of performance statistics in the following figures and tables. For example, rather than presenting a "risk" related statistic such as the probability of being below |0.1S_0| we use the "safety" related statistic, the probability of being above |0.1S_0|.
+		include "../../performance/description"
 
 		{ref #figure-perf-dists} provides an overview of the distribution of each performance measure.
-
-		table #table-perf-stats
-			caption
-			thead
-				tr
-					th Performance statistic
-					th Performance measure
-					th Summary statistic
-			tbody
-				tr
-					th Yield
-				tr
-					td Mean catch
-					td |bar C|
-					td Mean over years
-				tr
-					td Mean purse siene catch
-					td |sum_{r} C_{r,ps}|
-					td Mean over years
-				tr
-					td Mean pole and line catch
-					td |sum_{r} C_{r,pl}|
-					td Mean over years
-				tr
-					td Mean gillnet catch
-					td |sum_{r} C_{r,gn}|
-					td Mean over years
-
-				tr
-					th Abundance
-				tr
-					td Mean relative catch rates for western purse siene
-					td |A_{we,ps}|
-					td Geometric mean over years
-				tr
-					td Mean relative catch rates for Maldive pole and line
-					td |A_{ma,pl}|
-					td Geometric mean over years
-				tr
-					td Mean relative catch rates for eastern gillnet
-					td |A_{ea,gn}|
-					td Geometric mean over years
-
-				tr
-					th Stability
-				tr
-					td Mean absolute proportional change in catch (MAPC; also known as average annual variation, AAV)
-					td |bar C|
-					td Mean over years |mean(abs(bar C_t/bar C_{t-1}))|
-				tr
-					td Variance in catch
-					td |bar C|
-					td Variance over years
-				tr
-					td Probability of shutdown 
-					td |bar C|
-					td Proportion of years that |bar C==0|
-
-				tr
-					th Status
-				tr
-					td Mean mature biomass relative to pristine
-					td |bar S/S_0|
-					td Mean over years
-				tr
-					td Mean mature biomass relative to |S_{msy}|
-					td |bar S/S_{msy}|
-					td Geometric mean over years
-				tr
-					td Mean fishing mortality relative to |F_{msy}|
-					td |bar F/F_{msy}|
-					td Geometric mean over years
-
-				tr
-					th Safety
-				tr
-					td Probability of mature biomass falling below 10% of |S_0|
-					td |bar S|
-					td Proportion of years that |bar S lt 0.1S_0|
-				tr
-					td Probability of mature biomass falling below 20% of |S_0|
-					td |bar S|
-					td Proportion of years that |bar S lt 0.2S_0|
 
 		figure #figure-perf-dists
 			r png 17x17cm
@@ -208,16 +243,16 @@ section
 
 		The following figures illustrate the trade offs between pairs of performance statistics:
 			ul
-				li yield v status {ref #figure-yield-status-all}
-				li yield v safety {ref #figure-yield-safety-all-all}
-				li yield v stability {ref #figure-yield-safety-all-all}
-				li yield v abundance {ref #figure-yield-abundance-all}
+				li {ref #figure-yield-status-all} : yield v status
+				li {ref #figure-yield-safety-all} : yield v safety
+				li {ref #figure-yield-stability-all} : yield v stability
+				li {ref #figure-yield-abundance-all} : yield v abundance
 
 		figure #figure-yield-status-all
 			r png 17x10cm
 				plot_tradeoff(
 					perfs,
-					x = list(yield='Yield (mean annual catch, `000 t)'),
+					x = list(yield='Yield (mean annual catch, kt)'),
 					y = list(status='Status (mean of S/S0)'),
 					colour = list(class='Class'),
 					shape = list(class='Class')
@@ -229,8 +264,8 @@ section
 			r png 17x10cm
 				plot_tradeoff(
 					perfs,
-					x = list(yield='Yield (mean annual catch, `000 t)'),
-					y = list(safety10='Safety (1-P(S<0.1S0))'),
+					x = list(yield='Yield (mean annual catch, kt)'),
+					y = list(safety10='Safety (P(B>0.1B0))'),
 					colour = list(class='Class'),
 					shape = list(class='Class')
 				)
@@ -241,7 +276,7 @@ section
 			r png 17x10cm
 				plot_tradeoff(
 					perfs,
-					x = list(yield='Yield (mean annual catch, `000 t)'),
+					x = list(yield='Yield (mean annual catch, kt)'),
 					y = list(stability='Stability (-MAPC)'),
 					colour = list(class='Class'),
 					shape = list(class='Class')

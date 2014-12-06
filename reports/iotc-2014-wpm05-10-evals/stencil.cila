@@ -7,7 +7,7 @@ Nokome Bentley{sup 1} and M. Shiham Adam{sup 2}
 
 h1 Abstract
 
-Three contrasting classes of management procedure (MP) have been implemented: BRule (a generic harvest control rule based on an estimate of stock status), FRange (a MP which adjusts effort when fishing mortality is outside a target range) and IRate (a MP which recommends a total allowable catch using a CPUE-based biomass index). Each MP is evaluated over a twenty five year period against performance statistics that include average annual yield, variability in catch, CPUE for the main region/gear combinations , average stock status and probability of stock status falling to low levels. Evaluations are performed using a range of model parameter values and the sensitivity of MP performance examined.
+Three contrasting classes of management procedure (MP) have been implemented: BRule (a generic harvest control rule based on an estimate of stock status), FRange (a MP which adjusts effort when fishing mortality is outside a target range) and IRate (a MP which recommends a total allowable catch using a CPUE-based biomass index). Each MP is evaluated over a twenty five year period against performance statistics that include average annual yield, variability in catch, CPUE for the main region/gear combinations, average stock status and probability of stock status falling to low levels. Evaluations are performed using a range of model parameter values and the sensitivity of MP performance examined.
 
 h1 Outline
 
