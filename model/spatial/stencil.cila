@@ -1,0 +1,108 @@
+#title Indian Ocean skipjack model : outputs related to spatial dynamics
+
+r
+	source('../../common.R',local=T)
+
+	load(c(
+		'recruits_regions',
+		'movement',
+		'numbers',
+		'track'
+	),from='../../model/output')
+
+	load(c(
+		'm_pl_cpue','w_ps_cpue','size_freqs','z_ests'
+	),from='../../data/output')
+
+r
+	plot_track <- function(what,label){
+		plot <- ggplot(track,aes(x=year+quarter/4)) + 
+				geom_line(aes_string(y=what)) + 
+				geom_hline(y=0,alpha=0) +
+				geom_vline(x=2015,alpha=0.6,linetype=2) +
+				labs(x='Year',y=label)
+		print(plot)
+		plot
+	}
+
+figure
+	r png 10x8cm
+		print(
+			ggplot(recruits_regions,aes(x=region,y=value)) +
+				geom_bar(stat='identity') +
+				labs(x="Region",y="Proportion")
+		)
+	figcaption 
+		Proportion of recruits by region.
+
+figure
+	r png 10x8cm
+		print(
+			ggplot(movement,aes(y=region_from,x=region,fill=value,label=round(value,4))) +
+				geom_tile() +
+				scale_fill_gradient(low="white",high="red") + 
+				geom_text() +
+				labs(y="Region from",x="Region to",fill="Proportion")
+		)
+	figcaption Movement proportion by quarter. Each cell indicates the proportion of fish moving from one region to another in one quarter.
+
+figure
+	r png 17x10cm
+		plot_track('biomass_status','Stock status (B/B0)')
+	figcaption
+		Stock status trajectory.
+
+figure
+	r png 17x10cm
+		print(
+			ggplot(subset(track,quarter==0),aes(x=year+quarter/4)) + 
+			geom_line(aes(y=biomass_spawners_w,colour='W')) + 
+			geom_line(aes(y=biomass_spawners_m,colour='M')) + 
+			geom_line(aes(y=biomass_spawners_e,colour='E')) + 
+			geom_hline(y=0,alpha=0) +
+			geom_vline(x=2015,alpha=0.6,linetype=2) +
+			labs(x='Year',y='Biomass of spawners (kt)',colour='Region')
+		)
+	figcaption
+		Biomass of spawners by region (first quarter).
+
+figure
+	r png 17x10cm
+		temp <- melt(subset(
+					track,quarter==0,select=c('year','exp_rate_w_ps','exp_rate_m_pl','exp_rate_e_gn')
+				),id.vars='year')
+		print(
+			ggplot(temp,aes(x=year,y=value,colour=variable)) + geom_line() +
+				geom_vline(x=2015,alpha=0.6,linetype=2) +
+				labs(x='Year',y='Exploitation rate',colour='Region/Method')
+		)
+	figcaption
+		Exploitation rate trajectories for the three main fisheries
+
+section
+	h1 Maldive pole and line (M-PL) CPUE
+
+	figure
+		r png 17x12cm
+			m_pl_cpue = subset(m_pl_cpue,data_year>2000)
+			print(ggplot(m_pl_cpue,aes(x=data_year+quarter/4)) + 
+				geom_line(aes(y=value),alpha=0.7) + 
+				geom_point(aes(y=location,colour=factor(quarter),shape=factor(quarter)),size=3) + 
+				geom_hline(y=0,alpha=0) +
+				scale_shape_manual(values=1:4) +
+				labs(x='Year',y='Maldive pole and line CPUE index',colour='Quarter',shape='Quarter'))
+		figcaption
+			Observed (points) and expected (lines) Maldive (M) pole and line (PL) CPUE.
+
+section
+	h1 Western purse seine (W-PS) CPUE
+
+	figure
+		r png 17x12cm
+			print(ggplot(w_ps_cpue,aes(x=data_year)) + 
+				geom_line(aes(y=value),alpha=0.7) + 
+				geom_point(aes(y=location),shape=1,size=3) + 
+				geom_hline(y=0,alpha=0) +
+				labs(x='Year',y='West purse siene CPUE index'))
+		figcaption
+			Observed (points) and expected (lines) western (W) purse seine (PS) CPUE.
