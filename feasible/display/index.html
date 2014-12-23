@@ -15,7 +15,9 @@
 		</style>
 	</head>
 	<body>
-		<main id="content"> <span id="title">Indian Ocean skipjack model : conditioning based on feasibility constraints</span>
+		<main id="content"> 
+			<div id="title">Indian Ocean skipjack model : conditioning based on feasibility constraints
+			</div>
 			<p>This section describes an approach to model conditioning using the Feasible Stock Trajectories (FST) algorithm (Bentley and Langley 2012). Rather than estimating parameters using full likelihoods, FST uses feasibility criterion to accept or reject sets of parameters drawn from their prior distributions. Feasibility criteria can be based on a priori beliefs about the stock or on "features" of the observed data. Although unsophisticated, this approach can provide a pragmatic means for conditioning an operating model.
 			</p>
 			<p>In the Indian Ocean skipjack model
@@ -97,7 +99,7 @@ print(
 		labs(x="Year",y="Total spawning biomass (`000 t)")
 )
 
-				</pre><img src="1.png" data-out="true">
+				</pre><img src="IeAgbs.png" data-out="true">
 				<figcaption><span class="label"><span class="type">Figure</span><span class="number">1</span><span class="separator">:</span></span>Examples of biomass trajectories from the FST algorithm. Those trajectories which end prior to 2013 have failed to meet one of the conditioning criteria.
 				</figcaption>
 			</figure>
@@ -131,7 +133,7 @@ plot_densities(param)
 					<pre data-code="r" data-format="png" data-size="17x10cm" data-hash="rxEyB1N">
 plot_densities(param)
 
-					</pre><img src="2.png" data-out="true">
+					</pre><img src="rxEyB1N.png" data-out="true">
 					<figcaption><span class="label"><span class="type">Figure</span><span class="number">2</span><span class="separator">:</span></span>Distribution of values of the parameter "<span data-text="param">recruits_unfished</span>" according to feasibility criteria (0 indicates the trial met all criteria).
 					</figcaption>
 				</figure>
@@ -139,7 +141,7 @@ plot_densities(param)
 					<pre data-code="r" data-format="png" data-size="17x10cm" data-hash="rii9zTj">
 plot_densities(param)
 
-					</pre><img src="3.png" data-out="true">
+					</pre><img src="rii9zTj.png" data-out="true">
 					<figcaption><span class="label"><span class="type">Figure</span><span class="number">3</span><span class="separator">:</span></span>Distribution of values of the parameter "<span data-text="param">mortality_base</span>" according to feasibility criteria (0 indicates the trial met all criteria).
 					</figcaption>
 				</figure>
@@ -147,7 +149,7 @@ plot_densities(param)
 					<pre data-code="r" data-format="png" data-size="17x10cm" data-hash="qV5Oosm">
 plot_densities(param)
 
-					</pre><img src="4.png" data-out="true">
+					</pre><img src="qV5Oosm.png" data-out="true">
 					<figcaption><span class="label"><span class="type">Figure</span><span class="number">4</span><span class="separator">:</span></span>Distribution of values of the parameter "<span data-text="param">movement_stay</span>" according to feasibility criteria (0 indicates the trial met all criteria).
 					</figcaption>
 				</figure>
@@ -155,7 +157,7 @@ plot_densities(param)
 					<pre data-code="r" data-format="png" data-size="17x10cm" data-hash="qGlCqmM">
 plot_densities(param)
 
-					</pre><img src="5.png" data-out="true">
+					</pre><img src="qGlCqmM.png" data-out="true">
 					<figcaption><span class="label"><span class="type">Figure</span><span class="number">5</span><span class="separator">:</span></span>Distribution of values of the parameter "<span data-text="param">recruits_deviations.2003.</span>" according to feasibility criteria (0 indicates the trial met all criteria).
 					</figcaption>
 				</figure>
@@ -170,10 +172,10 @@ print(ggplot(temp,aes(x=year,y=value)) +
 	geom_hline(y=0,linetype=2) + 
 	labs(x='Year',y='Value'))
 
-				</pre><img src="6.png" data-out="true">
+				</pre><img src="mV7Hn4.png" data-out="true">
 				<figcaption><span class="label"><span class="type">Figure</span><span class="number">6</span><span class="separator">:</span></span>Distribution of values of <code>recruits_deviations</code> parameters that passed all feasibility criteria. The dots represent the mean of each distribution.	
 				</figcaption>
 			</figure>
-		</main><script src="/core/themes/boot.js"> </script><script>if(!window.Stencila){window.StencilaHost='http://stenci.la';document.write(unescape('%3Cscript src="http://stenci.la/core/themes/boot.js"%3E%3C/script%3E'))}</script><script>window.Stencila.Booter.theme('core/stencils/themes/default');</script><script>window.setTimeout(function(){document.documentElement.className='';},10000)</script>
+		</main><script src="/core/components/themes/base/boot.js"> </script><script>if(!window.Stencila){window.StencilaHost='http://stenci.la';document.write(unescape('%3Cscript src="http://stenci.la/core/themes/boot.js"%3E%3C/script%3E'))}</script><script>window.Stencila.Booter.theme('core/stencils/themes/default');</script><script>window.setTimeout(function(){document.documentElement.className='';},10000)</script>
 	</body>
 </html>

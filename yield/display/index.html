@@ -15,7 +15,9 @@
 		</style>
 	</head>
 	<body>
-		<main id="content"> <span id="title">Indian Ocean skipjack model : yield curve and MSY</span>
+		<main id="content"> 
+			<div id="title">Indian Ocean skipjack model : yield curve and MSY
+			</div>
 			<pre data-code="r" data-hash="XadOO2">
 # Load in source and output files
 source('../../common.R',local=T)
@@ -99,7 +101,7 @@ ypr_max_length  <- with(per_recruit,length[which.max(ypr)])
 							</td>
 							<td>Exploitation rate which produces MSY (quarterly)
 							</td>
-							<td data-text="round(e_msy,3)">0.415
+							<td data-text="round(e_msy,3)">0.384
 							</td>
 						</tr>
 						<tr>
@@ -107,7 +109,7 @@ ypr_max_length  <- with(per_recruit,length[which.max(ypr)])
 							</td>
 							<td>Instantaneous rate of fishing mortality which produces MSY (quarterly)
 							</td>
-							<td data-text="round(f_msy,3)">0.537
+							<td data-text="round(f_msy,3)">0.485
 							</td>
 						</tr>
 						<tr>
@@ -115,7 +117,7 @@ ypr_max_length  <- with(per_recruit,length[which.max(ypr)])
 							</td>
 							<td>Maximum sustainable yield (quarterly)
 							</td>
-							<td data-text="msy">126094
+							<td data-text="msy">84515.8
 							</td>
 						</tr>
 						<tr>
@@ -123,7 +125,7 @@ ypr_max_length  <- with(per_recruit,length[which.max(ypr)])
 							</td>
 							<td>Overall spawner biomass associated with maximum sustainable yield
 							</td>
-							<td data-text="biomass_spawners_msy">737618
+							<td data-text="biomass_spawners_msy">493244
 							</td>
 						</tr>
 						<tr>
@@ -131,7 +133,7 @@ ypr_max_length  <- with(per_recruit,length[which.max(ypr)])
 							</td>
 							<td><span class="math"><script type="math/asciimath">B_{msy}</script></span> as a percentage of pristine biomass
 							</td>
-							<td data-text="round(biomass_spawners_msy/biomass_spawners_unfished*100,1)">24.6
+							<td data-text="round(biomass_spawners_msy/biomass_spawners_unfished*100,1)">24.7
 							</td>
 						</tr>
 						<tr>
@@ -169,11 +171,11 @@ ypr_max_length  <- with(per_recruit,length[which.max(ypr)])
 						<tr data-with="msy">
 							<td><span class="math"><script type="math/asciimath">B_{msy}</script></span>
 							</td>
-							<td data-text="round(e_msy,3)">0.415
+							<td data-text="round(e_msy,3)">0.384
 							</td>
-							<td data-text="round(f_msy,3)">0.537
+							<td data-text="round(f_msy,3)">0.485
 							</td>
-							<td data-text="round(msy)">126094
+							<td data-text="round(msy)">84516
 							</td>
 							<td>1
 							</td>
@@ -185,17 +187,17 @@ ypr_max_length  <- with(per_recruit,length[which.max(ypr)])
 						<tr data-with="subset(points,level==0.3)">
 							<td><span class="math"><script type="math/asciimath">30%B_0</script></span>
 							</td>
-							<td data-text="round(exprate,3)">0.35
+							<td data-text="round(exprate,3)">0.3
 							</td>
-							<td data-text="round(f,3)">0.091
+							<td data-text="round(f,3)">0.082
 							</td>
-							<td data-text="round(yield)">125276
+							<td data-text="round(yield)">83477
 							</td>
 							<td data-text="round(yield/msy$msy,2)">0.99
 							</td>
-							<td data-text="round(status/msy$status,2)">1.16
+							<td data-text="round(status/msy$status,2)">1.22
 							</td>
-							<td data-text="round(exprate/msy$e_msy,3)">0.843
+							<td data-text="round(exprate/msy$e_msy,3)">0.781
 							</td>
 						</tr>
 						<tr data-with="subset(points,level==0.4)">
@@ -203,15 +205,15 @@ ypr_max_length  <- with(per_recruit,length[which.max(ypr)])
 							</td>
 							<td data-text="round(exprate,3)">0.2
 							</td>
-							<td data-text="round(f,3)">0.049
+							<td data-text="round(f,3)">0.053
 							</td>
-							<td data-text="round(yield)">112842
+							<td data-text="round(yield)">77618
 							</td>
-							<td data-text="round(yield/msy$msy,2)">0.89
+							<td data-text="round(yield/msy$msy,2)">0.92
 							</td>
-							<td data-text="round(status/msy$status,2)">1.74
+							<td data-text="round(status/msy$status,2)">1.63
 							</td>
-							<td data-text="round(exprate/msy$e_msy,3)">0.482
+							<td data-text="round(exprate/msy$e_msy,3)">0.52
 							</td>
 						</tr>
 						<tr data-with="subset(points,level==0.5)">
@@ -219,15 +221,15 @@ ypr_max_length  <- with(per_recruit,length[which.max(ypr)])
 							</td>
 							<td data-text="round(exprate,3)">0.15
 							</td>
-							<td data-text="round(f,3)">0.036
+							<td data-text="round(f,3)">0.039
 							</td>
-							<td data-text="round(yield)">102092
+							<td data-text="round(yield)">70972
 							</td>
-							<td data-text="round(yield/msy$msy,2)">0.81
+							<td data-text="round(yield/msy$msy,2)">0.84
 							</td>
-							<td data-text="round(status/msy$status,2)">2.05
+							<td data-text="round(status/msy$status,2)">1.94
 							</td>
-							<td data-text="round(exprate/msy$e_msy,3)">0.361
+							<td data-text="round(exprate/msy$e_msy,3)">0.39
 							</td>
 						</tr>
 					</tbody>
@@ -251,7 +253,7 @@ p3 = ggplot(curve,aes(x=exprate,y=status)) +
 		theme(legend.position="none")
 multiplot(p1,p2,p3)
 
-					</pre><img src="1.png" data-out="true">
+					</pre><img src="rvvR9iM.png" data-out="true">
 					<figcaption><span class="label"><span class="type">Figure</span><span class="number">1</span><span class="separator">:</span></span>Relations between equilibrium yield, stock status and exploitation rate.(top) Equilibrium yield versus equilibrium exploitation rate. (middle) Equilibrium yield versus equilibrium stock status.(bottom) Equilibrium stock status versus equilibrium exploitation rate.
 					</figcaption>
 				</figure>
@@ -259,7 +261,11 @@ multiplot(p1,p2,p3)
 			<section>
 				<h1 id="section-3" class="level-1"><span class="label"><span class="path">3</span><span class="separator"> </span></span>Fishery-specific yield curves
 				</h1>
-				<figure id="figure-2">
+				<p>Each fishing method has a particular size selectivity (<span data-ref="#figure-mat-select"><a href="#figure-mat-select">Figure 2</a></span>) and as such, the yield curve for each fishery will differ in shape. In this section we examine the shape of the yield curve for the three main fisheries. Rather than using the biomass of spawners in these fishery-specific yield curves we use the fishery-specific vulnerable biomass. Vulnerable biomass is directly proportional to catch rates so is a better measure of how alternative exploitation rates may affect the economic performance of the fishery. Each fishery will have a difference vulnerable biomass because of the different selectivity curve.
+				</p>
+				<p>For W-PS the yeild curve has its peak at high a much higher exploitation rate than for M-PL or E-GN (<span data-ref="#figure-yield-specific"><a href="#figure-yield-specific">Figure 3</a></span> top). This occurs because the W-PS fishery is selecting for smaller fish. Note also that the vulnerable biomass of all three fisheries is similar at very low exploitation rates. As exploitation rates increase the numbers of older, larger fish decreases and as such the vulnerable biomass of both M-PL ad E-GN decreases (<span data-ref="#figure-yield-specific"><a href="#figure-yield-specific">Figure 3</a></span> bottom).
+				</p>
+				<figure id="figure-mat-select">
 					<pre data-code="r" data-format="png" data-size="17x10cm" data-hash="sBCwCMX">
 print(
 	ggplot() +
@@ -268,12 +274,12 @@ print(
 		labs(x="Length (cm)",y="Proportion mature / selected",colour="Method")
 )
 
-					</pre><img src="2.png" data-out="true">
+					</pre><img src="sBCwCMX.png" data-out="true">
 					<figcaption><span class="label"><span class="type">Figure</span><span class="number">2</span><span class="separator">:</span></span>Maturity at length (dotted line) and selectivity at length (by method).
 					</figcaption>
 				</figure>
-				<figure>
-					<pre data-code="r" data-format="png" data-size="17x15cm" data-hash="bC6GmQ8">
+				<figure id="figure-yield-specific">
+					<pre data-code="r" data-format="png" data-size="17x20cm" data-hash="bGjpoze">
 p1 = ggplot(curve,aes(x=exprate)) +
 		geom_line(aes(y=catch_w_ps/1000,colour="W-PS",linetype="W-PS")) +
 		geom_line(aes(y=catch_m_pl/1000,colour="M-PL",linetype="M-PL")) +
@@ -291,15 +297,18 @@ p3 = ggplot(curve) +
 		labs(x="Exploitation rate (quarterly)",y="Vulnerable biomass (Mt)",colour="",linetype="")		
 multiplot(p1,p2,p3)
 
-
-					</pre><img src="3.png" data-out="true">
+					</pre><img src="bGjpoze.png" data-out="true">
+					<figcaption><span class="label"><span class="type">Figure</span><span class="number">3</span><span class="separator">:</span></span>Fishery specific yield curves. Each panel provides a separate line for each fishery (region/method) given that the specified exploitation rate is jointly applied in each fishery.
+					</figcaption>
 				</figure>
 			</section>
 			<section>
 				<h1 id="section-4" class="level-1"><span class="label"><span class="path">4</span><span class="separator"> </span></span>Yield per recruit
 				</h1>
-				<figure id="figure-3">
-					<pre data-code="r" data-format="png" data-size="12x17cm" data-hash="sBaInd8">
+				<p>To further investigate the nature of the yield in the fishery a simple yield per recruit analysis was done <span data-ref="#figure-yield-per-recruit"><a href="#figure-yield-per-recruit">Figure 4</a></span>. This suggests that yield per recruit is maximised at an age of 10 quarters (2.5 years) at a size of about 45cm. Note that this maximum will be highly dependent upon the growth curve and the mortality curve both of which are highly uncertain for fish below 45cm. As such, this analysis should be considered ancillary and treated with caution.
+				</p>
+				<figure id="figure-yield-per-recruit">
+					<pre data-code="r" data-format="png" data-size="12x15cm" data-hash="1Kfv8B">
 par(mfrow=c(4,1),mar=c(0,5,0,0),oma=c(5,0,1,1),las=1)
 with(per_recruit,{
 	plot(x=age,y=number,xaxt="n",ylab="Survival",type='l')
@@ -315,11 +324,11 @@ with(per_recruit,{
 	mtext("Age (quarters)",side=1,outer=F,line=2,cex=0.7)
 })
 
-					</pre><img src="4.png" data-out="true">
-					<figcaption><span class="label"><span class="type">Figure</span><span class="number">3</span><span class="separator">:</span></span>Yield per recruit.
+					</pre><img src="1Kfv8B.png" data-out="true">
+					<figcaption><span class="label"><span class="type">Figure</span><span class="number">4</span><span class="separator">:</span></span>Yield per recruit analysis.
 					</figcaption>
 				</figure>
 			</section>
-		</main><script src="/core/themes/boot.js"> </script><script>if(!window.Stencila){window.StencilaHost='http://stenci.la';document.write(unescape('%3Cscript src="http://stenci.la/core/themes/boot.js"%3E%3C/script%3E'))}</script><script>window.Stencila.Booter.theme('core/stencils/themes/default');</script><script>window.setTimeout(function(){document.documentElement.className='';},10000)</script>
+		</main><script src="/core/components/themes/base/boot.js"> </script><script>if(!window.Stencila){window.StencilaHost='http://stenci.la';document.write(unescape('%3Cscript src="http://stenci.la/core/themes/boot.js"%3E%3C/script%3E'))}</script><script>window.Stencila.Booter.theme('core/stencils/themes/default');</script><script>window.setTimeout(function(){document.documentElement.className='';},10000)</script>
 	</body>
 </html>

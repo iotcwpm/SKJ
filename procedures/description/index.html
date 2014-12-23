@@ -15,54 +15,52 @@
 		</style>
 	</head>
 	<body>
-		<main id="content"> <span id="title">Indian Ocean skipjack model : description of management procedures</span>
+		<main id="content"> 
+			<div id="title">Indian Ocean skipjack model : description of management procedures
+			</div>
 			<pre data-code="r" data-hash="b2TkzMB">
 # Include common R settings and functions for this project
 source('../../common.R',local=T)
 
 
 			</pre>
-			<p>Several classes of management procedure (MP) are considered with each <em>class</em> having several <em>control parameters</em> which can be varied to alter it's behaviour. We refer to a particular combination of control parameters for a class of MP as an instance of that class.
+			<p>Several classes of management procedure (MP) are considered with each <em>class</em> having several <em>control parameters</em> which can be varied to alter it's behaviour. We refer to a particular combination of control parameters for a class as an <em>instance</em> of that class.
 			</p>
-			<p>The classes of management procedure used here are mainly intended to illutrate the wide variety of possible MPs: the data inputs they use, their algorithmic form and the management controls which they alter (e.g. effort versus catch). The 
+			<p>The classes of management procedure used here are mainly intended to illustrate the wide variety of possible MPs: the data inputs they use, their algorithmic form and the management controls which they alter (e.g. effort versus catch).
 			</p>
 			<section>
 				<h1 id="section-1" class="level-1"><span class="label"><span class="path">1</span><span class="separator"> </span></span>BRule class
 				</h1>
-				<p>The <code>BRule</code> class of MP is similar to generic harvest control rules that have been suggested in other tuna fisheries (e.g. SCRS 2011, Scott et al 2013). It assumes that an estimate of stock status is available each year (although the same MP could be altered to have less frequent updates) and uses a simple relation between stock status and fishing intensity. Here we define relative stock status as ratio of current spawning biomass over the spawning biomass associated with maximum sustainable yield, <span class="math"><script type="math/asciimath">B_t//B_{msy}</script></span>, and relative fishing intensity as the ratio of the current instantaneous rate of fishing mortality and the rate associated with MSY, <span class="math"><script type="math/asciimath">F_t//F_{msy}</script></span>. For this study we have investigated the impact of alternative levels of stock assessment precision and implementation error on performance statistics.
+				<p>The <code>BRule</code> class of MP is similar to generic harvest control rules that have been suggested in other tuna fisheries (e.g. SCRS 2011, Scott et al 2013). It assumes that an estimate of stock status is available from an assessment conducted on a regular basis and uses a simple relation between stock status and fishing intensity. Here we define relative stock status as ratio of current spawner biomass as a proportion of the prinstine spawner biomass, <span class="math"><script type="math/asciimath">B_t//B_{0}</script></span>, and relative fishing intensity as the instantaneous rate of fishing mortality <span class="math"><script type="math/asciimath">F_t</script></span>. For this study we have investigated the impact of alternative levels of stock assessment precision and implementation error on performance statistics.
 				</p>
 				<p>In each year the relative biomass is estimated through a stock assessment,
-				</p>
-				<p class="equation"><script type="math/asciimath; mode=display">hat S = B_t/B_{msy} epsilon </script>
+					<p class="equation"><script type="math/asciimath; mode=display">hat S = B_t//B_{0} epsilon </script>
+					</p>
 				</p>
 				<p>where <span class="math"><script type="math/asciimath">epsilon</script></span> is a lognormally distributed multiplicative error with mean of 1 and standard deviation of <span class="math"><script type="math/asciimath">p</script></span>,
-				</p>
-				<p class="equation"><script type="math/asciimath; mode=display">epsilon ~ LN(1,p)</script>
+					<p class="equation"><script type="math/asciimath; mode=display">epsilon ~ LN(1,p)</script>
+					</p>
 				</p>
 				<p>Using <span class="math"><script type="math/asciimath">hat S</script></span> the recommended fishing intensity (<span class="math"><script type="math/asciimath">bar F</script></span>) is calculated. If <span class="math"><script type="math/asciimath">hat S lt s_l</script></span> then,
-				</p>
-				<p class="equation"><script type="math/asciimath; mode=display">bar F = 0</script>
+					<p class="equation"><script type="math/asciimath; mode=display">bar F = 0</script>
+					</p>
 				</p>
 				<p>If <span class="math"><script type="math/asciimath">hat S gt s_t</script></span> then,
-				</p>
-				<p class="equation"><script type="math/asciimath; mode=display">bar F = f</script>
+					<p class="equation"><script type="math/asciimath; mode=display">bar F = f</script>
+					</p>
 				</p>
 				<p>Otherwise,
-				</p>
-				<p class="equation"><script type="math/asciimath; mode=display">bar F = f/(s_t-s_l)(hat S-s_l)</script>
+					<p class="equation"><script type="math/asciimath; mode=display">bar F = f/(s_t-s_l)(hat S-s_l)</script>
+					</p>
 				</p>
 				<p>The recommended fishing intensity is applied to the fishery in the following year,
+					<p class="equation"><script type="math/asciimath; mode=display">F_{t+1} = bar F</script>
+					</p>
 				</p>
-				<p class="equation"><script type="math/asciimath; mode=display">F_{t+1} = bar F phi</script>
-				</p>
-				<p>where <span class="math"><script type="math/asciimath">phi</script></span> is a lognormally distributed multiplicative error with mean of 1 and standard deviation of <span class="math"><script type="math/asciimath">e</script></span>,
-				</p>
-				<p class="equation"><script type="math/asciimath; mode=display">phi ~ LN(1,e)</script>
-				</p>
-				<p>Table 1 provides a summary of each of the control parameters of <code>BRule</code> and their respective values evaluated in this study. Note that IOTC Resolution 13/10 set an interim limit target biomass of <span class="math"><script type="math/asciimath">B_{msy}</script></span> (i.e. <span class="math"><script type="math/asciimath">b_t = 1</script></span>) and an interim limit biomass of <span class="math"><script type="math/asciimath">0.4B_{msy}</script></span> (i.e. <span class="math"><script type="math/asciimath">b_l</script></span> = 0.4). Analogous values have been tested. IOTC Resolution 13/10 also includes a limit reference point of <span class="math"><script type="math/asciimath">1.5F_{msy}</script></span>. Such a limit reference point on <span class="math"><script type="math/asciimath">F</script></span> is not a feature of this MP which instead is based on relative biomass reference points.
+				<p>Table 1 provides a summary of each of the control parameters of <code>BRule</code> and their respective values evaluated in this study. Note that IOTC Resolution 13/10 set an interim limit target biomass of <span class="math"><script type="math/asciimath">B_{msy}</script></span> (i.e. <span class="math"><script type="math/asciimath">b_t = 1</script></span>) and an interim limit biomass of <span class="math"><script type="math/asciimath">0.4B_{msy}</script></span> (i.e. <span class="math"><script type="math/asciimath">b_l</script></span> = 0.4). IOTC Resolution 13/10 also includes a limit reference point of <span class="math"><script type="math/asciimath">1.5F_{msy}</script></span>.
 				</p>
 				<table id="table-1">
-					<caption><span class="label"><span class="type">Table</span><span class="number">1</span><span class="separator">:</span></span>Control parameters of the BRule management procedure : descriptions and values evaluated.
+					<caption><span class="label"><span class="type">Table</span><span class="number">1</span><span class="separator">:</span></span>Control parameters of the BRule management procedure class: descriptions and values evaluated.
 					</caption>
 					<thead>
 						<tr>
@@ -78,13 +76,23 @@ source('../../common.R',local=T)
 					</thead>
 					<tbody>
 						<tr>
+							<td>Frequency
+							</td>
+							<td><span class="math"><script type="math/asciimath">i</script></span>
+							</td>
+							<td>Frequency of assessments of stock status
+							</td>
+							<td>2
+							</td>
+						</tr>
+						<tr>
 							<td>Estimation precision
 							</td>
 							<td><span class="math"><script type="math/asciimath">p</script></span>
 							</td>
 							<td>Precision with which relative stock status is estimated
 							</td>
-							<td>0, 0.2, 0.4, 0.6
+							<td>0.2
 							</td>
 						</tr>
 						<tr>
@@ -94,7 +102,7 @@ source('../../common.R',local=T)
 							</td>
 							<td>Relative stock status below which recommended fishing intensity is reduced
 							</td>
-							<td>0.7, 0.8, 0.9, 1.0
+							<td>0.2, 0.3, 0.4
 							</td>
 						</tr>
 						<tr>
@@ -104,7 +112,7 @@ source('../../common.R',local=T)
 							</td>
 							<td>Relative stock status below which recommended fishing intensity is zero
 							</td>
-							<td>0.2, 0.3, 0.4, 0.5
+							<td>0.025, 0.05, 0.1
 							</td>
 						</tr>
 						<tr>
@@ -114,42 +122,32 @@ source('../../common.R',local=T)
 							</td>
 							<td>Relative fishing intensity
 							</td>
-							<td>0.8, 0.9, 1.0, 1.1
-							</td>
-						</tr>
-						<tr>
-							<td>Implementation precision
-							</td>
-							<td><span class="math"><script type="math/asciimath">e</script></span>
-							</td>
-							<td>Precision with which recommended fishing intensity is applied
-							</td>
-							<td>0, 0.2, 0.4, 0.6
+							<td>0.2, 0.25, 0.3
 							</td>
 						</tr>
 					</tbody>
 				</table>
 				<figure id="figure-1">
-					<pre data-code="r" data-format="png" data-size="16x10cm" data-hash="sxb3Nf3">
-s_l <- 0.3
-s_t <- 0.8
-f <- 0.9
-s_hats <- seq(0,1.5,0.01)
+					<pre data-code="r" data-format="png" data-size="16x10cm" data-hash="65Kr1b">
+s_l <- 0.05
+s_t <- 0.4
+f <- 0.25
+s_hats <- seq(0,1,0.01)
 f_dots <- f/(s_t-s_l)*(s_hats-s_l)
 f_dots[s_hats<s_l] <- 0
 f_dots[s_hats>s_t] <- f
 par(mar=c(4,4,1,1))
 plot(
 	s_hats,f_dots,type='l',
-	ylab='Relative fishing intensity (F/Fmsy)',
-	xlab='Relative stock status (B/Bmsy)',
-	las=1,ylim=c(0,1.2),xlim=c(0,1.2)
+	ylab='Fishing intensity (F)',
+	xlab='Stock status (B/B0)',
+	las=1
 )
-abline(h=1,lty=3)
-abline(v=1,lty=3)
+abline(h=f,lty=3)
+abline(v=s_t,lty=3)
 
-					</pre><img src="1.png" data-out="true">
-					<figcaption><span class="label"><span class="type">Figure</span><span class="number">1</span><span class="separator">:</span></span>An example instance of the BRule management procedure with <span class="math"><script type="math/asciimath">s_l=0.3</script></span>, <span class="math"><script type="math/asciimath">s_t=0.9</script></span>, <span class="math"><script type="math/asciimath">f=0.9</script></span> showing the relation between <span class="math"><script type="math/asciimath">hat S</script></span> and <span class="math"><script type="math/asciimath">bar F</script></span>.
+					</pre><img src="65Kr1b.png" data-out="true">
+					<figcaption><span class="label"><span class="type">Figure</span><span class="number">1</span><span class="separator">:</span></span>An example instance of the BRule management procedure with <span class="math"><script type="math/asciimath">s_l=0.05</script></span>, <span class="math"><script type="math/asciimath">s_t=0.4</script></span>, <span class="math"><script type="math/asciimath">f=0.25</script></span> showing the relation between <span class="math"><script type="math/asciimath">hat S</script></span> and <span class="math"><script type="math/asciimath">bar F</script></span>.
 					</figcaption>
 				</figure>
 			</section>
@@ -157,17 +155,85 @@ abline(v=1,lty=3)
 				<h1 id="section-2" class="level-1"><span class="label"><span class="path">2</span><span class="separator"> </span></span>FRange class
 				</h1>
 				<p><code>FRange</code> seeks to maintain the fishing mortality rate within a defined range. At periodic intervals, defined by the control parameter <span class="math"><script type="math/asciimath">i</script></span>, <span class="math"><script type="math/asciimath">F</script></span> is estimated (e.g. from a stock assessment or a tagging study) with a defined level of precision, <span class="math"><script type="math/asciimath">p</script></span>,
-				</p>
-				<p class="equation"><script type="math/asciimath; mode=display"> hat F = F epsilon </script>
+					<p class="equation"><script type="math/asciimath; mode=display"> hat F = F epsilon </script>
+					</p>
 				</p>
 				<p>where <span class="math"><script type="math/asciimath">epsilon</script></span> is a lognormally distributed multiplicative error with mean of 1 and standard deviation of <span class="math"><script type="math/asciimath">p</script></span>,
-				</p>
-				<p class="equation"><script type="math/asciimath; mode=display">epsilon ~ LN(1,p)</script>
+					<p class="equation"><script type="math/asciimath; mode=display">epsilon ~ LN(1,p)</script>
+					</p>
 				</p>
 				<p>The estimated fishing mortality is compared to a range defined by two control parameters, <span class="math"><script type="math/asciimath">f</script></span> the centre of the range and <span class="math"><script type="math/asciimath">b</script></span> the buffer, or width, of the range.
 				</p>
+				<table id="table-2">
+					<caption><span class="label"><span class="type">Table</span><span class="number">2</span><span class="separator">:</span></span>Control parameters of the FRange management procedure class: descriptions and values evaluated.
+					</caption>
+					<thead>
+						<tr>
+							<th>Parameter
+							</th>
+							<th>Symbol
+							</th>
+							<th>Description
+							</th>
+							<th>Values evaluated
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Frequency
+							</td>
+							<td><span class="math"><script type="math/asciimath">i</script></span>
+							</td>
+							<td>Frequency of estimation of F
+							</td>
+							<td>2, 5, 7
+							</td>
+						</tr>
+						<tr>
+							<td>Estimation precision
+							</td>
+							<td><span class="math"><script type="math/asciimath">p</script></span>
+							</td>
+							<td>Precision with which F is estimated
+							</td>
+							<td>0.2
+							</td>
+						</tr>
+						<tr>
+							<td>Target fishing intensity
+							</td>
+							<td><span class="math"><script type="math/asciimath">f</script></span>
+							</td>
+							<td>
+							</td>
+							<td>0.2, 0.25, 0.3
+							</td>
+						</tr>
+						<tr>
+							<td>Buffer around target fishing intensity
+							</td>
+							<td><span class="math"><script type="math/asciimath">b</script></span>
+							</td>
+							<td>
+							</td>
+							<td>0.01,0.02,0.05
+							</td>
+						</tr>
+						<tr>
+							<td>Maximum change
+							</td>
+							<td><span class="math"><script type="math/asciimath">f</script></span>
+							</td>
+							<td>Maximum allowable percenatge change in effort
+							</td>
+							<td>0.4
+							</td>
+						</tr>
+					</tbody>
+				</table>
 				<figure id="figure-2">
-					<pre data-code="r" data-format="png" data-size="16x10cm" data-hash="CEIotN">
+					<pre data-code="r" data-format="png" data-size="16x10cm" data-hash="qRjDa9R">
 f <- 0.5
 b <- 0.1
 t <- 0.9
@@ -183,7 +249,7 @@ plot(
 abline(h=f,lty=1)
 abline(h=c(f-b,f+b),lty=3)
 
-					</pre><img src="2.png" data-out="true">
+					</pre><img src="qRjDa9R.png" data-out="true">
 					<figcaption><span class="label"><span class="type">Figure</span><span class="number">2</span><span class="separator">:</span></span>An example instance of the BRule management procedure with <span class="math"><script type="math/asciimath">i=5</script></span>, <span class="math"><script type="math/asciimath">f=0.5</script></span>, <span class="math"><script type="math/asciimath">b=0.1</script></span> illustrating how total allowable catches are increased (green circles) or decreased (red circles) when the estimated fishing mortality is below or above the target range.
 					</figcaption>
 				</figure>
@@ -193,7 +259,7 @@ abline(h=c(f-b,f+b),lty=3)
 				</h1>
 				<p>This management procedure uses CPUE as an index of biomass and sets a total allowable catch (TAC) that, over most of the range of CPUE, is proportional to that index.
 				</p>
-				<pre data-code="r" data-hash="yQPbUK">
+				<pre data-code="r" data-hash="rALhFE4">
 # Some preparatory code for figures below
 catch <- read.table('../../parameters/input/catches.tsv',header=T)
 catch <- ddply(catch,.(year),summarise,catch=sum(value))
@@ -213,7 +279,7 @@ temp <- within(temp,{
 
 				</pre>
 				<figure id="figure-3">
-					<pre data-code="r" data-format="png" data-size="17x10cm" data-hash="snRuvkX">
+					<pre data-code="r" data-format="png" data-size="17x10cm" data-hash="qJYwKxK">
 print(
 	ggplot(melt(subset(temp,year>1980)[,c('year','m_pl_cpue','w_ps_cpue','combined')],id.vars=c('year')),
 		   aes(x=year,y=value,colour=variable,shape=variable)) + 
@@ -224,12 +290,12 @@ print(
 		labs(x='Year',y='CPUE index',colour='Index',shape='Index')
 )
 
-					</pre><img src="3.png" data-out="true">
+					</pre><img src="qJYwKxK.png" data-out="true">
 					<figcaption><span class="label"><span class="type">Figure</span><span class="number">3</span><span class="separator">:</span></span>Western purse seine, Maldive pole and line and combined CPUE series.
 					</figcaption>
 				</figure>
 				<figure id="figure-4">
-					<pre data-code="r" data-format="png" data-size="17x10cm" data-hash="bDp0fzm">
+					<pre data-code="r" data-format="png" data-size="17x10cm" data-hash="rHFrZkR">
 scalar <- with(subset(temp,year>=1994),exp(mean(log(catch/combined),na.rm=T)))/1000
 print(
 	ggplot(temp,aes(x=combined,y=catch/1000)) + 
@@ -240,16 +306,16 @@ print(
 		labs(x='Combined CPUE index',y='Catch (overall, 1000 tonnes)',colour='Used')
 )
 
-					</pre><img src="4.png" data-out="true">
+					</pre><img src="rHFrZkR.png" data-out="true">
 					<figcaption><span class="label"><span class="type">Figure</span><span class="number">4</span><span class="separator">:</span></span>Historical relation between combined CPUE and overall catch. The dashed line has a slope of the catch scalar = <span data-text="round(scalar,2)">415.7</span> (geometric mean of the ratio of catches over CPUE).
 					</figcaption>
 				</figure>
 				<p>In each year, a smoothed CPUE, <span class="math"><script type="math/asciimath">bar I</script></span> is calculated using an exponential moving average with the responsivesness control parameter, <span class="math"><script type="math/asciimath">r</script></span>:
-				</p>
-				<p class="equation"><script type="math/asciimath; mode=display"> bar I_t = r I_t + (1-r) bar I_{t+1} </script>
+					<p class="equation"><script type="math/asciimath; mode=display"> bar I_t = r I_t + (1-r) bar I_{t+1} </script>
+					</p>
 				</p>
 				<figure id="figure-5">
-					<pre data-code="r" data-format="png" data-size="17x10cm" data-hash="sA6QQQZ">
+					<pre data-code="r" data-format="png" data-size="17x10cm" data-hash="sxHpPmp">
 temp <- subset(temp,!is.na(combined))
 smooths <- NULL
 for(r in c(0.5, 0.65, 0.8, 1.0)){
@@ -271,26 +337,26 @@ print(
 		labs(x='Year',y='CPUE index',colour='Responsiveness')
 )
 
-					</pre><img src="5.png" data-out="true">
+					</pre><img src="sxHpPmp.png" data-out="true">
 					<figcaption><span class="label"><span class="type">Figure</span><span class="number">5</span><span class="separator">:</span></span>Illustration of the alternative smoothing of CPUE index using the responsiveness parameter.
 					</figcaption>
 				</figure>
 				<p>Higher values of <span class="math"><script type="math/asciimath">r</script></span> produce greater responsiveness because they put more weight on more recent values of CPUE and produce a index that is less smoothed. When <span class="math"><script type="math/asciimath">r=1</script></span> there is no smoothing and <span class="math"><script type="math/asciimath">bar I_t = r I_t</script></span>. Smoothing may be advantageous in that it reduces the influence of annual random variation in CPUE due catchability or operational variations. However, smoothing also reduces adds a lag to the index.
 				</p>
 				<p>Using <span class="math"><script type="math/asciimath">bar I</script></span> the recommended catch scaler (<span class="math"><script type="math/asciimath">bar S</script></span>) is calculated. If <span class="math"><script type="math/asciimath">bar I lt i_l</script></span> then,
-				</p>
-				<p class="equation"><script type="math/asciimath; mode=display">bar S = 0</script>
+					<p class="equation"><script type="math/asciimath; mode=display">bar S = 0</script>
+					</p>
 				</p>
 				<p>If <span class="math"><script type="math/asciimath">bar I gt i_t</script></span> then,
-				</p>
-				<p class="equation"><script type="math/asciimath; mode=display">bar S = m hat S</script>
+					<p class="equation"><script type="math/asciimath; mode=display">bar S = m hat S</script>
+					</p>
 				</p>
 				<p>Otherwise,
-				</p>
-				<p class="equation"><script type="math/asciimath; mode=display">bar S = (m hat S)/(i_t-i_l)(bar I-i_l)</script>
+					<p class="equation"><script type="math/asciimath; mode=display">bar S = (m hat S)/(i_t-i_l)(bar I-i_l)</script>
+					</p>
 				</p>
 				<figure id="figure-6">
-					<pre data-code="r" data-format="png" data-size="16x17cm" data-hash="r5Gpftv">
+					<pre data-code="r" data-format="png" data-size="16x17cm" data-hash="rtpvBg8">
 i_l <- 0.2
 i_t <- 0.8
 m <- 1.1
@@ -322,24 +388,24 @@ plot(
 abline(0,b=s_hat,lty=3)
 abline(v=1,lty=3)
 
-					</pre><img src="6.png" data-out="true">
+					</pre><img src="rtpvBg8.png" data-out="true">
 					<figcaption><span class="label"><span class="type">Figure</span><span class="number">6</span><span class="separator">:</span></span>An example instance of the IRate management procedure with <span class="math"><script type="math/asciimath">i_l=0.2</script></span>, <span class="math"><script type="math/asciimath">i_t=0.8</script></span>, <span class="math"><script type="math/asciimath">m=1.1</script></span>, <span class="math"><script type="math/asciimath">u=600</script></span> showing the relation between the CPUE index (<span class="math"><script type="math/asciimath">bar I</script></span>) and the catch scalar (<span class="math"><script type="math/asciimath">bar S</script></span>) and the recommended TAC.
 					</figcaption>
 				</figure>
 				<p>The recommended catch scaler is used to calculate a recommended TAC, <span class="math"><script type="math/asciimath">bar S</script></span>, by multiplying the harvest rate by the biomass index,
-				</p>
-				<p class="equation"><script type="math/asciimath; mode=display">bar C = min(bar S bar I, u)</script>
+					<p class="equation"><script type="math/asciimath; mode=display">bar C = min(bar S bar I, u)</script>
+					</p>
 				</p>
 				<p>which is applied to the fishery in the following year,
-				</p>
-				<p class="equation"><script type="math/asciimath; mode=display">C_{t+1} = bar C phi</script>
+					<p class="equation"><script type="math/asciimath; mode=display">C_{t+1} = bar C phi</script>
+					</p>
 				</p>
 				<p>where <span class="math"><script type="math/asciimath">phi</script></span> is a lognormally distributed multiplicative error with mean of 1 and standard deviation of <span class="math"><script type="math/asciimath">e</script></span>,
+					<p class="equation"><script type="math/asciimath; mode=display">phi ~ LN(1,e)</script>
+					</p>
 				</p>
-				<p class="equation"><script type="math/asciimath; mode=display">phi ~ LN(1,e)</script>
-				</p>
-				<table id="table-2">
-					<caption><span class="label"><span class="type">Table</span><span class="number">2</span><span class="separator">:</span></span>Control parameters of the IRate management procedure : descriptions and values evaluated.
+				<table id="table-3">
+					<caption><span class="label"><span class="type">Table</span><span class="number">3</span><span class="separator">:</span></span>Control parameters of the IRate management procedure : descriptions and values evaluated.
 					</caption>
 					<thead>
 						<tr>
@@ -361,7 +427,7 @@ abline(v=1,lty=3)
 							</td>
 							<td>Degree of smoothing in biomass index
 							</td>
-							<td>0.5, 0.65, 0.8, 1.0
+							<td>0.5
 							</td>
 						</tr>
 						<tr>
@@ -391,7 +457,17 @@ abline(v=1,lty=3)
 							</td>
 							<td>Biomass index at which harvest rate is zero relative to historic levels i.e. 0.2 = close the fishery when the biomas index is at 20% of historic levels
 							</td>
-							<td>0.1, 0.2, 0.3, 0.4
+							<td>0.05, 0.1, 0.2
+							</td>
+						</tr>
+						<tr>
+							<td>Maximum change
+							</td>
+							<td><span class="math"><script type="math/asciimath">f</script></span>
+							</td>
+							<td>Maximum allowable percenatge change in effort
+							</td>
+							<td>0.4
 							</td>
 						</tr>
 						<tr>
@@ -404,19 +480,9 @@ abline(v=1,lty=3)
 							<td>300, 400, 500, 600
 							</td>
 						</tr>
-						<tr>
-							<td>Implementation precision
-							</td>
-							<td><span class="math"><script type="math/asciimath">e</script></span>
-							</td>
-							<td>Precision with which recommended TAC is applied
-							</td>
-							<td>0, 0.1, 0.2, 0.3
-							</td>
-						</tr>
 					</tbody>
 				</table>
 			</section>
-		</main><script src="/core/themes/boot.js"> </script><script>if(!window.Stencila){window.StencilaHost='http://stenci.la';document.write(unescape('%3Cscript src="http://stenci.la/core/themes/boot.js"%3E%3C/script%3E'))}</script><script>window.Stencila.Booter.theme('core/stencils/themes/default');</script><script>window.setTimeout(function(){document.documentElement.className='';},10000)</script>
+		</main><script src="/core/components/themes/base/boot.js"> </script><script>if(!window.Stencila){window.StencilaHost='http://stenci.la';document.write(unescape('%3Cscript src="http://stenci.la/core/themes/boot.js"%3E%3C/script%3E'))}</script><script>window.Stencila.Booter.theme('core/stencils/themes/default');</script><script>window.setTimeout(function(){document.documentElement.className='';},10000)</script>
 	</body>
 </html>

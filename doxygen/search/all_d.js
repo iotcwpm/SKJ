@@ -11,5 +11,5 @@ var searchData=
   ['spawning_5funiform',['spawning_uniform',['../classIOSKJ_1_1Model.html#ae04fad38e291a476bec70ff67bbfd9b6',1,'IOSKJ::Model']]],
   ['status_5fb10',['status_b10',['../classIOSKJ_1_1Performance.html#a878186299483e5ee3f7c7d40caaf1abb',1,'IOSKJ::Performance']]],
   ['status_5fb20',['status_b20',['../classIOSKJ_1_1Performance.html#aaf4cc72da057fcb651d7c66e06fc2150',1,'IOSKJ::Performance']]],
-  ['status_5fmean',['status_mean',['../classIOSKJ_1_1Performance.html#af66c30ba6fb06caebf9430f474c91292',1,'IOSKJ::Performance']]]
+  ['status_5fmean',['status_mean',['../classIOSKJ_1_1Performance.html#af95c185e350a571da3a2133039f1dc8a',1,'IOSKJ::Performance']]]
 ];

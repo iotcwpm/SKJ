@@ -8,5 +8,5 @@ var searchData=
   ['spawning_5f0',['spawning_0',['../classIOSKJ_1_1Parameters.html#a36006c6d379e5e00fb10b8f64c91565d',1,'IOSKJ::Parameters']]],
   ['status_5fb10',['status_b10',['../classIOSKJ_1_1Performance.html#a878186299483e5ee3f7c7d40caaf1abb',1,'IOSKJ::Performance']]],
   ['status_5fb20',['status_b20',['../classIOSKJ_1_1Performance.html#aaf4cc72da057fcb651d7c66e06fc2150',1,'IOSKJ::Performance']]],
-  ['status_5fmean',['status_mean',['../classIOSKJ_1_1Performance.html#af66c30ba6fb06caebf9430f474c91292',1,'IOSKJ::Performance']]]
+  ['status_5fmean',['status_mean',['../classIOSKJ_1_1Performance.html#af95c185e350a571da3a2133039f1dc8a',1,'IOSKJ::Performance']]]
 ];

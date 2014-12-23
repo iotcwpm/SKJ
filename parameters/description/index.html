@@ -15,7 +15,9 @@
 		</style>
 	</head>
 	<body>
-		<main id="content"> <span id="title">Indian Ocean skipjack model : parameter prior distributions and sensitivity ranges</span>
+		<main id="content"> 
+			<div id="title">Indian Ocean skipjack model : parameter prior distributions and sensitivity ranges
+			</div>
 			<p>For each model parameter a prior probability is defined. These priors are used in conditioning algorithms and are intended to represent the prior knowledge and associated uncertainty regarding a parameter. For some parameters, such as stock recruitment steepness <span class="math"><script type="math/asciimath">eta</script></span>, there is unlikely to be any information in the data and so the prior may be influential.
 			</p>
 			<p>In addition, for each model parameter a sensitivity range is defined. This range is used in robustness testing of candidate harvest control rules to evaluate how sensitive a rule is to parameter values which are possible but which are determined, on the basis of either priors or conditioning, to be unlikely. In the current iteration of this project, this type of rubistness testing has not been implemented, and hence the sensitivity ranges proposed in this section have not be used.
@@ -353,6 +355,6 @@ eta_qs <- round((qbeta(c(0.05,0.2,0.5,0.8,0.95),10,2)+0.2)/1.25,2)
 					</td>
 				</tr>
 			</table>
-		</main><script src="/core/themes/boot.js"> </script><script>if(!window.Stencila){window.StencilaHost='http://stenci.la';document.write(unescape('%3Cscript src="http://stenci.la/core/themes/boot.js"%3E%3C/script%3E'))}</script><script>window.Stencila.Booter.theme('core/stencils/themes/default');</script><script>window.setTimeout(function(){document.documentElement.className='';},10000)</script>
+		</main><script src="/core/components/themes/base/boot.js"> </script><script>if(!window.Stencila){window.StencilaHost='http://stenci.la';document.write(unescape('%3Cscript src="http://stenci.la/core/themes/boot.js"%3E%3C/script%3E'))}</script><script>window.Stencila.Booter.theme('core/stencils/themes/default');</script><script>window.setTimeout(function(){document.documentElement.className='';},10000)</script>
 	</body>
 </html>
