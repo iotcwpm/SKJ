@@ -22,7 +22,7 @@ section
 
 section
 	h1 Structure and assumptions
-	include "../../model/description"
+	include ../../model/description
 		delete #title
 
 section
@@ -36,7 +36,7 @@ section
 
 section
 	h1 Parameter priors and sensitivity ranges
-	include "../../parameters/description"
+	include ../../parameters/description
 		delete #title
 
 if 0
@@ -45,29 +45,29 @@ if 0
 
 		section
 			h1 FST-based 
-			include "../../feasible/display"
+			include ../../feasible/display
 				delete #title
 
 		section
 			h1 SS3-based
-			include "../../ss3/display"
+			include ../../ss3/display
 				delete #title
 
 section
 	h1 Ouputs
-	include "../../model/display"
+	include ../../model/display
 		delete #title
 
 section
 	h1 Fits to data
-	include "../../data/display"
+	include ../../data/display
 		delete #title
 
 section
 	h1 Yield curve and MSY estimation 
-	include "../../yield/display"
+	include ../../yield/display
 		delete #title
 
 section
 	h1 References
-	include "../refs"
+	include ../refs

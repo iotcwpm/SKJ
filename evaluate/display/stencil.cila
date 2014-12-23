@@ -220,7 +220,7 @@ section
 	section
 		h1 Performance measures, performance statistics and management objectives
 
-		include "../../performance/description"
+		include ../../performance/description
 
 		{ref #figure-perf-dists} provides an overview of the distribution of each performance measure.
 
