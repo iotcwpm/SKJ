@@ -40,7 +40,7 @@ section
 	h1 Western purse seine (W-PS) tagging Z estimates
 
 	figure
-		r format png
+		r format png size 17x12cm
 			z_ests = subset(z_ests,is.finite(value))
 			print(ggplot(z_ests,aes(x=data_year+quarter/4)) + 
 				geom_line(aes(y=value),alpha=0.7) + 
@@ -59,7 +59,7 @@ section
 		h1 Mean length by region, method, year and quarter
 
 		figure
-			r format png
+			r format png size 17x23cm
 				size_freqs_summ = ddply(size_freqs,.(region,method,data_year,quarter),summarise,
 					observed=sum(length*proportion,na.rm=T),
 					uncertainty=mean(sd,na.rm=T),
@@ -80,7 +80,7 @@ section
 		h1 By region, method & quarter (aggregated over years)
 
 		figure
-			r format png
+			r format png size 17x23cm
 				size_freqs_over_years = ddply(size_freqs,.(region,method,quarter,length),summarise,
 					observed=mean(proportion,na.rm=T),
 					expected=mean(value,na.rm=T)
@@ -120,7 +120,7 @@ section
 		
 		for item in items
 			figure
-				r format png
+				r format png size 17x23cm
 					size_freqs_by_year_sub(item$region,item$method)
 				figcaption
 					Observed (points) and expected (lines) size frequency distributions for ``item$desc`` aggregated over quarters.
@@ -146,7 +146,7 @@ section
 			
 		for item in items
 			figure
-				r format png size 17x27cm
+				r format png size 17x23cm
 					size_freqs_sub(item$region,item$method)
 				figcaption
 					Observed (points) and expected (lines) size frequency distributions for ``item$desc`` aggregated over quarters.

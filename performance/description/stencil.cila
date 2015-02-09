@@ -1,15 +1,16 @@
 #title Indian Ocean skipjack model : management objectives, performance statistics and performance measures
 
-A _performance measure_ is any model variable that is used as a basis for a _performance statistic_. That is, a performance statistic, summarises a performance measure over the evaluation period, in this case 25 years.
+A _performance measure_ is any model variable that is used as a basis for a _performance statistic_ . That is, a performance statistic, summarises a performance measure over the evaluation period, in this case 25 years.
 
 The main performance measures used are catches |C|, relative catch rates |A|, and spawner biomass |B|. For convenience, where the performance measure represents a summation across all possible model dimensions (e.g. region, method) for the variable we exclude subscripts in mathematical notation. e.g.
 
 	| C = sum_{r,m} C_{r,m} |
 
-We have grouped performance statistics according to broad categories of management objectives : yield, abundance, stability, status and safety {ref #table-perf-stats}. We use these labels in the following summaries and for each category focus on the first performance statistic. For example, when presenting evaluation results relating to the stability management objective we mostly summarise the MAPC performance statistic. In accordance with the desire to maximise these objectives we present "positive" versions of each of performance statistics in the following figures and tables. For example, rather than presenting a "risk" related statistic such as the probability of being below 10%B0 we use the "safety" related statistic, the probability of being __above__ 10%B0.
+We have grouped performance statistics according to broad categories of management objectives : yield, abundance, stability, status and safety (@table-perf-stats). We use these labels in the following summaries and for each category focus on the first performance statistic. For example, when presenting evaluation results relating to the stability management objective we mostly summarise the MAPC performance statistic. In accordance with the desire to maximise these objectives we present "positive" versions of each of performance statistics in the following figures and tables. For example, rather than presenting a "risk" related statistic such as the probability of being below 10%B0 we use the "safety" related statistic, the probability of being *above* 10%B0.
 
 table #table-perf-stats
 	caption
+		Management objectives, performance statistics and performance measures
 	thead
 		tr
 			th Performance statistic
@@ -18,9 +19,9 @@ table #table-perf-stats
 	tbody
 
 		tr
-			th Status
-		tr
-			td [colspan="3"] _Maximize stock status_
+			td Status : maximize stock status
+			td
+			td
 		tr
 			td Mean spawner biomass relative to pristine
 			td |B//B_0|
@@ -51,9 +52,9 @@ table #table-perf-stats
 			td Proportion of years that |B<B_{tar} & F>F_{tar}|
 
 		tr
-			th Safety
-		tr
-			td [colspan="3"] _Maximize the probability of remaining above low stock status (i.e. minimize risk)_
+			td Safety : maximize the probability of remaining above low stock status (i.e. minimize risk)
+			td
+			td
 		tr
 			td Probability of spawner biomass being above 20% of |B_0|
 			td |B|
@@ -64,9 +65,9 @@ table #table-perf-stats
 			td Proportion of years that |B gt 0.1B_0|
 
 		tr
-			th Yield
-		tr
-			td [colspan="3"] _Maximize catches across regions and gears_
+			td Yield : maximize catches across regions and gears
+			td
+			td
 		tr
 			td Mean catch
 			td |C|
@@ -85,9 +86,9 @@ table #table-perf-stats
 			td Mean over years
 
 		tr
-			th Abundance
-		tr
-			td [colspan="3"] _Maximize catch rates to enhance fishery profitability_
+			td Abundance : maximize catch rates to enhance fishery profitability
+			td
+			td
 		tr
 			td Mean relative catch rates for western purse siene
 			td |A_{we,ps}|
@@ -102,9 +103,9 @@ table #table-perf-stats
 			td Geometric mean over years
 
 		tr
-			th Stability
-		tr
-			td [colspan="3"] _Maximize stability in catches to reduce commercial uncertainty_
+			td Stability : maximize stability in catches to reduce commercial uncertainty
+			td
+			td
 		tr
 			td Mean absolute proportional change (MAPC) in catch
 			td |C|

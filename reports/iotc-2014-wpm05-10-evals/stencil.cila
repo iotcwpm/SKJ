@@ -15,10 +15,10 @@ h1 Outline
 
 section
 	h1 Management procedures
-	include ../../procedures/description
+	include ../../procedures/description complete
 		delete #title
 
 section
 	h1 Evaluations
-	include ../../evaluate/display
+	include ../../evaluate/display complete
 		delete #title

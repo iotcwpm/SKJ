@@ -59,7 +59,10 @@ STENCILS_PAGES := $(patsubst %,.pages/%,$(STENCILS))
 
 # Render a stencil: Cila -> HTML
 %/index.html: %/stencil.cila
-	cd $(dir $<) && Rscript -e "require(stencila); Stencil('.')$$ import('stencil.cila')$$ render()$$ export('index.html')"
+	cd $(dir $<) && Rscript -e "require(stencila); Stencil('.')$$ render()$$ export('index.html')"
+# Render a stencil: Cila -> Word
+%/index.docx: %/stencil.cila
+	cd $(dir $<) && Rscript -e "require(stencila); Stencil('.')$$ render()$$ export('index.docx')"
 # Copy a stencil to `.pages`
 .pages/%: %/index.html
 	mkdir -p $@  ; cp -fr $(dir $<). $@

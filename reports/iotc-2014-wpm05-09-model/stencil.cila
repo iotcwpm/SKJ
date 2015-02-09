@@ -36,7 +36,7 @@ section
 
 section
 	h1 Parameter priors and sensitivity ranges
-	include ../../parameters/description
+	include ../../parameters/description complete
 		delete #title
 
 if 0
@@ -45,29 +45,29 @@ if 0
 
 		section
 			h1 FST-based 
-			include ../../feasible/display
+			include ../../feasible/display complete
 				delete #title
 
 		section
 			h1 SS3-based
-			include ../../ss3/display
+			include ../../ss3/display complete
 				delete #title
 
 section
 	h1 Ouputs
-	include ../../model/display
+	include ../../model/display complete
 		delete #title
 
 section
 	h1 Fits to data
-	include ../../data/display
+	include ../../data/display complete
 		delete #title
 
 section
 	h1 Yield curve and MSY estimation 
-	include ../../yield/display
+	include ../../yield/display complete
 		delete #title
 
 section
 	h1 References
-	include ../refs
+	include ../refs complete

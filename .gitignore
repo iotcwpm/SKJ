@@ -6,11 +6,12 @@ output
 # SS3 runs
 ss3/runs
 
-# Generated HTML and images
+# Generated HTML, docx and images
 *.html
 *.png
 *.svg
 *.pdf
+*.docx
 
 # Doxygen output
 doxygen
