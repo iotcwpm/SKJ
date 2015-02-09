@@ -10,11 +10,11 @@ The subscript for time, |t|, is usually omitted from the model equations below e
 section
 	h1 Dimensions
 
-	Several dimensions are used to partition aspects of the model (e.g. fish numbers, catches). See {ref #table-dimensions} for symbols used for each.
+	Several dimensions are used to partition aspects of the model (e.g. fish numbers, catches). See @table-dimensions for symbols used for each.
 
 	The model uses a quarterly, i.e. three month, time step (|t|). Each time step, |t|, has an associated calendar year (|y|) and calendar quarter (|q in 0,1,2,3|).
 
-	There are three regions (|r|), West (|we|), Maldives (|ma|) and East (|ea|) ({ref #figure-regions}). The term "region" is used in preference to "area" because using the latter would confound the |a| subscript which is also used for age. The three regions were mostly defined based on difference is the main fishing gears used in each. There is little information available on biological stock definitions for Indian Ocean skipjack tuna. However, based on what is available, {ref #fontaneau-2014-skj-stocks}, suggested four regions, in which the western region is divided into northern and southern regions at the equator. Given the nature of the catch distribution and resolution of available data, this four region definition should be relatively straightforward to use in future revisions.
+	There are three regions (|r|), West (|we|), Maldives (|ma|) and East (|ea|) (@figure-regions). The term "region" is used in preference to "area" because using the latter would confound the |a| subscript which is also used for age. The three regions were mostly defined based on difference is the main fishing gears used in each. There is little information available on biological stock definitions for Indian Ocean skipjack tuna. However, based on what is available, @fontaneau-2014-skj-stocks, suggested four regions, in which the western region is divided into northern and southern regions at the equator. Given the nature of the catch distribution and resolution of available data, this four region definition should be relatively straightforward to use in future revisions.
 
 	Fish recruit to the model in each quarter and the model keeps track of their numbers by their age (|a|), in quarters up to six years i.e. |0,1,2,...,23|. Fish size (|s|) is represented in forty, 2cm bins, |0-2, 2-4, ..., 78-80cm|.
 
@@ -23,9 +23,14 @@ section
 	table #table-dimensions
 		caption
 			Summary of model dimensions and symbols used for each.
+		thead
+			tr
+				th Symbol
+				th Description
 		tbody
 			tr
-				th Time
+				td Time
+				td
 			tr
 				td |t|
 				td Time step
@@ -37,7 +42,8 @@ section
 				td Calendar quarter; 1 = Jan-Mar
 
 			tr
-				th Regions
+				td Regions
+				td
 			tr
 				td |r|
 				td Region subscript
@@ -52,7 +58,8 @@ section
 				td East region
 
 			tr
-				th Fish age and size
+				td Fish age and size
+				td
 			tr
 				td |a|
 				td Fish age group
@@ -67,7 +74,8 @@ section
 				td Largest size group in the model
 
 			tr
-				th Fishing methods
+				td Fishing methods
+				td
 			tr
 				td |m|
 				td Fishing method subscript
@@ -85,7 +93,7 @@ section
 				td Other
 
 	figure #figure-regions
-		r png 17x13cm
+		r format png size 17x13cm
 			regions <- read.table('../../data/area-polygons.txt',header=T)
 			names(regions) <- c('region','lat','lon')
 				

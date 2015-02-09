@@ -55,7 +55,7 @@ section
 section 
 	h1 Overall yield curve and MSY
 
-	This section describes the overall yield curve and reference points related to maximising sustainable yield. {ref #table-msy-ref} provides MSY related reference points and {ref #table-biomass-ref} provides reference points associated with alternative biomass levels. {ref #figure-yield-curve} presents plots of various variables related to the yield curve.
+	This section describes the overall yield curve and reference points related to maximising sustainable yield. @table-msy-ref provides MSY related reference points and @table-biomass-ref provides reference points associated with alternative biomass levels. @figure-yield-curve presents plots of various variables related to the yield curve.
 
 	table #table-msy-ref
 		caption Yield curve related variables determined from the reference parameter set.
@@ -68,27 +68,27 @@ section
 			tr
 				td |E_{msy}|
 				td Exploitation rate which produces MSY (quarterly)
-				td text round(e_msy,3)
+				td write round(e_msy,3)
 			tr
 				td |F_{msy}|
 				td Instantaneous rate of fishing mortality which produces MSY (quarterly)
-				td text round(f_msy,3)
+				td write round(f_msy,3)
 			tr
 				td |C_{msy}|
 				td Maximum sustainable yield (quarterly)
-				td text msy
+				td write msy
 			tr
 				td |B_{msy}|
 				td Overall spawner biomass associated with maximum sustainable yield
-				td text biomass_spawners_msy
+				td write biomass_spawners_msy
 			tr
 				td |B_{msy}//B_{0}|
 				td |B_{msy}| as a percentage of pristine biomass
-				td text round(biomass_spawners_msy/biomass_spawners_unfished*100,1)
+				td write round(biomass_spawners_msy/biomass_spawners_unfished*100,1)
 			tr
 				td -
 				td Number of iterations used to find MSY
-				td text msy_trials
+				td write msy_trials
 
 	table #table-biomass-ref
 		caption Exploitation rate, instantaneous fishing mortality rate, and equilibrium yield associated with alternative biomass levels. Note that for |30%B_0| etc, values are approximate because they are taken from the yield curve generated from exploitation rates in increments of 0.05.
@@ -104,39 +104,39 @@ section
 		tbody
 			tr with msy
 				td |B_{msy}|
-				td text round(e_msy,3)
-				td text round(f_msy,3)
-				td text round(msy)
+				td write round(e_msy,3)
+				td write round(f_msy,3)
+				td write round(msy)
 				td 1
 				td 1
 				td 1
 			tr with subset(points,level==0.3)
 				td |30%B_0|
-				td text round(exprate,3)
-				td text round(f,3)
-				td text round(yield)
-				td text round(yield/msy$msy,2)
-				td text round(status/msy$status,2)
-				td text round(exprate/msy$e_msy,3)
+				td write round(exprate,3)
+				td write round(f,3)
+				td write round(yield)
+				td write round(yield/msy$msy,2)
+				td write round(status/msy$status,2)
+				td write round(exprate/msy$e_msy,3)
 			tr with subset(points,level==0.4)
 				td |40%B_0|
-				td text round(exprate,3)
-				td text round(f,3)
-				td text round(yield)
-				td text round(yield/msy$msy,2)
-				td text round(status/msy$status,2)
-				td text round(exprate/msy$e_msy,3)
+				td write round(exprate,3)
+				td write round(f,3)
+				td write round(yield)
+				td write round(yield/msy$msy,2)
+				td write round(status/msy$status,2)
+				td write round(exprate/msy$e_msy,3)
 			tr with subset(points,level==0.5)
 				td |50%B_0|
-				td text round(exprate,3)
-				td text round(f,3)
-				td text round(yield)
-				td text round(yield/msy$msy,2)
-				td text round(status/msy$status,2)
-				td text round(exprate/msy$e_msy,3)
+				td write round(exprate,3)
+				td write round(f,3)
+				td write round(yield)
+				td write round(yield/msy$msy,2)
+				td write round(status/msy$status,2)
+				td write round(exprate/msy$e_msy,3)
 
 	figure #figure-yield-curve
-		r png 17x20cm
+		r format png size 17x20cm
 			p1 = ggplot(curve,aes(x=exprate,y=yield/1000)) +
 					geom_line() +
 					geom_point(data=points,aes(x=exprate,y=yield/1000,colour=level),size=3) + 
@@ -162,12 +162,12 @@ section
 section
 	h1 Fishery-specific yield curves
 
-	Each fishing method has a particular size selectivity ({ref #figure-mat-select}) and as such, the yield curve for each fishery will differ in shape. In this section we examine the shape of the yield curve for the three main fisheries. Rather than using the biomass of spawners in these fishery-specific yield curves we use the fishery-specific vulnerable biomass. Vulnerable biomass is directly proportional to catch rates so is a better measure of how alternative exploitation rates may affect the economic performance of the fishery. Each fishery will have a difference vulnerable biomass because of the different selectivity curve.
+	Each fishing method has a particular size selectivity (@figure-mat-select) and as such, the yield curve for each fishery will differ in shape. In this section we examine the shape of the yield curve for the three main fisheries. Rather than using the biomass of spawners in these fishery-specific yield curves we use the fishery-specific vulnerable biomass. Vulnerable biomass is directly proportional to catch rates so is a better measure of how alternative exploitation rates may affect the economic performance of the fishery. Each fishery will have a difference vulnerable biomass because of the different selectivity curve.
 
-	For W-PS the yeild curve has its peak at high a much higher exploitation rate than for M-PL or E-GN ({ref #figure-yield-specific} top). This occurs because the W-PS fishery is selecting for smaller fish. Note also that the vulnerable biomass of all three fisheries is similar at very low exploitation rates. As exploitation rates increase the numbers of older, larger fish decreases and as such the vulnerable biomass of both M-PL ad E-GN decreases ({ref #figure-yield-specific} bottom).
+	For W-PS the yeild curve has its peak at high a much higher exploitation rate than for M-PL or E-GN (@figure-yield-specific top). This occurs because the W-PS fishery is selecting for smaller fish. Note also that the vulnerable biomass of all three fisheries is similar at very low exploitation rates. As exploitation rates increase the numbers of older, larger fish decreases and as such the vulnerable biomass of both M-PL ad E-GN decreases (@figure-yield-specific bottom).
 	
 	figure #figure-mat-select
-		r png 17x10cm
+		r format png size 17x10cm
 			print(
 				ggplot() +
 					geom_line(data=maturities,aes(x=length,y=value),colour='black',linetype=2) +
@@ -178,7 +178,7 @@ section
 			Maturity at length (dotted line) and selectivity at length (by method).
 
 	figure #figure-yield-specific
-		r png 17x20cm
+		r format png size 17x20cm
 			p1 = ggplot(curve,aes(x=exprate)) +
 					geom_line(aes(y=catch_w_ps/1000,colour="W-PS",linetype="W-PS")) +
 					geom_line(aes(y=catch_m_pl/1000,colour="M-PL",linetype="M-PL")) +
@@ -201,10 +201,10 @@ section
 section
 	h1 Yield per recruit
 
-	To further investigate the nature of the yield in the fishery a simple yield per recruit analysis was done {ref #figure-yield-per-recruit}. This suggests that yield per recruit is maximised at an age of 10 quarters (2.5 years) at a size of about 45cm. Note that this maximum will be highly dependent upon the growth curve and the mortality curve both of which are highly uncertain for fish below 45cm. As such, this analysis should be considered ancillary and treated with caution.
+	To further investigate the nature of the yield in the fishery a simple yield per recruit analysis was done @figure-yield-per-recruit. This suggests that yield per recruit is maximised at an age of 10 quarters (2.5 years) at a size of about 45cm. Note that this maximum will be highly dependent upon the growth curve and the mortality curve both of which are highly uncertain for fish below 45cm. As such, this analysis should be considered ancillary and treated with caution.
 		
 	figure #figure-yield-per-recruit
-		r png 12x15cm
+		r format png size 12x15cm
 			par(mfrow=c(4,1),mar=c(0,5,0,0),oma=c(5,0,1,1),las=1)
 			with(per_recruit,{
 				plot(x=age,y=number,xaxt="n",ylab="Survival",type='l')

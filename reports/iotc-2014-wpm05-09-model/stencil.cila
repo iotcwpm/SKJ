@@ -22,7 +22,7 @@ section
 
 section
 	h1 Structure and assumptions
-	include ../../model/description
+	include ../../model/description complete
 		delete #title
 
 section
