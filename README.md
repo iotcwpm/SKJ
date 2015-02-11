@@ -24,6 +24,20 @@ The following are based on model outputs (and should be updated after each model
 - [ss3/display](http://iotcwpm.github.io/SKJ/ss3/display) : summarise of parameters obtained from the SS3 based stock assessment grid
 - [evaluate/display](http://iotcwpm.github.io/SKJ/evaluate/display) : results from evaluations of management procedures
 
+## Reports
+
+Several reports associated with this project are available (in chronological order; you may want to skip to the end):
+
+- [Adam, M. S., R. Sharma and N. Bentley (2013). Progress and arrangements for management strategy evaluation work of Indian Ocean skipjack tuna. IOTC-2013-WPTT15-12, Paper submitted to Working Party on Tropical Tuna, San Sebastian, Spain.](http://www.iotc.org/documents/process-and-arrangement-management-strategy-evaluation-indian-ocean-skipjack-tuna )
+
+- [ISSF (2014). ISSF Report of the 2014 Meeting of the Indian Ocean Skipjack MSE Advisory Committee Meeting. 14-16 October 2014, Media One Hotel, Dubai, United Arab Emirates. 13 pp.](http://iss-foundation.org/resources/downloads/?did=548)
+
+- [Bentley, N and M.S. Adam  (2014). Management strategy evaluation for Indian Ocean skipjack tuna fishery: first steps. IOTC-2014-WPTT16-39. Paper submitted at the 16th Meeting of the Working Party on Tropical Tuna, Bali, Indonesia, 15-19 November 2014](http://www.iotc.org/documents/management-strategy-evaluation-indian-ocean-skipjack-tuna-first-steps)
+
+- [Bentley, N and M.S. Adam  (2014). Management procedure evaluation for Indian Ocean skipjack tuna fishery: model description and conditioning. IOTC-2014-WPM05-08. Paper submitted at the 5th Meeting of the Working Party on Methods, Seychelles, 05-06 December 2014](http://www.iotc.org/documents/management-procedure-evaluation-indian-ocean-skipjack-tuna-fishery-simulation-model)
+
+- [Bentley, N and M.S. Adam  (2014). Management procedure evaluation for Indian Ocean skipjack tuna fishery: management procedure descriptions and evaluations. IOTC-2014-WPM05-09. Paper submitted at the 5th Meeting of the Working Party on Methods, Seychelles, 05-06 December 2014](http://www.iotc.org/documents/management-procedure-evaluation-indian-ocean-skipjack-tuna-fishery-management-procedure)
+
 ## Status
 
 The model is still under active development. As the model matures we hope to make it available as precompiled executables for Windows and Linux and/or a package for R.
