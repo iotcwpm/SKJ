@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<title>Indian Ocean skipjack model : parameter prior distributions and sensitivity ranges
+		<title>
+			Indian Ocean skipjack model : parameter prior distributions and sensitivity ranges
 		</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="/core/stencils/themes/default/theme.css"><script type="text/javascript">(function(c){
@@ -11,350 +12,437 @@
 	d.documentElement.className='unready';l.onload=function(){d.documentElement.className='';};
 	d.getElementsByTagName('head')[0].appendChild(l);
 })('/core/stencils/themes/default/theme.css');</script>
-		<style type="text/css">.unready{display:none;}
+		<style type="text/css">
+			.unready{display:none;}
 		</style>
 	</head>
 	<body>
-		<main id="content"> 
-			<div id="title">Indian Ocean skipjack model : parameter prior distributions and sensitivity ranges
+		<main id="content">
+			 
+			<div id="title">
+				Indian Ocean skipjack model : parameter prior distributions and sensitivity ranges
 			</div>
-			<p>For each model parameter a prior probability is defined. These priors are used in conditioning algorithms and are intended to represent the prior knowledge and associated uncertainty regarding a parameter. For some parameters, such as stock recruitment steepness <span class="math"><script type="math/asciimath">eta</script></span>, there is unlikely to be any information in the data and so the prior may be influential.
+			<p>
+				For each model parameter a prior probability is defined. These priors are used in conditioning algorithms and are intended to represent the prior knowledge and associated uncertainty regarding a parameter. For some parameters, such as stock recruitment steepness <script type="math/asciimath">eta</script>, there is unlikely to be any information in the data and so the prior may be influential.
 			</p>
-			<p>In addition, for each model parameter a sensitivity range is defined. This range is used in robustness testing of candidate harvest control rules to evaluate how sensitive a rule is to parameter values which are possible but which are determined, on the basis of either priors or conditioning, to be unlikely. In the current iteration of this project, this type of rubistness testing has not been implemented, and hence the sensitivity ranges proposed in this section have not be used.
+			<p>
+				In addition, for each model parameter a sensitivity range is defined. This range is used in robustness testing of candidate harvest control rules to evaluate how sensitive a rule is to parameter values which are possible but which are determined, on the basis of either priors or conditioning, to be unlikely. In the current iteration of this project, this type of rubistness testing has not been implemented, and hence the sensitivity ranges proposed in this section have not be used.
 			</p>
-			<p>At present, only some of these prior distributions are used in conditioning because parameter estimates from the latest stock assessment are being used where possible. However, for those parameters which are not estimated or assumed in the assessment (e.g. movement parameters), these priors will be of relevance. The priors described here should not be considered definitive and ideally should be be refined in consultation with a wider group of Indian Ocean tuna scientists. As much as anything, the utility of this section is in providing some documentation on the information available to inform parameter priors.
+			<p>
+				At present, only some of these prior distributions are used in conditioning because parameter estimates from the latest stock assessment are being used where possible. However, for those parameters which are not estimated or assumed in the assessment (e.g. movement parameters), these priors will be of relevance. The priors described here should not be considered definitive and ideally should be be refined in consultation with a wider group of Indian Ocean tuna scientists. As much as anything, the utility of this section is in providing some documentation on the information available to inform parameter priors.
 			</p>
 			<section>
-				<h1 id="section-1" class="level-1"><span class="label"><span class="path">1</span><span class="separator"> </span></span>Weight and maturity
+				<h1 id="section-1" class="level-1"><span class="label"><span class="path">1</span><span class="separator"> </span></span>
+					Weight and maturity
 				</h1>
-				<p>Priors for length-weight parameters, alpha and beta, were based on the fixed values used in Sharma et al (2012) with a coefficient of variation of 5% (<span data-ref="#table-pars"><a href="#table-pars">Table 1</a></span>).
+				<p>
+					Priors for length-weight parameters, <script type="math/asciimath">alpha</script> and <script type="math/asciimath">beta</script>, were based on the fixed values used in Sharma et al (2012) with a coefficient of variation of 5% (<span data-refer="#table-pars"><a href="#table-pars">Table  1</a></span>).
 				</p>
-				<p>Priors for maturity ogive parameters, <span class="math"><script type="math/asciimath">tau</script></span> and <span class="math"><script type="math/asciimath">upsilon</script></span> were based on the results of Grande (2013). For the inflection point, <span class="math"><script type="math/asciimath">tau</script></span>, based on Grande's estimated a value of 39.9cm, a normal prior with mean of 40cm and a coefficient of variation of 5% was used. Note that Table 4.2 of Grande (2013) indicates that some earlier studies in the Indian Ocean estimated values around 42-43cm for the inflection point. Sharma et al (2012, 2014) assumed 38cm based on Grande et al. (2010).
+				<p>
+					Priors for maturity ogive parameters, <script type="math/asciimath">tau</script> and <script type="math/asciimath">upsilon</script> were based on the results of Grande (2013). For the inflection point, <script type="math/asciimath">tau</script>, based on Grande's estimated a value of 39.9cm, a normal prior with mean of 40cm and a coefficient of variation of 5% was used. Note that Table 4.2 of Grande (2013) indicates that some earlier studies in the Indian Ocean estimated values around 42-43cm for the inflection point. Sharma et al (2012, 2014) assumed 38cm based on Grande et al. (2010).
 				</p>
-				<p>Figure 7.3 of Grande (2013) shows 5% and 95% maturity at about 35cm and 44cm respectively. Given a 50% maturity of 40cm this corresponds to a steepness parameter, upsilon, of about 5cm. A normal distribution with a mean of 5cm and a 10% c.v. was used (<span data-ref="#table-pars"><a href="#table-pars">Table 1</a></span>).
+				<p>
+					Figure 7.3 of Grande (2013) shows 5% and 95% maturity at about 35cm and 44cm respectively. Given a 50% maturity of 40cm this corresponds to a steepness parameter, <script type="math/asciimath">upsilon</script>, of about 5cm. A normal distribution with a mean of 5cm and a 10% c.v. was used (<span data-refer="#table-pars"><a href="#table-pars">Table  1</a></span>).
 				</p>
 			</section>
 			<section>
-				<h1 id="section-2" class="level-1"><span class="label"><span class="path">2</span><span class="separator"> </span></span>Spawning and recruitment
+				<h1 id="section-2" class="level-1"><span class="label"><span class="path">2</span><span class="separator"> </span></span>
+					Spawning and recruitment
 				</h1>
-				<p>In the western Indian Ocean, skipjack spawning appears to occur all year but with periods of greater activity during the North-east monsoon (November to March) and South-west monsoon (June to July) (Grande 2013 and references cited therein). Grande (2013) summarised the percentage of fish in the "spawning capable" phase in the months January to July. This percentage was highest during January and February (85%) decreasing to 51.9% in May and then increasing again to 82.4% in June and 73.3% in July. These percentages were used as the basis for a uniform prior on each rho_q (<span data-ref="#table-pars"><a href="#table-pars">Table 1</a></span>). We assumed that the spawning percentage during the fourth quarter, October to December, was the same as during the second quarter.
+				<p>
+					In the western Indian Ocean, skipjack spawning appears to occur all year but with periods of greater activity during the North-east monsoon (November to March) and South-west monsoon (June to July) (Grande 2013 and references cited therein). Grande (2013) summarised the percentage of fish in the "spawning capable" phase in the months January to July. This percentage was highest during January and February (85%) decreasing to 51.9% in May and then increasing again to 82.4% in June and 73.3% in July. These percentages were used as the basis for a uniform prior on each <script type="math/asciimath">rho_q</script> (<span data-refer="#table-pars"><a href="#table-pars">Table  1</a></span>). We assumed that the spawning percentage during the fourth quarter, October to December, was the same as during the second quarter.
 				</p>
-				<p>Following Mangel et al. (2010) the prior for stock-recruitment steepness is based on a beta probability distribution function for a precursor parameter
+				<p>
+					Following Mangel et al. (2010) the prior for stock-recruitment steepness is based on a beta probability distribution function for a precursor parameter
 					<p class="equation"><script type="math/asciimath; mode=display">dot(eta) ~ B(10,2)</script>
 					</p>
 					<p class="equation"><script type="math/asciimath; mode=display">eta = (dot(eta)+0.25)/1.25</script>
 					</p>
 				</p>
-				<pre data-code="r" data-hash="sLgts0E">
-eta_qs <- round((qbeta(c(0.05,0.2,0.5,0.8,0.95),10,2)+0.2)/1.25,2)
+				<pre data-exec="r" data-hash="rbjYMsL">
+eta_qs &lt;- round((qbeta(c(0.05,0.2,0.5,0.8,0.95),10,2)+0.2)/1.25,2)
 
-
-				</pre>
-				<p>where B(.) is the beta distribution. This formulation allows for eta to be constrained between 0.2 and 1. The resulting prior for steepness has a median of <span data-text="eta_qs[3]">0.84</span> and 5, 20, 80 and 95th percentiles of <span data-text="eta_qs[c(1,2,4,5)]">0.67, 0.76, 0.9, 0.93</span> respectively.
-				</p>
-				<p>For the standard deviation of stock-recruitment deviations, <span class="math"><script type="math/asciimath">sigma</script></span> a lognormal prior with a mean of 0.6 and a standard deviation of 0.5 was used based on Myers (2002) Figure 6.5 which has a median of about 0.6 for Scombridae.
-				</p>
-			</section>
-			<section>
-				<h1 id="section-3" class="level-1"><span class="label"><span class="path">3</span><span class="separator"> </span></span>Mortality
-				</h1>
-				<p>The instantaneous rate of natural mortality at 1kg, <span class="math"><script type="math/asciimath">nu</script></span>, the same normal prior as in Sharma et al (2012) was used which has a mean of 0.8 and a standard deviation of 1 (Figure X).
-				</p>
-				<p>A prior for the allometric exponent of the weight to natural mortality function, <span class="math"><script type="math/asciimath">gamma</script></span> was based on Lorenzen (1996) who estimated a value on -0.29.
+</pre>
+				where <script type="math/asciimath">B(.)</script> is the beta distribution. This formulation allows for <script type="math/asciimath">eta</script> to be constrained between 0.2 and 1. The resulting prior for steepness has a median of <span>text eta_qs[3]</span> and 5, 20, 80 and 95th percentiles of <span>text eta_qs[c(1,2,4,5)]</span> respectively.
+				<p>
+					For the standard deviation of stock-recruitment deviations, <script type="math/asciimath">sigma</script> a lognormal prior with a mean of 0.6 and a standard deviation of 0.5 was used based on Myers (2002) Figure 6.5 which has a median of about 0.6 for Scombridae.
 				</p>
 			</section>
 			<section>
-				<h1 id="section-4" class="level-1"><span class="label"><span class="path">4</span><span class="separator"> </span></span>Growth
+				<h1 id="section-3" class="level-1"><span class="label"><span class="path">3</span><span class="separator"> </span></span>
+					Mortality
 				</h1>
-				<p>The priors for the growth curve parameters were from Hillary (2011). His Table 2 provides estimated posterior distributions for <span class="math"><script type="math/asciimath">kappa</script></span>, <span class="math"><script type="math/asciimath">lambda</script></span> and <span class="math"><script type="math/asciimath">varphi</script></span> from analysis of tagging data. For comparision, Sharma et al(2012) assumed 0.37 and 70 for <span class="math"><script type="math/asciimath">kappa</script></span>, <span class="math"><script type="math/asciimath">lambda</script></span> based on Anganuzzi & Million (pers. comm.).
+				<p>
+					The instantaneous rate of natural mortality at 1kg, <script type="math/asciimath">nu</script>, the same normal prior as in Sharma et al (2012) was used which has a mean of 0.8 and a standard deviation of 1.
 				</p>
-				<p>Hillary's estimate of 78.8 for <span class="math"><script type="math/asciimath">varphi</script></span> seems to be very high given that this is a coefficient of variation an hence needs to be multiplied by the increment to calculate a standard deviation (although note that Hillary's Equation 1 says multiplied by the length).
-				</p>
-			</section>
-			<section>
-				<h1 id="section-5" class="level-1"><span class="label"><span class="path">5</span><span class="separator"> </span></span>Movement
-				</h1>
-				<p>There is little quantitative information on movement rates between the three regions. A uniform prior, <span class="math"><script type="math/asciimath">U(0.2,0.8)</script></span> was used for all elements of the movement matrix <span class="math"><script type="math/asciimath">M_{dot(r),r}</script></span>
+				<p>
+					A prior for the allometric exponent of the weight to natural mortality function, <script type="math/asciimath">gamma</script> was based on Lorenzen (1996) who estimated a value on -0.29.
 				</p>
 			</section>
 			<section>
-				<h1 id="section-6" class="level-1"><span class="label"><span class="path">6</span><span class="separator"> </span></span>Selectivity
+				<h1 id="section-4" class="level-1"><span class="label"><span class="path">4</span><span class="separator"> </span></span>
+					Growth
 				</h1>
-				<p>Priors for selectivity parameters were based on estimates from the previous assessment (Figure 1 of Appendix 2 in Sharma et al 2012).
+				<p>
+					The priors for the growth curve parameters were from Hillary (2011). His Table 2 provides estimated posterior distributions for <script type="math/asciimath">kappa</script>, <script type="math/asciimath">lambda</script> and <script type="math/asciimath">varphi</script> from analysis of tagging data. For comparision, Sharma et al(2012) assumed 0.37 and 70 for <script type="math/asciimath">kappa</script>, <script type="math/asciimath">lambda</script> based on Anganuzzi &amp; Million (pers. comm.).
+				</p>
+				<p>
+					Hillary's estimate of 78.8 for <script type="math/asciimath">varphi</script> seems to be very high given that this is a coefficient of variation an hence needs to be multiplied by the increment to calculate a standard deviation (although note that Hillary's Equation 1 says multiplied by the length).
+				</p>
+			</section>
+			<section>
+				<h1 id="section-5" class="level-1"><span class="label"><span class="path">5</span><span class="separator"> </span></span>
+					Movement
+				</h1>
+				<p>
+					There is little quantitative information on movement rates between the three regions. A uniform prior, <script type="math/asciimath">U(0.2,0.8)</script> was used for all elements of the movement matrix <script type="math/asciimath">M_{dot(r),r}</script>
+				</p>
+			</section>
+			<section>
+				<h1 id="section-6" class="level-1"><span class="label"><span class="path">6</span><span class="separator"> </span></span>
+					Selectivity
+				</h1>
+				<p>
+					Priors for selectivity parameters were based on estimates from the previous assessment (Figure 1 of Appendix 2 in Sharma et al 2012).
 				</p>
 			</section>
 			<table id="table-pars">
-				<caption><span class="label"><span class="type">Table</span><span class="number">1</span><span class="separator">:</span></span>Prior probability distributions and sensitivity rages for model parameters. Note that this table may be incomplete. Distributions are indicated as follows: fixed <span class="math"><script type="math/asciimath">F(value)</script></span>, uniform <span class="math"><script type="math/asciimath">U(lower,upper)</script></span>, normal <span class="math"><script type="math/asciimath">N(mean,sd)</script></span>, lognormal <span class="math"><script type="math/asciimath">L(mean,sd)</script></span>, beta <span class="math"><script type="math/asciimath">B(alpha,beta)</script></span>, mesa <span class="math"><script type="math/asciimath">M(min,lower,upper,max)</script></span>
+				<caption><span data-label="true"><span class="type">Table </span><span class="number">1</span><span class="separator">: </span></span>
+					Prior probability distributions and sensitivity rages for model parameters. Note that this table may be incomplete. Distributions are indicated as follows: fixed <script type="math/asciimath">F(value)</script>, uniform <script type="math/asciimath">U(lower,upper)</script>, normal <script type="math/asciimath">N(mean,sd)</script>, lognormal <script type="math/asciimath">L(mean,sd)</script>, beta <script type="math/asciimath">B(alpha,beta)</script>, mesa <script type="math/asciimath">M(min,lower,upper,max)</script>
 				</caption>
-				<tr>
-					<th>Symbol
-					</th>
-					<th>Description
-					</th>
-					<th>Units
-					</th>
-					<th>Prior distribution
-					</th>
-					<th>Sensitivity range
-					</th>
-				</tr>
-				<tr>
-					<th>Weight
-					</th>
-				</tr>
-				<tr>
-					<td><span class="math"><script type="math/asciimath">alpha</script></span>
-					</td>
-					<td>Coefficient of the length-weight relationship
-					</td>
-					<td><span class="math"><script type="math/asciimath">t*cm^-3*10^-6</script></span>
-					</td>
-					<td><span class="math"><script type="math/asciimath">N(5.32,0.266)</script></span>
-					</td>
-					<td>4-6
-					</td>
-				</tr>
-				<tr>
-					<td><span class="math"><script type="math/asciimath">beta</script></span>
-					</td>
-					<td>Exponent of the length-weight relationship
-					</td>
-					<td>-
-					</td>
-					<td><span class="math"><script type="math/asciimath">N(3.35,0.1675)</script></span>
-					</td>
-					<td>3.0-3.6
-					</td>
-				</tr>
-				<tr>
-					<th>Maturity
-					</th>
-				</tr>
-				<tr>
-					<td><span class="math"><script type="math/asciimath">tau</script></span>
-					</td>
-					<td>Inflection point of the maturity ogive
-					</td>
-					<td><span class="math"><script type="math/asciimath">cm</script></span>
-					</td>
-					<td><span class="math"><script type="math/asciimath">N(40,2)</script></span>
-					</td>
-					<td>35-55
-					</td>
-				</tr>
-				<tr>
-					<td><span class="math"><script type="math/asciimath">upsilon</script></span>
-					</td>
-					<td>Steepness of the maturity ogive
-					</td>
-					<td><span class="math"><script type="math/asciimath">cm</script></span>
-					</td>
-					<td><span class="math"><script type="math/asciimath">N(5,0.5)</script></span>
-					</td>
-					<td>2-10
-					</td>
-				</tr>
-				<tr>
-					<th>Spawning
-					</th>
-				</tr>
-				<tr>
-					<td><span class="math"><script type="math/asciimath">rho_q</script></span>
-					</td>
-					<td>Proportion of mature fish spawning in quarter <span class="math"><script type="math/asciimath">q</script></span>
-					</td>
-					<td>-
-					</td>
-					<td><span class="math"><script type="math/asciimath">[[rho_1 ~ U(0.8,0.9)],[rho_2 ~ U(0.4,0.6)],[rho_3 ~ U(0.8,0.9)],[rho_4 ~ U(0.4,0.6)]]</script></span>
-					</td>
-					<td>
-					</td>
-				</tr>
-				<tr>
-					<th>Recruitment
-					</th>
-				</tr>
-				<tr>
-					<td><span class="math"><script type="math/asciimath">theta</script></span>
-					</td>
-					<td>Virgin recruitment
-					</td>
-					<td>-
-					</td>
-					<td>
-					</td>
-					<td>
-					</td>
-				</tr>
-				<tr>
-					<td><span class="math"><script type="math/asciimath">eta</script></span>
-					</td>
-					<td>Steepness of the stock-recruitment relationship precursor parameter
-					</td>
-					<td>-
-					</td>
-					<td><span class="math"><script type="math/asciimath">B(10,2)</script></span>
-					</td>
-					<td>
-					</td>
-				</tr>
-				<tr>
-					<td><span class="math"><script type="math/asciimath">sigma</script></span>
-					</td>
-					<td>Standard deviation of stock-recruitment deviations
-					</td>
-					<td>-
-					</td>
-					<td><span class="math"><script type="math/asciimath">L(0.6,0.5)</script></span>
-					</td>
-					<td>
-					</td>
-				</tr>
-				<tr>
-					<td><span class="math"><script type="math/asciimath">chi_r</script></span>
-					</td>
-					<td>Proportion of total recruits that recruit into region <span class="math"><script type="math/asciimath">r</script></span>
-					</td>
-					<td>-
-					</td>
-					<td>
-					</td>
-					<td>
-					</td>
-				</tr>
-				<tr>
-					<td><span class="math"><script type="math/asciimath">mu</script></span>
-					</td>
-					<td>Mean length of fish at the end of the first quarter
-					</td>
-					<td>-
-					</td>
-					<td>
-					</td>
-					<td>
-					</td>
-				</tr>
-				<tr>
-					<td><span class="math"><script type="math/asciimath">zeta</script></span>
-					</td>
-					<td>Standard deviation of the length of fish at the end of the first quarter
-					</td>
-					<td>-
-					</td>
-					<td>
-					</td>
-					<td>
-					</td>
-				</tr>
-				<tr>
-					<th>Natural mortality
-					</th>
-				</tr>
-				<tr>
-					<td><span class="math"><script type="math/asciimath">nu</script></span>
-					</td>
-					<td>Instantaneous rate of natural mortality at a weight of 1kg
-					</td>
-					<td><span class="math"><script type="math/asciimath">yr^-1</script></span>
-					</td>
-					<td><span class="math"><script type="math/asciimath">N(0.8,1)</script></span>
-					</td>
-					<td>0.4-1.0
-					</td>
-				</tr>
-				<tr>
-					<td><span class="math"><script type="math/asciimath">gamma</script></span>
-					</td>
-					<td>Exponent of weight to natural mortality rate function
-					</td>
-					<td>
-					</td>
-					<td><span class="math"><script type="math/asciimath">N(-0.29,0.07)</script></span>
-					</td>
-					<td>[-0.2,-0.4]
-					</td>
-				</tr>
-				<tr>
-					<th>Growth
-					</th>
-				</tr>
-				<tr>
-					<td><span class="math"><script type="math/asciimath">mu</script></span>
-					</td>
-					<td>Mean size of fish in their first quarter
-					</td>
-					<td><span class="math"><script type="math/asciimath">cm</script></span>
-					</td>
-					<td><span class="math"><script type="math/asciimath">F(20)</script></span>
-					</td>
-					<td>
-					</td>
-				</tr>
-				<tr> 
-					<td><span class="math"><script type="math/asciimath">phi</script></span>
-					</td>
-					<td>Standard deviation of fish in their first quarter
-					</td>
-					<td><span class="math"><script type="math/asciimath">cm</script></span>
-					</td>
-					<td><span class="math"><script type="math/asciimath">F(5)</script></span>
-					</td>
-					<td>
-					</td>
-				</tr>
-				<tr>
-					<td><span class="math"><script type="math/asciimath">kappa</script></span>
-					</td>
-					<td>Maximum growth rate
-					</td>
-					<td><span class="math"><script type="math/asciimath">cm*y^-1</script></span>
-					</td>
-					<td><span class="math"><script type="math/asciimath">N(0.28,0.012)</script></span>
-					</td>
-					<td>0.2-0.4
-					</td>
-				</tr>
-				<tr>
-					<td><span class="math"><script type="math/asciimath">lambda</script></span>
-					</td>
-					<td>Assymptotic length
-					</td>
-					<td><span class="math"><script type="math/asciimath">cm</script></span>
-					</td>
-					<td><span class="math"><script type="math/asciimath">N(73.7,1.09)</script></span>
-					</td>
-					<td>70-80
-					</td>
-				</tr>
-				<tr>
-					<td><span class="math"><script type="math/asciimath">varphi</script></span>
-					</td>
-					<td>Growth variability
-					</td>
-					<td><span class="math"><script type="math/asciimath">cm</script></span>
-					</td>
-					<td><span class="math"><script type="math/asciimath">N(78.8,2.32)</script></span>
-					</td>
-					<td>
-					</td>
-				</tr>
-				<tr>
-					<th>Movement
-					</th>
-				</tr>
-				<tr>
-					<td><span class="math"><script type="math/asciimath">omega_{dot(r),r}</script></span>
-					</td>
-					<td>Proportion of fish moving from region <span class="math"><script type="math/asciimath">dot(r)</script></span> to region <span class="math"><script type="math/asciimath">r</script></span>
-					</td>
-					<td>
-					</td>
-					<td><span class="math"><script type="math/asciimath">U(0.2,0.8)</script></span>
-					</td>
-					<td>0-1
-					</td>
-				</tr>
+				<thead>
+					<tr>
+						<th>
+							Symbol
+						</th>
+						<th>
+							Description
+						</th>
+						<th>
+							Units
+						</th>
+						<th>
+							Prior distribution
+						</th>
+						<th>
+							Sensitivity range
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							*Weight*
+						</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><script type="math/asciimath">alpha</script>
+						</td>
+						<td>
+							Coefficient of the length-weight relationship
+						</td>
+						<td><script type="math/asciimath">t*cm^-3*10^-6</script>
+						</td>
+						<td><script type="math/asciimath">N(5.32,0.266)</script>
+						</td>
+						<td>
+							4-6
+						</td>
+					</tr>
+					<tr>
+						<td><script type="math/asciimath">beta</script>
+						</td>
+						<td>
+							Exponent of the length-weight relationship
+						</td>
+						<td>
+							-
+						</td>
+						<td><script type="math/asciimath">N(3.35,0.1675)</script>
+						</td>
+						<td>
+							3.0-3.6
+						</td>
+					</tr>
+					<tr>
+						<td>
+							*Maturity*
+						</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><script type="math/asciimath">tau</script>
+						</td>
+						<td>
+							Inflection point of the maturity ogive
+						</td>
+						<td><script type="math/asciimath">cm</script>
+						</td>
+						<td><script type="math/asciimath">N(40,2)</script>
+						</td>
+						<td>
+							35-55
+						</td>
+					</tr>
+					<tr>
+						<td><script type="math/asciimath">upsilon</script>
+						</td>
+						<td>
+							Steepness of the maturity ogive
+						</td>
+						<td><script type="math/asciimath">cm</script>
+						</td>
+						<td><script type="math/asciimath">N(5,0.5)</script>
+						</td>
+						<td>
+							2-10
+						</td>
+					</tr>
+					<tr>
+						<td>
+							*Spawning*
+						</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><script type="math/asciimath">rho_q</script>
+						</td>
+						<td>
+							Proportion of mature fish spawning in quarter <script type="math/asciimath">q</script>
+						</td>
+						<td>
+							-
+						</td>
+						<td><script type="math/asciimath">[[rho_1 ~ U(0.8,0.9)],[rho_2 ~ U(0.4,0.6)],[rho_3 ~ U(0.8,0.9)],[rho_4 ~ U(0.4,0.6)]]</script>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>
+							*Recruitment*
+						</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><script type="math/asciimath">theta</script>
+						</td>
+						<td>
+							Virgin recruitment
+						</td>
+						<td>
+							-
+						</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><script type="math/asciimath">eta</script>
+						</td>
+						<td>
+							Steepness of the stock-recruitment relationship precursor parameter
+						</td>
+						<td>
+							-
+						</td>
+						<td><script type="math/asciimath">B(10,2)</script>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><script type="math/asciimath">sigma</script>
+						</td>
+						<td>
+							Standard deviation of stock-recruitment deviations
+						</td>
+						<td>
+							-
+						</td>
+						<td><script type="math/asciimath">L(0.6,0.5)</script>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><script type="math/asciimath">chi_r</script>
+						</td>
+						<td>
+							Proportion of total recruits that recruit into region <script type="math/asciimath">r</script>
+						</td>
+						<td>
+							-
+						</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><script type="math/asciimath">mu</script>
+						</td>
+						<td>
+							Mean length of fish at the end of the first quarter
+						</td>
+						<td>
+							-
+						</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><script type="math/asciimath">zeta</script>
+						</td>
+						<td>
+							Standard deviation of the length of fish at the end of the first quarter
+						</td>
+						<td>
+							-
+						</td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>
+							*Natural mortality*
+						</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><script type="math/asciimath">nu</script>
+						</td>
+						<td>
+							Instantaneous rate of natural mortality at a weight of 1kg
+						</td>
+						<td><script type="math/asciimath">yr^-1</script>
+						</td>
+						<td><script type="math/asciimath">N(0.8,1)</script>
+						</td>
+						<td>
+							0.4-1.0
+						</td>
+					</tr>
+					<tr>
+						<td><script type="math/asciimath">gamma</script>
+						</td>
+						<td>
+							Exponent of weight to natural mortality rate function
+						</td>
+						<td></td>
+						<td><script type="math/asciimath">N(-0.29,0.07)</script>
+						</td>
+						<td>
+							[-0.2,-0.4]
+						</td>
+					</tr>
+					<tr>
+						<td>
+							*Growth*
+						</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><script type="math/asciimath">mu</script>
+						</td>
+						<td>
+							Mean size of fish in their first quarter
+						</td>
+						<td><script type="math/asciimath">cm</script>
+						</td>
+						<td><script type="math/asciimath">F(20)</script>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><script type="math/asciimath">phi</script>
+						</td>
+						<td>
+							Standard deviation of fish in their first quarter
+						</td>
+						<td><script type="math/asciimath">cm</script>
+						</td>
+						<td><script type="math/asciimath">F(5)</script>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><script type="math/asciimath">kappa</script>
+						</td>
+						<td>
+							Maximum growth rate
+						</td>
+						<td><script type="math/asciimath">cm*y^-1</script>
+						</td>
+						<td><script type="math/asciimath">N(0.28,0.012)</script>
+						</td>
+						<td>
+							0.2-0.4
+						</td>
+					</tr>
+					<tr>
+						<td><script type="math/asciimath">lambda</script>
+						</td>
+						<td>
+							Assymptotic length
+						</td>
+						<td><script type="math/asciimath">cm</script>
+						</td>
+						<td><script type="math/asciimath">N(73.7,1.09)</script>
+						</td>
+						<td>
+							70-80
+						</td>
+					</tr>
+					<tr>
+						<td><script type="math/asciimath">varphi</script>
+						</td>
+						<td>
+							Growth variability
+						</td>
+						<td><script type="math/asciimath">cm</script>
+						</td>
+						<td><script type="math/asciimath">N(78.8,2.32)</script>
+						</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>
+							*Movement*
+						</td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+					<tr>
+						<td><script type="math/asciimath">omega_{dot(r),r}</script>
+						</td>
+						<td>
+							Proportion of fish moving from region <script type="math/asciimath">dot(r)</script> to region <script type="math/asciimath">r</script>
+						</td>
+						<td></td>
+						<td><script type="math/asciimath">U(0.2,0.8)</script>
+						</td>
+						<td>
+							0-1
+						</td>
+					</tr>
+				</tbody>
 			</table>
-		</main><script src="/core/components/themes/base/boot.js"> </script><script>if(!window.Stencila){window.StencilaHost='http://stenci.la';document.write(unescape('%3Cscript src="http://stenci.la/core/components/themes/base/boot.js"%3E%3C/script%3E'))}</script><script>window.Stencila.Booter.theme('core/stencils/themes/default');</script><script>window.setTimeout(function(){document.documentElement.className='';},10000)</script>
+		</main><script src="/core/themes/base/boot.js"> </script><script>if(!window.Stencila){window.StencilaHost='http://stenci.la';document.write(unescape('%3Cscript src="http://stenci.la/core/themes/base/boot.js"%3E%3C/script%3E'))}</script><script>window.Stencila.Booter.theme('core/stencils/themes/default');</script><script>window.setTimeout(function(){document.documentElement.className='';},10000)</script>
 	</body>
 </html>

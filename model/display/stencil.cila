@@ -18,7 +18,7 @@ section
 	h1 Recruits size distribution
 
 	figure
-		r png 17x10cm
+		r format png size 17x10cm
 			print(
 				ggplot(recruits_sizes,aes(x=length,y=value)) +
 					geom_line() +
@@ -30,7 +30,7 @@ section
 	h1 Weight and maturity
 
 	figure
-		r png 17x10cm
+		r format png size 17x10cm
 			print(
 				ggplot(weights,aes(x=length,y=value)) +
 					geom_line() +
@@ -39,7 +39,7 @@ section
 		figcaption Weight at length.
 
 	figure
-		r png 17x10cm
+		r format png size 17x10cm
 			print(
 				ggplot(maturities,aes(x=length,y=value)) +
 					geom_line() +
@@ -51,7 +51,7 @@ section
 	h1 Growth
 
 	figure
-		r png 17x10cm
+		r format png size 17x10cm
 			print(
 				ggplot(growth_increments,aes(x=length,y=value)) +
 					geom_hline(y=0,colour='grey') +
@@ -61,7 +61,7 @@ section
 		figcaption Growth increments by length.
 
 	figure
-		r png 17x15cm
+		r format png size 17x15cm
 			print(
 				ggplot(growth) +
 					geom_tile(aes(y=length,x=length_from,fill=value)) +
@@ -75,7 +75,7 @@ section
 	h1 Mortality
 
 	figure
-		r png 17x10cm
+		r format png size 17x10cm
 			print(
 				ggplot(mortalities,aes(x=length,y=value)) +
 					geom_hline(y=0,colour='grey') +
@@ -88,7 +88,7 @@ section
 	h1 Movement
 
 	figure
-		r png 16x16cm
+		r format png size 16x16cm
 			print(
 				ggplot(movement,aes(y=region_from,x=region,fill=value,label=round(value,4))) +
 					geom_tile() +
@@ -101,7 +101,7 @@ section
 
 	if 0
 		figure
-			r png 17x25cm
+			r format png size 17x25cm
 				print(
 					ggplot(numbers) + 
 						geom_line(aes(x=length,y=value/1e6)) +
@@ -111,7 +111,7 @@ section
 			figcaption Unfished equilbrium numbers at age and size and region. Each panel shows the length ditribution for a particular age (in quarters) and region.
 
 		figure
-			r png 17x10cm
+			r format png size 17x10cm
 				print(
 					ggplot(ddply(numbers,.(region,length),summarise,numbers=sum(value)/1e6)) +
 						geom_line(aes(x=length,y=numbers)) +
@@ -125,7 +125,7 @@ section
 	h1 Selectivities
 
 	figure
-		r png 17x10cm
+		r format png size 17x10cm
 			print(
 				ggplot(selectivities,aes(x=length,y=value,colour=method))+
 					geom_line() + 
@@ -150,13 +150,13 @@ section
 	h1 Biomass and recruitment trajectories
 
 	figure
-		r png 17x10cm
+		r format png size 17x10cm
 			plot_track('biomass_status','Stock status (B/B0)')
 		figcaption
 			Stock status trajectory.
 
 	figure
-		r png 17x10cm
+		r format png size 17x10cm
 			print(
 				ggplot(subset(track,quarter==0),aes(x=year+quarter/4)) + 
 				geom_line(aes(y=biomass_spawners_w,colour='W')) + 
@@ -170,7 +170,7 @@ section
 			Biomass of spawners by region (first quarter).
 
 	figure
-		r png 17x20cm
+		r format png size 17x20cm
 			p1 = plot_track('recruits_determ/1e6','Deterministic recruitment (mil.)')
 			p2 = plot_track('recruits_deviation','Recruitment deviation')
 			p3 = plot_track('recruits/1e6','Recruitment (mil.)')
@@ -182,7 +182,7 @@ section
 	h1 Fishery related trajectories
 
 	figure
-		r png 17x10cm
+		r format png size 17x10cm
 			temp <- melt(subset(
 						track,quarter==0,select=c('year','biomass_vulnerable_w_ps','biomass_vulnerable_m_pl','biomass_vulnerable_e_gn')
 					),id.vars='year')
@@ -196,7 +196,7 @@ section
 			Vulnerable biomass trajectories for the three main fisjeries
 
 	figure
-		r png 17x10cm
+		r format png size 17x10cm
 			temp <- ddply(track,.(year),summarise,
 				w_ps = sum(catches_w_ps),
 				m_pl = sum(catches_m_pl),
@@ -212,7 +212,7 @@ section
 			Catch trajectories for the three main fisjeries
 
 	figure
-		r png 17x10cm
+		r format png size 17x10cm
 			temp <- melt(subset(
 						track,quarter==0,select=c('year','exp_rate_w_ps','exp_rate_m_pl','exp_rate_e_gn')
 					),id.vars='year')

@@ -1,0 +1,239 @@
+#title Indian Ocean skipjack model : Model description
+
+r
+	source('../../common.R',local=T)
+
+The following convention is used for assigning symbols in the following model equations: Greek lower case letters (e.g. |alpha|) for model parameters, Roman capital letters (e.g. |N|) for model variables, and Roman lower case letters for variable or parameter array subscripts (e.g. |N_{r,a,s}|, |phi_{r}|). Using this convention means that in some instances model parameters are given different symbols that usual. However, it has the advantage of clearly distinguishing model parameters (which are independent of other parameters or variables and are usually estimated) from model variables (which are dependent upon parameter values).
+
+The subscript for time, |t|, is usually omitted from the model equations below except where it is necessary to be explicit regarding the time step involved.
+
+section
+	h1 Dimensions
+
+	Several dimensions are used to partition aspects of the model (e.g. fish numbers, catches). See @table-dimensions for symbols used for each.
+
+	The model uses a quarterly, i.e. three month, time step (|t|). Each time step, |t|, has an associated calendar year (|y|) and calendar quarter (|q in 0,1,2,3|).
+
+	There are three regions (|r|), West (|we|), Maldives (|ma|) and East (|ea|) (@figure-regions). The term "region" is used in preference to "area" because using the latter would confound the |a| subscript which is also used for age. The three regions were mostly defined based on difference is the main fishing gears used in each. There is little information available on biological stock definitions for Indian Ocean skipjack tuna. However, based on what is available, @fontaneau-2014-skj-stocks, suggested four regions, in which the western region is divided into northern and southern regions at the equator. Given the nature of the catch distribution and resolution of available data, this four region definition should be relatively straightforward to use in future revisions.
+
+	Fish recruit to the model in each quarter and the model keeps track of their numbers by their age (|a|), in quarters up to six years i.e. |0,1,2,...,23|. Fish size (|s|) is represented in forty, 2cm bins, |0-2, 2-4, ..., 78-80cm|.
+
+	Four fishing methods (|m|) are defined : purse seine (|ps|), pole and line (|pl|), gill net (|gn|) and other (|ot|). There are differences in the size distribution of free-school and associated-school purse seine sets. However, given the low proportion of free-school sets, particularly in recent years, it was considered unnecessary to model these subcomponents separately.
+
+	table #table-dimensions
+		caption
+			Summary of model dimensions and symbols used for each.
+		tbody
+			tr
+				th Time
+			tr
+				td |t|
+				td Time step
+			tr
+				td |y|
+				td Calendar year
+			tr
+				td |q|
+				td Calendar quarter; 1 = Jan-Mar
+
+			tr
+				th Regions
+			tr
+				td |r|
+				td Region subscript
+			tr
+				td |we|
+				td West region
+			tr
+				td |ma|
+				td Maldives region
+			tr
+				td |ea|
+				td East region
+
+			tr
+				th Fish age and size
+			tr
+				td |a|
+				td Fish age group
+			tr
+				td |vec(a)|
+				td Maximum age in the model
+			tr
+				td |s|
+				td Fish size group
+			tr
+				td |vec(s)|
+				td Largest size group in the model
+
+			tr
+				th Fishing methods
+			tr
+				td |m|
+				td Fishing method subscript
+			tr
+				td |ps| 
+				td Purse seine
+			tr 
+				td |pl|
+				td Pole and line
+			tr
+				td |gn| 
+				td Gill net
+			tr 
+				td |ot| 
+				td Other
+
+	figure #figure-regions
+		r format png size 17x13cm
+			regions <- read.table('../../data/area-polygons.txt',header=T)
+			names(regions) <- c('region','lat','lon')
+				
+			print(
+				ggplot(subset(map_data("world"),long>30 & long<130 & lat<30 & lat>-40)) +
+					geom_polygon(data=regions,aes(x=lon,y=lat,fill=region),colour='grey30',alpha=0.5) +
+					geom_polygon(aes(x=long, y=lat, group=group),fill='white',colour='grey60') +
+					scale_y_continuous('',expand=c(0,0)) +
+					scale_x_continuous('',expand=c(0,0)) + 
+					coord_map('mercator') + 
+					labs(fill='Region')
+			)
+		figcaption
+			Map of the three regions used in the model: Western (W,|we|), Maldives (M,|ma|), Eastern (E,|ea|).
+
+section
+	h1 Fish
+
+	section
+		h1 Numbers
+
+		Fish numbers are partitioned by region, age and size, |N_{r,a,s}|. In each quarter, recruitment to the model and ageing occur as follows.
+
+		The maximum age group, |vec(a)|, accumulates fish from the previous age, |vec(a)-1|,
+
+			|N_{r,vec(a),s} = N_{r,vec(a),s} + N_{r,vec(a)-1,s}|
+
+		For ages |1| to |vec(a)-1|, simple ageing occurs, 
+
+			|N_{r,a,s} = N_{r,a-1,s}|
+
+		For age |0|, recruitment occurs,
+
+			|N_{r,0,s} = R_{r,s}|
+
+		where |R_{r,s}| is the number of fish recruiting to age 0 in region |r| at size |s|.
+
+		Numbers are updated by applying growth, survival, exploitation and movement. The numbers in each region, in each age class and size class are determined by summing over all regions and size classes,
+
+			|N_{r,a,s} = sum_{dot(r) in {we,ma,ea},dot(s)=0...vec(s)}( dot(N)_{dot(r),a,dot(s)} G_{dot(s),s} D (1-E_{dot(r),dot(s)}) M_{dot(r),r} )|
+
+		where |G| is the growth transition matrix, |D| is the natural survival rate, |E| is the exploitation rate, and |M| is the movement transition matrix (all described below).
+
+	section
+		h1 Length, weight and maturity
+
+		The length of fish of size |s| is the midpoint of the 2mm bin size,
+
+			|L_s = 2s+1|
+
+		The weight of fish of size |s| is modelled as an exponential curve,
+
+			|W_s = alpha (L_s)^beta|
+
+		Currently, the model assumes that the parameters of the length-weight relationship are the same in the three regions. These seems a reasonable assumption, but it is possible that condition factors consistently vary among regions, in which case these parameters could be made to vary by region i.e. |alpha_{r}, beta_{r}|
+
+		The proportion of fish of size |s| that are mature is modelled as a logistic curve,
+
+			|O_s = 1/(1+19^(tau-L_s)/upsilon)|
+
+		Currently, the model assumes that the parameters of the maturity curve are the same in all three regions but could be made to vary by region i.e |tau_{r}, upsilon_{r}|. In addition, maturity could be modelled as a function of age, rather than size, i.e. |O_a|.
+
+	section
+		h1 Spawning and recruitment
+
+		The proportion of mature fish that spawn in each quarter is allowed to vary according to a quarterly parameter, |rho_q|. Currently, this parameter is the same for all regions. Evidence of regional differences in spawning seasonality would suggest making these parameters vary by region.
+
+		The biomass of mature fish is a function of the number of fish by age and size and the maturity and weight ogives by size,
+
+			|B_r = sum_{a=0...vec(a),s=0...vec(s)} N_{r,a,s} O_s W_s|
+
+		We refer to this varable as the biomass of spawners and is used as the basis for determing stock status, |B/B_{0}|.
+
+		Recruitment occurs in each quarter and is partitioned by region and size, |R_{r,s}|. The total number of eggs is based on the total spawning biomass in the previous quarter,
+
+			|E = sum_{r in {we,ma,ea}} B_r rho_q|
+
+		where |O_s| is the proportion of fish that are mature at size |s|, |W_s| is the weight of fish at size |s|, and |rho_q| is the proportion of fish that spawn in quarter |q|.
+
+		The total number of eggs determines the total number of recruits over all three regions, |bar(R)| using the Beverton-Holt stock recruitment function,
+
+			|bar(R) = 4 eta theta E/((5 eta-1) E + dot(E)  (1-eta)) D_t|
+
+		where |eta| is steepness, |theta| and |dot(E)| are the respectively the number of recruit and eggs in the absence of fishing, and |D_t| is the recruitment deviation at time t which is lognormally distributed with mean of 1 and standard deviation of |sigma|.
+
+		This total recruitment is distributed across the three regions,
+
+			|R_{r,s} = bar(R) * chi_r * A_s|
+
+		where |chi_r| is the proportion of recruits which recruit into region |r| and |A_s| is the proportion of recruits of size |s| which is based on a normal distribution with mean, |mu| and standard deviation |zeta|,
+
+			|A_s = 1/sqrt(2 pi zeta^2) e^(-((L_s-mu)^2)// 2 zeta^2)|
+
+	section
+		h1 Natural mortality
+
+		The instantaneous rate of natural mortality at size |s| is modelled as a function of weight at size |s| using the form of Lorenzen,
+
+			|M_s = nu W_s^gamma|
+
+		To prevent |M_s| going to very high levels at low |s|, |M_s| is restricted to be a maximum of |M_10| (i.e. the mortality at size bin 10, i.e. length of 21cm). 
+
+		The survival rate in one quarter is,
+
+			|D_s = e^{-0.25 M_s}|
+
+	section
+		h1 Growth
+
+		Growth is described using a size transition matrix which is calculated based on the von Bertallanfy growth function. The mean increment in one quarter is,
+
+			|I_s = (lambda-L_s)(1-e^{-0.25kappa})|
+
+		Variation in growth is modelled as a normal distribution with a constant standard deviation, |zeta|, and a coefficient of variation, |varphi|, on the increment. The standard deviation of the growth increment for a fish of size |s| is thus,
+
+			|J_s = sqrt(zeta^2 + (varphi I_s)^2)|
+
+		The proportion of fish growing from size |dot(s)| to size |s| in one quarter is thus,
+
+			|G_{dot(s),s} = int_{l=2s}^{l=2(s+1)} 1/(sqrt(2 pi) J_dot(s))e^(-(L_dot(s)+I_dot(s)-l)^2)/(2 (J_dot(s))^2)|
+
+		At present, it is assumed that growth is the same in all three regions. It is likely that in fact growth differs between regions in which case some, or all, of the growth parameters could vary by region e.g |lambda_{r}|, |kappa_{t}|.
+
+		An alternative to the von Bertallanfy function would be to use the two-stanza growth model and parameter estimates of Everson et al (2012, 2014).
+
+	section
+		h1 Movement
+
+		The proportion of fish moving from region |dot(r)| to region |r| in one quarter is described by the movement matrix defined by six off-diagonal parameters,
+
+		|M_{dot(r),r} = [[1-omega_{ea,ma}-omega_{ea,we},omega_{ea,ma},omega_{ea,we}],[omega_{ma,ea},1-omega_{ma,ea}-omega_{ma,we},omega_{ma,we}],[omega_{we,ea},omega_{we,ma},1-omega_{we,ea}-omega_{we,ma}]]|
+
+		There could be separate movement parameters for each age (or size) e.g. |omega_{ma,we,a}|, or more simply, the relative proportion of fish moving could vary by age (or size).
+
+
+	In summary, at present, whilst the model keeps account of fish numbers by region, only two of the biological characteristics of the stock vary by region: the proportion of recruitment going to each and the movement between each. As noted above, many of the model's parameters could be made to vary by region but this is likely to be of little value without information with which to inform how much those parameters should vary by region.
+
+section
+	h1 Fishing
+
+	Selectivity is modelled as a function of length using a piecewise spline with knots at every ten cm from 20cm to 80cm.
+
+	Catches are compiled by region and method, |C_{r,m}| from IOTC data. The biomass that is vulnerable to each method, |m| in each region |r|, is calculated by summing over ages and sizes,
+
+		|V_{r,m} = sum_{a=0,...,vec(a),s=0,...,vec(s)} N_{r,a,s} W_s P_{m,s}|
+
+	where |P_{m,s}| is the relative selectivity of method |m| for fish of size, |s|.
+
+	The exploitation rate in region |r| of method |m| is then,
+
+		|E_{r,m} = C_{r,m}/V_{r,m}|

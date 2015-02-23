@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
-		<title>Indian Ocean skipjack model : management procedure evaluations
+		<title>
+			Indian Ocean skipjack model : management procedure evaluations
 		</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="/core/stencils/themes/default/theme.css"><script type="text/javascript">(function(c){
@@ -11,14 +12,17 @@
 	d.documentElement.className='unready';l.onload=function(){d.documentElement.className='';};
 	d.getElementsByTagName('head')[0].appendChild(l);
 })('/core/stencils/themes/default/theme.css');</script>
-		<style type="text/css">.unready{display:none;}
+		<style type="text/css">
+			.unready{display:none;}
 		</style>
 	</head>
 	<body>
-		<main id="content"> 
-			<div id="title">Indian Ocean skipjack model : management procedure evaluations
+		<main id="content">
+			 
+			<div id="title">
+				Indian Ocean skipjack model : management procedure evaluations
 			</div>
-			<pre data-code="r" data-hash="chLt4ov">
+			<pre data-exec="r" data-hash="bYGkaTE">
 source('../../common.R',local=T)
 
 # Load in model outputs
@@ -30,7 +34,7 @@ load(c(
 ),from='../../evaluate/output')
 
 # Calculate performance statistics from performance measures
-perfs <- ddply(performances,.(procedure),summarise,
+perfs &lt;- ddply(performances,.(procedure),summarise,
 			   yield = mean(catches_total/1000*4),
 			   yield_sd = sd(catches_total/1000*4),
 			   stability = -mean(catches_mapc),
@@ -55,41 +59,41 @@ perfs <- ddply(performances,.(procedure),summarise,
 			   cpue_e_gn_sd = sd(cpue_mean_e_gn)
 )
 # List of names of performance statistics
-stats <- c(
+stats &lt;- c(
 	'yield','stability',
 	'status','safety10','safety20',
 	'kobe_a','kobe_d','kobe_to_a',
 	'cpue_w_ps','cpue_m_pl','cpue_e_gn'
 )
 # Merge in procedures to facilitate summaries by procedure parameters
-perfs <- merge(procedures,perfs)
+perfs &lt;- merge(procedures,perfs)
 
 # Augment track
-track <- within(track,{
-	replicate <- factor(replicate)
-	procedure <- factor(procedure)
+track &lt;- within(track,{
+	replicate &lt;- factor(replicate)
+	procedure &lt;- factor(procedure)
 	biomass_spawners_overall = biomass_spawners_w + biomass_spawners_m + biomass_spawners_e
 })
 
 # Function for creating a signature for a MP instance
-mp_sig <- function(proc){
-	row <- subset(procedures,procedure==proc)
-	pars <- row[,3:12][!is.na(row[,3:12])]
+mp_sig &lt;- function(proc){
+	row &lt;- subset(procedures,procedure==proc)
+	pars &lt;- row[,3:12][!is.na(row[,3:12])]
 	paste0(row$class,'(',paste(pars,collapse=','),')')
 }
 
 # Pick some example replicates for use in traces based on
 # average stock status in projections
-temp <- subset(track,procedure==1 & year>=2015)
-temp <- ddply(temp,.(replicate),summarise,by=mean(biomass_status))
-temp <- temp$replicate[order(temp$by)]
-replicate_egs <- temp[floor(length(temp)*c(0.2,0.5,0.8))]
-replicate_egs <- factor(replicate_egs,levels=replicate_egs,ordered=T)
+temp &lt;- subset(track,procedure==1 &amp; year>=2015)
+temp &lt;- ddply(temp,.(replicate),summarise,by=mean(biomass_status))
+temp &lt;- temp$replicate[order(temp$by)]
+replicate_egs &lt;- temp[floor(length(temp)*c(0.2,0.5,0.8))]
+replicate_egs &lt;- factor(replicate_egs,levels=replicate_egs,ordered=T)
 
 # Quantile plotting function
-plot_ribbon <- function(data,y,ylab='Value',xlab='Year'){
+plot_ribbon &lt;- function(data,y,ylab='Value',xlab='Year'){
 	# Evaluation the y expression
-	data$y <- eval(y,envir=data)
+	data$y &lt;- eval(y,envir=data)
 	# Calculate quantiles
 	quantiles = ddply(data,.(year),function(data){
 		quantiles = quantile(data$y,p=c(0.01,0.05,0.1,0.25,0.5,0.75,0.9,0.95,0.99),na.rm=T)
@@ -106,8 +110,8 @@ plot_ribbon <- function(data,y,ylab='Value',xlab='Year'){
 		)
 	})
 	# Plot
-	temp <- subset(data,replicate %in% replicate_egs)
-	temp$replicate <- factor(temp$replicate,levels=replicate_egs)
+	temp &lt;- subset(data,replicate %in% replicate_egs)
+	temp$replicate &lt;- factor(temp$replicate,levels=replicate_egs)
 	p = ggplot() +
 		geom_ribbon(data=quantiles,aes(x=year,ymin=p5,ymax=p95),alpha=0.1) + 
 		geom_ribbon(data=quantiles,aes(x=year,ymin=p10,ymax=p90),alpha=0.1) + 
@@ -123,8 +127,8 @@ plot_ribbon <- function(data,y,ylab='Value',xlab='Year'){
 }
 
 # Plot of tradeoff between two performance statistics
-plot_tradeoff <- function(data,x,y,colour,shape){
-	data <- within(data,{
+plot_tradeoff &lt;- function(data,x,y,colour,shape){
+	data &lt;- within(data,{
 		xm = data[,names(x)]
 		xsd = data[,paste0(names(x),'_sd')]
 		ym = data[,names(y)]
@@ -145,152 +149,426 @@ plot_tradeoff <- function(data,x,y,colour,shape){
 }
 
 
-
-			</pre>
+</pre>
 			<section>
-				<h1 id="section-1" class="level-1"><span class="label"><span class="path">1</span><span class="separator"> </span></span>Methods and terminology
+				<h1 id="section-1" class="level-1"><span class="label"><span class="path">1</span><span class="separator"> </span></span>
+					Methods and terminology
 				</h1>
-				<p>This section provides an overview of the methods and terminology used for evaluating management procedures (i.e. management procedure evaluation, MPE). We provide examples of the types of figures and tables that are used in the following, more detailed, descriptions of evaluation results for each class of management procedure.
+				<p>
+					This section provides an overview of the methods and terminology used for evaluating management procedures (i.e. management procedure evaluation, MPE). We provide examples of the types of figures and tables that are used in the following, more detailed, descriptions of evaluation results for each class of management procedure.
 				</p>
 				<section>
-					<h1 id="section-1-1" class="level-2"><span class="label"><span class="path">1.1</span><span class="separator"> </span></span>Evaluations and replicates
+					<h1 id="section-1-1" class="level-2"><span class="label"><span class="path">1.1</span><span class="separator"> </span></span>
+						Evaluations and replicates
 					</h1>
-					<p>Each <em>evaluation</em> of a management procedure is based on a <em>replicate</em>. Each replicate incorporates <em>parameter uncertainty</em> through the random selection of a set of model parameters as well as <em>stochastic uncertainty</em> through the random generation of <em>process uncertainty</em> (e.g. recruitment variation) and <em>observation uncertainty</em> (e.g. CPUE error). The parameter set for a replicate is drawn from all the possible parameter sets determined from model conditioning. For each evaluation, the particular management procedure is used to determine future simulated management which affects catches, which in turn affects stock biomass and other <em>performance measures</em> (<span data-ref="#figure-one-rep-one-eval"><a href="#figure-one-rep-one-eval">Figure 1</a></span>). 
+					<p>
+						Each <em>evaluation</em> of a management procedure is based on a <em>replicate</em>. Each replicate incorporates <em>parameter uncertainty</em> through the random selection of a set of model parameters as well as <em>stochastic uncertainty</em> through the random generation of <em>process uncertainty</em> (e.g. recruitment variation) and <em>observation uncertainty</em> (e.g. CPUE error). The parameter set for a replicate is drawn from all the possible parameter sets determined from model conditioning. For each evaluation, the particular management procedure is used to determine future simulated management which affects catches, which in turn affects stock biomass and other <em>performance measures</em> (<span data-refer="#figure-one-rep-one-eval"><a href="#figure-one-rep-one-eval">Figure  1</a></span>). 
 					</p>
-					<p>The primary purpose of MPE is not to provide forecats of catch, biomass or other performance measures. Rather, it is to compare the performance, relative to management objectives, of alternative candidate management procedures. Thus, for each replicate, each of the candidate management procedures is evaluated (<span data-ref="#figure-one-rep-mult-evals"><a href="#figure-one-rep-mult-evals">Figure 2</a></span>). This allows us to compare the performance of alternative MPs under exactly the same set of assumptions. Notice in (<span data-ref="#figure-one-rep-mult-evals"><a href="#figure-one-rep-mult-evals">Figure 2</a></span>) that the biomass trajectories resulting from using alternative MPs often fluctuate in parallel. This is due to the same recruitment variations being used for each evaluation.
+					<p>
+						The primary purpose of MPE is not to provide forecats of catch, biomass or other performance measures. Rather, it is to compare the performance, relative to management objectives, of alternative candidate management procedures. Thus, for each replicate, each of the candidate management procedures is evaluated (<span data-refer="#figure-one-rep-mult-evals"><a href="#figure-one-rep-mult-evals">Figure  2</a></span>). This allows us to compare the performance of alternative MPs under exactly the same set of assumptions. Notice in (<span data-refer="#figure-one-rep-mult-evals"><a href="#figure-one-rep-mult-evals">Figure  2</a></span>) that the biomass trajectories resulting from using alternative MPs often fluctuate in parallel. This is due to the same recruitment variations being used for each evaluation.
 					</p>
 					<figure id="figure-one-rep-one-eval">
-						<pre data-code="r" data-format="png" data-size="17x15cm" data-hash="RXfsQE">
-temp <- subset(track,quarter==0 & procedure %in% c(-1,1) & replicate==1)
-p1 <- ggplot(temp,aes(x=year,y=catches_total/1e3)) +
+						<pre data-exec="r format png size 17x15cm" data-hash="rnGDuo6">
+temp &lt;- subset(track,quarter==0 &amp; procedure %in% c(-1,1) &amp; replicate==1)
+p1 &lt;- ggplot(temp,aes(x=year,y=catches_total/1e3)) +
 	geom_line(aes(group=procedure),colour='black',alpha=0.3) +
 	geom_vline(x=2014.8,linetype=2) +
 	geom_hline(v=0,alpha=0) +
 	labs(x="Year",y="Catch (quarterly,kt)") + 
 	theme(legend.position='none')
-p2 <- ggplot(temp,aes(x=year,y=biomass_spawners_overall/1e3)) +
+p2 &lt;- ggplot(temp,aes(x=year,y=biomass_spawners_overall/1e3)) +
 	geom_line(aes(group=procedure),colour='black',alpha=0.3) +
 	geom_vline(x=2014.8,linetype=2) +
 	geom_hline(v=0,alpha=0) +
 	labs(x="Year",y="Biomass (spawners,kt)") + 
 	theme(legend.position='none')
 multiplot(p1,p2)
-
-						</pre><img src="RXfsQE.png" data-out="true">
-						<figcaption><span class="label"><span class="type">Figure</span><span class="number">1</span><span class="separator">:</span></span>Catch and biomass trajectories from a single evaluation of a single management procedure using a single parameter replicate.
+</pre><img src="rnGDuo6.png" style="width:17cm;height:15cm" data-output="true">
+						<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">1</span><span class="separator">: </span></span>
+							Catch and biomass trajectories from a single evaluation of a single management procedure using a single parameter replicate.
 						</figcaption>
 					</figure>
 					<figure id="figure-one-rep-mult-evals">
-						<pre data-code="r" data-format="png" data-size="17x15cm" data-hash="ciDkfQs">
-temp <- subset(track,quarter==0 & replicate==1)
-p1 <- ggplot(temp,aes(x=year,y=catches_total/1e3)) +
+						<pre data-exec="r format png size 17x15cm" data-hash="rb0XBam">
+temp &lt;- subset(track,quarter==0 &amp; replicate==1)
+p1 &lt;- ggplot(temp,aes(x=year,y=catches_total/1e3)) +
 	geom_line(aes(colour=procedure),alpha=0.3) +
 	geom_vline(x=2014.8,linetype=2) +
 	geom_hline(v=0,alpha=0) +
 	labs(x="Year",y="Catch (quarterly,kt)") + 
 	theme(legend.position='none')
-p2 <- ggplot(temp,aes(x=year,y=biomass_spawners_overall/1e3)) +
+p2 &lt;- ggplot(temp,aes(x=year,y=biomass_spawners_overall/1e3)) +
 	geom_line(aes(colour=procedure),alpha=0.3) +
 	geom_vline(x=2014.8,linetype=2) +
 	geom_hline(v=0,alpha=0) +
 	labs(x="Year",y="Biomass (spawners,kt)") + 
 	theme(legend.position='none')
 multiplot(p1,p2)
-
-						</pre><img src="ciDkfQs.png" data-out="true">
-						<figcaption><span class="label"><span class="type">Figure</span><span class="number">2</span><span class="separator">:</span></span>Catch and biomass trajectories from multiple evaluations of multiple management procedure using a single parameter replicates. Each of the coloured future trajectories arises from applying one candidate management procedure.
+</pre><img src="rb0XBam.png" style="width:17cm;height:15cm" data-output="true">
+						<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">2</span><span class="separator">: </span></span>
+							Catch and biomass trajectories from multiple evaluations of multiple management procedure using a single parameter replicates. Each of the coloured future trajectories arises from applying one candidate management procedure.
 						</figcaption>
 					</figure>
-					<p>To be able to assess and compare the robustness of management procedures to uncertainty it is necessary to run evaluations for many replicates. <span data-ref="#figure-mult-rep"><a href="#figure-mult-rep">Figure 3</a></span> shows one hundred evaluations, each based on a different replicate, for a single management procedure. When presenting the trajectories from muliple evaluations, it is usually easier to ascertain both the central tendency and the variability of trajectories using quantile ribbons (<span data-ref="#figure-ribbons-eg-1"><a href="#figure-ribbons-eg-1">Figure 4</a></span>). The ribbons show the bands where 50%, 80% and 90% of trajectories fall. In addition, to indicate the expected inter-annual variability, the trajectories from three example replicates are shown separately. These example replicates were chosen as those that produced the 20th (red), 50th (blue) and 80th (green) percentile of average biomass of spawners under the constant effort management procedure. In all these plots the same three example replicates are used for ease of comparison. <span data-ref="#figure-ribbons-eg-1"><a href="#figure-ribbons-eg-1">Figure 4</a></span> shows the same plot for a management procedure which produces higher catches but consequently, declining stock status.
+					<p>
+						To be able to assess and compare the robustness of management procedures to uncertainty it is necessary to run evaluations for many replicates. <span data-refer="#figure-mult-rep"><a href="#figure-mult-rep">Figure  3</a></span> shows one hundred evaluations, each based on a different replicate, for a single management procedure. When presenting the trajectories from muliple evaluations, it is usually easier to ascertain both the central tendency and the variability of trajectories using quantile ribbons (<span data-refer="#figure-ribbons-eg-1"><a href="#figure-ribbons-eg-1">Figure  4</a></span>). The ribbons show the bands where 50%, 80% and 90% of trajectories fall. In addition, to indicate the expected inter-annual variability, the trajectories from three example replicates are shown separately. These example replicates were chosen as those that produced the 20th (red), 50th (blue) and 80th (green) percentile of average biomass of spawners under the constant effort management procedure. In all these plots the same three example replicates are used for ease of comparison. <span data-refer="#figure-ribbons-eg-1"><a href="#figure-ribbons-eg-1">Figure  4</a></span> shows the same plot for a management procedure which produces higher catches but consequently, declining stock status.
 					</p>
 					<figure id="figure-mult-rep">
-						<pre data-code="r" data-format="png" data-size="17x15cm" data-hash="rCAWZN0">
-temp <- subset(track,quarter==0 & procedure %in% c(-1,1))
-p1 <- ggplot(temp,aes(x=year,y=catches_total/1e3)) +
+						<pre data-exec="r format png size 17x15cm" data-hash="qMUNHnv">
+temp &lt;- subset(track,quarter==0 &amp; procedure %in% c(-1,1))
+p1 &lt;- ggplot(temp,aes(x=year,y=catches_total/1e3)) +
 	geom_line(aes(colour=replicate),alpha=0.3) +
 	geom_vline(x=2014.8,linetype=2) +
 	geom_hline(v=0,alpha=0) +
 	labs(x="Year",y="Catch (quarterly,kt)") + 
 	theme(legend.position='none')
-p2 <- ggplot(temp,aes(x=year,y=biomass_status)) +
+p2 &lt;- ggplot(temp,aes(x=year,y=biomass_status)) +
 	geom_line(aes(colour=replicate),alpha=0.3) +
 	geom_vline(x=2014.8,linetype=2) +
 	geom_hline(v=0,alpha=0) +
 	labs(x="Year",y="Status (spawners,B/B0)") + 
 	theme(legend.position='none')
 multiplot(p1,p2)
-
-						</pre><img src="rCAWZN0.png" data-out="true">
-						<figcaption><span class="label"><span class="type">Figure</span><span class="number">3</span><span class="separator">:</span></span>Catch and biomass trajectories from multiple evaluations of a single management procedure using multiple parameter replicates. Each of the coloured trajectories arises from alternative replicate.
+</pre><img src="qMUNHnv.png" style="width:17cm;height:15cm" data-output="true">
+						<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">3</span><span class="separator">: </span></span>
+							Catch and biomass trajectories from multiple evaluations of a single management procedure using multiple parameter replicates. Each of the coloured trajectories arises from alternative replicate.
 						</figcaption>
 					</figure>
 					<figure id="figure-ribbons-eg-1">
-						<pre data-code="r" data-format="png" data-size="17x15cm" data-hash="bdxFNDt">
-temp <- subset(track,quarter==3 & procedure %in% c(-1,1))
-p1 <- plot_ribbon(temp,y=quote(catches_total/1e3),ylab='Catch (last quarter,kt)')
-p2 <- plot_ribbon(temp,y=quote(biomass_status),ylab='Status (B/B0)')
+						<pre data-exec="r format png size 17x15cm" data-hash="rDEtUzT">
+temp &lt;- subset(track,quarter==3 &amp; procedure %in% c(-1,1))
+p1 &lt;- plot_ribbon(temp,y=quote(catches_total/1e3),ylab='Catch (last quarter,kt)')
+p2 &lt;- plot_ribbon(temp,y=quote(biomass_status),ylab='Status (B/B0)')
 multiplot(p1,p2)
-
-						</pre><img src="bdxFNDt.png" data-out="true">
-						<figcaption><span class="label"><span class="type">Figure</span><span class="number">4</span><span class="separator">:</span></span>Catch and biomass trajectory percentiles for management procedure <span data-text="mp_sig(1)">ConstEffort(100)</span>.
+</pre><img src="rDEtUzT.png" style="width:17cm;height:15cm" data-output="true">
+						<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">4</span><span class="separator">: </span></span>
+							Catch and biomass trajectory percentiles for management procedure <span>text mp_sig(1)</span>.
 						</figcaption>
 					</figure>
 					<figure id="figure-ribbons-eg-2">
-						<pre data-code="r" data-format="png" data-size="17x15cm" data-hash="bARXQvn">
-temp <- subset(track,quarter==3 & procedure %in% c(-1,3))
-p1 <- plot_ribbon(temp,y=quote(catches_total/1e3),ylab='Catch (last quarter,kt)')
-p2 <- plot_ribbon(temp,y=quote(biomass_status),ylab='Status (B/B0)')
+						<pre data-exec="r format png size 17x15cm" data-hash="rOOzUFB">
+temp &lt;- subset(track,quarter==3 &amp; procedure %in% c(-1,3))
+p1 &lt;- plot_ribbon(temp,y=quote(catches_total/1e3),ylab='Catch (last quarter,kt)')
+p2 &lt;- plot_ribbon(temp,y=quote(biomass_status),ylab='Status (B/B0)')
 multiplot(p1,p2)
-
-						</pre><img src="bARXQvn.png" data-out="true">
-						<figcaption><span class="label"><span class="type">Figure</span><span class="number">5</span><span class="separator">:</span></span>Catch and biomass trajectory percentiles for management procedure <span data-text="mp_sig(3)">FRange(3,0.1,0.25,0.05,0.3)</span>.
+</pre><img src="rOOzUFB.png" style="width:17cm;height:15cm" data-output="true">
+						<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">5</span><span class="separator">: </span></span>
+							Catch and biomass trajectory percentiles for management procedure <span>text mp_sig(3)</span>.
 						</figcaption>
 					</figure>
 				</section>
 				<section>
-					<h1 id="section-1-2" class="level-2"><span class="label"><span class="path">1.2</span><span class="separator"> </span></span>Performance measures, performance statistics and management objectives
+					<h1 id="section-1-2" class="level-2"><span class="label"><span class="path">1.2</span><span class="separator"> </span></span>
+						Performance measures, performance statistics and management objectives
 					</h1>
-					<div data-include="../../performance/description">
+					<div data-include="../../performance/description complete">
+						<div data-delete="#title"></div>
 						<div data-included="true">
+							<p>
+								A <em>performance measure</em> is any model variable that is used as a basis for a <em>performance statistic</em> . That is, a performance statistic, summarises a performance measure over the evaluation period, in this case 25 years.
+							</p>
+							<p>
+								The main performance measures used are catches <script type="math/asciimath">C</script>, relative catch rates <script type="math/asciimath">A</script>, and spawner biomass <script type="math/asciimath">B</script>. For convenience, where the performance measure represents a summation across all possible model dimensions (e.g. region, method) for the variable we exclude subscripts in mathematical notation. e.g.
+								<p class="equation"><script type="math/asciimath; mode=display"> C = sum_{r,m} C_{r,m} </script>
+								</p>
+							</p>
+							<p>
+								We have grouped performance statistics according to broad categories of management objectives : yield, abundance, stability, status and safety (<span data-refer="#table-perf-stats"><a href="#table-perf-stats">Table  1</a></span>). We use these labels in the following summaries and for each category focus on the first performance statistic. For example, when presenting evaluation results relating to the stability management objective we mostly summarise the MAPC performance statistic. In accordance with the desire to maximise these objectives we present "positive" versions of each of performance statistics in the following figures and tables. For example, rather than presenting a "risk" related statistic such as the probability of being below 10%B0 we use the "safety" related statistic, the probability of being <strong>above</strong> 10%B0.
+							</p>
+							<table id="table-perf-stats">
+								<caption><span data-label="true"><span class="type">Table </span><span class="number">1</span><span class="separator">: </span></span>
+									Management objectives, performance statistics and performance measures
+								</caption>
+								<thead>
+									<tr>
+										<th>
+											Performance statistic
+										</th>
+										<th>
+											Performance measure/s
+										</th>
+										<th>
+											Summary statistic
+										</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											Status : maximize stock status
+										</td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td>
+											Mean spawner biomass relative to pristine
+										</td>
+										<td><script type="math/asciimath">B//B_0</script>
+										</td>
+										<td>
+											Geometric mean over years
+										</td>
+									</tr>
+									<tr>
+										<td>
+											Minimum spawner biomass relative to pristine
+										</td>
+										<td><script type="math/asciimath">B//B_0</script>
+										</td>
+										<td>
+											Minimum over years
+										</td>
+									</tr>
+									<tr>
+										<td>
+											Mean spawner biomass relative to <script type="math/asciimath">B_{msy}</script>
+										</td>
+										<td><script type="math/asciimath">B//B_{msy}</script>
+										</td>
+										<td>
+											Geometric mean over years
+										</td>
+									</tr>
+									<tr>
+										<td>
+											Mean fishing intensity relative to target
+										</td>
+										<td><script type="math/asciimath">F//F_{tar}</script>
+										</td>
+										<td>
+											Geometric mean over years
+										</td>
+									</tr>
+									<tr>
+										<td>
+											Mean fishing mortality relative to <script type="math/asciimath">F_{msy}</script>
+										</td>
+										<td><script type="math/asciimath">F//F_{msy}</script>
+										</td>
+										<td>
+											Geometric mean over years
+										</td>
+									</tr>
+									<tr>
+										<td>
+											Probability of being in Kobe green quadrant
+										</td>
+										<td><script type="math/asciimath">B</script>
+											,<script type="math/asciimath">F</script>
+										</td>
+										<td>
+											Proportion of years that <script type="math/asciimath">B>=B_{tar} &amp; F&lt;=F_{tar}</script>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											Probability of being in Kobe red quadrant
+										</td>
+										<td><script type="math/asciimath">B</script>
+											,<script type="math/asciimath">F</script>
+										</td>
+										<td>
+											Proportion of years that <script type="math/asciimath">B&lt;B_{tar} &amp; F>F_{tar}</script>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											Safety : maximize the probability of remaining above low stock status (i.e. minimize risk)
+										</td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td>
+											Probability of spawner biomass being above 20% of <script type="math/asciimath">B_0</script>
+										</td>
+										<td><script type="math/asciimath">B</script>
+										</td>
+										<td>
+											Proportion of years that <script type="math/asciimath">B gt 0.2B_0</script>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											Probability of spawner biomass being above 10% of <script type="math/asciimath">B_0</script>
+										</td>
+										<td><script type="math/asciimath">B</script>
+										</td>
+										<td>
+											Proportion of years that <script type="math/asciimath">B gt 0.1B_0</script>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											Yield : maximize catches across regions and gears
+										</td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td>
+											Mean catch
+										</td>
+										<td><script type="math/asciimath">C</script>
+										</td>
+										<td>
+											Mean over years
+										</td>
+									</tr>
+									<tr>
+										<td>
+											Mean purse siene catch
+										</td>
+										<td><script type="math/asciimath">sum_{r} C_{r,ps}</script>
+										</td>
+										<td>
+											Mean over years
+										</td>
+									</tr>
+									<tr>
+										<td>
+											Mean pole and line catch
+										</td>
+										<td><script type="math/asciimath">sum_{r} C_{r,pl}</script>
+										</td>
+										<td>
+											Mean over years
+										</td>
+									</tr>
+									<tr>
+										<td>
+											Mean gillnet catch
+										</td>
+										<td><script type="math/asciimath">sum_{r} C_{r,gn}</script>
+										</td>
+										<td>
+											Mean over years
+										</td>
+									</tr>
+									<tr>
+										<td>
+											Abundance : maximize catch rates to enhance fishery profitability
+										</td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td>
+											Mean relative catch rates for western purse siene
+										</td>
+										<td><script type="math/asciimath">A_{we,ps}</script>
+										</td>
+										<td>
+											Geometric mean over years
+										</td>
+									</tr>
+									<tr>
+										<td>
+											Mean relative catch rates for Maldive pole and line
+										</td>
+										<td><script type="math/asciimath">A_{ma,pl}</script>
+										</td>
+										<td>
+											Geometric mean over years
+										</td>
+									</tr>
+									<tr>
+										<td>
+											Mean relative catch rates for eastern gillnet
+										</td>
+										<td><script type="math/asciimath">A_{ea,gn}</script>
+										</td>
+										<td>
+											Geometric mean over years
+										</td>
+									</tr>
+									<tr>
+										<td>
+											Stability : maximize stability in catches to reduce commercial uncertainty
+										</td>
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td>
+											Mean absolute proportional change (MAPC) in catch
+										</td>
+										<td><script type="math/asciimath">C</script>
+										</td>
+										<td>
+											Mean over years of <script type="math/asciimath">abs(C_t//C_{t-1}-1)</script>
+										</td>
+									</tr>
+									<tr>
+										<td>
+											Variance in catch
+										</td>
+										<td><script type="math/asciimath">C</script>
+										</td>
+										<td>
+											Variance over years
+										</td>
+									</tr>
+									<tr>
+										<td>
+											Probability of shutdown 
+										</td>
+										<td><script type="math/asciimath">C</script>
+										</td>
+										<td>
+											Proportion of years that <script type="math/asciimath">C==0</script>
+										</td>
+									</tr>
+								</tbody>
+							</table>
 						</div>
 					</div>
-					<p><span data-ref="#figure-perf-dists"><a href="#figure-perf-dists">Figure 6</a></span> provides an overview of the distribution of each performance measure.
+					<p><span data-refer="#figure-perf-dists"><a href="#figure-perf-dists">Figure  6</a></span>
+						 provides an overview of the distribution of each performance measure.
 					</p>
 					<figure id="figure-perf-dists">
-						<pre data-code="r" data-format="png" data-size="17x17cm" data-hash="soBDHCM">
+						<pre data-exec="r format png size 17x17cm" data-hash="siJpDOQ">
 print(
 	ggplot(melt(perfs[,stats]),aes(x=value)) + 
 		geom_density(fill='grey') + facet_wrap(~variable,scales='free')
 )
-
-						</pre><img src="soBDHCM.png" data-out="true">
-						<figcaption><span class="label"><span class="type">Figure</span><span class="number">6</span><span class="separator">:</span></span>Distributions of performance statistics over all evaluations. This figure is intended principally to provide an indication of the range of performance statistics outcomes across all replicates and procedures.
+</pre><img src="siJpDOQ.png" style="width:17cm;height:17cm" data-output="true">
+						<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">6</span><span class="separator">: </span></span>
+							Distributions of performance statistics over all evaluations. This figure is intended principally to provide an indication of the range of performance statistics outcomes across all replicates and procedures.
 						</figcaption>
 					</figure>
 				</section>
 			</section>
 			<section>
-				<h1 id="section-2" class="level-1"><span class="label"><span class="path">2</span><span class="separator"> </span></span>Results
+				<h1 id="section-2" class="level-1"><span class="label"><span class="path">2</span><span class="separator"> </span></span>
+					Results
 				</h1>
 				<section>
-					<h1 id="section-2-1" class="level-2"><span class="label"><span class="path">2.1</span><span class="separator"> </span></span>Comparison of classes of management procedures
+					<h1 id="section-2-1" class="level-2"><span class="label"><span class="path">2.1</span><span class="separator"> </span></span>
+						Comparison of classes of management procedures
 					</h1>
-					<p>In this section we provide an overview of the performance of the three classes of management procedures evaluated. This section is also used to introduce the summary figures and tables used in following sections.
+					<p>
+						In this section we provide an overview of the performance of the three classes of management procedures evaluated. This section is also used to introduce the summary figures and tables used in following sections.
 					</p>
-					<p>The following figures illustrate the trade offs between pairs of performance statistics:
+					<p>
+						The following figures illustrate the trade offs between pairs of performance statistics:
 						<ul>
-							<li><span data-ref="#figure-yield-status-all"><a href="#figure-yield-status-all">Figure 7</a></span> : yield v status
+							<li><span data-refer="#figure-yield-status-all"><a href="#figure-yield-status-all">Figure  7</a></span>
+								 : yield v status
 							</li>
-							<li><span data-ref="#figure-yield-safety-all"><a href="#figure-yield-safety-all">Figure 8</a></span> : yield v safety
+							<li><span data-refer="#figure-yield-safety-all"><a href="#figure-yield-safety-all">Figure  8</a></span>
+								 : yield v safety
 							</li>
-							<li><span data-ref="#figure-yield-stability-all"><a href="#figure-yield-stability-all">Figure 9</a></span> : yield v stability
+							<li><span data-refer="#figure-yield-stability-all"><a href="#figure-yield-stability-all">Figure  9</a></span>
+								 : yield v stability
 							</li>
-							<li><span data-ref="#figure-yield-abundance-all"><a href="#figure-yield-abundance-all">Figure 10</a></span> : yield v abundance
+							<li><span data-refer="#figure-yield-abundance-all"><a href="#figure-yield-abundance-all">Figure  10</a></span>
+								 : yield v abundance
 							</li>
 						</ul>
 					</p>
 					<figure id="figure-yield-status-all">
-						<pre data-code="r" data-format="png" data-size="17x10cm" data-hash="cjnhT3h">
+						<pre data-exec="r format png size 17x10cm" data-hash="sJwSEya">
 plot_tradeoff(
 	perfs,
 	x = list(yield='Yield (mean annual catch, kt)'),
@@ -298,13 +576,13 @@ plot_tradeoff(
 	colour = list(class='Class'),
 	shape = list(class='Class')
 )
-
-						</pre><img src="cjnhT3h.png" data-out="true">
-						<figcaption><span class="label"><span class="type">Figure</span><span class="number">7</span><span class="separator">:</span></span>Trade-off between yield and status performance statistics across all the management procedures evaluated.
+</pre><img src="sJwSEya.png" style="width:17cm;height:10cm" data-output="true">
+						<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">7</span><span class="separator">: </span></span>
+							Trade-off between yield and status performance statistics across all the management procedures evaluated.
 						</figcaption>
 					</figure>
 					<figure id="figure-yield-safety-all">
-						<pre data-code="r" data-format="png" data-size="17x10cm" data-hash="rg2cI7g">
+						<pre data-exec="r format png size 17x10cm" data-hash="sfGwpT5">
 plot_tradeoff(
 	perfs,
 	x = list(yield='Yield (mean annual catch, kt)'),
@@ -312,13 +590,13 @@ plot_tradeoff(
 	colour = list(class='Class'),
 	shape = list(class='Class')
 )
-
-						</pre><img src="rg2cI7g.png" data-out="true">
-						<figcaption><span class="label"><span class="type">Figure</span><span class="number">8</span><span class="separator">:</span></span>Trade-off between yield and safety performance statistics across all the management procedures evaluated.
+</pre><img src="sfGwpT5.png" style="width:17cm;height:10cm" data-output="true">
+						<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">8</span><span class="separator">: </span></span>
+							Trade-off between yield and safety performance statistics across all the management procedures evaluated.
 						</figcaption>
 					</figure>
 					<figure id="figure-yield-stability-all">
-						<pre data-code="r" data-format="png" data-size="17x10cm" data-hash="sLSJgAe">
+						<pre data-exec="r format png size 17x10cm" data-hash="qYdYoy">
 plot_tradeoff(
 	perfs,
 	x = list(yield='Yield (mean annual catch, kt)'),
@@ -326,17 +604,19 @@ plot_tradeoff(
 	colour = list(class='Class'),
 	shape = list(class='Class')
 )
-
-						</pre><img src="sLSJgAe.png" data-out="true">
-						<figcaption><span class="label"><span class="type">Figure</span><span class="number">9</span><span class="separator">:</span></span>Trade-off between yield and stability performance statistics across all the management procedures evaluated.
+</pre><img src="qYdYoy.png" style="width:17cm;height:10cm" data-output="true">
+						<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">9</span><span class="separator">: </span></span>
+							Trade-off between yield and stability performance statistics across all the management procedures evaluated.
 						</figcaption>
 					</figure>
-					<p>There is an unsurprising performance trade off between yield and abundance (<span data-ref="#figure-yield-abundance-all"><a href="#figure-yield-abundance-all">Figure 10</a></span>). In general, higher catches lead to higher exploitation rates and reduced biomass which in turn leads to reduced catch rates.
+					<p>
+						There is an unsurprising performance trade off between yield and abundance (<span data-refer="#figure-yield-abundance-all"><a href="#figure-yield-abundance-all">Figure  10</a></span>). In general, higher catches lead to higher exploitation rates and reduced biomass which in turn leads to reduced catch rates.
 					</p>
-					<p>Generally there is a high correlation between the abundance performance statistics for each of the main fisheries (<span data-ref="#figure-abundance-corrs"><a href="#figure-abundance-corrs">Figure 11</a></span>). Note however, that some MPs, particularly those resulting in overall higher abundance do result in higher relative abundance for M-PL and E-GN. This is most likely a result of the lower exploitation rates under these MPs which in turn creates an increase in the biomass of larger sized skipjack which are more fully selected by these fisheries.
+					<p>
+						Generally there is a high correlation between the abundance performance statistics for each of the main fisheries (<span data-refer="#figure-abundance-corrs"><a href="#figure-abundance-corrs">Figure  11</a></span>). Note however, that some MPs, particularly those resulting in overall higher abundance do result in higher relative abundance for M-PL and E-GN. This is most likely a result of the lower exploitation rates under these MPs which in turn creates an increase in the biomass of larger sized skipjack which are more fully selected by these fisheries.
 					</p>
 					<figure id="figure-yield-abundance-all">
-						<pre data-code="r" data-format="png" data-size="17x10cm" data-hash="bhyUkKK">
+						<pre data-exec="r format png size 17x10cm" data-hash="N24WLC">
 plot_tradeoff(
 	perfs,
 	x = list(yield='Yield (mean annual catch, `000 t)'),
@@ -344,13 +624,13 @@ plot_tradeoff(
 	colour = list(class='Class'),
 	shape = list(class='Class')
 )
-
-						</pre><img src="bhyUkKK.png" data-out="true">
-						<figcaption><span class="label"><span class="type">Figure</span><span class="number">10</span><span class="separator">:</span></span>Trade-off between yield and abundance performance statistics across all the management procedures evaluated.
+</pre><img src="N24WLC.png" style="width:17cm;height:10cm" data-output="true">
+						<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">10</span><span class="separator">: </span></span>
+							Trade-off between yield and abundance performance statistics across all the management procedures evaluated.
 						</figcaption>
 					</figure>
 					<figure id="figure-abundance-corrs">
-						<pre data-code="r" data-format="png" data-size="17x17cm" data-hash="sO0y9Qt">
+						<pre data-exec="r format png size 17x17cm" data-hash="bp9ovKY">
 p1 = ggplot(perfs,aes(x=cpue_w_ps,y=cpue_m_pl,colour=class,shape=class)) + 
 		geom_point(size=3) + 
 		geom_abline(linetype=3) + 
@@ -360,17 +640,18 @@ p2 = ggplot(perfs,aes(x=cpue_m_pl,y=cpue_e_gn,colour=class,shape=class)) +
 		geom_abline(linetype=3) + 
 		labs(x='M-PL CPUE',y='E-GN CPUE')
 multiplot(p1,p2)
-
-						</pre><img src="sO0y9Qt.png" data-out="true">
-						<figcaption><span class="label"><span class="type">Figure</span><span class="number">11</span><span class="separator">:</span></span>Correlation between the abundance performance statistics between the three main fisheries.
+</pre><img src="bp9ovKY.png" style="width:17cm;height:17cm" data-output="true">
+						<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">11</span><span class="separator">: </span></span>
+							Correlation between the abundance performance statistics between the three main fisheries.
 						</figcaption>
 					</figure>
 				</section>
 				<section>
-					<h1 id="section-2-2" class="level-2"><span class="label"><span class="path">2.2</span><span class="separator"> </span></span>Performance of the BRule class
+					<h1 id="section-2-2" class="level-2"><span class="label"><span class="path">2.2</span><span class="separator"> </span></span>
+						Performance of the BRule class
 					</h1>
 					<figure id="figure-12">
-						<pre data-code="r" data-format="png" data-size="17x10cm" data-hash="rycEpM7">
+						<pre data-exec="r format png size 17x10cm" data-hash="qOLQC5Y">
 plot_tradeoff(
 	subset(perfs,class=="BRule"),
 	x = list(yield='Yield (mean annual catch, `000 t)'),
@@ -378,17 +659,18 @@ plot_tradeoff(
 	colour = list(p2='Target'),
 	shape = list(p3='Threshold')
 )
-
-						</pre><img src="rycEpM7.png" data-out="true">
-						<figcaption><span class="label"><span class="type">Figure</span><span class="number">12</span><span class="separator">:</span></span>Trade-off between yield and stock status for alternative instances of the the BRule class of management procedure.
+</pre><img src="qOLQC5Y.png" style="width:17cm;height:10cm" data-output="true">
+						<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">12</span><span class="separator">: </span></span>
+							Trade-off between yield and stock status for alternative instances of the the BRule class of management procedure.
 						</figcaption>
 					</figure>
 				</section>
 				<section>
-					<h1 id="section-2-3" class="level-2"><span class="label"><span class="path">2.3</span><span class="separator"> </span></span>Performance of the FRange class
+					<h1 id="section-2-3" class="level-2"><span class="label"><span class="path">2.3</span><span class="separator"> </span></span>
+						Performance of the FRange class
 					</h1>
 					<figure id="figure-13">
-						<pre data-code="r" data-format="png" data-size="17x10cm" data-hash="soMFItl">
+						<pre data-exec="r format png size 17x10cm" data-hash="bKhRFSt">
 plot_tradeoff(
 	subset(perfs,class=="FRange"),
 	x = list(yield='Yield (mean annual catch, `000 t)'),
@@ -396,13 +678,13 @@ plot_tradeoff(
 	colour = list(p3='Target'),
 	shape = list(p4='Buffer')
 )
-
-						</pre><img src="soMFItl.png" data-out="true">
-						<figcaption><span class="label"><span class="type">Figure</span><span class="number">13</span><span class="separator">:</span></span>Trade-off between yield and stock status for alternative instances of the the FRange class of management procedure.
+</pre><img src="bKhRFSt.png" style="width:17cm;height:10cm" data-output="true">
+						<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">13</span><span class="separator">: </span></span>
+							Trade-off between yield and stock status for alternative instances of the the FRange class of management procedure.
 						</figcaption>
 					</figure>
 					<figure id="figure-14">
-						<pre data-code="r" data-format="png" data-size="17x10cm" data-hash="snAkjaa">
+						<pre data-exec="r format png size 17x10cm" data-hash="cnx9lKB">
 plot_tradeoff(
 	subset(perfs,class=="FRange"),
 	x = list(yield='Yield (mean annual catch, `000 t)'),
@@ -410,17 +692,18 @@ plot_tradeoff(
 	colour = list(p1='Frequency'),
 	shape = list(p4='Buffer')
 )
-
-						</pre><img src="snAkjaa.png" data-out="true">
-						<figcaption><span class="label"><span class="type">Figure</span><span class="number">14</span><span class="separator">:</span></span>Trade-off between yield and stock status for alternative instances of the the FRange class of management procedure.
+</pre><img src="cnx9lKB.png" style="width:17cm;height:10cm" data-output="true">
+						<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">14</span><span class="separator">: </span></span>
+							Trade-off between yield and stock status for alternative instances of the the FRange class of management procedure.
 						</figcaption>
 					</figure>
 				</section>
 				<section>
-					<h1 id="section-2-4" class="level-2"><span class="label"><span class="path">2.4</span><span class="separator"> </span></span>Performance of the IRate class
+					<h1 id="section-2-4" class="level-2"><span class="label"><span class="path">2.4</span><span class="separator"> </span></span>
+						Performance of the IRate class
 					</h1>
 					<figure id="figure-15">
-						<pre data-code="r" data-format="png" data-size="17x10cm" data-hash="bNAWJ9I">
+						<pre data-exec="r format png size 17x10cm" data-hash="lMJT4z">
 plot_tradeoff(
 	subset(perfs,class=="IRate"),
 	x = list(yield='Yield (mean annual catch, `000 t)'),
@@ -428,26 +711,24 @@ plot_tradeoff(
 	colour = list(p3='Target'),
 	shape = list(p4='Buffer')
 )
-
-						</pre><img src="bNAWJ9I.png" data-out="true">
-						<figcaption><span class="label"><span class="type">Figure</span><span class="number">15</span><span class="separator">:</span></span>Trade-off between yield and stock status for alternative instances of the the IRate class of management procedure.
+</pre><img src="lMJT4z.png" style="width:17cm;height:10cm" data-output="true">
+						<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">15</span><span class="separator">: </span></span>
+							Trade-off between yield and stock status for alternative instances of the the IRate class of management procedure.
 						</figcaption>
 					</figure>
 				</section>
 			</section>
-			<div data-if="FALSE" data-off="true">
-				<section>
-					<h1>Analysis of sensitivity
-					</h1>
-					<pre data-code="r">
-par <- 'movement_stay.value'
-values <- samples[,par]
+			<div data-if="0" data-off="true">
+				<pre data-exec="r">
+# Summarise sensitivity to a parameter
+par &lt;- 'movement_stay.value'
+values &lt;- samples[,par]
 # Calculate quantiles for parameter
-quantiles <- quantile(values,p=seq(0,1,0.1))
+quantiles &lt;- quantile(values,p=seq(0,1,0.1))
 # Cut
-performance <- subset(performances,procedure==3)
-performance$quantile <- as.integer(cut(values,quantiles))
-sensitivity <- ddply(performance,.(quantile),summarise,
+performance &lt;- subset(performances,procedure==3)
+performance$quantile &lt;- as.integer(cut(values,quantiles))
+sensitivity &lt;- ddply(performance,.(quantile),summarise,
 	yield = mean(catches_total),
 	status = mean(status_mean)
 )
@@ -455,9 +736,8 @@ sensitivity <- ddply(performance,.(quantile),summarise,
 ggplot(sensitivity) +
 	geom_line(aes(x=quantile,y=status))
 
-					</pre>
-				</section>
+</pre>
 			</div>
-		</main><script src="/core/components/themes/base/boot.js"> </script><script>if(!window.Stencila){window.StencilaHost='http://stenci.la';document.write(unescape('%3Cscript src="http://stenci.la/core/components/themes/base/boot.js"%3E%3C/script%3E'))}</script><script>window.Stencila.Booter.theme('core/stencils/themes/default');</script><script>window.setTimeout(function(){document.documentElement.className='';},10000)</script>
+		</main><script src="/core/themes/base/boot.js"> </script><script>if(!window.Stencila){window.StencilaHost='http://stenci.la';document.write(unescape('%3Cscript src="http://stenci.la/core/themes/base/boot.js"%3E%3C/script%3E'))}</script><script>window.Stencila.Booter.theme('core/stencils/themes/default');</script><script>window.setTimeout(function(){document.documentElement.className='';},10000)</script>
 	</body>
 </html>
