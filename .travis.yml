@@ -22,4 +22,5 @@ install:
     - $CXX --version
 
 script:
-    - make compile 
+    - make requires
+    - make compile
