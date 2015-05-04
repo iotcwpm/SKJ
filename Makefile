@@ -5,11 +5,14 @@ all: ioskj.debug
 clean:
 	rm -f *.debug *.exe *.o
 
+# Define operating system
+OS := $(shell uname -o)
+
 # Define options and required libraries
 CXX_FLAGS := -std=c++11 -Wall -Wno-unused-function -Wno-unused-local-typedefs
 INC_DIRS := -I. -Irequires/stencila -Irequires/boost
-LIB_DIRS := -Lrequires/stencila
-LIBS := -lstencila -lcrypto -lssl -lpthread -lrt
+LIB_DIRS := -Lrequires/boost/lib
+LIBS := -lboost_system -lboost_filesystem -lboost_regex
 
 # Find all .hpp and .cpp files (to save time don't recurse into subdirectories)
 HPPS := $(shell find . -maxdepth 1 -name "*.hpp")
@@ -113,7 +116,24 @@ requires/boost: requires/boost_$(BOOST_VERSION).tar.bz2
 	mv requires/boost_$(BOOST_VERSION) requires/boost
 	touch $@
 
-requires-boost: requires/boost
+
+BOOST_BOOTSTRAP_FLAGS := --with-libraries=filesystem,regex,test
+BOOST_B2_FLAGS := -d0 --prefix=. link=static install
+ifeq ($(OS), GNU/Linux)
+	BOOST_B2_FLAGS += cxxflags=-fPIC
+endif
+ifeq ($(OS), Msys)
+	BOOST_BOOTSTRAP_FLAGS += --with-toolset=mingw
+	BOOST_B2_FLAGS += --layout=system release toolset=gcc
+endif
+
+requires/boost.flag: requires/boost
+	cd $< ; ./bootstrap.sh $(BOOST_BOOTSTRAP_FLAGS)
+	sed -i "s/mingw/gcc/g" $</project-config.jam
+	cd $< ; ./b2 $(BOOST_B2_FLAGS)
+	touch $@
+
+requires-boost: requires/boost.flag
 
 STENCILA_VERSION := 0.12
 

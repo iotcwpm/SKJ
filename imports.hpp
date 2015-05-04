@@ -26,6 +26,7 @@
 
 // Stencila library (https://github.com/stencila/stencila) for ...
 //... structure, array, frame and query classes
+#define STENCILA_INLINE
 #include <stencila/structure.hpp>
 #include <stencila/array.hpp>
 #include <stencila/frame.hpp>
