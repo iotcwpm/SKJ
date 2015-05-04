@@ -50,13 +50,7 @@ Automated builds are done on [Travis CI](https://travis-ci.org/iotcwpm/SKJ) when
 
 ## Usage
 
-To build the executable `ioskj.exe` run,
-
-```
-make exec
-```
-
-To run the executable supply a task name and, for certain tasks, additional arguments,
+To run the executable, `ioskj.exe`, supply a task name and, for certain tasks, additional arguments,
 
 ```
 ./ioskj.exe <task> [<arg1>],[<arg2>]...
@@ -74,6 +68,32 @@ For example, to evaluate the defined set of management procedures using 1000 rep
 ```
 ./ioskj.exe evaluate 1000
 ```
+
+## Building
+
+The project `Makefile` includes a task (`make requires`) which will download and compile required C++ libraries. Use `make compile` to compile a production version of the executable.
+
+On most Linux systems you should have the required build tools installed already and can just run:
+
+```shell
+make requires compile
+```
+
+On Windows, the recommended approach is to build using MSYS2 and MinGW64:
+
+	1. Download and install MYSYS2 following the instructions at https://msys2.github.io/
+	
+	2. Open the MYSY2 shell and install build tools:
+
+		```shell
+		pacman -S make mingw-w64-x86_64-toolchain
+		```
+
+	3. Open the MinGW64 shell and run:
+
+		```shell
+		make requires compile
+		```
 
 To build a debug version of the executable for use with [GDB](http://www.gnu.org/software/gdb/) run,
 
