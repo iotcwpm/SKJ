@@ -1,13 +1,13 @@
 # Indian Ocean skipjack tuna model
 
+[![Travis CI build](https://travis-ci.org/iotcwpm/SKJ.svg)](https://travis-ci.org/iotcwpm/SKJ)
+[![GitHub issues](https://img.shields.io/github/issues/iotcwpm/SKJ.svg)](https://github.com/iotcwpm/SKJ/issues)
+
 The Indian Ocean Tuna Commission's (IOTC) Working Party on Methods' (WPM) simulation model of the Indian Ocean skipjack (SKJ) tuna fishery for the evaluation of management procedures (MP).
 
 > ![](http://www.iotc.org/sites/default/files/documents/science/Katsuwonus_pelamis-main.jpg)
 
 > Skipjack tuna (_Katsuwonus pelamis_)
-
-[![Travis CI build](https://travis-ci.org/iotcwpm/SKJ.svg)](https://travis-ci.org/iotcwpm/SKJ)
-[![GitHub issues](https://img.shields.io/github/issues/iotcwpm/SKJ.svg)](https://github.com/iotcwpm/SKJ/issues)
 
 ## Documentation
 
@@ -44,6 +44,8 @@ Several reports associated with this project are available (in chronological ord
 ## Status
 
 The model is still under active development. As the model matures we hope to make it available as precompiled executables for Windows and Linux and/or a package for R.
+
+Automated builds are done on [Travis CI](https://travis-ci.org/iotcwpm/SKJ) when changes are pushed to this repository.
 
 
 ## Usage
