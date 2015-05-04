@@ -6,11 +6,8 @@ The Indian Ocean Tuna Commission's (IOTC) Working Party on Methods' (WPM) simula
 
 > Skipjack tuna (_Katsuwonus pelamis_)
 
-## Status
-
 [![Travis CI build](https://travis-ci.org/iotcwpm/SKJ.svg)](https://travis-ci.org/iotcwpm/SKJ)
-
-[![GitHub issues](https://img.shields.io/github/issues/badges/shields.svg)](https://github.com/iotcwpm/SKJ/issues)
+[![GitHub issues](https://img.shields.io/github/issues/iotcwpm/SKJ.svg)](https://github.com/iotcwpm/SKJ/issues)
 
 ## Documentation
 
