@@ -23,6 +23,7 @@ void run(const std::string& samples_file="ref",int samples_row=0,int procedure=0
 	// Read in parameters
 	Parameters parameters;
 	parameters.read();
+	parameters.write();
 	// If samples is specified, read them in and select the desired row
 	if(samples_file!="ref"){
 		// Read in samples
