@@ -6,12 +6,18 @@ clean:
 	rm -f *.debug *.exe *.o
 
 # Define operating system
-OS := $(shell uname -o)
+UNAME := $(shell uname -o)
+ifeq ($(UNAME), GNU/Linux)
+	OS := linux
+endif
+ifeq ($(UNAME), Msys)
+	OS := win
+endif
 
 # Define options and required libraries
 CXX_FLAGS := -std=c++11 -Wall -Wno-unused-function -Wno-unused-local-typedefs
-INC_DIRS := -I. -Irequires/stencila/cpp -Irequires/boost
-LIB_DIRS := -Lrequires/boost/lib
+INC_DIRS := -I. -Irequires/stencila/cpp -Irequires/boost-$(OS)
+LIB_DIRS := -Lrequires/boost-$(OS)/lib
 LIBS := -lboost_system -lboost_filesystem -lboost_regex
 
 # Find all .hpp and .cpp files (to save time don't recurse into subdirectories)
@@ -117,29 +123,29 @@ requires/boost_$(BOOST_VERSION).tar.bz2:
 	@mkdir -p requires
 	wget --no-check-certificate -O $@ http://prdownloads.sourceforge.net/boost/boost_$(BOOST_VERSION).tar.bz2
 
-requires/boost: requires/boost_$(BOOST_VERSION).tar.bz2
+requires/boost-$(OS): requires/boost_$(BOOST_VERSION).tar.bz2
 	tar --bzip2 -xf $< -C requires
-	mv requires/boost_$(BOOST_VERSION) requires/boost
+	mv requires/boost_$(BOOST_VERSION) requires/boost-$(OS)
 	touch $@
 
 
 BOOST_BOOTSTRAP_FLAGS := --with-libraries=filesystem,regex,test
 BOOST_B2_FLAGS := -d0 --prefix=. link=static install
-ifeq ($(OS), GNU/Linux)
+ifeq ($(OS), linux)
 	BOOST_B2_FLAGS += cxxflags=-fPIC
 endif
-ifeq ($(OS), Msys)
+ifeq ($(OS), win)
 	BOOST_BOOTSTRAP_FLAGS += --with-toolset=mingw
 	BOOST_B2_FLAGS += --layout=system release toolset=gcc
 endif
 
-requires/boost.flag: requires/boost
+requires/boost.flag: requires/boost-$(OS)
 	cd $< ; ./bootstrap.sh $(BOOST_BOOTSTRAP_FLAGS)
 	sed -i "s/mingw/gcc/g" $</project-config.jam
 	cd $< ; ./b2 $(BOOST_B2_FLAGS)
 	touch $@
 
-requires-boost: requires/boost.flag
+requires-boost: requires/boost-$(OS).flag
 
 STENCILA_VERSION := 0.13
 
