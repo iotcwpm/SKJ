@@ -143,7 +143,7 @@ public:
     using Structure<Parameters>::read;
 
     void read(void){
-    	Structure<Parameters>::read("parameters/input/parameters.cila");
+    	Structure<Parameters>::read("parameters/input/parameters.json");
     	
     	recruits_regions.read("parameters/input/recruits_regions.tsv",true);
     	recruits_deviations.read("parameters/input/recruits_deviations.tsv",true);
@@ -154,8 +154,10 @@ public:
 		});
     }
 
+    using Structure<Parameters>::write;
+
     void write(void){
-    	Structure<Parameters>::write("parameters/output/parameters.cila");
+    	Structure<Parameters>::write("parameters/output/parameters.json");
 
     	recruits_regions.write("parameters/output/recruits_regions.tsv",true);
     	recruits_deviations.write("parameters/output/recruits_deviations.tsv",true);
