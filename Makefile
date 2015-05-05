@@ -1,4 +1,4 @@
-all: ioskj.debug
+all: ioskj.exe
 
 .PHONY: docs tests requires
 
@@ -55,6 +55,12 @@ profile: ioskj.prof
 # Run the tests
 test: tests.exe
 	(./tests.exe) || (exit 1)
+
+#############################################################
+# R driver
+
+drive:
+	Rscript driver.r
 
 #############################################################
 # Documentation
