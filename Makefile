@@ -10,7 +10,7 @@ OS := $(shell uname -o)
 
 # Define options and required libraries
 CXX_FLAGS := -std=c++11 -Wall -Wno-unused-function -Wno-unused-local-typedefs
-INC_DIRS := -I. -Irequires/stencila -Irequires/boost
+INC_DIRS := -I. -Irequires/stencila/cpp -Irequires/boost
 LIB_DIRS := -Lrequires/boost/lib
 LIBS := -lboost_system -lboost_filesystem -lboost_regex
 
@@ -141,14 +141,16 @@ requires/boost.flag: requires/boost
 
 requires-boost: requires/boost.flag
 
-STENCILA_VERSION := 0.12
+STENCILA_VERSION := 0.13
 
-requires/stencila-linux-x86_64-$(STENCILA_VERSION).tar.gz:
+requires/stencila-$(STENCILA_VERSION).zip:
 	@mkdir -p requires
-	wget --no-check-certificate -O $@ https://github.com/stencila/stencila/releases/download/0.12/stencila-linux-x86_64-$(STENCILA_VERSION).tar.gz
+	wget --no-check-certificate -O $@ https://github.com/stencila/stencila/archive/0.13.zip
 
-requires/stencila: requires/stencila-linux-x86_64-$(STENCILA_VERSION).tar.gz
-	tar -xf $< -C requires
+requires/stencila: requires/stencila-$(STENCILA_VERSION).zip
+	rm -rf requires/stencila
+	unzip $< -d requires
+	mv requires/stencila-$(STENCILA_VERSION) requires/stencila
 	touch $@
 
 requires-stencila: requires/stencila
