@@ -81,19 +81,19 @@ make requires compile
 
 On Windows, the recommended approach is to build using MSYS2 and MinGW64:
 
-	1. Download and install MYSYS2 following the instructions at https://msys2.github.io/
-	
-	2. Open the MYSY2 shell and install build tools:
+ 1. Download and install MYSYS2 following the instructions at https://msys2.github.io/
 
-		```shell
-		pacman -S make mingw-w64-x86_64-toolchain
-		```
+ 2. Open the MYSY2 shell and install build tools:
 
-	3. Open the MinGW64 shell and run:
+	```shell
+	pacman -S make mingw-w64-x86_64-toolchain zip
+	```
 
-		```shell
-		make requires compile
-		```
+ 3. Open the MinGW64 shell and run:
+
+	```shell
+	make requires compile
+	```
 
 To build a debug version of the executable for use with [GDB](http://www.gnu.org/software/gdb/) run,
 
