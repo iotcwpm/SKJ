@@ -20,6 +20,8 @@ using namespace IOSKJ;
 void run(const std::string& samples_file="ref",int samples_row=0,int procedure=0){
 	// Create output directories
 	boost::filesystem::create_directories("model/output");
+	boost::filesystem::create_directories("parameters/output");
+	boost::filesystem::create_directories("data/output");
 	// Read in parameters
 	Parameters parameters;
 	parameters.read();
