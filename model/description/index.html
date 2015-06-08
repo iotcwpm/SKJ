@@ -5,16 +5,17 @@
 			Indian Ocean skipjack model : Model description
 		</title>
 		<meta charset="utf-8">
-		<link rel="stylesheet" type="text/css" href="/core/stencils/themes/default/theme.css"><script type="text/javascript">(function(c){
-	var d=document,s,i,l;
-	s=d.styleSheets;for(i=0;i!=s.length;i++){if((s[i].href||'').match(c)){try{if(s[i].cssRules.length)return;}catch(e){}}}
-	l=d.createElement('link');l.rel='stylesheet';l.type='text/css';l.href='http://stenci.la'+c;
-	d.documentElement.className='unready';l.onload=function(){d.documentElement.className='';};
-	d.getElementsByTagName('head')[0].appendChild(l);
-})('/core/stencils/themes/default/theme.css');</script>
+		<meta itemprop="generator" content="Stencila 0.14">
+		<meta itemprop="type" content="stencil">
+		<meta itemprop="address" content="model/description">
+		<meta itemprop="version" content="">
+		<meta itemprop="theme" content="core/stencils/themes/default">
+		<link rel="stylesheet" type="text/css" href="/core/stencils/themes/default/theme.min.css"><script type="text/javascript">(function(c){var d=document,s,i,l;s=d.styleSheets;for(i=0;i!=s.length;i++){if((s[i].href||'').match(c)){try{if(s[i].cssRules.length)return;}catch(e){}}}l=d.createElement('link');l.rel='stylesheet';l.type='text/css';l.href='https://stenci.la'+c;d.documentElement.className='unready';l.onload=function(){d.documentElement.className='';};d.getElementsByTagName('head')[0].appendChild(l);})('/core/stencils/themes/default/theme.min.css');</script>
 		<style type="text/css">
 			.unready{display:none;}
 		</style>
+		<meta itemprop="closed" content="false">
+		<meta itemprop="contexts" content="r">
 	</head>
 	<body>
 		<main id="content">
@@ -30,7 +31,7 @@ source('../../common.R',local=T)
 				The subscript for time, <script type="math/asciimath">t</script>, is usually omitted from the model equations below except where it is necessary to be explicit regarding the time step involved.
 			</p>
 			<section>
-				<h1 id="section-1" class="level-1"><span class="label"><span class="path">1</span><span class="separator"> </span></span>
+				<h1>
 					Dimensions
 				</h1>
 				<p>
@@ -205,7 +206,7 @@ source('../../common.R',local=T)
 					</tbody>
 				</table>
 				<figure id="figure-regions">
-					<pre data-exec="r format png size 17x13cm" data-hash="rFihhME">
+					<pre data-exec="r format png size 17x13cm" data-hash="rFihhME" data-error="exception(maps package required for this functionality. Please install and try again.)">
 regions &lt;- read.table('../../data/area-polygons.txt',header=T)
 names(regions) &lt;- c('region','lat','lon')
 	
@@ -218,18 +219,18 @@ print(
 		coord_map('mercator') + 
 		labs(fill='Region')
 )
-</pre><img src="rFihhME.png" style="width:17cm;height:13cm" data-output="true">
+</pre>
 					<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">1</span><span class="separator">: </span></span>
 						Map of the three regions used in the model: Western (W,<script type="math/asciimath">we</script>), Maldives (M,<script type="math/asciimath">ma</script>), Eastern (E,<script type="math/asciimath">ea</script>).
 					</figcaption>
 				</figure>
 			</section>
 			<section>
-				<h1 id="section-2" class="level-1"><span class="label"><span class="path">2</span><span class="separator"> </span></span>
+				<h1>
 					Fish
 				</h1>
 				<section>
-					<h1 id="section-2-1" class="level-2"><span class="label"><span class="path">2.1</span><span class="separator"> </span></span>
+					<h1>
 						Numbers
 					</h1>
 					<p>
@@ -263,7 +264,7 @@ print(
 					</p>
 				</section>
 				<section>
-					<h1 id="section-2-2" class="level-2"><span class="label"><span class="path">2.2</span><span class="separator"> </span></span>
+					<h1>
 						Length, weight and maturity
 					</h1>
 					<p>
@@ -289,7 +290,7 @@ print(
 					</p>
 				</section>
 				<section>
-					<h1 id="section-2-3" class="level-2"><span class="label"><span class="path">2.3</span><span class="separator"> </span></span>
+					<h1>
 						Spawning and recruitment
 					</h1>
 					<p>
@@ -331,7 +332,7 @@ print(
 					</p>
 				</section>
 				<section>
-					<h1 id="section-2-4" class="level-2"><span class="label"><span class="path">2.4</span><span class="separator"> </span></span>
+					<h1>
 						Natural mortality
 					</h1>
 					<p>
@@ -349,7 +350,7 @@ print(
 					</p>
 				</section>
 				<section>
-					<h1 id="section-2-5" class="level-2"><span class="label"><span class="path">2.5</span><span class="separator"> </span></span>
+					<h1>
 						Growth
 					</h1>
 					<p>
@@ -375,7 +376,7 @@ print(
 					</p>
 				</section>
 				<section>
-					<h1 id="section-2-6" class="level-2"><span class="label"><span class="path">2.6</span><span class="separator"> </span></span>
+					<h1>
 						Movement
 					</h1>
 					<p>
@@ -392,7 +393,7 @@ print(
 				</p>
 			</section>
 			<section>
-				<h1 id="section-3" class="level-1"><span class="label"><span class="path">3</span><span class="separator"> </span></span>
+				<h1>
 					Fishing
 				</h1>
 				<p>
@@ -412,6 +413,6 @@ print(
 					</p>
 				</p>
 			</section>
-		</main><script src="/core/themes/base/boot.js"> </script><script>if(!window.Stencila){window.StencilaHost='http://stenci.la';document.write(unescape('%3Cscript src="http://stenci.la/core/themes/base/boot.js"%3E%3C/script%3E'))}</script><script>window.Stencila.Booter.theme('core/stencils/themes/default');</script><script>window.setTimeout(function(){document.documentElement.className='';},10000)</script>
+		</main><script src="https://stenci.la/get/js/stencila-0.14.min.js"> </script><script>Stencila.launch();</script><script>window.setTimeout(function(){document.documentElement.className='';if(!window.Stencila){window.alert('Page could not be fully loaded. Not all functionality will be available.');}},10000)</script>
 	</body>
 </html>
