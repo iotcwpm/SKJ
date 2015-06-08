@@ -5,16 +5,17 @@
 			Indian Ocean skipjack model : management procedure evaluations
 		</title>
 		<meta charset="utf-8">
-		<link rel="stylesheet" type="text/css" href="/core/stencils/themes/default/theme.css"><script type="text/javascript">(function(c){
-	var d=document,s,i,l;
-	s=d.styleSheets;for(i=0;i!=s.length;i++){if((s[i].href||'').match(c)){try{if(s[i].cssRules.length)return;}catch(e){}}}
-	l=d.createElement('link');l.rel='stylesheet';l.type='text/css';l.href='http://stenci.la'+c;
-	d.documentElement.className='unready';l.onload=function(){d.documentElement.className='';};
-	d.getElementsByTagName('head')[0].appendChild(l);
-})('/core/stencils/themes/default/theme.css');</script>
+		<meta itemprop="generator" content="Stencila 0.14">
+		<meta itemprop="type" content="stencil">
+		<meta itemprop="address" content="evaluate/display">
+		<meta itemprop="version" content="">
+		<meta itemprop="theme" content="core/stencils/themes/default">
+		<link rel="stylesheet" type="text/css" href="/core/stencils/themes/default/theme.min.css"><script type="text/javascript">(function(c){var d=document,s,i,l;s=d.styleSheets;for(i=0;i!=s.length;i++){if((s[i].href||'').match(c)){try{if(s[i].cssRules.length)return;}catch(e){}}}l=d.createElement('link');l.rel='stylesheet';l.type='text/css';l.href='https://stenci.la'+c;d.documentElement.className='unready';l.onload=function(){d.documentElement.className='';};d.getElementsByTagName('head')[0].appendChild(l);})('/core/stencils/themes/default/theme.min.css');</script>
 		<style type="text/css">
 			.unready{display:none;}
 		</style>
+		<meta itemprop="closed" content="false">
+		<meta itemprop="contexts" content="r">
 	</head>
 	<body>
 		<main id="content">
@@ -151,14 +152,14 @@ plot_tradeoff &lt;- function(data,x,y,colour,shape){
 
 </pre>
 			<section>
-				<h1 id="section-1" class="level-1"><span class="label"><span class="path">1</span><span class="separator"> </span></span>
+				<h1>
 					Methods and terminology
 				</h1>
 				<p>
 					This section provides an overview of the methods and terminology used for evaluating management procedures (i.e. management procedure evaluation, MPE). We provide examples of the types of figures and tables that are used in the following, more detailed, descriptions of evaluation results for each class of management procedure.
 				</p>
 				<section>
-					<h1 id="section-1-1" class="level-2"><span class="label"><span class="path">1.1</span><span class="separator"> </span></span>
+					<h1>
 						Evaluations and replicates
 					</h1>
 					<p>
@@ -183,7 +184,7 @@ p2 &lt;- ggplot(temp,aes(x=year,y=biomass_spawners_overall/1e3)) +
 	labs(x="Year",y="Biomass (spawners,kt)") + 
 	theme(legend.position='none')
 multiplot(p1,p2)
-</pre><img src="rnGDuo6.png" style="width:17cm;height:15cm" data-output="true">
+</pre><img src="figure-one-rep-one-eval-catch-and-biomass-traject-rnGDuo6.png" style="width:17cm;height:15cm" data-output="true">
 						<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">1</span><span class="separator">: </span></span>
 							Catch and biomass trajectories from a single evaluation of a single management procedure using a single parameter replicate.
 						</figcaption>
@@ -204,7 +205,7 @@ p2 &lt;- ggplot(temp,aes(x=year,y=biomass_spawners_overall/1e3)) +
 	labs(x="Year",y="Biomass (spawners,kt)") + 
 	theme(legend.position='none')
 multiplot(p1,p2)
-</pre><img src="rb0XBam.png" style="width:17cm;height:15cm" data-output="true">
+</pre><img src="figure-one-rep-mult-evals-catch-and-biomass-traject-rb0XBam.png" style="width:17cm;height:15cm" data-output="true">
 						<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">2</span><span class="separator">: </span></span>
 							Catch and biomass trajectories from multiple evaluations of multiple management procedure using a single parameter replicates. Each of the coloured future trajectories arises from applying one candidate management procedure.
 						</figcaption>
@@ -228,7 +229,7 @@ p2 &lt;- ggplot(temp,aes(x=year,y=biomass_status)) +
 	labs(x="Year",y="Status (spawners,B/B0)") + 
 	theme(legend.position='none')
 multiplot(p1,p2)
-</pre><img src="qMUNHnv.png" style="width:17cm;height:15cm" data-output="true">
+</pre><img src="figure-mult-rep-catch-and-biomass-traject-qMUNHnv.png" style="width:17cm;height:15cm" data-output="true">
 						<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">3</span><span class="separator">: </span></span>
 							Catch and biomass trajectories from multiple evaluations of a single management procedure using multiple parameter replicates. Each of the coloured trajectories arises from alternative replicate.
 						</figcaption>
@@ -239,9 +240,9 @@ temp &lt;- subset(track,quarter==3 &amp; procedure %in% c(-1,1))
 p1 &lt;- plot_ribbon(temp,y=quote(catches_total/1e3),ylab='Catch (last quarter,kt)')
 p2 &lt;- plot_ribbon(temp,y=quote(biomass_status),ylab='Status (B/B0)')
 multiplot(p1,p2)
-</pre><img src="rDEtUzT.png" style="width:17cm;height:15cm" data-output="true">
+</pre><img src="figure-ribbons-eg-1-catch-and-biomass-traject-rDEtUzT.png" style="width:17cm;height:15cm" data-output="true">
 						<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">4</span><span class="separator">: </span></span>
-							Catch and biomass trajectory percentiles for management procedure <span>text mp_sig(1)</span>.
+							Catch and biomass trajectory percentiles for management procedure <span data-text="mp_sig(1)">ConstEffort(100)</span>.
 						</figcaption>
 					</figure>
 					<figure id="figure-ribbons-eg-2">
@@ -250,14 +251,14 @@ temp &lt;- subset(track,quarter==3 &amp; procedure %in% c(-1,3))
 p1 &lt;- plot_ribbon(temp,y=quote(catches_total/1e3),ylab='Catch (last quarter,kt)')
 p2 &lt;- plot_ribbon(temp,y=quote(biomass_status),ylab='Status (B/B0)')
 multiplot(p1,p2)
-</pre><img src="rOOzUFB.png" style="width:17cm;height:15cm" data-output="true">
+</pre><img src="figure-ribbons-eg-2-catch-and-biomass-traject-rOOzUFB.png" style="width:17cm;height:15cm" data-output="true">
 						<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">5</span><span class="separator">: </span></span>
-							Catch and biomass trajectory percentiles for management procedure <span>text mp_sig(3)</span>.
+							Catch and biomass trajectory percentiles for management procedure <span data-text="mp_sig(3)">FRange(3,0.1,0.25,0.05,0.3)</span>.
 						</figcaption>
 					</figure>
 				</section>
 				<section>
-					<h1 id="section-1-2" class="level-2"><span class="label"><span class="path">1.2</span><span class="separator"> </span></span>
+					<h1>
 						Performance measures, performance statistics and management objectives
 					</h1>
 					<div data-include="../../performance/description complete">
@@ -532,7 +533,7 @@ print(
 	ggplot(melt(perfs[,stats]),aes(x=value)) + 
 		geom_density(fill='grey') + facet_wrap(~variable,scales='free')
 )
-</pre><img src="siJpDOQ.png" style="width:17cm;height:17cm" data-output="true">
+</pre><img src="figure-perf-dists-distributions-of-performa-siJpDOQ.png" style="width:17cm;height:17cm" data-output="true">
 						<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">6</span><span class="separator">: </span></span>
 							Distributions of performance statistics over all evaluations. This figure is intended principally to provide an indication of the range of performance statistics outcomes across all replicates and procedures.
 						</figcaption>
@@ -540,11 +541,11 @@ print(
 				</section>
 			</section>
 			<section>
-				<h1 id="section-2" class="level-1"><span class="label"><span class="path">2</span><span class="separator"> </span></span>
+				<h1>
 					Results
 				</h1>
 				<section>
-					<h1 id="section-2-1" class="level-2"><span class="label"><span class="path">2.1</span><span class="separator"> </span></span>
+					<h1>
 						Comparison of classes of management procedures
 					</h1>
 					<p>
@@ -576,7 +577,7 @@ plot_tradeoff(
 	colour = list(class='Class'),
 	shape = list(class='Class')
 )
-</pre><img src="sJwSEya.png" style="width:17cm;height:10cm" data-output="true">
+</pre><img src="figure-yield-status-all-trade-off-between-yield-a-sJwSEya.png" style="width:17cm;height:10cm" data-output="true">
 						<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">7</span><span class="separator">: </span></span>
 							Trade-off between yield and status performance statistics across all the management procedures evaluated.
 						</figcaption>
@@ -590,7 +591,7 @@ plot_tradeoff(
 	colour = list(class='Class'),
 	shape = list(class='Class')
 )
-</pre><img src="sfGwpT5.png" style="width:17cm;height:10cm" data-output="true">
+</pre><img src="figure-yield-safety-all-trade-off-between-yield-a-sfGwpT5.png" style="width:17cm;height:10cm" data-output="true">
 						<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">8</span><span class="separator">: </span></span>
 							Trade-off between yield and safety performance statistics across all the management procedures evaluated.
 						</figcaption>
@@ -604,7 +605,7 @@ plot_tradeoff(
 	colour = list(class='Class'),
 	shape = list(class='Class')
 )
-</pre><img src="qYdYoy.png" style="width:17cm;height:10cm" data-output="true">
+</pre><img src="figure-yield-stability-all-trade-off-between-yield-a-qYdYoy.png" style="width:17cm;height:10cm" data-output="true">
 						<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">9</span><span class="separator">: </span></span>
 							Trade-off between yield and stability performance statistics across all the management procedures evaluated.
 						</figcaption>
@@ -624,7 +625,7 @@ plot_tradeoff(
 	colour = list(class='Class'),
 	shape = list(class='Class')
 )
-</pre><img src="N24WLC.png" style="width:17cm;height:10cm" data-output="true">
+</pre><img src="figure-yield-abundance-all-trade-off-between-yield-a-N24WLC.png" style="width:17cm;height:10cm" data-output="true">
 						<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">10</span><span class="separator">: </span></span>
 							Trade-off between yield and abundance performance statistics across all the management procedures evaluated.
 						</figcaption>
@@ -640,14 +641,14 @@ p2 = ggplot(perfs,aes(x=cpue_m_pl,y=cpue_e_gn,colour=class,shape=class)) +
 		geom_abline(linetype=3) + 
 		labs(x='M-PL CPUE',y='E-GN CPUE')
 multiplot(p1,p2)
-</pre><img src="bp9ovKY.png" style="width:17cm;height:17cm" data-output="true">
+</pre><img src="figure-abundance-corrs-correlation-between-the-a-bp9ovKY.png" style="width:17cm;height:17cm" data-output="true">
 						<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">11</span><span class="separator">: </span></span>
 							Correlation between the abundance performance statistics between the three main fisheries.
 						</figcaption>
 					</figure>
 				</section>
 				<section>
-					<h1 id="section-2-2" class="level-2"><span class="label"><span class="path">2.2</span><span class="separator"> </span></span>
+					<h1>
 						Performance of the BRule class
 					</h1>
 					<figure id="figure-12">
@@ -659,14 +660,14 @@ plot_tradeoff(
 	colour = list(p2='Target'),
 	shape = list(p3='Threshold')
 )
-</pre><img src="qOLQC5Y.png" style="width:17cm;height:10cm" data-output="true">
+</pre><img src="figure-12-trade-off-between-yield-a-qOLQC5Y.png" style="width:17cm;height:10cm" data-output="true">
 						<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">12</span><span class="separator">: </span></span>
 							Trade-off between yield and stock status for alternative instances of the the BRule class of management procedure.
 						</figcaption>
 					</figure>
 				</section>
 				<section>
-					<h1 id="section-2-3" class="level-2"><span class="label"><span class="path">2.3</span><span class="separator"> </span></span>
+					<h1>
 						Performance of the FRange class
 					</h1>
 					<figure id="figure-13">
@@ -678,7 +679,7 @@ plot_tradeoff(
 	colour = list(p3='Target'),
 	shape = list(p4='Buffer')
 )
-</pre><img src="bKhRFSt.png" style="width:17cm;height:10cm" data-output="true">
+</pre><img src="figure-13-trade-off-between-yield-a-bKhRFSt.png" style="width:17cm;height:10cm" data-output="true">
 						<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">13</span><span class="separator">: </span></span>
 							Trade-off between yield and stock status for alternative instances of the the FRange class of management procedure.
 						</figcaption>
@@ -692,14 +693,14 @@ plot_tradeoff(
 	colour = list(p1='Frequency'),
 	shape = list(p4='Buffer')
 )
-</pre><img src="cnx9lKB.png" style="width:17cm;height:10cm" data-output="true">
+</pre><img src="figure-14-trade-off-between-yield-a-cnx9lKB.png" style="width:17cm;height:10cm" data-output="true">
 						<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">14</span><span class="separator">: </span></span>
 							Trade-off between yield and stock status for alternative instances of the the FRange class of management procedure.
 						</figcaption>
 					</figure>
 				</section>
 				<section>
-					<h1 id="section-2-4" class="level-2"><span class="label"><span class="path">2.4</span><span class="separator"> </span></span>
+					<h1>
 						Performance of the IRate class
 					</h1>
 					<figure id="figure-15">
@@ -711,7 +712,7 @@ plot_tradeoff(
 	colour = list(p3='Target'),
 	shape = list(p4='Buffer')
 )
-</pre><img src="lMJT4z.png" style="width:17cm;height:10cm" data-output="true">
+</pre><img src="figure-15-trade-off-between-yield-a-lMJT4z.png" style="width:17cm;height:10cm" data-output="true">
 						<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">15</span><span class="separator">: </span></span>
 							Trade-off between yield and stock status for alternative instances of the the IRate class of management procedure.
 						</figcaption>
@@ -738,6 +739,6 @@ ggplot(sensitivity) +
 
 </pre>
 			</div>
-		</main><script src="/core/themes/base/boot.js"> </script><script>if(!window.Stencila){window.StencilaHost='http://stenci.la';document.write(unescape('%3Cscript src="http://stenci.la/core/themes/base/boot.js"%3E%3C/script%3E'))}</script><script>window.Stencila.Booter.theme('core/stencils/themes/default');</script><script>window.setTimeout(function(){document.documentElement.className='';},10000)</script>
+		</main><script src="https://stenci.la/get/js/stencila-0.14.min.js"> </script><script>Stencila.launch();</script><script>window.setTimeout(function(){document.documentElement.className='';if(!window.Stencila){window.alert('Page could not be fully loaded. Not all functionality will be available.');}},10000)</script>
 	</body>
 </html>

@@ -5,16 +5,17 @@
 			Indian Ocean skipjack model : yield curve and MSY
 		</title>
 		<meta charset="utf-8">
-		<link rel="stylesheet" type="text/css" href="/core/stencils/themes/default/theme.css"><script type="text/javascript">(function(c){
-	var d=document,s,i,l;
-	s=d.styleSheets;for(i=0;i!=s.length;i++){if((s[i].href||'').match(c)){try{if(s[i].cssRules.length)return;}catch(e){}}}
-	l=d.createElement('link');l.rel='stylesheet';l.type='text/css';l.href='http://stenci.la'+c;
-	d.documentElement.className='unready';l.onload=function(){d.documentElement.className='';};
-	d.getElementsByTagName('head')[0].appendChild(l);
-})('/core/stencils/themes/default/theme.css');</script>
+		<meta itemprop="generator" content="Stencila 0.14">
+		<meta itemprop="type" content="stencil">
+		<meta itemprop="address" content="yield/display">
+		<meta itemprop="version" content="">
+		<meta itemprop="theme" content="core/stencils/themes/default">
+		<link rel="stylesheet" type="text/css" href="/core/stencils/themes/default/theme.min.css"><script type="text/javascript">(function(c){var d=document,s,i,l;s=d.styleSheets;for(i=0;i!=s.length;i++){if((s[i].href||'').match(c)){try{if(s[i].cssRules.length)return;}catch(e){}}}l=d.createElement('link');l.rel='stylesheet';l.type='text/css';l.href='https://stenci.la'+c;d.documentElement.className='unready';l.onload=function(){d.documentElement.className='';};d.getElementsByTagName('head')[0].appendChild(l);})('/core/stencils/themes/default/theme.min.css');</script>
 		<style type="text/css">
 			.unready{display:none;}
 		</style>
+		<meta itemprop="closed" content="false">
+		<meta itemprop="contexts" content="r">
 	</head>
 	<body>
 		<main id="content">
@@ -57,7 +58,7 @@ ypr_max_length  &lt;- with(per_recruit,length[which.max(ypr)])
 
 </pre>
 			<section>
-				<h1 id="section-1" class="level-1"><span class="label"><span class="path">1</span><span class="separator"> </span></span>
+				<h1>
 					Methods
 				</h1>
 				<p>
@@ -91,7 +92,7 @@ ypr_max_length  &lt;- with(per_recruit,length[which.max(ypr)])
 				</p>
 			</section>
 			<section>
-				<h1 id="section-2" class="level-1"><span class="label"><span class="path">2</span><span class="separator"> </span></span>
+				<h1>
 					Overall yield curve and MSY
 				</h1>
 				<p>
@@ -121,7 +122,7 @@ ypr_max_length  &lt;- with(per_recruit,length[which.max(ypr)])
 							<td>
 								Exploitation rate which produces MSY (quarterly)
 							</td>
-							<td data-write="round(e_msy,3)">
+							<td data-text="round(e_msy,3)">
 								0.384
 							</td>
 						</tr>
@@ -131,7 +132,7 @@ ypr_max_length  &lt;- with(per_recruit,length[which.max(ypr)])
 							<td>
 								Instantaneous rate of fishing mortality which produces MSY (quarterly)
 							</td>
-							<td data-write="round(f_msy,3)">
+							<td data-text="round(f_msy,3)">
 								0.485
 							</td>
 						</tr>
@@ -141,7 +142,7 @@ ypr_max_length  &lt;- with(per_recruit,length[which.max(ypr)])
 							<td>
 								Maximum sustainable yield (quarterly)
 							</td>
-							<td data-write="msy">
+							<td data-text="msy">
 								84515.8
 							</td>
 						</tr>
@@ -151,7 +152,7 @@ ypr_max_length  &lt;- with(per_recruit,length[which.max(ypr)])
 							<td>
 								Overall spawner biomass associated with maximum sustainable yield
 							</td>
-							<td data-write="biomass_spawners_msy">
+							<td data-text="biomass_spawners_msy">
 								493244
 							</td>
 						</tr>
@@ -161,7 +162,7 @@ ypr_max_length  &lt;- with(per_recruit,length[which.max(ypr)])
 							<td><script type="math/asciimath">B_{msy}</script>
 								 as a percentage of pristine biomass
 							</td>
-							<td data-write="round(biomass_spawners_msy/biomass_spawners_unfished*100,1)">
+							<td data-text="round(biomass_spawners_msy/biomass_spawners_unfished*100,1)">
 								24.7
 							</td>
 						</tr>
@@ -172,7 +173,7 @@ ypr_max_length  &lt;- with(per_recruit,length[which.max(ypr)])
 							<td>
 								Number of iterations used to find MSY
 							</td>
-							<td data-write="msy_trials">
+							<td data-text="msy_trials">
 								8
 							</td>
 						</tr>
@@ -210,13 +211,13 @@ ypr_max_length  &lt;- with(per_recruit,length[which.max(ypr)])
 						<tr data-with="msy">
 							<td><script type="math/asciimath">B_{msy}</script>
 							</td>
-							<td data-write="round(e_msy,3)">
+							<td data-text="round(e_msy,3)">
 								0.384
 							</td>
-							<td data-write="round(f_msy,3)">
+							<td data-text="round(f_msy,3)">
 								0.485
 							</td>
-							<td data-write="round(msy)">
+							<td data-text="round(msy)">
 								84516
 							</td>
 							<td>
@@ -232,66 +233,66 @@ ypr_max_length  &lt;- with(per_recruit,length[which.max(ypr)])
 						<tr data-with="subset(points,level==0.3)">
 							<td><script type="math/asciimath">30%B_0</script>
 							</td>
-							<td data-write="round(exprate,3)">
+							<td data-text="round(exprate,3)">
 								0.3
 							</td>
-							<td data-write="round(f,3)">
+							<td data-text="round(f,3)">
 								0.082
 							</td>
-							<td data-write="round(yield)">
+							<td data-text="round(yield)">
 								83477
 							</td>
-							<td data-write="round(yield/msy$msy,2)">
+							<td data-text="round(yield/msy$msy,2)">
 								0.99
 							</td>
-							<td data-write="round(status/msy$status,2)">
+							<td data-text="round(status/msy$status,2)">
 								1.22
 							</td>
-							<td data-write="round(exprate/msy$e_msy,3)">
+							<td data-text="round(exprate/msy$e_msy,3)">
 								0.781
 							</td>
 						</tr>
 						<tr data-with="subset(points,level==0.4)">
 							<td><script type="math/asciimath">40%B_0</script>
 							</td>
-							<td data-write="round(exprate,3)">
+							<td data-text="round(exprate,3)">
 								0.2
 							</td>
-							<td data-write="round(f,3)">
+							<td data-text="round(f,3)">
 								0.053
 							</td>
-							<td data-write="round(yield)">
+							<td data-text="round(yield)">
 								77618
 							</td>
-							<td data-write="round(yield/msy$msy,2)">
+							<td data-text="round(yield/msy$msy,2)">
 								0.92
 							</td>
-							<td data-write="round(status/msy$status,2)">
+							<td data-text="round(status/msy$status,2)">
 								1.63
 							</td>
-							<td data-write="round(exprate/msy$e_msy,3)">
+							<td data-text="round(exprate/msy$e_msy,3)">
 								0.52
 							</td>
 						</tr>
 						<tr data-with="subset(points,level==0.5)">
 							<td><script type="math/asciimath">50%B_0</script>
 							</td>
-							<td data-write="round(exprate,3)">
+							<td data-text="round(exprate,3)">
 								0.15
 							</td>
-							<td data-write="round(f,3)">
+							<td data-text="round(f,3)">
 								0.039
 							</td>
-							<td data-write="round(yield)">
+							<td data-text="round(yield)">
 								70972
 							</td>
-							<td data-write="round(yield/msy$msy,2)">
+							<td data-text="round(yield/msy$msy,2)">
 								0.84
 							</td>
-							<td data-write="round(status/msy$status,2)">
+							<td data-text="round(status/msy$status,2)">
 								1.94
 							</td>
-							<td data-write="round(exprate/msy$e_msy,3)">
+							<td data-text="round(exprate/msy$e_msy,3)">
 								0.39
 							</td>
 						</tr>
@@ -315,14 +316,14 @@ p3 = ggplot(curve,aes(x=exprate,y=status)) +
 		labs(x="Exploitation rate (quarterly)", y="Status (B/B0)") +
 		theme(legend.position="none")
 multiplot(p1,p2,p3)
-</pre><img src="qROOz9D.png" style="width:17cm;height:20cm" data-output="true">
+</pre><img src="figure-yield-curve-relations-between-equilib-qROOz9D.png" style="width:17cm;height:20cm" data-output="true">
 					<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">1</span><span class="separator">: </span></span>
 						Relations between equilibrium yield, stock status and exploitation rate.(top) Equilibrium yield versus equilibrium exploitation rate. (middle) Equilibrium yield versus equilibrium stock status.(bottom) Equilibrium stock status versus equilibrium exploitation rate.
 					</figcaption>
 				</figure>
 			</section>
 			<section>
-				<h1 id="section-3" class="level-1"><span class="label"><span class="path">3</span><span class="separator"> </span></span>
+				<h1>
 					Fishery-specific yield curves
 				</h1>
 				<p>
@@ -339,7 +340,7 @@ print(
 		geom_line(data=selectivities,aes(x=length,y=value,colour=method)) +
 		labs(x="Length (cm)",y="Proportion mature / selected",colour="Method")
 )
-</pre><img src="qKDGIW1.png" style="width:17cm;height:10cm" data-output="true">
+</pre><img src="figure-mat-select-maturity-at-length--dotte-qKDGIW1.png" style="width:17cm;height:10cm" data-output="true">
 					<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">2</span><span class="separator">: </span></span>
 						Maturity at length (dotted line) and selectivity at length (by method).
 					</figcaption>
@@ -362,14 +363,14 @@ p3 = ggplot(curve) +
 		geom_line(aes(x=exprate,y=vuln_e_gn/1e6,colour="E-GN",linetype="E-GN")) +
 		labs(x="Exploitation rate (quarterly)",y="Vulnerable biomass (Mt)",colour="",linetype="")		
 multiplot(p1,p2,p3)
-</pre><img src="bdYve7Z.png" style="width:17cm;height:20cm" data-output="true">
+</pre><img src="figure-yield-specific-fishery-specific-yield-cu-bdYve7Z.png" style="width:17cm;height:20cm" data-output="true">
 					<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">3</span><span class="separator">: </span></span>
 						Fishery specific yield curves. Each panel provides a separate line for each fishery (region/method) given that the specified exploitation rate is jointly applied in each fishery.
 					</figcaption>
 				</figure>
 			</section>
 			<section>
-				<h1 id="section-4" class="level-1"><span class="label"><span class="path">4</span><span class="separator"> </span></span>
+				<h1>
 					Yield per recruit
 				</h1>
 				<p>
@@ -391,12 +392,12 @@ with(per_recruit,{
 	axis(side=1,at=seq(0,20,4))
 	mtext("Age (quarters)",side=1,outer=F,line=2,cex=0.7)
 })
-</pre><img src="bNJJu1H.png" style="width:12cm;height:15cm" data-output="true">
+</pre><img src="figure-yield-per-recruit-yield-per-recruit-analysi-bNJJu1H.png" style="width:12cm;height:15cm" data-output="true">
 					<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">4</span><span class="separator">: </span></span>
 						Yield per recruit analysis.
 					</figcaption>
 				</figure>
 			</section>
-		</main><script src="/core/themes/base/boot.js"> </script><script>if(!window.Stencila){window.StencilaHost='http://stenci.la';document.write(unescape('%3Cscript src="http://stenci.la/core/themes/base/boot.js"%3E%3C/script%3E'))}</script><script>window.Stencila.Booter.theme('core/stencils/themes/default');</script><script>window.setTimeout(function(){document.documentElement.className='';},10000)</script>
+		</main><script src="https://stenci.la/get/js/stencila-0.14.min.js"> </script><script>Stencila.launch();</script><script>window.setTimeout(function(){document.documentElement.className='';if(!window.Stencila){window.alert('Page could not be fully loaded. Not all functionality will be available.');}},10000)</script>
 	</body>
 </html>

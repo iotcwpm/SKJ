@@ -5,16 +5,17 @@
 			Indian Ocean skipjack model : parameter prior distributions and sensitivity ranges
 		</title>
 		<meta charset="utf-8">
-		<link rel="stylesheet" type="text/css" href="/core/stencils/themes/default/theme.css"><script type="text/javascript">(function(c){
-	var d=document,s,i,l;
-	s=d.styleSheets;for(i=0;i!=s.length;i++){if((s[i].href||'').match(c)){try{if(s[i].cssRules.length)return;}catch(e){}}}
-	l=d.createElement('link');l.rel='stylesheet';l.type='text/css';l.href='http://stenci.la'+c;
-	d.documentElement.className='unready';l.onload=function(){d.documentElement.className='';};
-	d.getElementsByTagName('head')[0].appendChild(l);
-})('/core/stencils/themes/default/theme.css');</script>
+		<meta itemprop="generator" content="Stencila 0.14">
+		<meta itemprop="type" content="stencil">
+		<meta itemprop="address" content="parameters/description">
+		<meta itemprop="version" content="">
+		<meta itemprop="theme" content="core/stencils/themes/default">
+		<link rel="stylesheet" type="text/css" href="/core/stencils/themes/default/theme.min.css"><script type="text/javascript">(function(c){var d=document,s,i,l;s=d.styleSheets;for(i=0;i!=s.length;i++){if((s[i].href||'').match(c)){try{if(s[i].cssRules.length)return;}catch(e){}}}l=d.createElement('link');l.rel='stylesheet';l.type='text/css';l.href='https://stenci.la'+c;d.documentElement.className='unready';l.onload=function(){d.documentElement.className='';};d.getElementsByTagName('head')[0].appendChild(l);})('/core/stencils/themes/default/theme.min.css');</script>
 		<style type="text/css">
 			.unready{display:none;}
 		</style>
+		<meta itemprop="closed" content="false">
+		<meta itemprop="contexts" content="r">
 	</head>
 	<body>
 		<main id="content">
@@ -32,7 +33,7 @@
 				At present, only some of these prior distributions are used in conditioning because parameter estimates from the latest stock assessment are being used where possible. However, for those parameters which are not estimated or assumed in the assessment (e.g. movement parameters), these priors will be of relevance. The priors described here should not be considered definitive and ideally should be be refined in consultation with a wider group of Indian Ocean tuna scientists. As much as anything, the utility of this section is in providing some documentation on the information available to inform parameter priors.
 			</p>
 			<section>
-				<h1 id="section-1" class="level-1"><span class="label"><span class="path">1</span><span class="separator"> </span></span>
+				<h1>
 					Weight and maturity
 				</h1>
 				<p>
@@ -46,7 +47,7 @@
 				</p>
 			</section>
 			<section>
-				<h1 id="section-2" class="level-1"><span class="label"><span class="path">2</span><span class="separator"> </span></span>
+				<h1>
 					Spawning and recruitment
 				</h1>
 				<p>
@@ -63,13 +64,13 @@
 eta_qs &lt;- round((qbeta(c(0.05,0.2,0.5,0.8,0.95),10,2)+0.2)/1.25,2)
 
 </pre>
-				where <script type="math/asciimath">B(.)</script> is the beta distribution. This formulation allows for <script type="math/asciimath">eta</script> to be constrained between 0.2 and 1. The resulting prior for steepness has a median of <span>text eta_qs[3]</span> and 5, 20, 80 and 95th percentiles of <span>text eta_qs[c(1,2,4,5)]</span> respectively.
+				where <script type="math/asciimath">B(.)</script> is the beta distribution. This formulation allows for <script type="math/asciimath">eta</script> to be constrained between 0.2 and 1. The resulting prior for steepness has a median of <span data-text="eta_qs[3]">0.84</span> and 5, 20, 80 and 95th percentiles of <span data-text="eta_qs[c(1,2,4,5)]">0.67, 0.76, 0.9, 0.93</span> respectively.
 				<p>
 					For the standard deviation of stock-recruitment deviations, <script type="math/asciimath">sigma</script> a lognormal prior with a mean of 0.6 and a standard deviation of 0.5 was used based on Myers (2002) Figure 6.5 which has a median of about 0.6 for Scombridae.
 				</p>
 			</section>
 			<section>
-				<h1 id="section-3" class="level-1"><span class="label"><span class="path">3</span><span class="separator"> </span></span>
+				<h1>
 					Mortality
 				</h1>
 				<p>
@@ -80,7 +81,7 @@ eta_qs &lt;- round((qbeta(c(0.05,0.2,0.5,0.8,0.95),10,2)+0.2)/1.25,2)
 				</p>
 			</section>
 			<section>
-				<h1 id="section-4" class="level-1"><span class="label"><span class="path">4</span><span class="separator"> </span></span>
+				<h1>
 					Growth
 				</h1>
 				<p>
@@ -91,7 +92,7 @@ eta_qs &lt;- round((qbeta(c(0.05,0.2,0.5,0.8,0.95),10,2)+0.2)/1.25,2)
 				</p>
 			</section>
 			<section>
-				<h1 id="section-5" class="level-1"><span class="label"><span class="path">5</span><span class="separator"> </span></span>
+				<h1>
 					Movement
 				</h1>
 				<p>
@@ -99,7 +100,7 @@ eta_qs &lt;- round((qbeta(c(0.05,0.2,0.5,0.8,0.95),10,2)+0.2)/1.25,2)
 				</p>
 			</section>
 			<section>
-				<h1 id="section-6" class="level-1"><span class="label"><span class="path">6</span><span class="separator"> </span></span>
+				<h1>
 					Selectivity
 				</h1>
 				<p>
@@ -443,6 +444,6 @@ eta_qs &lt;- round((qbeta(c(0.05,0.2,0.5,0.8,0.95),10,2)+0.2)/1.25,2)
 					</tr>
 				</tbody>
 			</table>
-		</main><script src="/core/themes/base/boot.js"> </script><script>if(!window.Stencila){window.StencilaHost='http://stenci.la';document.write(unescape('%3Cscript src="http://stenci.la/core/themes/base/boot.js"%3E%3C/script%3E'))}</script><script>window.Stencila.Booter.theme('core/stencils/themes/default');</script><script>window.setTimeout(function(){document.documentElement.className='';},10000)</script>
+		</main><script src="https://stenci.la/get/js/stencila-0.14.min.js"> </script><script>Stencila.launch();</script><script>window.setTimeout(function(){document.documentElement.className='';if(!window.Stencila){window.alert('Page could not be fully loaded. Not all functionality will be available.');}},10000)</script>
 	</body>
 </html>

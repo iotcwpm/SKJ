@@ -5,16 +5,17 @@
 			Indian Ocean skipjack model : general outputs
 		</title>
 		<meta charset="utf-8">
-		<link rel="stylesheet" type="text/css" href="/core/stencils/themes/default/theme.css"><script type="text/javascript">(function(c){
-	var d=document,s,i,l;
-	s=d.styleSheets;for(i=0;i!=s.length;i++){if((s[i].href||'').match(c)){try{if(s[i].cssRules.length)return;}catch(e){}}}
-	l=d.createElement('link');l.rel='stylesheet';l.type='text/css';l.href='http://stenci.la'+c;
-	d.documentElement.className='unready';l.onload=function(){d.documentElement.className='';};
-	d.getElementsByTagName('head')[0].appendChild(l);
-})('/core/stencils/themes/default/theme.css');</script>
+		<meta itemprop="generator" content="Stencila 0.14">
+		<meta itemprop="type" content="stencil">
+		<meta itemprop="address" content="model/display">
+		<meta itemprop="version" content="">
+		<meta itemprop="theme" content="core/stencils/themes/default">
+		<link rel="stylesheet" type="text/css" href="/core/stencils/themes/default/theme.min.css"><script type="text/javascript">(function(c){var d=document,s,i,l;s=d.styleSheets;for(i=0;i!=s.length;i++){if((s[i].href||'').match(c)){try{if(s[i].cssRules.length)return;}catch(e){}}}l=d.createElement('link');l.rel='stylesheet';l.type='text/css';l.href='https://stenci.la'+c;d.documentElement.className='unready';l.onload=function(){d.documentElement.className='';};d.getElementsByTagName('head')[0].appendChild(l);})('/core/stencils/themes/default/theme.min.css');</script>
 		<style type="text/css">
 			.unready{display:none;}
 		</style>
+		<meta itemprop="closed" content="false">
+		<meta itemprop="contexts" content="r">
 	</head>
 	<body>
 		<main id="content">
@@ -39,7 +40,7 @@ load(c(
 
 </pre>
 			<section>
-				<h1 id="section-1" class="level-1"><span class="label"><span class="path">1</span><span class="separator"> </span></span>
+				<h1>
 					Recruits size distribution
 				</h1>
 				<figure id="figure-1">
@@ -49,14 +50,14 @@ print(
 		geom_line() +
 		labs(x="Length (cm)",y="Proportion")
 )
-</pre><img src="sbujZfJ.png" style="width:17cm;height:10cm" data-output="true">
+</pre><img src="figure-1-distribution-of-the-lengt-sbujZfJ.png" style="width:17cm;height:10cm" data-output="true">
 					<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">1</span><span class="separator">: </span></span>
 						Distribution of the length of recruits. Recruits are added to the model following this distribution.
 					</figcaption>
 				</figure>
 			</section>
 			<section>
-				<h1 id="section-2" class="level-1"><span class="label"><span class="path">2</span><span class="separator"> </span></span>
+				<h1>
 					Weight and maturity
 				</h1>
 				<figure id="figure-2">
@@ -66,7 +67,7 @@ print(
 		geom_line() +
 		labs(x="Length (cm)",y="Weight (kg)")
 )
-</pre><img src="bPrAIEN.png" style="width:17cm;height:10cm" data-output="true">
+</pre><img src="figure-2-weight-at-length-bPrAIEN.png" style="width:17cm;height:10cm" data-output="true">
 					<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">2</span><span class="separator">: </span></span>
 						Weight at length.
 					</figcaption>
@@ -78,14 +79,14 @@ print(
 		geom_line() +
 		labs(x="Length (cm)",y="Proportion mature")
 )
-</pre><img src="cqUVGS4.png" style="width:17cm;height:10cm" data-output="true">
+</pre><img src="figure-3-maturity-at-length-cqUVGS4.png" style="width:17cm;height:10cm" data-output="true">
 					<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">3</span><span class="separator">: </span></span>
 						Maturity at length.
 					</figcaption>
 				</figure>
 			</section>
 			<section>
-				<h1 id="section-3" class="level-1"><span class="label"><span class="path">3</span><span class="separator"> </span></span>
+				<h1>
 					Growth
 				</h1>
 				<figure id="figure-4">
@@ -96,7 +97,7 @@ print(
 		geom_line() +
 		labs(x="Length (cm)",y="Quarterly growth increment (cm)")
 )
-</pre><img src="sazTxIX.png" style="width:17cm;height:10cm" data-output="true">
+</pre><img src="figure-4-growth-increments-by-leng-sazTxIX.png" style="width:17cm;height:10cm" data-output="true">
 					<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">4</span><span class="separator">: </span></span>
 						Growth increments by length.
 					</figcaption>
@@ -110,14 +111,14 @@ print(
 		geom_abline(a=0,b=1) + 
 		labs(x="Length from (cm)",y="Length to (cm)",fill="Proportion")
 )
-</pre><img src="bR1HGD.png" style="width:17cm;height:15cm" data-output="true">
+</pre><img src="figure-5-growth-transition-matrix-bR1HGD.png" style="width:17cm;height:15cm" data-output="true">
 					<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">5</span><span class="separator">: </span></span>
 						Growth transition matrix indicating the proportion of fish that transition from one length class to other length classes in one quarter.
 					</figcaption>
 				</figure>
 			</section>
 			<section>
-				<h1 id="section-4" class="level-1"><span class="label"><span class="path">4</span><span class="separator"> </span></span>
+				<h1>
 					Mortality
 				</h1>
 				<figure id="figure-6">
@@ -128,14 +129,14 @@ print(
 		geom_line() +
 		labs(x="Length (cm)",y="Instantaneous annual rate or natural mortality")
 )
-</pre><img src="im3cqB.png" style="width:17cm;height:10cm" data-output="true">
+</pre><img src="figure-6-mortality-at-length-im3cqB.png" style="width:17cm;height:10cm" data-output="true">
 					<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">6</span><span class="separator">: </span></span>
 						Mortality at length.
 					</figcaption>
 				</figure>
 			</section>
 			<section>
-				<h1 id="section-5" class="level-1"><span class="label"><span class="path">5</span><span class="separator"> </span></span>
+				<h1>
 					Movement
 				</h1>
 				<figure id="figure-7">
@@ -147,7 +148,7 @@ print(
 		geom_text() +
 		labs(y="Region from",x="Region to",fill="Proportion")
 )
-</pre><img src="rbsauhU.png" style="width:16cm;height:16cm" data-output="true">
+</pre><img src="figure-7-movement-proportion-by-qu-rbsauhU.png" style="width:16cm;height:16cm" data-output="true">
 					<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">7</span><span class="separator">: </span></span>
 						Movement proportion by quarter. Each cell indicates the proportion of fish moving from one region to another in one quarter.
 					</figcaption>
@@ -182,7 +183,7 @@ print(
 				</div>
 			</section>
 			<section>
-				<h1 id="section-6" class="level-1"><span class="label"><span class="path">6</span><span class="separator"> </span></span>
+				<h1>
 					Selectivities
 				</h1>
 				<figure id="figure-8">
@@ -192,7 +193,7 @@ print(
 		geom_line() + 
 		labs(x="Length (cm)",y="Selectivity (prop.)",colour='Method')
 )
-</pre><img src="coeiYp8.png" style="width:17cm;height:10cm" data-output="true">
+</pre><img src="figure-8-selectivity-at-length-by-coeiYp8.png" style="width:17cm;height:10cm" data-output="true">
 					<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">8</span><span class="separator">: </span></span>
 						Selectivity at length by fishing method.
 					</figcaption>
@@ -212,13 +213,13 @@ plot_track &lt;- function(what,label){
 
 </pre>
 			<section>
-				<h1 id="section-7" class="level-1"><span class="label"><span class="path">7</span><span class="separator"> </span></span>
+				<h1>
 					Biomass and recruitment trajectories
 				</h1>
 				<figure id="figure-9">
 					<pre data-exec="r format png size 17x10cm" data-hash="srF9UZY">
 plot_track('biomass_status','Stock status (B/B0)')
-</pre><img src="srF9UZY.png" style="width:17cm;height:10cm" data-output="true">
+</pre><img src="figure-9-stock-status-trajectory-srF9UZY.png" style="width:17cm;height:10cm" data-output="true">
 					<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">9</span><span class="separator">: </span></span>
 						Stock status trajectory.
 					</figcaption>
@@ -234,7 +235,7 @@ print(
 	geom_vline(x=2015,alpha=0.6,linetype=2) +
 	labs(x='Year',y='Mature biomass in region',colour='Region')
 )
-</pre><img src="q7PXPjU.png" style="width:17cm;height:10cm" data-output="true">
+</pre><img src="figure-10-biomass-of-spawners-by-re-q7PXPjU.png" style="width:17cm;height:10cm" data-output="true">
 					<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">10</span><span class="separator">: </span></span>
 						Biomass of spawners by region (first quarter).
 					</figcaption>
@@ -245,14 +246,14 @@ p1 = plot_track('recruits_determ/1e6','Deterministic recruitment (mil.)')
 p2 = plot_track('recruits_deviation','Recruitment deviation')
 p3 = plot_track('recruits/1e6','Recruitment (mil.)')
 multiplot(p1,p2,p3)
-</pre><img src="so5q7Jg.png" style="width:17cm;height:20cm" data-output="true">
+</pre><img src="figure-11-recruitment-trajectories-so5q7Jg.png" style="width:17cm;height:20cm" data-output="true">
 					<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">11</span><span class="separator">: </span></span>
 						Recruitment trajectories
 					</figcaption>
 				</figure>
 			</section>
 			<section>
-				<h1 id="section-8" class="level-1"><span class="label"><span class="path">8</span><span class="separator"> </span></span>
+				<h1>
 					Fishery related trajectories
 				</h1>
 				<figure id="figure-12">
@@ -266,7 +267,7 @@ print(
 		geom_hline(yintercept=0,alpha=0) +
 		labs(x='Year',y='Vulnerable biomass (mil. t)',colour='Region/Method')
 )
-</pre><img src="sta11f4.png" style="width:17cm;height:10cm" data-output="true">
+</pre><img src="figure-12-vulnerable-biomass-trajec-sta11f4.png" style="width:17cm;height:10cm" data-output="true">
 					<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">12</span><span class="separator">: </span></span>
 						Vulnerable biomass trajectories for the three main fisjeries
 					</figcaption>
@@ -284,7 +285,7 @@ print(
 		geom_vline(x=2015,alpha=0.6,linetype=2) +
 		labs(x='Year',y='Catches (t)',colour='Region/Method')
 )
-</pre><img src="byMonJ7.png" style="width:17cm;height:10cm" data-output="true">
+</pre><img src="figure-13-catch-trajectories-for-th-byMonJ7.png" style="width:17cm;height:10cm" data-output="true">
 					<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">13</span><span class="separator">: </span></span>
 						Catch trajectories for the three main fisjeries
 					</figcaption>
@@ -299,12 +300,12 @@ print(
 		geom_vline(x=2015,alpha=0.6,linetype=2) +
 		labs(x='Year',y='Exploitation rate',colour='Region/Method')
 )
-</pre><img src="kpn7jB.png" style="width:17cm;height:10cm" data-output="true">
+</pre><img src="figure-14-exploitation-rate-traject-kpn7jB.png" style="width:17cm;height:10cm" data-output="true">
 					<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">14</span><span class="separator">: </span></span>
 						Exploitation rate trajectories for the three main fisjeries
 					</figcaption>
 				</figure>
 			</section>
-		</main><script src="/core/themes/base/boot.js"> </script><script>if(!window.Stencila){window.StencilaHost='http://stenci.la';document.write(unescape('%3Cscript src="http://stenci.la/core/themes/base/boot.js"%3E%3C/script%3E'))}</script><script>window.Stencila.Booter.theme('core/stencils/themes/default');</script><script>window.setTimeout(function(){document.documentElement.className='';},10000)</script>
+		</main><script src="https://stenci.la/get/js/stencila-0.14.min.js"> </script><script>Stencila.launch();</script><script>window.setTimeout(function(){document.documentElement.className='';if(!window.Stencila){window.alert('Page could not be fully loaded. Not all functionality will be available.');}},10000)</script>
 	</body>
 </html>
