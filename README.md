@@ -46,10 +46,10 @@ Several reports associated with this project are available (in chronological ord
 This work has been funded by the [International Pole and Line Foundation (IPNLF)](http://ipnlf.org/), the Maldives Seafood Processors and Exporters Association (MSPEA) and [WWF](http://wwf.panda.org) with support and oversignt of the Maldives [Marine Research Centre (MRC)](http://www.mrc.gov.mv/). Support for the project's Advisory Committee has been provided by the [International Seafood Sustainability Foundation (ISSF)](http://iss-foundation.org/).
 
 <div style="text-align:center">
-	![](other/images/ipnlf.png)
-	![](other/images/mspea.png)
-	![](other/images/mrc.png)
-	![](other/images/wwf.png)
+	<img src="/iotc/SKJ/blob/master/other/images/ipnlf.png" style="max-width:100%">
+	<img src="/iotc/SKJ/blob/master/other/images/mspea.png" style="max-width:100%">
+	<img src="/iotc/SKJ/blob/master/other/images/mrc.png" style="max-width:100%">
+	<img src="/iotc/SKJ/blob/master/other/images/wwf.png" style="max-width:100%">
 </div>
 
 ## Status
