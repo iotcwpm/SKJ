@@ -5,7 +5,7 @@
 
 The Indian Ocean Tuna Commission's (IOTC) Working Party on Methods' (WPM) simulation model of the Indian Ocean skipjack (SKJ) tuna fishery for the evaluation of management procedures (MP).
 
-> ![](http://www.iotc.org/sites/default/files/documents/science/Katsuwonus_pelamis-main.jpg)
+> ![](other/images/skipjack.jpg)
 
 > Skipjack tuna (_Katsuwonus pelamis_)
 
@@ -40,6 +40,15 @@ Several reports associated with this project are available (in chronological ord
 - [Bentley, N and M.S. Adam  (2014). Management procedure evaluation for Indian Ocean skipjack tuna fishery: model description and conditioning. IOTC-2014-WPM05-08. Paper submitted at the 5th Meeting of the Working Party on Methods, Seychelles, 05-06 December 2014](http://www.iotc.org/documents/management-procedure-evaluation-indian-ocean-skipjack-tuna-fishery-simulation-model)
 
 - [Bentley, N and M.S. Adam  (2014). Management procedure evaluation for Indian Ocean skipjack tuna fishery: management procedure descriptions and evaluations. IOTC-2014-WPM05-09. Paper submitted at the 5th Meeting of the Working Party on Methods, Seychelles, 05-06 December 2014](http://www.iotc.org/documents/management-procedure-evaluation-indian-ocean-skipjack-tuna-fishery-management-procedure)
+
+## Support
+
+This work has been supported and funded by the [International Pole and Line Foundation (IPNLF)](http://ipnlf.org/), the Maldives Seafood Processors and Exporters Association (MSPEA), the [Maldives Marine Research Centre (MRC)](http://www.mrc.gov.mv/) and [WWF](http://wwf.org). Support for the project's Advisory Committee has been provided by the [International Seafood Sustainability Foundation (ISSF)](http://iss-foundation.org/).
+
+![](other/images/ipnlf.png)
+![](other/images/mspea.png)
+![](other/images/mrc.png)
+![](other/images/wwf.png)
 
 ## Status
 

@@ -13,6 +13,9 @@ ss3/runs
 *.pdf
 *.docx
 
+# But not in other/images!
+!other/images/*.png
+
 # Doxygen output
 doxygen
 !doxygen/Doxyfile
