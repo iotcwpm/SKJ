@@ -69,6 +69,19 @@ drive:
 	Rscript driver.r
 
 #############################################################
+# Package
+
+package:
+	rm -rf ioskj
+	mkdir -p ioskj
+	cp ioskj.exe ioskj
+	mkdir -p ioskj/parameters
+	cp -r parameters/input ioskj/parameters/input
+	mkdir -p ioskj/data/input
+	cp -r data/input ioskj/data
+	zip -r ioskj-$(OS).zip ioskj
+
+#############################################################
 # Documentation
 
 # Generate Doxygen documentation
@@ -78,7 +91,7 @@ doxygen-html:
 # Stencil list for rendering
 STENCILS := \
 	model/description parameters/description procedures/description \
-	model/display data/display yield/display \
+	model/display yield/display \
 	feasible/display ss3/display evaluate/display
 # Stencil output list
 STENCILS_HTML := $(patsubst %,%/index.html,$(STENCILS))
@@ -87,7 +100,7 @@ STENCILS_PAGES := $(patsubst %,.pages/%,$(STENCILS))
 
 # Render a stencil: Cila -> HTML
 %/index.html: %/stencil.cila
-	cd $(dir $<) && Rscript -e "require(stencila); Stencil('.')$$ render()$$ export('index.html')"
+	stencila-r $(dir $<) render export:$(dir $<)index.html
 # Render a stencil: Cila -> Word
 %/index.docx: %/stencil.cila
 	cd $(dir $<) && Rscript -e "require(stencila); Stencil('.')$$ render()$$ export('index.docx')"

@@ -123,7 +123,7 @@ section
 				r format png size 17x23cm
 					size_freqs_by_year_sub(item$region,item$method)
 				figcaption
-					Observed (points) and expected (lines) size frequency distributions for ``item$desc`` aggregated over quarters.
+					Observed (points) and expected (lines) size frequency distributions for ~item$desc~ aggregated over quarters.
 
 	section
 		h1 By year and quarter for a particular region & method (unaggregated)
@@ -149,4 +149,4 @@ section
 				r format png size 17x23cm
 					size_freqs_sub(item$region,item$method)
 				figcaption
-					Observed (points) and expected (lines) size frequency distributions for ``item$desc`` aggregated over quarters.
+					Observed (points) and expected (lines) size frequency distributions for ~item$desc~ aggregated over quarters.

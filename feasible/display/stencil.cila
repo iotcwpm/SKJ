@@ -45,7 +45,7 @@ table
 		td text rejects[5]
 
 figure
-	r png 17x10cm
+	r format png size 17x10cm
 		print(
 			ggplot(subset(track,quarter==0),aes(x=year+quarter/4,y=biomass_spawning_overall/1000,group=replicate)) + 
 				geom_line(alpha=0.2) +
@@ -72,13 +72,13 @@ r
 
 for param in c('recruits_unfished','mortality_base','movement_stay','recruits_deviations.2003.')
 	figure
-		r png 17x10cm
+		r format png size 17x10cm
 			plot_densities(param)
 		figcaption
 			Distribution of values of the parameter "{span text param}" according to feasibility criteria (0 indicates the trial met all criteria).
 
 figure
-	r png 17x10cm
+	r format png size 17x10cm
 		temp <- melt(accepted[,paste0("recruits_deviations.",1990:2012,"..value")])
 		temp$year <- str_extract(temp$variable,"\\d+")
 		print(ggplot(temp,aes(x=year,y=value)) + 

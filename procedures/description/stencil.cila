@@ -209,7 +209,7 @@ The classes of management procedure used here are mainly intended to illustrate 
 			)
 		figcaption
 			Historical relation between combined CPUE and overall catch. 
-			The dashed line has a slope of the catch scalar = ``round(scalar,2)`` (geometric mean of the ratio of catches over CPUE).
+			The dashed line has a slope of the catch scalar = ~round(scalar,2)~ (geometric mean of the ratio of catches over CPUE).
 
 	In each year, a smoothed CPUE, |bar I| is calculated using an exponential moving average with the responsivesness control parameter, |r|:
 

@@ -68,27 +68,27 @@ section
 			tr
 				td |E_{msy}|
 				td Exploitation rate which produces MSY (quarterly)
-				td write round(e_msy,3)
+				td text round(e_msy,3)
 			tr
 				td |F_{msy}|
 				td Instantaneous rate of fishing mortality which produces MSY (quarterly)
-				td write round(f_msy,3)
+				td text round(f_msy,3)
 			tr
 				td |C_{msy}|
 				td Maximum sustainable yield (quarterly)
-				td write msy
+				td text msy
 			tr
 				td |B_{msy}|
 				td Overall spawner biomass associated with maximum sustainable yield
-				td write biomass_spawners_msy
+				td text biomass_spawners_msy
 			tr
 				td |B_{msy}//B_{0}|
 				td |B_{msy}| as a percentage of pristine biomass
-				td write round(biomass_spawners_msy/biomass_spawners_unfished*100,1)
+				td text round(biomass_spawners_msy/biomass_spawners_unfished*100,1)
 			tr
 				td -
 				td Number of iterations used to find MSY
-				td write msy_trials
+				td text msy_trials
 
 	table #table-biomass-ref
 		caption Exploitation rate, instantaneous fishing mortality rate, and equilibrium yield associated with alternative biomass levels. Note that for |30%B_0| etc, values are approximate because they are taken from the yield curve generated from exploitation rates in increments of 0.05.
@@ -104,36 +104,36 @@ section
 		tbody
 			tr with msy
 				td |B_{msy}|
-				td write round(e_msy,3)
-				td write round(f_msy,3)
-				td write round(msy)
+				td text round(e_msy,3)
+				td text round(f_msy,3)
+				td text round(msy)
 				td 1
 				td 1
 				td 1
 			tr with subset(points,level==0.3)
 				td |30%B_0|
-				td write round(exprate,3)
-				td write round(f,3)
-				td write round(yield)
-				td write round(yield/msy$msy,2)
-				td write round(status/msy$status,2)
-				td write round(exprate/msy$e_msy,3)
+				td text round(exprate,3)
+				td text round(f,3)
+				td text round(yield)
+				td text round(yield/msy$msy,2)
+				td text round(status/msy$status,2)
+				td text round(exprate/msy$e_msy,3)
 			tr with subset(points,level==0.4)
 				td |40%B_0|
-				td write round(exprate,3)
-				td write round(f,3)
-				td write round(yield)
-				td write round(yield/msy$msy,2)
-				td write round(status/msy$status,2)
-				td write round(exprate/msy$e_msy,3)
+				td text round(exprate,3)
+				td text round(f,3)
+				td text round(yield)
+				td text round(yield/msy$msy,2)
+				td text round(status/msy$status,2)
+				td text round(exprate/msy$e_msy,3)
 			tr with subset(points,level==0.5)
 				td |50%B_0|
-				td write round(exprate,3)
-				td write round(f,3)
-				td write round(yield)
-				td write round(yield/msy$msy,2)
-				td write round(status/msy$status,2)
-				td write round(exprate/msy$e_msy,3)
+				td text round(exprate,3)
+				td text round(f,3)
+				td text round(yield)
+				td text round(yield/msy$msy,2)
+				td text round(status/msy$status,2)
+				td text round(exprate/msy$e_msy,3)
 
 	figure #figure-yield-curve
 		r format png size 17x20cm
