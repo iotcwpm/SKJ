@@ -5,7 +5,8 @@
 			Indian Ocean skipjack model : description of management procedures
 		</title>
 		<meta charset="utf-8">
-		<meta itemprop="generator" content="Stencila 0.14">
+		<meta name="generator" content="Stencila 0.15">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta itemprop="type" content="stencil">
 		<meta itemprop="address" content="procedures/description">
 		<meta itemprop="version" content="">
@@ -27,7 +28,10 @@
 # Include common R settings and functions for this project
 source('../../common.R',local=T)
 
-</pre>Several classes of management procedure (MP) are considered with each <em>class</em> having several <em>control parameters</em> which can be varied to alter it's behaviour. We refer to a particular combination of control parameters for a class as an <em>instance</em> of that class.
+</pre>
+			<p>
+				Several classes of management procedure (MP) are considered with each <em>class</em> having several <em>control parameters</em> which can be varied to alter it's behaviour. We refer to a particular combination of control parameters for a class as an <em>instance</em> of that class.
+			</p>
 			<p>
 				The classes of management procedure used here are mainly intended to illustrate the wide variety of possible MPs: the data inputs they use, their algorithmic form and the management controls which they alter (e.g. effort versus catch).
 			</p>
@@ -177,7 +181,7 @@ plot(
 )
 abline(h=f,lty=3)
 abline(v=s_t,lty=3)
-</pre><img src="figure-1-an-example-instance-of-th-rW2XAWZ.png" style="width:16cm;height:10cm" data-output="true">
+</pre><img src="figure-1-an-example-instance-of-th-rW2XAWZ.png" style="max-width:16cm;max-height:10cm" data-output="true">
 					<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">1</span><span class="separator">: </span></span>
 						An example instance of the BRule management procedure with <script type="math/asciimath">s_l=0.05</script>, <script type="math/asciimath">s_t=0.4</script>, <script type="math/asciimath">f=0.25</script> showing the relation between <script type="math/asciimath">hat S</script> and <script type="math/asciimath">bar F</script>.
 					</figcaption>
@@ -300,7 +304,7 @@ plot(
 )
 abline(h=f,lty=1)
 abline(h=c(f-b,f+b),lty=3)
-</pre><img src="figure-2-an-example-instance-of-th-syHc5an.png" style="width:16cm;height:10cm" data-output="true">
+</pre><img src="figure-2-an-example-instance-of-th-syHc5an.png" style="max-width:16cm;max-height:10cm" data-output="true">
 					<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">2</span><span class="separator">: </span></span>
 						An example instance of the BRule management procedure with <script type="math/asciimath">i=5</script>, <script type="math/asciimath">f=0.5</script>, <script type="math/asciimath">b=0.1</script> illustrating how total allowable catches are increased (green circles) or decreased (red circles) when the estimated fishing mortality is below or above the target range.
 					</figcaption>
@@ -342,7 +346,7 @@ print(
 		scale_shape_manual(values=1:3) +
 		labs(x='Year',y='CPUE index',colour='Index',shape='Index')
 )
-</pre><img src="figure-3-western-purse-seine--mald-bYhKot0.png" style="width:17cm;height:10cm" data-output="true">
+</pre><img src="figure-3-western-purse-seine--mald-bYhKot0.png" style="max-width:17cm;max-height:10cm" data-output="true">
 					<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">3</span><span class="separator">: </span></span>
 						Western purse seine, Maldive pole and line and combined CPUE series.
 					</figcaption>
@@ -358,7 +362,7 @@ print(
 		geom_abline(intercept=0,slope=scalar,linetype=2) +
 		labs(x='Combined CPUE index',y='Catch (overall, 1000 tonnes)',colour='Used')
 )
-</pre><img src="figure-4-historical-relation-betwe-rsftcUF.png" style="width:17cm;height:10cm" data-output="true">
+</pre><img src="figure-4-historical-relation-betwe-rsftcUF.png" style="max-width:17cm;max-height:10cm" data-output="true">
 					<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">4</span><span class="separator">: </span></span>
 						Historical relation between combined CPUE and overall catch. The dashed line has a slope of the catch scalar = <span data-text="round(scalar,2)">415.7</span> (geometric mean of the ratio of catches over CPUE).
 					</figcaption>
@@ -390,7 +394,7 @@ print(
 		geom_hline(y=0,alpha=0) + 
 		labs(x='Year',y='CPUE index',colour='Responsiveness')
 )
-</pre><img src="figure-5-illustration-of-the-alter-b0pF1hR.png" style="width:17cm;height:10cm" data-output="true">
+</pre><img src="figure-5-illustration-of-the-alter-b0pF1hR.png" style="max-width:17cm;max-height:10cm" data-output="true">
 					<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">5</span><span class="separator">: </span></span>
 						Illustration of the alternative smoothing of CPUE index using the responsiveness parameter.
 					</figcaption>
@@ -445,7 +449,7 @@ plot(
 )
 abline(0,b=s_hat,lty=3)
 abline(v=1,lty=3)
-</pre><img src="figure-6-an-example-instance-of-th-5HlEk.png" style="width:16cm;height:17cm" data-output="true">
+</pre><img src="figure-6-an-example-instance-of-th-5HlEk.png" style="max-width:16cm;max-height:17cm" data-output="true">
 					<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">6</span><span class="separator">: </span></span>
 						An example instance of the IRate management procedure with <script type="math/asciimath">i_l=0.2</script>, <script type="math/asciimath">i_t=0.8</script>, <script type="math/asciimath">m=1.1</script>, <script type="math/asciimath">u=600</script> showing the relation between the CPUE index (<script type="math/asciimath">bar I</script>) and the catch scalar (<script type="math/asciimath">bar S</script>) and the recommended TAC.
 					</figcaption>
@@ -567,6 +571,6 @@ abline(v=1,lty=3)
 					</tbody>
 				</table>
 			</section>
-		</main><script src="https://stenci.la/get/js/stencila-0.14.min.js"> </script><script>Stencila.launch();</script><script>window.setTimeout(function(){document.documentElement.className='';if(!window.Stencila){window.alert('Page could not be fully loaded. Not all functionality will be available.');}},10000)</script>
+		</main><script src="https://stenci.la/get/js/stencila-0.15.min.js"> </script><script>Stencila.launch();</script><script>window.setTimeout(function(){document.documentElement.className='';if(!window.Stencila){window.alert('Page could not be fully loaded. Not all functionality will be available.');}},10000)</script>
 	</body>
 </html>

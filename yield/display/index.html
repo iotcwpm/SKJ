@@ -5,7 +5,8 @@
 			Indian Ocean skipjack model : yield curve and MSY
 		</title>
 		<meta charset="utf-8">
-		<meta itemprop="generator" content="Stencila 0.14">
+		<meta name="generator" content="Stencila 0.15">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta itemprop="type" content="stencil">
 		<meta itemprop="address" content="yield/display">
 		<meta itemprop="version" content="">
@@ -316,7 +317,7 @@ p3 = ggplot(curve,aes(x=exprate,y=status)) +
 		labs(x="Exploitation rate (quarterly)", y="Status (B/B0)") +
 		theme(legend.position="none")
 multiplot(p1,p2,p3)
-</pre><img src="figure-yield-curve-relations-between-equilib-qROOz9D.png" style="width:17cm;height:20cm" data-output="true">
+</pre><img src="figure-yield-curve-relations-between-equilib-qROOz9D.png" style="max-width:17cm;max-height:20cm" data-output="true">
 					<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">1</span><span class="separator">: </span></span>
 						Relations between equilibrium yield, stock status and exploitation rate.(top) Equilibrium yield versus equilibrium exploitation rate. (middle) Equilibrium yield versus equilibrium stock status.(bottom) Equilibrium stock status versus equilibrium exploitation rate.
 					</figcaption>
@@ -340,7 +341,7 @@ print(
 		geom_line(data=selectivities,aes(x=length,y=value,colour=method)) +
 		labs(x="Length (cm)",y="Proportion mature / selected",colour="Method")
 )
-</pre><img src="figure-mat-select-maturity-at-length--dotte-qKDGIW1.png" style="width:17cm;height:10cm" data-output="true">
+</pre><img src="figure-mat-select-maturity-at-length--dotte-qKDGIW1.png" style="max-width:17cm;max-height:10cm" data-output="true">
 					<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">2</span><span class="separator">: </span></span>
 						Maturity at length (dotted line) and selectivity at length (by method).
 					</figcaption>
@@ -363,7 +364,7 @@ p3 = ggplot(curve) +
 		geom_line(aes(x=exprate,y=vuln_e_gn/1e6,colour="E-GN",linetype="E-GN")) +
 		labs(x="Exploitation rate (quarterly)",y="Vulnerable biomass (Mt)",colour="",linetype="")		
 multiplot(p1,p2,p3)
-</pre><img src="figure-yield-specific-fishery-specific-yield-cu-bdYve7Z.png" style="width:17cm;height:20cm" data-output="true">
+</pre><img src="figure-yield-specific-fishery-specific-yield-cu-bdYve7Z.png" style="max-width:17cm;max-height:20cm" data-output="true">
 					<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">3</span><span class="separator">: </span></span>
 						Fishery specific yield curves. Each panel provides a separate line for each fishery (region/method) given that the specified exploitation rate is jointly applied in each fishery.
 					</figcaption>
@@ -392,12 +393,12 @@ with(per_recruit,{
 	axis(side=1,at=seq(0,20,4))
 	mtext("Age (quarters)",side=1,outer=F,line=2,cex=0.7)
 })
-</pre><img src="figure-yield-per-recruit-yield-per-recruit-analysi-bNJJu1H.png" style="width:12cm;height:15cm" data-output="true">
+</pre><img src="figure-yield-per-recruit-yield-per-recruit-analysi-bNJJu1H.png" style="max-width:12cm;max-height:15cm" data-output="true">
 					<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">4</span><span class="separator">: </span></span>
 						Yield per recruit analysis.
 					</figcaption>
 				</figure>
 			</section>
-		</main><script src="https://stenci.la/get/js/stencila-0.14.min.js"> </script><script>Stencila.launch();</script><script>window.setTimeout(function(){document.documentElement.className='';if(!window.Stencila){window.alert('Page could not be fully loaded. Not all functionality will be available.');}},10000)</script>
+		</main><script src="https://stenci.la/get/js/stencila-0.15.min.js"> </script><script>Stencila.launch();</script><script>window.setTimeout(function(){document.documentElement.className='';if(!window.Stencila){window.alert('Page could not be fully loaded. Not all functionality will be available.');}},10000)</script>
 	</body>
 </html>

@@ -5,7 +5,8 @@
 			Indian Ocean skipjack model : Parameter distributions
 		</title>
 		<meta charset="utf-8">
-		<meta itemprop="generator" content="Stencila 0.14">
+		<meta name="generator" content="Stencila 0.15">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta itemprop="type" content="stencil">
 		<meta itemprop="address" content="ss3/display">
 		<meta itemprop="version" content="">
@@ -90,7 +91,7 @@ print(
 		scale_y_log10() + 
 		labs(x="Year",y="Total spawning biomass (`000 t)")
 )
-</pre><img src="figure-1-examples-of-biomass-traje-ctU83Y6.png" style="width:17cm;height:10cm" data-output="true">
+</pre><img src="figure-1-examples-of-biomass-traje-ctU83Y6.png" style="max-width:17cm;max-height:10cm" data-output="true">
 				<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">1</span><span class="separator">: </span></span>
 					Examples of biomass trajectories from the FST algorithm. Those trajectories which end prior to 2013 have failed to meet one of the conditioning criteria.
 				</figcaption>
@@ -128,7 +129,7 @@ plot_densities(param)
 				<figure data-index="0" id="figure-2">
 					<pre data-exec="r format png size 17x10cm const" data-hash="sKpb3uA">
 plot_densities(param)
-</pre><img src="figure-2-distribution-of-values-of-cWLpBH.png" style="width:17cm;height:10cm" data-output="true">
+</pre><img src="figure-2-distribution-of-values-of-cWLpBH.png" style="max-width:17cm;max-height:10cm" data-output="true">
 					<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">2</span><span class="separator">: </span></span>
 						Distribution of values of the parameter "<span data-text="param">spawners_unfished</span>" according to feasibility criteria (0 indicates the trial met all criteria).
 					</figcaption>
@@ -136,7 +137,7 @@ plot_densities(param)
 				<figure data-index="1" id="figure-3">
 					<pre data-exec="r format png size 17x10cm const" data-hash="sKpb3uA">
 plot_densities(param)
-</pre><img src="figure-3-distribution-of-values-of-cWLpBH.png" style="width:17cm;height:10cm" data-output="true">
+</pre><img src="figure-3-distribution-of-values-of-cWLpBH.png" style="max-width:17cm;max-height:10cm" data-output="true">
 					<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">3</span><span class="separator">: </span></span>
 						Distribution of values of the parameter "<span data-text="param">mortality_base</span>" according to feasibility criteria (0 indicates the trial met all criteria).
 					</figcaption>
@@ -144,7 +145,7 @@ plot_densities(param)
 				<figure data-index="2" id="figure-4">
 					<pre data-exec="r format png size 17x10cm const" data-hash="sKpb3uA">
 plot_densities(param)
-</pre><img src="figure-4-distribution-of-values-of-cWLpBH.png" style="width:17cm;height:10cm" data-output="true">
+</pre><img src="figure-4-distribution-of-values-of-cWLpBH.png" style="max-width:17cm;max-height:10cm" data-output="true">
 					<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">4</span><span class="separator">: </span></span>
 						Distribution of values of the parameter "<span data-text="param">movement_stay</span>" according to feasibility criteria (0 indicates the trial met all criteria).
 					</figcaption>
@@ -152,7 +153,7 @@ plot_densities(param)
 				<figure data-index="3" id="figure-5">
 					<pre data-exec="r format png size 17x10cm const" data-hash="sKpb3uA">
 plot_densities(param)
-</pre><img src="figure-5-distribution-of-values-of-cWLpBH.png" style="width:17cm;height:10cm" data-output="true">
+</pre><img src="figure-5-distribution-of-values-of-cWLpBH.png" style="max-width:17cm;max-height:10cm" data-output="true">
 					<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">5</span><span class="separator">: </span></span>
 						Distribution of values of the parameter "<span data-text="param">recruits_deviations.2003.</span>" according to feasibility criteria (0 indicates the trial met all criteria).
 					</figcaption>
@@ -167,11 +168,11 @@ print(ggplot(temp,aes(x=year,y=value)) +
 	geom_point(data=ddply(temp,.(year),summarise,y=mean(value)),aes(y=y)) +
 	geom_hline(y=0,linetype=2) + 
 	labs(x='Year',y='Value'))
-</pre><img src="figure-6-distribution-of-values-of-cWLpBH.png" style="width:17cm;height:10cm" data-output="true">
+</pre><img src="figure-6-distribution-of-values-of-cWLpBH.png" style="max-width:17cm;max-height:10cm" data-output="true">
 				<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">6</span><span class="separator">: </span></span>
 					Distribution of values of <code>recruits_deviations</code> parameters that passed all feasibility criteria. The dots represent the mean of each distribution.	
 				</figcaption>
 			</figure>
-		</main><script src="https://stenci.la/get/js/stencila-0.14.min.js"> </script><script>Stencila.launch();</script><script>window.setTimeout(function(){document.documentElement.className='';if(!window.Stencila){window.alert('Page could not be fully loaded. Not all functionality will be available.');}},10000)</script>
+		</main><script src="https://stenci.la/get/js/stencila-0.15.min.js"> </script><script>Stencila.launch();</script><script>window.setTimeout(function(){document.documentElement.className='';if(!window.Stencila){window.alert('Page could not be fully loaded. Not all functionality will be available.');}},10000)</script>
 	</body>
 </html>

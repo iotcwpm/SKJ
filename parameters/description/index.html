@@ -5,7 +5,8 @@
 			Indian Ocean skipjack model : parameter prior distributions and sensitivity ranges
 		</title>
 		<meta charset="utf-8">
-		<meta itemprop="generator" content="Stencila 0.14">
+		<meta name="generator" content="Stencila 0.15">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta itemprop="type" content="stencil">
 		<meta itemprop="address" content="parameters/description">
 		<meta itemprop="version" content="">
@@ -64,7 +65,9 @@
 eta_qs &lt;- round((qbeta(c(0.05,0.2,0.5,0.8,0.95),10,2)+0.2)/1.25,2)
 
 </pre>
-				where <script type="math/asciimath">B(.)</script> is the beta distribution. This formulation allows for <script type="math/asciimath">eta</script> to be constrained between 0.2 and 1. The resulting prior for steepness has a median of <span data-text="eta_qs[3]">0.84</span> and 5, 20, 80 and 95th percentiles of <span data-text="eta_qs[c(1,2,4,5)]">0.67, 0.76, 0.9, 0.93</span> respectively.
+				<p>
+					where <script type="math/asciimath">B(.)</script> is the beta distribution. This formulation allows for <script type="math/asciimath">eta</script> to be constrained between 0.2 and 1. The resulting prior for steepness has a median of <span data-text="eta_qs[3]">0.84</span> and 5, 20, 80 and 95th percentiles of <span data-text="eta_qs[c(1,2,4,5)]">0.67, 0.76, 0.9, 0.93</span> respectively.
+				</p>
 				<p>
 					For the standard deviation of stock-recruitment deviations, <script type="math/asciimath">sigma</script> a lognormal prior with a mean of 0.6 and a standard deviation of 0.5 was used based on Myers (2002) Figure 6.5 which has a median of about 0.6 for Scombridae.
 				</p>
@@ -444,6 +447,6 @@ eta_qs &lt;- round((qbeta(c(0.05,0.2,0.5,0.8,0.95),10,2)+0.2)/1.25,2)
 					</tr>
 				</tbody>
 			</table>
-		</main><script src="https://stenci.la/get/js/stencila-0.14.min.js"> </script><script>Stencila.launch();</script><script>window.setTimeout(function(){document.documentElement.className='';if(!window.Stencila){window.alert('Page could not be fully loaded. Not all functionality will be available.');}},10000)</script>
+		</main><script src="https://stenci.la/get/js/stencila-0.15.min.js"> </script><script>Stencila.launch();</script><script>window.setTimeout(function(){document.documentElement.className='';if(!window.Stencila){window.alert('Page could not be fully loaded. Not all functionality will be available.');}},10000)</script>
 	</body>
 </html>
