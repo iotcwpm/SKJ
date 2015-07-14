@@ -14,7 +14,7 @@ ifeq ($(UNAME), Msys)
 	OS := win
 endif
 
-# Define options and required libraries
+# Define compile options and required libraries
 CXX_FLAGS := -std=c++11 -Wall -Wno-unused-function -Wno-unused-local-typedefs
 INC_DIRS := -I. -Irequires/stencila/cpp -Irequires/boost-$(OS)
 LIB_DIRS := -Lrequires/boost-$(OS)/lib
@@ -27,7 +27,7 @@ CPPS := $(shell find . -maxdepth 1 -name "*.cpp")
 #############################################################
 # Executables
 
-# Executable for profiling
+# Executable for normal use
 ioskj.exe: $(HPPS) $(CPPS)
 	$(CXX) $(CXX_FLAGS) -O3 $(INC_DIRS) -o$@ ioskj.cpp $(LIB_DIRS) $(LIBS)
 
@@ -152,7 +152,7 @@ ifeq ($(OS), win)
 	BOOST_B2_FLAGS += --layout=system release toolset=gcc
 endif
 
-requires/boost.flag: requires/boost-$(OS)
+requires/boost-$(OS).flag: requires/boost-$(OS)
 	cd $< ; ./bootstrap.sh $(BOOST_BOOTSTRAP_FLAGS)
 	sed -i "s/mingw/gcc/g" $</project-config.jam
 	cd $< ; ./b2 $(BOOST_B2_FLAGS)
