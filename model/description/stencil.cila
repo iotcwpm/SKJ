@@ -7,8 +7,7 @@ The following convention is used for assigning symbols in the following model eq
 
 The subscript for time, |t|, is usually omitted from the model equations below except where it is necessary to be explicit regarding the time step involved.
 
-section
-	h1 Dimensions
+> Dimensions
 
 	Several dimensions are used to partition aspects of the model (e.g. fish numbers, catches). See @table-dimensions for symbols used for each.
 
@@ -109,11 +108,9 @@ section
 		figcaption
 			Map of the three regions used in the model: Western (W,|we|), Maldives (M,|ma|), Eastern (E,|ea|).
 
-section
-	h1 Fish
+> Fish
 
-	section
-		h1 Numbers
+	> Numbers
 
 		Fish numbers are partitioned by region, age and size, |N_{r,a,s}|. In each quarter, recruitment to the model and ageing occur as follows.
 
@@ -137,8 +134,7 @@ section
 
 		where |G| is the growth transition matrix, |D| is the natural survival rate, |E| is the exploitation rate, and |M| is the movement transition matrix (all described below).
 
-	section
-		h1 Length, weight and maturity
+	> Length, weight and maturity
 
 		The length of fish of size |s| is the midpoint of the 2mm bin size,
 
@@ -156,8 +152,7 @@ section
 
 		Currently, the model assumes that the parameters of the maturity curve are the same in all three regions but could be made to vary by region i.e |tau_{r}, upsilon_{r}|. In addition, maturity could be modelled as a function of age, rather than size, i.e. |O_a|.
 
-	section
-		h1 Spawning and recruitment
+	> Spawning and recruitment
 
 		The proportion of mature fish that spawn in each quarter is allowed to vary according to a quarterly parameter, |rho_q|. Currently, this parameter is the same for all regions. Evidence of regional differences in spawning seasonality would suggest making these parameters vary by region.
 
@@ -187,8 +182,7 @@ section
 
 			|A_s = 1/sqrt(2 pi zeta^2) e^(-((L_s-mu)^2)// 2 zeta^2)|
 
-	section
-		h1 Natural mortality
+	> Natural mortality
 
 		The instantaneous rate of natural mortality at size |s| is modelled as a function of weight at size |s| using the form of Lorenzen,
 
@@ -200,8 +194,7 @@ section
 
 			|D_s = e^{-0.25 M_s}|
 
-	section
-		h1 Growth
+	> Growth
 
 		Growth is described using a size transition matrix which is calculated based on the von Bertallanfy growth function. The mean increment in one quarter is,
 
@@ -219,8 +212,7 @@ section
 
 		An alternative to the von Bertallanfy function would be to use the two-stanza growth model and parameter estimates of Everson et al (2012, 2014).
 
-	section
-		h1 Movement
+	> Movement
 
 		The proportion of fish moving from region |dot(r)| to region |r| in one quarter is described by the movement matrix defined by six off-diagonal parameters,
 
@@ -231,8 +223,7 @@ section
 
 	In summary, at present, whilst the model keeps account of fish numbers by region, only two of the biological characteristics of the stock vary by region: the proportion of recruitment going to each and the movement between each. As noted above, many of the model's parameters could be made to vary by region but this is likely to be of little value without information with which to inform how much those parameters should vary by region.
 
-section
-	h1 Fishing
+> Fishing
 
 	Selectivity is modelled as a function of length using a piecewise spline with knots at every ten cm from 20cm to 80cm.
 
