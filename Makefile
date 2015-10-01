@@ -164,7 +164,7 @@ STENCILA_VERSION := 0.13
 
 requires/stencila-$(STENCILA_VERSION).zip:
 	@mkdir -p requires
-	wget --no-check-certificate -O $@ https://github.com/stencila/stencila/archive/0.13.zip
+	wget --no-check-certificate -O $@ https://github.com/stencila/stencila/archive/$(STENCILA_VERSION).zip
 
 requires/stencila: requires/stencila-$(STENCILA_VERSION).zip
 	rm -rf requires/stencila
