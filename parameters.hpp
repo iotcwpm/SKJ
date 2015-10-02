@@ -148,6 +148,7 @@ public:
     	recruits_regions.read("parameters/input/recruits_regions.tsv",true);
     	recruits_deviations.read("parameters/input/recruits_deviations.tsv",true);
     	selectivities.read("parameters/input/selectivities.tsv",true);
+
     	catches.read("parameters/input/catches.tsv",true);
 		catches.each([](Variable<Fixed>& catche){
 			if(catche.is_na()) catche = 0;
@@ -210,7 +211,8 @@ public:
 					// TODO else if((region_from==W and region==M) or (region_from==M and region==W)) model.movement_pars(region_from,region) = movement_w_m;
 					// TODO else if((region_from==M and region==E) or (region_from==E and region==M)) model.movement_pars(region_from,region) = movement_m_e;
 					// TODO else if((region_from==W and region==E) or (region_from==E and region==W)) model.movement_pars(region_from,region) = movement_w_e;
-					else throw std::runtime_error("Unhandled movement parameter");
+					else model.movement_pars(region_from,region) = 0.1;
+					//else throw std::runtime_error("Unhandled movement parameter");
 				}
 			}
 

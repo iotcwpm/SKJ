@@ -778,7 +778,10 @@ public:
 			#endif
 
 			// Throw an error if undefined biomass
-			if(not std::isfinite(biomass(SW)+biomass(NW)+biomass(M)+biomass(E))) throw std::runtime_error("Biomass is not finite. Check inputs");
+			if(not std::isfinite(biomass(SW)+biomass(NW)+biomass(M)+biomass(E))){
+				write();
+				throw std::runtime_error("Biomass is not finite. Check inputs. Model has been written to `model/output`");
+			}
 
 			steps++;
 		}
