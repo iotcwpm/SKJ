@@ -207,11 +207,11 @@ public:
 
 			for(auto region_from : region_froms){
 				for(auto region : regions){
-					if(region_from==Level<RegionFrom>(region)) model.movement_pars(region_from,region) = movement_stay;
+					if(region_from==Level<RegionFrom>(region)) model.movement_pars(region_from,region) = 1;//movement_stay;
 					// TODO else if((region_from==W and region==M) or (region_from==M and region==W)) model.movement_pars(region_from,region) = movement_w_m;
 					// TODO else if((region_from==M and region==E) or (region_from==E and region==M)) model.movement_pars(region_from,region) = movement_m_e;
 					// TODO else if((region_from==W and region==E) or (region_from==E and region==W)) model.movement_pars(region_from,region) = movement_w_e;
-					else model.movement_pars(region_from,region) = 0.1;
+					else model.movement_pars(region_from,region) = 0;
 					//else throw std::runtime_error("Unhandled movement parameter");
 				}
 			}
