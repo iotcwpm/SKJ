@@ -154,7 +154,8 @@ public:
 			.data(kobe_c,"kobe_c")
 			.data(kobe_d,"kobe_d")
 			.data(kobe_to_a,"kobe_to_a")
-			.data(cpue_mean(W,PS),"cpue_mean_w_ps")
+			.data(cpue_mean(SW,PS),"cpue_mean_sw_ps")
+			.data(cpue_mean(NW,PS),"cpue_mean_nw_ps")
 			.data(cpue_mean(M,PL),"cpue_mean_m_pl")
 			.data(cpue_mean(E,GN),"cpue_mean_e_gn")
 		;

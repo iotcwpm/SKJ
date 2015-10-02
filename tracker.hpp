@@ -22,26 +22,39 @@ struct Tracker {
 			<<"recruits_determ\t"
 			<<"recruits_deviation\t"
 			<<"recruits\t"
+
 			<<"biomass_status\t"
-			<<"biomass_spawners_w\t"
+
+			<<"biomass_spawners_sw\t"
+			<<"biomass_spawners_nw\t"
 			<<"biomass_spawners_m\t"
 			<<"biomass_spawners_e\t"
 			<<"biomass_spawning_overall\t"
-			<<"biomass_spawning_w\t"
+
+			<<"biomass_spawning_sw\t"
+			<<"biomass_spawning_nw\t"
 			<<"biomass_spawning_m\t"
 			<<"biomass_spawning_e\t"
-			<<"biomass_vulnerable_w_ps\t"
+
+			<<"biomass_vulnerable_sw_ps\t"
+			<<"biomass_vulnerable_nw_ps\t"
 			<<"biomass_vulnerable_m_pl\t"
 			<<"biomass_vulnerable_e_gn\t"
+
 			<<"catches_total\t"
-			<<"catches_w_ps\t"
+			<<"catches_sw_ps\t"
+			<<"catches_nw_ps\t"
 			<<"catches_m_pl\t"
 			<<"catches_e_gn\t"
+
 			<<"effort_total\t"
-			<<"effort_w_ps\t"
+			<<"effort_sw_ps\t"
+			<<"effort_nw_ps\t"
 			<<"effort_m_pl\t"
 			<<"effort_e_gn\t"
-			<<"exp_rate_w_ps\t"
+
+			<<"exp_rate_sw_ps\t"
+			<<"exp_rate_nw_ps\t"
 			<<"exp_rate_m_pl\t"
 			<<"exp_rate_e_gn\t"
 			<<std::endl;
@@ -58,28 +71,42 @@ struct Tracker {
 			<<model.recruits_determ<<"\t"
 			<<model.recruits_deviation<<"\t"
 			<<model.recruits<<"\t"
+
 			<<model.biomass_status(time)<<"\t"
-			<<model.biomass_spawners(W)<<"\t"
+
+			<<model.biomass_spawners(SW)<<"\t"
+			<<model.biomass_spawners(NW)<<"\t"
 			<<model.biomass_spawners(M)<<"\t"
 			<<model.biomass_spawners(E)<<"\t"
+
 			<<model.biomass_spawning_overall(quarter)<<"\t"
-			<<model.biomass_spawning(W)<<"\t"
+			<<model.biomass_spawning(SW)<<"\t"
+			<<model.biomass_spawning(NW)<<"\t"
 			<<model.biomass_spawning(M)<<"\t"
 			<<model.biomass_spawning(E)<<"\t"
-			<<model.biomass_vulnerable(W,PS)<<"\t"
+
+			<<model.biomass_vulnerable(SW,PS)<<"\t"
+			<<model.biomass_vulnerable(NW,PS)<<"\t"
 			<<model.biomass_vulnerable(M,PL)<<"\t"
 			<<model.biomass_vulnerable(E,GN)<<"\t"
+			
 			<<model.catches_taken(sum)<<"\t"
-			<<model.catches_taken(W,PS)<<"\t"
+			<<model.catches_taken(NW,PS)<<"\t"
+			<<model.catches_taken(SW,PS)<<"\t"
 			<<model.catches_taken(M,PL)<<"\t"
 			<<model.catches_taken(E,GN)<<"\t"
+
 			<<model.effort(sum)<<"\t"
-			<<model.effort(W,PS)<<"\t"
+			<<model.effort(SW,PS)<<"\t"
+			<<model.effort(NW,PS)<<"\t"
 			<<model.effort(M,PL)<<"\t"
 			<<model.effort(E,GN)<<"\t"
-			<<model.exploitation_rate(W,PS)<<"\t"
+
+			<<model.exploitation_rate(SW,PS)<<"\t"
+			<<model.exploitation_rate(NW,PS)<<"\t"
 			<<model.exploitation_rate(M,PL)<<"\t"
 			<<model.exploitation_rate(E,GN)<<"\t"
+
 			<<std::endl;
 	}
 };

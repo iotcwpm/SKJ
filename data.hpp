@@ -101,7 +101,7 @@ public:
 			// Currently take a mean of vulnerable biomass over all quarters in the year...
 			static Array<double,Quarter> cpue_quarters;
 			// ... get this quarter's CPUE and save it
-			cpue_quarters(quarter) = model.biomass_vulnerable(W,PS);
+			cpue_quarters(quarter) = model.biomass_vulnerable(SW,PS) + model.biomass_vulnerable(NW,PS);
 			// ... if this is the last quarter then take the geometric mean
 			if(quarter==3){
 				w_ps_cpue(year) = geomean(cpue_quarters);
@@ -153,7 +153,7 @@ public:
 				uint z_lower = 45+z_size.index()*5;
 				uint size_class = (z_lower-1)/2;
 				for(uint size=size_class;size<size_class+3;size++){
-					double survival = model.mortalities_survival(size) * model.exploitation_survival(W,size);
+					double survival = model.mortalities_survival(size) * model.exploitation_survival(SW,size) * model.exploitation_survival(NW,size);
 					// Capture cases where survuval is estimated to be zero to prevent overflow
 					if(survival>0) z += -log(survival);
 					else z += -log(0.000001);

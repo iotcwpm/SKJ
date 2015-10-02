@@ -19,10 +19,16 @@ public:
 	void catches_set(Model& model,double catches){
 		model.exploit = model.exploit_catch;
 
-		model.catches(W,PS) = 0.354 * catches;
-		model.catches(W,PL) = 0.018 * catches;
-		model.catches(W,GN) = 0.117 * catches;
-		model.catches(W,OT) = 0.024 * catches;
+		// TODO split between NW and SW more sensibly
+		model.catches(SW,PS) = 0.5 * 0.354 * catches;
+		model.catches(SW,PL) = 0.5 * 0.018 * catches;
+		model.catches(SW,GN) = 0.5 * 0.117 * catches;
+		model.catches(SW,OT) = 0.5 * 0.024 * catches;
+
+		model.catches(NW,PS) = 0.5 * 0.354 * catches;
+		model.catches(NW,PL) = 0.5 * 0.018 * catches;
+		model.catches(NW,GN) = 0.5 * 0.117 * catches;
+		model.catches(NW,OT) = 0.5 * 0.024 * catches;
 
 		model.catches(M,PS) = 0.000 * catches;
 		model.catches(M,PL) = 0.198 * catches;
@@ -380,7 +386,8 @@ public:
 		if(quarter==0){
 			// Get CPUE as a combination of W/PS and M/PL
 			GeometricMean combined;
-			combined.append(model.cpue(W,PS));
+			combined.append(model.cpue(SW,PS));
+			combined.append(model.cpue(NW,PS));
 			combined.append(model.cpue(M,PL));
 			double cpue = combined;
 			// Add observation error
