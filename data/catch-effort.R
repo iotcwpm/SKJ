@@ -110,5 +110,5 @@ ggplot() +
     geom_polygon(data=map_data('world'),aes(x=long,y=lat,group=group),colour='grey70') + 
     geom_point(data=temp,aes(x=Lon,y=Lat,size=Catch),colour='blue',alpha=0.3) + 
     coord_map(xlim=c(20,160),ylim=c(-50,40)) + 
-    scale_area()
+    scale_size_area()
 
