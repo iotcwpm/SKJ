@@ -3,21 +3,35 @@
 r
 	source('../../common.R',local=T)
 
-The following convention is used for assigning symbols in the following model equations: Greek lower case letters (e.g. |alpha|) for model parameters, Roman capital letters (e.g. |N|) for model variables, and Roman lower case letters for variable or parameter array subscripts (e.g. |N_{r,a,s}|, |phi_{r}|). Using this convention means that in some instances model parameters are given different symbols that usual. However, it has the advantage of clearly distinguishing model parameters (which are independent of other parameters or variables and are usually estimated) from model variables (which are dependent upon parameter values).
+The following convention is used for assigning symbols in the following model equations: Greek lower case letters (e.g. |alpha| for the intercept of the length-weigth relationship) for model parameters, Roman capital letters (e.g. |N| for numbers) for model variables, and Roman lower case letters for variable or parameter array subscripts (e.g. |N_{r,a,s}|, |phi_{r}|). Using this convention means that in some instances model parameters are given different symbols than are usually used. However, it has the advantage of clearly distinguishing model parameters (which are independent of other parameters or variables and that are usually estimated) from model variables (which are dependent upon parameter values).
 
 The subscript for time, |t|, is usually omitted from the model equations below except where it is necessary to be explicit regarding the time step involved.
 
+As well as documenting the current structure of the model, this section also notes where potential changes could be made. Often these potential changes would make the model more complex but are likely to better reflect reality. 
+
 > Dimensions
 
-	Several dimensions are used to partition aspects of the model (e.g. fish numbers, catches). See @table-dimensions for symbols used for each.
+	Several dimensions are used to partition aspects of the model (e.g. fish numbers, catches). @table-dimensions provides the sybols associated with each of thes dimensions.
 
-	The model uses a quarterly, i.e. three month, time step (|t|). Each time step, |t|, has an associated calendar year (|y|) and calendar quarter (|q in 0,1,2,3|).
+	> Time
 
-	There are three regions (|r|), West (|we|), Maldives (|ma|) and East (|ea|) (@figure-regions). The term "region" is used in preference to "area" because using the latter would confound the |a| subscript which is also used for age. The three regions were mostly defined based on difference is the main fishing gears used in each. There is little information available on biological stock definitions for Indian Ocean skipjack tuna. However, based on what is available, @fontaneau-2014-skj-stocks, suggested four regions, in which the western region is divided into northern and southern regions at the equator. Given the nature of the catch distribution and resolution of available data, this four region definition should be relatively straightforward to use in future revisions.
+		The model uses a quarterly, i.e. three month, time step (|t|). Each time step, |t|, has an associated calendar year (|y|) and calendar quarter (|q in 0,1,2,3|).
 
-	Fish recruit to the model in each quarter and the model keeps track of their numbers by their age (|a|), in quarters up to six years i.e. |0,1,2,...,23|. Fish size (|s|) is represented in forty, 2cm bins, |0-2, 2-4, ..., 78-80cm|.
+	> Regions
 
-	Four fishing methods (|m|) are defined : purse seine (|ps|), pole and line (|pl|), gill net (|gn|) and other (|ot|). There are differences in the size distribution of free-school and associated-school purse seine sets. However, given the low proportion of free-school sets, particularly in recent years, it was considered unnecessary to model these subcomponents separately.
+		Four regions (|r|) are defined, South-West (|sw|), North-West (|mw|), Maldives (|ma|) and East (|ea|) (@figure-regions). The term "region" is used in preference to "area" because using the latter would confound the |a| subscript which is also used for age. 
+
+		Initially three regions were defined mostly on the basis of differences is the main fishing gears used in each: purse-seine in the west, pole-and-line in the Maldives, and gill-net in the east. Although the Maldives is a small region spatially, it accounts for a large proportion of the total catch (see later sections). A three region structure also provided alignment between the model structure and the two available abundance indices, CPUE from the western purse seine fleet and CPUE from the Maldive pol-and-line fleet.
+
+		There is little information available on biological stock definitions for Indian Ocean skipjack tuna. However, based on what information is available, Fonteneau (2014), suggested four regions be used for future models, with the western region divided into northern and southern regions at the equator. However, the spatial distribution of catches by the EU purse seine fleet shows a strong discontinuity of the catch distribution at -10 degrees south (@figure-regions) so the western region was divided on this basis.
+
+	> Fish age and size
+
+		Fish recruit to the model in each quarter and the model keeps track of their numbers by their age (|a|), in quarters up to six years i.e. |0,1,2,...,23|. Fish size (|s|) is represented in forty, 2cm bins, |0-2, 2-4, ..., 78-80cm|.
+
+	> Methods
+
+		Four fishing methods (i.e. gears) (|m|) are defined : purse seine (|ps|), pole and line (|pl|), gill net (|gn|) and other (|ot|). There are differences in the size distribution of free-school and associated-school purse seine sets. However, given the low proportion of free-school sets, particularly in recent years, it was considered unnecessary to model these subcomponents separately.
 
 	table #table-dimensions
 		caption
@@ -47,8 +61,11 @@ The subscript for time, |t|, is usually omitted from the model equations below e
 				td |r|
 				td Region subscript
 			tr
-				td |we|
-				td West region
+				td |sw|
+				td South-West region
+			tr
+				td |nw|
+				td North-West region
 			tr
 				td |ma|
 				td Maldives region
@@ -92,27 +109,60 @@ The subscript for time, |t|, is usually omitted from the model equations below e
 				td Other
 
 	figure #figure-regions
-		r format png size 17x13cm
+		r format png size 20x20cm
+		  # Region polygon definitions
 			regions <- read.table('../../data/area-polygons.txt',header=T)
 			names(regions) <- c('region','lat','lon')
+			# Catches with lats and lons
+			catches <- read.table('../../data/input/catch_distr.tsv',header=T)
+			names(catches) <- c('method','lat','lon','catch')
+			# Catches with no lats and lons
+			catches_other <- read.table('../../data/input/catch_distr_other.tsv',header=T)
+			names(catches_other) <- c('fleet','region','method','catch')
+			# Assign some nominal lat/lons
+			catches_other <- merge(catches_other,read.table(text='
+			fleet	region	method	lat	lon
+			IDN	EA	PL	0	95
+			IDN	EA	GN	-2	97
+			IDN	EA	OT	-4	99
+			IDN	EA	PS	-6	101
+			IND	W	PS	19	72
+			IND	W	GN	17	72
+			IND	W	OT	15	72
+			IND	W	PL	13	72
+			IND	EA	PS	19	83
+			IND	EA	GN	17	83
+			IND	EA	OT	15	83
+			IRN	W	PS	24	60
+			IRN	W	GN	22	62
+			LKA	EA	PS	5	78
+			LKA	EA	PL	5	80
+			LKA	EA	OT	5	82
+			LKA	EA	GN	5	84
+			PAK	W	GN	23	66
+			',header=T))
+			catches_other$fleet <- NULL
+			catches_other$region <- NULL
+			catches <- rbind(catches,catches_other)
 				
 			print(
 				ggplot(subset(map_data("world"),long>30 & long<130 & lat<30 & lat>-40)) +
-					geom_polygon(data=regions,aes(x=lon,y=lat,fill=region),colour='grey30',alpha=0.5) +
+					geom_polygon(data=regions,aes(x=lon,y=lat,group=region),fill='white',colour='grey30',alpha=0.5) +
 					geom_polygon(aes(x=long, y=lat, group=group),fill='white',colour='grey60') +
-					scale_y_continuous('',expand=c(0,0)) +
-					scale_x_continuous('',expand=c(0,0)) + 
-					coord_map('mercator') + 
-					labs(fill='Region')
+					geom_point(data=catches,aes(x=lon,y=lat,size=catch,color=method),alpha=0.5) + 
+					scale_size_area(max_size=22,breaks=c(0,5000,10000,50000)) + 
+					coord_map('mercator',xlim=c(35,122),ylim=c(-32,27)) + 
+					labs(colour='Method',size='Catch (t/y)',x='',y='') + 
+					theme(legend.position="top")
 			)
 		figcaption
-			Map of the three regions used in the model: Western (W,|we|), Maldives (M,|ma|), Eastern (E,|ea|).
+			Map of the four regions defined for the model and the spatial distribution of average annual catch by method, 2005-2014. The position of catches from the western purse-seine and the Maldive pole-and-line fisheries is based on reported latitude and longitudes. The position of other catches is indicative only and only shown for the main coastal nations catching skipjack - Indonesia, Sri Lanka, India, Pakistan and Iran.
 
-> Fish
+> Fish population dynamics
 
 	> Numbers
 
-		Fish numbers are partitioned by region, age and size, |N_{r,a,s}|. In each quarter, recruitment to the model and ageing occur as follows.
+		Fish numbers are partitioned by region and age and size, |N_{r,a,s}|. In each quarter, recruitment to the model and ageing occur as follows.
 
 		The maximum age group, |vec(a)|, accumulates fish from the previous age, |vec(a)-1|,
 
@@ -130,7 +180,7 @@ The subscript for time, |t|, is usually omitted from the model equations below e
 
 		Numbers are updated by applying growth, survival, exploitation and movement. The numbers in each region, in each age class and size class are determined by summing over all regions and size classes,
 
-			|N_{r,a,s} = sum_{dot(r) in {we,ma,ea},dot(s)=0...vec(s)}( dot(N)_{dot(r),a,dot(s)} G_{dot(s),s} D (1-E_{dot(r),dot(s)}) M_{dot(r),r} )|
+			|N_{r,a,s} = sum_{dot(r) in {we,ma,ea},dot(s)=0...vec(s)}( dot(N)_{dot(r),a,dot(s)} G_{dot(s),s} D_s (1-E_{dot(r),dot(s)}) M_{dot(r),r} )|
 
 		where |G| is the growth transition matrix, |D| is the natural survival rate, |E| is the exploitation rate, and |M| is the movement transition matrix (all described below).
 
@@ -144,7 +194,7 @@ The subscript for time, |t|, is usually omitted from the model equations below e
 
 			|W_s = alpha (L_s)^beta|
 
-		Currently, the model assumes that the parameters of the length-weight relationship are the same in the three regions. These seems a reasonable assumption, but it is possible that condition factors consistently vary among regions, in which case these parameters could be made to vary by region i.e. |alpha_{r}, beta_{r}|
+		Currently, the model assumes that the parameters of the length-weight relationship are the same in the three regions. It is possible that condition factors consistently vary among regions, in which case these parameters could be made to vary by region i.e. |alpha_{r}, beta_{r}|
 
 		The proportion of fish of size |s| that are mature is modelled as a logistic curve,
 
@@ -160,15 +210,15 @@ The subscript for time, |t|, is usually omitted from the model equations below e
 
 			|B_r = sum_{a=0...vec(a),s=0...vec(s)} N_{r,a,s} O_s W_s|
 
-		We refer to this varable as the biomass of spawners and is used as the basis for determing stock status, |B/B_{0}|.
+		where |O_s| is the proportion of fish that are mature at size |s|, |W_s| is the weight of fish at size |s|. We refer to this variable as the "biomass of spawners" and it is used as the basis for determining stock status, i.e |B//B_{0}|. It differs from the "spawning biomass" it that it is independent of the seasonal spawning fraction.
 
-		Recruitment occurs in each quarter and is partitioned by region and size, |R_{r,s}|. The total number of eggs is based on the total spawning biomass in the previous quarter,
+		The total number of eggs produced is based on the total spawning biomass,
 
 			|E = sum_{r in {we,ma,ea}} B_r rho_q|
 
-		where |O_s| is the proportion of fish that are mature at size |s|, |W_s| is the weight of fish at size |s|, and |rho_q| is the proportion of fish that spawn in quarter |q|.
+		where |rho_q| is the proportion of fish that spawn in quarter |q|.
 
-		The total number of eggs determines the total number of recruits over all three regions, |bar(R)| using the Beverton-Holt stock recruitment function,
+		The total number of eggs determines the total number of recruits over all three regions, |bar(R)| according to the Beverton-Holt stock recruitment function,
 
 			|bar(R) = 4 eta theta E/((5 eta-1) E + dot(E)  (1-eta)) D_t|
 
@@ -178,7 +228,7 @@ The subscript for time, |t|, is usually omitted from the model equations below e
 
 			|R_{r,s} = bar(R) * chi_r * A_s|
 
-		where |chi_r| is the proportion of recruits which recruit into region |r| and |A_s| is the proportion of recruits of size |s| which is based on a normal distribution with mean, |mu| and standard deviation |zeta|,
+		where |chi_r| is the proportion of recruits which recruit into region |r| and |A_s| is the proportion of recruits that are at size |s| which is based on a normal distribution with mean, |mu| and standard deviation |zeta|,
 
 			|A_s = 1/sqrt(2 pi zeta^2) e^(-((L_s-mu)^2)// 2 zeta^2)|
 
@@ -190,7 +240,7 @@ The subscript for time, |t|, is usually omitted from the model equations below e
 
 		To prevent |M_s| going to very high levels at low |s|, |M_s| is restricted to be a maximum of |M_10| (i.e. the mortality at size bin 10, i.e. length of 21cm). 
 
-		The survival rate in one quarter is,
+		The rate of survival from natural mortality in one quarter of a fish of size |s|, is,
 
 			|D_s = e^{-0.25 M_s}|
 
@@ -214,25 +264,32 @@ The subscript for time, |t|, is usually omitted from the model equations below e
 
 	> Movement
 
-		The proportion of fish moving from region |dot(r)| to region |r| in one quarter is described by the movement matrix defined by six off-diagonal parameters,
+		The movement of fish among the four regions can be described using a matrix of the proportion of fish moving from region |dot(r)| to region |r| in one quarter. This matrix potentially has twelve parameters (since the parameters are proportions the diagonal elements are determined from the other elements in the row). To reduce the number of parameters, we make some simplifying assumptions:
 
-		|M_{dot(r),r} = [[1-omega_{ea,ma}-omega_{ea,we},omega_{ea,ma},omega_{ea,we}],[omega_{ma,ea},1-omega_{ma,ea}-omega_{ma,we},omega_{ma,we}],[omega_{we,ea},omega_{we,ma},1-omega_{we,ea}-omega_{we,ma}]]|
+		- that movement between two adjacent areas is non-directional (i.e. that the proportion of fish in the MA region that move to the NW region is the same as the proportion of fish in the MA region that move to the NW region),
+		- that there is no direct movement within one quarter between SW and MA, and between SW and EA (i.e. that the movement parameters for these pairs are zero)
 
-		There could be separate movement parameters for each age (or size) e.g. |omega_{ma,we,a}|, or more simply, the relative proportion of fish moving could vary by age (or size).
+		The movement parameter matrix thus becomes:
+
+		|M_{dot(r),r} = [[1-omega_{sw,nw},omega_{sw,nw},0,0],[omega_{sw,nw},1-omega_{sw,nw}-omega_{nw,ma}-omega_{nw,ea},omega_{nw,ma},omega_{ma,ea}],[0,omega_{nw,ma},1-omega_{nw,ma}-omega_{ma,ea},omega_{ma,ea}],[0,omega_{nw,ea},omega_{nw,ea},1-omega_{nw,ea}-omega_{ma,ea}]]|
+
+		defined by the parameters |omega_{sw,nw}|, |omega_{nw,ma}|, |omega_{nw,ea}|, |omega_{ma,ea}|.
+
+		Currently, movement is uniform across all ages and sizes. An alternative would be to have separate movement parameters for each age or size e.g. |omega_{nw,ma,a}|, or more simply, to model the relative proportion of fish moving as varying by age or size. Also, currently there is no seasonal movement.
 
 
 	In summary, at present, whilst the model keeps account of fish numbers by region, only two of the biological characteristics of the stock vary by region: the proportion of recruitment going to each and the movement between each. As noted above, many of the model's parameters could be made to vary by region but this is likely to be of little value without information with which to inform how much those parameters should vary by region.
 
-> Fishing
+> Fishing dynamics
 
-	Selectivity is modelled as a function of length using a piecewise spline with knots at every ten cm from 20cm to 80cm.
-
-	Catches are compiled by region and method, |C_{r,m}| from IOTC data. The biomass that is vulnerable to each method, |m| in each region |r|, is calculated by summing over ages and sizes,
+	The biomass that is vulnerable to each method, |m| in each region |r|, is calculated by summing over ages and sizes,
 
 		|V_{r,m} = sum_{a=0,...,vec(a),s=0,...,vec(s)} N_{r,a,s} W_s P_{m,s}|
 
-	where |P_{m,s}| is the relative selectivity of method |m| for fish of size, |s|.
+	where |P_{m,s}| is the relative selectivity of method |m| for fish of size, |s|. 
 
-	The exploitation rate in region |r| of method |m| is then,
+	Selectivity is modelled as a function of length using a piecewise spline with knots at every ten centimeters from 20cm to 80cm.
+
+	Catches are compiled by region and method, |C_{r,m}| from IOTC data. The exploitation rate in region |r| of method |m| is then,
 
 		|E_{r,m} = C_{r,m}/V_{r,m}|
