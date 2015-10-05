@@ -217,12 +217,6 @@ section
 			figcaption
 				Catch and biomass trajectory percentiles for management procedure {span text mp_sig(3)}.
 
-	section
-		h1 Performance measures, performance statistics and management objectives
-
-		include ../../performance/description complete
-			delete #title
-
 		{refer #figure-perf-dists} provides an overview of the distribution of each performance measure.
 
 		figure #figure-perf-dists

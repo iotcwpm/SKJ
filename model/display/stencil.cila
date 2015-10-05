@@ -159,7 +159,8 @@ section
 		r format png size 17x10cm
 			print(
 				ggplot(subset(track,quarter==0),aes(x=year+quarter/4)) + 
-				geom_line(aes(y=biomass_spawners_w,colour='W')) + 
+				geom_line(aes(y=biomass_spawners_sw,colour='SW')) + 
+				geom_line(aes(y=biomass_spawners_nw,colour='NW')) + 
 				geom_line(aes(y=biomass_spawners_m,colour='M')) + 
 				geom_line(aes(y=biomass_spawners_e,colour='E')) + 
 				geom_hline(y=0,alpha=0) +
@@ -184,7 +185,7 @@ section
 	figure
 		r format png size 17x10cm
 			temp <- melt(subset(
-						track,quarter==0,select=c('year','biomass_vulnerable_w_ps','biomass_vulnerable_m_pl','biomass_vulnerable_e_gn')
+						track,quarter==0,select=c('year','biomass_vulnerable_sw_ps','biomass_vulnerable_nw_ps','biomass_vulnerable_m_pl','biomass_vulnerable_e_gn')
 					),id.vars='year')
 			print(
 				ggplot(temp,aes(x=year,y=value/1e6,colour=variable)) + geom_line() +
@@ -193,12 +194,13 @@ section
 					labs(x='Year',y='Vulnerable biomass (mil. t)',colour='Region/Method')
 			)
 		figcaption
-			Vulnerable biomass trajectories for the three main fisjeries
+			Vulnerable biomass trajectories for the three main fisheries
 
 	figure
 		r format png size 17x10cm
 			temp <- ddply(track,.(year),summarise,
-				w_ps = sum(catches_w_ps),
+				sw_ps = sum(catches_sw_ps),
+				nw_ps = sum(catches_nw_ps),
 				m_pl = sum(catches_m_pl),
 				e_gn = sum(catches_e_gn)
 			)
@@ -209,12 +211,12 @@ section
 					labs(x='Year',y='Catches (t)',colour='Region/Method')
 			)
 		figcaption
-			Catch trajectories for the three main fisjeries
+			Catch trajectories for the three main fisheries
 
 	figure
 		r format png size 17x10cm
 			temp <- melt(subset(
-						track,quarter==0,select=c('year','exp_rate_w_ps','exp_rate_m_pl','exp_rate_e_gn')
+						track,quarter==0,select=c('year','exp_rate_sw_ps','exp_rate_nw_ps','exp_rate_m_pl','exp_rate_e_gn')
 					),id.vars='year')
 			print(
 				ggplot(temp,aes(x=year,y=value,colour=variable)) + geom_line() +
@@ -222,4 +224,4 @@ section
 					labs(x='Year',y='Exploitation rate',colour='Region/Method')
 			)
 		figcaption
-			Exploitation rate trajectories for the three main fisjeries
+			Exploitation rate trajectories for the three main fisheries

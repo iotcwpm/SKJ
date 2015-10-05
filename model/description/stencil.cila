@@ -7,11 +7,11 @@ The following convention is used for assigning symbols in the following model eq
 
 The subscript for time, |t|, is usually omitted from the model equations below except where it is necessary to be explicit regarding the time step involved.
 
-As well as documenting the current structure of the model, this section also notes where potential changes could be made. Often these potential changes would make the model more complex but are likely to better reflect reality. 
+As well as documenting the current structure of the model, this section also notes where potential changes could be made.  Usually, these potential changes would make the model more complex. Our approach has been to start simple and add complexity where necessary, in particular, in response to comments and suggestions from IOTC working parties.
 
 > Dimensions
 
-	Several dimensions are used to partition aspects of the model (e.g. fish numbers, catches). @table-dimensions provides the sybols associated with each of thes dimensions.
+	Several dimensions are used to partition aspects of the model (e.g. fish numbers, catches). @table-dimensions provides the symbols associated with each of these dimensions.
 
 	> Time
 

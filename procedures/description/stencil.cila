@@ -4,9 +4,9 @@ r
 	# Include common R settings and functions for this project
 	source('../../common.R',local=T)
 
-Several classes of management procedure (MP) are considered with each _class_ having several _control parameters_ which can be varied to alter it's behaviour. We refer to a particular combination of control parameters for a class as an _instance_ of that class.
+This section presents several classes of management procedure (MP). These are examples only, intended to illustrate the wide variety of possible MPs: the data inputs they use, their algorithmic form and the management controls which they alter (e.g. effort versus catch). The final set candidate mangement procedures will be determined in close consultation with the Commission and other stakeholders.
 
-The classes of management procedure used here are mainly intended to illustrate the wide variety of possible MPs: the data inputs they use, their algorithmic form and the management controls which they alter (e.g. effort versus catch).
+Several classes of management procedure (MP) are presented with each _class_ having several _control parameters_ which can be varied to alter it's behaviour. We refer to a particular combination of control parameters for a class as an _instance_ of that class.
 
 > BRule class
 

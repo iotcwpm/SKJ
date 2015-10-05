@@ -1,0 +1,96 @@
+#title An operating model for the Indian Ocean skipjack tuna fishery
+
+Nokome Bentley{sup 1} and M. Shiham Adam{sup 2}
+
+1. Trophia Limited, New Zealand nbentley@trophia.com
+2. Marine Research Centre, Maldives msadam@mrc.gov.mv
+
+
+h1 Abstract
+
+
+A simulation model of the Indian Ocean skipjack tuna fishery was developed for the evaluation of alternative fisheries management procedures. The model partitions the population by region, age, and size and the fishery by region and gear (purse seine, pole-and-line, gill net, others). Prior probability distributions and sensitivity ranges are defined for model parameters for use in conditioning and robustness testing.  Performance statistics are defined based and linked to broader management objectives. Three contrasting classes of management procedure (MP) are provided as examples: BRule (a generic harvest control rule based on an estimate of stock status), FRange (a MP which adjusts effort when fishing mortality is outside a target range) and IRate (a MP which recommends a total allowable catch using a CPUE-based biomass index).
+
+h1 Outline
+
+#outline
+
+
+> Introduction
+
+	This report describes the development of an operating model of the Indian Ocean skipjack tuna fishery for use in management strategy evaluation (MSE). This work was initiated by the Maldives pole-and-line fishery in partial fulfillment of the conditions of its Marine Stewardship Council (MSC) certification (Adam et al 2013).
+
+	This document outlines the structure of the model, describes prior probability distributions and sensitivity ranges for model parameters, lists performance statistics to be used for evaluations and introduces some example management procedures. Each section of this report is "living documentation" of the model and its outputs - most have been presented to IOTC working parties previously but where necessary, based on feedback from those working parties, have been updated and revised.
+
+
+> Implementation and usage
+
+	include ../../model/implementation complete
+		delete #title
+
+
+> Structure and assumptions
+
+	include ../../model/description complete
+		delete #title
+
+
+> Parameters
+
+	include ../../parameters/description complete
+		delete #title
+
+if 0
+	> Estimation
+
+		> FST-based 
+			include ../../feasible/display complete
+				delete #title
+
+		> SS3-based
+			include ../../ss3/display complete
+				delete #title
+
+
+	> Outputs
+		include ../../model/display complete
+			delete #title
+
+	> Fits
+
+		include ../../data/display complete
+			delete #title
+
+
+> Performance measures, performance statistics and management objectives
+
+	include ../../performance/description complete
+		delete #title
+
+if 0
+	> Yield curve and MSY estimation 
+
+		include ../../yield/display complete
+			delete #title
+
+
+> Example management procedures
+
+	include ../../procedures/description complete
+		delete #title
+
+
+if 0
+	> Example evaluations
+
+		include ../../evaluate/display complete
+			delete #title
+
+
+> Acknowledgments
+
+	This work has been funded by the International Pole and Line Foundation (IPNLF), the Maldives Seafood Processors and Exporters Association (MSPEA), the Areas Beyond National Jurisdiction Program (ABNJ) and WWF with support and oversignt of the Maldives Marine Research Centre (MRC). Support for the project's Advisory Committee has been provided by the International Seafood Sustainability Foundation (ISSF).
+
+> References
+
+	include ../refs complete

@@ -1,0 +1,5 @@
+The source code for this project is managed using the Git distributed version control system and is publicly available at [https://github.com/iotcwpm/SKJ](https://github.com/iotcwpm/SKJ). The `README.md` file of the repository provides a useful entry point for understanding the organisation of the code.
+
+The model has been implemented using the C++ programming language. C++ was chosen for its high computational speed, considered an important requirement for a model of this complexity, which is to be used to evaluate numerous candidate management procedures, several thousand times. The C++ code is generally well documented and web navigable documentation, generated using the tool [Doxygen](http://doxygen.org), is available at [http://iotcwpm.github.io/SKJ/doxygen/](http://iotcwpm.github.io/SKJ/doxygen/). As the model is being refined this documentation is updated and as such it should be considered more up-to-date than the following descriptions and equations which may have been superseded.
+
+In addition to the core C++ code, R scripts for the preparation of input data and for the generation of output summaries are available in the repository.
