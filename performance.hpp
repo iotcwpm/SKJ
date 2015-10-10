@@ -156,8 +156,8 @@ public:
 			.data(kobe_to_a,"kobe_to_a")
 			.data(cpue_mean(SW,PS),"cpue_mean_sw_ps")
 			.data(cpue_mean(NW,PS),"cpue_mean_nw_ps")
-			.data(cpue_mean(M,PL),"cpue_mean_m_pl")
-			.data(cpue_mean(E,GN),"cpue_mean_e_gn")
+			.data(cpue_mean(MA,PL),"cpue_mean_ma_pl")
+			.data(cpue_mean(EA,GN),"cpue_mean_ea_gn")
 		;
 	}
 

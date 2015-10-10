@@ -76,36 +76,36 @@ struct Tracker {
 
 			<<model.biomass_spawners(SW)<<"\t"
 			<<model.biomass_spawners(NW)<<"\t"
-			<<model.biomass_spawners(M)<<"\t"
-			<<model.biomass_spawners(E)<<"\t"
+			<<model.biomass_spawners(MA)<<"\t"
+			<<model.biomass_spawners(EA)<<"\t"
 
 			<<model.biomass_spawning_overall(quarter)<<"\t"
 			<<model.biomass_spawning(SW)<<"\t"
 			<<model.biomass_spawning(NW)<<"\t"
-			<<model.biomass_spawning(M)<<"\t"
-			<<model.biomass_spawning(E)<<"\t"
+			<<model.biomass_spawning(MA)<<"\t"
+			<<model.biomass_spawning(EA)<<"\t"
 
 			<<model.biomass_vulnerable(SW,PS)<<"\t"
 			<<model.biomass_vulnerable(NW,PS)<<"\t"
-			<<model.biomass_vulnerable(M,PL)<<"\t"
-			<<model.biomass_vulnerable(E,GN)<<"\t"
+			<<model.biomass_vulnerable(MA,PL)<<"\t"
+			<<model.biomass_vulnerable(EA,GN)<<"\t"
 			
 			<<model.catches_taken(sum)<<"\t"
 			<<model.catches_taken(NW,PS)<<"\t"
 			<<model.catches_taken(SW,PS)<<"\t"
-			<<model.catches_taken(M,PL)<<"\t"
-			<<model.catches_taken(E,GN)<<"\t"
+			<<model.catches_taken(MA,PL)<<"\t"
+			<<model.catches_taken(EA,GN)<<"\t"
 
 			<<model.effort(sum)<<"\t"
 			<<model.effort(SW,PS)<<"\t"
 			<<model.effort(NW,PS)<<"\t"
-			<<model.effort(M,PL)<<"\t"
-			<<model.effort(E,GN)<<"\t"
+			<<model.effort(MA,PL)<<"\t"
+			<<model.effort(EA,GN)<<"\t"
 
 			<<model.exploitation_rate(SW,PS)<<"\t"
 			<<model.exploitation_rate(NW,PS)<<"\t"
-			<<model.exploitation_rate(M,PL)<<"\t"
-			<<model.exploitation_rate(E,GN)<<"\t"
+			<<model.exploitation_rate(MA,PL)<<"\t"
+			<<model.exploitation_rate(EA,GN)<<"\t"
 
 			<<std::endl;
 	}

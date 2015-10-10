@@ -81,7 +81,7 @@ public:
 		// Maldive PL quarterly CPUE
 		if(year>=2000 and year<=2013){
 			// Just get M/PL vulnerable biomass
-			m_pl_cpue(year,quarter) = model.biomass_vulnerable(M,PL) * model.m_pl_quarter(quarter);	
+			m_pl_cpue(year,quarter) = model.biomass_vulnerable(MA,PL) * model.m_pl_quarter(quarter);	
 			
 			// At end, scale expected by geometric mean over period 2004-2012
 			if(year==2013 and quarter==3){

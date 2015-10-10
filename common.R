@@ -33,8 +33,8 @@ dimensions <- function(data){
     else {
       # Set factors for other dimensions
       levels = switch(name,
-        region = c('SW','NW','M','E'),
-        region_from = c('W','M','E'),
+        region = c('SW','NW','MA','EA'),
+        region_from = c('SW','NW','MA','EA'),
         method = c('PS','PL','GN','OT'),
         z_size = c('45-50','50-55','55-60','60-65'),
         NULL

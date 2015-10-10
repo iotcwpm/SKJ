@@ -91,7 +91,7 @@ void yield(void){
 		},
 		{
 			model.e_msy,model.f_msy,model.msy,model.biomass_spawners_msy,model.biomass_spawners_unfished,double(model.msy_trials),
-			model.catches_taken(sum),model.catches_taken(SW,PS)+model.catches_taken(NW,PS),model.catches_taken(M,PL),model.catches_taken(E,GN)
+			model.catches_taken(sum),model.catches_taken(SW,PS)+model.catches_taken(NW,PS),model.catches_taken(MA,PL),model.catches_taken(EA,GN)
 		}
 	);
 	msy.write("yield/output/msy.tsv");
@@ -233,8 +233,8 @@ int check_ss3(const Model& model, const Data& data, uint time, uint year, uint q
 		if(
 			model.exploitation_rate(SW,PS)>0.5 or
 			model.exploitation_rate(NW,PS)>0.5 or
-			model.exploitation_rate(M,PL)>0.5 or
-			model.exploitation_rate(E,GN)>0.5 
+			model.exploitation_rate(MA,PL)>0.5 or
+			model.exploitation_rate(EA,GN)>0.5 
 		) return 3;
 	}
 

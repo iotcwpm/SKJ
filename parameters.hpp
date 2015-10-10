@@ -74,15 +74,13 @@ public:
 
     /**
      * Movements parameters
-     *
-     * There are 9 movement parameters (3 x 3 regions) but they are parameterised
-     * into 4 priors. `movement_stay` defines a prior on the proportion of fish
-     * that remain in an area.
      */
-	Variable<Uniform> movement_stay;
-	Variable<Uniform> movement_w_m;
-	Variable<Uniform> movement_m_e;
-	Variable<Uniform> movement_w_e;
+	Variable<Uniform> movement_sw_nw;
+	Variable<Uniform> movement_nw_ma;
+	Variable<Uniform> movement_nw_ea;
+	Variable<Uniform> movement_ma_ea;
+    Variable<Uniform> movement_length_inflection;
+    Variable<Uniform> movement_length_steepness;
 
 	/**
 	 * Selectivity parameters
@@ -129,10 +127,13 @@ public:
             .data(growth_sd,"growth_sd")
             .data(growth_cv,"growth_cv")
 
-            .data(movement_stay,"movement_stay")
-            .data(movement_w_m,"movement_w_m")
-            .data(movement_m_e,"movement_m_e")
-            .data(movement_w_e,"movement_w_e")
+            .data(movement_sw_nw,"movement_sw_nw")
+            .data(movement_nw_ma,"movement_nw_ma")
+            .data(movement_nw_ea,"movement_nw_ea")
+            .data(movement_ma_ea,"movement_ma_ea")
+
+            .data(movement_length_inflection,"movement_length_inflection")
+            .data(movement_length_steepness,"movement_length_steepness")
 
             .data(selectivities,"selectivities")
 
@@ -175,8 +176,9 @@ public:
 		uint year = IOSKJ::year(time);
 		uint quarter = IOSKJ::quarter(time);
 		
-		// Bind invariant parameters
+		// Bind invariant parameters to model attributes
 		if(time==0){
+			// Stock - recruitment
 			model.biomass_spawners_unfished = spawners_unfished;
 			model.recruits_steepness = recruits_steepness;
 			model.recruits_sd = recruits_sd;
@@ -188,34 +190,56 @@ public:
 
 			for(auto region : regions) model.recruits_regions(region) = recruits_regions(region);
 
+			// Length of recruits
 			model.recruits_lengths_mean = recruits_lengths_mean;
 			model.recruits_lengths_cv = recruits_lengths_cv;
 
+			// Length-weight relationship
 			model.weight_length_a = weight_a;
 			model.weight_length_b = weight_b;
 
+			// Maturity curve
 			model.maturity_length_inflection = maturity_inflection;
 			model.maturity_length_steepness = maturity_steepness;
 
+			// Moratlity v weight curve
 			model.mortality_base = mortality_base;
 			model.mortality_exponent = mortality_exponent;
 			
+			// Growth curve
 			model.growth_rate = growth_rate;
 			model.growth_assymptote = growth_assymptote;
 			model.growth_sd = growth_sd;
 			model.growth_cv = growth_cv;		
 
-			for(auto region_from : region_froms){
-				for(auto region : regions){
-					if(region_from==Level<RegionFrom>(region)) model.movement_pars(region_from,region) = 1;//movement_stay;
-					// TODO else if((region_from==W and region==M) or (region_from==M and region==W)) model.movement_pars(region_from,region) = movement_w_m;
-					// TODO else if((region_from==M and region==E) or (region_from==E and region==M)) model.movement_pars(region_from,region) = movement_m_e;
-					// TODO else if((region_from==W and region==E) or (region_from==E and region==W)) model.movement_pars(region_from,region) = movement_w_e;
-					else model.movement_pars(region_from,region) = 0;
-					//else throw std::runtime_error("Unhandled movement parameter");
-				}
-			}
+			// Movement
+			// Note that in the model.intialise function these
+			// proportional are restricted so that they do not sum to greater
+			// than one.
+			model.movement_regions(SW,SW) = 1-movement_sw_nw;
+			model.movement_regions(SW,NW) = movement_sw_nw;
+			model.movement_regions(SW,MA) = 0;
+			model.movement_regions(SW,EA) = 0;
 
+			model.movement_regions(NW,SW) = movement_sw_nw;
+			model.movement_regions(NW,NW) = 1-movement_sw_nw-movement_nw_ma-movement_nw_ea;
+			model.movement_regions(NW,MA) = movement_nw_ma;
+			model.movement_regions(NW,EA) = movement_nw_ea;
+
+			model.movement_regions(MA,SW) = 0;
+			model.movement_regions(MA,NW) = movement_nw_ma;
+			model.movement_regions(MA,MA) = 1-movement_nw_ma-movement_ma_ea;
+			model.movement_regions(MA,EA) = movement_ma_ea;
+
+			model.movement_regions(EA,SW) = 0;
+			model.movement_regions(EA,NW) = movement_nw_ea;
+			model.movement_regions(EA,MA) = movement_ma_ea;
+			model.movement_regions(EA,EA) = 1-movement_ma_ea-movement_nw_ea;
+
+			model.movement_length_inflection = movement_length_inflection;
+			model.movement_length_steepness = movement_length_steepness;
+
+			// Selectivity
 			for(auto method : methods){
 				for(auto knot : selectivity_knots){
 					model.selectivity_values(method,knot) = selectivities(method,knot);

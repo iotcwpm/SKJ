@@ -53,8 +53,8 @@ STENCILA_DIM(RegionFrom,region_froms,region_from,4);
 enum {
 	SW = 0,
 	NW = 1,
-	M = 2,
-	E = 3
+	MA = 2,
+	EA = 3
 };
 
 STENCILA_DIM(Age,ages,age,24);

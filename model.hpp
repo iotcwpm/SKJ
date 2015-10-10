@@ -231,8 +231,17 @@ public:
 	 * @name Movement
 	 */
 	
-	Array<double,RegionFrom,Region> movement_pars;
-	Array<double,RegionFrom,Region> movement;
+	/**
+	 * Movement maximum proportion moving from one region to another
+	 */
+	Array<double,RegionFrom,Region> movement_regions;
+	
+	/**
+	 * Movement proportion at size logistic function
+	 */
+	double movement_length_inflection;
+	double movement_length_steepness;
+	Array<double,Size> movement_sizes;
 
 	/**
 	 * @}
@@ -390,10 +399,13 @@ public:
 	/**
 	 * Set movement parameters so that there is uniform movement.
 	 *
-	 * All elements set to 1/3. Mainly used for testing
+	 * All movement_regions elements set to 1/(number of regions). All sizes move.
+	 * Mainly used for testing
 	 */
 	void movement_uniform(void){
-		movement_pars = 1.0/movement_pars.size();
+		movement_regions = 1.0/regions.size();
+		movement_length_inflection = 0;
+		movement_length_steepness = 100;
 	}
 
 	/**
@@ -432,8 +444,8 @@ public:
 		exploitation_rate_specified = 0;
 		exploitation_rate_specified(SW,PS) = value;
 		exploitation_rate_specified(NW,PS) = value;
-		exploitation_rate_specified(M,PL) = value;
-		exploitation_rate_specified(E,GN) = value;
+		exploitation_rate_specified(MA,PL) = value;
+		exploitation_rate_specified(EA,GN) = value;
 	}
 
 	/**
@@ -466,12 +478,13 @@ public:
 	 * Initialise various model variables based on current parameter values
 	 */
 	void initialise(void){
-		// Initialise grids by size...	
+		// Initialise arrays that are dimensioned by size...	
 		for(auto size : sizes){
 			double length = 2*size.index()+1;
 			lengths(size) = length;
 			weights(size) = weight_length_a*std::pow(length,weight_length_b);
 			maturities(size) = 1.0/(1.0+std::pow(19,(maturity_length_inflection-length)/maturity_length_steepness));
+			movement_sizes(size) = 1.0/(1.0+std::pow(19,(movement_length_inflection-length)/movement_length_steepness));
 		}
 
 		// Mortality at size
@@ -512,14 +525,25 @@ public:
 			}
 		}
 
-		// Initialise movement matrix
-		// Normalise so that movement proportions always sum to 1 for a particular region
-		auto movement_sums = movement_pars(sum,by(region_froms));
+		// Initialise regional movement matrix
 		for(auto region_from : region_froms){
+			// Check that the off diagonal elements sum to between 0 and 1
+			double off_diagonals = 0;
 			for(auto region : regions){
-				movement(region_from,region) = 
-					movement_pars(region_from,region)/movement_sums(region_from);
+				if(region_from.index()!=region.index()) off_diagonals += movement_regions(region_from,region);
 			}
+			// If they don't then normalise them
+			if(off_diagonals<0){
+				throw std::runtime_error("Woahhh! There is a negative regional movement parameter");
+			}
+			else if(off_diagonals>1){
+				for(auto region : regions){
+					if(region_from.index()!=region.index()) movement_regions(region_from,region) = movement_regions(region_from,region)/off_diagonals;
+				}
+				off_diagonals = 1;
+			}
+			// Ensure diagonals are complements
+			movement_regions(region_from,Level<Region>(region_from)) = 1 - off_diagonals;
 		}
 
 		// Initialise selectivity
@@ -727,7 +751,7 @@ public:
 										growth(size_from,size) * 
 										mortalities_survival(sf) * 
 										exploitation_survival(rf,sf) * 
-										movement(region_from,region);
+										movement_regions(region_from,region);
 						}
 					}
 					numbers_temp(region,age,size) = number;
@@ -774,11 +798,11 @@ public:
 			biomass_prev = biomass;
 
 			#if DEBUG
-				std::cout<<steps<<"\t"<<biomass(SW)<<"\t"<<biomass(NW)<<"\t"<<biomass(M)<<"\t"<<biomass(E)<<"\t"<<diffs<<std::endl;
+				std::cout<<steps<<"\t"<<biomass(SW)<<"\t"<<biomass(NW)<<"\t"<<biomass(MA)<<"\t"<<biomass(EA)<<"\t"<<diffs<<std::endl;
 			#endif
 
 			// Throw an error if undefined biomass
-			if(not std::isfinite(biomass(SW)+biomass(NW)+biomass(M)+biomass(E))){
+			if(not std::isfinite(biomass(SW)+biomass(NW)+biomass(MA)+biomass(EA))){
 				write();
 				throw std::runtime_error("Biomass is not finite. Check inputs. Model has been written to `model/output`");
 			}
@@ -829,8 +853,8 @@ public:
 			equilibrium();
 			curve.append({
 				exprate,fishing_mortality_get(),catches_taken(sum),biomass_status(0),biomass_vulnerable(sum),
-				catches_taken(SW,PS),catches_taken(NW,PS),catches_taken(M,PL),catches_taken(E,GN),
-				biomass_vulnerable(SW,PS),biomass_vulnerable(NW,PS),biomass_vulnerable(M,PL),biomass_vulnerable(E,GN)
+				catches_taken(SW,PS),catches_taken(NW,PS),catches_taken(MA,PL),catches_taken(EA,GN),
+				biomass_vulnerable(SW,PS),biomass_vulnerable(NW,PS),biomass_vulnerable(MA,PL),biomass_vulnerable(EA,GN)
 			});
 		}
 		return curve;
@@ -922,7 +946,8 @@ public:
 		biomass_spawning_unfished.write("model/output/biomass_spawning_unfished.tsv");
 		
 		recruits_regions.write("model/output/recruits_regions.tsv");
-		movement.write("model/output/movement.tsv");
+		movement_regions.write("model/output/movement_regions.tsv");
+		movement_sizes.write("model/output/movement_sizes.tsv");
 
 		numbers.write("model/output/numbers.tsv");
 

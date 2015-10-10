@@ -30,15 +30,15 @@ public:
 		model.catches(NW,GN) = 0.5 * 0.117 * catches;
 		model.catches(NW,OT) = 0.5 * 0.024 * catches;
 
-		model.catches(M,PS) = 0.000 * catches;
-		model.catches(M,PL) = 0.198 * catches;
-		model.catches(M,GN) = 0.000 * catches;
-		model.catches(M,OT) = 0.005 * catches;
+		model.catches(MA,PS) = 0.000 * catches;
+		model.catches(MA,PL) = 0.198 * catches;
+		model.catches(MA,GN) = 0.000 * catches;
+		model.catches(MA,OT) = 0.005 * catches;
 
-		model.catches(E,PS) = 0.058 * catches;
-		model.catches(E,PL) = 0.006 * catches;
-		model.catches(E,GN) = 0.141 * catches;
-		model.catches(E,OT) = 0.078 * catches;
+		model.catches(EA,PS) = 0.058 * catches;
+		model.catches(EA,PL) = 0.006 * catches;
+		model.catches(EA,GN) = 0.141 * catches;
+		model.catches(EA,OT) = 0.078 * catches;
 	}
 
 	/**
@@ -388,7 +388,7 @@ public:
 			GeometricMean combined;
 			combined.append(model.cpue(SW,PS));
 			combined.append(model.cpue(NW,PS));
-			combined.append(model.cpue(M,PL));
+			combined.append(model.cpue(MA,PL));
 			double cpue = combined;
 			// Add observation error
 			Lognormal imprecision(1,precision);
