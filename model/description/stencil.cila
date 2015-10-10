@@ -21,7 +21,7 @@ As well as documenting the current structure of the model, this section also not
 
 		Four regions (|r|) are defined, South-West (|sw|), North-West (|mw|), Maldives (|ma|) and East (|ea|) (@figure-regions). The term "region" is used in preference to "area" because using the latter would confound the |a| subscript which is also used for age. 
 
-		Initially three regions were defined mostly on the basis of differences is the main fishing gears used in each: purse-seine in the west, pole-and-line in the Maldives, and gill-net in the east. Although the Maldives is a small region spatially, it accounts for a large proportion of the total catch (see later sections). A three region structure also provided alignment between the model structure and the two available abundance indices, CPUE from the western purse seine fleet and CPUE from the Maldive pol-and-line fleet.
+		Initially three regions were defined mostly on the basis of differences is the main fishing gears used in each: purse-seine in the west, pole-and-line in the Maldives, and gill-net in the east. Although the Maldives is a small region spatially, it accounts for a large proportion of the total catch (see later sections). A three region structure also provided alignment between the model structure and the two available abundance indices, CPUE from the western purse seine fleet and CPUE from the Maldive pole-and-line fleet.
 
 		There is little information available on biological stock definitions for Indian Ocean skipjack tuna. However, based on what information is available, Fonteneau (2014), suggested four regions be used for future models, with the western region divided into northern and southern regions at the equator. However, the spatial distribution of catches by the EU purse seine fleet shows a strong discontinuity of the catch distribution at -10 degrees south (@figure-regions) so the western region was divided on this basis.
 
@@ -271,7 +271,7 @@ As well as documenting the current structure of the model, this section also not
 
 		The movement parameter matrix thus becomes:
 
-		|M_{dot(r),r} = [[1-omega_{sw,nw},omega_{sw,nw},0,0],[omega_{sw,nw},1-omega_{sw,nw}-omega_{nw,ma}-omega_{nw,ea},omega_{nw,ma},omega_{ma,ea}],[0,omega_{nw,ma},1-omega_{nw,ma}-omega_{ma,ea},omega_{ma,ea}],[0,omega_{nw,ea},omega_{nw,ea},1-omega_{nw,ea}-omega_{ma,ea}]]|
+		|M_{dot(r),r} = [[1-omega_{sw,nw},omega_{sw,nw},0,0],[omega_{sw,nw},1-omega_{sw,nw}-omega_{nw,ma}-omega_{nw,ea},omega_{nw,ma},omega_{nw,ea}],[0,omega_{nw,ma},1-omega_{nw,ma}-omega_{ma,ea},omega_{ma,ea}],[0,omega_{nw,ea},omega_{ma,ea},1-omega_{nw,ea}-omega_{ma,ea}]]|
 
 		defined by the parameters |omega_{sw,nw}|, |omega_{nw,ma}|, |omega_{nw,ea}|, |omega_{ma,ea}|.
 
