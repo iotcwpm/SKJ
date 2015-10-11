@@ -66,6 +66,7 @@ public:
 	Variable<Fixed> growth_assymptote;
 	Variable<Fixed> growth_stanza_inflection;
 	Variable<Fixed> growth_stanza_steepness;
+	Variable<Fixed> growth_age_0;
 	Variable<Fixed> growth_cv_0;
 	Variable<Fixed> growth_cv_old;
 
@@ -121,6 +122,7 @@ public:
 			.data(growth_assymptote,"growth_assymptote")
 			.data(growth_stanza_inflection,"growth_stanza_inflection")
 			.data(growth_stanza_steepness,"growth_stanza_steepness")
+			.data(growth_age_0,"growth_age_0")
 			.data(growth_cv_0,"growth_cv_0")
 			.data(growth_cv_old,"growth_cv_old")
 

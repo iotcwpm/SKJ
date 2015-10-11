@@ -129,11 +129,6 @@ public:
 	/**
 	 * @}
 	 */
-	
-	/**
-	 * Length associated with each size
-	 */
-	Array<double,Size> lengths;
 
 	/**
 	 * @{
@@ -148,8 +143,14 @@ public:
 	double growth_assymptote;
 	double growth_stanza_inflection;
 	double growth_stanza_steepness;
+	double growth_age_0;
 	double growth_cv_0;
 	double growth_cv_old;
+
+	/**
+	 * Length associated with each size
+	 */
+	Array<double,Size> length_size;
 
 	/**
 	 * Length distribution for each age group
@@ -498,12 +499,26 @@ public:
 	 * Initialise various model variables based on current parameter values
 	 */
 	void initialise(void){
-		// Initialise length distributions by size
-		// TODO
+		// Initialise length distributions by age
+		double growth_cv_slope = (growth_cv_old - growth_cv_0)/ages.size();
+		for(auto age : ages){
+			// Convert age from quarters to years
+			double a = double(age.index())/4.0;
+			// Mean length at age
+			double part1 = (1+std::exp(-growth_stanza_steepness*(a-growth_age_0-growth_stanza_inflection)))/
+						   (1+std::exp(growth_stanza_inflection*growth_stanza_steepness));
+			double part2 = std::pow(part1,-(growth_rate_2-growth_rate_1)/growth_stanza_steepness);
+			double mean = growth_assymptote * (1-std::exp(-growth_rate_2*(a-growth_age_0))*part2);
+			// Standard deviation of length at age
+			double cv = growth_cv_0 + growth_cv_slope*a;
+			double sd = mean * cv;
+			length_age(age) = Normal(mean,sd);
+		}
 
 		// Initialise arrays that are dimensioned by size	
 		for(auto size : sizes){
 			double length = 2*size.index()+1;
+			length_size(size) = length;
 			weight_size(size) = weight_length_a*std::pow(length,weight_length_b);
 			maturity_size(size) = 1.0/(1.0+std::pow(19,(maturity_length_inflection-length)/maturity_length_steepness));
 			movement_size(size) = 1.0/(1.0+std::pow(19,(movement_length_inflection-length)/movement_length_steepness));
@@ -545,7 +560,7 @@ public:
 			// can produce values outside this range even if knots are not
 			double max = 0;
 			for(auto size : sizes){
-				double length = lengths(size);
+				double length = length_size(size);
 				double selectivity;
 				if(length<selectivity_lengths(0)) selectivity = 0;
 				else{
@@ -913,7 +928,7 @@ public:
 		
 		recruits_regions.write("model/output/recruits_regions.tsv");
 		
-		lengths.write("model/output/lengths.tsv");
+		length_size.write("model/output/length_size.tsv");
 		length_age.write("model/output/length_age.tsv",{"mean","sd"},[](std::ostream& stream,const Normal& dist){
 			stream<<dist.mean<<"\t"<<dist.sd;
 		});

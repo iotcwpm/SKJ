@@ -21,14 +21,12 @@ theme_update(
 #' Convert model dimensions into factors (or another integer in the case of 'size') in a data.frame
 dimensions <- function(data){
   for(name in names(data)){
-    # Replace the size dimensions with length
+    # Give length for size dimensions
     if(name=='size'){
       data$length <- data$size*2+1
-      data$size <- NULL
     }
     else if(name=='size_from'){
       data$length_from <- data$size_from*2+1
-      data$size_from <- NULL
     }
     else {
       # Set factors for other dimensions

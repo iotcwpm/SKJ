@@ -34,6 +34,46 @@
     "lower": 0.3,
     "upper": 0.7
   },
+  "growth_rate_1": {
+    "value": 1.12,
+    "lower": 0,
+    "upper": 0
+  },
+  "growth_rate_2": {
+    "value": 0.33,
+    "lower": 0,
+    "upper": 0
+  },
+  "growth_assymptote": {
+    "value": 71.6,
+    "lower": 0,
+    "upper": 0
+  },
+  "growth_stanza_inflection": {
+    "value": 0.95,
+    "lower": 0,
+    "upper": 0
+  },
+  "growth_stanza_steepness": {
+    "value": 24.8,
+    "lower": 0,
+    "upper": 0
+  },
+  "growth_age_0": {
+    "value": -0.3,
+    "lower": -1,
+    "upper": 1
+  },
+  "growth_cv_0": {
+    "value": 0.1,
+    "lower": 0,
+    "upper": 0
+  },
+  "growth_cv_old": {
+    "value": 0.1,
+    "lower": 0,
+    "upper": 0
+  },
   "weight_a": {
     "value": 5.32e-06
   },
@@ -57,18 +97,6 @@
   },
   "mortality_exponent": {
     "value": -0.29
-  },
-  "growth_rate": {
-    "value": 0.3
-  },
-  "growth_assymptote": {
-    "value": 75
-  },
-  "growth_sd": {
-    "value": 1
-  },
-  "growth_cv": {
-    "value": 0.2
   },
   "movement_sw_nw": {
     "value": 0.05,

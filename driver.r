@@ -21,6 +21,7 @@ run(
 		growth_assymptote = Uniform(71.6,0,0),
 		growth_stanza_inflection = Uniform(0.95,0,0),
 		growth_stanza_steepness = Uniform(24.8,0,0),
+		growth_age_0 = Uniform(0,0,0),
 		growth_cv_0 = Uniform(0.1,0,0),
 		growth_cv_old = Uniform(0.1,0,0),
 
