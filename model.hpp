@@ -502,8 +502,8 @@ public:
 		// Initialise length distributions by age
 		double growth_cv_slope = (growth_cv_old - growth_cv_0)/ages.size();
 		for(auto age : ages){
-			// Convert age from quarters to years
-			double a = double(age.index())/4.0;
+			// Convert age from quarters (middle of quarter) to years
+			double a = double(age.index()+0.5)/4.0;
 			// Mean length at age
 			double part1 = (1+std::exp(-growth_stanza_steepness*(a-growth_age_0-growth_stanza_inflection)))/
 						   (1+std::exp(growth_stanza_inflection*growth_stanza_steepness));
@@ -512,7 +512,19 @@ public:
 			// Standard deviation of length at age
 			double cv = growth_cv_0 + growth_cv_slope*a;
 			double sd = mean * cv;
-			length_age(age) = Normal(mean,sd);
+			Normal dist(mean,sd);
+			length_age(age) = dist;
+			// Calculate proportions in each size bin
+			double sum = 0;
+			for(auto size : sizes){
+				double lower = 2*size.index();
+				double upper = lower+2;
+				double prop = dist.cdf(upper)-dist.cdf(lower);
+				age_size(age,size) = prop;
+				sum += prop;
+			}
+			// Normalise to ensure rows sum to 1
+			for(auto size : sizes) age_size(age) /= sum;
 		}
 
 		// Initialise arrays that are dimensioned by size	
