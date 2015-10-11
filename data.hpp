@@ -128,7 +128,9 @@ public:
 					// Calculate selected numbers by size accumulated over ages
 					for(auto size : sizes){
 						for(auto age : ages){
-							composition(size) += model.numbers(region,age,size) * model.selectivities(method,size);
+							composition(size) += model.numbers(region,age) * 
+												 model.age_size(age,size) *
+												 model.selectivity_size(method,size);
 						}
 					}
 					// Proportionalise
@@ -153,7 +155,7 @@ public:
 				uint z_lower = 45+z_size.index()*5;
 				uint size_class = (z_lower-1)/2;
 				for(uint size=size_class;size<size_class+3;size++){
-					double survival = model.mortalities_survival(size) * model.exploitation_survival(SW,size) * model.exploitation_survival(NW,size);
+					double survival = 	model.survival(size) * model.escapement(NW,size);
 					// Capture cases where survuval is estimated to be zero to prevent overflow
 					if(survival>0) z += -log(survival);
 					else z += -log(0.000001);
