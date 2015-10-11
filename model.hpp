@@ -914,7 +914,9 @@ public:
 		recruits_regions.write("model/output/recruits_regions.tsv");
 		
 		lengths.write("model/output/lengths.tsv");
-		length_age.write("model/output/length_age.tsv");
+		length_age.write("model/output/length_age.tsv",{"mean","sd"},[](std::ostream& stream,const Normal& dist){
+			stream<<dist.mean<<"\t"<<dist.sd;
+		});
 		age_size.write("model/output/age_size.tsv");
 
 		weight_size.write("model/output/weight_size.tsv");
