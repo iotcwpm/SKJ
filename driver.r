@@ -1,3 +1,5 @@
+#!/usr/bin/env Rscript
+
 source('ioskj.r')
 
 run(
