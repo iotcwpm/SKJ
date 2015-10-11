@@ -41,12 +41,6 @@ public:
 	Array<Variable<Uniform>,Region> recruits_regions;
 
 	/**
-	 * Variables of the distribution of the lengths of recruits
-	 */
-	Variable<Uniform> recruits_lengths_mean;
-	Variable<Uniform> recruits_lengths_cv;
-
-	/**
 	 * Length-weight parameters
 	 */
     Variable<Fixed> weight_a;
@@ -67,10 +61,13 @@ public:
     /**
      * Growth rate parameters
      */
-	Variable<Fixed> growth_rate;
+	Variable<Fixed> growth_rate_1;
+	Variable<Fixed> growth_rate_2;
 	Variable<Fixed> growth_assymptote;
-	Variable<Fixed> growth_sd;
-	Variable<Fixed> growth_cv;
+	Variable<Fixed> growth_stanza_inflection;
+	Variable<Fixed> growth_stanza_steepness;
+	Variable<Fixed> growth_cv_0;
+	Variable<Fixed> growth_cv_old;
 
     /**
      * Movements parameters
@@ -110,9 +107,6 @@ public:
 
             .data(recruits_regions,"recruits_regions")
 
-            .data(recruits_lengths_mean,"recruits_lengths_mean")
-            .data(recruits_lengths_cv,"recruits_lengths_cv")
-
             .data(weight_a,"weight_a")
             .data(weight_b,"weight_b")
 
@@ -122,10 +116,13 @@ public:
             .data(mortality_base,"mortality_base")
             .data(mortality_exponent,"mortality_exponent")
 
-            .data(growth_rate,"growth_rate")
-            .data(growth_assymptote,"growth_assymptote")
-            .data(growth_sd,"growth_sd")
-            .data(growth_cv,"growth_cv")
+			.data(growth_rate_1,"growth_rate_1")
+			.data(growth_rate_2,"growth_rate_2")
+			.data(growth_assymptote,"growth_assymptote")
+			.data(growth_stanza_inflection,"growth_stanza_inflection")
+			.data(growth_stanza_steepness,"growth_stanza_steepness")
+			.data(growth_cv_0,"growth_cv_0")
+			.data(growth_cv_old,"growth_cv_old")
 
             .data(movement_sw_nw,"movement_sw_nw")
             .data(movement_nw_ma,"movement_nw_ma")
@@ -190,10 +187,6 @@ public:
 
 			for(auto region : regions) model.recruits_regions(region) = recruits_regions(region);
 
-			// Length of recruits
-			model.recruits_lengths_mean = recruits_lengths_mean;
-			model.recruits_lengths_cv = recruits_lengths_cv;
-
 			// Length-weight relationship
 			model.weight_length_a = weight_a;
 			model.weight_length_b = weight_b;
@@ -207,34 +200,37 @@ public:
 			model.mortality_exponent = mortality_exponent;
 			
 			// Growth curve
-			model.growth_rate = growth_rate;
+			model.growth_rate_1 = growth_rate_1;
+			model.growth_rate_2 = growth_rate_2;
 			model.growth_assymptote = growth_assymptote;
-			model.growth_sd = growth_sd;
-			model.growth_cv = growth_cv;		
+			model.growth_stanza_inflection = growth_stanza_inflection;
+			model.growth_stanza_steepness = growth_stanza_steepness;
+			model.growth_cv_0 = growth_cv_0;
+			model.growth_cv_old = growth_cv_old;
 
 			// Movement
 			// Note that in the model.intialise function these
 			// proportional are restricted so that they do not sum to greater
 			// than one.
-			model.movement_regions(SW,SW) = 1-movement_sw_nw;
-			model.movement_regions(SW,NW) = movement_sw_nw;
-			model.movement_regions(SW,MA) = 0;
-			model.movement_regions(SW,EA) = 0;
+			model.movement_region(SW,SW) = 1-movement_sw_nw;
+			model.movement_region(SW,NW) = movement_sw_nw;
+			model.movement_region(SW,MA) = 0;
+			model.movement_region(SW,EA) = 0;
 
-			model.movement_regions(NW,SW) = movement_sw_nw;
-			model.movement_regions(NW,NW) = 1-movement_sw_nw-movement_nw_ma-movement_nw_ea;
-			model.movement_regions(NW,MA) = movement_nw_ma;
-			model.movement_regions(NW,EA) = movement_nw_ea;
+			model.movement_region(NW,SW) = movement_sw_nw;
+			model.movement_region(NW,NW) = 1-movement_sw_nw-movement_nw_ma-movement_nw_ea;
+			model.movement_region(NW,MA) = movement_nw_ma;
+			model.movement_region(NW,EA) = movement_nw_ea;
 
-			model.movement_regions(MA,SW) = 0;
-			model.movement_regions(MA,NW) = movement_nw_ma;
-			model.movement_regions(MA,MA) = 1-movement_nw_ma-movement_ma_ea;
-			model.movement_regions(MA,EA) = movement_ma_ea;
+			model.movement_region(MA,SW) = 0;
+			model.movement_region(MA,NW) = movement_nw_ma;
+			model.movement_region(MA,MA) = 1-movement_nw_ma-movement_ma_ea;
+			model.movement_region(MA,EA) = movement_ma_ea;
 
-			model.movement_regions(EA,SW) = 0;
-			model.movement_regions(EA,NW) = movement_nw_ea;
-			model.movement_regions(EA,MA) = movement_ma_ea;
-			model.movement_regions(EA,EA) = 1-movement_ma_ea-movement_nw_ea;
+			model.movement_region(EA,SW) = 0;
+			model.movement_region(EA,NW) = movement_nw_ea;
+			model.movement_region(EA,MA) = movement_ma_ea;
+			model.movement_region(EA,EA) = 1-movement_ma_ea-movement_nw_ea;
 
 			model.movement_length_inflection = movement_length_inflection;
 			model.movement_length_steepness = movement_length_steepness;

@@ -14,9 +14,9 @@ class Model {
 public:
 
 	/**
-	 * Fish numbers by region, age and size
+	 * Fish numbers by region and age
 	 */
-	Array<double,Region,Age,Size> numbers;
+	Array<double,Region,Age> numbers;
 
 	/**
 	 * Total biomass by region
@@ -125,12 +125,41 @@ public:
 	 */
 	Array<double,Region> recruits_regions;
 
+
 	/**
-	 * Proportion of recruits by size class
+	 * @}
 	 */
-	double recruits_lengths_mean;
-	double recruits_lengths_cv;
-	Array<double,Size> recruits_sizes;
+	
+	/**
+	 * Length associated with each size
+	 */
+	Array<double,Size> lengths;
+
+	/**
+	 * @{
+	 * @name Growth
+	 */
+	
+	/**
+	 * Parameters of the two-stanza vonBertallanffy
+	 */
+	double growth_rate_1;
+	double growth_rate_2;
+	double growth_assymptote;
+	double growth_stanza_inflection;
+	double growth_stanza_steepness;
+	double growth_cv_0;
+	double growth_cv_old;
+
+	/**
+	 * Length distribution for each age group
+	 */
+	Array<Normal,Age> length_age;
+
+	/**
+	 * Proportion of fish of each age in each size bin
+	 */
+	Array<double,Age,Size> age_size;
 
 	/**
 	 * @}
@@ -138,14 +167,8 @@ public:
 	
 	/**
 	 * @{
-	 * @name Length, weight, maturity
+	 * @name Weight
 	 */
-	
-	/**
-	 * Length at size s
-	 */
-	Array<double,Size> lengths;
-	const double lengths_step = 2;
 
 	/**
 	 * Weight at length power funciton
@@ -156,7 +179,17 @@ public:
 	/**
 	 * Weight at size
 	 */
-	Array<double,Size> weights;
+	Array<double,Size> weight_size;
+	Array<double,Age> weight_age;
+
+	/**
+	 * @}
+	 */
+	
+	/**
+	 * @{
+	 * @name Maturity
+	 */
 	
 	/**
 	 * Maturity at length logistic function
@@ -165,9 +198,10 @@ public:
 	double maturity_length_steepness;
 
 	/**
-	 * Maturity at size
+	 * Maturity at size and age
 	 */
-	Array<double,Size> maturities;
+	Array<double,Size> maturity_size;
+	Array<double,Age> maturity_age;
 
 	/**
 	 * @}
@@ -190,41 +224,25 @@ public:
 	double mortality_exponent;
 
 	/**
-	 * Size with maximum rate of natural mortality (exponential relationship
-	 * can give very high natural mortality at small sizes). Note this is not a 
-	 * length but a 0-based size class
+	 * Age with maximum rate of natural mortality (exponential relationship
+	 * can give very high natural mortality at small ages).
 	 */
-	Level<Size> mortality_cap_size = 10;
+	int mortality_cap_age = 1;
 
 	/**
 	 * Instantaneous rate of natural mortality for size s
 	 */
-	Array<double,Size> mortalities;
+	Array<double,Age> mortality;
 
 	/**
 	 * Quarterly rate of survival from natural mortality for size s
 	 */
-	Array<double,Size> mortalities_survival;
+	Array<double,Age> survival;
 
 	/**
 	 * @}
 	 */
 
-	/**
-	 * @{
-	 * @name Growth
-	 */
-	
-	double growth_rate;
-	double growth_assymptote;
-	double growth_sd;
-	double growth_cv;
-	Array<double,Size> growth_increments;
-	Array<double,SizeFrom,Size> growth;
-
-	/**
-	 * @}
-	 */
 
 	/**
 	 * @{
@@ -234,14 +252,15 @@ public:
 	/**
 	 * Movement maximum proportion moving from one region to another
 	 */
-	Array<double,RegionFrom,Region> movement_regions;
+	Array<double,RegionFrom,Region> movement_region;
 	
 	/**
 	 * Movement proportion at size logistic function
 	 */
 	double movement_length_inflection;
 	double movement_length_steepness;
-	Array<double,Size> movement_sizes;
+	Array<double,Size> movement_size;
+	Array<double,Age> movement_age;
 
 	/**
 	 * @}
@@ -265,7 +284,8 @@ public:
 	/**
 	 * Selectivities by method and size
 	 */
-	Array<double,Method,Size> selectivities;
+	Array<double,Method,Size> selectivity_size;
+	Array<double,Method,Age> selectivity_age;
 
 	/**
 	 * 
@@ -332,9 +352,9 @@ public:
 	Array<double,Region,Method> exploitation_rate;
 
 	/**
-	 * Exploitation survival
+	 * Escapement (i.e. survival form exploitation)
 	 */
-	Array<double,Region,Size> exploitation_survival;
+	Array<double,Region,Age> escapement;
 
 	/**
 	 * @}
@@ -403,7 +423,7 @@ public:
 	 * Mainly used for testing
 	 */
 	void movement_uniform(void){
-		movement_regions = 1.0/regions.size();
+		movement_region = 1.0/regions.size();
 		movement_length_inflection = 0;
 		movement_length_steepness = 100;
 	}
@@ -452,7 +472,7 @@ public:
 	 * Get overall exploitation rate.
 	 */
 	double exploitation_rate_get(void) const {
-		double survival = exploitation_survival(geomean);
+		double survival = escapement(geomean);
 		return 1 - survival;
 	}
 
@@ -478,51 +498,23 @@ public:
 	 * Initialise various model variables based on current parameter values
 	 */
 	void initialise(void){
-		// Initialise arrays that are dimensioned by size...	
+		// Initialise length distributions by size
+		// TODO
+
+		// Initialise arrays that are dimensioned by size	
 		for(auto size : sizes){
 			double length = 2*size.index()+1;
-			lengths(size) = length;
-			weights(size) = weight_length_a*std::pow(length,weight_length_b);
-			maturities(size) = 1.0/(1.0+std::pow(19,(maturity_length_inflection-length)/maturity_length_steepness));
-			movement_sizes(size) = 1.0/(1.0+std::pow(19,(movement_length_inflection-length)/movement_length_steepness));
+			weight_size(size) = weight_length_a*std::pow(length,weight_length_b);
+			maturity_size(size) = 1.0/(1.0+std::pow(19,(maturity_length_inflection-length)/maturity_length_steepness));
+			movement_size(size) = 1.0/(1.0+std::pow(19,(movement_length_inflection-length)/movement_length_steepness));
 		}
-
-		// Mortality at size
-		// The maximum mortality is determined by the mortality_cap which defines
-		// the _size_ at which mortality is highest. Because of this, mortalities needs
-		// to be initalised after weights have been initialised
-		for(auto size : sizes){
-			double mortality_weight = (size<mortality_cap_size)?weights(mortality_cap_size):weights(size);
-			mortalities(size) = mortality_base * std::pow(mortality_weight,mortality_exponent);
-			mortalities_survival(size) = std::exp(-0.25*mortalities(size));
-		}
-
-		// Initialise proportion of recruits by size
-		Normal recruits_lengths_dist(
-			recruits_lengths_mean,
-			recruits_lengths_mean*recruits_lengths_cv
-		);
-		for(auto size : sizes){
-			double length = lengths(size);
-			recruits_sizes(size) = recruits_lengths_dist.integral(length-1,length+1);
-		};
-
-		// Initialise growth size transition matrix
-		for(auto size : sizes){
-			double increment = (growth_assymptote-lengths(size))*(1-std::exp(-0.25*growth_rate));
-			growth_increments(size) = (increment>0)?increment:0;
-		}
-		for(auto size_from : size_froms){
-			Level<Size> size_from_size(size_from);
-			double length_from = lengths(size_from_size);
-			double growth_increment = growth_increments(size_from_size);
-			double mean = length_from + growth_increment;
-			double sd = std::pow(std::pow(growth_sd,2)+std::pow(growth_increment*growth_cv,2),0.5);
-			Normal distribution(mean,sd);
-			for(auto size : sizes){
-				double length_to = lengths(size);
-				growth(size_from,size) = distribution.integral(length_to-1,length_to+1);
-			}
+		
+		// Initialise arrays that are dimensioned by age but dependent
+		// up arrays dimensioned by size
+		for(auto age : ages){
+			double weight = (weight<mortality_cap_age)?weight_age(mortality_cap_age):weight_age(age);
+			mortality(age) = mortality_base * std::pow(weight,mortality_exponent);
+			survival(age) = std::exp(-0.25*mortality(age));
 		}
 
 		// Initialise regional movement matrix
@@ -530,7 +522,7 @@ public:
 			// Check that the off diagonal elements sum to between 0 and 1
 			double off_diagonals = 0;
 			for(auto region : regions){
-				if(region_from.index()!=region.index()) off_diagonals += movement_regions(region_from,region);
+				if(region_from.index()!=region.index()) off_diagonals += movement_region(region_from,region);
 			}
 			// If they don't then normalise them
 			if(off_diagonals<0){
@@ -538,12 +530,12 @@ public:
 			}
 			else if(off_diagonals>1){
 				for(auto region : regions){
-					if(region_from.index()!=region.index()) movement_regions(region_from,region) = movement_regions(region_from,region)/off_diagonals;
+					if(region_from.index()!=region.index()) movement_region(region_from,region) = movement_region(region_from,region)/off_diagonals;
 				}
 				off_diagonals = 1;
 			}
 			// Ensure diagonals are complements
-			movement_regions(region_from,Level<Region>(region_from)) = 1 - off_diagonals;
+			movement_region(region_from,Level<Region>(region_from)) = 1 - off_diagonals;
 		}
 
 		// Initialise selectivity
@@ -568,9 +560,9 @@ public:
 				}
 				if(selectivity<0) selectivity = 0;
 				else if(selectivity>max) max = selectivity;
-				selectivities(method,size) = selectivity;
+				selectivity_size(method,size) = selectivity;
 			}
-			for(auto size : sizes) selectivities(method,size) /= max;
+			for(auto size : sizes) selectivity_size(method,size) /= max;
 		}
 
 		// Normalise the recruits_region grid so that it sums to one
@@ -608,13 +600,11 @@ public:
 			double biomass_spawners_ = 0;
 			double biomass_spawning_ = 0;
 			for(auto age : ages){
-				for(auto size : sizes){
-					double biomass = numbers(region,age,size) * weights(size)/1000;
-					biomass_ += biomass;
-					double spawners = biomass * maturities(size);
-					biomass_spawners_ += spawners;
-					biomass_spawning_ += spawners * spawning(quarter);
-				}
+				double biomass = numbers(region,age) * weight_age(age)/1000;
+				biomass_ += biomass;
+				double spawners = biomass * maturity_age(age);
+				biomass_spawners_ += spawners;
+				biomass_spawning_ += spawners * spawning(quarter);
 			}
 			biomass(region) = biomass_;
 			biomass_spawners(region) = biomass_spawners_;
@@ -645,19 +635,17 @@ public:
 
 		// Ageing and recruitment
 		for(auto region : regions){
-			for(auto size : sizes){
-				// Oldest age class accumulates 
-				numbers(region,ages.size()-1,size) += numbers(region,ages.size()-2,size);
+			// Oldest age class accumulates 
+			numbers(region,ages.size()-1) += numbers(region,ages.size()-2);
 
-				// For most ages just "shuffle" along
-				for(uint age=ages.size()-2;age>0;age--){
-					numbers(region,age,size) = numbers(region,age-1,size);
-				}
-
-				// Recruits are evenly distributed over regions and over sizes
-				// according to `initials`
-				numbers(region,0,size) = recruits * recruits_regions(region) * recruits_sizes(size);
+			// For most ages just "shuffle" along
+			for(uint age=ages.size()-2;age>0;age--){
+				numbers(region,age) = numbers(region,age-1);
 			}
+
+			// Recruits are evenly distributed over regions and over sizes
+			// according to `initials`
+			numbers(region,0) = recruits * recruits_regions(region);
 		}
 
 		if(exploit!=exploit_none){
@@ -667,11 +655,9 @@ public:
 					// Calculate vulnerable biomass
 					double biomass_vuln = 0;
 					for(auto age : ages){
-						for(auto size : sizes){
-							biomass_vuln += numbers(region,age,size) * 
-							                weights(size)/1000 * 
-								            selectivities(method,size);
-						}
+						biomass_vuln += numbers(region,age) * 
+						                weight_age(age)/1000 * 
+							            selectivity_age(method,age);
 					}
 					biomass_vulnerable(region,method) = biomass_vuln;
 
@@ -723,39 +709,33 @@ public:
 					catches_taken(region,method) = er * biomass_vuln;
 				}
 			}
-			// Pre-calculate the exploitation_survival for each region and size
+			// Pre-calculate the escapement for each region and ages
 			for(auto region : regions){
-				for(auto size : sizes){
+				for(auto age : ages){
 					double proportion_taken = 0;
 					for(auto method : methods){
-						proportion_taken += exploitation_rate(region,method) * selectivities(method,size);
+						proportion_taken += exploitation_rate(region,method) * selectivity_age(method,age);
 					}
-					exploitation_survival(region,size) = (proportion_taken>1)?0:(1-proportion_taken);
+					escapement(region,age) = (proportion_taken>1)?0:(1-proportion_taken);
 				}
 			}
 		} else {
-			exploitation_survival = 1;
+			escapement = 1;
 		}
 	
 		// Mortality, growth and movement
 		auto numbers_temp = numbers;
 		for(auto region : regions){
 			for(auto age : ages){
-				for(auto size : sizes){
-					double number = 0;
-					for(auto region_from : region_froms){
-						for(auto size_from : size_froms){ 
-							Level<Region> rf(region_from);
-							Level<Size> sf(size_from);
-							number += 	numbers(rf,age,sf) * 
-										growth(size_from,size) * 
-										mortalities_survival(sf) * 
-										exploitation_survival(rf,sf) * 
-										movement_regions(region_from,region);
-						}
-					}
-					numbers_temp(region,age,size) = number;
+				double number = 0;
+				for(auto region_from : region_froms){
+					Level<Region> rf(region_from);
+					number += 	numbers(rf,age) *
+								survival(age) * 
+								escapement(rf,age) * 
+								movement_region(region_from,region);
 				}
+				numbers_temp(region,age) = number;
 			}
 		}
 		numbers = numbers_temp;
@@ -863,9 +843,6 @@ public:
 	/**
 	 * Generate a yield per recruit curve
 	 *
-	 * Since the model uses a size based transition matrix for growth
-	 * take the population to equilibrium and then calculate numbers, 
-	 * weight etc in each age class. 
 	 * This is really a biomass-per-recruit curve.
 	 */
 	Frame yield_per_recruit(void){
@@ -876,12 +853,11 @@ public:
 			double length = 0;
 			double weight = 0;
 			for(auto region : regions){
-				for(auto size : sizes){
-					double n = numbers(region,age,size);
-					number += n;
-					length += lengths(size) * n;
-					weight += weights(size) * n;
-				}
+				double n = numbers(region,age);
+				number += n;
+				// TODO
+				//length += length_age(size) * n;
+				//weight += weights_age(size) * n;
 			}
 			length /= number;
 			weight /= number;
@@ -931,30 +907,33 @@ public:
 	 * Write model attributes to files for examination
 	 */
 	void write(void){
-		lengths.write("model/output/lengths.tsv");
-		recruits_sizes.write("model/output/recruits_sizes.tsv");
-
-		growth_increments.write("model/output/growth_increments.tsv");
-		growth.write("model/output/growth.tsv");
-
-		mortalities.write("model/output/mortalities.tsv");
-
-		weights.write("model/output/weights.tsv");
-		maturities.write("model/output/maturities.tsv");
-		
+		numbers.write("model/output/numbers.tsv");
 		spawning.write("model/output/spawning.tsv");
 		biomass_spawning_unfished.write("model/output/biomass_spawning_unfished.tsv");
 		
 		recruits_regions.write("model/output/recruits_regions.tsv");
-		movement_regions.write("model/output/movement_regions.tsv");
-		movement_sizes.write("model/output/movement_sizes.tsv");
+		
+		lengths.write("model/output/lengths.tsv");
+		length_age.write("model/output/length_age.tsv");
+		age_size.write("model/output/age_size.tsv");
 
-		numbers.write("model/output/numbers.tsv");
+		weight_size.write("model/output/weight_size.tsv");
+		weight_age.write("model/output/weight_age.tsv");
 
-		selectivity_values.write("model/output/selectivity_values.tsv");
-		selectivities.write("model/output/selectivities.tsv");
+		maturity_size.write("model/output/maturity_size.tsv");
+		maturity_age.write("model/output/maturity_age.tsv");
+
+		mortality.write("model/output/mortality.tsv");
+		
+		movement_region.write("model/output/movement_region.tsv");
+		movement_size.write("model/output/movement_size.tsv");
+		movement_age.write("model/output/movement_age.tsv");
+
+		selectivity_size.write("model/output/selectivity_size.tsv");
+		selectivity_age.write("model/output/selectivity_age.tsv");
 
 		catchability.write("model/output/catchability.tsv");
+
 	}
 };
 

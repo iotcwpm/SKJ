@@ -13,9 +13,14 @@ run(
 		spawning_2 = Uniform(0.8,0.7,1),
 		spawning_3 = Uniform(0.5,0.3,0.7),
 
-		# Distributions of lengths of recruits
-		recruits_lengths_mean = Uniform(5,1,10),
-		recruits_lengths_cv = Uniform(0.15,0.1,0.2),
+		# Growth
+		growth_rate_1 = Uniform(1.12,0,0),
+		growth_rate_2 = Uniform(0.33,0,0),
+		growth_assymptote = Uniform(71.6,0,0),
+		growth_stanza_inflection = Uniform(0.95,0,0),
+		growth_stanza_steepness = Uniform(24.8,0,0),
+		growth_cv_0 = Uniform(0.1,0,0),
+		growth_cv_old = Uniform(0.1,0,0),
 
 		# Weight at length
 		weight_a = Fixed(5.32e-6),
@@ -28,12 +33,6 @@ run(
 		# Natural mortality
 		mortality_base = Uniform(0.8,0.5,0.9),
 		mortality_exponent = Fixed(-0.29),
-
-		# Length at age
-		growth_rate = Fixed(0.3),	
-		growth_assymptote = Fixed(75),
-		growth_sd = Fixed(1),
-		growth_cv = Fixed(0.2),
 
 		# Movement
 		movement_sw_nw = Uniform(0.05,0,0.4),

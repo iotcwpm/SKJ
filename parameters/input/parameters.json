@@ -1,6 +1,6 @@
 {
   "spawners_unfished": {
-    "value": 1800000,
+    "value": 8000000,
     "lower": 1000000,
     "upper": 5000000
   },
@@ -33,16 +33,6 @@
     "value": 0.5,
     "lower": 0.3,
     "upper": 0.7
-  },
-  "recruits_lengths_mean": {
-    "value": 5,
-    "lower": 1,
-    "upper": 10
-  },
-  "recruits_lengths_cv": {
-    "value": 0.15,
-    "lower": 0.1,
-    "upper": 0.2
   },
   "weight_a": {
     "value": 5.32e-06
@@ -80,24 +70,34 @@
   "growth_cv": {
     "value": 0.2
   },
-  "movement_stay": {
-    "value": 1,
-    "lower": 0.6,
-    "upper": 1
+  "movement_sw_nw": {
+    "value": 0.05,
+    "lower": 0,
+    "upper": 0.4
   },
-  "movement_w_m": {
+  "movement_nw_ma": {
     "value": 0,
     "lower": 0,
     "upper": 0.4
   },
-  "movement_m_e": {
+  "movement_nw_ea": {
     "value": 0,
     "lower": 0,
     "upper": 0.4
   },
-  "movement_w_e": {
+  "movement_ma_ea": {
     "value": 0,
     "lower": 0,
-    "upper": 0.2
+    "upper": 0.4
+  },
+  "movement_length_inflection": {
+    "value": 50,
+    "lower": 0,
+    "upper": 100
+  },
+  "movement_length_steepness": {
+    "value": 10,
+    "lower": 1,
+    "upper": 10
   }
 }
