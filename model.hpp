@@ -225,10 +225,10 @@ public:
 	double mortality_exponent;
 
 	/**
-	 * Age with maximum rate of natural mortality (exponential relationship
+	 * Age (in quarters) with maximum rate of natural mortality (exponential relationship
 	 * can give very high natural mortality at small ages).
 	 */
-	int mortality_cap_age = 1;
+	int mortality_cap_age = 2; // i.e. 2+ quarters 
 
 	/**
 	 * Instantaneous rate of natural mortality for size s
@@ -524,7 +524,7 @@ public:
 				sum += prop;
 			}
 			// Normalise to ensure rows sum to 1
-			for(auto size : sizes) age_size(age) /= sum;
+			for(auto size : sizes) age_size(age,size) /= sum;
 		}
 
 		// Initialise arrays that are dimensioned by size	
@@ -538,8 +538,16 @@ public:
 		
 		// Initialise arrays that are dimensioned by age but dependent
 		// up arrays dimensioned by size
+		weight_age = 0;
+		maturity_age = 0;
 		for(auto age : ages){
-			double weight = (weight<mortality_cap_age)?weight_age(mortality_cap_age):weight_age(age);
+			for(auto size : sizes){
+				weight_age(age) += weight_size(size) * age_size(age,size);
+				maturity_age(age) += maturity_size(size) * age_size(age,size);
+			}
+		}
+		for(auto age : ages){
+			double weight = (age<mortality_cap_age)?weight_age(mortality_cap_age):weight_age(age);
 			mortality(age) = mortality_base * std::pow(weight,mortality_exponent);
 			survival(age) = std::exp(-0.25*mortality(age));
 		}
@@ -953,6 +961,7 @@ public:
 		maturity_age.write("model/output/maturity_age.tsv");
 
 		mortality.write("model/output/mortality.tsv");
+		survival.write("model/output/survival.tsv");
 		
 		movement_region.write("model/output/movement_region.tsv");
 		movement_size.write("model/output/movement_size.tsv");
