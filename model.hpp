@@ -859,8 +859,8 @@ public:
 	Frame yield_curve(double step = 0.05){
 		Frame curve({
 			"exprate","f","yield","status","vuln",
-			"catch_sw_ps","catch_nw_ps","catch_m_pl","catch_e_gn",
-			"vuln_sw_ps","vuln_nw_ps","vuln_m_pl","vuln_e_gn"
+			"catch_sw_ps","catch_nw_ps","catch_ma_pl","catch_ea_gn",
+			"vuln_sw_ps","vuln_nw_ps","vuln_ma_pl","vuln_ea_gn"
 		});
 		for(double exprate=0;exprate<1;exprate+=step){
 			#if DEBUG

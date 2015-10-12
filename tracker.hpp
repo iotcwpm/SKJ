@@ -27,36 +27,36 @@ struct Tracker {
 
 			<<"biomass_spawners_sw\t"
 			<<"biomass_spawners_nw\t"
-			<<"biomass_spawners_m\t"
-			<<"biomass_spawners_e\t"
+			<<"biomass_spawners_ma\t"
+			<<"biomass_spawners_ea\t"
 			<<"biomass_spawning_overall\t"
 
 			<<"biomass_spawning_sw\t"
 			<<"biomass_spawning_nw\t"
-			<<"biomass_spawning_m\t"
-			<<"biomass_spawning_e\t"
+			<<"biomass_spawning_ma\t"
+			<<"biomass_spawning_ea\t"
 
 			<<"biomass_vulnerable_sw_ps\t"
 			<<"biomass_vulnerable_nw_ps\t"
-			<<"biomass_vulnerable_m_pl\t"
-			<<"biomass_vulnerable_e_gn\t"
+			<<"biomass_vulnerable_ma_pl\t"
+			<<"biomass_vulnerable_ea_gn\t"
 
 			<<"catches_total\t"
 			<<"catches_sw_ps\t"
 			<<"catches_nw_ps\t"
-			<<"catches_m_pl\t"
-			<<"catches_e_gn\t"
+			<<"catches_ma_pl\t"
+			<<"catches_ea_gn\t"
 
 			<<"effort_total\t"
 			<<"effort_sw_ps\t"
 			<<"effort_nw_ps\t"
-			<<"effort_m_pl\t"
-			<<"effort_e_gn\t"
+			<<"effort_ma_pl\t"
+			<<"effort_ea_gn\t"
 
 			<<"exp_rate_sw_ps\t"
 			<<"exp_rate_nw_ps\t"
-			<<"exp_rate_m_pl\t"
-			<<"exp_rate_e_gn\t"
+			<<"exp_rate_ma_pl\t"
+			<<"exp_rate_ea_gn\t"
 			<<std::endl;
 	}
 
