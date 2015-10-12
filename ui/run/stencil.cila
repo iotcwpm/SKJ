@@ -1,0 +1,318 @@
+r
+	source('../../common.R',local=T)
+	source('../../ioskj.r',local=T)
+
+> Parameters
+
+	par spawners_unfished type number value 8e6
+	par recruits_lengths_mean type number value 5
+	par weight_a type number value 5.32e-6
+	par weight_b type number value 3.35
+
+	par movement_length_inflection type number value 50
+	par movement_length_steepness type number value 10
+
+	par growth_rate_1 type number value 1.12
+	par growth_rate_2 type number value 0.33
+	par growth_assymptote type number value 71.6
+	par growth_stanza_inflection type number value 0.95
+	par growth_stanza_steepness type number value 24.8
+	par growth_age_0 type number value -0.3
+
+button.refresh
+	Refresh
+
+
+r
+	pwd = getwd()
+	setwd('../..')
+
+	run(
+		list(
+			# Stock recruitment relation and variability
+			spawners_unfished = Uniform(spawners_unfished,1e6,5e6),
+			recruits_steepness = Uniform(0.8,0.7,1),
+			recruits_sd = Uniform(0.6,0.4,0.8),
+
+			# Quarterly spawning fractions
+			spawning_0 = Uniform(0.8,0.7,1),
+			spawning_1 = Uniform(0.5,0.3,0.7),
+			spawning_2 = Uniform(0.8,0.7,1),
+			spawning_3 = Uniform(0.5,0.3,0.7),
+
+			# Growth
+			growth_rate_1 = Uniform(growth_rate_1,0,0),
+			growth_rate_2 = Uniform(growth_rate_2,0,0),
+			growth_assymptote = Uniform(growth_assymptote,0,0),
+			growth_stanza_inflection = Uniform(growth_stanza_inflection,0,0),
+			growth_stanza_steepness = Uniform(24.8,0,0),
+			growth_age_0 = Uniform(growth_age_0,-1,1),
+			growth_cv_0 = Uniform(0.1,0,0),
+			growth_cv_old = Uniform(0.1,0,0),
+
+			# Weight at length
+			weight_a = Fixed(weight_a),
+			weight_b = Fixed(weight_b),
+
+			# Maturity at length
+			maturity_inflection = Uniform(42,40,45),
+			maturity_steepness = Uniform(5,4,6),
+
+			# Natural mortality
+			mortality_base = Uniform(0.8,0.5,0.9),
+			mortality_exponent = Fixed(-0.29),
+
+			# Movement
+			movement_sw_nw = Uniform(0.05,0,0.4),
+			movement_nw_ma = Uniform(0,0,0.4),
+			movement_nw_ea = Uniform(0,0,0.4),
+			movement_ma_ea = Uniform(0,0,0.4),
+			movement_length_inflection = Uniform(movement_length_inflection,0,100),
+			movement_length_steepness = Uniform(movement_length_steepness,1,10)
+		)
+	)
+
+	load(c(
+		'length_age','age_size',
+		'weight_size','weight_age',
+		'maturity_size','maturity_age',
+		'mortality','survival',
+		'selectivity_size','selectivity_age',
+		'movement_region','movement_size',
+		'track'
+	),from='model/output')
+
+	setwd(pwd)
+
+> Growth
+
+	figure
+		r format png size 17x10cm
+			print(
+				ggplot(length_age,aes(x=age,y=mean)) +
+					geom_line() +
+					geom_ribbon(aes(ymin=mean+qnorm(0.05)*sd,ymax=mean+qnorm(0.95)*sd),alpha=0.25) +
+					geom_ribbon(aes(ymin=mean+qnorm(0.25)*sd,ymax=mean+qnorm(0.75)*sd),alpha=0.25) +
+					geom_vline(x=seq(4,24,4),lty=3) +
+					ylim(0,80) +
+					labs(x="Age (qtr)",y="Length (cm)")
+			)
+		figcaption Length at age. Bands represent 50% (inner) and 90% (outer) of lengths for a particular age.
+
+	figure
+		r format png size 17x15cm
+			print(
+				ggplot(age_size,aes(x=age,y=length,fill=value,label=round(value,2))) +
+					geom_tile() +
+					scale_fill_gradient(low="white",high=hsv(0.5,0.5,0.5)) + 
+					labs(x="Age (qtr)",y="Length",fill="Proportion") + 
+					theme(legend.position='none')
+			)
+		figcaption Length distribution at age. Proportion of fish within each size bin by age. Text values are only shown where proportion > 0.01
+
+> Weight
+
+	figure
+		r format png size 17x10cm
+			print(
+				ggplot(weight_size,aes(x=length,y=value)) +
+					geom_line() +
+					labs(x="Length (cm)",y="Weight (kg)")
+			)
+		figcaption Weight at length.
+
+	figure
+		r format png size 17x10cm
+			print(
+				ggplot(weight_age,aes(x=age,y=value)) +
+					geom_line() +
+					geom_vline(x=seq(4,24,4),lty=3) +
+					labs(x="Age (qtr)",y="Weight (kg)")
+			)
+		figcaption Weight at age.
+
+> Maturity
+
+	figure
+		r format png size 17x10cm
+			print(
+				ggplot(maturity_size,aes(x=length,y=value)) +
+					geom_line() +
+					labs(x="Length (cm)",y="Maturity (prop.)")
+			)
+		figcaption Maturity at length.
+
+	figure
+		r format png size 17x10cm
+			print(
+				ggplot(maturity_age,aes(x=age,y=value)) +
+					geom_line() +
+					geom_vline(x=seq(4,24,4),lty=3) +
+					labs(x="Age (qtr)",y="Maturity (prop.)")
+			)
+		figcaption Maturity at age.
+
+> Mortality
+
+	figure
+		r format png size 17x10cm
+			print(
+				ggplot(mortality,aes(x=age,y=value)) +
+					geom_hline(y=0,alpha=0) +
+					geom_line() +
+					labs(x="Age (qtr)",y="Instantaneous annual rate or natural mortality")
+			)
+		figcaption Annual rate of natural mortality at age. This is determined from 
+
+	figure
+		r format png size 17x10cm
+			print(
+				ggplot(survival,aes(x=age,y=value)) +
+					geom_line() +
+					ylim(0,1) +
+					labs(x="Age (qtr)",y="Survival (prop.)")
+			)
+		figcaption Quarterly survival (from natural mortality) at age.
+
+> Selectivitity
+
+	figure
+		r format png size 17x10cm
+			print(
+				ggplot(selectivity_size,aes(x=length,y=value,colour=method))+
+					geom_line() +
+					ylim(0,1) + 
+					labs(x="Length (cm)",y="Selectivity (prop.)",colour='Method')
+			)
+		figcaption Selectivity at length by fishing method.
+
+	figure
+		r format png size 17x10cm
+			print(
+				ggplot(selectivity_age,aes(x=age,y=value,colour=method)) +
+					geom_line() +
+					geom_vline(x=seq(4,24,4),lty=3) +
+					ylim(0,1) +
+					labs(x="Age (qtr)",y="Selectivity (prop.)",colour='Method')
+			)
+		figcaption Selectivity at age by fishing method.
+
+
+> Movement
+
+	figure
+		r format png size 16x16cm
+			print(
+				ggplot(movement_regions,aes(y=region_from,x=region,fill=value,label=round(value,4))) +
+					geom_tile() +
+					scale_fill_gradient(low="white",high="red") + 
+					geom_text() +
+					labs(y="Region from",x="Region to",fill="Proportion")
+			)
+		figcaption Movement proportions by region. Each cell indicates the maximum proportion of fish moving from one region to another in one quarter.
+
+	figure
+		r format png size 17x10cm
+			print(
+				ggplot(movement_sizes,aes(x=length,y=value)) +
+					geom_line() +
+					ylim(0,1) +
+					labs(x="Length (cm)",y="Proportion moving")
+			)
+		figcaption Movement proportion by length.
+
+
+> Biomass and recruitment trajectories
+
+	r
+		plot_track <- function(what,label){
+			plot <- ggplot(track,aes(x=year+quarter/4)) + 
+					geom_line(aes_string(y=what)) + 
+					geom_hline(y=0,alpha=0) +
+					geom_vline(x=2015,alpha=0.6,linetype=2) +
+					labs(x='Year',y=label)
+			print(plot)
+			plot
+		}
+
+	figure
+		r format png size 17x10cm
+			plot_track('biomass_status','Stock status (B/B0)')
+		figcaption
+			Stock status trajectory.
+
+	figure
+		r format png size 17x10cm
+			print(
+				ggplot(subset(track,quarter==0),aes(x=year+quarter/4)) + 
+				geom_line(aes(y=biomass_spawners_sw,colour='SW')) + 
+				geom_line(aes(y=biomass_spawners_nw,colour='NW')) + 
+				geom_line(aes(y=biomass_spawners_m,colour='MA')) + 
+				geom_line(aes(y=biomass_spawners_e,colour='EA')) + 
+				geom_hline(y=0,alpha=0) +
+				geom_vline(x=2015,alpha=0.6,linetype=2) +
+				labs(x='Year',y='Mature biomass in region',colour='Region')
+			)
+		figcaption
+			Biomass of spawners by region (first quarter).
+
+	figure
+		r format png size 17x20cm
+			p1 = plot_track('recruits_determ/1e6','Deterministic recruitment (mil.)')
+			p2 = plot_track('recruits_deviation','Recruitment deviation')
+			p3 = plot_track('recruits/1e6','Recruitment (mil.)')
+			multiplot(p1,p2,p3)
+		figcaption
+			Recruitment trajectories
+
+> Fishery related trajectories
+
+	figure
+		r format png size 17x10cm
+			temp <- melt(subset(
+						track,quarter==0,select=c(
+							'year',
+							'biomass_vulnerable_sw_ps',
+							'biomass_vulnerable_nw_ps',
+							'biomass_vulnerable_ma_pl',
+							'biomass_vulnerable_ea_gn'
+						)
+					),id.vars='year')
+			print(
+				ggplot(temp,aes(x=year,y=value/1e6,colour=variable)) + geom_line() +
+					geom_vline(x=2015,alpha=0.6,linetype=2) +
+					geom_hline(yintercept=0,alpha=0) +
+					labs(x='Year',y='Vulnerable biomass (mil. t)',colour='Region/Method')
+			)
+		figcaption
+			Vulnerable biomass trajectories for the three main fisheries
+
+	figure
+		r format png size 17x10cm
+			temp <- ddply(track,.(year),summarise,
+				sw_ps = sum(catches_sw_ps),
+				nw_ps = sum(catches_nw_ps),
+				m_pl = sum(catches_ma_pl),
+				e_gn = sum(catches_ea_gn)
+			)
+			temp <- melt(temp,id.vars='year')
+			print(
+				ggplot(temp,aes(x=year,y=value,colour=variable)) + geom_line() +
+					geom_vline(x=2015,alpha=0.6,linetype=2) +
+					labs(x='Year',y='Catches (t)',colour='Region/Method')
+			)
+		figcaption
+			Catch trajectories for the three main fisheries
+
+	figure
+		r format png size 17x10cm
+			temp <- melt(subset(
+						track,quarter==0,select=c('year','exp_rate_sw_ps','exp_rate_nw_ps','exp_rate_ma_pl','exp_rate_ea_gn')
+					),id.vars='year')
+			print(
+				ggplot(temp,aes(x=year,y=value,colour=variable)) + geom_line() +
+					geom_vline(x=2015,alpha=0.6,linetype=2) +
+					labs(x='Year',y='Exploitation rate',colour='Region/Method')
+			)
+		figcaption
+			Exploitation rate trajectories for the three main fisheries
