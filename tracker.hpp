@@ -91,8 +91,8 @@ struct Tracker {
 			<<model.biomass_vulnerable(EA,GN)<<"\t"
 			
 			<<model.catches_taken(sum)<<"\t"
-			<<model.catches_taken(NW,PS)<<"\t"
 			<<model.catches_taken(SW,PS)<<"\t"
+			<<model.catches_taken(NW,PS)<<"\t"
 			<<model.catches_taken(MA,PL)<<"\t"
 			<<model.catches_taken(EA,GN)<<"\t"
 

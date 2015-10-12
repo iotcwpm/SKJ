@@ -985,7 +985,6 @@ public:
 		selectivity_age.write("model/output/selectivity_age.tsv");
 
 		catchability.write("model/output/catchability.tsv");
-
 	}
 };
 
