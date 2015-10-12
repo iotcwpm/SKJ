@@ -19,16 +19,20 @@ public:
 	void catches_set(Model& model,double catches){
 		model.exploit = model.exploit_catch;
 
-		// TODO split between NW and SW more sensibly
-		model.catches(SW,PS) = 0.5 * 0.354 * catches;
-		model.catches(SW,PL) = 0.5 * 0.018 * catches;
-		model.catches(SW,GN) = 0.5 * 0.117 * catches;
-		model.catches(SW,OT) = 0.5 * 0.024 * catches;
+		/**
+		 * Note that currently this does not allow for
+		 * seasonal variation, assumes an equal split
+		 * across quarters
+		 */
+		model.catches(SW,PS) = 0.038 * catches;
+		model.catches(SW,PL) = 0.000 * catches;
+		model.catches(SW,GN) = 0.000 * catches;
+		model.catches(SW,OT) = 0.000 * catches;
 
-		model.catches(NW,PS) = 0.5 * 0.354 * catches;
-		model.catches(NW,PL) = 0.5 * 0.018 * catches;
-		model.catches(NW,GN) = 0.5 * 0.117 * catches;
-		model.catches(NW,OT) = 0.5 * 0.024 * catches;
+		model.catches(NW,PS) = 0.316 * catches;
+		model.catches(NW,PL) = 0.018 * catches;
+		model.catches(NW,GN) = 0.117 * catches;
+		model.catches(NW,OT) = 0.024 * catches;
 
 		model.catches(MA,PS) = 0.000 * catches;
 		model.catches(MA,PL) = 0.198 * catches;
