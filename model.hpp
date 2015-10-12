@@ -565,6 +565,7 @@ public:
 		
 		// Initialise arrays that are dimensioned by age but dependent
 		// up arrays dimensioned by size
+		double movement_max = -1;
 		weight_age = 0;
 		maturity_age = 0;
 		selectivity_age = 0;
@@ -572,9 +573,12 @@ public:
 			for(auto size : sizes){
 				weight_age(age) += weight_size(size) * age_size(age,size);
 				maturity_age(age) += maturity_size(size) * age_size(age,size);
+				movement_age(age) += movement_size(size) * age_size(age,size);
+				if(movement_age(age)>movement_max) movement_max = movement_age(age);
 				for(auto method : methods) selectivity_age(method,age) += selectivity_size(method,size) * age_size(age,size);
 			}
 		}
+		for(auto age : ages) movement_age(age) /= movement_max;
 		for(auto age : ages){
 			double weight = (age<mortality_cap_age)?weight_age(mortality_cap_age):weight_age(age);
 			mortality(age) = mortality_base * std::pow(weight,mortality_exponent);
@@ -685,6 +689,25 @@ public:
 			numbers(region,0) = recruits * recruits_regions(region);
 		}
 
+		// Natural mortality
+		for(auto region : regions){
+			for(auto age : ages){
+				numbers(region,age) *= survival(age);
+			}
+		}
+
+		// Movement
+		for(auto region_from : region_froms){
+			for(auto region_to : regions){
+				for(auto age : ages){
+					double movers = movement_region(region_from,region_to) * movement_age(age);
+					numbers(Level<Region>(region_from),age) -= movers;
+					numbers(region_to,age) += movers;
+				}
+			}
+		}
+
+		// Fishing mortality
 		if(exploit!=exploit_none){
 			// For each region and method
 			for(auto region : regions){
@@ -759,23 +782,12 @@ public:
 		} else {
 			escapement = 1;
 		}
-	
-		// Mortality, growth and movement
-		auto numbers_temp = numbers;
+		// Apply escapement
 		for(auto region : regions){
 			for(auto age : ages){
-				double number = 0;
-				for(auto region_from : region_froms){
-					Level<Region> rf(region_from);
-					number += 	numbers(rf,age) *
-								survival(age) * 
-								escapement(rf,age) * 
-								movement_region(region_from,region);
-				}
-				numbers_temp(region,age) = number;
+				numbers(region,age) *= escapement(region,age);
 			}
 		}
-		numbers = numbers_temp;
 	}
 
 	/**
