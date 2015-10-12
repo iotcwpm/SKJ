@@ -535,15 +535,44 @@ public:
 			maturity_size(size) = 1.0/(1.0+std::pow(19,(maturity_length_inflection-length)/maturity_length_steepness));
 			movement_size(size) = 1.0/(1.0+std::pow(19,(movement_length_inflection-length)/movement_length_steepness));
 		}
+
+		// Initialise selectivity
+		for(auto method : methods){
+			// Iterpolate selectivity-at-size using piecewise spline
+			// Ensure that selectivity is between 0 and 1 since spline
+			// can produce values outside this range even if knots are not
+			double max = 0;
+			for(auto size : sizes){
+				double length = length_size(size);
+				double selectivity;
+				if(length<selectivity_lengths(0)) selectivity = 0;
+				else{
+					for(uint knot=0;knot<selectivity_knots.size()-1;knot++){
+						if(selectivity_lengths(knot)<=length and length<selectivity_lengths(knot+1)){
+							selectivity = selectivity_values(method,knot) + (length-selectivity_lengths(knot)) * (
+								selectivity_values(method,knot+1)-selectivity_values(method,knot))/(
+								selectivity_lengths(knot+1)-selectivity_lengths(knot)
+							);
+						}
+					}
+				}
+				if(selectivity<0) selectivity = 0;
+				else if(selectivity>max) max = selectivity;
+				selectivity_size(method,size) = selectivity;
+			}
+			for(auto size : sizes) selectivity_size(method,size) /= max;
+		}
 		
 		// Initialise arrays that are dimensioned by age but dependent
 		// up arrays dimensioned by size
 		weight_age = 0;
 		maturity_age = 0;
+		selectivity_age = 0;
 		for(auto age : ages){
 			for(auto size : sizes){
 				weight_age(age) += weight_size(size) * age_size(age,size);
 				maturity_age(age) += maturity_size(size) * age_size(age,size);
+				for(auto method : methods) selectivity_age(method,age) += selectivity_size(method,size) * age_size(age,size);
 			}
 		}
 		for(auto age : ages){
@@ -571,33 +600,6 @@ public:
 			}
 			// Ensure diagonals are complements
 			movement_region(region_from,Level<Region>(region_from)) = 1 - off_diagonals;
-		}
-
-		// Initialise selectivity
-		for(auto method : methods){
-			// Iterpolate with piecewise spline
-			// Ensure that selectivity is between 0 and 1 since spline
-			// can produce values outside this range even if knots are not
-			double max = 0;
-			for(auto size : sizes){
-				double length = length_size(size);
-				double selectivity;
-				if(length<selectivity_lengths(0)) selectivity = 0;
-				else{
-					for(uint knot=0;knot<selectivity_knots.size()-1;knot++){
-						if(selectivity_lengths(knot)<=length and length<selectivity_lengths(knot+1)){
-							selectivity = selectivity_values(method,knot) + (length-selectivity_lengths(knot)) * (
-								selectivity_values(method,knot+1)-selectivity_values(method,knot))/(
-								selectivity_lengths(knot+1)-selectivity_lengths(knot)
-							);
-						}
-					}
-				}
-				if(selectivity<0) selectivity = 0;
-				else if(selectivity>max) max = selectivity;
-				selectivity_size(method,size) = selectivity;
-			}
-			for(auto size : sizes) selectivity_size(method,size) /= max;
 		}
 
 		// Normalise the recruits_region grid so that it sums to one
