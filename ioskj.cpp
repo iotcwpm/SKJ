@@ -1,4 +1,4 @@
-#define DEBUG 1
+#define DEBUG 0
 
 #include "imports.hpp"
 #include "dimensions.hpp"
@@ -401,7 +401,7 @@ int main(int argc, char** argv){
 	try {
         if(argc==1) throw std::runtime_error("No task given");
         std::string task = argv[1];
-        std::cout<<"-------------"<<task<<"-------------\n";
+        std::cout<<"-------------"<<task<<"-------------\n"<<std::flush;
         if(task=="run") run(arg<std::string>(argc,argv,2),arg<int>(argc,argv,3),arg<int>(argc,argv,4));
         else if(task=="yield") yield();
         else if(task=="priors") priors();
