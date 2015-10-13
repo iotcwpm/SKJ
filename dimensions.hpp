@@ -7,7 +7,7 @@ namespace IOSKJ {
 typedef unsigned int uint;
 
 const uint year_min = 1950;
-const uint year_max = 2039;
+const uint year_max = 2040;
 
 uint time(uint year,uint quarter){
 	return (year-year_min)*4+quarter;
@@ -38,14 +38,19 @@ STENCILA_DIM(Quarter,quarters,quarter,4);
  * This allows grids for data to be dimensioned with a subset years
  * so that they take up less memory and are quicker to iterate over
  */
-const uint data_years_size = 2013-1982+1;
+const uint data_years_size = 2014-1982+1;
 class DataYear : public Dimension<DataYear,data_years_size,1982> {
 public:
 	DataYear(void):Dimension<DataYear,data_years_size,1982>("data_year"){}
 	static const char* name(void) { return "data_year"; }
 } data_years;
 
-
+/**
+ * @name RecdevYear
+ * 
+ * A dimension for the years where recruitment deviations
+ * are estimated or external estimates are avaialble
+ */
 STENCILA_DIM_RANGE(RecdevYear,recdev_years,recdev_year,1985,2012);
 
 STENCILA_DIM(Region,regions,region,4);

@@ -2,6 +2,7 @@
 
 # A R script to process size frequency data
 
+library(plyr)
 library(reshape)
 library(ggplot2)
 
@@ -89,13 +90,16 @@ sf = within(sf,{
     # Because a 5x5 grid will straddle the 77 Lon line that is used to separate
     # Sri Lanka and Maldives, put all LKA records in E
     Region = NA
-    Region[Lon>=20 & Lon<80] = 'W'
-    Region[(Lon>=80 & Lon<150) | Fleet=='LKA'] =  'E'
-    Region[Fleet=='MDV'] = 'M'
+    Region[Lon>=20 & Lon<80 & Lat>-10] = 'NW'
+    Region[Lon>=20 & Lon<80 & Lat<=-10] = 'SW'
+    Region[(Lon>=80 & Lon<150) | Fleet=='LKA'] =  'EA'
+    Region[Fleet=='MDV'] = 'MA'
     Region = factor(Region,levels=c(
-        'W','M','E'
+        'SW','NW','MA','EA'
     ))
 })
+# Drop small number of rows report outside of regions
+sf = subset(sf,!is.na(Region))
 
 # Summarise size frequencies by gear to better determine how to aggregate to methods
 cs = sprintf('C%03d',10:70)
@@ -158,7 +162,7 @@ if(sum(is.na(sf$Method))) stop()
 if(sum(is.na(sf$Year))) stop()
 if(sum(is.na(sf$Quarter))) stop()
 
-temp = subset(sf,Region=='E'&Method=='OT')
+temp = subset(sf,Region=='EA'&Method=='OT')
 cast(ddply(temp,.(Year,Gear),summarise,n=sum(TnoFish)),Year~Gear)
 
 ########################################
@@ -226,7 +230,7 @@ data = within(data,{
 })
 # Bin into 2mm size classes
 data = ddply(subset(data,!is.na(class)),.(year,quarter,region,method,class),summarise,
-  count = head(count,n=1),
+  size = head(count,n=1),
   proportion = round(sum(proportion),6)
 )
 range(data$year)
@@ -235,7 +239,7 @@ range(data$region)
 range(data$method)
 range(data$class)
 # Reorder columns
-data = data[,c('year','quarter','region','method','class','proportion','count')]
+data = data[,c('year','quarter','region','method','class','proportion','size')]
 # Re-sort
 data = data[with(data,order(year,quarter,region,method)),]
 # Write

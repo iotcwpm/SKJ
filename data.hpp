@@ -79,12 +79,12 @@ public:
 		uint quarter = IOSKJ::quarter(time);
 		
 		// Maldive PL quarterly CPUE
-		if(year>=2000 and year<=2013){
+		if(year>=2000 and year<=2014){
 			// Just get M/PL vulnerable biomass
 			m_pl_cpue(year,quarter) = model.biomass_vulnerable(MA,PL) * model.m_pl_quarter(quarter);	
 			
 			// At end, scale expected by geometric mean over period 2004-2012
-			if(year==2013 and quarter==3){
+			if(year==2014 and quarter==3){
 				GeometricMean geomean;
 				for(uint year=2004;year<=2012;year++){
 					for(uint quarter=0;quarter<4;quarter++){
@@ -97,7 +97,7 @@ public:
 		}
 
 		// West PS annual CPUE
-		if(year>=1985 and year<=2013){
+		if(year>=1985 and year<=2014){
 			// Currently take a mean of vulnerable biomass over all quarters in the year...
 			static Array<double,Quarter> cpue_quarters;
 			// ... get this quarter's CPUE and save it
@@ -119,7 +119,7 @@ public:
 		}
 
 		// Size frequencies by region and method
-		if(year>=1982 and year<=2013){
+		if(year>=1982 and year<=2014){
 			// Generate expected size frequencies for each method in each 
 			// region regardless of whether there is observed data or not
 			for(auto region : regions){
@@ -142,7 +142,7 @@ public:
 		}
 
 		// Size based Z-estimates for NW region from tagging
-		if(year>=2005 and year<=2013){
+		if(year>=2005 and year<=2014){
 			// Generate expected values of Z for each size bin
 			// Expected values of Z are calculated by combining natural mortality and 
 			// fishing mortality rates
