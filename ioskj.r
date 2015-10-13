@@ -1,4 +1,7 @@
-require(jsonlite)
+if(!require(jsonlite)){
+	install.packages('jsonlite')
+	require(jsonlite)
+}
 
 Fixed <- function(value){
 	list(value=unbox(value))
