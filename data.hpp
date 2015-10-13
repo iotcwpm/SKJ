@@ -141,7 +141,7 @@ public:
 			}
 		}
 
-		// Z-estimates for W region
+		// Size based Z-estimates for NW region from tagging
 		if(year>=2005 and year<=2013){
 			// Generate expected values of Z for each size bin
 			// Expected values of Z are calculated by combining natural mortality and 
@@ -155,7 +155,20 @@ public:
 				uint z_lower = 45+z_size.index()*5;
 				uint size_class = (z_lower-1)/2;
 				for(uint size=size_class;size<size_class+3;size++){
-					double survival = 	model.survival(size) * model.escapement(NW,size);
+					// Calculate a weighted overall survival across age classes for the size
+					double numerator = 0;
+					double denominator = 0;
+					for(auto age : ages){
+						// Expected number in this size bin
+						double number = model.numbers(NW,age) * model.age_size(age,size);
+						// Survival for this age
+						double survival = model.survival(age) * model.escapement(NW,age);
+						// Add to average
+						numerator += survival*number;
+						denominator += number;
+					}
+					// Calculate weighted mean
+					double survival = numerator/denominator;
 					// Capture cases where survuval is estimated to be zero to prevent overflow
 					if(survival>0) z += -log(survival);
 					else z += -log(0.000001);
