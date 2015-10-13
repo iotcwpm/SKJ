@@ -544,7 +544,7 @@ public:
 			double max = 0;
 			for(auto size : sizes){
 				double length = length_size(size);
-				double selectivity;
+				double selectivity = 0;
 				if(length<selectivity_lengths(0)) selectivity = 0;
 				else{
 					for(uint knot=0;knot<selectivity_knots.size()-1;knot++){
