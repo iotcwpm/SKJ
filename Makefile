@@ -16,6 +16,15 @@ endif
 
 # Define compile options and required libraries
 CXX_FLAGS := -std=c++11 -Wall -Wno-unused-function -Wno-unused-local-typedefs
+ifeq ($(OS),win)
+	# Static library linking on Windows
+	CXX_FLAGS += -static
+	# Increase stack size to 4Mb on Windows
+	# We are allocating quite a lot of memory in the top level "task"
+	# functions (in particular Data) - could be refectored but this is
+	# easier (and safer) for now
+	CXX_FLAGS += -Wl,--stack,4194304
+endif
 INC_DIRS := -I. -Irequires/stencila/cpp -Irequires/boost-$(OS)
 LIB_DIRS := -Lrequires/boost-$(OS)/lib
 LIBS := -lboost_system -lboost_filesystem -lboost_regex
