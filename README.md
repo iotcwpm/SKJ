@@ -43,11 +43,12 @@ Several reports associated with this project are available (in chronological ord
 
 ## Support
 
-This work has been funded by the [International Pole and Line Foundation (IPNLF)](http://ipnlf.org/), the Maldives Seafood Processors and Exporters Association (MSPEA) and [WWF](http://wwf.panda.org) with support and oversignt of the Maldives [Marine Research Centre (MRC)](http://www.mrc.gov.mv/). Support for the project's Advisory Committee has been provided by the [International Seafood Sustainability Foundation (ISSF)](http://iss-foundation.org/).
+This work has been funded by the [International Pole and Line Foundation (IPNLF)](http://ipnlf.org/), the Maldives Seafood Processors and Exporters Association (MSPEA), the [Areas Beyond National Jurisdiction (ABNJ aka Common Oceans) Program](http://www.commonoceans.org/) and [WWF](http://wwf.panda.org) with support and oversignt of the Maldives [Marine Research Centre (MRC)](http://www.mrc.gov.mv/). Support for the project's Advisory Committee has been provided by the [International Seafood Sustainability Foundation (ISSF)](http://iss-foundation.org/).
 
 <div align="center">
 	<img src="other/images/ipnlf.png" style="max-width:100%">
 	<img src="other/images/mspea.png" style="max-width:100%">
+	<img src="other/images/common-oceans.png" style="max-width:100%">
 	<img src="other/images/mrc.png" style="max-width:100%">
 	<img src="other/images/wwf.png" style="max-width:100%">
 </div>
