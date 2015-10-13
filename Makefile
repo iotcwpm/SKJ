@@ -84,6 +84,8 @@ package:
 	rm -rf ioskj
 	mkdir -p ioskj
 	cp ioskj.exe ioskj
+	cp ioskj.r ioskj
+	cp ioskj-drive.r ioskj
 	mkdir -p ioskj/parameters
 	cp -r parameters/input ioskj/parameters/input
 	mkdir -p ioskj/data/input
