@@ -226,6 +226,14 @@ public:
         return std::isfinite(lower) and std::isfinite(upper) and lower<upper;
     }
 
+    double minimum(void) const {
+        return lower;
+    }
+
+    double maximum(void) const {
+        return upper;
+    }
+
     boost::math::uniform boost_dist(void) const {
         return boost::math::uniform(lower,upper);
     }
@@ -282,7 +290,7 @@ public:
         return proportion * (1-proportion);
     }
 
-    double likelihood(const double& x) const {
+    double pdf(const double& x) const {
         double n = x*size;
         double n_apos = std::min(size,1000.0);
         double e_apos = (1-x)*x+0.1/n;
