@@ -70,7 +70,7 @@ public:
 		return true;
 	}
 
-	double likelihood(const double& x) const {
+	double loglike(const double& x) const {
 		return std::log(pdf(x));
 	}
 	
@@ -264,6 +264,7 @@ public:
 
     double proportion;
     double size;
+    static double max_size;
 
     FournierRobustifiedMultivariateNormal(const double& proportion = NAN, const double& size = NAN):
         proportion(proportion),
@@ -290,11 +291,10 @@ public:
         return proportion * (1-proportion);
     }
 
-    double pdf(const double& x) const {
-        double n = x*size;
-        double n_apos = std::min(size,1000.0);
-        double e_apos = (1-x)*x+0.1/n;
-        return std::exp(-std::pow(proportion-x,2)/(2*e_apos/n_apos)+0.01)-0.5*e_apos;
+    double loglike(const double& x) const {
+        double n_apos = std::min(size,max_size);
+        double e_apos = (1-x)*x+0.1/40.0;
+        return 0.5*e_apos+std::log(std::exp(-std::pow(proportion-x,2)/(2*e_apos/n_apos))+0.01);
     }
 
     template<class Mirror>
@@ -305,6 +305,7 @@ public:
         ;
     }
 };
+double FournierRobustifiedMultivariateNormal::max_size = 1000;
 
 } // namespace Distributions
 } // namespace IOSKJ

@@ -34,6 +34,14 @@ public:
 	typedef Variable<FournierRobustifiedMultivariateNormal> SizeFreqVariable;
 	Array<SizeFreqVariable,DataYear,Quarter,Region,Method,Size> size_freqs;
 
+	/**
+	 * Log-likelihoods for each data sets
+	 */
+	double m_pl_cpue_ll;
+	double w_ps_cpue_ll;
+	double z_ests_ll;
+	double size_freqs_ll;
+
     /**
      * Reflection
      */
@@ -108,7 +116,7 @@ public:
 			}	
 
 			// At end, scale expected by geometric mean over period 1991-2010
-			if(year==2013 and quarter==3){
+			if(year==2014 and quarter==3){
 				GeometricMean geomean;
 				for(uint year=1991;year<=2010;year++){
 					geomean.append(w_ps_cpue(year,quarter));
@@ -179,6 +187,23 @@ public:
 			}
 		}
 	}
+
+	double loglike(void){
+		m_pl_cpue_ll = 0;
+		for(auto& item : m_pl_cpue) m_pl_cpue_ll += item.loglike();
+
+		w_ps_cpue_ll = 0;
+		for(auto& item : w_ps_cpue) w_ps_cpue_ll += item.loglike();
+
+		z_ests_ll = 0;
+		for(auto& item : z_ests) z_ests_ll += item.loglike();
+
+		FournierRobustifiedMultivariateNormal::max_size = 40;
+		size_freqs_ll = 0;
+		for(auto& item : size_freqs) size_freqs_ll += item.loglike();
+
+    	return m_pl_cpue_ll + w_ps_cpue_ll + z_ests_ll + size_freqs_ll;
+    }
 
 }; // class Data
 

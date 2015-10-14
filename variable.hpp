@@ -25,6 +25,13 @@ public:
         OP_(/=)
     #undef OP_
 
+    double loglike(void){
+        if(not is_na() and Distribution::valid()){
+            return Distribution::loglike(value);
+        }
+        return 0;
+    }
+
     template<class Mirror>
     void reflect(Mirror& mirror) {
         mirror
