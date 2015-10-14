@@ -273,7 +273,7 @@ public:
 		// Set effort for all regions and methods
 		// at a nominal 100 units
 		if(year<2004) model.effort = 0;
-		if(year>=2004 and year<=2013) model.effort = 100;
+		if(year>=2004 and year<=2014) model.effort = 100;
 
 		// Initialise in the first year
 		if(time==0) model.initialise();
@@ -445,7 +445,8 @@ public:
 	 */
 	double loglike(void){
 		double recruits_deviations_ll = 0;
-		for(auto item : recruits_deviations) recruits_deviations_ll += item.loglike();
+		for(auto& item : recruits_deviations) recruits_deviations_ll += item.loglike();
+
 		return recruits_deviations_ll;
 	}
 
