@@ -56,6 +56,11 @@ data = within(data,{
 })
 data = cast(data,year+quarter+zsize~what)
 
+# Make CVs a minimum of 0.2
+data <- within(data,{
+  sd <- ifelse(sd<0.2*mu,0.2*mu,mu)
+})
+
 # Output
 write.table(data,file="input/z_ests.tsv",row.names=F,quote=F,sep='\t')
 
