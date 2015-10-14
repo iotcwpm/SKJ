@@ -607,7 +607,7 @@ public:
 		}
 
 		// Normalise the recruits_region grid so that it sums to one
-		recruits_regions /= recruits_regions(sum);
+		recruits_regions /= sum(recruits_regions);
 
 		// Initialise recruits_variation
 		recruits_variation = Lognormal(1,recruits_sd);
