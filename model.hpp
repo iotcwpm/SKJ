@@ -565,7 +565,6 @@ public:
 		
 		// Initialise arrays that are dimensioned by age but dependent
 		// up arrays dimensioned by size
-		double movement_max = -1;
 		weight_age = 0;
 		maturity_age = 0;
 		selectivity_age = 0;
@@ -574,11 +573,25 @@ public:
 				weight_age(age) += weight_size(size) * age_size(age,size);
 				maturity_age(age) += maturity_size(size) * age_size(age,size);
 				movement_age(age) += movement_size(size) * age_size(age,size);
-				if(movement_age(age)>movement_max) movement_max = movement_age(age);
 				for(auto method : methods) selectivity_age(method,age) += selectivity_size(method,size) * age_size(age,size);
 			}
 		}
-		for(auto age : ages) movement_age(age) /= movement_max;
+
+		// Normalise movement and selectivities to maximum
+		double movement_max = -1;
+		Array<double,Method> selectivity_max = -1;
+		for(auto age : ages){
+			if(movement_age(age)>movement_max) movement_max = movement_age(age);
+			for(auto method : methods){
+				if(selectivity_age(method,age)>selectivity_max(method)) selectivity_max(method) = selectivity_age(method,age);
+			}
+		}
+		for(auto age : ages){
+			movement_age(age) /= movement_max;
+			for(auto method : methods) selectivity_age(method,age) /= selectivity_max(method);
+		}
+
+		// Set up mortality by age schedule
 		for(auto age : ages){
 			double weight = (age<mortality_cap_age)?weight_age(mortality_cap_age):weight_age(age);
 			mortality(age) = mortality_base * std::pow(weight,mortality_exponent);
