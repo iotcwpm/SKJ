@@ -61,9 +61,9 @@ public:
     /**
      * Growth rate parameters
      */
-	Variable<Fixed> growth_rate_1;
-	Variable<Fixed> growth_rate_2;
-	Variable<Fixed> growth_assymptote;
+	Variable<Uniform> growth_rate_1;
+	Variable<Uniform> growth_rate_2;
+	Variable<Uniform> growth_assymptote;
 	Variable<Fixed> growth_stanza_inflection;
 	Variable<Fixed> growth_stanza_steepness;
 	Variable<Fixed> growth_age_0;
@@ -308,8 +308,9 @@ public:
 	/**
 	 * Randomise the values of variables
 	 */
-	void randomise(void){
+	Parameters& randomise(void){
 		Randomiser().mirror(*this);
+		return *this;
 	}
 	struct Randomiser : Variabler<Randomiser> {
 		using Variabler<Randomiser>::data;
@@ -320,6 +321,56 @@ public:
 			return *this;
 		}
 	};
+
+	/**
+	 * Bounce values of parameters off bounds to ensure that they are within bounds
+	 * but not bunched up against them
+	 */
+	Parameters& bounce(void){
+		Restrictor().mirror(*this);
+		return *this;
+	}
+	struct Restrictor : Variabler<Restrictor> {
+		using Variabler<Restrictor>::data;
+
+		template<class Distribution>
+		Restrictor& data(Variable<Distribution>& variable, const std::string& name){
+			if(variable.value>variable.maximum()){
+				variable.value = std::max(variable.maximum()-(variable.value-variable.maximum()),variable.minimum());
+			}
+			else if(variable.value<variable.minimum()){
+				variable.value = std::min(variable.minimum()+(variable.minimum()-variable.value),variable.maximum());
+			}
+			return *this;
+		}
+	};
+
+	/**
+	 * Get the names of variables
+	 */
+	std::vector<std::string> names(void){
+		return Names().mirror(*this).names;
+	}
+	struct Names : Variabler<Names> {
+		using Variabler<Names>::data;
+		std::vector<std::string> names;
+		std::string prefix;
+
+		template<class Distribution, class... Dimensions>
+		Names& data(Array<Variable<Distribution>,Dimensions...>& array, const std::string& name){
+			prefix = name;
+			array.reflect(*this);
+			prefix = "";
+			return *this;
+		}
+
+		template<class Distribution>
+		Names& data(Variable<Distribution>& variable, const std::string& name){
+			names.push_back(prefix+name+".value");
+			return *this;
+		}
+	};
+
 
 	/**
 	 * Get the values of variables
@@ -348,6 +399,55 @@ public:
 			return *this;
 		}
 	};
+
+	/**
+	 * Get the values of variables as a vector
+	 */
+	std::vector<double> vector(void){
+		return VectorGetter().mirror(*this).values;
+	}
+	struct VectorGetter : Variabler<VectorGetter> {
+		using Variabler<VectorGetter>::data;
+		std::vector<double> values;
+
+		template<class Distribution>
+		VectorGetter& data(Variable<Distribution>& variable, const std::string& name){
+			values.push_back(variable.value);
+			return *this;
+		}
+	};
+
+	/**
+	 * Set the values of variables from a vector
+	 */
+	void vector(const std::vector<double>& vector){
+		VectorSetter(vector).mirror(*this);
+	}
+	struct VectorSetter : Variabler<VectorSetter> {
+		using Variabler<VectorSetter>::data;
+		std::vector<double> values;
+		int index;
+
+		VectorSetter(const std::vector<double>& vector){
+			values = vector;
+			index = 0;
+		}
+
+		template<class Distribution>
+		VectorSetter& data(Variable<Distribution>& variable, const std::string& name){
+			variable.value = values[index++];
+			return *this;
+		}
+	};
+
+	/**
+	 * Calculate prior likelihoods for parameters
+	 */
+	double loglike(void){
+		double recruits_deviations_ll = 0;
+		for(auto item : recruits_deviations) recruits_deviations_ll += item.loglike();
+		return recruits_deviations_ll;
+	}
 
 }; // class Parameters
 
