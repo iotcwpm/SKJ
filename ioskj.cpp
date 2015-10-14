@@ -279,6 +279,170 @@ void condition_ss3(int replicates=1000){
 	rejected.write("ss3/output/rejected.tsv");
 }
 
+void condition_demc(uint trials, uint size=1000, uint logging=100, uint saving=1000){
+    // Create output directory
+	boost::filesystem::create_directories("demc/output");
+	// Set up log file
+	std::ofstream log_file("demc/output/log.tsv");
+    std::ofstream errors_file("demc/output/errors.tsv");
+    std::ofstream trace("demc/output/trace.tsv");
+
+	// Read in parameter priors and default values
+	Parameters parameters;
+	parameters.read();
+	// Read in data
+	Data data;
+	data.read();
+
+    double outbreeding = 0.05;
+    double crossing = 0.5;
+    double blending = 0.5;
+
+	Uniform chance(0,1);
+
+	std::vector<std::vector<double>> population;
+	std::vector<double> loglikes;
+	auto names = parameters.names();
+	auto columns = names.size();
+
+    uint trial = 1;
+    uint accepted = 0;
+    while(trial<=trials){
+    	// Update stats
+    	uint rows = population.size();
+        double sum = 0;
+        double best = -INFINITY;
+        double worst = INFINITY;
+        for(uint row=0;row<rows;row++){
+            auto loglike = loglikes[row];
+            sum += loglike;
+            best = std::max(loglike,best);
+            worst = std::min(loglike,worst);
+        };
+        double mean = sum/rows;
+
+        auto select = [&]()->std::vector<double> {
+        	return population[chance.random()*rows];
+        };
+
+        int incumbent_row;
+    	if(rows<size){
+			incumbent_row = -1;
+			parameters.randomise();
+    	} else {
+    		incumbent_row = chance.random()*rows;
+    		std::vector<double> incumbent = population[incumbent_row];
+
+    		std::vector<double> donor(columns);
+    		if(chance.random()<outbreeding){
+                parameters.randomise();
+                donor = parameters.vector();
+            } else {
+	            std::vector<double> a = select();
+	            std::vector<double> b = select();
+	            std::vector<double> c = select();
+	            for(uint column=0;column<columns;column++){
+	                donor[column] = a[column] + blending*(b[column]-c[column]);
+	            }
+	        }
+
+	        std::vector<double> mutation(columns);
+	        uint which = chance.random() * columns;
+            for(uint column=0;column<columns;column++){
+                if(column==which or chance.random()<crossing){
+                    mutation[column] = donor[column];
+                }
+                else mutation[column] = incumbent[column];
+            }
+
+            parameters.vector(mutation);
+            parameters.bounce();
+    	}
+
+    	// Calculate likelihood for candidate
+    	double loglike = NAN;
+        try {            
+
+			Model model;
+			for(uint time=0;time<=time_max;time++){
+				// Do the time step
+				//... set parameters
+				parameters.set(time,model);
+				//... update the model
+				model.update(time);
+				//... get data
+				data.get(time,model);
+			}
+			// Calculate likelihood
+			loglike = parameters.loglike() + data.loglike();
+
+        } catch(const std::exception& e){
+            errors_file<<trial<<"\t"<<e.what()<<"\n";
+            parameters.values().write(errors_file);
+            errors_file<<std::endl;
+        } catch(...){
+            errors_file<<trial<<"\t"<<"\"Unknown error\"\n";
+            parameters.values().write(errors_file);
+            errors_file<<std::endl;
+        }
+        if(not std::isfinite(loglike)) continue;
+
+        auto candidate = parameters.vector();
+
+ 		if(incumbent_row>=0){
+            double ratio = std::exp(loglike-loglikes[incumbent_row]);
+            if(chance.random()<ratio){
+                accepted++;
+                for(uint column=0;column<columns;column++){
+                	population[incumbent_row][column] = candidate[column];
+                }
+                loglikes[incumbent_row] = loglike;
+                // Record trace
+                if(trace.tellp()==0){
+                	for(auto name : names) trace<<name<<"\t";
+                	trace<<"loglike"<<"\n";
+                }
+                for(uint column=0;column<columns;column++){
+					trace<<candidate[column]<<"\t";
+                }
+                trace<<loglike<<"\n";
+            }
+        } else {
+        	accepted++;
+        	population.push_back(candidate);
+			loglikes.push_back(loglike);
+        }
+
+    	// Record log
+		if(trial%logging==0){
+            if(log_file.tellp()==0) log_file<<"trial\trows\tworst\tmean\tbest\tlast\tacceptance"<<std::endl;
+            double acceptance = logging>0?accepted/double(logging):NAN;
+            log_file<<trial<<"\t"
+            	<<rows<<"\t"
+            	<<worst<<"\t"<<mean<<"\t"<<best<<"\t"
+            	<<loglike<<"\t"
+            	<<acceptance<<std::endl;
+            accepted = 0;
+        }
+
+        // Save population
+		if(trial==trials or trial%saving==0){
+			std::ofstream save("demc/output/population.tsv");
+			for(auto name : names) save<<name<<"\t";
+			save<<"loglike"<<std::endl;
+			uint index = 0;
+			for(auto row : population){
+				for(auto value : row){
+					save<<value<<"\t";
+				}
+				save<<loglikes[index++]<<std::endl;
+			}
+		}
+
+        trial++;
+    }
+}
+
 /**
  * Evaluate management procedures
  *
@@ -407,6 +571,7 @@ int main(int argc, char** argv){
         else if(task=="priors") priors();
         else if(task=="condition_feasible") condition_feasible(arg<int>(argc,argv,2));
         else if(task=="condition_ss3") condition_ss3(arg<int>(argc,argv,2));
+        else if(task=="condition_demc") condition_demc(arg<int>(argc,argv,2));
         else if(task=="evaluate_feasible") evaluate("feasible/output/accepted.tsv",arg<int>(argc,argv,2));
         else if(task=="evaluate_ss3") evaluate("ss3/output/accepted.tsv",arg<int>(argc,argv,2));
         else throw std::runtime_error("Unrecognised task");

@@ -12,7 +12,7 @@ r
 		'accepted',
 		'rejected',
 		'track'
-	),from='../../feasible/output')
+	),from='../output/')
 
 r
 	rejects <- table(rejected$criterion)
@@ -70,7 +70,7 @@ r
 		)
 	}
 
-for param in c('recruits_unfished','mortality_base','movement_stay','recruits_deviations.2003.')
+for param in c('spawners_unfished','mortality_base','movement_stay','recruits_deviations.2003.')
 	figure
 		r format png size 17x10cm
 			plot_densities(param)

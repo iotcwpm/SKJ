@@ -4,7 +4,8 @@ r
 
 > Parameters
 
-	par spawners_unfished type number value 8e6
+	par spawners_unfished type number value 2e6
+	par recruits_steepness type number value 0.8
 	par recruits_lengths_mean type number value 5
 	par weight_a type number value 5.32e-6
 	par weight_b type number value 3.35
@@ -23,7 +24,7 @@ button.refresh
 	Refresh
 
 
-r
+r volat
 	pwd = getwd()
 	setwd('../..')
 
@@ -31,7 +32,7 @@ r
 		list(
 			# Stock recruitment relation and variability
 			spawners_unfished = Uniform(spawners_unfished,1e6,5e6),
-			recruits_steepness = Uniform(0.8,0.7,1),
+			recruits_steepness = Uniform(recruits_steepness,0.7,1),
 			recruits_sd = Uniform(0.6,0.4,0.8),
 
 			# Quarterly spawning fractions
@@ -72,15 +73,33 @@ r
 		)
 	)
 
+	# Model outputs
 	load(c(
 		'length_age','age_size',
 		'weight_size','weight_age',
 		'maturity_size','maturity_age',
 		'mortality','survival',
 		'selectivity_size','selectivity_age',
-		'movement_region','movement_size',
+		'movement_region','movement_size', 'movement_age',
 		'track'
 	),from='model/output')
+
+	# Data outputs (observed and expected for data)
+	load(c(
+		'm_pl_cpue','w_ps_cpue',
+		'size_freqs','z_ests'
+	),from='data/output')
+
+	# Function for plotting `teack` variables
+	plot_track <- function(what,label){
+		plot <- ggplot(track,aes(x=year+quarter/4)) + 
+				geom_line(aes_string(y=what)) + 
+				geom_hline(y=0,alpha=0) +
+				geom_vline(x=2015,alpha=0.6,linetype=2) +
+				labs(x='Year',y=label)
+		print(plot)
+		plot
+	}
 
 	setwd(pwd)
 
@@ -203,9 +222,9 @@ r
 	figure
 		r format png size 16x16cm
 			print(
-				ggplot(movement_regions,aes(y=region_from,x=region,fill=value,label=round(value,4))) +
+				ggplot(movement_region,aes(y=region_from,x=region,fill=value,label=round(value,4))) +
 					geom_tile() +
-					scale_fill_gradient(low="white",high="red") + 
+					scale_fill_gradient(low="white",high=hsv(0.5,0.5,0.5)) + 
 					geom_text() +
 					labs(y="Region from",x="Region to",fill="Proportion")
 			)
@@ -214,26 +233,45 @@ r
 	figure
 		r format png size 17x10cm
 			print(
-				ggplot(movement_sizes,aes(x=length,y=value)) +
+				ggplot(movement_size,aes(x=length,y=value)) +
 					geom_line() +
 					ylim(0,1) +
-					labs(x="Length (cm)",y="Proportion moving")
+					labs(x="Length (cm)",y="Proportion relative to maximum proportion")
 			)
 		figcaption Movement proportion by length.
 
+	figure
+		r format png size 17x10cm
+			print(
+				ggplot(movement_age,aes(x=age,y=value)) +
+					geom_line() +
+					ylim(0,1) +
+					labs(x="Age (qtr)",y="Proportion relative to maximum proportion")
+			)
+		figcaption Movement proportion by age.
+
+
+> Catches
+
+	figure
+		r format png size 17x10cm
+			temp <- ddply(track,.(year),summarise,
+				sw_ps = sum(catches_sw_ps),
+				nw_ps = sum(catches_nw_ps),
+				m_pl = sum(catches_ma_pl),
+				e_gn = sum(catches_ea_gn)
+			)
+			temp <- melt(temp,id.vars='year')
+			print(
+				ggplot(temp,aes(x=year,y=value,colour=variable)) + geom_line() +
+					geom_vline(x=2015,alpha=0.6,linetype=2) +
+					labs(x='Year',y='Catches (t)',colour='Region/Method') + 
+					theme(legend.position='top')
+			)
+		figcaption
+			Catch trajectories (annualised) for the four main fisheries
 
 > Biomass and recruitment trajectories
-
-	r
-		plot_track <- function(what,label){
-			plot <- ggplot(track,aes(x=year+quarter/4)) + 
-					geom_line(aes_string(y=what)) + 
-					geom_hline(y=0,alpha=0) +
-					geom_vline(x=2015,alpha=0.6,linetype=2) +
-					labs(x='Year',y=label)
-			print(plot)
-			plot
-		}
 
 	figure
 		r format png size 17x10cm
@@ -247,8 +285,8 @@ r
 				ggplot(subset(track,quarter==0),aes(x=year+quarter/4)) + 
 				geom_line(aes(y=biomass_spawners_sw,colour='SW')) + 
 				geom_line(aes(y=biomass_spawners_nw,colour='NW')) + 
-				geom_line(aes(y=biomass_spawners_m,colour='MA')) + 
-				geom_line(aes(y=biomass_spawners_e,colour='EA')) + 
+				geom_line(aes(y=biomass_spawners_ma,colour='MA')) + 
+				geom_line(aes(y=biomass_spawners_ea,colour='EA')) + 
 				geom_hline(y=0,alpha=0) +
 				geom_vline(x=2015,alpha=0.6,linetype=2) +
 				labs(x='Year',y='Mature biomass in region',colour='Region')
@@ -287,22 +325,6 @@ r
 		figcaption
 			Vulnerable biomass trajectories for the three main fisheries
 
-	figure
-		r format png size 17x10cm
-			temp <- ddply(track,.(year),summarise,
-				sw_ps = sum(catches_sw_ps),
-				nw_ps = sum(catches_nw_ps),
-				m_pl = sum(catches_ma_pl),
-				e_gn = sum(catches_ea_gn)
-			)
-			temp <- melt(temp,id.vars='year')
-			print(
-				ggplot(temp,aes(x=year,y=value,colour=variable)) + geom_line() +
-					geom_vline(x=2015,alpha=0.6,linetype=2) +
-					labs(x='Year',y='Catches (t)',colour='Region/Method')
-			)
-		figcaption
-			Catch trajectories for the three main fisheries
 
 	figure
 		r format png size 17x10cm
@@ -316,3 +338,143 @@ r
 			)
 		figcaption
 			Exploitation rate trajectories for the three main fisheries
+
+> Fits to data
+
+
+	> Maldive pole and line (M-PL) CPUE
+
+		figure
+			r format png size 17x12cm
+				m_pl_cpue = subset(m_pl_cpue,data_year>2000)
+				print(ggplot(m_pl_cpue,aes(x=data_year+quarter/4)) + 
+					geom_line(aes(y=value),alpha=0.7) + 
+					geom_point(aes(y=location,colour=factor(quarter),shape=factor(quarter)),size=3) + 
+					geom_hline(y=0,alpha=0) +
+					scale_shape_manual(values=1:4) +
+					labs(x='Year',y='Maldive pole and line CPUE index',colour='Quarter',shape='Quarter'))
+			figcaption
+				Observed (points) and expected (lines) Maldive (M) pole and line (PL) CPUE.
+
+	> Western purse seine (W-PS) CPUE
+
+		figure
+			r format png size 17x12cm
+				print(ggplot(w_ps_cpue,aes(x=data_year)) + 
+					geom_line(aes(y=value),alpha=0.7) + 
+					geom_point(aes(y=location),shape=1,size=3) + 
+					geom_hline(y=0,alpha=0) +
+					labs(x='Year',y='West purse siene CPUE index'))
+			figcaption
+				Observed (points) and expected (lines) western (W) purse seine (PS) CPUE.
+
+	> Western purse seine (W-PS) tagging Z estimates
+
+		figure
+			r format png size 17x12cm
+				z_ests = subset(z_ests,is.finite(value))
+				print(ggplot(z_ests,aes(x=data_year+quarter/4)) + 
+					geom_line(aes(y=value),alpha=0.7) + 
+					geom_point(aes(y=mean,colour=factor(quarter)),shape=1,size=3) + 
+					geom_errorbar(aes(ymin=mean-sd,ymax=mean+sd,colour=factor(quarter)),width=0) +
+					geom_hline(y=0,alpha=0) +
+					facet_grid(z_size~.) +
+					labs(x='Year',y='Instantaneous rate of total mortality (Z)',colour='Quarter'))
+			figcaption
+				Observed (points) and expected (lines) western (W) purse seine (PS) tagging Z estimates. Error bars indicate +/- one standard error in estimates.
+
+	> Size frequencies
+
+		> Mean length by region, method, year and quarter
+
+			figure
+				r format png size 17x23cm
+					size_freqs_summ = ddply(size_freqs,.(region,method,data_year,quarter),summarise,
+						observed=sum(length*proportion,na.rm=T),
+						uncertainty=mean(sd,na.rm=T),
+						expected=sum(length*value,na.rm=T)
+					)
+					size_freqs_summ = within(size_freqs_summ,{
+						observed[observed==0] = NA
+					})
+					print(ggplot(size_freqs_summ,aes(x=data_year+quarter/4,colour=factor(quarter))) + 
+						geom_line(aes(y=expected),alpha=0.7) + 
+						geom_point(aes(y=observed,size=log(uncertainty)),shape=1,size=2) + 
+						facet_grid(method~region) +
+						labs(x='Year',y='Mean length (cm)',colour='Quarter'))
+				figcaption
+					Observed (points) and expected (lines) mean length of catch by region, method, year and quarter.
+
+		> By region, method & quarter (aggregated over years)
+
+			figure
+				r format png size 17x23cm
+					size_freqs_over_years = ddply(size_freqs,.(region,method,quarter,length),summarise,
+						observed=mean(proportion,na.rm=T),
+						expected=mean(value,na.rm=T)
+					)
+					print(ggplot(size_freqs_over_years,aes(x=length,colour=factor(quarter))) + 
+						geom_vline(x=seq(0,80,20),linetype=3,colour='grey') +
+						geom_line(aes(y=expected),alpha=0.7) + 
+						geom_point(aes(y=observed),shape=1,size=2) + 
+						geom_hline(y=0,alpha=0) + 
+						facet_grid(method~region) +
+						labs(x='Length (cm)',y='Proportion',colour='Quarter'))
+				figcaption
+					Observed (points) and expected (lines) proportion of catch in each length class by region, method & quarter (aggregated over years).
+
+		> By year for a particular region & method (aggregated over quarters)
+
+			r
+				size_freqs_by_year = ddply(size_freqs,.(region,method,data_year,length),summarise,
+					observed=mean(proportion,na.rm=T),
+					expected=mean(value,na.rm=T)
+				)
+				size_freqs_by_year_sub <- function(region_,method_){
+					print(ggplot(subset(size_freqs_by_year,region==region_&method==method_),aes(x=length)) + 
+						geom_point(aes(y=observed),shape=16,size=2,colour='grey') + 
+						geom_line(aes(y=expected),alpha=0.7) + 
+						geom_hline(y=0,alpha=0) + 
+						facet_wrap(~data_year) +
+						labs(x='Length (cm)',y='Proportion'))
+				}
+				items <- list(
+					list(region='SW',method='PS',desc='purse seine (PS) in the south-western region (SW)'),
+					list(region='NW',method='PS',desc='purse seine (PS) in the north-western region (NW)'),
+					list(region='NW',method='GN',desc='gillnet (GN) in the north-western region (NW)'),
+					list(region='MA',method='PL',desc='pole and line (PL) in the Maldive region (MA)'),
+					list(region='EA',method='GN',desc='gillnet (GN) in the eastern region (EA)')
+				)
+			
+			for item in items
+				figure
+					r format png size 17x23cm
+						size_freqs_by_year_sub(item$region,item$method)
+					figcaption
+						Observed (points) and expected (lines) size frequency distributions for {text item$desc} aggregated over quarters.
+
+		> By year and quarter for a particular region & method (unaggregated)
+
+			r
+				size_freqs_sub <- function(region_,method_){
+					print(ggplot(subset(size_freqs,region==region_&method==method_),aes(x=length)) + 
+						geom_point(aes(y=proportion),shape=16,size=2,colour='grey') + 
+						geom_line(aes(y=value),alpha=0.7) + 
+						geom_hline(y=0,alpha=0) + 
+						facet_grid(data_year~quarter) + 
+						labs(y="Proportion",x="Length (cm)"))
+				}
+				items <- list(
+					list(region='SW',method='PS',desc='purse seine (PS) in the south-western region (SW)'),
+					list(region='NW',method='PS',desc='purse seine (PS) in the north-western region (NW)'),
+					list(region='NW',method='GN',desc='gillnet (GN) in the south-western region (NW)'),
+					list(region='MA',method='PL',desc='pole and line (PL) in the Maldive region (MA)'),
+					list(region='EA',method='GN',desc='gillnet (GN) in the eastern region (EA)')
+				)
+				
+			for item in items
+				figure
+					r format png size 17x23cm
+						size_freqs_sub(item$region,item$method)
+					figcaption
+						Observed (points) and expected (lines) size frequency distributions for {text item$desc} aggregated over quarters.
