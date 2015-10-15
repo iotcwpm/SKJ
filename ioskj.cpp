@@ -279,7 +279,13 @@ void condition_ss3(int replicates=1000){
 	rejected.write("ss3/output/rejected.tsv");
 }
 
-void condition_demc(uint trials, uint size=1000, uint logging=100, uint saving=1000){
+void condition_demc(
+	uint trials, 
+	double blending = 0.5, 
+	double crossing = 0.05,
+	double outbreeding = 0.05,
+	uint size=1000, uint logging=100, uint saving=1000
+){
     // Create output directory
 	boost::filesystem::create_directories("demc/output");
 	// Set up log file
@@ -293,10 +299,6 @@ void condition_demc(uint trials, uint size=1000, uint logging=100, uint saving=1
 	// Read in data
 	Data data;
 	data.read();
-
-    double outbreeding = 0.05;
-    double crossing = 0.5;
-    double blending = 0.5;
 
 	Uniform chance(0,1);
 
