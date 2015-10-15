@@ -224,6 +224,10 @@ public:
 
     Lognormal(double location = NAN, double dispersion = NAN): location(location),dispersion(dispersion){}
 
+    double minimum(void) const {
+        return std::numeric_limits<double>::epsilon();
+    }
+
     bool valid(void) const {
         return location>0 and dispersion>0;
     }
