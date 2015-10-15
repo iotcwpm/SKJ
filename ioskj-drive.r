@@ -21,6 +21,12 @@ pars <- list(
 	spawning_2 = Uniform(0.8,0.7,1),
 	spawning_3 = Uniform(0.5,0.3,0.7),
 
+	# Proportion of recruits by region
+	# (relative to NW region)
+	recruits_sw = Uniform(0.2,0.01,0.5),
+	recruits_ma = Uniform(0.2,0.01,0.5),
+	recruits_ea = Uniform(0.2,0.01,0.5),
+
 	# Weight at length
 	weight_a = Normal(5.32e-6,5.32e-6,0.266e-6),
 	weight_b = Normal(3.35,3.35,0.1675),
@@ -34,11 +40,11 @@ pars <- list(
 	mortality_exponent = Normal(-0.29,-0.29,0.07),
 
 	# Growth
-	growth_rate_1 = Uniform(1.12,1,1.2),#
-	growth_rate_2 = Uniform(0.33,0.2,0.4),#
-	growth_assymptote = Uniform(71.6,60,80),#
-	growth_stanza_inflection = Fixed(0.95),#
-	growth_stanza_steepness = Fixed(24.8),#
+	growth_rate_1 = Normal(1.12,1.12,0.112),
+	growth_rate_2 = Normal(0.33,0.33,0.033),
+	growth_assymptote = Normal(71.6,71.6,7.16),
+	growth_stanza_inflection = Normal(0.95,0.95,0.095),
+	growth_stanza_steepness = Normal(24.8,24.8,2.48),
 	growth_age_0 = Fixed(-0.3),
 	growth_cv_0 = Uniform(0.1,0.01,0.3),
 	growth_cv_old = Uniform(0.1,0.01,0.3),

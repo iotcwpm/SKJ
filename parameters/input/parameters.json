@@ -34,6 +34,21 @@
     "lower": 0.3,
     "upper": 0.7
   },
+  "recruits_sw": {
+    "value": 0.2,
+    "lower": 0.01,
+    "upper": 0.5
+  },
+  "recruits_ma": {
+    "value": 0.2,
+    "lower": 0.01,
+    "upper": 0.5
+  },
+  "recruits_ea": {
+    "value": 0.2,
+    "lower": 0.01,
+    "upper": 0.5
+  },
   "weight_a": {
     "value": 5.32e-06,
     "mean": 5.32e-06,
@@ -66,24 +81,28 @@
   },
   "growth_rate_1": {
     "value": 1.12,
-    "lower": 1,
-    "upper": 1.2
+    "mean": 1.12,
+    "sd": 0.112
   },
   "growth_rate_2": {
     "value": 0.33,
-    "lower": 0.2,
-    "upper": 0.4
+    "mean": 0.33,
+    "sd": 0.033
   },
   "growth_assymptote": {
     "value": 71.6,
-    "lower": 60,
-    "upper": 80
+    "mean": 71.6,
+    "sd": 7.16
   },
   "growth_stanza_inflection": {
-    "value": 0.95
+    "value": 0.95,
+    "mean": 0.95,
+    "sd": 0.095
   },
   "growth_stanza_steepness": {
-    "value": 24.8
+    "value": 24.8,
+    "mean": 24.8,
+    "sd": 2.48
   },
   "growth_age_0": {
     "value": -0.3

@@ -57,10 +57,14 @@ public:
 	/**
 	 * Proportion of recruits by region
 	 * 
-	 * These are normalised in the model initialisation
+	 * These are relative to the proportion of recruits
+	 * going to NW regions. All proportions are 
+	 * then normalised in the model initialisation
 	 * so that they sum to one.
 	 */
-	Array<Variable<Uniform>,Region> recruits_regions;
+	Variable<Uniform> recruits_sw;
+	Variable<Uniform> recruits_ma;
+	Variable<Uniform> recruits_ea;
 
 	/**
 	 * Length-weight parameters
@@ -83,11 +87,11 @@ public:
     /**
      * Growth rate parameters
      */
-	Variable<Uniform> growth_rate_1;
-	Variable<Uniform> growth_rate_2;
-	Variable<Uniform> growth_assymptote;
-	Variable<Fixed> growth_stanza_inflection;
-	Variable<Fixed> growth_stanza_steepness;
+	Variable<Normal> growth_rate_1;
+	Variable<Normal> growth_rate_2;
+	Variable<Normal> growth_assymptote;
+	Variable<Normal> growth_stanza_inflection;
+	Variable<Normal> growth_stanza_steepness;
 	Variable<Fixed> growth_age_0;
 	Variable<Uniform> growth_cv_0;
 	Variable<Uniform> growth_cv_old;
@@ -128,7 +132,9 @@ public:
             .data(spawning_2,"spawning_2")
             .data(spawning_3,"spawning_3")
 
-            .data(recruits_regions,"recruits_regions")
+            .data(recruits_sw,"recruits_sw")
+            .data(recruits_ma,"recruits_ma")
+            .data(recruits_ea,"recruits_ea")
 
             .data(weight_a,"weight_a")
             .data(weight_b,"weight_b")
@@ -167,7 +173,6 @@ public:
     void read(void){
     	Structure<Parameters>::read("parameters/input/parameters.json");
     	
-    	recruits_regions.read("parameters/input/recruits_regions.tsv",true);
     	recruits_deviations.read("parameters/input/recruits_deviations.tsv",true);
     	selectivities.read("parameters/input/selectivities.tsv",true);
 
@@ -182,7 +187,6 @@ public:
     void write(void){
     	Structure<Parameters>::write("parameters/output/parameters.json");
 
-    	recruits_regions.write("parameters/output/recruits_regions.tsv",true);
     	recruits_deviations.write("parameters/output/recruits_deviations.tsv",true);
     	selectivities.write("parameters/output/selectivities.tsv",true);
     	catches.write("parameters/output/catches.tsv",true);
@@ -204,12 +208,18 @@ public:
 			model.recruits_steepness = recruits_steepness;
 			model.recruits_sd = recruits_sd;
 
+			// Proportion of mature fish spawning in each quarter
 			model.spawning(0) = spawning_0;
 			model.spawning(1) = spawning_1;
 			model.spawning(2) = spawning_2;
 			model.spawning(3) = spawning_3;
 
-			for(auto region : regions) model.recruits_regions(region) = recruits_regions(region);
+			// Recruitment proportion to each region
+			model.recruits_regions(SW) = recruits_sw;
+			model.recruits_regions(NW) = 1;
+			model.recruits_regions(MA) = recruits_ma;
+			model.recruits_regions(EA) = recruits_ea;
+			model.recruits_regions /= sum(model.recruits_regions);
 
 			// Length-weight relationship
 			model.weight_length_a = weight_a;
