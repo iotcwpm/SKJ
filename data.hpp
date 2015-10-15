@@ -35,12 +35,18 @@ public:
 	Array<SizeFreqVariable,DataYear,Quarter,Region,Method,Size> size_freqs;
 
 	/**
+	 * Count of years in which estimated Z>0.9
+	 */
+	double exp_rate_high;
+
+	/**
 	 * Log-likelihoods for each data sets
 	 */
 	double m_pl_cpue_ll;
 	double w_ps_cpue_ll;
 	double z_ests_ll;
 	double size_freqs_ll;
+	double exp_rate_high_ll;
 
     /**
      * Reflection
@@ -186,6 +192,12 @@ public:
 				z_ests(year,quarter,z_size) = z;
 			}
 		}
+
+		// Check number of region/gear exploitation rates that are above 90%;
+		if(year==year_min) exp_rate_high = 0;
+		for(auto& er : model.exploitation_rate){
+			if(er>0.9) exp_rate_high++;
+		}
 	}
 
 	double loglike(void){
@@ -202,7 +214,9 @@ public:
 		size_freqs_ll = 0;
 		for(auto& item : size_freqs) size_freqs_ll += item.loglike();
 
-    	return m_pl_cpue_ll + w_ps_cpue_ll + z_ests_ll + size_freqs_ll;
+		exp_rate_high_ll = -exp_rate_high;
+
+    	return m_pl_cpue_ll + w_ps_cpue_ll + z_ests_ll + size_freqs_ll + exp_rate_high_ll;
     }
 
 }; // class Data
