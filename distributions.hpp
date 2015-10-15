@@ -35,35 +35,35 @@ public:
 	}
 
 	double mean(void) const {
-		return boost::math::mean(static_cast<const Derived&>(*this).boost_dist());
+		return boost::math::mean(derived().boost_dist());
 	}
 	
 	double median(void) const {
-		return boost::math::median(static_cast<const Derived&>(*this).boost_dist());
+		return boost::math::median(derived().boost_dist());
 	}
 
 	double mode(void) const {
-		return boost::math::mode(static_cast<const Derived&>(*this).boost_dist());
+		return boost::math::mode(derived().boost_dist());
 	}
 	
 	double sd(void) const {
-		return boost::math::standard_deviation(static_cast<const Derived&>(*this).boost_dist());
+		return boost::math::standard_deviation(derived().boost_dist());
 	}
 	
 	double variance(void) const {
-		return boost::math::variance(static_cast<const Derived&>(*this).boost_dist());
+		return boost::math::variance(derived().boost_dist());
 	}
 
 	double skewness(void) const {
-		return boost::math::skewness(static_cast<const Derived&>(*this).boost_dist());
+		return boost::math::skewness(derived().boost_dist());
 	}
 	
 	double kurtosis(void) const {
-		return boost::math::kurtosis(static_cast<const Derived&>(*this).boost_dist());
+		return boost::math::kurtosis(derived().boost_dist());
 	}
 
 	double kurtosis_excess(void) const {
-		return boost::math::kurtosis_excess(static_cast<const Derived&>(*this).boost_dist());
+		return boost::math::kurtosis_excess(derived().boost_dist());
 	}
 
 	bool valid(void) const {
@@ -71,7 +71,7 @@ public:
 	}
 
 	double loglike(const double& x) const {
-		return std::log(pdf(x));
+		return std::log(derived().pdf(x));
 	}
 	
 	double pdf(const double& x) const {
@@ -146,6 +146,41 @@ public:
     void reflect(Mirror& mirror) {
         mirror
             .data(value,"value")
+        ;
+    }
+};
+
+class Beta : public Distribution<Beta> {
+public:
+
+    double alpha = NAN;
+    double beta = NAN;
+
+    Beta(const double& alpha = NAN, const double& beta = NAN):
+        alpha(alpha),
+        beta(beta){        
+    }
+
+    Beta& mean_sd(const double& mean, const double& sd){
+        double var = sd*sd;
+        alpha = boost::math::beta_distribution<>::find_alpha(mean,var);
+        beta = boost::math::beta_distribution<>::find_beta(mean,var);
+        return *this;
+    }
+
+    boost::math::beta_distribution<> boost_dist(void) const {
+        return boost::math::beta_distribution<>(alpha,beta);
+    }
+
+    boost::random::beta_distribution<> boost_rand(void) const {
+        return boost::random::beta_distribution<>(alpha,beta);
+    }
+
+    template<class Mirror>
+    void reflect(Mirror& mirror) {
+        mirror
+            .data(alpha,"alpha")
+            .data(beta,"beta")
         ;
     }
 };

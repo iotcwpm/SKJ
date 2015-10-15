@@ -16,8 +16,28 @@ public:
 	 * Parameters of the stock-recruitment relationship
 	 */
 	Variable<Uniform> spawners_unfished;
-	Variable<Uniform> recruits_steepness;
-	Variable<Uniform> recruits_sd;
+
+	/**
+	 * Special distribution for steepness prior
+	 * based on beta
+	 */
+	struct SteepnessBeta : Beta {
+		double minimum(void) const {
+			return 0.2;
+		}
+		double maximum(void) const {
+			return 1;
+		}
+		double random(void){
+			return (Beta::random()+0.25)/1.25;
+		}
+		double pdf(const double& x){
+			return Beta::pdf(x*1.25-0.25);
+		}
+	};
+	Variable<SteepnessBeta> recruits_steepness;
+
+	Variable<Lognormal> recruits_sd;
 
 	/**
 	 * Recruitment deviations
@@ -43,20 +63,20 @@ public:
 	/**
 	 * Length-weight parameters
 	 */
-    Variable<Fixed> weight_a;
-    Variable<Fixed> weight_b;
+    Variable<Normal> weight_a;
+    Variable<Normal> weight_b;
 
     /**
      * Maturity parameters
      */
-    Variable<Uniform> maturity_inflection;
-    Variable<Uniform> maturity_steepness;
+    Variable<Normal> maturity_inflection;
+    Variable<Normal> maturity_steepness;
 
     /**
      * Mortality parameters
      */
    	Variable<Uniform> mortality_base;
-	Variable<Fixed> mortality_exponent;
+	Variable<Normal> mortality_exponent;
 
     /**
      * Growth rate parameters
@@ -67,8 +87,8 @@ public:
 	Variable<Fixed> growth_stanza_inflection;
 	Variable<Fixed> growth_stanza_steepness;
 	Variable<Fixed> growth_age_0;
-	Variable<Fixed> growth_cv_0;
-	Variable<Fixed> growth_cv_old;
+	Variable<Uniform> growth_cv_0;
+	Variable<Uniform> growth_cv_old;
 
     /**
      * Movements parameters
@@ -346,6 +366,23 @@ public:
 	};
 
 	/**
+	 * Calculate prior likelihoods for parameters
+	 */
+	double loglike(void){
+		return Logliker().mirror(*this).loglike;
+	}
+	struct Logliker : Variabler<Logliker> {
+		using Variabler<Logliker>::data;
+		double loglike = 0;
+
+		template<class Distribution>
+		Logliker& data(Variable<Distribution>& variable, const std::string& name){
+			loglike += variable.loglike();
+			return *this;
+		}
+	};
+
+	/**
 	 * Get the names of variables
 	 */
 	std::vector<std::string> names(void){
@@ -439,16 +476,6 @@ public:
 			return *this;
 		}
 	};
-
-	/**
-	 * Calculate prior likelihoods for parameters
-	 */
-	double loglike(void){
-		double recruits_deviations_ll = 0;
-		for(auto& item : recruits_deviations) recruits_deviations_ll += item.loglike();
-
-		return recruits_deviations_ll;
-	}
 
 }; // class Parameters
 

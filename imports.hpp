@@ -21,6 +21,8 @@
 #include <boost/random/normal_distribution.hpp>
 #include <boost/math/distributions/lognormal.hpp>
 #include <boost/random/lognormal_distribution.hpp>
+ #include <boost/math/distributions/beta.hpp>
+#include <boost/random/beta_distribution.hpp>
 //... optimisation
 #include <boost/math/tools/minima.hpp>
 
