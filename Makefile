@@ -186,3 +186,23 @@ requires/stencila: requires/stencila-$(STENCILA_VERSION).zip
 requires-stencila: requires/stencila
 
 requires: requires-boost requires-stencila
+
+
+#############################################################
+# Running on AWS EC2
+#
+# 1.Launch an instance
+#
+# 2.Package up the binary and copy it to the instance
+# 	make package
+# 	scp -i <path/to/aws/key> ioskj-linux.zip ubuntu@<ip.address.of.instance>:~
+#
+# 3.Shell into the instance and unzip the package
+# 	ssh -i <path/to/aws/key> ubuntu@<ip.address.of.instance>
+#	unzip ioskj-linux.zip
+# 
+# 4.Copy package to a serparate directory and run a long MCMC chain
+# there
+#	cp -r ioskj ioskj1
+#	cd ioskj1 && ./ioskj.exe condition_demc 10000000 &
+#	..repeat..
