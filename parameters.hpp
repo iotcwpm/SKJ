@@ -19,11 +19,12 @@ public:
 
 	/**
 	 * Special distribution for steepness prior
-	 * based on beta
+	 * based on beta. Note that a lower bound
+	 * of 0.6 is used
 	 */
 	struct SteepnessBeta : Beta {
 		double minimum(void) const {
-			return 0.2;
+			return 0.6;
 		}
 		double maximum(void) const {
 			return 1;
@@ -32,7 +33,8 @@ public:
 			return (Beta::random()+0.25)/1.25;
 		}
 		double pdf(const double& x){
-			return Beta::pdf(x*1.25-0.25);
+			double h = x*1.25-0.25;
+			return h<0.6?0:Beta::pdf(h);
 		}
 	};
 	Variable<SteepnessBeta> recruits_steepness;
