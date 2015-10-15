@@ -198,7 +198,7 @@ public:
 		z_ests_ll = 0;
 		for(auto& item : z_ests) z_ests_ll += item.loglike();
 
-		FournierRobustifiedMultivariateNormal::max_size = 40;
+		FournierRobustifiedMultivariateNormal::max_size = 30;
 		size_freqs_ll = 0;
 		for(auto& item : size_freqs) size_freqs_ll += item.loglike();
 
