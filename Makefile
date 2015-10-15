@@ -206,3 +206,13 @@ requires: requires-boost requires-stencila
 #	cp -r ioskj ioskj1
 #	cd ioskj1 && ./ioskj.exe condition_demc 10000000 &
 #	..repeat..
+#
+# 5. To stop all chains and zip up the results
+# 	killall -15 ioskj.exe
+# 	tar -zcvf ioskj1.tar.gz ioskj1
+# 	..repeat..
+# 	
+# 6. On localhost download those files
+# 	scp -i <path/to/aws/key> ubuntu@<ip.address.of.instance>:~/ioskj1.tar.gz demc
+# 	..repeat..
+#
