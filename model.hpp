@@ -713,7 +713,10 @@ public:
 		for(auto region_from : region_froms){
 			for(auto region_to : regions){
 				for(auto age : ages){
-					double movers = movement_region(region_from,region_to) * movement_age(age);
+					double movers = 
+						numbers(Level<Region>(region_from),age) * 
+						movement_region(region_from,region_to) * 
+						movement_age(age);
 					numbers(Level<Region>(region_from),age) -= movers;
 					numbers(region_to,age) += movers;
 				}
