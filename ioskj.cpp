@@ -366,7 +366,7 @@ void condition_demc(
         try {            
 
 			Model model;
-			for(uint time=0;time<=time_max;time++){
+			for(uint time=0;time<=time_now;time++){
 				// Do the time step
 				//... set parameters
 				parameters.set(time,model);
