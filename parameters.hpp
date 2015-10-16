@@ -292,7 +292,7 @@ public:
 			model.recruits_variation_on = false;
 			model.recruits_deviation = std::exp(recruits_deviations(year));
 		}
-		else if(year>recdev_years.end() and time<=time_now){
+		else if(year>=recdev_years.end() and time<=time_now){
 			// Deterministic recruitment otherwise get
 			// different fits form sam eparameter sets
 			// during conditioning
