@@ -25,7 +25,7 @@ public:
         OP_(/=)
     #undef OP_
 
-    double loglike(void){
+    double loglike(void) const {
         if(not is_na() and Distribution::valid()){
             return Distribution::loglike(value);
         }
