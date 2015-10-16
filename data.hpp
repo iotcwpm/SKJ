@@ -216,7 +216,14 @@ public:
 
 		exp_rate_high_ll = -exp_rate_high;
 
-    	return m_pl_cpue_ll + w_ps_cpue_ll + z_ests_ll + size_freqs_ll + exp_rate_high_ll;
+    	return 
+    		m_pl_cpue_ll + 
+    		w_ps_cpue_ll +
+    		z_ests_ll + 
+    		size_freqs_ll + 
+    		exp_rate_high_ll +
+    		0
+    	;
     }
 
 }; // class Data
