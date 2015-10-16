@@ -185,7 +185,6 @@ public:
     }
 };
 
-
 class Normal : public Distribution<Normal> {
 public:
 
@@ -203,7 +202,7 @@ public:
     }
     
     boost::normal_distribution<> boost_rand(void) const {
-        return boost::normal_distribution<>(mean,sd);
+        return boost::random::normal_distribution<>(mean,sd);
     }
 
     template<class Mirror>
@@ -211,6 +210,50 @@ public:
         mirror
             .data(mean,"mean")
             .data(sd,"sd")
+        ;
+    }
+};
+
+class TruncatedNormal : public Distribution<TruncatedNormal> {
+public:
+
+    double mean;
+    double sd;
+    double min;
+    double max;
+    
+    TruncatedNormal(double mean = NAN,double sd = NAN,double min_ = -INFINITY, double max_ = INFINITY):
+        mean(mean),sd(sd),min(min_),max(max_){}
+
+    double minimum(void) const {
+        return min;
+    }
+
+    double maximum(void) const {
+        return max;
+    }
+
+    double random(void) const {
+        boost::random::normal_distribution<> dist(mean,sd);
+        boost::variate_generator<boost::mt19937&,decltype(dist)> random(Generator,dist);
+        auto trial = random();
+        if(trial<min or trial>max) trial = random();
+        return trial;
+    };
+
+    double pdf(const double& x) const {
+        boost::math::normal norm(mean,sd);
+        if(x<min or x>max) return 0;
+        else return boost::math::pdf(norm,x);
+    }
+
+    template<class Mirror>
+    void reflect(Mirror& mirror) {
+        mirror
+            .data(mean,"mean")
+            .data(sd,"sd")
+            .data(min,"min")
+            .data(max,"max")
         ;
     }
 };
@@ -236,8 +279,8 @@ public:
         return boost::math::lognormal(location,dispersion);
     }
 
-    boost::lognormal_distribution<> boost_rand(void) const {
-        return boost::lognormal_distribution<>(location,dispersion);
+    boost::random::lognormal_distribution<> boost_rand(void) const {
+        return boost::random::lognormal_distribution<>(location,dispersion);
     }
     
     template<class Mirror>
@@ -346,43 +389,6 @@ public:
 };
 double FournierRobustifiedMultivariateNormal::max_size = 1000;
 
-template<typename Base>
-class Truncated : public Base {
-public:
-    double min;
-    double max;
-    
-    Truncated(double a = NAN,double b = NAN,double min_ = -INFINITY, double max_ = INFINITY):
-        Base(a,b),min(min_),max(max_){}
-
-    double minimum(void) const {
-        return min;
-    }
-
-    double maximum(void) const {
-        return max;
-    }
-
-    double random(void) const {
-        double trial = Base::random();
-        if(trial<min or trial>max) return random();
-        else return trial;
-    };
-
-    double pdf(const double& x){
-        if(x<min or x>max) return 0;
-        else return Base::pdf(x);
-    }
-
-    template<class Mirror>
-    void reflect(Mirror& mirror) {
-        Base::reflect(mirror);
-        mirror
-            .data(min,"min")
-            .data(max,"max")
-        ;
-    }
-};
 
 } // namespace Distributions
 } // namespace IOSKJ
