@@ -243,7 +243,7 @@ public:
 
     double pdf(const double& x) const {
         boost::math::normal norm(mean,sd);
-        if(x<min or x>max) return 0;
+        if(x<min or x>max) return std::numeric_limits<double>::epsilon();
         else return boost::math::pdf(norm,x);
     }
 
