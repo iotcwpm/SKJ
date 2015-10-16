@@ -279,19 +279,14 @@ void condition_ss3(int replicates=1000){
 	rejected.write("ss3/output/rejected.tsv");
 }
 
-void condition_demc(
-	uint trials, 
-	double blending = 0.5, 
-	double crossing = 0.05,
-	double outbreeding = 0.05,
-	uint size=1000, uint logging=100, uint saving=1000
-){
+void condition_demc(uint generations,uint logging=1, uint saving=10){
     // Create output directory
 	boost::filesystem::create_directories("demc/output");
 	// Set up log file
 	std::ofstream log_file("demc/output/log.tsv");
     std::ofstream errors_file("demc/output/errors.tsv");
     std::ofstream trace("demc/output/trace.tsv");
+    std::ofstream invalids("demc/output/invalids.tsv");
 
 	// Read in parameter priors and default values
 	Parameters parameters;
@@ -301,66 +296,30 @@ void condition_demc(
 	data.read();
 
 	Uniform chance(0,1);
+	Normal error(0,0.001);
 
 	std::vector<std::vector<double>> population;
 	std::vector<double> loglikes;
 	auto names = parameters.names();
 	auto columns = names.size();
 
-    uint trial = 1;
-    uint accepted = 0;
-    while(trial<=trials){
-    	// Update stats
-    	uint rows = population.size();
-        double sum = 0;
-        double best = -INFINITY;
-        double worst = INFINITY;
-        for(uint row=0;row<rows;row++){
-            auto loglike = loglikes[row];
-            sum += loglike;
-            best = std::max(loglike,best);
-            worst = std::min(loglike,worst);
-        };
-        double mean = sum/rows;
+    // Blending of donor parameter values (Ter Braak's Gamma)
+	// Default is 2.38/sqrt(2*d) jumping to 1
+	// every 10th generation
+	double blending = 2.38/std::sqrt(2*columns);
 
-        auto select = [&]()->std::vector<double> {
-        	return population[chance.random()*rows];
-        };
+	// Cross over probability
+	// Proportion of parameters that taken
+	// from mutation
+	double crossing = 0.25;
 
-        int incumbent_row;
-    	if(rows<size){
-			incumbent_row = -1;
-			parameters.randomise();
-    	} else {
-    		incumbent_row = chance.random()*rows;
-    		std::vector<double> incumbent = population[incumbent_row];
+    // Population size (Ter Braak's N)
+	// Default is 2*d
+	unsigned int size = 2*columns;
 
-    		std::vector<double> donor(columns);
-    		if(chance.random()<outbreeding){
-                parameters.randomise();
-                donor = parameters.vector();
-            } else {
-	            std::vector<double> a = select();
-	            std::vector<double> b = select();
-	            std::vector<double> c = select();
-	            for(uint column=0;column<columns;column++){
-	                donor[column] = a[column] + blending*(b[column]-c[column]);
-	            }
-	        }
+	double acceptance = 1;
 
-	        std::vector<double> mutation(columns);
-	        uint which = chance.random() * columns;
-            for(uint column=0;column<columns;column++){
-                if(column==which or chance.random()<crossing){
-                    mutation[column] = donor[column];
-                }
-                else mutation[column] = incumbent[column];
-            }
-
-            parameters.vector(mutation);
-            parameters.bounce();
-    	}
-
+	auto run = [&](){
     	// Calculate likelihood for candidate
     	double loglike = NAN;
         try {            
@@ -379,56 +338,132 @@ void condition_demc(
 			loglike = parameters.loglike() + data.loglike();
 
         } catch(const std::exception& e){
-            errors_file<<trial<<"\t"<<e.what()<<"\n";
+            errors_file<<e.what()<<"\n";
             parameters.values().write(errors_file);
             errors_file<<std::endl;
         } catch(...){
-            errors_file<<trial<<"\t"<<"\"Unknown error\"\n";
+            errors_file<<"\"Unknown error\"\n";
             parameters.values().write(errors_file);
             errors_file<<std::endl;
         }
-        if(not std::isfinite(loglike)) continue;
+        return loglike;
+    };
 
-        auto candidate = parameters.vector();
+    while(population.size()<size){
+    	parameters.randomise();
+    	auto initial = parameters.vector();
+    	auto loglike = run();
+    	if(not std::isfinite(loglike)) continue;
+		population.push_back(initial);
+		loglikes.push_back(loglike);
+    }
 
- 		if(incumbent_row>=0){
-            double ratio = std::exp(loglike-loglikes[incumbent_row]);
+    uint generation = 1;
+    while(generation<=generations){  
+
+    	// Alter blending
+    	if(acceptance>0.3) blending /= 0.9;
+    	else if(acceptance<0.2) blending *= 0.9;
+    	double blending_now;
+	  	if(generation%10==0){
+			blending_now = std::min(blending*5,1.0);
+		} else {
+			blending_now = blending;
+		}
+
+    	uint accepted = 0;
+    	uint trials = 0;
+    	for(uint chain=0; chain<size; chain++){
+	    	std::vector<double> parent = population[chain];
+	    	double parent_loglike = loglikes[chain];
+	    	std::vector<double> child(columns);
+
+            // Mutation
+            unsigned int random_1_row = chance.random()*size;
+            unsigned int random_2_row = chance.random()*size;
+           	std::vector<double> random_1 = population[random_1_row];
+            std::vector<double> random_2 = population[random_2_row];
+            for(uint column=0;column<columns;column++){
+                auto value = parent[column];
+                child[column] = value + blending_now*(random_1[column]-random_2[column]) + error.random()*std::fabs(value);
+            }
+
+            // Cross-over
+	        for(uint column=0;column<columns;column++){
+                if(chance.random()<(1-crossing)){
+                    child[column] = parent[column];
+                }
+            }
+
+            // Set parameters
+           	parameters.vector(child);
+           	// Bounce parameters off their bounds
+            parameters.bounce();
+            // Get parameters back after bounce
+			child = parameters.vector();
+
+	        auto loglike = run();
+	        if(not std::isfinite(loglike)) continue;
+
+            double ratio = std::exp(loglike-parent_loglike);
+            #if 1
+            if(ratio!=1){
+            	invalids<<loglike<<"\t"<<parent_loglike<<"\t";
+            	for(uint column=0;column<columns;column++){
+            		invalids<<child[column]<<"\t";
+            	}
+            	invalids<<"\n";
+            }
+            #endif
+
             if(chance.random()<ratio){
                 accepted++;
                 for(uint column=0;column<columns;column++){
-                	population[incumbent_row][column] = candidate[column];
+                	population[chain][column] = child[column];
                 }
-                loglikes[incumbent_row] = loglike;
+                loglikes[chain] = loglike;
                 // Record trace
                 if(trace.tellp()==0){
+                	trace<<"chain\t";
                 	for(auto name : names) trace<<name<<"\t";
                 	trace<<"loglike"<<"\n";
                 }
+                trace<<chain<<"\t";
                 for(uint column=0;column<columns;column++){
-					trace<<candidate[column]<<"\t";
+					trace<<child[column]<<"\t";
                 }
                 trace<<loglike<<"\n";
             }
-        } else {
-        	accepted++;
-        	population.push_back(candidate);
-			loglikes.push_back(loglike);
-        }
+
+	        trials++;
+	    }
+	    acceptance = accepted/double(trials);
 
     	// Record log
-		if(trial%logging==0){
-            if(log_file.tellp()==0) log_file<<"trial\trows\tworst\tmean\tbest\tlast\tacceptance"<<std::endl;
-            double acceptance = logging>0?accepted/double(logging):NAN;
-            log_file<<trial<<"\t"
+		if(generation%logging==0){
+            if(log_file.tellp()==0) log_file<<"generation\trows\tworst\tmean\tbest\tacceptance\tblending"<<std::endl;
+	    	// Update stats
+	        uint rows = population.size();
+	        double sum = 0;
+	        double best = -INFINITY;
+	        double worst = INFINITY;
+	        for(uint row=0;row<rows;row++){
+	            auto loglike = loglikes[row];
+	            sum += loglike;
+	            best = std::max(loglike,best);
+	            worst = std::min(loglike,worst);
+	        };
+	        double mean = sum/rows;
+            // Output to file
+            log_file<<generation<<"\t"
             	<<rows<<"\t"
             	<<worst<<"\t"<<mean<<"\t"<<best<<"\t"
-            	<<loglike<<"\t"
-            	<<acceptance<<std::endl;
-            accepted = 0;
+            	<<acceptance<<"\t"
+            	<<blending<<std::endl;
         }
 
         // Save population
-		if(trial==trials or trial%saving==0){
+		if(generation==generations or generation%saving==0){
 			std::ofstream save("demc/output/population.tsv");
 			for(auto name : names) save<<name<<"\t";
 			save<<"loglike"<<std::endl;
@@ -441,7 +476,7 @@ void condition_demc(
 			}
 		}
 
-        trial++;
+        generation++;
     }
 }
 
@@ -557,6 +592,56 @@ void evaluate(const std::string& samples_file, int replicates=1000, int procedur
 	}
 }
 
+void test(){
+	// Read in parameters
+	Parameters parameters;
+	parameters.read();
+	// Read in data
+	Data data;
+	data.read();
+
+	for(int i=0;i<100;i++){
+		Parameters parameters1 = parameters;
+		Parameters parameters2 = parameters;
+		
+		parameters.randomise();
+		auto parameter_set = parameters.vector();
+
+		parameters1.vector(parameter_set);
+		parameters2.vector(parameter_set);
+
+		Data data1 = data;
+		Data data2 = data;
+
+		Model model1;
+		Model model2;
+		for(uint time=0;time<=time_now;time++){
+			// Do the time step
+			//... set parameters
+			parameters1.set(time,model1);
+			parameters2.set(time,model2);
+			//... update the models
+			model1.update(time);
+			model2.update(time);
+			//... get data
+			data1.get(time,model1);
+			data2.get(time,model2);
+			
+			/*std::cerr
+					<<year(time)<<" "<<quarter(time)
+					<<" "<<model1.numbers(NW,4)-model2.numbers(NW,4)
+					<<std::endl;*/
+		}
+
+		if(
+			model1.biomass_spawning_overall(3)!=model2.biomass_spawning_overall(3) or
+			data1.loglike()!=data2.loglike()
+		){
+			std::cerr<<"Different!"<<std::endl;
+		}
+	}
+}
+
 template<typename Type>
 Type arg(int argc, char** argv, int which){
 	if(argc<=which) return Type();
@@ -570,12 +655,13 @@ int main(int argc, char** argv){
         std::cout<<"-------------"<<task<<"-------------\n"<<std::flush;
         if(task=="run") run(arg<std::string>(argc,argv,2),arg<int>(argc,argv,3),arg<int>(argc,argv,4));
         else if(task=="yield") yield();
-        else if(task=="priors") priors();
+        else if(task=="priors") priors(arg<int>(argc,argv,2));
         else if(task=="condition_feasible") condition_feasible(arg<int>(argc,argv,2));
         else if(task=="condition_ss3") condition_ss3(arg<int>(argc,argv,2));
         else if(task=="condition_demc") condition_demc(arg<int>(argc,argv,2));
         else if(task=="evaluate_feasible") evaluate("feasible/output/accepted.tsv",arg<int>(argc,argv,2));
         else if(task=="evaluate_ss3") evaluate("ss3/output/accepted.tsv",arg<int>(argc,argv,2));
+        else if(task=="test") test();
         else throw std::runtime_error("Unrecognised task");
         std::cout<<"-------------------------------\n";
 	} catch(std::exception& error){
