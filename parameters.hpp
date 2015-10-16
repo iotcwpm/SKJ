@@ -69,29 +69,29 @@ public:
 	/**
 	 * Length-weight parameters
 	 */
-    Variable<Normal> weight_a;
-    Variable<Normal> weight_b;
+    Variable<Fixed> weight_a;
+    Variable<Fixed> weight_b;
 
     /**
      * Maturity parameters
      */
-    Variable<Normal> maturity_inflection;
-    Variable<Normal> maturity_steepness;
+    Variable<Truncated<Normal>> maturity_inflection;
+    Variable<Truncated<Normal>> maturity_steepness;
 
     /**
      * Mortality parameters
      */
    	Variable<Uniform> mortality_base;
-	Variable<Normal> mortality_exponent;
+	Variable<Truncated<Normal>> mortality_exponent;
 
     /**
      * Growth rate parameters
      */
-	Variable<Normal> growth_rate_1;
-	Variable<Normal> growth_rate_2;
-	Variable<Normal> growth_assymptote;
-	Variable<Normal> growth_stanza_inflection;
-	Variable<Normal> growth_stanza_steepness;
+	Variable<Truncated<Normal>> growth_rate_1;
+	Variable<Truncated<Normal>> growth_rate_2;
+	Variable<Truncated<Normal>> growth_assymptote;
+	Variable<Truncated<Normal>> growth_stanza_inflection;
+	Variable<Truncated<Normal>> growth_stanza_steepness;
 	Variable<Fixed> growth_age_0;
 	Variable<Uniform> growth_cv_0;
 	Variable<Uniform> growth_cv_old;
