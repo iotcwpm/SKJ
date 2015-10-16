@@ -29,17 +29,21 @@ public:
 		double maximum(void) const {
 			return 1;
 		}
-		double random(void){
-			return (Beta::random()+0.25)/1.25;
+		double random(void) const {
+			double trial = 0;
+			while(trial<0.6){
+				trial = (Beta::random()+0.25)/1.25;
+			}
+			return trial;
 		}
-		double pdf(const double& x){
-			double h = x*1.25-0.25;
-			return h<0.6?0:Beta::pdf(h);
+		double loglike(const double& steepness) const {
+			if(steepness<0.6) return -INFINITY;
+			else return std::log(Beta::pdf(steepness*1.25-0.25));
 		}
 	};
 	Variable<SteepnessBeta> recruits_steepness;
 
-	Variable<Lognormal> recruits_sd;
+	Variable<Uniform> recruits_sd;
 
 	/**
 	 * Recruitment deviations
@@ -75,26 +79,26 @@ public:
     /**
      * Maturity parameters
      */
-    Variable<Truncated<Normal>> maturity_inflection;
-    Variable<Truncated<Normal>> maturity_steepness;
+    Variable<TruncatedNormal> maturity_inflection;
+    Variable<TruncatedNormal> maturity_steepness;
 
     /**
      * Mortality parameters
      */
    	Variable<Uniform> mortality_base;
-	Variable<Truncated<Normal>> mortality_exponent;
+	Variable<TruncatedNormal> mortality_exponent;
 
     /**
      * Growth rate parameters
      */
-	Variable<Truncated<Normal>> growth_rate_1;
-	Variable<Truncated<Normal>> growth_rate_2;
-	Variable<Truncated<Normal>> growth_assymptote;
-	Variable<Truncated<Normal>> growth_stanza_inflection;
-	Variable<Truncated<Normal>> growth_stanza_steepness;
+	Variable<Fixed> growth_rate_1;//!
+	Variable<Fixed> growth_rate_2;//!
+	Variable<Uniform> growth_assymptote;//!
+	Variable<Fixed> growth_stanza_inflection;//!
+	Variable<Fixed> growth_stanza_steepness;//!
 	Variable<Fixed> growth_age_0;
-	Variable<Uniform> growth_cv_0;
-	Variable<Uniform> growth_cv_old;
+	Variable<Fixed> growth_cv_0;//!
+	Variable<Fixed> growth_cv_old;//!
 
     /**
      * Movements parameters
@@ -103,8 +107,8 @@ public:
 	Variable<Uniform> movement_nw_ma;
 	Variable<Uniform> movement_nw_ea;
 	Variable<Uniform> movement_ma_ea;
-    Variable<Uniform> movement_length_inflection;
-    Variable<Uniform> movement_length_steepness;
+    Variable<Fixed> movement_length_inflection;//!
+    Variable<Fixed> movement_length_steepness;//!
 
 	/**
 	 * Selectivity parameters
@@ -287,7 +291,15 @@ public:
 			// Stochastic recruitment defined by recruitment deviation parameters
 			model.recruits_variation_on = false;
 			model.recruits_deviation = std::exp(recruits_deviations(year));
-		} else {
+		}
+		else if(year>recdev_years.end() and time<=time_now){
+			// Deterministic recruitment otherwise get
+			// different fits form sam eparameter sets
+			// during conditioning
+			model.recruits_variation_on = false;
+			model.recruits_deviation = 1;
+		}
+		else {
 			// Stochastic recruitment defined by recruits_sd and recruits_auto
 			model.recruits_variation_on = true;
 		}
@@ -484,7 +496,8 @@ public:
 
 		template<class Distribution>
 		VectorSetter& data(Variable<Distribution>& variable, const std::string& name){
-			variable.value = values[index++];
+			variable.value = values[index];
+			index++;
 			return *this;
 		}
 	};

@@ -97,10 +97,8 @@
   },
   "growth_assymptote": {
     "value": 71.6,
-    "mean": 71.6,
-    "sd": 7.16,
-    "min": 50,
-    "max": 100
+    "lower": 71.59,
+    "upper": 71.61
   },
   "growth_stanza_inflection": {
     "value": 0.95,
