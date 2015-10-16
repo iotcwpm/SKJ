@@ -286,7 +286,6 @@ void condition_demc(uint generations,uint logging=1, uint saving=10){
 	std::ofstream log_file("demc/output/log.tsv");
     std::ofstream errors_file("demc/output/errors.tsv");
     std::ofstream trace("demc/output/trace.tsv");
-    std::ofstream invalids("demc/output/invalids.tsv");
 
 	// Read in parameter priors and default values
 	Parameters parameters;
@@ -296,7 +295,7 @@ void condition_demc(uint generations,uint logging=1, uint saving=10){
 	data.read();
 
 	Uniform chance(0,1);
-	Normal error(0,0.001);
+	Normal error(0,0.01);
 
 	std::vector<std::vector<double>> population;
 	std::vector<double> loglikes;
@@ -406,16 +405,6 @@ void condition_demc(uint generations,uint logging=1, uint saving=10){
 	        if(not std::isfinite(loglike)) continue;
 
             double ratio = std::exp(loglike-parent_loglike);
-            #if 1
-            if(ratio!=1){
-            	invalids<<loglike<<"\t"<<parent_loglike<<"\t";
-            	for(uint column=0;column<columns;column++){
-            		invalids<<child[column]<<"\t";
-            	}
-            	invalids<<"\n";
-            }
-            #endif
-
             if(chance.random()<ratio){
                 accepted++;
                 for(uint column=0;column<columns;column++){
