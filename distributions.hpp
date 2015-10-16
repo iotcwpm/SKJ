@@ -346,5 +346,43 @@ public:
 };
 double FournierRobustifiedMultivariateNormal::max_size = 1000;
 
+template<typename Base>
+class Truncated : public Base {
+public:
+    double min;
+    double max;
+    
+    Truncated(double a = NAN,double b = NAN,double min_ = -INFINITY, double max_ = INFINITY):
+        Base(a,b),min(min_),max(max_){}
+
+    double minimum(void) const {
+        return min;
+    }
+
+    double maximum(void) const {
+        return max;
+    }
+
+    double random(void) const {
+        double trial = Base::random();
+        if(trial<min or trial>max) return random();
+        else return trial;
+    };
+
+    double pdf(const double& x){
+        if(x<min or x>max) return 0;
+        else return Base::pdf(x);
+    }
+
+    template<class Mirror>
+    void reflect(Mirror& mirror) {
+        Base::reflect(mirror);
+        mirror
+            .data(min,"min")
+            .data(max,"max")
+        ;
+    }
+};
+
 } // namespace Distributions
 } // namespace IOSKJ
