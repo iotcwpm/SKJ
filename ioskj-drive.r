@@ -13,7 +13,7 @@ pars <- list(
 	# Stock recruitment relation and variability
 	spawners_unfished = Uniform(2e6,1e6,6e6),
 	recruits_steepness = Beta(0.9,10,2),
-	recruits_sd = Lognormal(0.6,0.6,0.5),
+	recruits_sd = Uniform(0.6,0.3,0.8),
 
 	# Quarterly spawning fractions
 	spawning_0 = Uniform(0.8,0.7,1),

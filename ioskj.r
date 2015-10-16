@@ -15,6 +15,10 @@ Normal <- function(value,mean,sd){
 	list(value=unbox(value),mean=unbox(mean),sd=unbox(sd))
 }
 
+TruncatedNormal <- function(value,mean,sd,min,max){
+	list(value=unbox(value),mean=unbox(mean),sd=unbox(sd),min=unbox(min),max=unbox(max))
+}
+
 Lognormal <- function(value,location,dispersion){
 	list(value=unbox(value),location=unbox(location),dispersion=unbox(dispersion))
 }

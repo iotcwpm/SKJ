@@ -11,8 +11,8 @@
   },
   "recruits_sd": {
     "value": 0.6,
-    "location": 0.6,
-    "dispersion": 0.5
+    "lower": 0.3,
+    "upper": 0.8
   },
   "spawning_0": {
     "value": 0.8,
@@ -50,24 +50,24 @@
     "upper": 0.5
   },
   "weight_a": {
-    "value": 5.32e-06,
-    "mean": 5.32e-06,
-    "sd": 2.66e-07
+    "value": 5.32e-06
   },
   "weight_b": {
-    "value": 3.35,
-    "mean": 3.35,
-    "sd": 0.1675
+    "value": 3.35
   },
   "maturity_inflection": {
     "value": 40,
     "mean": 40,
-    "sd": 2
+    "sd": 2,
+    "min": 30,
+    "max": 50
   },
   "maturity_steepness": {
     "value": 5,
     "mean": 5,
-    "sd": 0.5
+    "sd": 0.5,
+    "min": 0.1,
+    "max": 20
   },
   "mortality_base": {
     "value": 0.8,
@@ -77,32 +77,44 @@
   "mortality_exponent": {
     "value": -0.29,
     "mean": -0.29,
-    "sd": 0.07
+    "sd": 0.07,
+    "min": -1,
+    "max": 0
   },
   "growth_rate_1": {
     "value": 1.12,
     "mean": 1.12,
-    "sd": 0.112
+    "sd": 0.112,
+    "min": 0.1,
+    "max": 2
   },
   "growth_rate_2": {
     "value": 0.33,
     "mean": 0.33,
-    "sd": 0.033
+    "sd": 0.033,
+    "min": 0.1,
+    "max": 2
   },
   "growth_assymptote": {
     "value": 71.6,
     "mean": 71.6,
-    "sd": 7.16
+    "sd": 7.16,
+    "min": 50,
+    "max": 100
   },
   "growth_stanza_inflection": {
     "value": 0.95,
     "mean": 0.95,
-    "sd": 0.095
+    "sd": 0.095,
+    "min": 0.1,
+    "max": 10
   },
   "growth_stanza_steepness": {
     "value": 24.8,
     "mean": 24.8,
-    "sd": 2.48
+    "sd": 2.48,
+    "min": 0.1,
+    "max": 100
   },
   "growth_age_0": {
     "value": -0.3
