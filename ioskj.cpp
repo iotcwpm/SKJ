@@ -143,6 +143,7 @@ void check(Check check, int trial, Parameters& parameters, Data& data, Tracker& 
 			values.add("pars_like",parameters.loglike());
 			values.add("data_like",data.loglike());
 			if(criterion!=0){
+				values.add("trial",trial);
 				values.add("time",time);
 				values.add("year",year);
 				values.add("quarter",quarter);
@@ -189,16 +190,22 @@ int check_feasible(const Model& model, const Data& data, uint time, uint year, u
 		model.exploitation_rate(EA,GN)>0.5 
 	) return 3;
 
-	// M PL CPUE ...
+	// MA PL CPUE ...
 	static double m_pl_cpue_base;
 	if(year==2004 and quarter==2) m_pl_cpue_base = data.m_pl_cpue(year,quarter);
 	// ... must have decreased from 2004 to 2011
 	if(year==2011 and quarter==2 and data.m_pl_cpue(year,quarter)/m_pl_cpue_base>1) return 4;
 
+	// W PS CPUE ...
+	static double w_ps_cpue_base;
+	if(year==2000 and quarter==3) w_ps_cpue_base = data.w_ps_cpue(year);
+	// ... must have decreased from 2004 to 2011
+	if(year==2011 and quarter==3 and data.w_ps_cpue(year)/w_ps_cpue_base>1) return 5;
+
 	// Z-estimates
 	if(year>=2006 and year<=2009){
 		auto value = data.z_ests(year,quarter,0);
-		if(value<0.1 or value>0.4) return 5;
+		if(value<0.1 or value>0.4) return 6;
 	}
 
 	// Size-frequencies
@@ -231,9 +238,9 @@ int check_feasible(const Model& model, const Data& data, uint time, uint year, u
 			}
 			// Check against constraints
 			auto bounds = feasible_sf_quantiles(method);
-			if(q10<bounds.lower[0] or q10>bounds.upper[0]) return 60+method.index();
-			if(q50<bounds.lower[1] or q50>bounds.upper[1]) return 70+method.index();
-			if(q90<bounds.lower[2] or q90>bounds.upper[2]) return 80+method.index();
+			if(q10<bounds.lower[0] or q10>bounds.upper[0] or
+			   q50<bounds.lower[1] or q50>bounds.upper[1] or
+			   q90<bounds.lower[2] or q90>bounds.upper[2]) return 7;
 		}
 	}
 
