@@ -93,7 +93,7 @@ public:
      */
 	Variable<Fixed> growth_rate_1;//!
 	Variable<Fixed> growth_rate_2;//!
-	Variable<Uniform> growth_assymptote;//!
+	Variable<Fixed> growth_assymptote;//!
 	Variable<Fixed> growth_stanza_inflection;//!
 	Variable<Fixed> growth_stanza_steepness;//!
 	Variable<Fixed> growth_age_0;
