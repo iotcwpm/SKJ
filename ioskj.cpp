@@ -122,7 +122,7 @@ typedef int (Check)(const Model& model, const Data& data, uint time, uint year, 
 void check(Check check, int trial, Parameters& parameters, Data& data, Tracker& tracker, Frame& accepted, Frame& rejected){
 	Model model;
 	uint time = 0;
-	uint time_end = IOSKJ::time(2013,3);
+	uint time_end = time_now;
 	for(;time<=time_end;time++){
 		// Do the time step
 		//... set parameters
@@ -137,17 +137,22 @@ void check(Check check, int trial, Parameters& parameters, Data& data, Tracker& 
 		uint year = IOSKJ::year(time);
 		uint quarter = IOSKJ::quarter(time);
 		int criterion = check(model,data,time,year,quarter);
-		if(criterion!=0){
+		if(criterion!=0 or time==time_end){
+			//... get parameters and associated likelihoods
 			Frame values = parameters.values();
-			values.add("time",time);
-			values.add("year",year);
-			values.add("quarter",quarter);
-			values.add("criterion",criterion);
-			rejected.append(values);
-			break;
-		}
-		if(time==time_end){
-			accepted.append(parameters.values());
+			values.add("pars_like",parameters.loglike());
+			values.add("data_like",data.loglike());
+			if(criterion!=0){
+				values.add("time",time);
+				values.add("year",year);
+				values.add("quarter",quarter);
+				values.add("criterion",criterion);
+				rejected.append(values);
+				break;
+			}
+			if(time==time_end){
+				accepted.append(values);
+			}
 		}
 	}
 	if(trial>0 and trial%10==0) std::cout<<trial<<" "<<accepted.rows()/float(trial)<<std::endl;
@@ -167,11 +172,20 @@ int check_feasible(const Model& model, const Data& data, uint time, uint year, u
 	// ... since 2008 must be less than 100% B0
 	if(year>2008 and status>1) return 2;
 
+	// Exploitation rate must be within broad range
+	// for each of the main region/method combinations. 
+	// This constraint is to prevent infeasible combinations
+	// of `recruits_region` and movement parameters
+	if(
+		model.exploitation_rate(SW,PS)>0.5 or
+		model.exploitation_rate(NW,PS)>0.5 or
+		model.exploitation_rate(MA,PL)>0.5 or
+		model.exploitation_rate(EA,GN)>0.5 
+	) return 3;
+
 	// M PL CPUE ...
 	static double m_pl_cpue_base;
 	if(year==2004 and quarter==2) m_pl_cpue_base = data.m_pl_cpue(year,quarter);
-	// ... must have increased from 2004 to 2006
-	if(year==2006 and quarter==2 and data.m_pl_cpue(year,quarter)/m_pl_cpue_base<1) return 3;
 	// ... must have decreased from 2004 to 2011
 	if(year==2011 and quarter==2 and data.m_pl_cpue(year,quarter)/m_pl_cpue_base>1) return 4;
 
