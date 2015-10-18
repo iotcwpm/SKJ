@@ -164,9 +164,15 @@ void check(Check check, int trial, Parameters& parameters, Data& data, Tracker& 
  *
  * Used in the `condition _feasible` method
  */
+struct QuantileBounds {
+	double lower[3];
+	double upper[3];
+};
+Array<QuantileBounds,Method> feasible_sf_quantiles;
 int check_feasible(const Model& model, const Data& data, uint time, uint year, uint quarter){
 	// Stock status ...
 	auto status = model.biomass_spawning_overall(quarter)/model.biomass_spawning_unfished(quarter);
+
 	// ... must always be >10% B0
 	if(status<0.1) return 1;
 	// ... since 2008 must be less than 100% B0
@@ -191,7 +197,44 @@ int check_feasible(const Model& model, const Data& data, uint time, uint year, u
 
 	// Z-estimates
 	if(year>=2006 and year<=2009){
-		if(data.z_ests(year,quarter,1)<0.2 or data.z_ests(year,quarter,1)>0.7) return 5;
+		auto value = data.z_ests(year,quarter,0);
+		if(value<0.1 or value>0.4) return 5;
+	}
+
+	// Size-frequencies
+	if(year==2014){
+		for(auto method : methods){
+			// Calculate cumulative proportions over
+			// all years and regions
+			Array<double,Size> cumulative = 0;
+			int years = 0;
+			for(int year=1990;year<=2014;year++){
+				years++;
+				for(auto region : regions){
+					double running = 0;
+					for(auto size : sizes){
+						running += data.size_freqs(year,quarter,region,method,size);
+						cumulative(size) += running;
+					}
+				}
+			}
+			// Normalise over regions
+			for(auto& item : cumulative) item /= regions.size() * years;
+			// Determine quantiles
+			double q10 = -1;
+			double q50 = -1;
+			double q90 = -1;
+			for(auto size : sizes){
+				if(q10<0 and cumulative(size)>=0.1) q10 = model.length_size(size);
+				if(q50<0 and cumulative(size)>=0.5) q50 = model.length_size(size);
+				if(q90<0 and cumulative(size)>=0.9) q90 = model.length_size(size);
+			}
+			// Check against constraints
+			auto bounds = feasible_sf_quantiles(method);
+			if(q10<bounds.lower[0] or q10>bounds.upper[0]) return 60+method.index();
+			if(q50<bounds.lower[1] or q50>bounds.upper[1]) return 70+method.index();
+			if(q90<bounds.lower[2] or q90>bounds.upper[2]) return 80+method.index();
+		}
 	}
 
 	return 0;
@@ -206,9 +249,26 @@ void condition_feasible(int trials=100){
 	// Read in parameter priors and default values
 	Parameters parameters;
 	parameters.read();
+	parameters.write();
 	// Read in data
 	Data data;
 	data.read();
+	data.write();
+	// Read in constraints specified in external files
+	feasible_sf_quantiles.read("feasible/input/size_freqs_quantiles.tsv",[](std::istream& file, QuantileBounds& bounds){
+		file
+			>>bounds.lower[0]>>bounds.upper[0]
+			>>bounds.lower[1]>>bounds.upper[1]
+			>>bounds.lower[2]>>bounds.upper[2]
+		;
+	});
+	feasible_sf_quantiles.write("feasible/output/size_freqs_quantiles.tsv",{},[](std::ostream& file, const QuantileBounds& bounds){
+		file
+			<<bounds.lower[0]<<"\t"<<bounds.upper[0]<<"\t"
+			<<bounds.lower[1]<<"\t"<<bounds.upper[1]<<"\t"
+			<<bounds.lower[2]<<"\t"<<bounds.upper[2]
+		;
+	});
 	// Frames for accepted and rejected parameter samples
 	Frame accepted;
 	Frame rejected;
