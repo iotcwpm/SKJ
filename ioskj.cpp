@@ -69,6 +69,37 @@ void run(const std::string& samples_file="ref",int samples_row=0,int procedure=0
 	data.write();
 }
 
+void tracks(const std::string& samples_file){
+	// Read in parameters
+	Parameters parameters;
+	parameters.read();
+	// Read in data
+	Data data;
+	data.read();
+	// Read in samples
+	Frame samples;
+	samples.read(samples_file);
+	// Do tracking
+	Tracker tracker("model/output/track.tsv");
+	for(uint row=0;row<samples.rows();row++){
+		//Overwrite parameters available, but don't worry about catches
+		parameters.read(samples.slice(row),{"catches"});
+		// Instantiate a model
+		Model model;
+		// For each time step...
+		for(uint time=0;time<=time_now;time++){
+			//... set model parameters
+			parameters.set(time,model);
+			//... update the model
+			model.update(time);
+			//... get model variables corresponding to data
+			data.get(time,model);
+			//... get model variables of interest for tracking
+			tracker.get(row,0,time,model);
+		}
+	}
+}
+
 /**
  * Perform yield curve and MSY calculations with a parameters set read from "parameters/input"
  */
@@ -171,18 +202,15 @@ struct QuantileBounds {
 };
 Array<QuantileBounds,Method> feasible_sf_quantiles;
 int check_feasible(const Model& model, const Data& data, uint time, uint year, uint quarter){
+	
 	// Stock status ...
 	auto status = model.biomass_spawning_overall(quarter)/model.biomass_spawning_unfished(quarter);
-
 	// ... must always be >10% B0
 	if(status<0.1) return 1;
 	// ... since 2008 must be less than 100% B0
 	if(year>2008 and status>1) return 2;
 
-	// Exploitation rate must be within broad range
-	// for each of the main region/method combinations. 
-	// This constraint is to prevent infeasible combinations
-	// of `recruits_region` and movement parameters
+	// Exploitation rate must be less than 0.5 for the main region/method combinations.
 	if(
 		model.exploitation_rate(SW,PS)>0.5 or
 		model.exploitation_rate(NW,PS)>0.5 or
@@ -724,6 +752,7 @@ int main(int argc, char** argv){
         std::string task = argv[1];
         std::cout<<"-------------"<<task<<"-------------\n"<<std::flush;
         if(task=="run") run(arg<std::string>(argc,argv,2),arg<int>(argc,argv,3),arg<int>(argc,argv,4));
+        else if(task=="tracks") tracks(arg<std::string>(argc,argv,2));
         else if(task=="yield") yield();
         else if(task=="priors") priors(arg<int>(argc,argv,2));
         else if(task=="condition_feasible") condition_feasible(arg<int>(argc,argv,2));
