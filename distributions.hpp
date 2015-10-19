@@ -279,8 +279,12 @@ public:
         return boost::math::lognormal(location,dispersion);
     }
 
-    boost::random::lognormal_distribution<> boost_rand(void) const {
-        return boost::random::lognormal_distribution<>(location,dispersion);
+    boost::lognormal_distribution<> boost_rand(void) const {
+        // Note that `boost::lognormal_distribution` is depreciated in favour
+        // of `boost::random::lognormal_distribution`. However, the latter
+        // does not produce random variates with mean of one so the
+        // older version is used for now.
+        return boost::lognormal_distribution<>(location,dispersion);
     }
     
     template<class Mirror>
