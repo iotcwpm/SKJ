@@ -51,7 +51,7 @@ This work has been funded by the [International Pole and Line Foundation (IPNLF)
 	<img src="other/images/common-oceans.png" style="max-width:125px">
 	<img src="other/images/mrc.png" style="max-width:125px">
 	<img src="other/images/wwf.png" style="max-width:125px">
-	<img src="other/images/issf.jpg" style="max-width:125px">
+	<img src="other/images/issf.png" style="max-width:125px">
 </div>
 
 ## Status
