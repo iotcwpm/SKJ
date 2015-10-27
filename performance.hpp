@@ -182,7 +182,7 @@ public:
 		catches_shut.append(catch_total==0);
 
 		// Stock status relative to unfished
-		auto status = model.biomass_status(time);
+		auto status = model.biomass_status();
 		status_mean.append(status);
 		status_b10.append(status<0.1);
 		status_b20.append(status<0.2);

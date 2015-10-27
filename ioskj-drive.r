@@ -12,6 +12,8 @@ source('ioskj.r')
 pars <- list(
 	# Stock recruitment relation and variability
 	spawners_unfished = Uniform(2e6,1e6,6e6),
+	spawners_ma = Uniform(0.5,0.01,0.9),
+	spawners_ea = Uniform(0.5,0.01,0.9),
 	recruits_steepness = Beta(0.9,10,2),
 	recruits_sd = Uniform(0.6,0.3,0.8),
 
@@ -21,10 +23,6 @@ pars <- list(
 	spawning_2 = Uniform(0.8,0.7,1),
 	spawning_3 = Uniform(0.5,0.3,0.7),
 
-	# Proportion of recruits by region
-	# (relative to WE region)
-	recruits_ma = Uniform(0.2,0.01,0.5),
-	recruits_ea = Uniform(0.2,0.01,0.5),
 
 	# Weight at length
 	weight_a = Fixed(5.32e-6),

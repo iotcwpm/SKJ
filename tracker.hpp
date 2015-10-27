@@ -28,7 +28,6 @@ struct Tracker {
 			<<"biomass_spawners_we\t"
 			<<"biomass_spawners_ma\t"
 			<<"biomass_spawners_ea\t"
-			<<"biomass_spawning_overall\t"
 
 			<<"biomass_spawning_we\t"
 			<<"biomass_spawning_ma\t"
@@ -62,20 +61,20 @@ struct Tracker {
 			<<procedure<<"\t"
 			<<year<<"\t"
 			<<quarter<<"\t"
+
 			<<model.recruits_determ<<"\t"
 			<<model.recruits_deviation<<"\t"
 			<<model.recruits<<"\t"
 
-			<<model.biomass_status(time)<<"\t"
+			<<model.biomass_status()<<"\t"
 
 			<<model.biomass_spawners(WE)<<"\t"
 			<<model.biomass_spawners(MA)<<"\t"
 			<<model.biomass_spawners(EA)<<"\t"
 
-			<<model.biomass_spawning_overall(quarter)<<"\t"
-			<<model.biomass_spawning(WE)<<"\t"
-			<<model.biomass_spawning(MA)<<"\t"
-			<<model.biomass_spawning(EA)<<"\t"
+			<<model.biomass_spawning(WE,quarter)<<"\t"
+			<<model.biomass_spawning(MA,quarter)<<"\t"
+			<<model.biomass_spawning(EA,quarter)<<"\t"
 
 			<<model.biomass_vulnerable(WE,PS)<<"\t"
 			<<model.biomass_vulnerable(MA,PL)<<"\t"

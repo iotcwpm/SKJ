@@ -184,7 +184,7 @@ public:
 		int quarter = IOSKJ::quarter(time);
 		if(quarter==0 and (last_<0 or year-last_>=frequency)){
 			// Get stock status
-			double b = model.biomass_status(time);
+			double b = model.biomass_status();
 			// Add imprecision
 			Lognormal imprecision(1,precision);
 			b *= imprecision.random();

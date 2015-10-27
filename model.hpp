@@ -27,10 +27,18 @@ public:
 	 * Total biomass of spawners
 	 */
 	Array<double,Region> biomass_spawners;
+
+	/**
+	 * Unfished equlibrium spawners (biomass)
+	 *
+	 * This differs from `biomass_spawning_unfished` in that it is not affected by the proportion
+	 * spawning in a season
+	 */
+	Array<double,Region> biomass_spawners_unfished;
 	
 	/**
 	 * @{
-	 * @name Spawning
+	 * @name Spawning and stock-recruitment
 	 */
 
 	/**
@@ -41,42 +49,18 @@ public:
 	/**
 	 * The total spawning biomass by region
 	 */
-	Array<double,Region> biomass_spawning;
+	Array<double,Region,Quarter> biomass_spawning;
 
 	/**
-	 * Total spawning biomass in each of the most recent quarters
-	 * This is recorded in `update()` so that the biomass_spawning_unfished
-	 * can be set by `initialise()`
-	 */
-	Array<double,Quarter> biomass_spawning_overall;
-
-	/**
-	 * Unfished spawning biomass by quarter. It is necessary to have this by quarter
+	 * Unfished spawning biomass by region and quarter. It is necessary to have this by quarter
 	 * because the proportion of mature fish that spawn varies by quarter.
 	 */
-	Array<double,Quarter> biomass_spawning_unfished;
+	Array<double,Region,Quarter> biomass_spawning_unfished;
 
 	/**
-	 * @}
+	 * Unfished equlibrium recruitment (numbers) by region
 	 */
-
-	/**
-	 * @{
-	 * @name Recruitment
-	 */
-	
-	/**
-	 * Unfished equlibrium spawners (biomass)
-	 *
-	 * This differs from `biomass_spawning_unfished` in that it is not affected by the proportion
-	 * spawning in a season
-	 */
-	double biomass_spawners_unfished;
-
-	/**
-	 * Unfished equlibrium recruitment (numbers)
-	 */
-	double recruits_unfished;
+	Array<double,Region> recruits_unfished;
 
 	/**
 	 * Steepness of stock-recruit relation
@@ -92,7 +76,7 @@ public:
 	/**
 	 * Deterministic recruitment at time t 
 	 */
-	double recruits_determ;
+	Array<double,Region> recruits_determ;
 
 	/**
 	 * Standard deviation of recruitment vaiation
@@ -118,12 +102,7 @@ public:
 	/**
 	 * Total number of recruits at time t
 	 */
-	double recruits;
-
-	/**
-	 * Proportion of recruits by region
-	 */
-	Array<double,Region> recruits_regions;
+	Array<double,Region> recruits;
 
 
 	/**
@@ -398,8 +377,8 @@ public:
 	/**
 	 * Get the stock status (spawning biomass as a fraction of pristine)
 	 */
-	double biomass_status(uint time) const{
-		return biomass_spawners(sum)/biomass_spawners_unfished;
+	double biomass_status(void) const{
+		return sum(biomass_spawners)/sum(biomass_spawners_unfished);
 	}
 
 	//! @}
@@ -409,13 +388,6 @@ public:
 	 * 
 	 * @{
 	 */
-
-	/**
-	 * Set recruitment distribution across regions to be uniform
-	 */
-	void recruits_uniform(void){
-		recruits_regions = 1.0/recruits_regions.size();
-	}
 
 	/**
 	 * Set movement parameters so that there is uniform movement.
@@ -618,9 +590,6 @@ public:
 			movement_region(region_from,Level<Region>(region_from)) = 1 - off_diagonals;
 		}
 
-		// Normalise the recruits_region grid so that it sums to one
-		recruits_regions /= sum(recruits_regions);
-
 		// Initialise recruits_variation
 		recruits_variation = Lognormal(1,recruits_sd);
 
@@ -661,33 +630,30 @@ public:
 			}
 			biomass(region) = biomass_;
 			biomass_spawners(region) = biomass_spawners_;
-			biomass_spawning(region) = biomass_spawning_;
-
+			biomass_spawning(region,quarter) = biomass_spawning_;
 		} 
-		biomass_spawning_overall(quarter) = biomass_spawning(sum);
-
-		// Recruits
-		if(recruits_relation_on){
-			// Stock-recruitment relation is active so calculate recruits based on 
-			// the spawning biomass in the previous time step
-			double h = recruits_steepness;
-			double r0 = recruits_unfished;
-			double s0 = biomass_spawning_unfished(quarter);
-			double s = biomass_spawning_overall(quarter);
-			recruits_determ =  4*h*r0*s/((5*h-1)*s+s0*(1-h));
-		} else {
-			// Stock-recruitment relation is not active so recruitment is just r0.
-			recruits_determ = recruits_unfished;
-		}
-		
-		if(recruits_variation_on){
-			recruits_deviation = recruits_variation.random();
-		}
-
-		recruits = recruits_determ * recruits_deviation;
 
 		// Ageing and recruitment
 		for(auto region : regions){
+
+			// Recruits
+			if(recruits_relation_on){
+				// Stock-recruitment relation is active so calculate recruits based on 
+				// the spawning biomass in the previous time step
+				double h = recruits_steepness;
+				double r0 = recruits_unfished(region);
+				double s0 = biomass_spawning_unfished(region,quarter);
+				double s = biomass_spawning(region,quarter);
+				recruits_determ(region) =  4*h*r0*s/((5*h-1)*s+s0*(1-h));
+			} else {
+				// Stock-recruitment relation is not active so recruitment is just r0.
+				recruits_determ(region) = recruits_unfished(region);
+			}
+			if(recruits_variation_on){
+				recruits_deviation = recruits_variation.random();
+			}
+			recruits(region) = recruits_determ(region) * recruits_deviation;
+
 			// Oldest age class accumulates 
 			numbers(region,ages.size()-1) += numbers(region,ages.size()-2);
 
@@ -698,7 +664,7 @@ public:
 
 			// Recruits are distributed over regions according to 
 			// `recruits_regions` parameters
-			numbers(region,0) = recruits * recruits_regions(region);
+			numbers(region,0) = recruits(region);
 		}
 
 		// Natural mortality
@@ -794,7 +760,8 @@ public:
 					escapement(region,age) = (proportion_taken>1)?0:(1-proportion_taken);
 				}
 			}
-		} else {
+		} 
+		else {
 			escapement = 1;
 		}
 		// Apply escapement
@@ -864,15 +831,23 @@ public:
 		// Turn off recruitment relationship and exploitation
 		recruits_relation_on = false;
 		exploit = exploit_none;
-		// Set unfished recruitment to an arbitrarily high number so it can be calculated in terms of biomass_spawners_unfished
+		// Set unfished recruitment in all regions to an arbitrarily high number 
+		// so it can be calculated in terms of biomass_spawners_unfished
 		recruits_unfished = 1e10;
 		// Go to equilibrium
 		equilibrium();
-		// Scale up unfished recruitment and biomass_spawning_unfished (by quarter) to match biomass_spawners_unfished
-		double scalar = biomass_spawners_unfished/biomass_spawners(sum);
-		recruits_unfished *= scalar;
-		numbers *= scalar;
-		for(auto quarter : quarters) biomass_spawning_unfished(quarter) = biomass_spawning_overall(quarter)*scalar;
+		// Scale up unfished recruitment and biomass_spawning_unfished (by region and quarter) 
+		// to match biomass_spawners_unfished
+		for(auto region : regions){
+			// Calculate scalar
+			double scalar = biomass_spawners_unfished(region)/biomass_spawners(region);
+			// Apply scalar
+			recruits_unfished(region) *= scalar;
+			numbers *= scalar;
+			for(auto quarter : quarters){
+				biomass_spawning_unfished(region,quarter) = biomass_spawning(region,quarter)*scalar;
+			}
+		}
 
 		// Calculate the 
 		// Turn on recruitment relationship etc again
@@ -896,7 +871,7 @@ public:
 			exploitation_rate_set(std::max(exprate,1e-6));
 			equilibrium();
 			curve.append({
-				exprate,fishing_mortality_get(),catches_taken(sum),biomass_status(0),biomass_vulnerable(sum),
+				exprate,fishing_mortality_get(),sum(catches_taken),biomass_status(),sum(biomass_vulnerable),
 				catches_taken(WE,PS),catches_taken(MA,PL),catches_taken(EA,GN),
 				biomass_vulnerable(WE,PS),biomass_vulnerable(MA,PL),biomass_vulnerable(EA,GN)
 			});
@@ -975,8 +950,6 @@ public:
 		spawning.write("model/output/spawning.tsv");
 		biomass_spawning_unfished.write("model/output/biomass_spawning_unfished.tsv");
 		
-		recruits_regions.write("model/output/recruits_regions.tsv");
-		
 		length_size.write("model/output/length_size.tsv");
 		length_age.write("model/output/length_age.tsv",{"mean","sd"},[](std::ostream& stream,const Normal& dist){
 			stream<<dist.mean<<"\t"<<dist.sd;
@@ -1001,6 +974,7 @@ public:
 
 		catchability.write("model/output/catchability.tsv");
 	}
+
 };
 
 }

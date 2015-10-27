@@ -121,7 +121,7 @@ void yield(void){
 			"msy_total","msy_we_ps","msy_ma_pl","msy_ea_gn"
 		},
 		{
-			model.e_msy,model.f_msy,model.msy,model.biomass_spawners_msy,model.biomass_spawners_unfished,double(model.msy_trials),
+			model.e_msy,model.f_msy,model.msy,model.biomass_spawners_msy,sum(model.biomass_spawners_unfished),double(model.msy_trials),
 			model.catches_taken(sum),model.catches_taken(WE,PS),model.catches_taken(MA,PL),model.catches_taken(EA,GN)
 		}
 	);
@@ -204,7 +204,7 @@ Array<QuantileBounds,Method> feasible_sf_quantiles;
 int check_feasible(const Model& model, const Data& data, uint time, uint year, uint quarter){
 	
 	// Stock status ...
-	auto status = model.biomass_spawning_overall(quarter)/model.biomass_spawning_unfished(quarter);
+	auto status = model.biomass_status();
 	// ... must always be >10% B0
 	if(status<0.1) return 1;
 	// ... since 2008 must be less than 100% B0
@@ -327,7 +327,7 @@ void condition_feasible(int trials=100){
  */
 int check_ss3(const Model& model, const Data& data, uint time, uint year, uint quarter){
 	// Stock status ...
-	auto status = model.biomass_status(time);
+	auto status = model.biomass_status();
 	// ... must always be >10% B0
 	if(status<0.1) return 1;
 	// ... since 2008 must be less than 100% B0
@@ -639,7 +639,7 @@ void evaluate(const std::string& samples_file, int replicates=1000, int procedur
 		if(msy) current.msy_find();
 		// Record reference points for replicate
 		references.append({
-			current.biomass_spawners_unfished,
+			sum(current.biomass_spawners_unfished),
 			current.e_msy,
 			current.f_msy,
 			current.msy,
@@ -732,7 +732,7 @@ void test(){
 		}
 
 		if(
-			model1.biomass_spawning_overall(3)!=model2.biomass_spawning_overall(3) or
+			model1.biomass_status()!=model2.biomass_status() or
 			data1.loglike()!=data2.loglike()
 		){
 			std::cerr<<"Different!"<<std::endl;

@@ -13,9 +13,20 @@ class Parameters : public Structure<Parameters> {
 public:
 	
 	/**
-	 * Parameters of the stock-recruitment relationship
+	 * Overall unfished spawning biomass
 	 */
 	Variable<Uniform> spawners_unfished;
+
+	/**
+	 * Relative recruitment in each of the smaller regions
+	 * 
+	 * These are relative to the unfished spawning biomass
+	 * going to WE region. All proportions are 
+	 * then normalised in the model initialisation
+	 * so that they sum to one.
+	 */
+	Variable<Uniform> spawners_ma;
+	Variable<Uniform> spawners_ea;
 
 	/**
 	 * Special distribution for steepness prior
@@ -43,6 +54,9 @@ public:
 	};
 	Variable<SteepnessBeta> recruits_steepness;
 
+	/**
+	 * Standard deviation of recruitment deviations
+	 */
 	Variable<Uniform> recruits_sd;
 
 	/**
@@ -58,16 +72,6 @@ public:
 	Variable<Uniform> spawning_2;
 	Variable<Uniform> spawning_3;
 
-	/**
-	 * Proportion of recruits by region
-	 * 
-	 * These are relative to the proportion of recruits
-	 * going to WE region. All proportions are 
-	 * then normalised in the model initialisation
-	 * so that they sum to one.
-	 */
-	Variable<Uniform> recruits_ma;
-	Variable<Uniform> recruits_ea;
 
 	/**
 	 * Length-weight parameters
@@ -125,6 +129,9 @@ public:
     void reflect(Mirror& mirror){
         mirror
             .data(spawners_unfished,"spawners_unfished")
+            .data(spawners_ma,"spawners_ma")
+            .data(spawners_ea,"spawners_ea")
+
             .data(recruits_steepness,"recruits_steepness")
             .data(recruits_sd,"recruits_sd")
             .data(recruits_deviations,"recruits_deviations")
@@ -133,9 +140,6 @@ public:
             .data(spawning_1,"spawning_1")
             .data(spawning_2,"spawning_2")
             .data(spawning_3,"spawning_3")
-
-            .data(recruits_ma,"recruits_ma")
-            .data(recruits_ea,"recruits_ea")
 
             .data(weight_a,"weight_a")
             .data(weight_b,"weight_b")
@@ -201,10 +205,18 @@ public:
 		uint year = IOSKJ::year(time);
 		uint quarter = IOSKJ::quarter(time);
 		
-		// Bind invariant parameters to model attributes
+		// Bind time-invariant parameters to model attributes
 		if(time==0){
 			// Stock - recruitment
-			model.biomass_spawners_unfished = spawners_unfished;
+			// Apportion `spawners_unfished` to regions
+			Array<double,Region> props = {
+				double(1.0),
+				double(spawners_ma),
+				double(spawners_ea)
+			};
+			props /= sum(props);
+			for(auto region : regions) model.biomass_spawners_unfished(region) = spawners_unfished * props(region);
+
 			model.recruits_steepness = recruits_steepness;
 			model.recruits_sd = recruits_sd;
 
@@ -213,12 +225,6 @@ public:
 			model.spawning(1) = spawning_1;
 			model.spawning(2) = spawning_2;
 			model.spawning(3) = spawning_3;
-
-			// Recruitment proportion to each region
-			model.recruits_regions(WE) = 1;
-			model.recruits_regions(MA) = recruits_ma;
-			model.recruits_regions(EA) = recruits_ea;
-			model.recruits_regions /= sum(model.recruits_regions);
 
 			// Length-weight relationship
 			model.weight_length_a = weight_a;
