@@ -24,15 +24,10 @@ public:
 		 * seasonal variation, assumes an equal split
 		 * across quarters
 		 */
-		model.catches(SW,PS) = 0.038 * catches;
-		model.catches(SW,PL) = 0.000 * catches;
-		model.catches(SW,GN) = 0.000 * catches;
-		model.catches(SW,OT) = 0.000 * catches;
-
-		model.catches(NW,PS) = 0.316 * catches;
-		model.catches(NW,PL) = 0.018 * catches;
-		model.catches(NW,GN) = 0.117 * catches;
-		model.catches(NW,OT) = 0.024 * catches;
+		model.catches(WE,PS) = 0.354 * catches;
+		model.catches(WE,PL) = 0.018 * catches;
+		model.catches(WE,GN) = 0.117 * catches;
+		model.catches(WE,OT) = 0.024 * catches;
 
 		model.catches(MA,PS) = 0.000 * catches;
 		model.catches(MA,PL) = 0.198 * catches;
@@ -388,10 +383,9 @@ public:
 		int quarter = IOSKJ::quarter(time);
 		// Operate once per year in the third quarter
 		if(quarter==0){
-			// Get CPUE as a combination of W/PS and M/PL
+			// Get CPUE as a combination of WE/PS and MA/PL
 			GeometricMean combined;
-			combined.append(model.cpue(SW,PS));
-			combined.append(model.cpue(NW,PS));
+			combined.append(model.cpue(WE,PS));
 			combined.append(model.cpue(MA,PL));
 			double cpue = combined;
 			// Add observation error

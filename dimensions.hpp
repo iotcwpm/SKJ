@@ -53,13 +53,12 @@ public:
  */
 STENCILA_DIM_RANGE(RecdevYear,recdev_years,recdev_year,1985,2012);
 
-STENCILA_DIM(Region,regions,region,4);
-STENCILA_DIM(RegionFrom,region_froms,region_from,4);
+STENCILA_DIM(Region,regions,region,3);
+STENCILA_DIM(RegionFrom,region_froms,region_from,3);
 enum {
-	SW = 0,
-	NW = 1,
-	MA = 2,
-	EA = 3
+	WE = 0,
+	MA = 1,
+	EA = 2
 };
 
 STENCILA_DIM(Age,ages,age,24);

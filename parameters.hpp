@@ -62,11 +62,10 @@ public:
 	 * Proportion of recruits by region
 	 * 
 	 * These are relative to the proportion of recruits
-	 * going to NW regions. All proportions are 
+	 * going to WE region. All proportions are 
 	 * then normalised in the model initialisation
 	 * so that they sum to one.
 	 */
-	Variable<Uniform> recruits_sw;
 	Variable<Uniform> recruits_ma;
 	Variable<Uniform> recruits_ea;
 
@@ -103,9 +102,8 @@ public:
     /**
      * Movements parameters
      */
-	Variable<Uniform> movement_sw_nw;
-	Variable<Uniform> movement_nw_ma;
-	Variable<Uniform> movement_nw_ea;
+	Variable<Uniform> movement_we_ma;
+	Variable<Uniform> movement_we_ea;
 	Variable<Uniform> movement_ma_ea;
     Variable<Fixed> movement_length_inflection;//!
     Variable<Fixed> movement_length_steepness;//!
@@ -136,7 +134,6 @@ public:
             .data(spawning_2,"spawning_2")
             .data(spawning_3,"spawning_3")
 
-            .data(recruits_sw,"recruits_sw")
             .data(recruits_ma,"recruits_ma")
             .data(recruits_ea,"recruits_ea")
 
@@ -158,9 +155,8 @@ public:
 			.data(growth_cv_0,"growth_cv_0")
 			.data(growth_cv_old,"growth_cv_old")
 
-            .data(movement_sw_nw,"movement_sw_nw")
-            .data(movement_nw_ma,"movement_nw_ma")
-            .data(movement_nw_ea,"movement_nw_ea")
+            .data(movement_we_ma,"movement_we_ma")
+            .data(movement_we_ea,"movement_we_ea")
             .data(movement_ma_ea,"movement_ma_ea")
 
             .data(movement_length_inflection,"movement_length_inflection")
@@ -219,8 +215,7 @@ public:
 			model.spawning(3) = spawning_3;
 
 			// Recruitment proportion to each region
-			model.recruits_regions(SW) = recruits_sw;
-			model.recruits_regions(NW) = 1;
+			model.recruits_regions(WE) = 1;
 			model.recruits_regions(MA) = recruits_ma;
 			model.recruits_regions(EA) = recruits_ea;
 			model.recruits_regions /= sum(model.recruits_regions);
@@ -250,25 +245,17 @@ public:
 			// Note that in the model.intialise function these
 			// proportional are restricted so that they do not sum to greater
 			// than one.
-			model.movement_region(SW,SW) = 1-movement_sw_nw;
-			model.movement_region(SW,NW) = movement_sw_nw;
-			model.movement_region(SW,MA) = 0;
-			model.movement_region(SW,EA) = 0;
+			model.movement_region(WE,WE) = 1-movement_we_ma-movement_we_ea;
+			model.movement_region(WE,MA) = movement_we_ma;
+			model.movement_region(WE,EA) = movement_we_ea;
 
-			model.movement_region(NW,SW) = movement_sw_nw;
-			model.movement_region(NW,NW) = 1-movement_sw_nw-movement_nw_ma-movement_nw_ea;
-			model.movement_region(NW,MA) = movement_nw_ma;
-			model.movement_region(NW,EA) = movement_nw_ea;
-
-			model.movement_region(MA,SW) = 0;
-			model.movement_region(MA,NW) = movement_nw_ma;
-			model.movement_region(MA,MA) = 1-movement_nw_ma-movement_ma_ea;
+			model.movement_region(MA,WE) = movement_we_ma;
+			model.movement_region(MA,MA) = 1-movement_we_ma-movement_ma_ea;
 			model.movement_region(MA,EA) = movement_ma_ea;
 
-			model.movement_region(EA,SW) = 0;
-			model.movement_region(EA,NW) = movement_nw_ea;
+			model.movement_region(EA,WE) = movement_we_ea;
 			model.movement_region(EA,MA) = movement_ma_ea;
-			model.movement_region(EA,EA) = 1-movement_ma_ea-movement_nw_ea;
+			model.movement_region(EA,EA) = 1-movement_ma_ea-movement_we_ea;
 
 			model.movement_length_inflection = movement_length_inflection;
 			model.movement_length_steepness = movement_length_steepness;

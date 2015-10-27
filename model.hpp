@@ -463,8 +463,7 @@ public:
 		// but to `value` for the three main methods in each
 		// region.
 		exploitation_rate_specified = 0;
-		exploitation_rate_specified(SW,PS) = value;
-		exploitation_rate_specified(NW,PS) = value;
+		exploitation_rate_specified(WE,PS) = value;
 		exploitation_rate_specified(MA,PL) = value;
 		exploitation_rate_specified(EA,GN) = value;
 	}
@@ -843,11 +842,11 @@ public:
 			biomass_prev = biomass;
 
 			#if DEBUG
-				std::cout<<steps<<"\t"<<biomass(SW)<<"\t"<<biomass(NW)<<"\t"<<biomass(MA)<<"\t"<<biomass(EA)<<"\t"<<diffs<<std::endl;
+				std::cout<<steps<<"\t"<<biomass(WE)<<"\t"<<biomass(MA)<<"\t"<<biomass(EA)<<"\t"<<diffs<<std::endl;
 			#endif
 
 			// Throw an error if undefined biomass
-			if(not std::isfinite(biomass(SW)+biomass(NW)+biomass(MA)+biomass(EA))){
+			if(not std::isfinite(biomass(WE)+biomass(MA)+biomass(EA))){
 				write();
 				throw std::runtime_error("Biomass is not finite. Check inputs. Model has been written to `model/output`");
 			}
@@ -887,8 +886,8 @@ public:
 	Frame yield_curve(double step = 0.05){
 		Frame curve({
 			"exprate","f","yield","status","vuln",
-			"catch_sw_ps","catch_nw_ps","catch_ma_pl","catch_ea_gn",
-			"vuln_sw_ps","vuln_nw_ps","vuln_ma_pl","vuln_ea_gn"
+			"catch_we_ps","catch_ma_pl","catch_ea_gn",
+			"vuln_we_ps","vuln_ma_pl","vuln_ea_gn"
 		});
 		for(double exprate=0;exprate<1;exprate+=step){
 			#if DEBUG
@@ -898,8 +897,8 @@ public:
 			equilibrium();
 			curve.append({
 				exprate,fishing_mortality_get(),catches_taken(sum),biomass_status(0),biomass_vulnerable(sum),
-				catches_taken(SW,PS),catches_taken(NW,PS),catches_taken(MA,PL),catches_taken(EA,GN),
-				biomass_vulnerable(SW,PS),biomass_vulnerable(NW,PS),biomass_vulnerable(MA,PL),biomass_vulnerable(EA,GN)
+				catches_taken(WE,PS),catches_taken(MA,PL),catches_taken(EA,GN),
+				biomass_vulnerable(WE,PS),biomass_vulnerable(MA,PL),biomass_vulnerable(EA,GN)
 			});
 		}
 		return curve;

@@ -22,8 +22,7 @@ pars <- list(
 	spawning_3 = Uniform(0.5,0.3,0.7),
 
 	# Proportion of recruits by region
-	# (relative to NW region)
-	recruits_sw = Uniform(0.2,0.01,0.5),
+	# (relative to WE region)
 	recruits_ma = Uniform(0.2,0.01,0.5),
 	recruits_ea = Uniform(0.2,0.01,0.5),
 
@@ -50,9 +49,8 @@ pars <- list(
 	growth_cv_old = Uniform(0.1,0.01,0.3),
 
 	# Movement
-	movement_sw_nw = Uniform(0.05,0,0.4),
-	movement_nw_ma = Uniform(0.05,0,0.4),
-	movement_nw_ea = Uniform(0.05,0,0.4),
+	movement_we_ma = Uniform(0.05,0,0.4),
+	movement_we_ea = Uniform(0.05,0,0.4),
 	movement_ma_ea = Uniform(0.05,0,0.4),
 	movement_length_inflection = Uniform(50,1,100),
 	movement_length_steepness = Uniform(10,1,30)

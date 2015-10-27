@@ -115,7 +115,7 @@ public:
 			// Currently take a mean of vulnerable biomass over all quarters in the year...
 			static Array<double,Quarter> cpue_quarters;
 			// ... get this quarter's CPUE and save it
-			cpue_quarters(quarter) = model.biomass_vulnerable(SW,PS) + model.biomass_vulnerable(NW,PS);
+			cpue_quarters(quarter) = model.biomass_vulnerable(WE,PS);
 			// ... if this is the last quarter then take the geometric mean
 			if(quarter==3){
 				w_ps_cpue(year) = geomean(cpue_quarters);
@@ -155,7 +155,7 @@ public:
 			}
 		}
 
-		// Size based Z-estimates for NW region from tagging
+		// Size based Z-estimates for WE region from tagging
 		if(year>=2005 and year<=2014){
 			// Generate expected values of Z for each size bin
 			// Expected values of Z are calculated by combining natural mortality and 
@@ -174,9 +174,9 @@ public:
 					double denominator = 0;
 					for(auto age : ages){
 						// Expected number in this size bin
-						double number = model.numbers(NW,age) * model.age_size(age,size);
+						double number = model.numbers(WE,age) * model.age_size(age,size);
 						// Survival for this age
-						double survival = model.survival(age) * model.escapement(NW,age);
+						double survival = model.survival(age) * model.escapement(WE,age);
 						// Add to average
 						numerator += survival*number;
 						denominator += number;

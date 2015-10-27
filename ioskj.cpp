@@ -118,11 +118,11 @@ void yield(void){
 	Frame msy(
 		{
 			"e_msy","f_msy","msy","biomass_spawners_msy","biomass_spawners_unfished","msy_trials",
-			"msy_total","msy_w_ps","msy_m_pl","msy_e_gn"
+			"msy_total","msy_we_ps","msy_ma_pl","msy_ea_gn"
 		},
 		{
 			model.e_msy,model.f_msy,model.msy,model.biomass_spawners_msy,model.biomass_spawners_unfished,double(model.msy_trials),
-			model.catches_taken(sum),model.catches_taken(SW,PS)+model.catches_taken(NW,PS),model.catches_taken(MA,PL),model.catches_taken(EA,GN)
+			model.catches_taken(sum),model.catches_taken(WE,PS),model.catches_taken(MA,PL),model.catches_taken(EA,GN)
 		}
 	);
 	msy.write("yield/output/msy.tsv");
@@ -212,8 +212,7 @@ int check_feasible(const Model& model, const Data& data, uint time, uint year, u
 
 	// Exploitation rate must be less than 0.5 for the main region/method combinations.
 	if(
-		model.exploitation_rate(SW,PS)>0.5 or
-		model.exploitation_rate(NW,PS)>0.5 or
+		model.exploitation_rate(WE,PS)>0.5 or
 		model.exploitation_rate(MA,PL)>0.5 or
 		model.exploitation_rate(EA,GN)>0.5 
 	) return 3;
@@ -340,8 +339,7 @@ int check_ss3(const Model& model, const Data& data, uint time, uint year, uint q
 	// of `recruits_region` and movement parameters
 	if(year>=2005){
 		if(
-			model.exploitation_rate(SW,PS)>0.5 or
-			model.exploitation_rate(NW,PS)>0.5 or
+			model.exploitation_rate(WE,PS)>0.5 or
 			model.exploitation_rate(MA,PL)>0.5 or
 			model.exploitation_rate(EA,GN)>0.5 
 		) return 3;

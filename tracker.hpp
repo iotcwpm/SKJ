@@ -25,36 +25,30 @@ struct Tracker {
 
 			<<"biomass_status\t"
 
-			<<"biomass_spawners_sw\t"
-			<<"biomass_spawners_nw\t"
+			<<"biomass_spawners_we\t"
 			<<"biomass_spawners_ma\t"
 			<<"biomass_spawners_ea\t"
 			<<"biomass_spawning_overall\t"
 
-			<<"biomass_spawning_sw\t"
-			<<"biomass_spawning_nw\t"
+			<<"biomass_spawning_we\t"
 			<<"biomass_spawning_ma\t"
 			<<"biomass_spawning_ea\t"
 
-			<<"biomass_vulnerable_sw_ps\t"
-			<<"biomass_vulnerable_nw_ps\t"
+			<<"biomass_vulnerable_we_ps\t"
 			<<"biomass_vulnerable_ma_pl\t"
 			<<"biomass_vulnerable_ea_gn\t"
 
 			<<"catches_total\t"
-			<<"catches_sw_ps\t"
-			<<"catches_nw_ps\t"
+			<<"catches_we_ps\t"
 			<<"catches_ma_pl\t"
 			<<"catches_ea_gn\t"
 
 			<<"effort_total\t"
-			<<"effort_sw_ps\t"
-			<<"effort_nw_ps\t"
+			<<"effort_we_ps\t"
 			<<"effort_ma_pl\t"
 			<<"effort_ea_gn\t"
 
-			<<"exp_rate_sw_ps\t"
-			<<"exp_rate_nw_ps\t"
+			<<"exp_rate_we_ps\t"
 			<<"exp_rate_ma_pl\t"
 			<<"exp_rate_ea_gn\t"
 			<<std::endl;
@@ -74,36 +68,30 @@ struct Tracker {
 
 			<<model.biomass_status(time)<<"\t"
 
-			<<model.biomass_spawners(SW)<<"\t"
-			<<model.biomass_spawners(NW)<<"\t"
+			<<model.biomass_spawners(WE)<<"\t"
 			<<model.biomass_spawners(MA)<<"\t"
 			<<model.biomass_spawners(EA)<<"\t"
 
 			<<model.biomass_spawning_overall(quarter)<<"\t"
-			<<model.biomass_spawning(SW)<<"\t"
-			<<model.biomass_spawning(NW)<<"\t"
+			<<model.biomass_spawning(WE)<<"\t"
 			<<model.biomass_spawning(MA)<<"\t"
 			<<model.biomass_spawning(EA)<<"\t"
 
-			<<model.biomass_vulnerable(SW,PS)<<"\t"
-			<<model.biomass_vulnerable(NW,PS)<<"\t"
+			<<model.biomass_vulnerable(WE,PS)<<"\t"
 			<<model.biomass_vulnerable(MA,PL)<<"\t"
 			<<model.biomass_vulnerable(EA,GN)<<"\t"
 			
 			<<model.catches_taken(sum)<<"\t"
-			<<model.catches_taken(SW,PS)<<"\t"
-			<<model.catches_taken(NW,PS)<<"\t"
+			<<model.catches_taken(WE,PS)<<"\t"
 			<<model.catches_taken(MA,PL)<<"\t"
 			<<model.catches_taken(EA,GN)<<"\t"
 
 			<<model.effort(sum)<<"\t"
-			<<model.effort(SW,PS)<<"\t"
-			<<model.effort(NW,PS)<<"\t"
+			<<model.effort(WE,PS)<<"\t"
 			<<model.effort(MA,PL)<<"\t"
 			<<model.effort(EA,GN)<<"\t"
 
-			<<model.exploitation_rate(SW,PS)<<"\t"
-			<<model.exploitation_rate(NW,PS)<<"\t"
+			<<model.exploitation_rate(WE,PS)<<"\t"
 			<<model.exploitation_rate(MA,PL)<<"\t"
 			<<model.exploitation_rate(EA,GN)<<"\t"
 
