@@ -615,10 +615,12 @@ void evaluate(const std::string& samples_file, int replicates=1000, int procedur
 		Frame sample = samples_all.slice(
 			vary?Uniform(0,samples_all.rows()).random():0
 		);
-		samples.append(sample);
 		// Read parameters from sample 
 		// (to save time don't attempt to read catches array)
 		parameters.read(sample,{"catches"});
+		// Save samples from parameters after having
+		// been read
+		samples.append(parameters.values());
 		// Generate a random seed to be used to ensure any stochastic
 		// variations is same for all procedures. Placed here so, if necessary
 		// can be made constant for all replicates for testing purposes

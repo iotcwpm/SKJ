@@ -697,8 +697,8 @@ public:
 				numbers(region,age) = numbers(region,age-1);
 			}
 
-			// Recruits are evenly distributed over regions and over sizes
-			// according to `initials`
+			// Recruits are distributed over regions according to 
+			// `recruits_regions` parameters
 			numbers(region,0) = recruits * recruits_regions(region);
 		}
 
