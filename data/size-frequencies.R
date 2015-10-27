@@ -244,5 +244,3 @@ data = data[,c('year','quarter','region','method','class','proportion','size')]
 data = data[with(data,order(year,quarter,region,method)),]
 # Write
 write.table(data,file='input/size_freqs.tsv',row.names=F,quote=F,sep='\t')
-
-
