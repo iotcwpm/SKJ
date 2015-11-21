@@ -4,6 +4,16 @@
     "lower": 1000000,
     "upper": 6000000
   },
+  "spawners_ma": {
+    "value": 0.5,
+    "lower": 0.01,
+    "upper": 0.9
+  },
+  "spawners_ea": {
+    "value": 0.5,
+    "lower": 0.01,
+    "upper": 0.9
+  },
   "recruits_steepness": {
     "value": 0.9,
     "alpha": 10,
@@ -34,21 +44,6 @@
     "lower": 0.3,
     "upper": 0.7
   },
-  "recruits_sw": {
-    "value": 0.2,
-    "lower": 0.01,
-    "upper": 0.5
-  },
-  "recruits_ma": {
-    "value": 0.2,
-    "lower": 0.01,
-    "upper": 0.5
-  },
-  "recruits_ea": {
-    "value": 0.2,
-    "lower": 0.01,
-    "upper": 0.5
-  },
   "weight_a": {
     "value": 5.32e-06
   },
@@ -74,12 +69,20 @@
     "lower": 0.3,
     "upper": 1.2
   },
-  "mortality_exponent": {
+  "mortality_base_age": {
+    "value": 8,
+    "lower": 1,
+    "upper": 24
+  },
+  "mortality_exponent_1": {
     "value": -0.29,
-    "mean": -0.29,
-    "sd": 0.07,
-    "min": -1,
-    "max": 0
+    "lower": -1,
+    "upper": 0
+  },
+  "mortality_exponent_2": {
+    "value": 0.29,
+    "lower": 0,
+    "upper": 1
   },
   "growth_rate_1": {
     "value": 1.12,
@@ -97,8 +100,10 @@
   },
   "growth_assymptote": {
     "value": 71.6,
-    "lower": 71.59,
-    "upper": 71.61
+    "mean": 71.6,
+    "sd": 7.16,
+    "min": 50,
+    "max": 100
   },
   "growth_stanza_inflection": {
     "value": 0.95,
@@ -127,17 +132,12 @@
     "lower": 0.01,
     "upper": 0.3
   },
-  "movement_sw_nw": {
+  "movement_we_ma": {
     "value": 0.05,
     "lower": 0,
     "upper": 0.4
   },
-  "movement_nw_ma": {
-    "value": 0.05,
-    "lower": 0,
-    "upper": 0.4
-  },
-  "movement_nw_ea": {
+  "movement_we_ea": {
     "value": 0.05,
     "lower": 0,
     "upper": 0.4

@@ -89,7 +89,9 @@ public:
      * Mortality parameters
      */
    	Variable<Uniform> mortality_base;
-	Variable<TruncatedNormal> mortality_exponent;
+   	Variable<Uniform> mortality_base_age;
+	Variable<Uniform> mortality_exponent_1;
+	Variable<Uniform> mortality_exponent_2;
 
     /**
      * Growth rate parameters
@@ -148,7 +150,9 @@ public:
             .data(maturity_steepness,"maturity_steepness")
 
             .data(mortality_base,"mortality_base")
-            .data(mortality_exponent,"mortality_exponent")
+            .data(mortality_base_age,"mortality_base_age")
+            .data(mortality_exponent_1,"mortality_exponent_1")
+            .data(mortality_exponent_2,"mortality_exponent_2")
 
 			.data(growth_rate_1,"growth_rate_1")
 			.data(growth_rate_2,"growth_rate_2")
@@ -234,9 +238,11 @@ public:
 			model.maturity_length_inflection = maturity_inflection;
 			model.maturity_length_steepness = maturity_steepness;
 
-			// Moratlity v weight curve
+			// Mortality-at-age curve
 			model.mortality_base = mortality_base;
-			model.mortality_exponent = mortality_exponent;
+			model.mortality_base_age = mortality_base_age;
+			model.mortality_exponent_1 = mortality_exponent_1;
+			model.mortality_exponent_2 = mortality_exponent_2;
 			
 			// Growth curve
 			model.growth_rate_1 = growth_rate_1;

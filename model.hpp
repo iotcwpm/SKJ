@@ -193,29 +193,37 @@ public:
 	 */
 	
 	/**
-	 * Instantaneous rate of natural mortality at weight of 1kg
+	 * Minimum instantaneous rate of natural mortality
 	 */
 	double mortality_base;
+
+	/**
+	 * Age (quarters) at which minimum occurs
+	 */
+	double mortality_base_age;
 	
 	/**
-	 * Allometric exponent of the weight to natural mortality
-	 * relationship
+	 * Exponential slope of decending limb
 	 */
-	double mortality_exponent;
+	double mortality_exponent_1;
 
 	/**
-	 * Age (in quarters) with maximum rate of natural mortality (exponential relationship
-	 * can give very high natural mortality at small ages).
+	 * Exponential slope of ascending limb
 	 */
-	int mortality_cap_age = 2; // i.e. 2+ quarters 
+	double mortality_exponent_2;
 
 	/**
-	 * Instantaneous rate of natural mortality for size s
+	 * Maximum possible mortality at age
+	 */
+	double mortality_cap = 2.0;
+
+	/**
+	 * Instantaneous rate of natural mortality at age
 	 */
 	Array<double,Age> mortality;
 
 	/**
-	 * Quarterly rate of survival from natural mortality for size s
+	 * Quarterly rate of survival from natural mortality at age
 	 */
 	Array<double,Age> survival;
 
@@ -564,8 +572,8 @@ public:
 
 		// Set up mortality by age schedule
 		for(auto age : ages){
-			double weight = (age<mortality_cap_age)?weight_age(mortality_cap_age):weight_age(age);
-			mortality(age) = mortality_base * std::pow(weight,mortality_exponent);
+			double age_mid = age.index() + 0.5;
+			mortality(age) = std::min(mortality_cap,mortality_base * std::pow(age_mid,mortality_exponent_1));
 			survival(age) = std::exp(-0.25*mortality(age));
 		}
 

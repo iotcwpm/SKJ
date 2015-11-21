@@ -34,7 +34,9 @@ pars <- list(
 
 	# Natural mortality
 	mortality_base = Uniform(0.8,0.3,1.2),
-	mortality_exponent = TruncatedNormal(-0.29,-0.29,0.07,-1,0),
+	mortality_base_age = Uniform(8,1,24),
+	mortality_exponent_1 = Uniform(-0.29,-1,0),
+	mortality_exponent_2 = Uniform(0.29,0,1),
 
 	# Growth
 	growth_rate_1 = TruncatedNormal(1.12,1.12,0.112,0.1,2),
