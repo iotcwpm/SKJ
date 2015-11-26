@@ -1,19 +1,8 @@
 #title Indian Ocean skipjack model : parameter prior distributions and sensitivity ranges
 
-For each model parameter a prior probability is defined. These priors are used in conditioning algorithms and are intended to represent the prior knowledge and associated uncertainty regarding a parameter. For some parameters, such as stock recruitment steepness |eta|, there is unlikely to be any information in the data and so the prior may be influential.
+For each model parameter a prior probability distribution and a sensitiveity range is defined. The priors are used in conditioning algorithms and are intended to represent the knowledge and associated uncertainty regarding a parameter based on previous research. For some parameters, such as stock recruitment steepness |eta|, there is unlikely to be any information in the data and so the prior may be influential. The sensitivity range is used in robustness testing of candidate management procedures to assess how sensitive a they are to parameter values which are possible but which are determined, on the basis of either priors or conditioning, to be unlikely.
 
-In addition, for each model parameter a sensitivity range is defined. This range is used in robustness testing of candidate harvest control rules to evaluate how sensitive a rule is to parameter values which are possible but which are determined, on the basis of either priors or conditioning, to be unlikely. In the current iteration of this project, this type of rubistness testing has not been implemented, and hence the sensitivity ranges proposed in this section have not be used.
-
-At present, only some of these prior distributions are used in conditioning because parameter estimates from the latest stock assessment are being used where possible. However, for those parameters which are not estimated or assumed in the assessment (e.g. movement parameters), these priors will be of relevance. The priors described here should not be considered definitive and ideally should be be refined in consultation with a wider group of Indian Ocean tuna scientists. As much as anything, the utility of this section is in providing some documentation on the information available to inform parameter priors.
-
-section
-	h1 Weight and maturity
-
-	Priors for length-weight parameters, |alpha| and |beta|, were based on the fixed values used in Sharma et al (2012) with a coefficient of variation of 5% (@table-pars).
-
-	Priors for maturity ogive parameters, |tau| and |upsilon| were based on the results of Grande (2013). For the inflection point, |tau|, based on Grande's estimated a value of 39.9cm, a normal prior with mean of 40cm and a coefficient of variation of 5% was used. Note that Table 4.2 of Grande (2013) indicates that some earlier studies in the Indian Ocean estimated values around 42-43cm for the inflection point. Sharma et al (2012, 2014) assumed 38cm based on Grande et al. (2010).
-
-	Figure 7.3 of Grande (2013) shows 5% and 95% maturity at about 35cm and 44cm respectively. Given a 50% maturity of 40cm this corresponds to a steepness parameter, |upsilon|, of about 5cm. A normal distribution with a mean of 5cm and a 10% c.v. was used (@table-pars).
+At present, only some of these prior distributions are used in conditioning because parameter estimates from the latest stock assessment are being used where possible. However, for those parameters which are not estimated or assumed in the assessment (e.g. movement parameters), these priors will be of relevance. The priors described here should not be considered definitive and ideally should be be refined in consultation with a wider group of Indian Ocean tuna scientists.
 
 section
 	h1 Spawning and recruitment
@@ -45,6 +34,15 @@ section
 	The priors for the growth curve parameters were from Hillary (2011). His Table 2 provides estimated posterior distributions for |kappa|, |lambda| and |varphi| from analysis of tagging data. For comparision, Sharma et al(2012) assumed 0.37 and 70 for |kappa|, |lambda| based on Anganuzzi & Million (pers. comm.).
 
 	Hillary's estimate of 78.8 for |varphi| seems to be very high given that this is a coefficient of variation an hence needs to be multiplied by the increment to calculate a standard deviation (although note that Hillary's Equation 1 says multiplied by the length).
+
+section
+	h1 Weight and maturity
+
+	Priors for length-weight parameters, |alpha| and |beta|, were based on the fixed values used in Sharma et al (2012) with a coefficient of variation of 5% (@table-pars).
+
+	Priors for maturity ogive parameters, |tau| and |upsilon| were based on the results of Grande (2013). For the inflection point, |tau|, based on Grande's estimated a value of 39.9cm, a normal prior with mean of 40cm and a coefficient of variation of 5% was used. Note that Table 4.2 of Grande (2013) indicates that some earlier studies in the Indian Ocean estimated values around 42-43cm for the inflection point. Sharma et al (2012, 2014) assumed 38cm based on Grande et al. (2010).
+
+	Figure 7.3 of Grande (2013) shows 5% and 95% maturity at about 35cm and 44cm respectively. Given a 50% maturity of 40cm this corresponds to a steepness parameter, |upsilon|, of about 5cm. A normal distribution with a mean of 5cm and a 10% c.v. was used (@table-pars).
 
 section
 	h1 Movement

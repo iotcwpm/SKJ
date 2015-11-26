@@ -65,6 +65,10 @@ r const
 		)
 	}
 
+plot_densities('spawners_unfished')	
+plot_densities('recruits_deviations.2003.')
+plot_densities('movement_sw_nw')
+
 for param in c('spawners_unfished','mortality_base','movement_stay','recruits_deviations.2003.')
 	figure
 		r format png size 17x10cm const

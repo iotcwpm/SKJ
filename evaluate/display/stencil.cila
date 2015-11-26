@@ -29,28 +29,34 @@ r
 				   kobe_d_sd = sd(kobe_d),
 				   kobe_to_a = mean(kobe_to_a,na.rm=T),
 				   kobe_to_a_sd = sd(kobe_to_a),
-				   cpue_w_ps = mean(cpue_mean_w_ps),
-				   cpue_w_ps_sd = sd(cpue_mean_w_ps),
-				   cpue_m_pl = mean(cpue_mean_m_pl),
-				   cpue_m_pl_sd = sd(cpue_mean_m_pl),
-				   cpue_e_gn = mean(cpue_mean_e_gn),
-				   cpue_e_gn_sd = sd(cpue_mean_e_gn)
+				   cpue_sw_ps = mean(cpue_mean_sw_ps),
+				   cpue_sw_ps_sd = sd(cpue_mean_sw_ps),
+				   cpue_nw_ps = mean(cpue_mean_nw_ps),
+				   cpue_nw_ps_sd = sd(cpue_mean_nw_ps),
+				   cpue_ma_pl = mean(cpue_mean_ma_pl),
+				   cpue_ma_pl_sd = sd(cpue_mean_ma_pl),
+				   cpue_ea_gn = mean(cpue_mean_ea_gn),
+				   cpue_ea_gn_sd = sd(cpue_mean_ea_gn)
 	)
 	# List of names of performance statistics
 	stats <- c(
 		'yield','stability',
 		'status','safety10','safety20',
 		'kobe_a','kobe_d','kobe_to_a',
-		'cpue_w_ps','cpue_m_pl','cpue_e_gn'
+		'cpue_sw_ps','cpue_nw_ps','cpue_ma_pl','cpue_ea_gn'
 	)
 	# Merge in procedures to facilitate summaries by procedure parameters
 	perfs <- merge(procedures,perfs)
+	
+	# Merge samples and performance
+	samples$replicate <- 1:nrow(samples)
+	sens <- merge(performances,samples)
 
 	# Augment track
 	track <- within(track,{
 		replicate <- factor(replicate)
 		procedure <- factor(procedure)
-		biomass_spawners_overall = biomass_spawners_w + biomass_spawners_m + biomass_spawners_e
+		biomass_spawners_overall = biomass_spawners_sw + biomass_spawners_nw + biomass_spawners_ma + biomass_spawners_ea
 	})
 
 	# Function for creating a signature for a MP instance
@@ -216,12 +222,6 @@ section
 				multiplot(p1,p2)
 			figcaption
 				Catch and biomass trajectory percentiles for management procedure {span text mp_sig(3)}.
-
-	section
-		h1 Performance measures, performance statistics and management objectives
-
-		include ../../performance/description complete
-			delete #title
 
 		{refer #figure-perf-dists} provides an overview of the distribution of each performance measure.
 
@@ -390,3 +390,17 @@ if 0
 
 		ggplot(sensitivity) +
 			geom_line(aes(x=quantile,y=status))
+			
+		sens$par <- floor(sens$spawners_unfished/100000)
+		sens$par <- floor(sens$mortality_base/0.1)*0.1
+		sens$par <- floor(sens$recruits_ma/0.05)*0.05
+		sens$par <- floor(sens$movement_nw_ma/0.05)*0.05
+		
+		temp <- ddply(sens,.(procedure,par),summarise,
+		  yield=mean(catches_total),
+		  status=mean(status_mean)
+		)
+		temp$procedure <- factor(temp$procedure)
+		ggplot(temp,aes(x=par,y=yield,colour=procedure,shape=procedure)) + 
+		  geom_point()
+		

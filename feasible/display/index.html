@@ -1,205 +1,71 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<title>
-			Indian Ocean skipjack model : conditioning based on feasibility constraints
-		</title>
-		<meta charset="utf-8">
-		<meta name="generator" content="Stencila 0.15-g49b7958-dirty">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta itemprop="type" content="stencil">
-		<meta itemprop="address" content="/home/nokome/trophia/code/ioskj/feasible/display">
-		<meta itemprop="version" content="">
-		<meta itemprop="theme" content="core/stencils/themes/default">
-		<link rel="stylesheet" type="text/css" href="/core/stencils/themes/default/theme.min.css"><script type="text/javascript">(function(c){var d=document,s,i,l;s=d.styleSheets;for(i=0;i!=s.length;i++){if((s[i].href||'').match(c)){try{if(s[i].cssRules.length)return;}catch(e){}}}l=d.createElement('link');l.rel='stylesheet';l.type='text/css';l.href='https://stenci.la'+c;d.documentElement.className='unready';l.onload=function(){d.documentElement.className='';};d.getElementsByTagName('head')[0].appendChild(l);})('/core/stencils/themes/default/theme.min.css');</script>
-		<style type="text/css">
-			.unready{display:none;}
-		</style>
-		<meta itemprop="closed" content="false">
-		<meta itemprop="contexts" content="r">
-	</head>
-	<body>
-		<main id="content">
-			 
-			<div id="title">
-				Indian Ocean skipjack model : conditioning based on feasibility constraints
-			</div>
-			<p>
-				This section describes an approach to model conditioning using the Feasible Stock Trajectories (FST) algorithm (Bentley and Langley 2012). Rather than estimating parameters using full likelihoods, FST uses feasibility criterion to accept or reject sets of parameters drawn from their prior distributions. Feasibility criteria can be based on a priori beliefs about the stock or on "features" of the observed data. Although unsophisticated, this approach can provide a pragmatic means for conditioning an operating model.
-			</p>
-			<p>
-				In the Indian Ocean skipjack model
-			</p>
-			<pre data-exec="r" data-hash="b5LGlot">
+<!DOCTYPE html><html><head><title>Indian Ocean skipjack model : conditioning based on feasibility constraints</title><meta charset="utf-8"><meta name="generator" content="Stencila 0.19-ga98db03-dirty"><meta name="viewport" content="width=device-width, initial-scale=1"><meta itemprop="type" content="stencil"><meta itemprop="address" content="/home/nokome/trophia/code/ioskj/feasible/display"><meta itemprop="version" content=""><meta itemprop="theme" content="core/stencils/themes/default"><link rel="stylesheet" type="text/css" href="/get/web/stencil.min.css"><script type="application/javascript">(function(c){var d=document,s,i,l;s=d.styleSheets;for(i=0;i!=s.length;i++){if((s[i].href||'').match(c)){try{if(s[i].cssRules.length)return;}catch(e){}}}l=d.createElement('link');l.rel='stylesheet';l.type='text/css';l.href='https://stenci.la'+c;d.documentElement.className='unready';l.onload=function(){d.documentElement.className='';};d.getElementsByTagName('head')[0].appendChild(l);})('/get/web/stencil.min.css');</script><style type="text/css">.unready{display:none;}</style><meta itemprop="contexts" content="r"></head><body><main id="content"><div id="title">Indian Ocean skipjack model : conditioning based on feasibility constraints</div><p>This section describes an approach to model conditioning using the Feasible Stock Trajectories (FST) algorithm (Bentley and Langley 2012). Rather than estimating parameters using full likelihoods, FST uses feasibility criterion to accept or reject sets of parameters drawn from their prior distributions. Feasibility criteria can be based on a priori beliefs about the stock or on "features" of the observed data. Although unsophisticated, this approach can provide a pragmatic means for conditioning an operating model.</p><p>In the Indian Ocean skipjack model</p><pre data-exec="r" data-hash="Gxq6oc" data-error="exception: line 1 did not have 28 elements">
 source('../../common.R',local=T)
 require(stringr)
 
+# Read in files
+load('priors','../../parameters/output/')
 load(c(
 	'accepted',
 	'rejected',
 	'track'
-),from='../../feasible/output')
+),from='../output/')
 
-</pre>
-			<pre data-exec="r" data-hash="b4nsBnJ">
-rejects &lt;- table(rejected$criterion)
-</pre>
-			<table id="table-1">
-				<caption><span data-label="true"><span class="type">Table </span><span class="number">1</span><span class="separator">: </span></span>
-					Feasibility criteria used in the FST algorithm
-				</caption>
-				<tr>
-					<th>
-						Code
-					</th>
-					<th>
-						Criterion
-					</th>
-					<th>
-						Trials failing this criterion
-					</th>
-				</tr>
-				<tr>
-					<td>
-						1
-					</td>
-					<td>
-						Stock status must always be >10% B0
-					</td>
-					<td data-text="rejects[1]">
-						2128
-					</td>
-				</tr>
-				<tr>
-					<td>
-						2
-					</td>
-					<td>
-						Stock status must be less than 100% B0 since 2008
-					</td>
-					<td data-text="rejects[2]">
-						22
-					</td>
-				</tr>
-				<tr>
-					<td>
-						3
-					</td>
-					<td>
-						Maldive PL CPUE must increase from 2004 to 2006
-					</td>
-					<td data-text="rejects[3]">
-						2046
-					</td>
-				</tr>
-				<tr>
-					<td>
-						4
-					</td>
-					<td>
-						Maldive PL CPUE must decrease from 2004 to 2011
-					</td>
-					<td data-text="rejects[4]">
-						107
-					</td>
-				</tr>
-				<tr>
-					<td>
-						5
-					</td>
-					<td>
-						Z-estimates for 50-55cm fish between 2006 and 2009 must be between 0.2 and 0.7 
-					</td>
-					<td data-text="rejects[5]">
-						5584
-					</td>
-				</tr>
-			</table>
-			<figure id="figure-1">
-				<pre data-exec="r format png size 17x10cm" data-hash="btFnKBu">
-print(
-	ggplot(subset(track,quarter==0),aes(x=year+quarter/4,y=biomass_spawning_overall/1000,group=replicate)) + 
-		geom_line(alpha=0.2) +
-		scale_y_log10() + 
-		labs(x="Year",y="Total spawning biomass (`000 t)")
-)
-</pre><img src="figure-1-examples-of-biomass-traje-btFnKBu.png" style="max-width:17cm;max-height:10cm" data-output="true">
-				<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">1</span><span class="separator">: </span></span>
-					Examples of biomass trajectories from the FST algorithm. Those trajectories which end prior to 2013 have failed to meet one of the conditioning criteria.
-				</figcaption>
-			</figure>
-			<pre data-exec="r" data-hash="VEI0r4">
-plot_densities &lt;- function(param){
-	name &lt;- paste0(param,".value")
-	values &lt;- rbind(
-		data.frame(value=accepted[,name],criterion=0),
-		data.frame(value=rejected[,name],criterion=rejected$criterion)
-	)
-	values$criterion = factor(values$criterion)
-	print(
-		ggplot(values,aes(x=value,fill=criterion,colour=criterion)) + 
-			geom_density(adjust=1/2,alpha=0.2) + 
-			labs(x="Value",y="Density")
-	)
+# Bind together
+# Add columns to accepted to allow rbinding
+accepted$trial &lt;- NA
+accepted$time &lt;- NA
+accepted$year &lt;- NA
+accepted$quarter &lt;- NA
+accepted$criterion &lt;- 0
+all &lt;- rbind(accepted,rejected)
+
+# Get terminal years for tracks
+terminals &lt;- ddply(track,.(replicate),summarise,year=max(year))
+terminals &lt;- merge(terminals,rejected[,c('trial','criterion')],by.x='replicate',by.y='trial')
+track &lt;- merge(track,terminals,all.x=T)
+track$criterion &lt;- factor(track$criterion)
+
+# Get tracks of accepted
+tracks &lt;- read.table('../../model/output/track.tsv',header=T)
+tracks &lt;- merge(tracks,ddply(tracks,.(replicate),summarise,b0=head(biomass_spawning_overall,n=1)))
+ggplot(subset(tracks,quarter==0),aes(x=year,y=biomass_spawning_overall/b0,group=replicate)) + 
+			geom_line(alpha=0.2) +
+		  labs(x="Year",y="Total spawning biomass (`000 t)")
+
+
+# Quantile plotting function
+plot_ribbon &lt;- function(data,y,ylab='Value',xlab='Year'){
+	# Evaluation the y expression
+	data$y &lt;- eval(y,envir=data)
+	# Calculate quantiles
+	quantiles = ddply(data,.(year),function(data){
+		quantiles = quantile(data$y,p=c(0.01,0.05,0.1,0.25,0.5,0.75,0.9,0.95,0.99),na.rm=T)
+		data.frame(
+			p1 = quantiles[1],
+			p5 = quantiles[2],
+			p10 = quantiles[3],
+			p25 = quantiles[4],
+			p50 = quantiles[5],
+			p75 = quantiles[6],
+			p90 = quantiles[7],
+			p95 = quantiles[8],
+			p99 = quantiles[9]
+		)
+	})
+	# Plot
+	p = ggplot() +
+		geom_ribbon(data=quantiles,aes(x=year,ymin=p5,ymax=p95),alpha=0.1) + 
+		geom_ribbon(data=quantiles,aes(x=year,ymin=p10,ymax=p90),alpha=0.1) + 
+		geom_ribbon(data=quantiles,aes(x=year,ymin=p25,ymax=p75),alpha=0.1) +
+		geom_hline(y=0,alpha=0) +
+		scale_colour_manual(values=hsv(c(0,0.66,0.33),0.6,0.6)) +
+		labs(x=xlab,y=ylab) +
+		theme(legend.position='none')
+	print(p)
+	p
 }
+plot_ribbon(subset(tracks,quarter==0),y=quote(biomass_spawning_overall/b0),ylab='Status (B/B0)')
+</pre><pre data-exec="r" data-hash="bzVS1AU">
 
-</pre>
-			<div data-for="param in c('recruits_unfished','mortality_base','movement_stay','recruits_deviations.2003.')">
-				<figure data-off="true">
-					<pre data-exec="r format png size 17x10cm">
-plot_densities(param)
-</pre>
-					<figcaption>
-						Distribution of values of the parameter "<span data-text="param"></span>" according to feasibility criteria (0 indicates the trial met all criteria).
-					</figcaption>
-				</figure>
-				<figure data-index="0" id="figure-2">
-					<pre data-exec="r format png size 17x10cm" data-hash="qOTsPtF">
-plot_densities(param)
-</pre><img src="figure-2-distribution-of-values-of-qOTsPtF.png" style="max-width:17cm;max-height:10cm" data-output="true">
-					<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">2</span><span class="separator">: </span></span>
-						Distribution of values of the parameter "<span data-text="param">recruits_unfished</span>" according to feasibility criteria (0 indicates the trial met all criteria).
-					</figcaption>
-				</figure>
-				<figure data-index="1" id="figure-3">
-					<pre data-exec="r format png size 17x10cm" data-hash="ctYGDnI">
-plot_densities(param)
-</pre><img src="figure-3-distribution-of-values-of-ctYGDnI.png" style="max-width:17cm;max-height:10cm" data-output="true">
-					<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">3</span><span class="separator">: </span></span>
-						Distribution of values of the parameter "<span data-text="param">mortality_base</span>" according to feasibility criteria (0 indicates the trial met all criteria).
-					</figcaption>
-				</figure>
-				<figure data-index="2" id="figure-4">
-					<pre data-exec="r format png size 17x10cm" data-hash="qDfUJ6E">
-plot_densities(param)
-</pre><img src="figure-4-distribution-of-values-of-qDfUJ6E.png" style="max-width:17cm;max-height:10cm" data-output="true">
-					<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">4</span><span class="separator">: </span></span>
-						Distribution of values of the parameter "<span data-text="param">movement_stay</span>" according to feasibility criteria (0 indicates the trial met all criteria).
-					</figcaption>
-				</figure>
-				<figure data-index="3" id="figure-5">
-					<pre data-exec="r format png size 17x10cm" data-hash="snzT43s">
-plot_densities(param)
-</pre><img src="figure-5-distribution-of-values-of-snzT43s.png" style="max-width:17cm;max-height:10cm" data-output="true">
-					<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">5</span><span class="separator">: </span></span>
-						Distribution of values of the parameter "<span data-text="param">recruits_deviations.2003.</span>" according to feasibility criteria (0 indicates the trial met all criteria).
-					</figcaption>
-				</figure>
-			</div>
-			<figure id="figure-6">
-				<pre data-exec="r format png size 17x10cm" data-hash="ch9TclY">
-temp &lt;- melt(accepted[,paste0("recruits_deviations.",1990:2012,"..value")])
-temp$year &lt;- str_extract(temp$variable,"\\d+")
-print(ggplot(temp,aes(x=year,y=value)) + 
-	geom_violin(fill='grey') +
-	geom_point(data=ddply(temp,.(year),summarise,y=mean(value)),aes(y=y)) +
-	geom_hline(y=0,linetype=2) + 
-	labs(x='Year',y='Value'))
-</pre><img src="figure-6-distribution-of-values-of-ch9TclY.png" style="max-width:17cm;max-height:10cm" data-output="true">
-				<figcaption><span data-label="true"><span class="type">Figure </span><span class="number">6</span><span class="separator">: </span></span>
-					Distribution of values of <code>recruits_deviations</code> parameters that passed all feasibility criteria. The dots represent the mean of each distribution.	
-				</figcaption>
-			</figure>
-		</main><script src="https://stenci.la/get/js/stencila-0.15.min.js"> </script><script>Stencila.launch();</script><script>window.setTimeout(function(){document.documentElement.className='';if(!window.Stencila){window.alert('Page could not be fully loaded. Not all functionality will be available.');}},10000)</script>
-	</body>
-</html>
+rejects &lt;- table(rejected$criterion)
+</pre><table data-index="1"><caption><span data-label="table-1">Table 1</span>Feasibility criteria used in the FST algorithm</caption><tr><th>Code</th><th>Criterion</th><th>Trials failing this criterion</th></tr><tr><td>1</td><td>Overall stock status must always be &gt;10% B0</td><td data-text="rejects[1]">7</td></tr><tr><td>2</td><td>Overall stock status must be less than 100% B0 since 2008</td><td data-text="rejects[2]">2278</td></tr><tr><td>3</td><td>Exploitation rate in four main fisheries (SW-PS, NW-PS, MA-PL, E-GN) must always be &lt;0.5</td><td data-text="rejects[3]">5042</td></tr><tr><td>4</td><td>MA-PL CPUE must decrease from 2004 to 2011</td><td data-text="rejects[4]">710</td></tr><tr><td>5</td><td>WE-PS CPUE must decrease from 2000 to 2011</td><td data-text="rejects[5]">236</td></tr><tr><td>6</td><td>Z-estimates for 45-50cm fish between 2006 and 2009 must be between 0.1 and 0.4 </td><td data-text="rejects[6]">611</td></tr><tr><td>7</td><td>Cumulative 10, 50 &amp; 90 percentiles for length frequencies by method similar to those in data</td><td data-text="rejects[7]">747</td></tr></table></main><script src="/get/web/stencil.min.js"> </script><script type="application/javascript">if(!window.Stencila){window.StencilaHost="https://stenci.la";document.write(unescape('%3Cscript src="https://stenci.la/get/web/stencil.min.js"%3E%3C/script%3E'))}</script><script>window.setTimeout(function(){document.documentElement.className='';if(!window.Stencila){window.alert('Page could not be fully loaded. Not all functionality will be available.');}},10000)</script></body></html>
