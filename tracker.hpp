@@ -19,9 +19,16 @@ struct Tracker {
 			<<"procedure\t"
 			<<"year\t"
 			<<"quarter\t"
-			<<"recruits_determ\t"
+
+			<<"recruits_determ_we\t"
+			<<"recruits_determ_ma\t"
+			<<"recruits_determ_ea\t"
+
 			<<"recruits_deviation\t"
-			<<"recruits\t"
+
+			<<"recruits_we\t"
+			<<"recruits_ma\t"
+			<<"recruits_ea\t"
 
 			<<"biomass_status\t"
 
@@ -62,9 +69,15 @@ struct Tracker {
 			<<year<<"\t"
 			<<quarter<<"\t"
 
-			<<model.recruits_determ<<"\t"
+			<<model.recruits_determ(WE)<<"\t"
+			<<model.recruits_determ(MA)<<"\t"
+			<<model.recruits_determ(EA)<<"\t"
+
 			<<model.recruits_deviation<<"\t"
-			<<model.recruits<<"\t"
+
+			<<model.recruits(WE)<<"\t"
+			<<model.recruits(MA)<<"\t"
+			<<model.recruits(EA)<<"\t"
 
 			<<model.biomass_status()<<"\t"
 
