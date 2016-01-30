@@ -42,7 +42,7 @@ figure
 			i,s,type='l',
 			ylab='CPUE index to Catch scaler',
 			xlab='',
-			las=1,ylim=c(0,2),xlim=c(0,2)
+			las=1,xlim=c(0,1.8)
 		)
 		abline(h=mult,lty=3)
 		abline(v=1,lty=3)
