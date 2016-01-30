@@ -69,6 +69,72 @@ void run(const std::string& samples_file="ref",int samples_row=0,int procedure=0
 	data.write();
 }
 
+/**
+ * Run the model with a particular MP
+ *
+ * @param samples_file A filesystem path to a TSV file of parameter samples
+ * @parameters samples_row Row index of samples to select
+ */
+void mp_one(const std::string type, const std::vector<double>& pars, const std::string& samples_file="ref",int samples_row=0){
+	// Create output directories
+	boost::filesystem::create_directories("model/output");
+	boost::filesystem::create_directories("parameters/output");
+	boost::filesystem::create_directories("data/output");
+	// Read in parameters
+	Parameters parameters;
+	parameters.read();
+	parameters.write();
+	// If samples is specified, read them in and select the desired row
+	if(samples_file!="ref"){
+		// Read in samples
+		Frame samples;
+		samples.read(samples_file);
+		//... select desired row
+		Frame row = samples.slice(samples_row);
+		//... overwrite parameters available, ignoring catches
+		parameters.read(row,{"catches"});
+	}
+	// Read in data
+	Data data;
+	data.read();
+	// Setup procedures
+	Procedure* procedure;
+	if(type=="brule"){
+		BRule* brule = new BRule;
+		brule->frequency = pars[0];
+		brule->precision = pars[1];
+		brule->target = pars[2];
+		brule->thresh = pars[3];
+		brule->limit = pars[4];
+		procedure = brule;
+	} else {
+		throw std::runtime_error("Unknow MP type:"+type);
+	}
+	procedure->write(std::cout);
+	// Do tracking
+	Tracker tracker("model/output/track.tsv");
+	// Instantiate a model
+	Model model;
+	// For each time step...
+	for(uint time=0;time<=time_max;time++){
+		std::cout<<time<<"\t"<<year(time)<<"\t"<<quarter(time)<<std::endl;
+		//... set model parameters
+		parameters.set(time,model);
+		//... update the model
+		model.update(time);
+		//... operate the procedure
+		if(time>time_now){
+			procedure->operate(time,model);
+		}
+		//... get model variables corresponding to data
+		data.get(time,model);
+		//... get model variables of interest for tracking
+		tracker.get(0,0,time,model);
+	}
+}
+
+
+
 void tracks(const std::string& samples_file){
 	// Read in parameters
 	Parameters parameters;
@@ -752,6 +818,14 @@ int main(int argc, char** argv){
         std::string task = argv[1];
         std::cout<<"-------------"<<task<<"-------------\n"<<std::flush;
         if(task=="run") run(arg<std::string>(argc,argv,2),arg<int>(argc,argv,3),arg<int>(argc,argv,4));
+        else if(task=="mp_one"){
+        	auto type = arg<std::string>(argc,argv,2);
+        	std::vector<double> pars;
+        	for (int index = 3; index < argc; index++) {
+        		pars.push_back(arg<double>(argc,argv,index));
+        	}
+        	mp_one(type,pars);
+        }
         else if(task=="tracks") tracks(arg<std::string>(argc,argv,2));
         else if(task=="yield") yield();
         else if(task=="priors") priors(arg<int>(argc,argv,2));

@@ -1,0 +1,64 @@
+#title Management procedure "BRule"
+
+#description A class of MP is similar to generic harvest control rules that have been suggested in other tuna fisheries (e.g. SCRS 2011, Scott et al 2013). See for details.
+
+par frequency type number default 2
+
+	label Frequency of assessments
+
+par s_threshold type number default 0.4
+
+	label Threshold stock status
+	description Relative stock status below which recommended fishing intensity is reduced
+
+par s_limit type number default 0.05
+
+	label Limit stock status
+	description Relative stock status below which recommended fishing intensity is zero
+
+par f_target type number default 0.25
+
+	label Target fishing intensity
+	description Relative fishing intensity
+
+figure
+
+	r format png size 10x8cm
+		s_hats <- seq(0,1,0.01)
+		f_dots <- f_target/(s_threshold-s_limit)*(s_hats-s_limit)
+		f_dots[s_hats<s_limit] <- 0
+		f_dots[s_hats>s_threshold] <- f_target
+		par(mar=c(4,4,1,1))
+		plot(
+			s_hats,f_dots,type='l',
+			ylab='Fishing intensity (F)',
+			xlab='Stock status (B/B0)',
+			las=1
+		)
+		abline(h=f_target,lty=3)
+		abline(v=s_threshold,lty=3)
+
+
+r
+	setwd('ioskj')
+	system(paste('./ioskj.exe mp_one brule',frequency,s_threshold,s_limit,f_target))
+	setwd('..')
+	
+	library(ggplot2)
+
+	track <- read.table('ioskj/model/output/track.tsv',header=T)
+	plot_track <- function(what,label){
+	  plot <- ggplot(track,aes(x=year+quarter/4)) + 
+	    geom_line(aes_string(y=what)) + 
+	    geom_hline(y=0,alpha=0) +
+	    geom_vline(x=2015,alpha=0.6,linetype=2) +
+	    labs(x='Year',y=label)
+	  print(plot)
+	  plot
+	}
+	
+figure
+	figcaption
+		Stock status trajectory
+	r format png size 17x10cm
+		plot_track('biomass_status','Stock status (B/B0)')
