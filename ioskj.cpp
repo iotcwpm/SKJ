@@ -107,6 +107,17 @@ void mp_one(const std::string type, const std::vector<double>& pars, const std::
 		brule->thresh = pars[3];
 		brule->limit = pars[4];
 		procedure = brule;
+	} 
+	else if(type=="irate"){
+		IRate* irate = new IRate;
+		irate->precision = 0.2;
+		irate->responsiveness = pars[0];
+		irate->multiplier = pars[1]/4*1000; // Converts annual to `000t to quarterly t
+		irate->threshold = pars[2];
+		irate->limit = pars[3];
+		irate->change_max = pars[4];
+		irate->maximum = pars[5]/4*1000;
+		procedure = irate;
 	} else {
 		throw std::runtime_error("Unknow MP type:"+type);
 	}
