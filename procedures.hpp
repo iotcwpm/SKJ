@@ -9,7 +9,7 @@ class Procedure {
 public:
 	virtual void reset(void){};
 	virtual void operate(uint time, Model& model) = 0;
-	virtual void write(std::ofstream& stream) = 0;
+	virtual void write(std::ostream& stream) = 0;
 
 	/**
 	 * Set the catch by region/method assuming a 
@@ -60,7 +60,7 @@ public:
 class DoNothing : public Procedure, public Structure<DoNothing> {
 public:
 
-	virtual void write(std::ofstream& stream){
+	virtual void write(std::ostream& stream){
 		stream
 			<<"DoNothing"<<"\t\t\t\t\t\t\t\t\t\t\n";
 	}
@@ -85,7 +85,7 @@ public:
 	 */
 	double tac = 429564.0/4;
 
-	virtual void write(std::ofstream& stream){
+	virtual void write(std::ostream& stream){
 		stream
 			<<"ConstCatch\t"<<tac<<"\t\t\t\t\t\t\t\t\t\n";
 	}
@@ -110,7 +110,7 @@ public:
 	 */
 	double tae = 100;
 
-	virtual void write(std::ofstream& stream){
+	virtual void write(std::ostream& stream){
 		stream
 			<<"ConstEffort\t"<<tae<<"\t\t\t\t\t\t\t\t\t\n";
 	}
@@ -165,7 +165,7 @@ public:
 		;
 	}
 
-	void write(std::ofstream& stream){
+	void write(std::ostream& stream){
 		stream
 			<<"BRule"<<"\t"
 			<<frequency<<"\t"
@@ -253,7 +253,7 @@ public:
 		;
 	}
 
-	void write(std::ofstream& stream){
+	void write(std::ostream& stream){
 		stream
 			<<"FRange"<<"\t"
 			<<frequency<<"\t"
@@ -362,7 +362,7 @@ public:
 		;
 	}
 
-	void write(std::ofstream& stream){
+	void write(std::ostream& stream){
 		stream
 			<<"IRate"<<"\t"
 			<<precision<<"\t"
