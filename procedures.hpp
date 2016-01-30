@@ -202,7 +202,7 @@ public:
 
 private:
 	/**
-	 * Time that the status estimate was made
+	 * Last time that the status estimate was made
 	 */
 	int last_;
 };
