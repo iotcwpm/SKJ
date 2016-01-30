@@ -851,7 +851,7 @@ public:
 			double scalar = biomass_spawners_unfished(region)/biomass_spawners(region);
 			// Apply scalar
 			recruits_unfished(region) *= scalar;
-			numbers *= scalar;
+			for(auto age : ages) numbers(region,age) *= scalar;
 			for(auto quarter : quarters){
 				biomass_spawning_unfished(region,quarter) = biomass_spawning(region,quarter)*scalar;
 			}
