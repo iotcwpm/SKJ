@@ -2,51 +2,59 @@
 
 #description A class of MP is similar to generic harvest control rules that have been suggested in other tuna fisheries (e.g. SCRS 2011, Scott et al 2013). See for details.
 
-par frequency type number default 2
+par frequency type number default 3
 
 	label Frequency of assessments
 
-par s_threshold type number default 0.4
+par precision type number default 0.3
 
-	label Threshold stock status
-	description Relative stock status below which recommended fishing intensity is reduced
-
-par s_limit type number default 0.05
-
-	label Limit stock status
-	description Relative stock status below which recommended fishing intensity is zero
+	label Imprecision of assessments
 
 par f_target type number default 0.25
 
 	label Target fishing intensity
-	description Relative fishing intensity
+
+par s_threshold type number default 0.4
+
+	label Threshold stock status
+
+par s_limit type number default 0.05
+
+	label Limit stock status
+
 
 figure
 
-	r format png size 10x8cm
+	r format png size 16x8cm
 		s_hats <- seq(0,1,0.01)
 		f_dots <- f_target/(s_threshold-s_limit)*(s_hats-s_limit)
 		f_dots[s_hats<s_limit] <- 0
 		f_dots[s_hats>s_threshold] <- f_target
 		par(mar=c(4,4,1,1))
 		plot(
-			s_hats,f_dots,type='l',
+			s_hats*100,f_dots,type='l',
 			ylab='Fishing intensity (F)',
-			xlab='Stock status (B/B0)',
-			las=1
+			xlab='Stock status (%B0)',
+			las=1,
+			xlim=c(0,100),
+			ylim=c(0,1)
 		)
 		abline(h=f_target,lty=3)
 		abline(v=s_threshold,lty=3)
 
-
 r
+	cwd <- getwd()
 	setwd('ioskj')
-	system(paste('./ioskj.exe mp_one brule',frequency,s_threshold,s_limit,f_target))
-	setwd('..')
-	
+	system(paste('./ioskj.exe mp_one brule',frequency,precision,f_target,s_threshold,s_limit))
+	setwd(cwd)
+
 	library(ggplot2)
 
 	track <- read.table('ioskj/model/output/track.tsv',header=T)
+	track <- within(track,{
+		biomass_status <- biomass_status * 100
+		catches_total <- catches_total/1000
+	})
 	plot_track <- function(what,label){
 	  plot <- ggplot(track,aes(x=year+quarter/4)) + 
 	    geom_line(aes_string(y=what)) + 
@@ -61,4 +69,11 @@ figure
 	figcaption
 		Stock status trajectory
 	r format png size 17x10cm
-		plot_track('biomass_status','Stock status (B/B0)')
+		plot_track('biomass_status','Stock status (%B0)')
+	
+figure
+	figcaption
+		Catch trajectory
+	r format png size 17x10cm
+		plot_track('catches_total','Total catches (000t, quarterly)')
+
