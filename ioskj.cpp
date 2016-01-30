@@ -117,13 +117,13 @@ void mp_one(const std::string type, const std::vector<double>& pars, const std::
 	Model model;
 	// For each time step...
 	for(uint time=0;time<=time_max;time++){
-		std::cout<<time<<"\t"<<year(time)<<"\t"<<quarter(time)<<std::endl;
 		//... set model parameters
 		parameters.set(time,model);
 		//... update the model
 		model.update(time);
 		//... operate the procedure
 		if(time>time_now){
+			if(time==time_now+1) procedure->reset();
 			procedure->operate(time,model);
 		}
 		//... get model variables corresponding to data
@@ -132,7 +132,6 @@ void mp_one(const std::string type, const std::vector<double>& pars, const std::
 		tracker.get(0,0,time,model);
 	}
 }
-
 
 
 void tracks(const std::string& samples_file){

@@ -204,7 +204,7 @@ private:
 	/**
 	 * Last time that the status estimate was made
 	 */
-	int last_;
+	int last_ = -1;
 };
 
 /**
