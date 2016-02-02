@@ -69,82 +69,6 @@ void run(const std::string& samples_file="ref",int samples_row=0,int procedure=0
 	data.write();
 }
 
-/**
- * Run the model with a particular MP
- *
- * @param samples_file A filesystem path to a TSV file of parameter samples
- * @parameters samples_row Row index of samples to select
- */
-void mp_one(const std::string type, const std::vector<double>& pars, const std::string& samples_file="ref",int samples_row=0){
-	// Create output directories
-	boost::filesystem::create_directories("model/output");
-	boost::filesystem::create_directories("parameters/output");
-	boost::filesystem::create_directories("data/output");
-	// Read in parameters
-	Parameters parameters;
-	parameters.read();
-	parameters.write();
-	// If samples is specified, read them in and select the desired row
-	if(samples_file!="ref"){
-		// Read in samples
-		Frame samples;
-		samples.read(samples_file);
-		//... select desired row
-		Frame row = samples.slice(samples_row);
-		//... overwrite parameters available, ignoring catches
-		parameters.read(row,{"catches"});
-	}
-	// Read in data
-	Data data;
-	data.read();
-	// Setup procedures
-	Procedure* procedure;
-	if(type=="brule"){
-		BRule* brule = new BRule;
-		brule->frequency = pars[0];
-		brule->precision = pars[1];
-		brule->target = pars[2];
-		brule->thresh = pars[3];
-		brule->limit = pars[4];
-		procedure = brule;
-	} 
-	else if(type=="irate"){
-		IRate* irate = new IRate;
-		irate->precision = 0.2;
-		irate->responsiveness = pars[0];
-		irate->multiplier = pars[1]/4*1000; // Converts annual to `000t to quarterly t
-		irate->threshold = pars[2];
-		irate->limit = pars[3];
-		irate->change_max = pars[4];
-		irate->maximum = pars[5]/4*1000;
-		procedure = irate;
-	} else {
-		throw std::runtime_error("Unknow MP type:"+type);
-	}
-	procedure->write(std::cout);
-	// Do tracking
-	Tracker tracker("model/output/track.tsv");
-	// Instantiate a model
-	Model model;
-	// For each time step...
-	for(uint time=0;time<=time_max;time++){
-		//... set model parameters
-		parameters.set(time,model);
-		//... update the model
-		model.update(time);
-		//... operate the procedure
-		if(time>time_now){
-			if(time==time_now+1) procedure->reset();
-			procedure->operate(time,model);
-		}
-		//... get model variables corresponding to data
-		data.get(time,model);
-		//... get model variables of interest for tracking
-		tracker.get(0,0,time,model);
-	}
-}
-
-
 void tracks(const std::string& samples_file){
 	// Read in parameters
 	Parameters parameters;
@@ -658,8 +582,17 @@ void condition_demc(uint generations,uint logging=1, uint saving=10){
  * @param vary Should replicates vary? Should only be set to false for testing
  * @param msy Should msy be calculated for each replicate?
  */
-void evaluate(const std::string& samples_file, int replicates=1000, int procedure_select=-1, bool vary=true, bool msy=true){
+void evaluate(
+	int replicates=1000, 
+	const std::string& samples_file="feasible/output/accepted.tsv", 
+	bool procedures_read=true, 
+	int procedure_select=-1,
+	uint year_start=-1, 
+	bool vary=true, 
+	bool msy=true
+){
 	boost::filesystem::create_directories("evaluate/output");
+	boost::filesystem::create_directories("procedures/output");
 	// Setup parameters and data
 	Parameters parameters;
 	parameters.read();
@@ -671,17 +604,22 @@ void evaluate(const std::string& samples_file, int replicates=1000, int procedur
 	samples_all.read(samples_file);
 	samples_all.write("evaluate/output/samples_all.tsv");
 	Frame samples;
-	// Frame for hoding reference points
+	// Frame for holding reference points
 	Frame references({
 		"b0","e_msy","f_msy","msy","b_msy"
 	});
 	// Setup procedures
 	Procedures procedures;
-	procedures.populate();
+	if(procedures_read) procedures.read();
+	else procedures.populate();
+	procedures.write();
 	// Setup performance statistics
 	Array<Performance> performances;
 	// Do tracking (for a subset of replicates)
 	Tracker tracker("evaluate/output/track.tsv");
+	uint time_start;
+	if(year_start<0) time_start = time_now;
+	else time_start = time(year_start,3);
 	// For each replicate...
 	for(int replicate=0;replicate<replicates;replicate++){
 		std::cout<<replicate<<std::endl;
@@ -703,7 +641,7 @@ void evaluate(const std::string& samples_file, int replicates=1000, int procedur
 		// Create a model representing current state by iterating
 		// from time 0 to now...
 		Model current;
-		for(uint time=0;time<=time_now;time++){
+		for(uint time=0;time<=time_start;time++){
 			//... set parameters
 			parameters.set(time,current); 
 			//... update the model
@@ -739,7 +677,7 @@ void evaluate(const std::string& samples_file, int replicates=1000, int procedur
 			// Reset the procedure
 			procedures.reset(procedure);
 			// Iterate over years...
-			for(uint time=time_now+1;time<=time_max;time++){
+			for(uint time=time_start+1;time<=time_max;time++){
 				//... set parameters
 				parameters.set(time,current);
 				//... update the model
@@ -764,6 +702,19 @@ void evaluate(const std::string& samples_file, int replicates=1000, int procedur
 			performances.write("evaluate/output/performances.tsv");
 		}
 	}
+}
+
+void evaluate_wrap(
+	int replicates,
+	uint year_start=-1
+) {
+	evaluate(
+		replicates, 
+		"feasible/output/accepted.tsv", // samples_file
+		true, // procedures_read
+		-1, // procedure_select
+		year_start // year_start 
+	);
 }
 
 void test(){
@@ -828,22 +779,15 @@ int main(int argc, char** argv){
         std::string task = argv[1];
         std::cout<<"-------------"<<task<<"-------------\n"<<std::flush;
         if(task=="run") run(arg<std::string>(argc,argv,2),arg<int>(argc,argv,3),arg<int>(argc,argv,4));
-        else if(task=="mp_one"){
-        	auto type = arg<std::string>(argc,argv,2);
-        	std::vector<double> pars;
-        	for (int index = 3; index < argc; index++) {
-        		pars.push_back(arg<double>(argc,argv,index));
-        	}
-        	mp_one(type,pars);
-        }
-        else if(task=="tracks") tracks(arg<std::string>(argc,argv,2));
+		else if(task=="tracks") tracks(arg<std::string>(argc,argv,2));
         else if(task=="yield") yield();
         else if(task=="priors") priors(arg<int>(argc,argv,2));
         else if(task=="condition_feasible") condition_feasible(arg<int>(argc,argv,2));
         else if(task=="condition_ss3") condition_ss3(arg<int>(argc,argv,2));
         else if(task=="condition_demc") condition_demc(arg<int>(argc,argv,2));
-        else if(task=="evaluate_feasible") evaluate("feasible/output/accepted.tsv",arg<int>(argc,argv,2));
-        else if(task=="evaluate_ss3") evaluate("ss3/output/accepted.tsv",arg<int>(argc,argv,2));
+        else if(task=="evaluate") evaluate_wrap(arg<int>(argc,argv,2),arg<int>(argc,argv,3));
+        else if(task=="evaluate_feasible") evaluate(arg<int>(argc,argv,2),"feasible/output/accepted.tsv");
+        else if(task=="evaluate_ss3") evaluate(arg<int>(argc,argv,2),"ss3/output/accepted.tsv");
         else if(task=="test") test();
         else throw std::runtime_error("Unrecognised task");
         std::cout<<"-------------------------------\n";
