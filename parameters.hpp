@@ -293,7 +293,7 @@ public:
 		}
 		else if(year>=recdev_years.end() and time<=time_now){
 			// Deterministic recruitment otherwise get
-			// different fits form sam eparameter sets
+			// different fits from same parameter sets
 			// during conditioning
 			model.recruits_variation_on = false;
 			model.recruits_deviation = 1;
