@@ -82,15 +82,18 @@ drive:
 
 package:
 	rm -rf ioskj
-	mkdir -p ioskj
+	mkdir -p ioskj ioskj/parameters ioskj/data ioskj/procedures
 	cp ioskj.exe ioskj
 	cp ioskj.r ioskj
 	cp ioskj-drive.r ioskj
-	mkdir -p ioskj/parameters
 	cp -r parameters/input ioskj/parameters/input
-	mkdir -p ioskj/data/input
-	cp -r data/input ioskj/data
+	cp -r data/input ioskj/data/input
+	cp -r procedures/input ioskj/procedures/input
+ifeq ($(UNAME), GNU/Linux)
+	tar zcf ioskj-linux.tar.gz ioskj
+else
 	zip -r ioskj-$(OS).zip ioskj
+endif
 
 #############################################################
 # Documentation
@@ -137,6 +140,31 @@ docs: doxygen-html stencils-html
 publish: stencils-pages
 	mkdir -p .pages/doxygen  ; cp -fr doxygen/html/. .pages/doxygen/
 	ghp-import -m "Updated pages" -p .pages
+
+#############################################################
+# Dynamic presentations in `presents` folder
+# 
+# Use by appending `-deploy` etc after directory name e.g.
+#    make presents/2016-02-03-maldives/mp-brule-deploy
+
+%-serve: %/.
+	stencila-r $(dir $<) render serve ...
+
+%-view: %/.
+	stencila-r $(dir $<) render view ...
+
+# Create a symlink to the local executable and directories
+%-localize: %/.
+	rm -rf $(dir $<)ioskj*
+	ln -sfT  $(abspath $(shell pwd)) $(dir $<)ioskj
+
+# Put the latest version of the package, commit and push
+%-deploy: %/. package
+	cp ioskj-linux.tar.gz $(dir $<)
+	cd $(dir $<) && git add "ioskj-linux.tar.gz"
+	cd $(dir $<) && git add "stencil.cila"
+	-cd $(dir $<) && git commit -m "Update ioskj package"
+	cd $(dir $<) && git push
 
 #############################################################
 # Requirements
