@@ -678,14 +678,18 @@ void evaluate(
 			procedures.reset(procedure);
 			// Iterate over years...
 			for(uint time=time_start+1;time<=time_max;time++){
-				//... set parameters
-				parameters.set(time,current);
+				//... set parameters on future model (e.g time varying parameters
+				// like recruitment variation but not catches)
+				parameters.set(time,future,false);
+				//... operate the procedure (having 
+				// procedure.operate() here, before future.update() allows 
+				// for the `HistCatch` procedure which simply applies historical
+				// catches
+				procedures.operate(procedure,time,future);
 				//... update the model
 				future.update(time);
 				//... track the model (for speed, only some replicates)
 				if(replicate<100) tracker.get(replicate,procedure,time,future);
-				//... operate the procedure
-				procedures.operate(procedure,time,future);
 				//... record performance
 				performance.record(time,future);
 			}
@@ -706,14 +710,16 @@ void evaluate(
 
 void evaluate_wrap(
 	int replicates,
+	std::string samples_file="feasible/output/accepted.tsv",
 	uint year_start=-1
 ) {
 	evaluate(
-		replicates, 
-		"feasible/output/accepted.tsv", // samples_file
+		replicates,
+		samples_file, // samples_file
 		true, // procedures_read
 		-1, // procedure_select
-		year_start // year_start 
+		year_start, // year_start 
+		true // vary
 	);
 }
 
@@ -785,7 +791,7 @@ int main(int argc, char** argv){
         else if(task=="condition_feasible") condition_feasible(arg<int>(argc,argv,2));
         else if(task=="condition_ss3") condition_ss3(arg<int>(argc,argv,2));
         else if(task=="condition_demc") condition_demc(arg<int>(argc,argv,2));
-        else if(task=="evaluate") evaluate_wrap(arg<int>(argc,argv,2),arg<int>(argc,argv,3));
+        else if(task=="evaluate_wrap") evaluate_wrap(arg<int>(argc,argv,2),arg<std::string>(argc,argv,3),arg<int>(argc,argv,4));
         else if(task=="evaluate_feasible") evaluate(arg<int>(argc,argv,2),"feasible/output/accepted.tsv");
         else if(task=="evaluate_ss3") evaluate(arg<int>(argc,argv,2),"ss3/output/accepted.tsv");
         else if(task=="test") test();
