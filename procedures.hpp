@@ -375,9 +375,9 @@ public:
 	double responsiveness = 1;
 
 	/**
-	 * Target harvest rate relative to historic levels i.e 0.9 = 90% of historic average
+	 * Target harvest rate
 	 */
-	double multiplier = 100000;
+	double multiplier = 400;
 
 	/**
 	 * Threshold biomass index
@@ -395,9 +395,9 @@ public:
 	double change_max = 0.3;
 
 	/**
-	 * Buffer around target F
+	 * Maximum TAC
 	 */
-	double maximum = 150000;
+	double maximum = 600;
 
 	/**
 	 * Reflection
@@ -475,7 +475,7 @@ public:
 			}
 			last_ = tac;
 			// Apply recommended TAC
-			catches_set(model,tac);
+			catches_set(model,tac*1000/4);
 		}
 	}
 
