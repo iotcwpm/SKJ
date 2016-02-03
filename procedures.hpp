@@ -9,6 +9,7 @@ class Procedure {
 public:
 	virtual void reset(void){};
 	virtual void operate(uint time, Model& model) = 0;
+	virtual void read(std::istream& stream){};
 	virtual void write(std::ostream& stream) = 0;
 
 	/**
@@ -69,6 +70,44 @@ public:
 	}
 };
 
+
+/**
+ * `HistCatch` management procedure
+ *
+ * A management procedure based on the historical catch
+ */
+class HistCatch : public Procedure, public Structure<HistCatch> {
+public:
+
+	Array<Variable<Fixed>,Year,Quarter,Region,Method> catches;
+
+	HistCatch(void){
+		// Read in historical catches (borrowed from parameters)
+		catches.read("parameters/input/catches.tsv",true);
+	}
+
+	virtual void write(std::ostream& stream){
+		stream
+			<<"HistCatch"<<"\t\t\t\t\t\t\t\t\t\t\n";
+	}
+
+	virtual void operate(uint time, Model& model){
+		// Apply the actual quarterly catch history
+		// using 2012 catch distribution by quarter, region, method
+		// etc for years in the future
+		uint year = IOSKJ::year(time);
+		if(year>2014) year = 2014;
+		uint quarter = IOSKJ::quarter(time);
+		model.exploit = model.exploit_catch;
+		for(auto region : regions){
+			for(auto method : methods){
+				model.catches(region,method) = catches(year,quarter,region,method);
+			}
+		}
+	}
+};
+
+
 /**
  * Constant catch management procedure
  *
@@ -84,6 +123,11 @@ public:
 	 * of IOTC–2014–WPTT16
 	 */
 	double tac = 429564.0/4;
+
+	virtual void read(std::istream& stream){
+		stream
+			>>tac;
+	}
 
 	virtual void write(std::ostream& stream){
 		stream
@@ -163,6 +207,15 @@ public:
 			.data(thresh,"thresh")
 			.data(limit,"limit")
 		;
+	}
+
+	void read(std::istream& stream){
+		stream
+			>>frequency
+			>>precision
+			>>target
+			>>thresh
+			>>limit;
 	}
 
 	void write(std::ostream& stream){
@@ -362,6 +415,17 @@ public:
 		;
 	}
 
+	void read(std::istream& stream){
+		stream
+			>>precision
+			>>responsiveness
+			>>multiplier
+			>>threshold
+			>>limit
+			>>change_max
+			>>maximum;
+	}
+
 	void write(std::ostream& stream){
 		stream
 			<<"IRate"<<"\t"
@@ -527,7 +591,36 @@ public:
 		operator[](procedure)->operate(time,model);
 	}
 
-	void write(const std::string& path){
+	void read(const std::string& path = "procedures/input/procedures.tsv"){
+		std::ifstream file(path);
+		std::string line;
+		std::getline(file,line);//header
+		while(std::getline(file,line)){
+			std::istringstream stream(line);
+			std::string clas;
+			stream>>clas;
+			if(clas=="HistCatch"){
+				auto proc = new HistCatch;
+				append(proc);
+			} else if(clas=="ConstCatch"){
+				auto proc = new ConstCatch;
+				proc->read(stream);
+				append(proc);
+			} else if(clas=="BRule"){
+				auto proc = new BRule;
+				proc->read(stream);
+				append(proc);
+			} else if(clas=="IRate"){
+				auto proc = new IRate;
+				proc->read(stream);
+				append(proc);
+			} else {
+				throw std::runtime_error("Unknown procedure class: "+clas);
+			}
+		}
+	}
+
+	void write(const std::string& path = "procedures/output/procedures.tsv"){
 		std::ofstream file(path);
 		file<<"procedure\tclass\tp1\tp2\tp3\tp4\tp5\tp6\tp7\tp8\tp9\tp10\n";
 		int index = 0;
