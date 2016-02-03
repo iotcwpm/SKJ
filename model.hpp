@@ -713,7 +713,10 @@ public:
 					// Update CPUE
 					if(quarter==0){
 						if(year==1985) cpue_base(region,method).reset();
-						if(year>=1985 and year<=2013){
+						// User 1985-1989 as the 'base' years. This allows for
+						// retrospective operation of CPUE based management procedure
+						// from 1990 onwards
+						if(year>=1985 and year<=1989){
 							cpue_base(region,method).append(biomass_vuln);
 						} else {
 							cpue(region,method) = biomass_vuln/cpue_base(region,method);
