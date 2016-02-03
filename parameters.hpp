@@ -204,8 +204,10 @@ public:
 
 	/**
 	 * Set model variables
+	 *
+	 * @parameters catches_apply Turn off application of catches (e.g. in hindcasts of procedures)
 	 */
-	void set(uint time, Model& model) const {
+	void set(uint time, Model& model, bool catches_apply = true) const {
 		uint year = IOSKJ::year(time);
 		uint quarter = IOSKJ::quarter(time);
 		
@@ -304,7 +306,7 @@ public:
 		}
 
 		// Bind quarterly catch history to the model's catches
-		if(year>=1950 and year<=2012){
+		if(catches_apply and year>=1950 and year<=2014){
 			model.exploit = model.exploit_catch;
 			for(auto region : regions){
 				for(auto method : methods){
