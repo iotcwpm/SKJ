@@ -6,12 +6,14 @@ output
 # SS3 runs
 ss3/runs
 
-# Generated HTML, docx and images
+# Generated HTML, docx, images etc
 *.html
 *.png
 *.svg
 *.pdf
 *.docx
+*.tar.gz
+*.zip
 
 # But not in other/images!
 !other/images/*.png
@@ -33,3 +35,6 @@ doxygen
 
 # Ignore dependencies
 requires
+
+# Ignore symlinked directory for worksheets
+presents/**/ioskj
