@@ -82,13 +82,14 @@ drive:
 
 package:
 	rm -rf ioskj
-	mkdir -p ioskj ioskj/parameters ioskj/data ioskj/procedures
+	mkdir -p ioskj ioskj/parameters ioskj/data ioskj/procedures ioskj/feasible/output
 	cp ioskj.exe ioskj
 	cp ioskj.r ioskj
 	cp ioskj-drive.r ioskj
 	cp -r parameters/input ioskj/parameters/input
 	cp -r data/input ioskj/data/input
 	cp -r procedures/input ioskj/procedures/input
+	cp feasible/output/accepted.tsv ioskj/feasible/output/accepted.tsv
 ifeq ($(UNAME), GNU/Linux)
 	tar zcf ioskj-linux.tar.gz ioskj
 else
