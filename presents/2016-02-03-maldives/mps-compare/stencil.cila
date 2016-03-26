@@ -1,0 +1,251 @@
+#title Comparison of management procedure performance
+#mode free
+
+r
+	if(file.exists('ioskj-linux.tar.gz')){
+		system('tar xf ioskj-linux.tar.gz')
+	}
+	source('ioskj/ioskj.r')
+
+style
+	#title {
+		margin: 0 0 1em 0;
+	}
+	#content table td {
+		padding: 0.7em;
+		text-align:right
+	}
+
+
+.ui.stackable.grid
+
+	.ui.five.wide.column
+
+		.form
+
+			.ui.segment
+				strong A
+			
+				par a_target type number default 50
+
+					label Target fishing intensity (%F40)
+
+				par a_threshold type number default 40
+
+					label Threshold stock status (%B0)
+
+				par a_limit type number default 5
+
+					label Limit stock status (%B0)
+
+			.ui.segment
+				strong B
+			
+				par b_target type number default 140
+
+					label Target fishing intensity (%F40)
+
+				par b_threshold type number default 50
+
+					label Threshold stock status (%B0)
+
+				par b_limit type number default 0
+
+					label Limit stock status (%B0)
+
+			.ui.segment
+
+				par replicates type number default 1
+
+			  		label Simulations to perform
+
+			.ui.positive.refresh.button Refresh
+
+		r volat
+
+			replicates <- min(replicates,10)
+			frequency <- 3
+			precision <- 0.3
+
+			procedures <- data.frame(
+				class='BRule',
+				frequency=frequency,
+				precision=precision,
+				target=a_target/100*0.2,
+				threshold=a_threshold/100,
+				limit=a_limit/100
+			,stringsAsFactors=F)
+			procedures <- rbind(procedures,c(
+				class='BRule',
+				frequency=frequency,
+				precision=precision,
+				target=b_target/100*0.2,
+				threshold=b_threshold/100,
+				limit=b_limit/100
+			))
+
+			evaluate(
+				procedures,
+				replicates=replicates,
+				year_start=2015,
+				dir='ioskj'
+			)
+
+			track <<- within(subset(track,year>2005),{
+				procedure <- factor(
+					procedure,
+					levels=c(-1,0,1),
+					labels=c('Hist','A','B')
+				)
+			})
+
+			plot_traj <- if(replicates>=10) plot_track_ribbons else plot_track
+
+			procs_perfs <- merge(procedures, perfs) %>%  group_by(procedure) %>% summarise(
+				status_mean = mean(status_mean),
+				kobe_a = mean(kobe_a),
+				status_b20 = mean(status_b20),
+				catches_total = mean(catches_total),
+				catches_mapc = mean(catches_mapc),
+				catches_shut = mean(catches_shut)
+			)
+			procs_perfs$replicates <- replicates
+			procs_perfs <- within(procs_perfs,{
+				procedure <- factor(
+					procedure,
+					levels=c(-1,0,1),
+					labels=c('Hist','A','B')
+				)
+			})
+
+			if(!exists('perfs_accum')){
+				perfs_accum <- procs_perfs
+			} else {
+				perfs_accum <- rbind(perfs_accum,procs_perfs)
+			}
+
+	.ui.seven.wide.column
+
+
+		figure
+			figcaption
+				Management response curves
+			r format png size 17x7cm
+
+				curves <- within(data.frame(s=seq(0,100,1)),{
+					a <- brule(s,a_target,a_threshold,a_limit)
+					b <- brule(s,b_target,b_threshold,b_limit)
+				})
+					
+				plot <- ggplot(curves) +
+					geom_rect(xmin=0,xmax=40,ymin=0,ymax=100,fill=hsv(0.1,0.2,0.95)) +
+					geom_rect(xmin=40,xmax=100,ymin=0,ymax=100,fill=hsv(0.35,0.2,0.95)) +
+					geom_rect(xmin=0,xmax=40,ymin=100,ymax=200,fill=hsv(0,0.2,0.95)) +
+					geom_rect(xmin=40,xmax=100,ymin=100,ymax=200,fill=hsv(0.1,0.2,0.95)) +
+					geom_line(aes(x=s,y=a,color='A')) +
+					geom_line(aes(x=s,y=b,color='B')) +
+					scale_x_continuous('Stock status (B/B0 %)',limits=c(0,100),expand=c(0,0)) +
+					scale_y_continuous('Fishing intensity (F/F40 %)',limits=c(0,150),expand=c(0,0)) + 
+					labs(colour="")
+				print(plot)
+	
+
+		figure
+			figcaption
+				Stock status trajectory
+			r format png size 17x7cm
+				plot <- plot_traj('biomass_status','Stock status (%B0)') + 
+							geom_hline(yintercept=c(20,40),linetype=3,alpha=0.5)
+				print(plot)
+			
+		figure
+			figcaption
+				Catch trajectory
+			r format png size 17x7cm
+				plot_traj('catches_total','Total catches (000t)')
+
+
+	.ui.four.wide.column
+
+		r
+			perfs_a <- subset(procs_perfs,procedure=='A')
+			perfs_b <- subset(procs_perfs,procedure=='B')
+			
+		table
+			caption Performance statistics
+			thead
+				tr 
+					th Statistic
+					th A
+					th B
+				tr
+					th[colspan=3] Status
+				tr
+					td[title=Mean spawner biomass relative to unfished] Average B/B0 (%)
+					td text round(perfs_a$status_mean*100,1)
+					td text round(perfs_b$status_mean*100,1)
+				tr
+					th[colspan=3] Safety
+				tr
+					td[title=Probability that spawner biomass is above 20% of B0] Years>20%B0 (%)
+					td text round((1-perfs_a$status_b20)*100,1)
+					td text round((1-perfs_b$status_b20)*100,1)
+				tr
+					th[colspan=3] Yield
+				tr
+					td[title=Average total annual catch] Average catch (000t)
+					td text round(perfs_a$catches_total*4/1000,1)
+					td text round(perfs_b$catches_total*4/1000,1)
+				tr
+					th[colspan=3] Stability
+				tr
+					td[title=Mean absolute proportional change in catch] Catch variation (%)
+					td text round(perfs_a$catches_mapc*100,1)
+					td text round(perfs_b$catches_mapc*100,1)
+				tr
+					td[title=Probability of fishery shutdown] Years shutdown (%)
+					td text round(perfs_a$catches_shut*100,1)
+					td text round(perfs_b$catches_shut*100,1)
+
+h1 Accumulated performance statistics
+
+This section shows the trade-offs that exists among mangement objectives and their associated performance statistics. Each time you perform a simulation, another point is added to these plots. The size of the circles is proportional to the number of simulations done in each point.
+
+.ui.stackable.grid
+	
+	.ui.five.wide.column
+
+		figure 
+
+			r format png size 17x14cm
+
+				print(
+					ggplot(perfs_accum,aes(x=catches_total*4/1000,y=1-status_b20)) + 
+				  		geom_point(aes(size=replicates,color=procedure))+
+				  		labs(x='Average catch (000t)', y='Years>20%B0 (%)')
+				)
+
+	.ui.five.wide.column
+
+		figure
+
+			r format png size 17x14cm
+
+				print(
+					ggplot(perfs_accum,aes(x=catches_total*4/1000,y=status_mean)) + 
+				  		geom_point(aes(size=replicates,color=procedure)) +
+				  		labs(x='Average catch (000t)', y='Average B/B0 (%)')
+				)
+
+	.ui.five.wide.column
+
+		figure
+
+			r format png size 17x14cm
+
+				print(
+					ggplot(perfs_accum,aes(x=catches_total*4/1000,y=catches_mapc*100)) + 
+				  		geom_point(aes(size=replicates,color=procedure)) +
+				  		scale_y_reverse() +
+				  		labs(x='Average catch (000t)', y='Catch variation (%)')
+				)
