@@ -72,9 +72,9 @@ plot_track <- function(what,label){
 plot_track_ribbons <- function(what,label){
 
 	quantiles <- track %>% group_by(procedure,year) %>% do({
-		qs <- quantile(.[,what],p=c(0.05,0.1,0.25,0.75,0.9,0.95))
+		qs <- quantile(as.data.frame(.)[,what],p=c(0.05,0.1,0.25,0.75,0.9,0.95))
 		qs <- as.data.frame(matrix(qs,nrow=1))
-		names(qs) <- paste0(what,1:6)
+		names(qs) <- paste0(what,'_q',1:6)
 		qs
 	})
 
@@ -98,3 +98,12 @@ plot_track_ribbons <- function(what,label){
 	print(plot)
 	plot
 }
+
+brule <- function(s,target,threshold,limit){
+  f <- target/(threshold-limit)*(s-limit)
+  f[s<limit] <- 0
+  f[s>threshold] <- target
+  f
+}
+
+
