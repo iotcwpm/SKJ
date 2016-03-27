@@ -39,7 +39,6 @@ r
 			s_threshold = s_threshold_percent/100
 			s_limit = s_limit_percent/100
 
-
 	.ui.five.wide.column.segment
 
 		ol

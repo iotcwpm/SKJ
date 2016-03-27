@@ -1,93 +1,143 @@
 #title Management procedure "IRate"
-
-par resp type number default 0.5
-
-	label Responsiveness
-
-par mult type number default 400
-
-	label Harvest rate multiplier
-
-par thresh type number default 0.7
-
-	label Threshold CPUE level
-
-par limit type number default 0.1
-
-	label Limit CPUE level
-
-par change_max type number default 0.4
-
-	label Maximum % change in TAC
-
-par tac_max type number default 600
-
-	label Maximum TAC
-
-
-figure
-	figcaption
-		Response curve.
-	r format png size 16x17cm
-		i <- seq(0,1.5,0.01)
-		s <- mult/(thresh-limit)*(i-limit)
-		s[i<limit] <- 0
-		s[i>thresh] <- mult
-		tac <- i*s
-		tac[tac>tac_max] <- tac_max
-		layout(matrix(c(1,2), 2, 1, byrow=F))
-		par(mar=c(4,4,0,0),oma=rep(1,4))
-		# TAC versus CPUE
-		plot(
-			i,s,type='l',
-			ylab='CPUE index to Catch scaler',
-			xlab='',
-			las=1,xlim=c(0,1.8)
-		)
-		abline(h=mult,lty=3)
-		abline(v=1,lty=3)
-		# TAC versus CPUE
-		plot(
-			i,tac,type='l',
-			ylab='Recommended TAC (t)',
-			xlab='CPUE index',
-			las=1,xlim=c(0,1.5)
-		)
-		abline(0,b=mult,lty=3)
-		abline(v=1,lty=3)
+#mode free
 
 r
-	cwd <- getwd()
-	setwd('ioskj')
-	system(paste('./ioskj.exe mp_one irate',resp,mult,thresh,limit,change_max,tac_max))
-	setwd(cwd)
-
-	library(ggplot2)
-
-	track <- read.table('ioskj/model/output/track.tsv',header=T)
-	track <- within(track,{
-		biomass_status <- biomass_status * 100
-		catches_total <- catches_total/1000
-	})
-	plot_track <- function(what,label){
-	  plot <- ggplot(track,aes(x=year+quarter/4)) + 
-	    geom_line(aes_string(y=what)) + 
-	    geom_hline(y=0,alpha=0) +
-	    geom_vline(x=2015,alpha=0.6,linetype=2) +
-	    labs(x='Year',y=label)
-	  print(plot)
-	  plot
+	if(file.exists('ioskj-linux.tar.gz')){
+		system('tar xf ioskj-linux.tar.gz')
 	}
-	
-figure
-	figcaption
-		Stock status trajectory
-	r format png size 17x10cm
-		plot_track('biomass_status','Stock status (%B0)')
-	
-figure
-	figcaption
-		Catch trajectory
-	r format png size 17x10cm
-		plot_track('catches_total','Total catches (000t, quarterly)')
+	source('ioskj/ioskj.r')
 
+
+.ui.stackable.grid
+
+
+	.ui.three.wide.column.form
+		
+		par resp type number default 0.5
+
+			label Responsiveness
+
+		par mult type number default 400
+
+			label Harvest rate multiplier
+
+		par thresh type number default 0.7
+
+			label Threshold CPUE level
+
+		par limit type number default 0.1
+
+			label Limit CPUE level
+
+		par change_max type number default 0.4
+
+			label Maximum prop. change in TAC
+
+		par tac_max type number default 600
+
+			label Maximum TAC
+
+
+		.ui.positive.refresh.button Refresh
+
+		r volat
+			# Skip
+
+
+	.ui.five.wide.column.segment
+
+		ol
+
+			li Each year, perform a CPUE standardisation to calculate a relative biomass index. 
+
+			li Update the exponential moving average of the biomass index (Icurr) using a weighting of {text resp}.
+
+			li Calculate a recommended harvest rate and total allowable catch (TAC) using the following graph:
+
+				figure
+					r format png size 16x17cm
+						i <- seq(0,1.5,0.01)
+						s <- mult/(thresh-limit)*(i-limit)
+						s[i<limit] <- 0
+						s[i>thresh] <- mult
+						tac <- i*s
+						tac[tac>tac_max] <- tac_max
+						layout(matrix(c(1,2), 2, 1, byrow=F))
+						par(mar=c(4,4,0,0),oma=rep(1,4))
+						# TAC versus CPUE
+						plot(
+							i,s,type='l',
+							ylab='CPUE index to Catch scaler',
+							xlab='',
+							las=1,xlim=c(0,1.8)
+						)
+						abline(h=mult,lty=3)
+						abline(v=1,lty=3)
+						# TAC versus CPUE
+						plot(
+							i,tac,type='l',
+							ylab='Recommended TAC (t)',
+							xlab='CPUE index',
+							las=1,xlim=c(0,1.5)
+						)
+						abline(0,b=mult,lty=3)
+						abline(v=1,lty=3)
+
+			li Set the TAC to the recommended TAC conditional upon the TAC not changing any more than {text change_max*100}% in a year
+
+
+	.ui.eight.wide.column
+
+		r
+		
+			procedures <- data.frame(
+				class='HistCatch',
+				par1=NA,
+				par2=NA,
+				par3=NA,
+				par4=NA,
+				par5=NA,
+				par6=NA,
+				par7=NA
+			,stringsAsFactors=F)
+			procedures <- rbind(procedures,c(
+				class='IRate',
+				par1=0.3,
+				par2=resp,
+				par3=mult,
+				par4=thresh,
+				par5=limit,
+				par6=change_max,
+				par7=tac_max
+			))
+
+			evaluate(
+				procedures,
+				replicates=1,
+				samples_file="parameters/input/samples.tsv",
+				year_start=1990,
+				dir='ioskj'
+			)
+
+			track <<- within(track,{
+				# Condense proc -1 and proc 0 (they are both historical)
+				procedure[procedure==-1] <- 0
+				procedure <- factor(
+					procedure,
+					labels=c('Hist.','IRate')
+				)
+			})
+			
+		figure
+			figcaption
+				Stock status trajectory
+			r format png size 17x8cm
+				plot <- plot_track('biomass_status','Stock status (%B0)')
+				print(plot+geom_vline(xintercept=1990,alpha=0.4,linetype=2))
+			
+		figure
+			figcaption
+				Catch trajectory
+			r format png size 17x8cm
+				plot <- plot_track('catches_total','Total catches (000t)')
+				print(plot+geom_vline(xintercept=1990,alpha=0.4,linetype=2))

@@ -2,76 +2,112 @@ r
 	source('../../common.R',local=T)
 	source('../../ioskj.r',local=T)
 
-> Parameters
+.pars
 
-	par spawners_unfished type number value 2e6
-	par recruits_steepness type number value 0.8
-	par recruits_lengths_mean type number value 5
-	par weight_a type number value 5.32e-6
-	par weight_b type number value 3.35
+	button.refresh
+		Refresh
 
-	par movement_length_inflection type number value 50
-	par movement_length_steepness type number value 10
+	> Stock-recruitment
+		par spawners_unfished type number value 2.5e6
+		par recruits_steepness type number value 0.8
+		par recruits_sd type number value 0.6
 
-	par growth_rate_1 type number value 1.12
-	par growth_rate_2 type number value 0.33
-	par growth_assymptote type number value 71.6
-	par growth_stanza_inflection type number value 0.95
-	par growth_stanza_steepness type number value 24.8
-	par growth_age_0 type number value -0.3
+	> Recruitment spatial distribution
+		par recruits_sw type number value 0.2
+		par recruits_ma type number value 0.2
+		par recruits_ea type number value 0.2
 
-button.refresh
-	Refresh
+	> Movement
+		par movement_sw_nw type number value 0.05
+		par movement_nw_ma type number value 0.05
+		par movement_nw_ea type number value 0.05
+		par movement_ma_ea type number value 0.05
+		par movement_length_inflection type number value 50
+		par movement_length_steepness type number value 10
+
+	> Natural mortality
+		par mortality_base type number value 0.8
+		par mortality_exponent type number value -0.29
+
+	> Growth curve
+		par growth_rate_1 type number value 1.12
+		par growth_rate_2 type number value 0.33
+		par growth_assymptote type number value 71.6
+		par growth_stanza_inflection type number value 0.95
+		par growth_stanza_steepness type number value 24.8
+		par growth_age_0 type number value -0.3
+
+	> Length-weight
+		par weight_a type number value 5.32e-6
+		par weight_b type number value 3.35
+
+style
+	.pars {
+		position: fixed;
+		top: 0;
+		left: 1em;
+		overflow-y: auto;
+		height: 100%;
+		width: 20em;
+	}
 
 
 r volat
 	pwd = getwd()
 	setwd('../..')
 
-	run(
-		list(
-			# Stock recruitment relation and variability
-			spawners_unfished = Uniform(spawners_unfished,1e6,5e6),
-			recruits_steepness = Uniform(recruits_steepness,0.7,1),
-			recruits_sd = Uniform(0.6,0.4,0.8),
+	if(1){
+		run(
+			list(
+				# Stock recruitment relation and variability
+				spawners_unfished = Uniform(spawners_unfished,1e6,5e6),
+				recruits_steepness = Uniform(recruits_steepness,0.7,1),
+				recruits_sd = Uniform(recruits_sd,0.4,0.8),
 
-			# Quarterly spawning fractions
-			spawning_0 = Uniform(0.8,0.7,1),
-			spawning_1 = Uniform(0.5,0.3,0.7),
-			spawning_2 = Uniform(0.8,0.7,1),
-			spawning_3 = Uniform(0.5,0.3,0.7),
+				# Quarterly spawning fractions
+				spawning_0 = Uniform(0.8,0.7,1),
+				spawning_1 = Uniform(0.5,0.3,0.7),
+				spawning_2 = Uniform(0.8,0.7,1),
+				spawning_3 = Uniform(0.5,0.3,0.7),
 
-			# Growth
-			growth_rate_1 = Uniform(growth_rate_1,0,0),
-			growth_rate_2 = Uniform(growth_rate_2,0,0),
-			growth_assymptote = Uniform(growth_assymptote,0,0),
-			growth_stanza_inflection = Uniform(growth_stanza_inflection,0,0),
-			growth_stanza_steepness = Uniform(24.8,0,0),
-			growth_age_0 = Uniform(growth_age_0,-1,1),
-			growth_cv_0 = Uniform(0.1,0,0),
-			growth_cv_old = Uniform(0.1,0,0),
+				# Proportion of recruits by region
+				# (relative to NW region)
+				recruits_sw = Uniform(recruits_sw,0.01,0.5),
+				recruits_ma = Uniform(recruits_ma,0.01,0.5),
+				recruits_ea = Uniform(recruits_ea,0.01,0.5),
 
-			# Weight at length
-			weight_a = Fixed(weight_a),
-			weight_b = Fixed(weight_b),
+				# Growth
+				growth_rate_1 = Uniform(growth_rate_1,0,0),
+				growth_rate_2 = Uniform(growth_rate_2,0,0),
+				growth_assymptote = Uniform(growth_assymptote,0,0),
+				growth_stanza_inflection = Uniform(growth_stanza_inflection,0,0),
+				growth_stanza_steepness = Uniform(24.8,0,0),
+				growth_age_0 = Uniform(growth_age_0,-1,1),
+				growth_cv_0 = Uniform(0.1,0,0),
+				growth_cv_old = Uniform(0.1,0,0),
 
-			# Maturity at length
-			maturity_inflection = Uniform(42,40,45),
-			maturity_steepness = Uniform(5,4,6),
+				# Weight at length
+				weight_a = Fixed(weight_a),
+				weight_b = Fixed(weight_b),
 
-			# Natural mortality
-			mortality_base = Uniform(0.8,0.5,0.9),
-			mortality_exponent = Fixed(-0.29),
+				# Maturity at length
+				maturity_inflection = Uniform(42,40,45),
+				maturity_steepness = Uniform(5,4,6),
 
-			# Movement
-			movement_sw_nw = Uniform(0.05,0,0.4),
-			movement_nw_ma = Uniform(0,0,0.4),
-			movement_nw_ea = Uniform(0,0,0.4),
-			movement_ma_ea = Uniform(0,0,0.4),
-			movement_length_inflection = Uniform(movement_length_inflection,0,100),
-			movement_length_steepness = Uniform(movement_length_steepness,1,10)
+				# Natural mortality
+				mortality_base = Uniform(mortality_base,0.5,0.9),
+				mortality_exponent = Fixed(mortality_exponent),
+
+				# Movement
+				movement_sw_nw = Uniform(movement_sw_nw,0,0.4),
+				movement_nw_ma = Uniform(movement_nw_ma,0,0.4),
+				movement_nw_ea = Uniform(movement_nw_ea,0,0.4),
+				movement_ma_ea = Uniform(movement_ma_ea,0,0.4),
+				movement_length_inflection = Uniform(movement_length_inflection,0,100),
+				movement_length_steepness = Uniform(movement_length_steepness,1,10)
+			)
 		)
-	)
+	}
 
 	# Model outputs
 	load(c(
@@ -90,7 +126,7 @@ r volat
 		'size_freqs','z_ests'
 	),from='data/output')
 
-	# Function for plotting `teack` variables
+	# Function for plotting `track` variables
 	plot_track <- function(what,label){
 		plot <- ggplot(track,aes(x=year+quarter/4)) + 
 				geom_line(aes_string(y=what)) + 
@@ -339,7 +375,9 @@ r volat
 		figcaption
 			Exploitation rate trajectories for the three main fisheries
 
-> Fits to data
+if 0
+
+	> Fits to data
 
 
 	> Maldive pole and line (M-PL) CPUE
@@ -368,7 +406,7 @@ r volat
 			figcaption
 				Observed (points) and expected (lines) western (W) purse seine (PS) CPUE.
 
-	> Western purse seine (W-PS) tagging Z estimates
+	> North-western purse seine (NW-PS) tagging Z estimates
 
 		figure
 			r format png size 17x12cm
@@ -378,10 +416,10 @@ r volat
 					geom_point(aes(y=mean,colour=factor(quarter)),shape=1,size=3) + 
 					geom_errorbar(aes(ymin=mean-sd,ymax=mean+sd,colour=factor(quarter)),width=0) +
 					geom_hline(y=0,alpha=0) +
-					facet_grid(z_size~.) +
+					facet_grid(z_size~.,scales='free_y') +
 					labs(x='Year',y='Instantaneous rate of total mortality (Z)',colour='Quarter'))
 			figcaption
-				Observed (points) and expected (lines) western (W) purse seine (PS) tagging Z estimates. Error bars indicate +/- one standard error in estimates.
+				Observed (points) and expected (lines) western (NW) purse seine (PS) tagging Z estimates. Error bars indicate +/- one standard error in estimates.
 
 	> Size frequencies
 
@@ -452,6 +490,7 @@ r volat
 						size_freqs_by_year_sub(item$region,item$method)
 					figcaption
 						Observed (points) and expected (lines) size frequency distributions for {text item$desc} aggregated over quarters.
+
 
 		> By year and quarter for a particular region & method (unaggregated)
 

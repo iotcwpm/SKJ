@@ -5,26 +5,15 @@ This section presents model outputs generated from the `run` task (i.e. `./ioskj
 r
 	source('../../common.R',local=T)
 	load(c(
-		'lengths','recruits_sizes',
-		'growth_increments','growth',
-		'mortalities',
-		'weights','maturities','selectivities',
-		'movement',
-		'numbers',
+		'length_age','age_size',
+		'weight_size','weight_age',
+		'maturity_size','maturity_age',
+		'mortality','survival',
+		'selectivity_size','selectivity_age',
+		'movement_region','movement_size', 'movement_age',
 		'track'
-	),from='../../model/output')
+	),from='../output')
 
-section
-	h1 Recruits size distribution
-
-	figure
-		r format png size 17x10cm
-			print(
-				ggplot(recruits_sizes,aes(x=length,y=value)) +
-					geom_line() +
-					labs(x="Length (cm)",y="Proportion")
-			)
-		figcaption Distribution of the length of recruits. Recruits are added to the model following this distribution.
 
 section
 	h1 Weight and maturity
@@ -53,23 +42,26 @@ section
 	figure
 		r format png size 17x10cm
 			print(
-				ggplot(growth_increments,aes(x=length,y=value)) +
-					geom_hline(y=0,colour='grey') +
+				ggplot(length_age,aes(x=age,y=mean)) +
 					geom_line() +
-					labs(x="Length (cm)",y="Quarterly growth increment (cm)")
+					geom_ribbon(aes(ymin=mean+qnorm(0.05)*sd,ymax=mean+qnorm(0.95)*sd),alpha=0.25) +
+					geom_ribbon(aes(ymin=mean+qnorm(0.25)*sd,ymax=mean+qnorm(0.75)*sd),alpha=0.25) +
+					geom_vline(x=seq(4,24,4),lty=3) +
+					ylim(0,80) +
+					labs(x="Age (qtr)",y="Length (cm)")
 			)
-		figcaption Growth increments by length.
+		figcaption Length at age. Bands represent 50% (inner) and 90% (outer) of lengths for a particular age.
 
 	figure
 		r format png size 17x15cm
 			print(
-				ggplot(growth) +
-					geom_tile(aes(y=length,x=length_from,fill=value)) +
-					scale_fill_gradient(low="white",high="red") + 
-					geom_abline(a=0,b=1) + 
-					labs(x="Length from (cm)",y="Length to (cm)",fill="Proportion")
+				ggplot(age_size,aes(x=age,y=length,fill=value,label=round(value,2))) +
+					geom_tile() +
+					scale_fill_gradient(low="white",high=hsv(0.5,0.5,0.5)) + 
+					labs(x="Age (qtr)",y="Length",fill="Proportion") + 
+					theme(legend.position='none')
 			)
-		figcaption Growth transition matrix indicating the proportion of fish that transition from one length class to other length classes in one quarter.
+		figcaption Length distribution at age. Proportion of fish within each size bin by age. Text values are only shown where proportion > 0.01
 
 section
 	h1 Mortality
