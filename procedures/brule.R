@@ -30,4 +30,11 @@ plot <- ggplot(values) +
   scale_x_continuous('Stock status (%B0)',limits=c(0,100),expand=c(0,0)) +
   scale_y_continuous('Fishing intensity (%Etarg)',limits=c(0,150),expand=c(0,0)) + 
   labs(colour="")
+
+svg("brule.svg", width=6, height=4)
+par(mar=c(5,5,3,3))
 print(plot)
+dev.off()
+
+write.table(format(values,digits=2), 'brule.txt', row.names=F, quote=F)
+
