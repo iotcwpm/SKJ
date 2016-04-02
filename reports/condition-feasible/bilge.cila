@@ -1,0 +1,127 @@
+
+if 0
+
+	figure
+		r format png size 18x23cm
+			p1 <- ggplot(subset(track,quarter==0),aes(x=year,y=biomass_spawning_overall/1000,group=replicate)) + 
+					geom_line(alpha=0.2) +
+					geom_point(data=subset(track,quarter==0 & !is.na(criterion)), aes(colour=criterion),shape=16,size=3) +
+					scale_y_log10() + 
+					labs(x="Year",y="Total spawning biomass (`000 t)")
+			p2 <- ggplot(subset(track,quarter==2),aes(x=year+quarter/4,y=exp_rate_nw_ps,group=replicate)) + 
+					geom_line(alpha=0.2) +
+					geom_point(data=subset(track,quarter==2 & !is.na(criterion)), aes(colour=criterion),shape=16,size=3) +
+					scale_y_log10() + 
+					geom_hline(y=0.5,linetype=3,colour='grey') +
+					labs(x="Year",y="Exploitation rate")
+			p3 <- ggplot(subset(track,quarter==2),aes(x=year+quarter/4,y=exp_rate_ma_pl,group=replicate)) + 
+					geom_line(alpha=0.2) +
+					geom_point(data=subset(track,quarter==2 & !is.na(criterion)), aes(colour=criterion),shape=16,size=3) +
+					scale_y_log10() + 
+					geom_hline(y=0.5,linetype=3,colour='grey') +
+					labs(x="Year",y="Exploitation rate")
+			multiplot(p1,p2,p3)
+		figcaption
+			Examples of biomass trajectories from the FST algorithm. Those trajectories which end prior to 2013 have failed to meet one of the conditioning criteria.
+			
+	r
+		plot_densities_one <- function(param){
+			p1 <- ggplot(data.frame(),aes_string(x=paste0(param,'.value'))) + 
+				geom_histogram(data=priors,aes(y=..density..,fill='prior'),alpha=0.5) + 
+				geom_histogram(data=accepted,aes(y=..density..,fill='post'),alpha=0.5) + 
+				labs(x=param,y="Density") +
+				theme(legend.position='none')
+			p2 <- ggplot(rejected,aes_string(x=paste0(param,'.value'))) + 
+				geom_bar(aes(fill=factor(criterion))) + 
+				labs(x=param,y="Count") + theme(legend.position='inside')
+			multiplot(p1,p2)
+		}
+		
+		plot_densities_one('spawners_unfished')
+		plot_densities_one('mortality_base')
+		plot_densities_one('recruits_steepness')
+		
+	plot_densities('spawners_unfished')
+	plot_densities('recruits_steepness')
+	plot_densities('mortality_base')
+	plot_densities('mortality_exponent')
+	plot_densities('recruits_sw')
+	plot_densities('recruits_ma')
+	plot_densities('recruits_ea')
+	plot_densities('movement_sw_nw')
+	plot_densities('movement_nw_ma')
+	plot_densities('growth_assymptote')
+	plot_densities('selectivities.0.4.')
+
+	r
+		plot_densities_many <- function(which){
+			which <- paste0(which,'.value')
+			all <- rbind(
+				within(priors[,which],{ dist <- 'prior'}),
+				within(accepted[,which],{ dist <- 'post'})
+			)
+			names(all) <- str_replace(names(all), ".value", "")
+			all <- melt(all,id.vars='dist')
+			print(
+				ggplot(all) + 
+					geom_freqpoly(aes(x=value,colour=dist),stat='density',alpha=0.8) + 
+					labs(x="Value",y="Density",colour='Dist') +
+					facet_wrap(~variable,scales='free')
+			)
+		}
+		
+		plot_densities_many(c('spawners_unfished','recruits_steepness','recruits_sd'))
+		plot_densities_many(c('mortality_base','mortality_exponent'))
+		plot_densities_many(paste0('recruits_deviations.',1985:2012,'.'))
+		plot_densities_many(c('spawning_0','spawning_1','spawning_2','spawning_3'))
+		plot_densities_many(c('recruits_sw','recruits_ma','recruits_ea'))
+		plot_densities_many(c('movement_sw_nw','movement_nw_ma','movement_nw_ea','movement_ma_ea'))
+		plot_densities_many(c('maturity_inflection','maturity_steepness','mortality_base','mortality_exponent'))#,'growth_rate_1','growth_rate_2','growth_assymptote','growth_stanza_inflection','growth_stanza_steepness','growth_cv_0','growth_cv_old'))
+		plot_densities_many(with(expand.grid(method=0:3,knot=0:6),paste0('selectivities.',method,'.',knot,'.')))
+		
+
+	for param in c('spawners_unfished','mortality_base','movement_stay','recruits_deviations.2003.')
+		figure
+			r format png size 17x10cm
+				plot_densities(param)
+			figcaption
+				Distribution of values of the parameter "{span text param}" according to feasibility criteria (0 indicates the trial met all criteria).
+
+	figure
+		r format png size 17x10cm
+			temp <- melt(accepted[,paste0("recruits_deviations.",1990:2012,"..value")])
+			temp$year <- str_extract(temp$variable,"\\d+")
+			print(ggplot(temp,aes(x=year,y=value)) + 
+				geom_violin(fill='grey') +
+				geom_point(data=ddply(temp,.(year),summarise,y=mean(value)),aes(y=y)) +
+				geom_hline(y=0,linetype=2) + 
+				labs(x='Year',y='Value'))
+		figcaption
+			Distribution of values of `recruits_deviations` parameters that passed all feasibility criteria. The dots represent the mean of each distribution.	
+
+	ggplot(all,aes(x=movement_sw_nw.value,y=recruits_sw.value,colour=factor(criterion))) + geom_point()
+
+	ggplot(subset(all,criterion==0),aes(x=movement_sw_nw.value,y=recruits_sw.value,colour=factor(criterion))) + geom_point(size=3,alpha=0.5)
+	ggplot(subset(all,criterion==0),aes(x=movement_nw_ma.value,y=recruits_ma.value,colour=factor(criterion))) + geom_point(size=3,alpha=0.5)
+	ggplot(subset(all,criterion==0),aes(x=movement_nw_ea.value,y=recruits_ea.value,colour=factor(criterion))) + geom_point(size=3,alpha=0.5)
+
+	ggplot(all,aes(x=recruits_ea.value,y=recruits_sw.value,colour=factor(criterion))) + geom_point()
+	ggplot(all,aes(x=mortality_base.value,y=spawners_unfished.value,colour=factor(criterion))) + geom_point(alpha=0.5)
+	ggplot(subset(all,criterion==0),aes(x=mortality_base.value,y=spawners_unfished.value,colour=factor(criterion))) + geom_point(alpha=0.5)
+
+
+	ggplot(subset(all,criterion>0),aes(x=mortality_base.value,y=spawners_unfished.value,colour=factor(criterion))) + 
+	  geom_point(size=3,alpha=0.5) + 
+	  ylim(1e6,6e6) + 
+	  xlim(0.3,1.2) +
+	  labs(x='mortality_base',y='spawners_unfished') +
+	  theme(legend.position='top')
+
+	ggplot(subset(all,criterion==0),aes(x=mortality_base.value,y=spawners_unfished.value)) + 
+	  geom_point(size=3,alpha=0.5) + 
+	  ylim(1e6,6e6) + 
+	  xlim(0.3,1.2) +
+	  labs(x='mortality_base',y='spawners_unfished')
+
+
+
