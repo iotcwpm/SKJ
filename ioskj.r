@@ -48,18 +48,28 @@ evaluate <- function(procedures,replicates=1,samples_file="feasible/output/accep
 	system(paste('./ioskj.exe evaluate_wrap',replicates,samples_file,year_start))
 
 	if(dir!='.') setwd(cwd)
+	read_track()
+	read_perfs()
+}
 
+read_track <- function() {
 	track <<- read.table('ioskj/evaluate/output/track.tsv',header=T)
 	track <<- track %>% group_by(replicate,procedure,year) %>% summarise(
 		biomass_status = head(biomass_status,1)*100,
+		biomass_spawners_total = (head(biomass_spawners_we,1) + head(biomass_spawners_ma,1) + head(biomass_spawners_ea,1))/1000,
 		catches_total = sum(catches_total)/1000
 	)
-	
+	track <<- within(track, {
+	  catch_fraction <- catches_total/biomass_spawners_total
+	})
+}
+
+read_perfs <- function() {
 	perfs <<- read.table('ioskj/evaluate/output/performances.tsv',header=T)
 }
 
-plot_track <- function(what,label){
-	plot <- ggplot(track,aes(x=year,color=procedure,group=paste(replicate,procedure))) + 
+plot_track <- function(what='biomass_status',label='Status (%B0)'){
+	plot <- ggplot(track,aes(x=year,color=factor(procedure),group=paste(replicate,procedure))) + 
 		geom_line(aes_string(y=what),alpha=0.5) + 
 		geom_hline(yintercept=0,alpha=0) +
 		geom_vline(xintercept=2015,alpha=0.4,linetype=2) +

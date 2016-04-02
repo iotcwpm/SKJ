@@ -438,7 +438,9 @@ public:
 	 * within each region.
 	 */
 	void exploitation_rate_set(double value){
+		// Turn on exploitation defined by `exploitation_rate_specified`
 		exploit = exploit_rate;
+		
 		// Set exploitation rate to be zero for most areas
 		// but to `value` for the three main methods in each
 		// region.
@@ -452,7 +454,7 @@ public:
 	 * Get overall exploitation rate.
 	 */
 	double exploitation_rate_get(void) const {
-		double survival = escapement(geomean);
+		double survival = geomean(escapement);
 		return 1 - survival;
 	}
 
@@ -470,6 +472,49 @@ public:
 	 */
 	double fishing_mortality_get(void) const {
 		return -std::log(1-exploitation_rate_get());
+	}
+
+	/**
+	 * Set the catch by region/method assuming a 
+	 * certain allocation, currently based on the 
+	 * period 2003-2012 (see `data/nominal-catches-quarter.R`)
+	 */
+	void catches_set(double catches_){
+		// Turn on exploitation defined by `catches`
+		exploit = exploit_catch;
+
+		/**
+		 * Note that currently this does not allow for
+		 * seasonal variation, assumes an equal split
+		 * across quarters
+		 */
+		catches(WE,PS) = 0.354 * catches_;
+		catches(WE,PL) = 0.018 * catches_;
+		catches(WE,GN) = 0.117 * catches_;
+		catches(WE,OT) = 0.024 * catches_;
+
+		catches(MA,PS) = 0.000 * catches_;
+		catches(MA,PL) = 0.198 * catches_;
+		catches(MA,GN) = 0.000 * catches_;
+		catches(MA,OT) = 0.005 * catches_;
+
+		catches(EA,PS) = 0.058 * catches_;
+		catches(EA,PL) = 0.006 * catches_;
+		catches(EA,GN) = 0.141 * catches_;
+		catches(EA,OT) = 0.078 * catches_;
+	}
+
+	/**
+	 * Set the number of effort units by region/method
+	 */
+	void effort_set(double effort){
+		// Turn on exploitation defined by `effort`
+		exploit = exploit_effort;
+
+		// Since effort units are currently nominal
+		// for each region/method relative to the period
+		// 2004-2013, effort is set the same for all region/methods
+		effort = effort;
 	}
 
 	//! @}
@@ -869,7 +914,7 @@ public:
 	/**
 	 * Generate a yield curve
 	 */
-	Frame yield_curve(double step = 0.05){
+	Frame yield_curve(double step = 0.01){
 		Frame curve({
 			"exprate","f","yield","status","vuln",
 			"catch_we_ps","catch_ma_pl","catch_ea_gn",

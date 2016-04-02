@@ -587,7 +587,7 @@ void evaluate(
 	const std::string& samples_file="feasible/output/accepted.tsv", 
 	bool procedures_read=true, 
 	int procedure_select=-1,
-	uint year_start=-1, 
+	int year_start=-1, 
 	bool vary=true, 
 	bool msy=true
 ){
@@ -774,8 +774,8 @@ void test(){
 }
 
 template<typename Type>
-Type arg(int argc, char** argv, int which){
-	if(argc<=which) return Type();
+Type arg(int argc, char** argv, int which, Type default_ = Type()){
+	if(argc<=which) return default_;
 	return boost::lexical_cast<Type>(argv[which]);
 }
 
@@ -791,6 +791,17 @@ int main(int argc, char** argv){
         else if(task=="condition_feasible") condition_feasible(arg<int>(argc,argv,2));
         else if(task=="condition_ss3") condition_ss3(arg<int>(argc,argv,2));
         else if(task=="condition_demc") condition_demc(arg<int>(argc,argv,2));
+        else if(task=="evaluate"){
+        	evaluate(
+				arg<int>(argc,argv,2,10), // int replicates=1000, 
+				"feasible/output/accepted.tsv", // const std::string& samples_file="feasible/output/accepted.tsv", 
+				false // bool procedures_read=true, 
+				// int procedure_select=-1,
+				// uint year_start=-1, 
+				// bool vary=true, 
+				// bool msy=true
+			);
+        }
         else if(task=="evaluate_wrap") evaluate_wrap(arg<int>(argc,argv,2),arg<std::string>(argc,argv,3),arg<int>(argc,argv,4));
         else if(task=="evaluate_feasible") evaluate(arg<int>(argc,argv,2),"feasible/output/accepted.tsv");
         else if(task=="evaluate_ss3") evaluate(arg<int>(argc,argv,2),"ss3/output/accepted.tsv");
