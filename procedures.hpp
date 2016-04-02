@@ -671,24 +671,11 @@ public:
             auto& ref = * new Mald2016;
             ref.frequency = 3;
             ref.precision = 0.1;
-            ref.emax = 0.2;
+            ref.emax = 0.3;
             ref.thresh = 0.4;
             ref.closure = 0.1;
             ref.cmax = 700000;
             append(&ref);
-
-            // Contrasting case with higher
-            // threshold
-            auto& proc = * new Mald2016;
-            proc.frequency = 3;
-            proc.precision = 0.1;
-            proc.emax = 0.3;
-            proc.thresh = 0.6;
-            proc.closure = 0.0;
-            proc.cmax = 800000;
-            append(&proc);
-            
-            return ;
 
             // 'Frontier case'
             // Every year, perfect estimates, not reduction
