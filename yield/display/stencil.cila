@@ -13,12 +13,16 @@ r
 	msy <- within(msy,{
 		status <- biomass_spawners_msy/biomass_spawners_unfished
 	})
+	
+	curve <- within(curve, {
+	  exprate_annual <- 1-exp(log(1-exprate)*4)
+	})
 
 	# Find B40% etc and insert MSY
 	points <- NULL
-	points <- rbind(points,curve[with(curve,which.min(abs(status-0.3))),c('exprate','f','yield','status')])
-	points <- rbind(points,curve[with(curve,which.min(abs(status-0.4))),c('exprate','f','yield','status')])
-	points <- rbind(points,curve[with(curve,which.min(abs(status-0.5))),c('exprate','f','yield','status')])
+	points <- rbind(points,curve[with(curve,which.min(abs(status-0.3))),c('exprate','f','yield','status','exprate_annual')])
+	points <- rbind(points,curve[with(curve,which.min(abs(status-0.4))),c('exprate','f','yield','status','exprate_annual')])
+	points <- rbind(points,curve[with(curve,which.min(abs(status-0.5))),c('exprate','f','yield','status','exprate_annual')])
 	points <- rbind(points,with(msy,c(e_msy,f_msy,msy,status)))
 	points$level <- c('0.3','0.4','0.5','MSY')
 

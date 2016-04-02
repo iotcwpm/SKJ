@@ -7,8 +7,8 @@ r
 	load(c(
 		'procedures',
 		'samples',
-		'performances',
-		'track'
+		'performances'#,
+		#'track'
 	),from='../../evaluate/output')
 
 	# Calculate performance statistics from performance measures
@@ -29,10 +29,8 @@ r
 				   kobe_d_sd = sd(kobe_d),
 				   kobe_to_a = mean(kobe_to_a,na.rm=T),
 				   kobe_to_a_sd = sd(kobe_to_a),
-				   cpue_sw_ps = mean(cpue_mean_sw_ps),
-				   cpue_sw_ps_sd = sd(cpue_mean_sw_ps),
-				   cpue_nw_ps = mean(cpue_mean_nw_ps),
-				   cpue_nw_ps_sd = sd(cpue_mean_nw_ps),
+				   cpue_we_ps = mean(cpue_mean_we_ps),
+				   cpue_we_ps_sd = sd(cpue_mean_we_ps),
 				   cpue_ma_pl = mean(cpue_mean_ma_pl),
 				   cpue_ma_pl_sd = sd(cpue_mean_ma_pl),
 				   cpue_ea_gn = mean(cpue_mean_ea_gn),
@@ -43,7 +41,7 @@ r
 		'yield','stability',
 		'status','safety10','safety20',
 		'kobe_a','kobe_d','kobe_to_a',
-		'cpue_sw_ps','cpue_nw_ps','cpue_ma_pl','cpue_ea_gn'
+		'cpue_we_ps','cpue_ma_pl','cpue_ea_gn'
 	)
 	# Merge in procedures to facilitate summaries by procedure parameters
 	perfs <- merge(procedures,perfs)
@@ -125,8 +123,8 @@ r
 				geom_point(aes(x=xm,y=ym),size=3,alpha=0.7) + 
 				geom_segment(aes(x=xm-xsd,xend=xm+xsd,y=ym,yend=ym),alpha=0.5) +
 				geom_segment(aes(x=xm,xend=xm,y=ym-ysd,yend=ym+ysd),alpha=0.5) +
-				geom_vline(x=0,alpha=0) + 
-				geom_hline(y=0,alpha=0) + 
+				geom_vline(xintercept=0,alpha=0) + 
+				geom_hline(yintercept=0,alpha=0) + 
 				scale_shape_manual(values=1:10) + 
 				labs(x=x[[1]],y=y[[1]],colour=colour[[1]],shape=shape[[1]])
 		)
@@ -315,6 +313,21 @@ section
 			figcaption
 				Correlation between the abundance performance statistics between the three main fisheries.
 
+  section
+	  h1 Performance of the BRule class
+				
+		figure
+			r format png size 17x10cm
+				plot_tradeoff(
+				  subset(perfs,class=="Maldives2016"),
+				  x = list(yield='Yield (mean annual catch, `000 t)'),
+				  y = list(status='Status (mean of B/B0)'),
+				  colour = list(p3='Emax'),
+				  shape = list(p4='Threshold')
+				)
+	figcaption
+				Trade-off between yield and stock status for alternative instances of the the BRule class of management procedure.
+				
 	section
 		h1 Performance of the BRule class
 
