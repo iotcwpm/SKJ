@@ -1,7 +1,7 @@
 #title Indian Ocean skipjack tuna model : Model description
 
 r
-	source('../../common.R',local=T)
+	source('../../common.r',local=T)
 
 The following convention is used for assigning symbols in the following model equations: Greek lower case letters (e.g. |alpha| for the intercept of the length-weight relationship) for model parameters, Roman capital letters (e.g. |N| for numbers) for model variables, and Roman lower case letters for variable or parameter array subscripts (e.g. |N_{r,a,s}|, |phi_{r}|). Using this convention means that in some instances model parameters are given different symbols than are usually used. However, it has the advantage of clearly distinguishing model parameters (which are independent of other parameters or variables and that are usually estimated) from model variables (which are dependent upon parameter values).
 
@@ -158,7 +158,7 @@ As well as documenting the current structure of the model, this section also not
 		figcaption
 			Map of the four regions defined for the model and the spatial distribution of average annual catch by method, 2005-2014. The position of catches from the western purse-seine and the Maldive pole-and-line fisheries is based on reported latitude and longitudes. The position of other catches is indicative only and only shown for the main coastal nations catching skipjack - Indonesia, Sri Lanka, India, Pakistan and Iran.
 
-> Fish population dynamics
+> Population dynamics
 
 	> Numbers
 
@@ -279,7 +279,7 @@ As well as documenting the current structure of the model, this section also not
 
 	In summary, at present, whilst the model keeps account of fish numbers by region, only two of the biological characteristics of the stock vary by region: the proportion of recruitment going to each and the movement between each. As noted above, many of the model's parameters could be made to vary by region but this is likely to be of little value without information with which to inform how much those parameters should vary by region.
 
-> Fishing dynamics
+> Harvest dynamics
 
 	The biomass that is vulnerable to each method, |m| in each region |r|, is calculated by summing over ages and sizes,
 

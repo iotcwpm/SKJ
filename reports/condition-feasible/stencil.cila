@@ -1,11 +1,15 @@
+#mode free
+
 #title Indian Ocean skipjack model : conditioning based on feasibility constraints
+
+[Need some preprocessing of rejects into 
+a table. Priors and tracks need to be generated.]
 
 This section describes an approach to model conditioning using the Feasible Stock Trajectories (FST) algorithm (Bentley and Langley 2012). Rather than estimating parameters using full likelihoods, FST uses feasibility criterion to accept or reject sets of parameters drawn from their prior distributions. Feasibility criteria can be based on a priori beliefs about the stock or on "features" of the observed data. Although unsophisticated, this approach can provide a pragmatic means for conditioning an operating model.
 
-In the Indian Ocean skipjack model
 
 r
-	source('../../common.R',local=T)
+	source('../../common.r',local=T)
 	require(stringr)
 	
 	# Read in files
@@ -14,7 +18,7 @@ r
 		'accepted',
 		'rejected',
 		'track'
-	),from='../output/')
+	),from='../../feasible/output/')
 	
 	# Bind together
 	# Add columns to accepted to allow rbinding
