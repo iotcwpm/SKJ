@@ -1,6 +1,6 @@
 {
   "spawners_unfished": {
-    "value": 2000000,
+    "value": 3000000,
     "lower": 1000000,
     "upper": 6000000
   },

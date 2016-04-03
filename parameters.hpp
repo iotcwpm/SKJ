@@ -310,7 +310,14 @@ public:
 			model.exploit = model.exploit_catch;
 			for(auto region : regions){
 				for(auto method : methods){
-					model.catches(region,method) = catches(year,quarter,region,method);
+					model.catches(region,method) = catches(
+						// Carry over 2012 catch pattern in following year
+						// until new catch estimates are available
+						(year <=2012) ? year : 2012,
+						quarter,
+						region,
+						method
+					);
 				}
 			}
 		}
