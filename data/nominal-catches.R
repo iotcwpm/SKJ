@@ -116,9 +116,9 @@ ncq = within(ncq,{
   Region = NA
   Region[IOTC_Area=='IO_Eastern'] = 'EA'
   Region[IOTC_Area=='IO_Western' & Fleet=='MDV'] = 'MA'
-  Region[IOTC_Area=='IO_Western' & Fleet!='MDV'] = 'NW' #Later we split PS catch into NW and SW by quarter
+  Region[IOTC_Area=='IO_Western' & Fleet!='MDV'] = 'WE'
   Region = factor(Region,levels=c(
-    'SW','NW','MA','EA'
+    'WE','MA','EA'
   ))
 })
 
@@ -146,23 +146,6 @@ ncq = within(ncq,{
 # Aggregate by OM areas, methods, years and quarters
 sums = ddply(ncq,.(Region,Method,Year,Quarter),summarise,Catch=sum(tmt,na.rm=T))
 
-# Split PS.NW into SW/NW
-ps_w = subset(sums,Method=='PS' & Region=='NW')
-ps_w = merge(ps_w,ps_w_props,by=c('Year','Quarter'))
-ps_w = within(ps_w,{
-  NW = Catch * NW
-  SW = Catch * SW
-})
-ps_w = melt(ps_w[,c('Year','Quarter','Method','NW','SW')],id.vars=c('Year','Quarter','Method'))
-names(ps_w)[names(ps_w)=='variable'] <- 'Region'
-names(ps_w)[names(ps_w)=='value'] <- 'Catch'
-  
-sums <- rbind(
-  ps_w,
-  subset(sums,!(Method=='PS' & Region=='NW'))
-)
-sums$Region <- factor(sums$Region,levels=c('SW','NW','MA','EA'),ordered=T)
-
 # Plot
 
 ggplot(subset(sums,Method=='PS'),aes(x=Year,y=Catch,shape=factor(Quarter),color=factor(Quarter))) + 
@@ -188,7 +171,7 @@ ggplot(ddply(ncq,.(Region,Method,Year),summarise,Catch=sum(tmt,na.rm=T))) +
 dev.off()
 
 # Rename columns, reorder, sort, recode and output for reading into model
-names(sums) = c('year','quarter','method','region','catch')
+names(sums) = c('region','method','year','quarter','catch')
 sums = sums[,c('year','quarter','region','method','catch')]
 sums = sums[with(sums,order(year,quarter,region,method)),]
 sums = within(sums,{
@@ -209,7 +192,7 @@ ggplot(sums) +
 # Calculate catch proportions by region/method for last 10 years
 temp <- ddply(subset(sums,year>max(sums$year)-10),.(region,method),summarise,catch=sum(catch))
 temp$value <- with(temp,round(catch/sum(catch),3))
-temp <- merge(expand.grid(region=0:3,method=0:3),temp,all.x=T)
+temp <- merge(expand.grid(region=0:2,method=0:3),temp,all.x=T)
 temp$catch <- NULL
 temp$value[is.na(temp$value)]<- 0
 write.table(temp,file='input/catch-prop-region-method.tsv',row.names=F,quote=F,sep='\t')
@@ -217,7 +200,7 @@ write.table(temp,file='input/catch-prop-region-method.tsv',row.names=F,quote=F,s
 # Calculate catch proportions by region/method/quarter for last 10 years
 temp <- ddply(subset(sums,year>max(sums$year)-10),.(region,method,quarter),summarise,catch=sum(catch))
 temp$value <- with(temp,round(catch/sum(catch),3))
-temp <- merge(expand.grid(region=0:3,method=0:3,quarter=0:3),temp,all.x=T)
+temp <- merge(expand.grid(region=0:2,method=0:3,quarter=0:3),temp,all.x=T)
 temp$catch <- NULL
 temp$value[is.na(temp$value)]<- 0
 write.table(temp,file='input/catch-prop-region-method-quarter.tsv',row.names=F,quote=F,sep='\t')
@@ -238,9 +221,9 @@ nc <- within(nc,{
     AreaOM = NA
     AreaOM[AreaIOTC=='Eastern Indian Ocean'] = 'EA'
     AreaOM[AreaIOTC=='Western Indian Ocean' & FlCde=='MDV'] = 'MA'
-    AreaOM[AreaIOTC=='Western Indian Ocean' & FlCde!='MDV'] = 'NW'
+    AreaOM[AreaIOTC=='Western Indian Ocean' & FlCde!='MDV'] = 'WE'
     AreaOM =factor(AreaOM,levels=c(
-        'NW','MA','EA'
+        'WE','MA','EA'
     ))
     
     # Assign to a method

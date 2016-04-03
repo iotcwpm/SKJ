@@ -90,12 +90,11 @@ sf = within(sf,{
     # Because a 5x5 grid will straddle the 77 Lon line that is used to separate
     # Sri Lanka and Maldives, put all LKA records in E
     Region = NA
-    Region[Lon>=20 & Lon<80 & Lat>-10] = 'NW'
-    Region[Lon>=20 & Lon<80 & Lat<=-10] = 'SW'
+    Region[Lon>=20 & Lon<80] = 'WE'
     Region[(Lon>=80 & Lon<150) | Fleet=='LKA'] =  'EA'
     Region[Fleet=='MDV'] = 'MA'
     Region = factor(Region,levels=c(
-        'SW','NW','MA','EA'
+        'WE','MA','EA'
     ))
 })
 # Drop small number of rows report outside of regions
