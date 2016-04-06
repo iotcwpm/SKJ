@@ -18,6 +18,9 @@ theme_update(
   legend.title = element_text(size=11,hjust = 0)
 )
 
+#' Get the directory of this file
+home <- '/home/nokome/trophia/code/ioskj' #dirname(sys.frame(1)$ofile)
+
 #' Convert model dimensions into factors (or another integer in the case of 'size') in a data.frame
 dimensions <- function(data){
   for(name in names(data)){
@@ -48,7 +51,7 @@ dimensions <- function(data){
 load <- function(names,from){
   for(name in names){
     # Read in data
-    data = read.table(file.path(from,paste0(name,".tsv")),header=T,sep='\t')
+    data = read.table(file.path(home,from,paste0(name,".tsv")),header=T,sep='\t')
     # Convert dimensions into factors
     data = dimensions(data)
     # Assign the variable
