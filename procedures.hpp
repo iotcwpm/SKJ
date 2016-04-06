@@ -192,9 +192,24 @@ public:
     double precision = 0.2;
 
     /**
+     * Basis of harvest control rule
+     *
+     * The variable on the vertical axis of the management procedure
+     *
+     *  e : exploitation rate
+     *  c : catch
+     */
+    char basis = 'e';
+
+    /**
      * Maximum exploitation rate
      */
     double emax = 1;
+
+    /**
+     * Maximum catch (t)
+     */
+    double cmax = 700000;
 
     /**
      * Threshold stock status (below which exploitation rate is reduced)
@@ -205,11 +220,6 @@ public:
      * Closure stock status (below which catch is zero)
      */
     double closure = 0.1;
-
-    /**
-     * Maximum catch level
-     */
-    double cmax = 600;
 
     /**
      * Implementation lag (years from data to implementation)
@@ -225,9 +235,10 @@ public:
         mirror
             .data(frequency,"frequency")
             .data(precision,"precision")
-            .data(emax,"emax")
             .data(thresh,"thresh")
             .data(closure,"closure")
+            .data(basis,"basis")
+            .data(emax,"emax")
             .data(cmax,"cmax")
         ;
     }
@@ -239,9 +250,10 @@ public:
         stream
             >>frequency
             >>precision
-            >>emax
             >>thresh
             >>closure
+            >>basis
+            >>emax
             >>cmax;
     }
 
@@ -253,10 +265,11 @@ public:
             <<"Mald2016"<<"\t"
             <<frequency<<"\t"
             <<precision<<"\t"
-            <<emax<<"\t"
             <<thresh<<"\t"
             <<closure<<"\t"
-            <<cmax<<"\t\t\t\t\n";
+            <<basis<<"\t"
+            <<emax<<"\t"
+            <<cmax<<"\t\t\t\n";
     }
 
     /**
@@ -286,23 +299,38 @@ public:
                 Lognormal imprecision(1,precision);
                 bcurr *= imprecision.random();
                 b0 *= imprecision.random();
-                            
-                // Calculate recommended exploitation rate
-                double status = bcurr/b0;
-                double exprate;
-                if(status<closure) exprate = 0;
-                else if(status>thresh) exprate = emax;
-                else exprate = emax/(thresh-closure)*(status-closure);
                 
-                // Calculate and apply catch limit...
-                // ...convert annual exp rate to a quarterly exp rate
-                auto f_annual = - std::log(1-exprate);
-                auto exprate_quarterly = 1 - std::exp(-f_annual/4);
-                // ...calculate quarterly catches and ensure not
-                // above the annual limit
-                catches = exprate_quarterly * bcurr;
-                if (catches*4 > cmax) {
-                    catches = cmax/4;
+                double status = bcurr/b0;
+                                
+                // Switch based on if exp rate or catch based
+                if (basis == 'e') {
+                    
+                    // Calculate recommended exploitation rate
+                    double exprate;
+                    if(status<closure) exprate = 0;
+                    else if(status>=thresh) exprate = emax;
+                    else exprate = emax/(thresh-closure)*(status-closure);
+
+                    // Calculate and apply catch limit...
+                    // ...convert annual exp rate to a quarterly exp rate
+                    auto f_annual = - std::log(1-exprate);
+                    auto exprate_quarterly = 1 - std::exp(-f_annual/4);
+                    // ...calculate quarterly catches and ensure not
+                    // above the annual limit
+                    catches = exprate_quarterly * bcurr;
+                    if (catches*4 > cmax) {
+                        catches = cmax/4;
+                    }
+
+                } else {
+
+                    // Calculate recommended catch limit
+                    if(status<closure) catches = 0;
+                    else if(status>=thresh) catches = cmax;
+                    else catches = cmax * std::pow((status-closure)/(thresh-closure),2);
+                    // Make them quarterly
+                    catches *= 025;
+
                 }
 
                 // Store year so know when to do this again
@@ -667,37 +695,75 @@ public:
 
         // Mald2016
         {
-            // Reference case 
+            // Reference case
             auto& ref = * new Mald2016;
             ref.frequency = 3;
             ref.precision = 0.1;
-            ref.emax = 0.3;
             ref.thresh = 0.4;
             ref.closure = 0.1;
-            ref.cmax = 700000;
+            ref.basis = 'e';
+            ref.emax = 0.3;
+            ref.cmax = 10000000; // No maximum catch in ref base
             append(&ref);
 
-            // 'Frontier case'
-            // Every year, perfect estimates, not reduction
-            // in exploitation rate.
+            // Reference case with a maximum catch
+            auto& ref_cmax = * new Mald2016(ref);
+            ref_cmax.cmax = 700000;
+            append(&ref_cmax);
+
+            // Alternative with reduced emax
+            {
+                auto& proc = * new Mald2016(ref_cmax);
+                proc.emax = 0.2;
+                append(&proc);
+            }
+
+            // Alternative cases illustrating different 
+            // shaped response curves
+            {
+                auto& proc = * new Mald2016;
+                proc.frequency = 3;
+                proc.precision = 0.1;
+                proc.thresh = 0.5;
+                proc.closure = 0.1;
+                proc.basis = 'e';
+                proc.emax = 0.4;
+                proc.cmax = 700000;
+                append(&proc);
+            }
+            {
+                auto& proc = * new Mald2016;
+                proc.frequency = 3;
+                proc.precision = 0.1;
+                proc.thresh = 0.3;
+                proc.closure = 0.1;
+                proc.basis = 'e';
+                proc.emax = 0.2;
+                proc.cmax = 700000;
+                append(&proc);
+            }
+
+            // Alternative values of emax
+            for(double emax=0.1; emax<0.8; emax+=0.05){
+                auto& proc = * new Mald2016(ref_cmax);
+                proc.emax = emax;
+                append(&proc);
+            }
+
+            // 'Frontier' cases
+            // Every year, perfect estimates, no reduction in exploitation rate.
             // To demonstrate the performance frontier.
             for(double emax=0.15; emax<0.7; emax+=0.05){
                 auto& proc = * new Mald2016;
                 proc.frequency = 1;
                 proc.precision = 1e-6;
-                proc.emax = emax;
                 proc.thresh = 0;
                 proc.closure = 0;
-                proc.cmax = 1e6;
+                proc.basis = 'e';
+                proc.emax = emax;
                 append(&proc);
             }
 
-            // Reference case with variation in `emax`
-            for(double emax=0.15; emax<0.7; emax+=0.05){
-                auto& proc = * new Mald2016(ref);
-                proc.emax = emax;
-                append(&proc);
-            }
         }
 
         return;
@@ -707,13 +773,14 @@ public:
                 for(auto emax : {0.05,0.1,0.15,0.2}){
                     for(auto thresh : {0.3, 0.4, 0.5}){
                         for(auto closure : {0.0, 0.1, 0.2}){
-                            for(auto cmax : {600000, 700000}){
+                            for(auto cmax : {600000, 1000000}){
                                 auto& proc = * new Mald2016;
                                 proc.frequency = frequency;
                                 proc.precision = precision;
-                                proc.emax = emax;
                                 proc.thresh = thresh;
                                 proc.closure = closure;
+                                proc.basis = 'e';
+                                proc.emax = emax;
                                 proc.cmax = cmax;
                                 append(&proc);
                             }
