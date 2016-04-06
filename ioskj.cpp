@@ -689,7 +689,7 @@ void evaluate(
 				//... update the model
 				future.update(time);
 				//... track the model (for speed, only some replicates)
-				if(replicate<100) tracker.get(replicate,procedure,time,future);
+				if(replicate<100 and procedure<10) tracker.get(replicate,procedure,time,future);
 				//... record performance
 				performance.record(time,future);
 			}
