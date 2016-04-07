@@ -193,29 +193,24 @@ public:
 	 */
 	
 	/**
-	 * Minimum instantaneous rate of natural mortality
+	 * Mean instantaneous rate of natural mortality
+	 * across ages
 	 */
-	double mortality_base;
+	double mortality_mean;
 
 	/**
-	 * Age (quarters) at which minimum occurs
+	 * Relative morality by age. These are used to
+	 * calculate a mortality at age by multiplying by
+	 * `mortality_mean`. These are from Everson 2011 IOTC–2011–WPTT13–30
 	 */
-	double mortality_base_age;
-	
-	/**
-	 * Exponential slope of decending limb
-	 */
-	double mortality_exponent_1;
-
-	/**
-	 * Exponential slope of ascending limb
-	 */
-	double mortality_exponent_2;
-
-	/**
-	 * Maximum possible mortality at age
-	 */
-	double mortality_cap = 2.0;
+	Array<double,Age> mortality_shape = {
+		1.25, 1.25, 1.25, 1.25,
+		1.25, 1.25, 1.25, 1.25, // Age 1
+		0.80, 0.80, 0.80, 0.80, // Age 2
+		0.45, 0.45, 0.45, 0.45, // Age 3
+		1.50, 1.50, 1.50, 1.50, // Age 4+
+		1.50, 1.50, 1.50, 1.50  // Age 4+
+	};
 
 	/**
 	 * Instantaneous rate of natural mortality at age
@@ -358,6 +353,13 @@ public:
 	int msy_trials;
 
 	/**
+	 * 40%B0 related variables
+	 */
+	double e_40;
+	double f_40;
+	double biomass_spawners_40;
+
+	/**
 	 * @name Data related "nuisance" parameters
 	 * 
 	 * @{
@@ -479,7 +481,7 @@ public:
 	 * certain allocation, currently based on the 
 	 * period 2003-2012 (see `data/nominal-catches-quarter.R`)
 	 */
-	void catches_set(double catches_){
+	void catches_set(double catches_, double error=0.2){
 		// Turn on exploitation defined by `catches`
 		exploit = exploit_catch;
 
@@ -488,20 +490,23 @@ public:
 		 * seasonal variation, assumes an equal split
 		 * across quarters
 		 */
-		catches(WE,PS) = 0.354 * catches_;
-		catches(WE,PL) = 0.018 * catches_;
-		catches(WE,GN) = 0.117 * catches_;
-		catches(WE,OT) = 0.024 * catches_;
+		
+		Lognormal dist(1,error);
+                
+		catches(WE,PS) = 0.354 * catches_ * dist.random();
+		catches(WE,PL) = 0.018 * catches_ * dist.random();
+		catches(WE,GN) = 0.117 * catches_ * dist.random();
+		catches(WE,OT) = 0.024 * catches_ * dist.random();
 
-		catches(MA,PS) = 0.000 * catches_;
-		catches(MA,PL) = 0.198 * catches_;
-		catches(MA,GN) = 0.000 * catches_;
-		catches(MA,OT) = 0.005 * catches_;
+		catches(MA,PS) = 0.000 * catches_ * dist.random();
+		catches(MA,PL) = 0.198 * catches_ * dist.random();
+		catches(MA,GN) = 0.000 * catches_ * dist.random();
+		catches(MA,OT) = 0.005 * catches_ * dist.random();
 
-		catches(EA,PS) = 0.058 * catches_;
-		catches(EA,PL) = 0.006 * catches_;
-		catches(EA,GN) = 0.141 * catches_;
-		catches(EA,OT) = 0.078 * catches_;
+		catches(EA,PS) = 0.058 * catches_ * dist.random();
+		catches(EA,PL) = 0.006 * catches_ * dist.random();
+		catches(EA,GN) = 0.141 * catches_ * dist.random();
+		catches(EA,OT) = 0.078 * catches_ * dist.random();
 	}
 
 	/**
@@ -618,8 +623,8 @@ public:
 		// Set up mortality by age schedule
 		for(auto age : ages){
 			double age_mid = age.index() + 0.5;
-			mortality(age) = std::min(mortality_cap,mortality_base * std::pow(age_mid,mortality_exponent_1));
-			survival(age) = std::exp(-0.25*mortality(age));
+			mortality(age) = mortality_mean * mortality_shape(age);
+			survival(age) = std::exp(-0.25 * mortality(age));
 		}
 
 		// Initialise regional movement matrix
@@ -970,7 +975,7 @@ public:
 			count++;
 			exploitation_rate_set(exprate);
 			equilibrium();
-			return -catches_taken(sum);
+			return -sum(catches_taken);
 		},0.01,0.99,8);
 		e_msy = result.first;
 		f_msy = -std::log(1-e_msy);
@@ -979,15 +984,14 @@ public:
 		// Go to equilibrium with maximum so that Bmsy can be determined
 		exploitation_rate_set(e_msy);
 		equilibrium();
-		biomass_spawners_msy = biomass_spawners(sum);
+		biomass_spawners_msy = sum(biomass_spawners);
 	}
 
 	/**
 	 * Calculate MSY related reference points
 	 */
 	void msy_find(void){
-		// Create a copy of this model and take it
-		// to MSY
+		// Create a copy of this model and take it to MSY
 		Model calc = *this;
 		calc.msy_go();
 		// Copy over values
@@ -996,6 +1000,40 @@ public:
 		msy = calc.msy;
 		msy_trials = calc.msy_trials;
 		biomass_spawners_msy = calc.biomass_spawners_msy;
+	}
+
+	/**
+	 * Take this model to a equilibrium state associated with
+	 * a proportion of B0 
+	 */
+	void status_go(const double& status){
+		int count = 0;
+		auto result = boost::math::tools::brent_find_minima([&](double exprate){
+			count++;
+			exploitation_rate_set(exprate);
+			equilibrium();
+			return std::fabs(biomass_status()-status);
+		},0.01,0.99,8);
+		e_40 = result.first;
+		f_40 = -std::log(1-e_40);
+		// Go to equilibrium with maximum so that Bmsy can be determined
+		exploitation_rate_set(e_40);
+		equilibrium();
+		biomass_spawners_40 = sum(biomass_spawners);
+	}
+
+	/**
+	 * Calculate a status related re
+	 */
+	void b40_find(void){
+		// Create a copy of this model and take it
+		// to MSY
+		Model calc = *this;
+		calc.status_go(0.4);
+		// Copy over values
+		e_40 = calc.e_40;
+		f_40 = calc.f_40;
+		biomass_spawners_40 = calc.biomass_spawners_40;
 	}
 
 	/**

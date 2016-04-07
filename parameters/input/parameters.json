@@ -64,25 +64,10 @@
     "min": 0.1,
     "max": 20
   },
-  "mortality_base": {
+  "mortality_mean": {
     "value": 0.8,
     "lower": 0.3,
     "upper": 1.2
-  },
-  "mortality_base_age": {
-    "value": 8,
-    "lower": 1,
-    "upper": 24
-  },
-  "mortality_exponent_1": {
-    "value": -0.29,
-    "lower": -1,
-    "upper": 0
-  },
-  "mortality_exponent_2": {
-    "value": 0.29,
-    "lower": 0,
-    "upper": 1
   },
   "growth_rate_1": {
     "value": 1.12,

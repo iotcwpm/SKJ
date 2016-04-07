@@ -88,22 +88,19 @@ public:
     /**
      * Mortality parameters
      */
-   	Variable<Uniform> mortality_base;
-   	Variable<Uniform> mortality_base_age;
-	Variable<Uniform> mortality_exponent_1;
-	Variable<Uniform> mortality_exponent_2;
+   	Variable<Uniform> mortality_mean;
 
     /**
      * Growth rate parameters
      */
-	Variable<Fixed> growth_rate_1;//!
-	Variable<Fixed> growth_rate_2;//!
-	Variable<Fixed> growth_assymptote;//!
-	Variable<Fixed> growth_stanza_inflection;//!
-	Variable<Fixed> growth_stanza_steepness;//!
+	Variable<Fixed> growth_rate_1;
+	Variable<Fixed> growth_rate_2;
+	Variable<Fixed> growth_assymptote;
+	Variable<Fixed> growth_stanza_inflection;
+	Variable<Fixed> growth_stanza_steepness;
 	Variable<Fixed> growth_age_0;
-	Variable<Fixed> growth_cv_0;//!
-	Variable<Fixed> growth_cv_old;//!
+	Variable<Fixed> growth_cv_0;
+	Variable<Fixed> growth_cv_old;
 
     /**
      * Movements parameters
@@ -111,8 +108,8 @@ public:
 	Variable<Uniform> movement_we_ma;
 	Variable<Uniform> movement_we_ea;
 	Variable<Uniform> movement_ma_ea;
-    Variable<Fixed> movement_length_inflection;//!
-    Variable<Fixed> movement_length_steepness;//!
+    Variable<Fixed> movement_length_inflection;
+    Variable<Fixed> movement_length_steepness;
 
 	/**
 	 * Selectivity parameters
@@ -149,10 +146,7 @@ public:
             .data(maturity_inflection,"maturity_inflection")
             .data(maturity_steepness,"maturity_steepness")
 
-            .data(mortality_base,"mortality_base")
-            .data(mortality_base_age,"mortality_base_age")
-            .data(mortality_exponent_1,"mortality_exponent_1")
-            .data(mortality_exponent_2,"mortality_exponent_2")
+            .data(mortality_mean,"mortality_mean")
 
 			.data(growth_rate_1,"growth_rate_1")
 			.data(growth_rate_2,"growth_rate_2")
@@ -241,10 +235,7 @@ public:
 			model.maturity_length_steepness = maturity_steepness;
 
 			// Mortality-at-age curve
-			model.mortality_base = mortality_base;
-			model.mortality_base_age = mortality_base_age;
-			model.mortality_exponent_1 = mortality_exponent_1;
-			model.mortality_exponent_2 = mortality_exponent_2;
+			model.mortality_mean = mortality_mean;
 			
 			// Growth curve
 			model.growth_rate_1 = growth_rate_1;
