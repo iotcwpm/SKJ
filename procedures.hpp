@@ -25,8 +25,8 @@ class Procedure {
  *  data from `year`, MP operated in `year+1`, to set management control in `year+2`
  *
  * Because the procedure is operated in `year`, before the model is updated, it is
- * using "data" (ie. model state) from `year-1`, so an actual two year lag is represented 
- * here using lag = 1.
+ * using "data" (ie. model state) from `year-1`, so an actual three year lag is represented 
+ * here using using a queue of length 2.
  */
 class Lagger : public std::deque<double> {
  public:
@@ -37,7 +37,7 @@ class Lagger : public std::deque<double> {
     void set(int lag){
         // Fill with NANs
         clear();
-        resize(lag,NAN);
+        resize(lag-1,NAN); // See not above for why minus one
     }
 
     /**
@@ -227,9 +227,14 @@ public:
     double closure = 0.1;
 
     /**
+     * Tag to identify a procedure or group of procedures
+     */
+    std::string tag;
+
+    /**
      * Implementation lag (years from data to implementation)
      */
-    int lag = 2;
+    int lag = 3;
     Lagger lagger;
 
     /**
@@ -277,7 +282,9 @@ public:
             <<basis<<"\t"
             <<imax<<"\t"
             <<cmax<<"\t"
-            <<dmax<<"\t\t\n";
+            <<dmax<<"\t"
+            <<"\t"
+            <<tag<<"\n";
     }
 
     /**
@@ -725,8 +732,18 @@ public:
             ref.dmax = 10000;
             append(&ref);
 
-            // Alternative cases illustrating different 
+            // Alternative cases e.g. illustrating different 
             // shaped response curves
+            {
+                auto& proc = * new Mald2016(ref);
+                proc.dmax = 0.2;
+                append(&proc);
+            }
+            {
+                auto& proc = * new Mald2016(ref);
+                proc.dmax = 0.5;
+                append(&proc);
+            }
             {
                 auto& proc = * new Mald2016(ref);
                 proc.thresh = 0.6;
@@ -746,16 +763,19 @@ public:
             for(double imax=0.5; imax<=1.5; imax+=0.1){
                 auto& proc = * new Mald2016(ref);
                 proc.imax = imax;
+                proc.tag = "ref*imax";
                 append(&proc);
             }
             for(double thresh=0.2; thresh<=1; thresh+=0.1){
                 auto& proc = * new Mald2016(ref);
                 proc.thresh = thresh;
+                proc.tag = "ref*thresh";
                 append(&proc);
             }
             for(double closure=0; closure<=0.4; closure+=0.1){
                 auto& proc = * new Mald2016(ref);
                 proc.closure = closure;
+                proc.tag = "ref*closure";
                 append(&proc);
             }
 
