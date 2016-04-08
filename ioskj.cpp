@@ -55,7 +55,7 @@ void run(const std::string& samples_file="ref",int samples_row=0,int procedure=0
 		model.update(time);
 		//... operate the procedure
 		if(time>time_now){
-			if(time==time_now+1) procedures.reset(procedure);
+			if(time==time_now+1) procedures.reset(procedure,time,model);
 			procedures.operate(procedure,time,model);
 		}
 		//... get model variables corresponding to data
@@ -207,8 +207,10 @@ int check_feasible(const Model& model, const Data& data, uint time, uint year, u
 	auto status = model.biomass_status();
 	// ... must always be >10% B0
 	if(status<0.1) return 1;
-	// ... since 2008 must be less than 100% B0
-	if(year>2008 and status>1) return 2;
+	// ... in 2013 must be between 0.4 and 0.8
+	// based on IOTC–2014–WPTT16 report Table 7
+	//   SB 2013 /SB 1950 (80% CI) : 0.58 (0.53–0.62)
+	if(year==2013 and (status<0.4 or status>0.8)) return 2;
 
 	// Exploitation rate must be less than 0.5 for the main region/method combinations.
 	if(
@@ -589,7 +591,7 @@ void evaluate(
 	int procedure_select=-1,
 	int year_start=-1, 
 	bool vary=true, 
-	bool msy=true
+	bool refs_calc=true
 ){
 	boost::filesystem::create_directories("evaluate/output");
 	boost::filesystem::create_directories("procedures/output");
@@ -606,7 +608,9 @@ void evaluate(
 	Frame samples;
 	// Frame for holding reference points
 	Frame references({
-		"b0","e_msy","f_msy","msy","b_msy"
+		"b0",
+		"e_msy","f_msy","msy","b_msy",
+		"e_40","f_40","b_40"
 	});
 	// Setup procedures
 	Procedures procedures;
@@ -649,8 +653,11 @@ void evaluate(
 			//... track the model (for speed, only track some replicates)
 			if(replicate<100) tracker.get(replicate,-1,time,current);
 		}
-		// Determine MSY related reference points
-		if(msy) current.msy_find();
+		// Determine reference points
+		if (refs_calc) {
+			current.msy_find();
+			current.b40_find();
+		}
 		// Record reference points for replicate
 		references.append({
 			sum(current.biomass_spawners_unfished),
@@ -658,6 +665,9 @@ void evaluate(
 			current.f_msy,
 			current.msy,
 			current.biomass_spawners_msy,
+			current.e_40,
+			current.f_40,
+			current.biomass_spawners_40,
 		});
 		// For each candidate procedure...
 		uint procedure_begin = 0;
@@ -675,7 +685,7 @@ void evaluate(
 			// Reset random seed
 			Generator.seed(seed);
 			// Reset the procedure
-			procedures.reset(procedure);
+			procedures.reset(procedure,time_start,future);
 			// Iterate over years...
 			for(uint time=time_start+1;time<=time_max;time++){
 				//... set parameters on future model (e.g time varying parameters
@@ -719,7 +729,8 @@ void evaluate_wrap(
 		true, // procedures_read
 		-1, // procedure_select
 		year_start, // year_start 
-		true // vary
+		true, // vary
+		true //refs_calc
 	);
 }
 
@@ -799,7 +810,7 @@ int main(int argc, char** argv){
 				// int procedure_select=-1,
 				// uint year_start=-1, 
 				// bool vary=true, 
-				// bool msy=true
+				// bool refs_calc=true
 			);
         }
         else if(task=="evaluate_wrap") evaluate_wrap(arg<int>(argc,argv,2),arg<std::string>(argc,argv,3),arg<int>(argc,argv,4));
