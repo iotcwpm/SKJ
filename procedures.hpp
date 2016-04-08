@@ -729,7 +729,7 @@ public:
             ref.closure = 0.1;
             ref.imax = 1;
             ref.cmax = 800000;
-            ref.dmax = 10000;
+            ref.dmax = 1;
             append(&ref);
 
             // Alternative cases e.g. illustrating different 
@@ -776,6 +776,12 @@ public:
                 auto& proc = * new Mald2016(ref);
                 proc.closure = closure;
                 proc.tag = "ref*closure";
+                append(&proc);
+            }
+            for(double dmax=0.1; dmax<=1.0; dmax+=0.1){
+                auto& proc = * new Mald2016(ref);
+                proc.dmax = dmax;
+                proc.tag = "ref*dmax";
                 append(&proc);
             }
 
