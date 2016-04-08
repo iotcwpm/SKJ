@@ -284,6 +284,9 @@ public:
 			model.recruits_variation_on = false;
 			model.recruits_deviation = std::exp(recruits_deviations(year));
 		}
+		#if 0
+		// Currently this is turned off as it only applies
+		// to certain types of conditioning
 		else if(year>=recdev_years.end() and time<=time_now){
 			// Deterministic recruitment otherwise get
 			// different fits from same parameter sets
@@ -291,6 +294,7 @@ public:
 			model.recruits_variation_on = false;
 			model.recruits_deviation = 1;
 		}
+		#endif 
 		else {
 			// Stochastic recruitment defined by recruits_sd and recruits_auto
 			model.recruits_variation_on = true;
