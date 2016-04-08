@@ -622,7 +622,6 @@ public:
 
 		// Set up mortality by age schedule
 		for(auto age : ages){
-			double age_mid = age.index() + 0.5;
 			mortality(age) = mortality_mean * mortality_shape(age);
 			survival(age) = std::exp(-0.25 * mortality(age));
 		}
@@ -720,8 +719,7 @@ public:
 				numbers(region,age) = numbers(region,age-1);
 			}
 
-			// Recruits are distributed over regions according to 
-			// `recruits_regions` parameters
+			// Recruits from a regeion become age 0 in the region
 			numbers(region,0) = recruits(region);
 		}
 
