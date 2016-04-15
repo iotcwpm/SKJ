@@ -704,7 +704,8 @@ void evaluate(
 				//... track the model (for speed, only some replicates)
 				if(replicate<100 and procedure<10) tracker.get(replicate,procedure,time,future);
 				//... record performance
-				performance.record(time,future);
+				// within first 10 years
+				if (time<time_calc(2025,3)) performance.record(time,future);
 			}
 			// Save performance
 			performances.append(performance);
