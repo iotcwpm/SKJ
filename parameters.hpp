@@ -111,13 +111,13 @@ public:
 	Variable<Fixed> growth_cv_old;
 
     /**
-     * Movements parameters
+     * Movement parameters
      */
 	Variable<Uniform> movement_we_ma;
 	Variable<Uniform> movement_we_ea;
 	Variable<Uniform> movement_ma_ea;
-    Variable<Fixed> movement_length_inflection;
-    Variable<Fixed> movement_length_steepness;
+    Variable<Uniform> movement_length_inflection;
+    Variable<Uniform> movement_length_steepness;
 
 	/**
 	 * Selectivity parameters
