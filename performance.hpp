@@ -179,7 +179,9 @@ public:
 			catches_var.append(catch_total);
 			catches_mapc.append(catch_total);
 		}
-		catches_shut.append(catch_total==0);
+		// Shutdown defined as quartetly catches <10% of recent average
+		// catches of about 400000t
+		catches_shut.append(catch_total<1000);
 
 		// Stock status relative to unfished
 		auto status = model.biomass_status();
@@ -187,11 +189,11 @@ public:
 		status_b10.append(status<0.1);
 		status_b20.append(status<0.2);
 
-		// Biomass relative to Bmsy
-		auto b = model.biomass_spawners(sum)/model.biomass_spawners_msy;
+		// Biomass relative to B40
+		auto b = model.biomass_spawners(sum)/model.biomass_spawners_40;
 		b_ratio.append(b);
-		// F relative to Fmsy
-		auto f = model.fishing_mortality_get()/model.f_msy;
+		// F relative to F40
+		auto f = model.fishing_mortality_get()/model.f_40;
 		f_ratio.append(f);
 
 		// Kobe plot
