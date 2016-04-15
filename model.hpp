@@ -694,6 +694,7 @@ public:
 		for(auto region : regions){
 
 			// Recruits
+			// Determininistic recruitment given stock size
 			if(recruits_relation_on){
 				// Stock-recruitment relation is active so calculate recruits based on 
 				// the spawning biomass in the previous time step
@@ -706,7 +707,10 @@ public:
 				// Stock-recruitment relation is not active so recruitment is just r0.
 				recruits_determ(region) = recruits_unfished(region);
 			}
-			if(recruits_variation_on){
+			// Recruitment variation
+			// Important: recruitment deviation is set only once per year
+			// otherwise, if set quarterly, will be less than specified
+			if(recruits_variation_on and quarter==0){
 				recruits_deviation = recruits_variation.random();
 			}
 			recruits(region) = recruits_determ(region) * recruits_deviation;
