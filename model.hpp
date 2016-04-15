@@ -801,9 +801,9 @@ public:
 						double e = effort(region,method);
 						if(e>0){
 							double q = er/e;
-							if(year==2004) catchability_estim(region,method).reset();
-							if(q>0 and year>=2004 and year<=2013) catchability_estim(region,method).append(q);
-							if(year==2013){
+							if(year==2005) catchability_estim(region,method).reset();
+							if(q>0 and year>=2005 and year<=2014) catchability_estim(region,method).append(q);
+							if(year==2014){
 								catchability(region,method) = catchability_estim(region,method);
 								// Where no catches for a region method make catchability 0
 								if(not std::isfinite(catchability(region,method))){

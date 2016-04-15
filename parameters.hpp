@@ -315,9 +315,7 @@ public:
 			for(auto region : regions){
 				for(auto method : methods){
 					model.catches(region,method) = catches(
-						// Carry over 2012 catch pattern in following year
-						// until new catch estimates are available
-						(year <=2012) ? year : 2012,
+						year,
 						quarter,
 						region,
 						method
@@ -328,8 +326,8 @@ public:
 
 		// Set effort for all regions and methods
 		// at a nominal 100 units
-		if(year<2004) model.effort = 0;
-		if(year>=2004 and year<=2014) model.effort = 100;
+		if(year<2005) model.effort = 0;
+		if(year>=2005 and year<=2014) model.effort = 100;
 
 		// Initialise in the first year
 		if(time==0) model.initialise();
