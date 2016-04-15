@@ -1,5 +1,135 @@
 # A R script for comon commands to be run interactively
 
+# ConstEffort
+plot_ribbon_catch_status(
+  subset(procedures,class=="ConstEffort" & p1==100)$procedure
+)
+
+# Illustration of ConstCatch with alternative levels
+# and comparison with Mald2016
+plot_ribbon_catch_status(
+  subset(procedures,procedure<=10 & class=="ConstCatch" & p1==700000)$procedure
+)
+plot_ribbon_catch_status(
+  subset(procedures,procedure<=10 & class=="ConstCatch" & p1==250000)$procedure
+)
+
+# Maldives2016
+# p1 = frequency
+# p2 = precision
+# p3 = thresh
+# p4 = closure
+# p5 = imax
+# p6 = cmax
+# p7 = dmax
+# p8
+# p9
+# p10 = tag
+
+plot_ribbon_catch_status(
+  min(subset(procedures,class=="Mald2016" & p10=='ref')$procedure)
+)
+
+whisker_mp_par_multi(
+  subset(performances,p10=='ref*imax'),
+  x='p5', xlab='Maximum fishing intensity (Imax)', xrefs=1
+)
+
+whisker_mp_par_multi(
+  subset(performances,p10=='ref*thresh'),
+  x='p3', xlab='Threshold level (T, B/B0)', xrefs=0.4
+)
+
+whisker_mp_par_multi(
+  subset(performances,p10=='ref*closure'),
+  x='p4', xlab='Closure level (C, B/B0)', xrefs=0.1
+)
+
+whisker_mp_par_multi(
+  subset(performances,p10=='ref*dmax'),
+  x='p7', xlab='Maximum change in recommended catch (Dmax)', xrefs=0.3
+)
+
+whisker_mp_par(data,y='catches_shut', ylab='Yield (Mean catch; kt)', x='p7',xlab='')
+
+
+sub = subset(perfs,p10=='ref*imax')
+ggplot(sub,aes(x=p6)) +
+  geom_point(aes(y=yield))
+ggplot(sub,aes(x=p6)) +
+  geom_point(aes(y=safety20))
+ggplot(sub,aes(x=p6)) +
+  geom_point(aes(y=cl))
+
+
+ggplot(subset(perfs,p8<10000),aes(x=p8)) +
+  geom_point(aes(y=safety20))
+
+# Tradeoff plots
+
+plot_tradeoff(
+  subset(perfs,class=="Mald2016"),
+  x = list(status='Status (mean SB/SB0)'),
+  y = list(yield='Yield (mean annual catch, kt)'),
+  colour = list(p7='Cmax'),
+  shape = list(p3='Theshold')
+) + geom_vline(xintercept=c(0.2,0.4),linetype=2,alpha=0.3)
+
+plot_tradeoff(
+  subset(perfs,class=="Mald2016"),
+  x = list(kobe_a='Status P(Kobe green)'),
+  y = list(yield='Yield (mean annual catch, kt)'),
+  colour = list(p6='Imax'),
+  shape = list(p3='Theshold'),
+  xmin=0.5
+)
+
+plot_tradeoff(
+  subset(perfs,class=="Mald2016"),
+  x = list(safety20='Safety P(SB>0.2B0)'),
+  y = list(yield='Yield (mean annual catch, kt)'),
+  colour = list(p6='Imax'),
+  shape = list(p3='Theshold'),
+  xmin=0.5
+)
+
+plot_tradeoff(
+  subset(perfs,class=="Mald2016"),
+  x = list(stability='Stability'),
+  y = list(yield='Yield (mean annual catch, kt)'),
+  colour = list(p6='Imax'),
+  shape = list(p3='Theshold'),
+  xmin=-10
+)
+
+
+
+temp <- subset(perfs,class=="Mald2016" & p1==3 & p3==0.4 & p4==0.1 & p7==700000)
+
+ggplot(temp,aes(x=p6,y=yield)) + 
+  geom_point(size=5) +
+  geom_errorbar(aes(ymin=yield-yield_sd, ymax=yield+yield_sd),width=0.01) +
+  geom_hline(yintercept=0,alpha=0) +
+  labs(x='Emax',y='Yield (t)')
+
+ggplot(temp,aes(x=p6,y=status)) + 
+  geom_point(size=5)+
+  geom_errorbar(aes(ymin=status-status_sd, ymax=status+status_sd),width=0.01) +
+  geom_hline(yintercept=0.4,linetype=2) +
+  labs(x='Emax',y='Status (%B0)')
+
+ggplot(temp,aes(x=p6,y=safety20)) + 
+  geom_point(size=5) +
+  geom_hline(yintercept=0.5,alpha=0) +
+  labs(x='Emax',y='Safety P(B>20%B0)')
+
+ggplot(temp,aes(x=p6,y=stability*100)) + 
+  geom_point(size=5) +
+  geom_hline(yintercept=0,alpha=0) +
+  labs(x='Emax',y='Stability (% var catch limit)')
+
+
+
 source('ioskj/ioskj.r')
 
 read_track()
@@ -9,37 +139,7 @@ plot_track('catches_total','Catch (overall;t)')
 plot_track('catch_fraction','Catch fraction')
 
 
-# Maldives2016
-# p1 = frequency
-# p2 = precision
-# p3 = emax
-# p4 = thresh
-# p5 = closure
-# p6 = cmax
 
-
-
-# Plot of tradeoff between two performance statistics
-plot_tradeoff <- function(data,x,y,colour,shape){
-  data <- within(data,{
-    xm = data[,names(x)]
-    xsd = data[,paste0(names(x),'_sd')]
-    ym = data[,names(y)]
-    ysd = data[,paste0(names(y),'_sd')]
-    colour = factor(data[,names(colour)])
-    shape = factor(data[,names(shape)])
-  })
-  print(
-    ggplot(data,aes(colour=colour,shape=shape)) +
-      geom_point(aes(x=xm,y=ym),size=3,alpha=0.7) + 
-      geom_segment(aes(x=xm-xsd,xend=xm+xsd,y=ym,yend=ym),alpha=0.5) +
-      geom_segment(aes(x=xm,xend=xm,y=ym-ysd,yend=ym+ysd),alpha=0.5) +
-      geom_vline(xintercept=0,alpha=0) + 
-      geom_hline(yintercept=0,alpha=0) + 
-      scale_shape_manual(values=1:10) + 
-      labs(x=x[[1]],y=y[[1]],colour=colour[[1]],shape=shape[[1]])
-  )
-}
 
 
 #` Plot of the distributions of performance statistics
@@ -58,7 +158,7 @@ plot_perf_distr(
 )
 
 plot_tradeoff(
-  subset(perfs,class=="Maldives2016"),
+  subset(perfs,class=="Mald2016"),
   x = list(yield='Yield (mean annual catch, `000 t)'),
   y = list(status='Status (mean of B/B0)'),
   colour = list(p3='Emax'),
