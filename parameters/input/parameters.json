@@ -114,12 +114,12 @@
   },
   "growth_cv_0": {
     "value": 0.1,
-    "lower": 0.01,
+    "lower": 0.1,
     "upper": 0.3
   },
   "growth_cv_old": {
     "value": 0.1,
-    "lower": 0.01,
+    "lower": 0.1,
     "upper": 0.3
   },
   "movement_we_ma": {
@@ -139,8 +139,8 @@
   },
   "movement_length_inflection": {
     "value": 50,
-    "lower": 1,
-    "upper": 100
+    "lower": 10,
+    "upper": 80
   },
   "movement_length_steepness": {
     "value": 10,
