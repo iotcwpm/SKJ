@@ -101,14 +101,14 @@ public:
     /**
      * Growth rate parameters
      */
-	Variable<TruncatedNormal> growth_rate_1;
-	Variable<TruncatedNormal> growth_rate_2;
-	Variable<TruncatedNormal> growth_assymptote;
-	Variable<TruncatedNormal> growth_stanza_inflection;
-	Variable<TruncatedNormal> growth_stanza_steepness;
-	Variable<TruncatedNormal> growth_age_0;
-	Variable<TruncatedNormal> growth_cv_0;
-	Variable<TruncatedNormal> growth_cv_old;
+	Variable<Fixed> growth_rate_1;
+	Variable<Fixed> growth_rate_2;
+	Variable<Fixed> growth_assymptote;
+	Variable<Fixed> growth_stanza_inflection;
+	Variable<Fixed> growth_stanza_steepness;
+	Variable<Fixed> growth_age_0;
+	Variable<Fixed> growth_cv_0;
+	Variable<Fixed> growth_cv_old;
 
     /**
      * Movement parameters
