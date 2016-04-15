@@ -286,7 +286,10 @@ public:
     virtual void reset(uint time, Model& model){
         lagger.set(lag);
         last_ = -1;
-        catches_ = sum(model.catches);
+        // Starting catch which will be used as the basis against which maximal
+        // changed (dmax parameter)
+        // A 'round' number close to the 432,467t reported in Scientific Committe report for 2014
+        catches_ = (425000/4.0);
     }
 
     /**
