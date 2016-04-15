@@ -198,16 +198,6 @@ public:
     double precision = 0.2;
 
     /**
-     * Basis of harvest control rule
-     *
-     * The variable on the vertical axis of the management procedure
-     *
-     *  e : exploitation rate
-     *  c : catch
-     */
-    char basis = 'e';
-
-    /**
      * Maximum fishing intensity
      */
     double imax = 1;
@@ -253,7 +243,6 @@ public:
             .data(precision,"precision")
             .data(thresh,"thresh")
             .data(closure,"closure")
-            .data(basis,"basis")
             .data(imax,"imax")
             .data(cmax,"cmax")
             .data(cmax,"dmax")
@@ -269,7 +258,6 @@ public:
             >>precision
             >>thresh
             >>closure
-            >>basis
             >>imax
             >>cmax
             >>dmax;
@@ -285,11 +273,10 @@ public:
             <<precision<<"\t"
             <<thresh<<"\t"
             <<closure<<"\t"
-            <<basis<<"\t"
             <<imax<<"\t"
             <<cmax<<"\t"
             <<dmax<<"\t"
-            <<"\t"
+            <<"\t\t"
             <<tag<<"\n";
     }
 
@@ -326,31 +313,17 @@ public:
                 
                 double status = bcurr/b0;
                                 
-                // Switch based on if exp rate or catch based
-                if (basis == 'e') {
-                    
-                    // Calculate recommended exploitation rate
-                    double exprate;
-                    if(status<closure) exprate = 0;
-                    else if(status>=thresh) exprate = imax * etarg;
-                    else exprate = imax/(thresh-closure)*(status-closure) * etarg;
+                // Calculate recommended exploitation rate
+                double exprate;
+                if(status<closure) exprate = 0;
+                else if(status>=thresh) exprate = imax * etarg;
+                else exprate = imax/(thresh-closure)*(status-closure) * etarg;
 
-                    // Calculate and apply catch limit ensure not
-                    // above the annual limit
-                    catches = exprate * bcurr;
-                    if (catches*4 > cmax) {
-                        catches = cmax/4;
-                    }
-
-                } else {
-
-                    // Calculate recommended catch limit
-                    if(status<closure) catches = 0;
-                    else if(status>=thresh) catches = cmax;
-                    else catches = cmax * std::pow((status-closure)/(thresh-closure),2);
-                    // Make them quarterly
-                    catches *= 0.25;
-
+                // Calculate and apply catch limit ensure not
+                // above the annual limit
+                catches = exprate * bcurr;
+                if (catches*4 > cmax) {
+                    catches = cmax/4;
                 }
 
                 // Apply maximum proportional changes in catch
@@ -741,9 +714,10 @@ public:
         ref.imax = 1;
         ref.cmax = 800000;
         ref.dmax = 1;
+        ref.tag = "ref";
         append(&ref);
 
-        // Alternative cases e.g. illustrating different 
+        // Alternative cases e.g. illustrating different
         // shaped response curves
         {
             auto& proc = * new Mald2016(ref);
@@ -805,7 +779,6 @@ public:
                                 proc.precision = precision;
                                 proc.thresh = thresh;
                                 proc.closure = closure;
-                                proc.basis = 'e';
                                 proc.imax = imax;
                                 proc.cmax = cmax;
                                 append(&proc);
