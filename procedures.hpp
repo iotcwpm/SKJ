@@ -699,7 +699,7 @@ public:
 
         append(new ConstCatch);
         append(new ConstCatch(250000));
-        append(new ConstCatch(800000));
+        append(new ConstCatch(700000));
 
         append(new ConstEffort);
         append(new ConstEffort(50));
@@ -712,8 +712,8 @@ public:
         ref.thresh = 0.4;
         ref.closure = 0.1;
         ref.imax = 1;
-        ref.cmax = 800000;
-        ref.dmax = 1;
+        ref.cmax = 900000;
+        ref.dmax = 0.3;
         ref.tag = "ref";
         append(&ref);
 
@@ -739,7 +739,6 @@ public:
             proc.dmax = 0.6;
             append(&proc);
         }
-
 
         // Alternative values of key Mald2016 control parameters
         for(double imax=0.5; imax<=1.5; imax+=0.1){
