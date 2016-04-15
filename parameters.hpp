@@ -60,6 +60,14 @@ public:
 	Variable<Uniform> recruits_sd;
 
 	/**
+	 * Autocorrelation of recruitment deviations
+	 *
+	 * [Thorson et al 2014](http://www.nrcresearchpress.com/doi/abs/10.1139/cjfas-2013-0645) estimated
+	 * values between 0.371-0.466 across orders and overall value of 0.426
+	 */
+	Variable<Uniform> recruits_autocorr;
+
+	/**
 	 * Recruitment deviations
 	 */
 	Array<Variable<Normal>,RecdevYear> recruits_deviations;
@@ -133,6 +141,7 @@ public:
 
             .data(recruits_steepness,"recruits_steepness")
             .data(recruits_sd,"recruits_sd")
+            .data(recruits_autocorr,"recruits_autocorr")
             .data(recruits_deviations,"recruits_deviations")
 
             .data(spawning_0,"spawning_0")
@@ -277,12 +286,12 @@ public:
 		if(year<1985){
 			// Deterministic recruitment
 			model.recruits_variation_on = false;
-			model.recruits_deviation = 1;
+			model.recruits_multiplier = 1;
 		}
 		else if(year>=recdev_years.begin() and year<recdev_years.end()){
 			// Stochastic recruitment defined by recruitment deviation parameters
 			model.recruits_variation_on = false;
-			model.recruits_deviation = std::exp(recruits_deviations(year));
+			model.recruits_multiplier = std::exp(recruits_deviations(year));
 		}
 		#if 0
 		// Currently this is turned off as it only applies
@@ -292,7 +301,7 @@ public:
 			// different fits from same parameter sets
 			// during conditioning
 			model.recruits_variation_on = false;
-			model.recruits_deviation = 1;
+			model.recruits_multiplier = 1;
 		}
 		#endif 
 		else {

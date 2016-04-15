@@ -79,25 +79,34 @@ public:
 	Array<double,Region> recruits_determ;
 
 	/**
-	 * Standard deviation of recruitment vaiation
-	 */
-	double recruits_sd;
-
-	/**
 	 * Flag to turn on/off recruitment variation
 	 */
 	bool recruits_variation_on = true;
 
 	/**
-	 * Lognormal distibution to produces recruitment 
-	 * deviations from recruit_realtion.
+	 * Standard deviation of recruitment deviations
 	 */
-	Lognormal recruits_variation;
+	double recruits_sd;
 
 	/**
-	 * Recruitment deviation (multiplier) at time t
+	 * Underlying distribution for generation recr deviations
 	 */
-	double recruits_deviation;
+	Normal recruits_distrib;
+
+	/**
+	 * Autocorrelation in recruitment deviations
+	 */
+	double recruits_autocorr;
+
+	/**
+	 * Recruitment deviation at time t
+	 */
+	double recruits_deviation = 0;
+
+	/**
+	 * Recruitment multiplier at time t
+	 */
+	double recruits_multiplier = 1;
 
 	/**
 	 * Total number of recruits at time t
@@ -512,14 +521,14 @@ public:
 	/**
 	 * Set the number of effort units by region/method
 	 */
-	void effort_set(double effort){
+	void effort_set(double effort_){
 		// Turn on exploitation defined by `effort`
 		exploit = exploit_effort;
 
 		// Since effort units are currently nominal
 		// for each region/method relative to the period
 		// 2004-2013, effort is set the same for all region/methods
-		effort = effort;
+		effort = effort_;
 	}
 
 	//! @}
@@ -647,8 +656,8 @@ public:
 			movement_region(region_from,Level<Region>(region_from)) = 1 - off_diagonals;
 		}
 
-		// Initialise recruits_variation
-		recruits_variation = Lognormal(1,recruits_sd);
+		// Initialise normal distribution for recr. devs.
+		recruits_distrib = Normal(0,recruits_sd);
 
 		// During debug mode dump the model here for easy inspection
 		// Done here before equilibrium() in case that fails
@@ -711,9 +720,11 @@ public:
 			// Important: recruitment deviation is set only once per year
 			// otherwise, if set quarterly, will be less than specified
 			if(recruits_variation_on and quarter==0){
-				recruits_deviation = recruits_variation.random();
+		        recruits_deviation = recruits_autocorr*recruits_deviation + 
+		        					 std::sqrt(1-std::pow(recruits_autocorr,2))*recruits_distrib.random();
+		        recruits_multiplier = std::exp(recruits_deviation - 0.5*std::pow(recruits_sd,2));
 			}
-			recruits(region) = recruits_determ(region) * recruits_deviation;
+			recruits(region) = recruits_determ(region) * recruits_multiplier;
 
 			// Oldest age class accumulates 
 			numbers(region,ages.size()-1) += numbers(region,ages.size()-2);
