@@ -118,12 +118,15 @@ class ConstCatch : public Procedure, public Structure<ConstCatch> {
 public:
 
     /**
-     * Total allowable catch (quarterly)
+     * Total allowable catch
      *
      * This is the mean catch over last 5 years (t) (2009–2013) from Table 7
      * of IOTC–2014–WPTT16
      */
-    double tac = 429564.0/4;
+    double tac = 429564.0;
+
+    ConstCatch(double tac = 429564.0):
+        tac(tac) {}
 
     virtual void read(std::istream& stream){
         stream
@@ -136,7 +139,7 @@ public:
     }
 
     virtual void operate(uint time, Model& model){
-        model.catches_set(tac);
+        model.catches_set(tac/4.0);
     }
 };
 
@@ -154,6 +157,9 @@ public:
      * Nominal number of effort units for each region/method
      */
     double tae = 100;
+
+    ConstEffort(double tae = 100):
+        tae(tae) {}
 
     virtual void write(std::ostream& stream){
         stream
@@ -716,77 +722,78 @@ public:
 
     void populate(void){
 
+        // First 10 MPs have full traces output
+
         append(new ConstCatch);
+        append(new ConstCatch(250000));
+        append(new ConstCatch(800000));
+
         append(new ConstEffort);
+        append(new ConstEffort(50));
+        append(new ConstEffort(200));
 
-        // Mald2016
+        // Mald2016 reference case
+        auto& ref = * new Mald2016;
+        ref.frequency = 3;
+        ref.precision = 0.1;
+        ref.thresh = 0.4;
+        ref.closure = 0.1;
+        ref.imax = 1;
+        ref.cmax = 800000;
+        ref.dmax = 1;
+        append(&ref);
+
+        // Alternative cases e.g. illustrating different 
+        // shaped response curves
         {
-            // Reference case
-            auto& ref = * new Mald2016;
-            ref.frequency = 3;
-            ref.precision = 0.1;
-            ref.thresh = 0.4;
-            ref.closure = 0.1;
-            ref.imax = 1;
-            ref.cmax = 800000;
-            ref.dmax = 1;
-            append(&ref);
-
-            // Alternative cases e.g. illustrating different 
-            // shaped response curves
-            {
-                auto& proc = * new Mald2016(ref);
-                proc.dmax = 0.2;
-                append(&proc);
-            }
-            {
-                auto& proc = * new Mald2016(ref);
-                proc.dmax = 0.5;
-                append(&proc);
-            }
-            {
-                auto& proc = * new Mald2016(ref);
-                proc.thresh = 0.6;
-                proc.closure = 0;
-                proc.imax = 1.0;
-                append(&proc);
-            }
-            {
-                auto& proc = * new Mald2016(ref);
-                proc.thresh = 0.4;
-                proc.closure = 0.1;
-                proc.imax = 0.8;
-                append(&proc);
-            }
-
-            // Alternative values of key response curve parameters
-            for(double imax=0.5; imax<=1.5; imax+=0.1){
-                auto& proc = * new Mald2016(ref);
-                proc.imax = imax;
-                proc.tag = "ref*imax";
-                append(&proc);
-            }
-            for(double thresh=0.2; thresh<=1; thresh+=0.1){
-                auto& proc = * new Mald2016(ref);
-                proc.thresh = thresh;
-                proc.tag = "ref*thresh";
-                append(&proc);
-            }
-            for(double closure=0; closure<=0.4; closure+=0.1){
-                auto& proc = * new Mald2016(ref);
-                proc.closure = closure;
-                proc.tag = "ref*closure";
-                append(&proc);
-            }
-            for(double dmax=0.1; dmax<=1.0; dmax+=0.1){
-                auto& proc = * new Mald2016(ref);
-                proc.dmax = dmax;
-                proc.tag = "ref*dmax";
-                append(&proc);
-            }
-
+            auto& proc = * new Mald2016(ref);
+            proc.dmax = 0.2;
+            append(&proc);
+        }
+        {
+            auto& proc = * new Mald2016(ref);
+            proc.dmax = 0.3;
+            append(&proc);
+        }
+        {
+            auto& proc = * new Mald2016(ref);
+            proc.dmax = 0.5;
+            append(&proc);
+        }
+        {
+            auto& proc = * new Mald2016(ref);
+            proc.dmax = 0.6;
+            append(&proc);
         }
 
+
+        // Alternative values of key Mald2016 control parameters
+        for(double imax=0.5; imax<=1.5; imax+=0.1){
+            auto& proc = * new Mald2016(ref);
+            proc.imax = imax;
+            proc.tag = "ref*imax";
+            append(&proc);
+        }
+        for(double thresh=0.2; thresh<=1; thresh+=0.1){
+            auto& proc = * new Mald2016(ref);
+            proc.thresh = thresh;
+            proc.tag = "ref*thresh";
+            append(&proc);
+        }
+        for(double closure=0; closure<=0.4; closure+=0.1){
+            auto& proc = * new Mald2016(ref);
+            proc.closure = closure;
+            proc.tag = "ref*closure";
+            append(&proc);
+        }
+        for(double dmax=0.1; dmax<=1.0; dmax+=0.1){
+            auto& proc = * new Mald2016(ref);
+            proc.dmax = dmax;
+            proc.tag = "ref*dmax";
+            append(&proc);
+        }
+
+        // Grid of Mald2016 control parameters
         for(auto frequency : {3}){
             for(auto precision : {0.1}){
                 for(auto imax : {0.9, 1.0, 1.1}){
@@ -807,6 +814,20 @@ public:
                     }
                 }
             }
+        }
+
+        // Alternative values of constant catch
+        for(double catches=100; catches<=1000; catches+=100){
+            auto& proc = * new ConstCatch;
+            proc.tac = catches*1000;
+            append(&proc);
+        }
+
+        // Alternative values of constant effort (%age of recent past)
+        for(double effort=50; effort<=300; effort+=10){
+            auto& proc = * new ConstEffort;
+            proc.tae = effort;
+            append(&proc);
         }
 
         return;
