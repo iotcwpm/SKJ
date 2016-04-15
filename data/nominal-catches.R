@@ -214,6 +214,7 @@ write.table(temp,file='input/catch-prop-region-method-quarter.tsv',row.names=F,q
 
 # Read in data
 nc <- read.table('source/IOTC-2015-WPTT17-DATA04-NC.txt',header=T,sep='\t')
+nc <- subset(nc,SpCde=='SKJ')
 
 # Assign to operatng model areas and methods and quarters
 nc <- within(nc,{
@@ -236,8 +237,9 @@ nc <- within(nc,{
         'PS','PL','GN','OT'
     ))
 
-    # Assign to a quarter
-    Quarter = 1
+    # Renames
+    Year = Year.An
+    Catch = Catch.Capture.t.
 })
 
 # Get average annual catches by method for the top fleets other than EU and Maldives
@@ -250,7 +252,7 @@ temp <- ddply(
 write.table(temp,file="input/catch_distr_other.tsv",col.names=T,row.names=F,quote=F,sep='\t')
 
 # Aggregate by OM areas, methods, years and quarters
-sums = ddply(nc,.(AreaOM,Method,Year,Quarter),summarise,Catch=sum(SKJ,na.rm=T))
+sums <- ddply(nc,.(AreaOM,Method,Year),summarise,Catch=sum(Catch,na.rm=T))
 
 # Plot
 svg("nominal-catches.svg",width=25/2.54,height=18/2.54)
@@ -262,7 +264,31 @@ ggplot(sums) +
 dev.off()
 
 # Rename columns and output
-names(sums) = c('area','method','year','quarter','catch')
+names(sums) = c('area','method','year','catch')
 write.table(sums,file='input/nominal-catches.tsv',row.names=F,quote=F,sep='\t')
+
+# For 2013 and 2014 expand to quarters by assuming equal distribution across quarters
+sums_recent <- merge(
+  expand.grid(
+    year=2013:2014,
+    quarter=1:4,
+    area=c('WE','MA','EA'),
+    method=c('PS','PL','GN','OT')
+  ),
+  sums
+)
+sums_recent <- within(sums_recent,{
+  area <- as.character(area)
+  area[area=='WE'] <- 0
+  area[area=='MA'] <- 1
+  area[area=='EA'] <- 2
+  method <- as.character(method)
+  method[method=='PS'] <- 0
+  method[method=='PL'] <- 1
+  method[method=='GN'] <- 2
+  method[method=='OT'] <- 3
+  catch <- round(catch/4)
+})
+write.table(sums_recent,file='input/nominal-catches-quarter-13-14.tsv',row.names=F,quote=F,sep='\t')
 
 
