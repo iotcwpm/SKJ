@@ -161,30 +161,34 @@ whisker_mp_par <- function(data,y,ylab,yrefs,x,xlab,xrefs){
       p25 = quantiles[2],
       p50 = quantiles[3],
       p75 = quantiles[4],
-      p90 = quantiles[5]
+      p90 = quantiles[5],
+      mean = mean(data$y)
     )
   })
-  plot <- ggplot(temp,aes(x=x)) + 
-    geom_point(aes(y=p50),size=4) + 
-    geom_segment(aes(xend=x,y=p25,yend=p75),size=2) + 
-    geom_segment(aes(xend=x,y=p10,yend=p90),size=0.5) +
-    geom_hline(yintercept=0,alpha=0) + 
-    labs(y=ylab,x=xlab)
+  plot <- ggplot(temp,aes(x=x)) 
   if (!missing(yrefs)) {
     plot <- plot + geom_hline(yintercept=yrefs,linetype=2,colour='grey')
   }
   if (!missing(xrefs)) {
     plot <- plot + geom_vline(xintercept=xrefs,linetype=2,colour='grey')
   }
+  plot <- plot + 
+    geom_point(aes(y=p50),size=4,colour='grey50') +
+    geom_segment(aes(xend=x,y=p25,yend=p75),size=2,colour='grey50') + 
+    geom_segment(aes(xend=x,y=p10,yend=p90),size=0.5,colour='grey50') +
+    geom_point(aes(y=mean),size=4,shape=2) + 
+    geom_hline(yintercept=0,alpha=0) + 
+    labs(y=ylab,x=xlab)
   plot
 }
 
 whisker_mp_par_multi <- function(data,x,xlab,xrefs) {
   multiplot(
-    whisker_mp_par(data,y='catches_total', ylab='Yield (Mean catch; kt)', yrefs=425, x=x, xlab=xlab, xrefs=xrefs),
-    whisker_mp_par(data,y='status_mean', ylab='Status (Mean %B0)', yrefs=c(20,40), x=x, xlab=xlab, xrefs=xrefs),
-    whisker_mp_par(data,y='safety_b20', ylab='Safety (Prob. B>20%B0)', x=x, xlab=xlab, xrefs=xrefs),
-    whisker_mp_par(data,y='stability_mapc', ylab='Stability (-MAPC, %)', x=x, xlab=xlab, xrefs=xrefs),
+    whisker_mp_par(data, y='catches_total', ylab='Yield (Mean catch; kt)', yrefs=425, x=x, xlab=xlab, xrefs=xrefs),
+    whisker_mp_par(data, y='status_mean', ylab='Status (Mean %B0)', yrefs=c(20,40), x=x, xlab=xlab, xrefs=xrefs),
+    whisker_mp_par(data, y='safety_b20', ylab='Safety (Prop years B>20%B0)', x=x, xlab=xlab, xrefs=xrefs),
+    whisker_mp_par(data, y='stability_mapc', ylab='Stability (-MAPC, %)', x=x, xlab=xlab, xrefs=xrefs),
     cols=2
   )
 }
+
