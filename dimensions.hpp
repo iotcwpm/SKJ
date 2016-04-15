@@ -9,7 +9,7 @@ typedef unsigned int uint;
 const uint year_min = 1950;
 const uint year_max = 2035;
 
-uint time(uint year,uint quarter){
+uint time_calc(uint year,uint quarter){
 	return (year-year_min)*4+quarter;
 }
 uint year(uint time){
@@ -18,9 +18,6 @@ uint year(uint time){
 uint quarter(uint time){
 	return time%4;
 }
-
-const uint time_now = time(2015,3);
-const uint time_max = time(year_max,3);
 
 class Year : public Dimension<Year,year_max-year_min+1,year_min> {
 public:

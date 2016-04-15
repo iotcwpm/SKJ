@@ -47,15 +47,15 @@ void run(const std::string& samples_file="ref",int samples_row=0,int procedure=0
 	// Instantiate a model
 	Model model;
 	// For each time step...
-	for(uint time=0;time<=time_max;time++){
+	for(uint time=0;time<=time_calc(2035,3);time++){
 		std::cout<<time<<"\t"<<year(time)<<"\t"<<quarter(time)<<std::endl;
 		//... set model parameters
 		parameters.set(time,model);
 		//... update the model
 		model.update(time);
 		//... operate the procedure
-		if(time>time_now){
-			if(time==time_now+1) procedures.reset(procedure,time,model);
+		if(time>time_calc(2014,3)){
+			if(time==time_calc(2014,3)+1) procedures.reset(procedure,time,model);
 			procedures.operate(procedure,time,model);
 		}
 		//... get model variables corresponding to data
@@ -87,7 +87,7 @@ void tracks(const std::string& samples_file){
 		// Instantiate a model
 		Model model;
 		// For each time step...
-		for(uint time=0;time<=time_now;time++){
+		for(uint time=0;time<=time_calc(2014,3);time++){
 			//... set model parameters
 			parameters.set(time,model);
 			//... update the model
@@ -153,7 +153,7 @@ typedef int (Check)(const Model& model, const Data& data, uint time, uint year, 
 void check(Check check, int trial, Parameters& parameters, Data& data, Tracker& tracker, Frame& accepted, Frame& rejected){
 	Model model;
 	uint time = 0;
-	uint time_end = time_now;
+	uint time_end = time_calc(2014,3);
 	for(;time<=time_end;time++){
 		// Do the time step
 		//... set parameters
@@ -433,7 +433,7 @@ void condition_demc(uint generations,uint logging=1, uint saving=10){
         try {            
 
 			Model model;
-			for(uint time=0;time<=time_now;time++){
+			for(uint time=0;time<=time_calc(2014,3);time++){
 				// Do the time step
 				//... set parameters
 				parameters.set(time,model);
@@ -622,8 +622,8 @@ void evaluate(
 	// Do tracking (for a subset of replicates)
 	Tracker tracker("evaluate/output/track.tsv");
 	uint time_start;
-	if(year_start<0) time_start = time_now;
-	else time_start = time(year_start,3);
+	if(year_start<0) time_start = time_calc(2015,0);
+	else time_start = time_calc(year_start,0);
 	// For each replicate...
 	for(int replicate=0;replicate<replicates;replicate++){
 		std::cout<<replicate<<std::endl;
@@ -645,7 +645,7 @@ void evaluate(
 		// Create a model representing current state by iterating
 		// from time 0 to now...
 		Model current;
-		for(uint time=0;time<=time_start;time++){
+		for(uint time=0;time<time_start;time++){
 			//... set parameters
 			parameters.set(time,current); 
 			//... update the model
@@ -680,6 +680,9 @@ void evaluate(
 			// Create a model with current state to use to 
 			// simulate procedure
 			Model future = current;
+			// Due to lags MP may not set catches for some time, so in the meantime
+			// assume constant effort same level as average of 2005-2014 levels
+			future.effort_set(100);
 			// Set up performance statistics
 			Performance performance(replicate,procedure);
 			// Reset random seed
@@ -687,7 +690,7 @@ void evaluate(
 			// Reset the procedure
 			procedures.reset(procedure,time_start,future);
 			// Iterate over years...
-			for(uint time=time_start+1;time<=time_max;time++){
+			for(uint time=time_start;time<=time_calc(2035,3);time++){
 				//... set parameters on future model (e.g time varying parameters
 				// like recruitment variation but not catches)
 				parameters.set(time,future,false);
@@ -757,7 +760,7 @@ void test(){
 
 		Model model1;
 		Model model2;
-		for(uint time=0;time<=time_now;time++){
+		for(uint time=0;time<=time_calc(2014,3);time++){
 			// Do the time step
 			//... set parameters
 			parameters1.set(time,model1);
