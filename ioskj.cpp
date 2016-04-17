@@ -688,7 +688,8 @@ void evaluate(
 			// Reset random seed
 			Generator.seed(seed);
 			// Reset the procedure
-			procedures.reset(procedure,time_start,future);
+			Procedure* procedure_ptr = procedures[procedure];
+			procedure_ptr->reset(time_start,future);
 			// Iterate over years...
 			for(uint time=time_start;time<=time_calc(2035,3);time++){
 				//... set parameters on future model (e.g time varying parameters
@@ -698,14 +699,20 @@ void evaluate(
 				// procedure.operate() here, before future.update() allows 
 				// for the `HistCatch` procedure which simply applies historical
 				// catches
-				procedures.operate(procedure,time,future);
+				procedure_ptr->operate(time,future);
 				//... update the model
 				future.update(time);
 				//... track the model (for speed, only some replicates)
 				if(replicate<100 and procedure<10) tracker.get(replicate,procedure,time,future);
 				//... record performance
 				// within first 10 years
-				if (time<time_calc(2025,3)) performance.record(time,future);
+				if (time<time_calc(2025,3)) {
+					performance.record(
+						time,
+						future,
+						procedure_ptr->control()
+					);
+				}
 			}
 			// Save performance
 			performances.append(performance);

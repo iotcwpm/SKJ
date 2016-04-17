@@ -12,9 +12,20 @@ namespace IOSKJ {
  */
 class Procedure {
  public:
-    virtual void reset(uint time, Model& model){};
+    virtual void reset(uint time, Model& model) {
+
+    };
+
     virtual void operate(uint time, Model& model) = 0;
-    virtual void read(std::istream& stream){};
+
+    virtual double control(void) const {
+        return 1;
+    };
+
+    virtual void read(std::istream& stream) {
+
+    };
+
     virtual void write(std::ostream& stream) = 0;
 };
 
@@ -285,11 +296,11 @@ public:
      */
     virtual void reset(uint time, Model& model){
         lagger.set(lag);
-        last_ = -1;
+        year_last_ = -1;
         // Starting catch which will be used as the basis against which maximal
         // changed (dmax parameter)
         // A 'round' number close to the 432,467t reported in Scientific Committe report for 2014
-        catches_ = (425000/4.0);
+        catches_last_ = (425000/4.0);
     }
 
     /**
@@ -299,9 +310,7 @@ public:
         int year = IOSKJ::year(time);
         int quarter = IOSKJ::quarter(time);
         if(quarter==0){
-            double catches;
-
-            if(last_<0 or year-last_>=frequency) {
+            if(year_last_<0 or year-year_last_>=frequency) {
                 // Get b_curr and b_0 (sum over all regions)
                 double bcurr = sum(model.biomass_spawners);
                 double b0 = sum(model.biomass_spawners_unfished);
@@ -324,44 +333,54 @@ public:
 
                 // Calculate and apply catch limit ensure not
                 // above the annual limit
-                catches = exprate * bcurr;
+                double catches = exprate * bcurr;
                 if (catches*4 > cmax) {
                     catches = cmax/4;
                 }
 
                 // Apply maximum proportional changes in catch
-                auto change = catches/catches_;
-                if (change>(1+dmax)) catches = catches_ * (1 + dmax);
-                else if (change<(1-dmax)) catches = catches_ * (1 - dmax);
+                auto change = catches/catches_last_;
+                if (change>(1+dmax)) catches = catches_last_ * (1 + dmax);
+                else if (change<(1-dmax)) catches = catches_last_ * (1 - dmax);
 
                 // Store year so know when to do this again
-                last_ = year;
-            } else {
-                catches = NAN;
+                year_last_ = year;
+                catches_last_ = catches;
             }
-
-            // Move along the lag queue
-            catches_ = lagger.push_pop(catches);
+            
+            // Move along the lag queue every first quarter
+            catches_now_ = lagger.push_pop(catches_last_);
         }
 
         // Apply catch limit with some implementation error
-        if (not std::isnan(catches_)) {
-            model.catches_set(catches_,0.2);
+        if (not std::isnan(catches_now_)) {
+            model.catches_set(catches_now_,0.2);
         }
     }
+
+    virtual double control(void) const {
+        return catches_now_;
+    };
 
 private:
     /**
      * Last time that the status estimate was made
+     * ana a catch limit set
      */
-    int last_ = -1;
+    int year_last_ = -1;
+
+    /**
+     * Last quarterly catch limit calculated
+     */
+    double catches_last_ = NAN;
 
     /**
      * Current quarterly catch limit
      */
-    double catches_ = NAN;
+    double catches_now_ = NAN;
 
 };
+
 
 
 /**

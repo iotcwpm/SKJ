@@ -65,9 +65,22 @@ public:
 
 	/**
 	 * Proportion of times where
+	 * catch is lower than baseline
+	 */
+	Mean catches_lower;
+
+	/**
+	 * Proportion of times where
 	 * catch is zero
 	 */
 	Mean catches_shut;
+
+	/**
+	 * Proportion of times where there is an increase/decrease 
+	 * in the management control e..g catch limit
+	 */
+	Mean control_ups;
+	Mean control_downs;
 
 	/**
 	 * Mean of stock status % B0
@@ -144,6 +157,9 @@ public:
 			.data(catches_var,"catches_var")
 			.data(catches_mapc,"catches_mapc")
 			.data(catches_shut,"catches_shut")
+			.data(catches_lower,"catches_lower")
+			.data(control_ups,"control_ups")
+			.data(control_downs,"control_downs")
 			.data(status_mean,"status_mean")
 			.data(status_b10,"status_b10")
 			.data(status_b20,"status_b20")
@@ -163,7 +179,10 @@ public:
 	/**
 	 * Record performance measures
 	 */
-	void record(uint time, const Model& model){
+	void record(uint time, const Model& model, double control = 1){
+		//uint year = IOSKJ::year(time);
+		uint quarter = IOSKJ::quarter(time);
+
 		times.append();
 
 		// Catch magnitude
@@ -174,14 +193,26 @@ public:
 		catches_pl.append(catches_by_method(PL));
 		catches_gn.append(catches_by_method(GN));
 
+		// Years catch goes below baseline
+		catches_lower.append(catch_total < 425000/4.0);
+
 		// Catch variability
-		if(catch_total>0){
+		if(quarter == 0 and catch_total>0){
 			catches_var.append(catch_total);
 			catches_mapc.append(catch_total);
 		}
-		// Shutdown defined as quartetly catches <10% of recent average
+		// Shutdown defined as quarterly catches <10% of recent average
 		// catches of about 400000t
 		catches_shut.append(catch_total<1000);
+
+		// Changes in MP control e.g. catch or effort limit
+		if (quarter == 0) {
+			if (std::isfinite(control_last_)) {
+				control_ups.append(control>control_last_);
+				control_downs.append(control<control_last_);
+			}
+			control_last_ = control;
+		}
 
 		// Stock status relative to unfished
 		auto status = model.biomass_status();
@@ -246,6 +277,10 @@ public:
 		}
 	}
 
+ private:
+
+	// Last value of MP control
+	double control_last_ = NAN;
 };
 
 }
