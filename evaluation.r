@@ -132,7 +132,7 @@ plot_ribbon_catch_status <- function(proc,start=1950){
 }
 
 # Plot of tradeoff between two performance statistics
-plot_tradeoff <- function(data,x,y,colour,shape,xmin=0,ymin=0){
+plot_tradeoff <- function(data,x,y,colour,shape,xmin=0,ymin=0,bars=T){
 	data <- within(data,{
 		xm = data[,names(x)]
 		xsd = data[,paste0(names(x),'_sd')]
@@ -141,14 +141,18 @@ plot_tradeoff <- function(data,x,y,colour,shape,xmin=0,ymin=0){
 		colour = factor(data[,names(colour)])
 		shape = factor(data[,names(shape)])
 	})
-	ggplot(data,aes(colour=colour,shape=shape)) +
-			geom_point(aes(x=xm,y=ym),size=3,alpha=0.9) + 
-			geom_segment(aes(x=xm-xsd,xend=xm+xsd,y=ym,yend=ym),alpha=0.5) +
-			geom_segment(aes(x=xm,xend=xm,y=ym-ysd,yend=ym+ysd),alpha=0.5) +
+	plot <- ggplot(data,aes(colour=colour,shape=shape)) +
+			geom_point(aes(x=xm,y=ym),size=3,alpha=0.9) +
 			geom_vline(xintercept=xmin,alpha=0) + 
 			geom_hline(yintercept=ymin,alpha=0) + 
 			scale_shape_manual(values=1:10) + 
 			labs(x=x[[1]],y=y[[1]],colour=colour[[1]],shape=shape[[1]])
+  if (bars) {
+      plot <- plot +
+        geom_segment(aes(x=xm-xsd,xend=xm+xsd,y=ym,yend=ym),alpha=0.5) +
+        geom_segment(aes(x=xm,xend=xm,y=ym-ysd,yend=ym+ysd),alpha=0.5)
+  }
+	plot
 }
 
 whisker_mp_par <- function(data,y,ylab,yrefs,x,xlab,xrefs){
@@ -192,3 +196,33 @@ whisker_mp_par_multi <- function(data,x,xlab,xrefs) {
   )
 }
 
+stat_summary <- function(data,stat,label){
+  x <- with(data,eval(parse(text=stat)))
+  quantiles <- quantile(x,p=c(0.1,0.25,0.5,0.75,0.9),na.rm=T)
+  data.frame(
+    label = label,
+    mean = mean(x),
+    p10 = quantiles[1],
+    p25 = quantiles[2],
+    p50 = quantiles[3],
+    p75 = quantiles[4],
+    p90 = quantiles[5]
+  )
+}
+
+table_stat_summary <- function(data) {
+  temp <- rbind(
+    stat_summary(data,'status_mean','Status (Mean %B0)'),
+    stat_summary(data,'safety_b20','Safety (Prop. years B>20%B0)'),
+    stat_summary(data,'catches_total','Yield (Mean catch; kt)'),
+    stat_summary(data,'(1-catches_lower)*100','Yield (Years catch>=425kt %)'),
+    stat_summary(data,'-stability_mapc','Stability (MAPC %)'),
+    stat_summary(data,'control_downs*100','Stability (Years decrease %)'),
+    stat_summary(data,'control_ups*100','Stability (Years increase %)')
+  )
+  row.names(temp) <- NULL
+  temp
+}
+  
+  
+  

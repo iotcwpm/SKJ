@@ -50,7 +50,16 @@ whisker_mp_par_multi(
   x='p7', xlab='Maximum change in recommended catch (Dmax)', xrefs=0.3
 )
 
-whisker_mp_par(data,y='catches_shut', ylab='Yield (Mean catch; kt)', x='p7',xlab='')
+
+temp <- table_stat_summary(
+  subset(performances,class=='Mald2016' & p10=='ref')
+)
+write.table(format(temp,digits=3),file='temp.txt',quote=F,row.names=F,sep='\t')
+
+
+
+
+
 
 
 sub = subset(perfs,p10=='ref*imax')
@@ -67,13 +76,36 @@ ggplot(subset(perfs,p8<10000),aes(x=p8)) +
 
 # Tradeoff plots
 
+
+plot_tradeoff(
+  subset(perfs,class=="Mald2016" | class=="ConstCatch" | class=="ConstEffort"),
+  x = list(status='Status (mean SB/SB0)'),
+  y = list(yield='Yield (mean annual catch, kt)'),
+  colour = list(class='Class'),
+  shape = list(class='Class'),
+  bars=F
+)
+
+plot_tradeoff(
+  subset(perfs,class=="Mald2016" | class=="ConstCatch" | class=="ConstEffort"),
+  x = list(safety20='Safety'),
+  y = list(yield='Yield (mean annual catch, kt)'),
+  colour = list(class='Class'),
+  shape = list(class='Class'),
+  xmin=0.75, bars=F
+)
+
+
+
+
 plot_tradeoff(
   subset(perfs,class=="Mald2016"),
   x = list(status='Status (mean SB/SB0)'),
   y = list(yield='Yield (mean annual catch, kt)'),
   colour = list(p7='Cmax'),
-  shape = list(p3='Theshold')
-) + geom_vline(xintercept=c(0.2,0.4),linetype=2,alpha=0.3)
+  shape = list(p3='Theshold'),
+  bars=F,xmin=50,ymin=400
+) + geom_vline(xintercept=c(20,40),linetype=2,alpha=0.3)
 
 plot_tradeoff(
   subset(perfs,class=="Mald2016"),
