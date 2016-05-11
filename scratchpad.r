@@ -1,4 +1,5 @@
 # A R script for comon commands to be run interactively
+source('evaluation.r')
 
 # ConstEffort
 plot_ribbon_catch_status(
@@ -204,4 +205,12 @@ plot_tradeoff(
   colour = list(p3='Emax'),
   shape = list(p4='Threshold')
 )
+
+ggplot(references) +
+  geom_density(aes(x=e_40),fill='red',alpha=0.3,adjust=0.5) +
+  geom_density(aes(x=e_msy),fill='blue',alpha=0.3,adjust=0.5)
+
+ggplot(references) +
+  geom_density(aes(x=e_40*4),fill='red',alpha=0.3,adjust=0.5) +
+  geom_density(aes(x=e_msy*4),fill='blue',alpha=0.3,adjust=0.5)
 
