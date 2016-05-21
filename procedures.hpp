@@ -818,15 +818,12 @@ public:
         }
 
         // Alternative values of constant effort (%age of recent past)
-        for(double effort=50; effort<=300; effort+=10){
+        for(double effort=50; effort<=600; effort+=10){
             auto& proc = * new ConstEffort;
             proc.tae = effort;
             append(&proc);
         }
 
-        return;
-
-        #if 0
         // BRule
         {
             auto& proc = * new BRule;
@@ -840,8 +837,8 @@ public:
         for(int frequency : {2}){
             for(double precision : {0.2}){
                 for(auto target : {0.2,0.25,0.3}){
-                    for(auto thresh : {0.2,0.3,0.4}){
-                        for(auto limit : {0.025,0.05,0.1}){
+                    for(auto thresh : {0.4,0.5}){
+                        for(auto limit : {0.1,0.2}){
                             auto& proc = * new BRule;
                             proc.frequency = frequency;
                             proc.precision = precision;
@@ -854,9 +851,7 @@ public:
                 }
             }
         }
-        #endif
 
-        #if 0
         // FRange
         {
             auto& proc = * new FRange;
@@ -867,10 +862,10 @@ public:
             proc.change_max = 0.3;
             append(&proc);
         }
-        for(int frequency : {2,5,7}){
+        for(int frequency : {5,7}){
             for(double precision : {0.2}){
                 for(auto target : {0.2,0.25,0.3}){
-                    for(auto buffer : {0.01,0.02,0.05}){
+                    for(auto buffer : {0.02,0.05}){
                         auto& proc = * new FRange;
                         proc.frequency = frequency;
                         proc.precision = precision;
@@ -882,13 +877,11 @@ public:
                 }
             }
         }
-        #endif
 
-        #if 0
         // IRate
         {
             auto& proc = * new IRate;
-            proc.responsiveness = 0.6;
+            proc.responsiveness = 0.5;
             proc.multiplier = 100000;
             proc.threshold = 0.4;
             proc.limit = 0.1;
@@ -897,22 +890,20 @@ public:
         }
         for(double responsiveness : {0.5}){
             for(double multiplier : {100000,120000,140000}){
-                for(auto threshold : {0.5, 0.6, 0.7}){
-                    for(auto limit : {0.05, 0.1,0.2}){
+                for(auto threshold : {0.4, 0.5, 0.6}){
+                    for(auto limit : {0.1,0.2}){
                         auto& proc = * new IRate;
-                        proc.precision = 0.2;
                         proc.responsiveness = responsiveness;
                         proc.multiplier = multiplier;
                         proc.threshold = threshold;
                         proc.limit = limit;
                         proc.change_max = 0.4;
-                        proc.maximum = 150000;
                         append(&proc);
                     }
                 }
             }
         }
-        #endif
+
     }
 
     void reset(int procedure, uint time, Model& model){
