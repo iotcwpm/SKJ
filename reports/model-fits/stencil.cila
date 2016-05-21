@@ -4,8 +4,8 @@
 
 This section displays fits to the data generated from the `run` task (i.e. `./ioskj.exe run`) which uses the reference parameter values defined in `parameters/input` folder. Since those values are user inputs the following may not reflect best parameter estimates. In the following plots the lines indicate values expected from the model while the points represent the observed data.
 
-r
-	source('../../common.r',local=T)
+r volat
+	source('../../scripts/common.r',local=T)
 
 	load(c(
 		'm_pl_cpue',
@@ -140,8 +140,7 @@ r
 			items <- list(
 				list(region='WE',method='PS',desc='purse seine (PS) in the western region (WE)'),
 				list(region='WE',method='GN',desc='gillnet (GN) in the western region (WE)'),
-				list(region='MA',method='PL',desc='pole and line (PL) in the Maldive region (MA)'),
-				list(region='EA',method='OT',desc='other methods (OT) in the eastern region (EA)')
+				list(region='MA',method='PL',desc='pole and line (PL) in the Maldive region (MA)')
 			)
 			
 		for item in items

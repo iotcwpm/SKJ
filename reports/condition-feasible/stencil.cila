@@ -2,82 +2,23 @@
 
 #title Indian Ocean skipjack model : conditioning based on feasibility constraints
 
-[Need some preprocessing of rejects into 
-a table. Priors and tracks need to be generated.]
-
 This section describes an approach to model conditioning using the Feasible Stock Trajectories (FST) algorithm (Bentley and Langley 2012). Rather than estimating parameters using full likelihoods, FST uses feasibility criterion to accept or reject sets of parameters drawn from their prior distributions. Feasibility criteria can be based on a priori beliefs about the stock or on "features" of the observed data. Although unsophisticated, this approach can provide a pragmatic means for conditioning an operating model.
 
+if 0
+	To provide consistency
+
+		// ... in 2013 must be between 0.4 and 0.8
+		// based on IOTC–2014–WPTT16 report Table 7
+		//   SB 2013 /SB 1950 (80% CI) : 0.58 (0.53–0.62)
+
+		bounds on length requencies 10, 50 & 90 percentiles
+
+r volat
+	source('../../scripts/common.r',local=T)
+	source('../../scripts/condition.r',local=T)
 
 r
-	source('../../common.r',local=T)
-	require(stringr)
-	
-	# Read in files
-	load('priors','../../parameters/output/')
-	load(c(
-		'accepted',
-		'rejected',
-		'track'
-	),from='../../feasible/output/')
-	
-	# Bind together
-	# Add columns to accepted to allow rbinding
-	accepted$trial <- NA
-	accepted$time <- NA
-	accepted$year <- NA
-	accepted$quarter <- NA
-	accepted$criterion <- 0
-	all <- rbind(accepted,rejected)
-	
-	# Get terminal years for tracks
-	terminals <- ddply(track,.(replicate),summarise,year=max(year))
-	terminals <- merge(terminals,rejected[,c('trial','criterion')],by.x='replicate',by.y='trial')
-	track <- merge(track,terminals,all.x=T)
-	track$criterion <- factor(track$criterion)
-	
-	# Get tracks of accepted
-	tracks <- read.table('../../model/output/track.tsv',header=T)
-	tracks <- merge(tracks,ddply(tracks,.(replicate),summarise,b0=head(biomass_spawning_overall,n=1)))
-	ggplot(subset(tracks,quarter==0),aes(x=year,y=biomass_spawning_overall/b0,group=replicate)) + 
-				geom_line(alpha=0.2) +
-			  labs(x="Year",y="Total spawning biomass (`000 t)")
-			  
-
-	# Quantile plotting function
-	plot_ribbon <- function(data,y,ylab='Value',xlab='Year'){
-		# Evaluation the y expression
-		data$y <- eval(y,envir=data)
-		# Calculate quantiles
-		quantiles = ddply(data,.(year),function(data){
-			quantiles = quantile(data$y,p=c(0.01,0.05,0.1,0.25,0.5,0.75,0.9,0.95,0.99),na.rm=T)
-			data.frame(
-				p1 = quantiles[1],
-				p5 = quantiles[2],
-				p10 = quantiles[3],
-				p25 = quantiles[4],
-				p50 = quantiles[5],
-				p75 = quantiles[6],
-				p90 = quantiles[7],
-				p95 = quantiles[8],
-				p99 = quantiles[9]
-			)
-		})
-		# Plot
-		p = ggplot() +
-			geom_ribbon(data=quantiles,aes(x=year,ymin=p5,ymax=p95),alpha=0.1) + 
-			geom_ribbon(data=quantiles,aes(x=year,ymin=p10,ymax=p90),alpha=0.1) + 
-			geom_ribbon(data=quantiles,aes(x=year,ymin=p25,ymax=p75),alpha=0.1) +
-			geom_hline(y=0,alpha=0) +
-			scale_colour_manual(values=hsv(c(0,0.66,0.33),0.6,0.6)) +
-			labs(x=xlab,y=ylab) +
-			theme(legend.position='none')
-		print(p)
-		p
-	}
-	plot_ribbon(subset(tracks,quarter==0),y=quote(biomass_spawning_overall/b0),ylab='Status (B/B0)')
-
-r
-	rejects <- table(rejected$criterion)
+	rejects <- tabulate_rejects()
 
 table
 	caption
@@ -85,18 +26,18 @@ table
 	tr
 		th Code
 		th Criterion
-		th Trials failing this criterion
+		th Percentage of trials failing this criterion
 	tr
 		td 1
-		td Overall stock status must always be >10% B0
+		td Overall stock status must always be >=10% B0
 		td text rejects[1]
 	tr
 		td 2
-		td Overall stock status must be less than 100% B0 since 2008
+		td Overall stock status must be between 40% and 80% B0 since in 2013
 		td text rejects[2]
 	tr
 		td 3
-		td Exploitation rate in four main fisheries (SW-PS, NW-PS, MA-PL, E-GN) must always be <0.5
+		td Exploitation rate in the three main fisheries (WE-PS, MA-PL, EA-GN) must always be <=0.5
 		td text rejects[3]
 	tr
 		td 4
@@ -108,10 +49,28 @@ table
 		td text rejects[5]
 	tr
 		td 6
-		td Z-estimates for 45-50cm fish between 2006 and 2009 must be between 0.1 and 0.4 
+		td Total mortality (Z) for 45-50cm fish between 2006 and 2009 must be between 0.1 and 0.4 
 		td text rejects[6]
 	tr
 		td 7
-		td Cumulative 10, 50 & 90 percentiles for length frequencies by method similar to those in data
+		td Cumulative 10, 50 & 90 percentiles for length frequencies by method similar to those in data (see text for details)
 		td text rejects[7]
 
+
+The following figures show the effect of conditioning. They compare the prior probability densities with the posterior densities obtained from the feasibility conditioning. The distributions of rejections by each of the feasibility criteria is also shown.
+
+r
+	params <- c(
+		'spawners_unfished','spawners_ma','spawners_ea','recruits_steepness','recruits_sd','recruits_autocorr',
+		'spawning_0', 'spawning_1', 'spawning_2', 'spawning_3',
+		'maturity_inflection', 'maturity_steepness',
+		'mortality_mean',
+		'movement_we_ma', 'movement_we_ea', 'movement_ma_ea', 'movement_length_inflection', 'movement_length_steepness'
+	)
+
+for param in params
+	figure
+		r format png size 17x10cm
+			print(plot_densities(param))
+		figcaption
+			Prior probability density (dashed line), rejection probability densities (coloured fill) and resulting posterior probability density (solid line) for the model parameter {code text param}. The rejection probability density represent the probability of a parameter values being rejected by one of the feasibility criteria.

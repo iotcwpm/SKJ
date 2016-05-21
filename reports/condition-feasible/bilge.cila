@@ -1,4 +1,72 @@
 
+
+# Get terminal years for tracks
+terminals <- ddply(track,.(replicate),summarise,year=max(year))
+terminals <- merge(terminals,rejected[,c('trial','criterion')],by.x='replicate',by.y='trial')
+track <- merge(track,terminals,all.x=T)
+track$criterion <- factor(track$criterion)
+
+# Get tracks of accepted
+tracks <- read.table('../../model/output/track.tsv',header=T)
+tracks <- merge(tracks,ddply(tracks,.(replicate),summarise,b0=head(biomass_spawning_overall,n=1)))
+ggplot(subset(tracks,quarter==0),aes(x=year,y=biomass_spawning_overall/b0,group=replicate)) + 
+  geom_line(alpha=0.2) +
+  labs(x="Year",y="Total spawning biomass (`000 t)")
+
+figure
+	r format png size 17x10cm const
+		temp <- melt(accepted[,paste0("recruits_deviations.",1990:2012,"..value")])
+		temp$year <- str_extract(temp$variable,"\\d+")
+		print(ggplot(temp,aes(x=year,y=value)) + 
+			geom_violin(fill='grey') +
+			geom_point(data=ddply(temp,.(year),summarise,y=mean(value)),aes(y=y)) +
+			geom_hline(y=0,linetype=2) + 
+			labs(x='Year',y='Value'))
+	figcaption
+		Distribution of values of `recruits_deviations` parameters that passed all feasibility criteria. The dots represent the mean of each distribution.	
+
+		
+		
+		
+		
+		
+		
+		
+		
+		# Quantile plotting function
+		plot_ribbon <- function(data,y,ylab='Value',xlab='Year'){
+		  # Evaluation the y expression
+		  data$y <- eval(y,envir=data)
+		  # Calculate quantiles
+		  quantiles = ddply(data,.(year),function(data){
+		    quantiles = quantile(data$y,p=c(0.01,0.05,0.1,0.25,0.5,0.75,0.9,0.95,0.99),na.rm=T)
+		    data.frame(
+		      p1 = quantiles[1],
+		      p5 = quantiles[2],
+		      p10 = quantiles[3],
+		      p25 = quantiles[4],
+		      p50 = quantiles[5],
+		      p75 = quantiles[6],
+		      p90 = quantiles[7],
+		      p95 = quantiles[8],
+		      p99 = quantiles[9]
+		    )
+		  })
+		  # Plot
+		  p = ggplot() +
+		    geom_ribbon(data=quantiles,aes(x=year,ymin=p5,ymax=p95),alpha=0.1) + 
+		    geom_ribbon(data=quantiles,aes(x=year,ymin=p10,ymax=p90),alpha=0.1) + 
+		    geom_ribbon(data=quantiles,aes(x=year,ymin=p25,ymax=p75),alpha=0.1) +
+		    geom_hline(y=0,alpha=0) +
+		    scale_colour_manual(values=hsv(c(0,0.66,0.33),0.6,0.6)) +
+		    labs(x=xlab,y=ylab) +
+		    theme(legend.position='none')
+		  print(p)
+		  p
+		}
+		plot_ribbon(subset(tracks,quarter==0),y=quote(biomass_spawning_overall/b0),ylab='Status (B/B0)')
+		
+		
 if 0
 
 	figure

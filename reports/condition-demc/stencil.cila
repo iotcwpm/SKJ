@@ -3,7 +3,7 @@
 # sed -n '1~10p' demc/output/trace.tsv > demc/output/trace-thin.tsv
 
 r
-	source('../../common.R',local=T)
+	source('../../scripts/common.r',local=T)
 	require(stringr)
 	
 	# Load files

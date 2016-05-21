@@ -5,7 +5,7 @@
 This section presents model outputs generated from the `run` task (i.e. `./ioskj.exe run`) which uses the reference parameter set defined in the `parameters/input` folder. Since those parameter values are user inputs the following may not reflect best parameter estimates. These summaries are primarily intended for illustrating the model struture.
 
 r
-	source('../../common.r',local=T)
+	source('../../scripts/common.r',local=T)
 
 	load(c(
 		'length_age','age_size',

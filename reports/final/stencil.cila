@@ -1,5 +1,11 @@
 #mode free
 
+style
+	main#content {
+		font-size: 17px;
+		max-width: 50em;
+	}
+
 #title Management strategy evaluation for the Indian Ocean skipjack tuna fishery
 
 Nokome Bentley{sup 1} and M. Shiham Adam{sup 2}
@@ -9,16 +15,7 @@ Nokome Bentley{sup 1} and M. Shiham Adam{sup 2}
 
 {strong} Draft {text Sys.Date()}
 
-h1 Abstract
-
-
-A simulation model of the Indian Ocean skipjack tuna fishery was developed for the evaluation of alternative fisheries management procedures. The model partitions the population by region, age, and size and the fishery by region and gear (purse seine, pole-and-line, gill net, others). Prior probability distributions and sensitivity ranges are defined for model parameters for use in conditioning and robustness testing.  Performance statistics are defined based and linked to broader management objectives. Three contrasting classes of management procedure (MP) are provided as examples: BRule (a generic harvest control rule based on an estimate of stock status), FRange (a MP which adjusts effort when fishing mortality is outside a target range) and IRate (a MP which recommends a total allowable catch using a CPUE-based biomass index).
-
-
-h1 Outline
-
 #outline
-
 
 > Introduction
 
@@ -31,64 +28,47 @@ h1 Outline
 
 	> Structure and assumptions
 
-		include ../model-desc
+		include ../model-desc complete
 			delete #title
 
 	> Parameters priors and sensitivity ranges
 
-		include ../model-params
+		include ../model-params complete
 			delete #title
 
 	> Implementation
 
-		include ../model-imple
+		include ../model-imple complete
+			delete #title
+
+	> Outputs
+
+		include ../model-outputs complete
+			delete #title
+
+	> Fits
+
+		include ../model-fits complete
+			delete #title
+
+	> Yield curve and types of reference point 
+
+		include ../yield complete
 			delete #title
 
 	> Conditioning
 
-		> Feasibility-based 
-
-			`TODO`
-			if 0
-				include ../condition-feasible
-					delete #title
-
-		> Assessment-based
-
-			`TODO`
-			if 0
-				include ../condition-ss3
-					delete #title
-
-	> Outputs
-
-		include ../model-outputs
+		include ../condition-feasible complete
 			delete #title
 
+	> Evaluations
 
-if 0
-
-	> Fits
-
-		include ../../data/display complete
+		include ../eval-methods complete
 			delete #title
 
+	> Management procedures
 
-	> Performance measures, performance statistics and management objectives
-
-		include ../../performance/description complete
-			delete #title
-
-	if 0
-		> Yield curve and MSY estimation 
-
-			include ../../yield/display complete
-				delete #title
-
-
-	> Example management procedures
-
-		include ../../procedures/description complete
+		include ../procedures complete
 			delete #title
 
 
@@ -101,7 +81,7 @@ if 0
 
 > Acknowledgments
 
-	This work has been funded by the International Pole and Line Foundation (IPNLF), the Maldives Seafood Processors and Exporters Association (MSPEA), the Areas Beyond National Jurisdiction Program (ABNJ) and WWF with support and oversignt of the Maldives Marine Research Centre (MRC). Support for the project's Advisory Committee has been provided by the International Seafood Sustainability Foundation (ISSF).
+	This work has been funded by the International Pole and Line Foundation (IPNLF), the Maldives Seafood Processors and Exporters Association (MSPEA), the Areas Beyond National Jurisdiction Program (ABNJ) and WWF with support and oversight of the Maldives Marine Research Centre (MRC). Support for the project's Advisory Committee has been provided by the International Seafood Sustainability Foundation (ISSF).
 
 > References
 

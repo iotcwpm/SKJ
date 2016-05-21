@@ -1,7 +1,7 @@
 #title Indian Ocean skipjack tuna model : Model description
 
 r
-	source('../../common.r',local=T)
+	source('../../scripts/common.r',local=T)
 
 The following convention is used for assigning symbols in the following model equations: Greek lower case letters (e.g. |alpha| for the intercept of the length-weight relationship) for model parameters, Roman capital letters (e.g. |N| for numbers) for model variables, and Roman lower case letters for variable or parameter array subscripts (e.g. |N_{r,a,s}|, |phi_{r}|). Using this convention means that in some instances model parameters are given different symbols than are usually used. However, it has the advantage of clearly distinguishing model parameters (which are independent of other parameters or variables and that are usually estimated) from model variables (which are dependent upon parameter values).
 

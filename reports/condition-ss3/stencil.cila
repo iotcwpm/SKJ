@@ -1,8 +1,8 @@
 #title Indian Ocean skipjack model : Parameter distributions
 
 r
-	source('../../common.r',local=T)
-	require(stringr)
+	source('../../scripts/common.r',local=T)
+
 	# Read in files
 	load(c(
 		'accepted',

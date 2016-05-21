@@ -1,7 +1,7 @@
 #title Indian Ocean skipjack model : outputs related to spatial dynamics
 
 r
-	source('../../common.R',local=T)
+	source('../../scripts/common.r',local=T)
 
 	load(c(
 		'recruits_regions',

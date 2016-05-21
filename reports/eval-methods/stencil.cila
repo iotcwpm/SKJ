@@ -1,5 +1,9 @@
 #title Indian Ocean skipjack model : management objectives, performance statistics and performance measures
 
+This section describes the methods used to evaluate alternative candidate management procedures.
+
+## Management objectives, performance measures, performance statistics
+
 This section uses the following terminology. A _performance measure_ is any model variable that is used as a basis for a _performance statistic_ . That is, a performance statistic, summarises a performance measure over the evaluation period, in this case 25 years.
 
 The main performance measures used are catches |C|, relative catch rates |A|, and spawner biomass |B|. For convenience, where the performance measure represents a summation across all possible model dimensions (e.g. region, method) for the variable we exclude subscripts in mathematical notation. e.g.
@@ -10,7 +14,7 @@ We have grouped performance statistics according to broad categories of manageme
 
 table #table-perf-stats
 	caption
-		Management objectives, performance statistics and performance measures
+		Management objectives, performance statistics and performance measures. [This table has not yet been updated to reflect recent changes agrred to during WPM]
 	thead
 		tr
 			th Performance statistic
