@@ -1,124 +1,208 @@
 #title Indian Ocean skipjack model : management objectives, performance statistics and performance measures
 
+#mode free
+
 This section describes the methods used to evaluate alternative candidate management procedures.
 
-## Management objectives, performance measures, performance statistics
+> Management objectives, performance measures, performance statistics
 
-This section uses the following terminology. A _performance measure_ is any model variable that is used as a basis for a _performance statistic_ . That is, a performance statistic, summarises a performance measure over the evaluation period, in this case 25 years.
+	This section uses the following terminology. A _performance measure_ is any model variable that is used as a basis for a _performance statistic_ . That is, a performance statistic, summarises a performance measure over the evaluation period, in this case 25 years.
 
-The main performance measures used are catches |C|, relative catch rates |A|, and spawner biomass |B|. For convenience, where the performance measure represents a summation across all possible model dimensions (e.g. region, method) for the variable we exclude subscripts in mathematical notation. e.g.
+	The main performance measures used are catches |C|, relative catch rates |A|, and spawner biomass |B|. For convenience, where the performance measure represents a summation across all possible model dimensions (e.g. region, method) for the variable we exclude subscripts in mathematical notation. e.g.
 
-	| C = sum_{r,m} C_{r,m} |
+		| C = sum_{r,m} C_{r,m} |
 
-We have grouped performance statistics according to broad categories of management objectives : yield, abundance, stability, status and safety (@table-perf-stats). We use these labels in the following summaries and for each category focus on the first performance statistic. For example, when presenting evaluation results relating to the stability management objective we mostly summarise the MAPC performance statistic. In accordance with the desire to maximise these objectives we present "positive" versions of each of performance statistics in the following figures and tables. For example, rather than presenting a "risk" related statistic such as the probability of being below 10%B0 we use the "safety" related statistic, the probability of being *above* 10%B0.
+	We have grouped performance statistics according to broad categories of management objectives : yield, abundance, stability, status and safety (@table-perf-stats). We use these labels in the following summaries and for each category focus on the first performance statistic. For example, when presenting evaluation results relating to the stability management objective we mostly summarise the MAPC performance statistic. In accordance with the desire to maximise these objectives we present "positive" versions of each of performance statistics in the following figures and tables. For example, rather than presenting a "risk" related statistic such as the probability of being below 10%B0 we use the "safety" related statistic, the probability of being *above* 10%B0.
 
-table #table-perf-stats
-	caption
-		Management objectives, performance statistics and performance measures. [This table has not yet been updated to reflect recent changes agrred to during WPM]
-	thead
-		tr
-			th Performance statistic
-			th Performance measure/s
-			th Summary statistic
-	tbody
+	table #table-perf-stats
+		caption
+			Management objectives, performance statistics and performance measures. [This table has not yet been updated to reflect recent changes agrred to during WPM]
+		thead
+			tr
+				th Performance statistic
+				th Performance measure/s
+				th Summary statistic
+		tbody
 
-		tr
-			td Status : maximize stock status
-			td
-			td
-		tr
-			td Mean spawner biomass relative to pristine
-			td |B//B_0|
-			td Geometric mean over years
-		tr
-			td Minimum spawner biomass relative to pristine
-			td |B//B_0|
-			td Minimum over years
-		tr
-			td Mean spawner biomass relative to |B_{msy}|
-			td |B//B_{msy}|
-			td Geometric mean over years
-		tr
-			td Mean fishing intensity relative to target
-			td |F//F_{tar}|
-			td Geometric mean over years
-		tr
-			td Mean fishing mortality relative to |F_{msy}|
-			td |F//F_{msy}|
-			td Geometric mean over years
-		tr
-			td Probability of being in Kobe green quadrant
-			td |B|,|F|
-			td Proportion of years that |B>=B_{tar} & F<=F_{tar}|
-		tr
-			td Probability of being in Kobe red quadrant
-			td |B|,|F|
-			td Proportion of years that |B<B_{tar} & F>F_{tar}|
+			tr
+				td Status : maximize stock status
+				td
+				td
+			tr
+				td Mean spawner biomass relative to pristine
+				td |B//B_0|
+				td Geometric mean over years
+			tr
+				td Minimum spawner biomass relative to pristine
+				td |B//B_0|
+				td Minimum over years
+			tr
+				td Mean spawner biomass relative to |B_{msy}|
+				td |B//B_{msy}|
+				td Geometric mean over years
+			tr
+				td Mean fishing intensity relative to target
+				td |F//F_{tar}|
+				td Geometric mean over years
+			tr
+				td Mean fishing mortality relative to |F_{msy}|
+				td |F//F_{msy}|
+				td Geometric mean over years
+			tr
+				td Probability of being in Kobe green quadrant
+				td |B|,|F|
+				td Proportion of years that |B>=B_{tar} & F<=F_{tar}|
+			tr
+				td Probability of being in Kobe red quadrant
+				td |B|,|F|
+				td Proportion of years that |B<B_{tar} & F>F_{tar}|
 
-		tr
-			td Safety : maximize the probability of remaining above low stock status (i.e. minimize risk)
-			td
-			td
-		tr
-			td Probability of spawner biomass being above 20% of |B_0|
-			td |B|
-			td Proportion of years that |B gt 0.2B_0|
-		tr
-			td Probability of spawner biomass being above 10% of |B_0|
-			td |B|
-			td Proportion of years that |B gt 0.1B_0|
+			tr
+				td Safety : maximize the probability of remaining above low stock status (i.e. minimize risk)
+				td
+				td
+			tr
+				td Probability of spawner biomass being above 20% of |B_0|
+				td |B|
+				td Proportion of years that |B gt 0.2B_0|
+			tr
+				td Probability of spawner biomass being above 10% of |B_0|
+				td |B|
+				td Proportion of years that |B gt 0.1B_0|
 
-		tr
-			td Yield : maximize catches across regions and gears
-			td
-			td
-		tr
-			td Mean catch
-			td |C|
-			td Mean over years
-		tr
-			td Mean purse siene catch
-			td |sum_{r} C_{r,ps}|
-			td Mean over years
-		tr
-			td Mean pole and line catch
-			td |sum_{r} C_{r,pl}|
-			td Mean over years
-		tr
-			td Mean gillnet catch
-			td |sum_{r} C_{r,gn}|
-			td Mean over years
+			tr
+				td Yield : maximize catches across regions and gears
+				td
+				td
+			tr
+				td Mean catch
+				td |C|
+				td Mean over years
+			tr
+				td Mean purse siene catch
+				td |sum_{r} C_{r,ps}|
+				td Mean over years
+			tr
+				td Mean pole and line catch
+				td |sum_{r} C_{r,pl}|
+				td Mean over years
+			tr
+				td Mean gillnet catch
+				td |sum_{r} C_{r,gn}|
+				td Mean over years
 
-		tr
-			td Abundance : maximize catch rates to enhance fishery profitability
-			td
-			td
-		tr
-			td Mean relative catch rates for western purse siene
-			td |A_{we,ps}|
-			td Geometric mean over years
-		tr
-			td Mean relative catch rates for Maldive pole and line
-			td |A_{ma,pl}|
-			td Geometric mean over years
-		tr
-			td Mean relative catch rates for eastern gillnet
-			td |A_{ea,gn}|
-			td Geometric mean over years
+			tr
+				td Abundance : maximize catch rates to enhance fishery profitability
+				td
+				td
+			tr
+				td Mean relative catch rates for western purse siene
+				td |A_{we,ps}|
+				td Geometric mean over years
+			tr
+				td Mean relative catch rates for Maldive pole and line
+				td |A_{ma,pl}|
+				td Geometric mean over years
+			tr
+				td Mean relative catch rates for eastern gillnet
+				td |A_{ea,gn}|
+				td Geometric mean over years
 
-		tr
-			td Stability : maximize stability in catches to reduce commercial uncertainty
-			td
-			td
-		tr
-			td Mean absolute proportional change (MAPC) in catch
-			td |C|
-			td Mean over years of |abs(C_t//C_{t-1}-1)|
-		tr
-			td Variance in catch
-			td |C|
-			td Variance over years
-		tr
-			td Probability of shutdown 
-			td |C|
-			td Proportion of years that |C==0|
+			tr
+				td Stability : maximize stability in catches to reduce commercial uncertainty
+				td
+				td
+			tr
+				td Mean absolute proportional change (MAPC) in catch
+				td |C|
+				td Mean over years of |abs(C_t//C_{t-1}-1)|
+			tr
+				td Variance in catch
+				td |C|
+				td Variance over years
+			tr
+				td Probability of shutdown 
+				td |C|
+				td Proportion of years that |C==0|
+
+> Simulation methods and terminology
+
+	This section provides an overview of the methods and terminology used for evaluating management procedures (i.e. management procedure evaluation, MPE). We provide examples of the types of figures and tables that are used in the following, more detailed, descriptions of evaluation results for each class of management procedure.
+
+	Each _evaluation_ of a management procedure is based on a _replicate_. Each replicate incorporates _parameter uncertainty_ through the random selection of a set of model parameters as well as _stochastic uncertainty_ through the random generation of _process uncertainty_ (e.g. recruitment variation) and _observation uncertainty_ (e.g. CPUE error). The parameter set for a replicate is drawn from all the possible parameter sets determined from model conditioning. For each evaluation, the particular management procedure is used to determine future simulated management which affects catches, which in turn affects stock biomass and other _performance measures_ ({refer #figure-one-rep-one-eval}). 
+
+	The primary purpose of MPE is not to provide forecats of catch, biomass or other performance measures. Rather, it is to compare the performance, relative to management objectives, of alternative candidate management procedures. Thus, for each replicate, each of the candidate management procedures is evaluated ({refer #figure-one-rep-mult-evals}). This allows us to compare the performance of alternative MPs under exactly the same set of assumptions. Notice in ({refer #figure-one-rep-mult-evals}) that the biomass trajectories resulting from using alternative MPs often fluctuate in parallel. This is due to the same recruitment variations being used for each evaluation.
+
+	r
+		source('../../scripts/common.r',local=T)
+		source('../../scripts/evaluation.r',local=T)
+
+	figure #figure-one-rep-one-eval
+		r format png size 17x15cm
+			temp <- subset(track,quarter==0 & procedure %in% c(-1,6) & replicate==1)
+			p1 <- ggplot(temp,aes(x=year,y=catches_total/1e3)) +
+				geom_line(aes(group=procedure),colour='black',alpha=0.3) +
+				geom_vline(xintercept=2014.8,linetype=2) +
+				geom_hline(yintercept=0,alpha=0) +
+				labs(x="Year",y="Catch (quarterly,kt)") + 
+				theme(legend.position='none')
+			p2 <- ggplot(temp,aes(x=year,y=biomass_spawners_overall/1e3)) +
+				geom_line(aes(group=procedure),colour='black',alpha=0.3) +
+				geom_vline(xintercept=2014.8,linetype=2) +
+				geom_hline(yintercept=0,alpha=0) +
+				labs(x="Year",y="Biomass (spawners,kt)") + 
+				theme(legend.position='none')
+			multiplot(p1,p2)
+		figcaption
+			Catch and biomass trajectories from a single evaluation of a single management procedure using a single parameter replicate.
+
+	figure #figure-one-rep-mult-evals
+		r format png size 17x15cm
+			temp <- subset(track,quarter==0 & replicate==1)
+			p1 <- ggplot(temp,aes(x=year,y=catches_total/1e3)) +
+				geom_line(aes(colour=procedure),alpha=0.3) +
+				geom_vline(xintercept=2014.8,linetype=2) +
+				geom_hline(yintercept=0,alpha=0) +
+				labs(x="Year",y="Catch (quarterly,kt)") + 
+				theme(legend.position='none')
+			p2 <- ggplot(temp,aes(x=year,y=biomass_spawners_overall/1e3)) +
+				geom_line(aes(colour=procedure),alpha=0.3) +
+				geom_vline(xintercept=2014.8,linetype=2) +
+				geom_hline(yintercept=0,alpha=0) +
+				labs(x="Year",y="Biomass (spawners,kt)") + 
+				theme(legend.position='none')
+			multiplot(p1,p2)
+		figcaption
+			Catch and biomass trajectories from multiple evaluations of multiple management procedure using a single parameter replicates. Each of the coloured future trajectories arises from applying one candidate management procedure.
+
+
+	To be able to assess and compare the robustness of management procedures to uncertainty it is necessary to run evaluations for many replicates. {refer #figure-mult-rep} shows one hundred evaluations, each based on a different replicate, for a single management procedure. When presenting the trajectories from muliple evaluations, it is usually easier to ascertain both the central tendency and the variability of trajectories using quantile ribbons ({refer #figure-ribbons}). The ribbons show the bands where 50%, 80% and 90% of trajectories fall. In addition, to indicate the expected inter-annual variability, the trajectories from three example replicates are shown separately. These example replicates were chosen as those that produced the 20th (red), 50th (blue) and 80th (green) percentile of average biomass of spawners under the constant effort management procedure.
+
+	figure #figure-mult-rep
+		r format png size 17x15cm
+			temp <- subset(track,quarter==0 & procedure %in% c(-1,6))
+			p1 <- ggplot(temp,aes(x=year,y=catches_total/1e3)) +
+				geom_line(aes(colour=replicate),alpha=0.3) +
+				geom_vline(xintercept=2014.8,linetype=2) +
+				geom_hline(yintercept=0,alpha=0) +
+				labs(x="Year",y="Catch (quarterly,kt)") + 
+				theme(legend.position='none')
+			p2 <- ggplot(temp,aes(x=year,y=biomass_status)) +
+				geom_line(aes(colour=replicate),alpha=0.3) +
+				geom_vline(xintercept=2014.8,linetype=2) +
+				geom_hline(yintercept=0,alpha=0) +
+				labs(x="Year",y="Status (spawners,B/B0)") + 
+				theme(legend.position='none')
+			multiplot(p1,p2)
+		figcaption
+			Catch and biomass trajectories from multiple evaluations of a single management procedure using multiple parameter replicates. Each of the coloured trajectories arises from alternative replicate.
+
+	figure #figure-ribbons
+		r format png size 17x15cm
+			temp <- subset(track,quarter==3 & procedure %in% c(-1,6))
+			p1 <- plot_ribbon(temp,y=quote(catches_total/1e3),ylab='Catch (last quarter,kt)')
+			p2 <- plot_ribbon(temp,y=quote(biomass_status),ylab='Status (B/B0)')
+			multiplot(p1,p2)
+		figcaption
+			Catch and biomass trajectories from multiple evaluations of a single management procedure using multiple parameter replicates summarised into percentile ribbons
+
