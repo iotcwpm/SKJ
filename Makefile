@@ -138,7 +138,8 @@ docs: doxygen-html stencils-html
 #	git branch gh-pages
 # and the "ghp-import" script
 # 	sudo pip install ghp-import
-publish: stencils-pages
+publish:
+	mkdir -p .pages && cp reports/final-report-draft.pdf .pages/final-report-draft.pdf
 	mkdir -p .pages/doxygen  ; cp -fr doxygen/html/. .pages/doxygen/
 	ghp-import -m "Updated pages" -p .pages
 
