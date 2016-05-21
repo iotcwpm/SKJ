@@ -120,10 +120,11 @@ plot_ribbon <- function(data,y,ylab='Value',xlab='Year'){
 }
 
 #' Function for plotting
-plot_ribbon_catch_status <- function(proc,start=1950){
+plot_ribbon_catch_status <- function(proc,start=1950,title=TRUE){
   temp <- ddply(subset(track,procedure %in% c(-1,proc) & year>=start),.(year,replicate),summarise,catch=sum(catches_total/1e3))
   p1 <- plot_ribbon(temp,y=quote(catch),ylab='Catch (kt)') +
-      labs(title=mp_sig(proc)) + theme(plot.title=element_text(size=rel(0.8)))
+      theme(plot.title=element_text(size=rel(0.8)))
+  if (title) p1 <- p1 + labs(title=mp_sig(proc))
   temp <- subset(track,quarter==3 & procedure %in% c(-1,proc) & year>=start)
   p2 <- plot_ribbon(temp,y=quote(biomass_status*100),ylab='Status (%B0)') + 
       geom_hline(yintercept=20,linetype=2,alpha=0.5) + 
