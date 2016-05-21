@@ -31,22 +31,28 @@ plot_ribbon_catch_status(
   min(subset(procedures,class=="Mald2016" & p10=='ref')$procedure)
 )
 
-whisker_mp_par_multi(
+plot_whisker_mp_par(
+  performances,
+  y='catches_total', ylab="Yield",
+  x='class', xlab='Class'
+)
+
+plot_whisker_mp_par_multi(
   subset(performances,p10=='ref*imax'),
   x='p5', xlab='Maximum fishing intensity (Imax)', xrefs=1
 )
 
-whisker_mp_par_multi(
+plot_whisker_mp_par_multi(
   subset(performances,p10=='ref*thresh'),
   x='p3', xlab='Threshold level (T, B/B0)', xrefs=0.4
 )
 
-whisker_mp_par_multi(
+plot_whisker_mp_par_multi(
   subset(performances,p10=='ref*closure'),
   x='p4', xlab='Closure level (C, B/B0)', xrefs=0.1
 )
 
-whisker_mp_par_multi(
+plot_whisker_mp_par_multi(
   subset(performances,p10=='ref*dmax'),
   x='p7', xlab='Maximum change in recommended catch (Dmax)', xrefs=0.3
 )
@@ -77,9 +83,17 @@ ggplot(subset(perfs,p8<10000),aes(x=p8)) +
 
 # Tradeoff plots
 
+plot_tradeoff(
+  perfs,
+  x = list(status='Status (average SB/SB0)'),
+  y = list(yield='Yield (average annual catch, kt)'),
+  colour = list(class='Class'),
+  shape = list(class='Class'),
+  bars=F
+)
 
 plot_tradeoff(
-  subset(perfs,class=="Mald2016" | class=="ConstCatch" | class=="ConstEffort"),
+  subset(perfs,class=="Mald2016" | class=="ConstEffort"),
   x = list(status='Status (mean SB/SB0)'),
   y = list(yield='Yield (mean annual catch, kt)'),
   colour = list(class='Class'),
@@ -88,16 +102,13 @@ plot_tradeoff(
 )
 
 plot_tradeoff(
-  subset(perfs,class=="Mald2016" | class=="ConstCatch" | class=="ConstEffort"),
+  subset(perfs,class=="Mald2016" | class=="ConstEffort"),
   x = list(safety20='Safety'),
   y = list(yield='Yield (mean annual catch, kt)'),
   colour = list(class='Class'),
   shape = list(class='Class'),
   xmin=0.75, bars=F
 )
-
-
-
 
 plot_tradeoff(
   subset(perfs,class=="Mald2016"),

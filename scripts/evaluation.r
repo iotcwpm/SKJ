@@ -1,6 +1,6 @@
-home <- '/home/nokome/trophia/code/ioskj'
+# Presentation
 
-source(file.path(home,'common.r'),local=T)
+source('common.r')
 
 # Read in output files
 load(c(
@@ -9,7 +9,7 @@ load(c(
 	'references',
 	'performances',
 	'track'
-),from='evaluate/output')
+),from='../evaluate/output')
 
 performances <- within(performances,{
   catches_total <- catches_total/1000*4
@@ -131,31 +131,8 @@ plot_ribbon_catch_status <- function(proc,start=1950){
   multiplot(p1,p2)
 }
 
-# Plot of tradeoff between two performance statistics
-plot_tradeoff <- function(data,x,y,colour,shape,xmin=0,ymin=0,bars=T){
-	data <- within(data,{
-		xm = data[,names(x)]
-		xsd = data[,paste0(names(x),'_sd')]
-		ym = data[,names(y)]
-		ysd = data[,paste0(names(y),'_sd')]
-		colour = factor(data[,names(colour)])
-		shape = factor(data[,names(shape)])
-	})
-	plot <- ggplot(data,aes(colour=colour,shape=shape)) +
-			geom_point(aes(x=xm,y=ym),size=3,alpha=0.9) +
-			geom_vline(xintercept=xmin,alpha=0) + 
-			geom_hline(yintercept=ymin,alpha=0) + 
-			scale_shape_manual(values=1:10) + 
-			labs(x=x[[1]],y=y[[1]],colour=colour[[1]],shape=shape[[1]])
-  if (bars) {
-      plot <- plot +
-        geom_segment(aes(x=xm-xsd,xend=xm+xsd,y=ym,yend=ym),alpha=0.5) +
-        geom_segment(aes(x=xm,xend=xm,y=ym-ysd,yend=ym+ysd),alpha=0.5)
-  }
-	plot
-}
-
-whisker_mp_par <- function(data,y,ylab,yrefs,x,xlab,xrefs){
+# Whisker plot of a performance statistic versus an MP parameter
+plot_whisker_mp_par <- function(data,y,ylab,yrefs,x,xlab,xrefs, show_mean=F){
   data$y <- data[,y]
   data$x <- data[,x]
   temp <- ddply(data,c('x'),function(data){
@@ -169,7 +146,7 @@ whisker_mp_par <- function(data,y,ylab,yrefs,x,xlab,xrefs){
       mean = mean(data$y)
     )
   })
-  plot <- ggplot(temp,aes(x=x)) 
+  plot <- ggplot(temp,aes(x=x))
   if (!missing(yrefs)) {
     plot <- plot + geom_hline(yintercept=yrefs,linetype=2,colour='grey')
   }
@@ -180,9 +157,9 @@ whisker_mp_par <- function(data,y,ylab,yrefs,x,xlab,xrefs){
     geom_point(aes(y=p50),size=4,colour='grey50') +
     geom_segment(aes(xend=x,y=p25,yend=p75),size=2,colour='grey50') + 
     geom_segment(aes(xend=x,y=p10,yend=p90),size=0.5,colour='grey50') +
-    geom_point(aes(y=mean),size=4,shape=2) + 
     geom_hline(yintercept=0,alpha=0) + 
     labs(y=ylab,x=xlab)
+  if (show_mean) plot <- plot + geom_point(aes(y=mean),size=4,shape=2)
   plot
 }
 
@@ -224,5 +201,28 @@ table_stat_summary <- function(data) {
   temp
 }
   
-  
+
+# Plot of tradeoff between two performance statistics
+plot_tradeoff <- function(data,x,y,colour,shape,xmin=0,ymin=0,bars=T){
+  data <- within(data,{
+    xm = data[,names(x)]
+    xsd = data[,paste0(names(x),'_sd')]
+    ym = data[,names(y)]
+    ysd = data[,paste0(names(y),'_sd')]
+    colour = factor(data[,names(colour)])
+    shape = factor(data[,names(shape)])
+  })
+  plot <- ggplot(data,aes(colour=colour,shape=shape)) +
+    geom_point(aes(x=xm,y=ym),size=3,alpha=0.9) +
+    geom_vline(xintercept=xmin,alpha=0) + 
+    geom_hline(yintercept=ymin,alpha=0) + 
+    scale_shape_manual(values=1:10) + 
+    labs(x=x[[1]],y=y[[1]],colour=colour[[1]],shape=shape[[1]])
+  if (bars) {
+    plot <- plot +
+      geom_segment(aes(x=xm-xsd,xend=xm+xsd,y=ym,yend=ym),alpha=0.5) +
+      geom_segment(aes(x=xm,xend=xm,y=ym-ysd,yend=ym+ysd),alpha=0.5)
+  }
+  plot
+}
   
