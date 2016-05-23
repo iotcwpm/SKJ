@@ -720,7 +720,7 @@ void evaluate(
 
 		// Write out every 10 replicates (so results stored if aborted)
 		// or if at end
-		if(replicate%10==0 or replicate==replicates-1){
+		if(replicate%100==0 or replicate==replicates-1){
 			procedures.write("evaluate/output/procedures.tsv");
 			samples.write("evaluate/output/samples.tsv");
 			references.write("evaluate/output/references.tsv");
