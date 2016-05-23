@@ -739,29 +739,6 @@ public:
         ref.tag = "ref";
         append(&ref);
 
-        // Alternative cases e.g. illustrating different
-        // shaped response curves
-        {
-            auto& proc = * new Mald2016(ref);
-            proc.dmax = 0.2;
-            append(&proc);
-        }
-        {
-            auto& proc = * new Mald2016(ref);
-            proc.dmax = 0.3;
-            append(&proc);
-        }
-        {
-            auto& proc = * new Mald2016(ref);
-            proc.dmax = 0.5;
-            append(&proc);
-        }
-        {
-            auto& proc = * new Mald2016(ref);
-            proc.dmax = 0.6;
-            append(&proc);
-        }
-
         // Alternative values of key Mald2016 control parameters
         for(double imax=0.5; imax<=1.5; imax+=0.1){
             auto& proc = * new Mald2016(ref);
@@ -787,6 +764,18 @@ public:
             proc.tag = "ref*dmax";
             append(&proc);
         }
+        for(int frequency=1; frequency<=10; frequency++){
+            auto& proc = * new Mald2016(ref);
+            proc.frequency = frequency;
+            proc.tag = "ref*frequency";
+            append(&proc);
+        }
+        for(double precision=0.05; precision<=0.5; precision+=0.05){
+            auto& proc = * new Mald2016(ref);
+            proc.precision = precision;
+            proc.tag = "ref*precision";
+            append(&proc);
+        }
 
         // Grid of Mald2016 control parameters
         for(auto frequency : {3}){
@@ -802,6 +791,8 @@ public:
                                 proc.closure = closure;
                                 proc.imax = imax;
                                 proc.cmax = cmax;
+                                proc.dmax = 0.3;
+                                proc.tag = "grid";
                                 append(&proc);
                             }
                         }
@@ -810,6 +801,8 @@ public:
             }
         }
 
+        /////////////////////////////////////////////////////////
+
         // Alternative values of constant catch
         for(double catches=100; catches<=1000; catches+=100){
             auto& proc = * new ConstCatch;
@@ -817,12 +810,16 @@ public:
             append(&proc);
         }
 
+        /////////////////////////////////////////////////////////
+
         // Alternative values of constant effort (%age of recent past)
         for(double effort=50; effort<=600; effort+=10){
             auto& proc = * new ConstEffort;
             proc.tae = effort;
             append(&proc);
         }
+
+        /////////////////////////////////////////////////////////
 
         // BRule
         {
@@ -852,6 +849,8 @@ public:
             }
         }
 
+        /////////////////////////////////////////////////////////
+
         // FRange
         {
             auto& proc = * new FRange;
@@ -877,6 +876,8 @@ public:
                 }
             }
         }
+
+        /////////////////////////////////////////////////////////
 
         // IRate
         {
