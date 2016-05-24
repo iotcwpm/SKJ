@@ -1,7 +1,5 @@
 # Presentation
 
-source('common.r')
-
 # Read in output files
 load(c(
 	'procedures',
@@ -9,7 +7,7 @@ load(c(
 	'references',
 	'performances',
 	'track'
-),from='../evaluate/output')
+),from='../../evaluate/output')
 
 performances <- within(performances,{
   catches_total <- catches_total/1000*4
@@ -164,12 +162,12 @@ plot_whisker_mp_par <- function(data,y,ylab,yrefs,x,xlab,xrefs, show_mean=F){
   plot
 }
 
-whisker_mp_par_multi <- function(data,x,xlab,xrefs) {
+plot_whisker_mp_par_multi <- function(data,x,xlab,xrefs) {
   multiplot(
-    whisker_mp_par(data, y='catches_total', ylab='Yield (Mean catch; kt)', yrefs=425, x=x, xlab=xlab, xrefs=xrefs),
-    whisker_mp_par(data, y='status_mean', ylab='Status (Mean %B0)', yrefs=c(20,40), x=x, xlab=xlab, xrefs=xrefs),
-    whisker_mp_par(data, y='safety_b20', ylab='Safety (Prop years B>20%B0)', x=x, xlab=xlab, xrefs=xrefs),
-    whisker_mp_par(data, y='stability_mapc', ylab='Stability (-MAPC, %)', x=x, xlab=xlab, xrefs=xrefs),
+    plot_whisker_mp_par(data, y='catches_total', ylab='Yield (Mean catch; kt)', yrefs=425, x=x, xlab=xlab, xrefs=xrefs),
+    plot_whisker_mp_par(data, y='status_mean', ylab='Status (Mean %B0)', yrefs=c(20,40), x=x, xlab=xlab, xrefs=xrefs),
+    plot_whisker_mp_par(data, y='safety_b20', ylab='Safety (Prop years B>20%B0)', x=x, xlab=xlab, xrefs=xrefs),
+    plot_whisker_mp_par(data, y='stability_mapc', ylab='Stability (-MAPC, %)', x=x, xlab=xlab, xrefs=xrefs),
     cols=2
   )
 }
@@ -202,9 +200,31 @@ table_stat_summary <- function(data) {
   temp
 }
   
+table_stat_summary_full <- function(data) {
+  temp <- rbind(
+    stat_summary(data,'status_mean','Status (Mean %B0)'),
+    stat_summary(data,'f_ratio','Fishing intensity (F/F40%B0)'),
+    stat_summary(data,'kobe_a*100','Kobe green (Years %)'),
+    stat_summary(data,'kobe_b*100','Kobe top-right (Years %)'),
+    stat_summary(data,'kobe_c*100','Kobe red (Years %)'),
+    stat_summary(data,'kobe_d*100','Kobe bottom-left (Years %)'),
+    stat_summary(data,'safety_b20','Safety (Prop. years B>20%B0)'),
+    stat_summary(data,'catches_total','Yield (Mean catch; kt)'),
+    stat_summary(data,'(1-catches_lower)*100','Yield (Years catch>=425kt %)'),
+    stat_summary(data,'-stability_mapc','Stability (MAPC %)'),
+    stat_summary(data,'catches_shut*100','Probability of shutdown (Years catch<1kt %)'),
+    stat_summary(data,'control_downs*100','Stability (Years TAC decrease %)'),
+    stat_summary(data,'control_ups*100','Stability (Years TAC increase %)'),
+    stat_summary(data,'cpue_mean_we_ps','Western purse seine CPUE (relative to 2000-2015)'),
+    stat_summary(data,'cpue_mean_ma_pl','Maldives pole and line CPUE (relative to 2000-2015)'),
+    stat_summary(data,'cpue_mean_ea_gn','Eastern gill net CPUE (relative to 2000-2015)')
+  )
+  row.names(temp) <- NULL
+  temp
+}
 
 # Plot of tradeoff between two performance statistics
-plot_tradeoff <- function(data,x,y,colour,shape,xmin=0,ymin=0,bars=T){
+plot_tradeoff <- function(data, x, y, colour, shape, xmin=NA, ymin=NA, bars=T, ref=NULL){
   data <- within(data,{
     xm = data[,names(x)]
     xsd = data[,paste0(names(x),'_sd')]
@@ -215,15 +235,31 @@ plot_tradeoff <- function(data,x,y,colour,shape,xmin=0,ymin=0,bars=T){
   })
   plot <- ggplot(data,aes(colour=colour,shape=shape)) +
     geom_point(aes(x=xm,y=ym),size=3,alpha=0.9) +
-    geom_vline(xintercept=xmin,alpha=0) + 
-    geom_hline(yintercept=ymin,alpha=0) + 
     scale_shape_manual(values=1:10) + 
     labs(x=x[[1]],y=y[[1]],colour=colour[[1]],shape=shape[[1]])
+  if (!is.na(xmin)) {
+    plot <- plot + xlim(xmin,NA)
+  }
+  if (!is.na(ymin)) {
+    plot <- plot + ylim(ymin,NA)
+  }
   if (bars) {
     plot <- plot +
       geom_segment(aes(x=xm-xsd,xend=xm+xsd,y=ym,yend=ym),alpha=0.5) +
       geom_segment(aes(x=xm,xend=xm,y=ym-ysd,yend=ym+ysd),alpha=0.5)
   }
+  if (!is.null(ref)) {
+    plot <- plot + geom_point(data=within(ref,{
+      x <- ref[,names(x)]
+      y <- ref[,names(y)]
+    }), aes(x=x,y=y), shape=16, size=4, alpha=0.5)
+  }
   plot
 }
-  
+
+plot_tradeoff_multi <- function(data, x, y, first, second, bars=F, ref=NULL){
+  multiplot(
+    plot_tradeoff(data, x, y, first$colour, first$shape, bars=bars, ref=ref),
+    plot_tradeoff(data, x, y, second$colour, second$shape, bars=bars, ref=ref)
+  )
+}
