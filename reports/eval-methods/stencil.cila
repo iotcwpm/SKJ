@@ -125,6 +125,14 @@ This section describes the methods used to evaluate alternative candidate manage
 				td |C|
 				td Proportion of years that |C==0|
 
+	Additional performance statistics have been added as requested by stakeholders:
+
+	- Yield (Years catch>=425kt %) : the percentage of years in which catches are above the nominal baseline of 425kt per annum.
+
+	- Stability (Years decrease %) : the percentage of years in which there is an decrease in the recommended catch limit (note that the changes in catch limit only occur every 3 years)
+
+	- Stability (Years increase %) : the percentage of years in which there is an increase in the recommended catch limit (note that the changes in catch limit only occur every 3 years)
+
 > Simulation methods and terminology
 
 	This section provides an overview of the methods and terminology used for evaluating management procedures (i.e. management procedure evaluation, MPE). We provide examples of the types of figures and tables that are used in the following, more detailed, descriptions of evaluation results for each class of management procedure.
