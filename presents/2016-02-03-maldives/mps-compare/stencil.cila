@@ -5,7 +5,7 @@ r
 	if(file.exists('ioskj-linux.tar.gz')){
 		system('tar xf ioskj-linux.tar.gz')
 	}
-	source('ioskj/ioskj.r')
+	source('ioskj/scripts/ioskj.r')
 
 style
 	#title {
