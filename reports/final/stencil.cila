@@ -61,21 +61,37 @@ Nokome Bentley{sup 1} and M. Shiham Adam{sup 2}
 		include ../condition-feasible complete
 			delete #title
 
-	> Evaluations
-
-		include ../eval-methods complete
-			delete #title
-
 	> Management procedures
 
 		include ../procedures complete
 			delete #title
 
+	> Evaluation methods
 
-	if 0
-		> Example evaluations
+		include ../eval-methods complete
+			delete #title
 
-			include ../../evaluate/display complete
+	> Evaluation results
+
+		> Comparision of classes
+
+			TODO
+
+		> IRate
+
+			TODO
+
+		> FRange
+
+			TODO
+
+		> BRule
+
+			TODO
+
+		> Mald2016
+
+			include ../eval-mald2016 complete
 				delete #title
 
 
