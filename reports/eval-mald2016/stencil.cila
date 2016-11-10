@@ -1,0 +1,204 @@
+#mode free
+
+#title Indian Ocean skipjack model : evaluations of the Maldives 2016 HCR
+
+r
+	source('../../scripts/common.r',local=T)
+  source('../../scripts/evaluation.r',local=T)
+
+This section summarizes the performance of the Mald2016 management procedure. The suggested base control parameter values for this MP are:
+
+- Maximum fishing intensity |I_{max} = 100%|
+- Threshold level |T = 40%|
+- Safety (closure) level |X = 10%|
+- Maximum TAC |C_{max} = 900,000t|
+- Maximum change in TAC |D_{max} = 30%|
+
+The resulting performance statistics given this set of control parameters are provided in {refer #table-mald2016-perf-stats} and catch and biomass trajectories are shown in {refer #figure-mald2016-trajs}.
+
+figure #figure-mald2016-trajs
+  r format png size 17x20cm
+    plot_ribbon_catch_status(
+      min(subset(procedures,class=="Mald2016" & p10=='ref')$procedure),
+      start=1980, title=F
+    )
+  figcaption
+    Projected catch and stock status trajectories for the Mald2016 management procedure with the 
+    "base case", suggested values for control parameters. The black line indicates the median and the grey ribbons the 10-90th and 25-75th percentiles. The coloured lines represent three individual simulations which correspond to the 25th, 50th and 75th percentiles of stock status over the projection period under a constant effort strategy.
+
+r
+  temp <- table_stat_summary_full(
+    subset(performances,class=='Mald2016' & p10=='ref')
+  )
+  temp <- format(temp, digits=2)
+
+table #table-mald2016-perf-stats
+  caption 
+    Performance statistics values for the Mald2016 management procedure with the suggested base control parameter values. Performance statistics relate to the first 10 years of simulations 2015 to 2025. See previous section for 
+  thead
+    tr
+      th
+      th Performance statistic
+      th
+      th [colspan=5] Percentiles
+    tr
+      th
+      th
+      th Mean
+      th 10th
+      th 25th
+      th 50th
+      th 75th
+      th 90th
+  tbody for row in seq(1,nrow(temp))
+    tr for col in seq(1,ncol(temp))
+      td text temp[row,col]
+
+This section examines the sensitivity of the performance statistics to alternative values of control parameters for the Mald2016 management procedures. This was done by individually varying each of the control parameters whilst keeping the remainder at their base value. In the following figures, distributions for four key performance statistics are presented at each level of each control parameter.
+
+figure
+  r format png size 17x23cm
+    plot_whisker_mp_par_multi(
+      subset(performances,p10=='ref*imax'),
+      x='p5', xlab='Maximum fishing intensity (Imax)', xrefs=1
+    )
+  figcaption
+    Key performance statistics versus the maximum fishing intensity (Imax) control parameter
+
+figure
+  r format png size 17x23cm 
+    plot_whisker_mp_par_multi(
+      subset(performances,p10=='ref*thresh'),
+      x='p3', xlab='Threshold level (T, B/B0)', xrefs=0.4
+    )
+  figcaption
+    Key performance statistics versus the threshold level (T) control parameter
+
+figure
+  r format png size 17x23cm
+    plot_whisker_mp_par_multi(
+      subset(performances,p10=='ref*closure'),
+      x='p4', xlab='Closure level (C, B/B0)', xrefs=0.1
+    )
+  figcaption
+    Key performance statistics versus the safety (closure) level (X) control parameter
+
+figure
+  r format png size 17x23cm 
+    plot_whisker_mp_par_multi(
+      subset(performances,p10=='ref*dmax'),
+      x='p7', xlab='Maximum change in recommended catch (Dmax)', xrefs=0.3
+    )
+  figcaption
+    Key performance statistics versus the maximum change (Dmax) control parameter.
+    
+figure
+  r format png size 17x23cm 
+    plot_whisker_mp_par_multi(
+      subset(performances,p10=='ref*frequency'),
+      x='p1', xlab='Frequency of operation', xrefs=3
+    )
+  figcaption
+    Key performance statistics versus the frequency of operation (assessments) control parameter.
+    
+figure
+  r format png size 17x23cm 
+    plot_whisker_mp_par_multi(
+      subset(performances,p10=='ref*precision'),
+      x='p2', xlab='Precision of assessment estimates', xrefs=0.1
+    )
+  figcaption
+    Key performance statistics versus the precision of assessments estimate used by the management procedure. In other results presented, it is assumed that the precision of assessment estimates is 0.1.
+
+
+In addition to "one-by-one" changes in each of the control parameters, a grid of values was evaluated using every combinations of the following set of values:
+
+  - Maximum fishing intensity |Imax =| {0.9, 1.0, 1.1}
+  - Threshold level |T =| {0.3, 0.4, 0.5}
+  - Safety (closure) level |X =| {0.0, 0.1, 0.2}
+  - Maximum TAC |C_{max} =| {700000, 800000, 900000}
+
+This allows for identification of combinations of parameters that may be preferred over the combination of parameters presente din the suggested base set.
+  
+figure
+  r format png size 17x20cm
+    plot_tradeoff_multi(
+      subset(perfs,class=="Mald2016" & p10=="grid"),
+      x = list(status='Status (mean %B0)'),
+      y = list(yield='Yield (mean annual catch, kt)'),
+      first = list(
+        colour = list(p3='Thresh.'),
+        shape = list(p4='Closure')
+      ),
+      second = list(
+        colour = list(p6='Cmax'),
+        shape = list(p5='Imax')
+      ), 
+      bars=F,
+      ref=subset(perfs,class=="Mald2016" & p10=="ref")
+    )
+  figcaption
+    Tradeoff plot between stock status (mean %BO) and yield across the grid of alternative control parameter values. Each panel shows exactly the same points but with different mappings between color and shape and control parameters. The black filled circle indicates the suggested base set of control parameter values.
+    
+figure
+  r format png size 17x20cm
+    plot_tradeoff_multi(
+      subset(perfs,class=="Mald2016" & p10=="grid"),
+      x = list(kobe_a='Status (prob. in Kobe green)'),
+      y = list(yield='Yield (mean annual catch, kt)'),
+      first = list(
+        colour = list(p3='Thresh.'),
+        shape = list(p4='Closure')
+      ),
+      second = list(
+        colour = list(p6='Cmax'),
+        shape = list(p5='Imax')
+      ), 
+      bars=F,
+      ref=subset(perfs,class=="Mald2016" & p10=="ref")
+    )
+  figcaption
+    Tradeoff plot between stock status (probability of being in Kobe green quadrant) and yield across the grid of alternative control parameter values. Each panel shows exactly the same points but with different mappings between color and shape and control parameters. The black filled circle indicates the suggested base set of control parameter values.
+
+
+figure
+  r format png size 17x20cm
+    plot_tradeoff_multi(
+      subset(perfs,class=="Mald2016" & p10=="grid"),
+      x = list(safety20='Safety (prob. B > 20%B0)'),
+      y = list(yield='Yield (mean annual catch, kt)'),
+      first = list(
+        colour = list(p3='Thresh.'),
+        shape = list(p4='Closure')
+      ),
+      second = list(
+        colour = list(p6='Cmax'),
+        shape = list(p5='Imax')
+      ), 
+      bars=F,
+      ref=subset(perfs,class=="Mald2016" & p10=="ref")
+    )
+  figcaption
+    Tradeoff plot between safety (probability that stock status is greater than 20%B0) and yield across the grid of alternative control parameter values. Each panel shows exactly the same points but with different mappings between color and shape and control parameters. The black filled circle indicates the suggested base set of control parameter values.
+
+
+figure
+  r format png size 17x20cm
+    plot_tradeoff_multi(
+      subset(perfs,class=="Mald2016" & p10=="grid"),
+      x = list(stability='Stability (-MAPC %)'),
+      y = list(yield='Yield (mean annual catch, kt)'),
+      first = list(
+        colour = list(p3='Thresh.'),
+        shape = list(p4='Closure')
+      ),
+      second = list(
+        colour = list(p6='Cmax'),
+        shape = list(p5='Imax')
+      ), 
+      bars=F,
+      ref=subset(perfs,class=="Mald2016" & p10=="ref")
+    )
+  figcaption
+    Tradeoff plot between stability (mean absolute proportional change in catch) and yield across the grid of alternative control parameter values. Each panel shows exactly the same points but with different mappings between color and shape and control parameters. The black filled circle indicates the suggested base set of control parameter values.
+

@@ -1,0 +1,17 @@
+label	mean	p10	p50	p90
+Status (Mean %B0)	 59.335	 36.317	 60.035	 82.03
+Fishing intensity (F/F40%B0)	  0.755	  0.123	  0.599	  1.47
+Kobe green (Years %)	 67.797	 25.581	 72.093	100.00
+Kobe top-right (Years %)	 17.613	  0.000	  0.000	 62.79
+Kobe red (Years %)	  5.802	  0.000	  0.000	 20.93
+Kobe bottom-left (Years %)	  8.787	  0.000	  0.000	 32.56
+Safety (Prop. years B>20%B0)	 95.594	 81.395	100.000	100.00
+Yield (Mean catch; kt)	519.587	233.446	573.176	742.28
+Yield (Years catch>=425kt %)	 61.539	  0.000	 81.395	100.00
+Stability (MAPC %)	 17.665	 11.276	 16.764	 24.42
+Probability of shutdown (Years catch<1kt %)	  0.255	  0.000	  0.000	  0.00
+Stability (Years TAC decrease %)	  8.092	  0.000	  0.000	 25.00
+Stability (Years TAC increase %)	 14.875	  0.000	 12.500	 25.00
+Western purse seine CPUE (relative to 2000-2015	  0.933	  0.531	  0.925	  1.35
+Maldives pole and line CPUE (relative to 2000-2015	  0.970	  0.589	  0.948	  1.38
+Eastern gill net CPUE (relative to 2000-2015	  0.945	  0.548	  0.933	  1.38
