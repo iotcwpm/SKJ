@@ -58,10 +58,12 @@ plot_whisker_mp_par_multi(
 )
 
 
-temp <- table_stat_summary(
+temp <- table_stat_summary_full(
   subset(performances,class=='Mald2016' & p10=='ref')
 )
 write.table(format(temp,digits=3),file='temp.txt',quote=F,row.names=F,sep='\t')
+
+
 
 
 
@@ -110,22 +112,50 @@ plot_tradeoff(
   xmin=0.75, bars=F
 )
 
-plot_tradeoff(
-  subset(perfs,class=="Mald2016"),
-  x = list(status='Status (mean SB/SB0)'),
+
+multiplot(
+  plot_tradeoff(
+    subset(perfs,class=="Mald2016" & p10=="grid"),
+    x = list(status='Status (mean %B0)'),
+    y = list(yield='Yield (mean annual catch, kt)'),
+    colour = list(p3='Thresh.'),
+    shape = list(p4='Closure'),
+    bar=F
+  ),
+  plot_tradeoff(
+    subset(perfs,class=="Mald2016" & p10=="grid"),
+    x = list(status='Status (mean %B0)'),
+    y = list(yield='Yield (mean annual catch, kt)'),
+    shape = list(p5='Imax'),
+    colour = list(p6='Cmax'),
+    bar=F
+  )
+)
+
+plot_tradeoff_multi(
+  subset(perfs,class=="Mald2016" & p10=="grid"),
+  x = list(status='Status (mean %B0)'),
   y = list(yield='Yield (mean annual catch, kt)'),
-  colour = list(p7='Cmax'),
-  shape = list(p3='Theshold'),
-  bars=F,xmin=50,ymin=400
-) + geom_vline(xintercept=c(20,40),linetype=2,alpha=0.3)
+  first = list(
+    colour = list(p3='Thresh.'),
+    shape = list(p4='Closure')
+  ),
+  second = list(
+    colour = list(p6='Cmax'),
+    shape = list(p5='Imax')
+  ), 
+  bars=F,
+  ref=subset(perfs,class=="Mald2016" & p10=="ref")
+)
 
 plot_tradeoff(
-  subset(perfs,class=="Mald2016"),
+  subset(perfs,class=="Mald2016" & p10=="grid"),
   x = list(kobe_a='Status P(Kobe green)'),
   y = list(yield='Yield (mean annual catch, kt)'),
-  colour = list(p6='Imax'),
+  colour = list(p5='Imax'),
   shape = list(p3='Theshold'),
-  xmin=0.5
+  xmin=0.5,ymin=400,
+  bar=F
 )
 
 plot_tradeoff(
