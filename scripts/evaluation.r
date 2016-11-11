@@ -1,4 +1,9 @@
-# Presentation
+# Presentation of evaluation results
+
+# An "include guard" to prevent this file being sourced multiple
+# times in multiple reports that are merged into one
+if(!exists('evaluation_r_include_guard')) {
+evaluation_r_include_guard <- TRUE
 
 # Read in output files
 load(c(
@@ -263,3 +268,5 @@ plot_tradeoff_multi <- function(data, x, y, first, second, bars=F, ref=NULL){
     plot_tradeoff(data, x, y, second$colour, second$shape, bars=bars, ref=ref)
   )
 }
+
+} # end 'include guard'
