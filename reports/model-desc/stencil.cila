@@ -1,13 +1,12 @@
+#mode free
 #title Indian Ocean skipjack tuna model : Model description
 
 r
 	source('../../scripts/common.r',local=T)
 
-The following convention is used for assigning symbols in the following model equations: Greek lower case letters (e.g. |alpha| for the intercept of the length-weight relationship) for model parameters, Roman capital letters (e.g. |N| for numbers) for model variables, and Roman lower case letters for variable or parameter array subscripts (e.g. |N_{r,a,s}|, |phi_{r}|). Using this convention means that in some instances model parameters are given different symbols than are usually used. However, it has the advantage of clearly distinguishing model parameters (which are independent of other parameters or variables and that are usually estimated) from model variables (which are dependent upon parameter values).
+The following convention is used for assigning symbols in the following model equations: Greek lower case letters for model parameters (e.g. |alpha| for the intercept of the length-weight relationship), Roman capital letters for model variables (e.g. |N| for numbers), and Roman lower case letters for variable or parameter array subscripts (e.g. |N_{r,a,s}|, |phi_{r}|). Using this convention means that in some instances model parameters are given different symbols than are usually used. However, it has the advantage of clearly distinguishing model parameters (i.e. values which are independent of other values in the model and are usually estimated) from model variables (i.e. values which are dependent upon parameters and the model dynamics). The subscript for time, |t|, is usually omitted from the model equations below except where it is necessary to be explicit regarding the time step involved.
 
-The subscript for time, |t|, is usually omitted from the model equations below except where it is necessary to be explicit regarding the time step involved.
-
-As well as documenting the current structure of the model, this section also notes where potential changes could be made.  Usually, these potential changes would make the model more complex. Our approach has been to start simple and add complexity where necessary, in particular, in response to comments and suggestions from IOTC working parties.
+As well as documenting the current structure of the model, this section also notes where potential changes could be made.  Usually, these potential changes would make the model more complex. Our approach has been to start simple and add complexity where necessary, in particular, in response to comments and suggestions from IOTC Working Parties.
 
 > Dimensions
 
@@ -19,11 +18,13 @@ As well as documenting the current structure of the model, this section also not
 
 	> Regions
 
-		Four regions (|r|) are defined, South-West (|sw|), North-West (|mw|), Maldives (|ma|) and East (|ea|) (@figure-regions). The term "region" is used in preference to "area" because using the latter would confound the |a| subscript which is also used for age. 
+		Three regions (|r|) are defined, West (|we|), Maldives (|ma|) and East (|ea|) (@figure-regions). The term "region" is used in preference to "area" because using the latter would confound the |a| subscript which is also used for age. 
 
 		Initially three regions were defined mostly on the basis of differences in the main fishing gears used in each: purse-seine in the west, pole-and-line in the Maldives, and gill-net in the east. Although the Maldives is a small region spatially, it accounts for a large proportion of the total catch (see later sections). A three region structure also provided alignment between the model structure and the two available abundance indices, CPUE from the western purse seine fleet and CPUE from the Maldive pole-and-line fleet.
 
-		There is little information available on biological stock definitions for Indian Ocean skipjack tuna. However, based on what information is available, Fonteneau (2014), suggested four regions be used for future models, with the western region divided into northern and southern regions at the equator. Following this suggestion, in 2015, the western region was divided into separate south-west (SW) and north-west (NW) regions. The spatial distribution of catches by the EU purse seine fleet shows a strong discontinuity of the catch distribution at -10 degrees south (@figure-regions) so the western region was divided on this basis rather than at the equator.
+		There is little information available on biological stock definitions for Indian Ocean skipjack tuna. However, based on what information is available, Fonteneau (2014), suggested four regions be used, with the western region divided into northern and southern regions at the equator. Following this suggestion, in 2015, the western region was divided into separate south-west (SW) and north-west (NW) regions. The spatial distribution of catches by the EU purse seine fleet shows a strong discontinuity of the catch distribution at -10 degrees south (@figure-regions) so the western region was divided on this basis rather than at the equator.
+
+		However, after this change was made, and further analyses were done the WPM concluded that there was little basis for separating the SW region (dominated by highly seasonal catches in the Mozambique channel) and no reliable information for estimating movement between SW and NW. Thus, in ealry 2016, the model was reverted to three regions.
 
 	> Fish age and size
 
@@ -61,11 +62,8 @@ As well as documenting the current structure of the model, this section also not
 				td |r|
 				td Region subscript
 			tr
-				td |sw|
-				td South-west region
-			tr
-				td |nw|
-				td North-west region
+				td |we|
+				td West region
 			tr
 				td |ma|
 				td Maldives region
@@ -156,7 +154,7 @@ As well as documenting the current structure of the model, this section also not
 					theme(legend.position="top")
 			)
 		figcaption
-			Map of the four regions defined for the model and the spatial distribution of average annual catch by method, 2005-2014. The position of catches from the western purse-seine and the Maldive pole-and-line fisheries is based on reported latitude and longitudes. The position of other catches is indicative only and only shown for the main coastal nations catching skipjack - Indonesia, Sri Lanka, India, Pakistan and Iran.
+			Map of the three regions defined for the model and the spatial distribution of average annual catch by method, 2005-2014. The position of catches from the western purse-seine and the Maldive pole-and-line fisheries is based on reported latitude and longitudes. The position of other catches is indicative only and only shown for the main coastal nations catching skipjack - Indonesia, Sri Lanka, India, Pakistan and Iran.
 
 > Population dynamics
 
@@ -190,26 +188,16 @@ As well as documenting the current structure of the model, this section also not
 
 			|mu = lambda (1-e^(-kappa_2(a-a0))(1+e^(-phi*(a-a0-delta))/(1+e^(delta*phi)))^(-(kappa_2-kappa_1)/phi))|
 
-		where |a0| age 0, |phi| is the steepness, |delta| is the inflection
-
-		The standard deviation of length at age is based ,
-
-			|cv = growth_cv_0 + (growth_cv_old - growth_cv_0)/24|
-			|sd = mu*zeta|
+		where |a0| age 0, |phi| is the steepness, |delta| is the inflection.
 
 		At present, it is assumed that growth is the same in all three regions. It is likely that in fact growth differs between regions in which case some, or all, of the growth parameters could vary by region e.g |lambda_{r}|.
 
 
 	> Weight and maturity
 
-		|L_s = 2s+1|
-
-
 		The weight of fish of size |s| is modelled as an exponential curve,
 
 			|W_s = alpha (L_s)^beta|
-
-			|W_a = sum_{s} W_s P_{a,s}|
 
 		Currently, the model assumes that the parameters of the length-weight relationship are the same in the three regions. It is possible that condition factors consistently vary among regions, in which case these parameters could be made to vary by region i.e. |alpha_{r}, beta_{r}|
 
@@ -262,6 +250,8 @@ As well as documenting the current structure of the model, this section also not
 			|D_s = e^{-0.25 M_s}|
 
 	> Movement
+
+		[This section has not been edited to account for the reversion to a three region model (see above)]
 
 		The movement of fish among the four regions can be described using a matrix of the proportion of fish moving from region |dot(r)| to region |r| in one quarter. This matrix potentially has twelve parameters (since the parameters are proportions the diagonal elements are determined from the other elements in the row). To reduce the number of parameters, we make some simplifying assumptions:
 

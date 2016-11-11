@@ -1,8 +1,11 @@
 #title Indian Ocean skipjack model : management objectives, performance statistics and performance measures
-
 #mode free
 
-This section describes the methods used to evaluate alternative candidate management procedures.
+r
+	#source('../../scripts/common.r',local=T)
+	#source('../../scripts/evaluation.r',local=T)
+
+This section describes the methods used to evaluate alternative candidate management procedures. Evaluation results are provided in the following section.
 
 > Management objectives, performance measures, performance statistics
 
@@ -25,9 +28,7 @@ This section describes the methods used to evaluate alternative candidate manage
 		tbody
 
 			tr
-				td Status : maximize stock status
-				td
-				td
+				td[colspan=3] {b Status : maximize stock status}
 			tr
 				td Mean spawner biomass relative to pristine
 				td |B//B_0|
@@ -58,9 +59,7 @@ This section describes the methods used to evaluate alternative candidate manage
 				td Proportion of years that |B<B_{tar} & F>F_{tar}|
 
 			tr
-				td Safety : maximize the probability of remaining above low stock status (i.e. minimize risk)
-				td
-				td
+				td[colspan=3] {b Safety : maximize the probability of remaining above low stock status (i.e. minimize risk)}
 			tr
 				td Probability of spawner biomass being above 20% of |B_0|
 				td |B|
@@ -71,9 +70,7 @@ This section describes the methods used to evaluate alternative candidate manage
 				td Proportion of years that |B gt 0.1B_0|
 
 			tr
-				td Yield : maximize catches across regions and gears
-				td
-				td
+				td[colspan=3] {b Yield : maximize catches across regions and gears}
 			tr
 				td Mean catch
 				td |C|
@@ -92,9 +89,7 @@ This section describes the methods used to evaluate alternative candidate manage
 				td Mean over years
 
 			tr
-				td Abundance : maximize catch rates to enhance fishery profitability
-				td
-				td
+				td[colspan=3] {b Abundance : maximize catch rates to enhance fishery profitability}
 			tr
 				td Mean relative catch rates for western purse siene
 				td |A_{we,ps}|
@@ -109,9 +104,7 @@ This section describes the methods used to evaluate alternative candidate manage
 				td Geometric mean over years
 
 			tr
-				td Stability : maximize stability in catches to reduce commercial uncertainty
-				td
-				td
+				td[colspan=3] {b Stability : maximize stability in catches to reduce commercial uncertainty}
 			tr
 				td Mean absolute proportional change (MAPC) in catch
 				td |C|
@@ -127,11 +120,11 @@ This section describes the methods used to evaluate alternative candidate manage
 
 	Additional performance statistics have been added as requested by stakeholders:
 
-	- Yield (Years catch>=425kt %) : the percentage of years in which catches are above the nominal baseline of 425kt per annum.
+	- Yield (years catch>=425kt %) : the percentage of years in which catches are above the nominal baseline of 425kt per annum.
 
-	- Stability (Years decrease %) : the percentage of years in which there is an decrease in the recommended catch limit (note that the changes in catch limit only occur every 3 years)
+	- Stability (years where decrease %) : the percentage of years in which there is an decrease in the recommended catch limit (note that the changes in catch limit only occur every 3 years)
 
-	- Stability (Years increase %) : the percentage of years in which there is an increase in the recommended catch limit (note that the changes in catch limit only occur every 3 years)
+	- Stability (years where increase %) : the percentage of years in which there is an increase in the recommended catch limit (note that the changes in catch limit only occur every 3 years)
 
 > Simulation methods and terminology
 
@@ -140,10 +133,6 @@ This section describes the methods used to evaluate alternative candidate manage
 	Each _evaluation_ of a management procedure is based on a _replicate_. Each replicate incorporates _parameter uncertainty_ through the random selection of a set of model parameters as well as _stochastic uncertainty_ through the random generation of _process uncertainty_ (e.g. recruitment variation) and _observation uncertainty_ (e.g. CPUE error). The parameter set for a replicate is drawn from all the possible parameter sets determined from model conditioning. For each evaluation, the particular management procedure is used to determine future simulated management which affects catches, which in turn affects stock biomass and other _performance measures_ ({refer #figure-one-rep-one-eval}). 
 
 	The primary purpose of MPE is not to provide forecats of catch, biomass or other performance measures. Rather, it is to compare the performance, relative to management objectives, of alternative candidate management procedures. Thus, for each replicate, each of the candidate management procedures is evaluated ({refer #figure-one-rep-mult-evals}). This allows us to compare the performance of alternative MPs under exactly the same set of assumptions. Notice in ({refer #figure-one-rep-mult-evals}) that the biomass trajectories resulting from using alternative MPs often fluctuate in parallel. This is due to the same recruitment variations being used for each evaluation.
-
-	r
-		source('../../scripts/common.r',local=T)
-		source('../../scripts/evaluation.r',local=T)
 
 	figure #figure-one-rep-one-eval
 		r format png size 17x15cm
@@ -184,7 +173,7 @@ This section describes the methods used to evaluate alternative candidate manage
 			Catch and biomass trajectories from multiple evaluations of multiple management procedure using a single parameter replicates. Each of the coloured future trajectories arises from applying one candidate management procedure.
 
 
-	To be able to assess and compare the robustness of management procedures to uncertainty it is necessary to run evaluations for many replicates. {refer #figure-mult-rep} shows one hundred evaluations, each based on a different replicate, for a single management procedure. When presenting the trajectories from muliple evaluations, it is usually easier to ascertain both the central tendency and the variability of trajectories using quantile ribbons ({refer #figure-ribbons}). The ribbons show the bands where 50%, 80% and 90% of trajectories fall. In addition, to indicate the expected inter-annual variability, the trajectories from three example replicates are shown separately. These example replicates were chosen as those that produced the 20th (red), 50th (blue) and 80th (green) percentile of average biomass of spawners under the constant effort management procedure.
+	To be able to assess and compare the robustness of management procedures to uncertainty it is necessary to run evaluations for many replicates. {refer #figure-mult-rep} shows one hundred evaluations, each based on a different replicate, for a single management procedure. When presenting the trajectories from muliple evaluations, it is usually easier to ascertain both the central tendency and the variability of trajectories using quantile ribbons ({refer #figure-ribbons}). The ribbons show the bands within which 50% and 80% of trajectories fall. In addition, to indicate the expected inter-annual variability, the trajectories from three example replicates are shown separately. These example replicates were chosen as those that produced the 20th (red), 50th (blue) and 80th (green) percentile of average biomass of spawners under the constant effort management procedure.
 
 	figure #figure-mult-rep
 		r format png size 17x15cm

@@ -1,93 +1,88 @@
+#mode free
 #title Indian Ocean skipjack model : management procedure evaluations
 
 r
-	source('../../evaluation.r',local=T)
+  #source('../../scripts/common.r',local=T)
+  #source('../../scripts/evaluation.r',local=T)
+
+In this section we provide a general comparison of the performance of the various classes of management procedures developed during this study relative to the performance statistics introduced above. In the following section we provide more detailed result for the `Mald2016` mangement procedure which was the focus of interest for evaluations.
+
+The following figures illustrate the trade offs between pairs of performance statistics representing key management objectives:
+
+ul
+	li {refer #figure-yield-status-all} : yield v status
+	li {refer #figure-yield-safety-all} : yield v safety
+	li {refer #figure-yield-stability-all} : yield v stability
+
+figure #figure-yield-status-all
+	r format png size 17x10cm
+		print(plot_tradeoff(
+			perfs,
+			x = list(yield='Yield (mean annual catch, kt)'),
+			y = list(status='Status (mean of S/S0)'),
+			colour = list(class='Class'),
+			shape = list(class='Class')
+		))
+	figcaption
+		Trade-off between yield and status related performance statistics across all the management procedures evaluated. Each point represents the mean of the performance statistic over all replicate simulations. The horizontal and vertical lines represent one standard deviation o
+
+figure #figure-yield-safety-all
+	r format png size 17x10cm
+		print(plot_tradeoff(
+			perfs,
+			x = list(yield='Yield (mean annual catch, kt)'),
+			y = list(safety20='Safety (P(B>0.2B0))'),
+			colour = list(class='Class'),
+			shape = list(class='Class')
+		))
+	figcaption
+		Trade-off between yield and safety related performance statistics across all the management procedures evaluated. See @figure-yield-safety-all for more details.
+
+figure #figure-yield-stability-all
+	r format png size 17x10cm
+		print(plot_tradeoff(
+			perfs,
+			x = list(yield='Yield (mean annual catch, kt)'),
+			y = list(stability='Stability (-MAPC)'),
+			colour = list(class='Class'),
+			shape = list(class='Class')
+		))
+	figcaption
+		Trade-off between yield and stability related performance statistics across all the management procedures evaluated. See @figure-yield-safety-all for more details.
 
 
-section
-	h1 Results
+There is an unsurprising performance trade off between yield and abundance ({refer #figure-yield-abundance-all}). In general, higher catches lead to higher exploitation rates and reduced biomass which in turn leads to reduced catch rates. Generally there is a high correlation between the abundance performance statistics for each of the main fisheries ({refer #figure-abundance-corrs}). Note however, that some MPs, particularly those resulting in overall higher abundance do result in higher relative abundance for M-PL and E-GN. This is most likely a result of the lower exploitation rates under these MPs which in turn creates an increase in the biomass of larger sized skipjack which are more fully selected by these fisheries.
 
-	section
-		h1 Comparison of classes of management procedures
+figure #figure-yield-abundance-all
+	r format png size 17x10cm
+		print(plot_tradeoff(
+			perfs,
+			x = list(yield='Yield (mean annual catch, `000 t)'),
+			y = list(cpue_ma_pl='Abundance M-PL'),
+			colour = list(class='Class'),
+			shape = list(class='Class')
+		))
+	figcaption
+		Trade-off between yield and abundance related performance statistics (here the CPUE for the Maldive pole and line fishery) across all the management procedures evaluated.
 
-		In this section we provide an overview of the performance of the three classes of management procedures evaluated. This section is also used to introduce the summary figures and tables used in following sections.
+figure #figure-abundance-corrs
+	r format png size 17x17cm
+		p1 = ggplot(perfs,aes(x=cpue_we_ps,y=cpue_ma_pl,colour=class,shape=class)) + 
+				geom_point(size=3) + 
+				geom_abline(linetype=3) + 
+				labs(x='W-PS CPUE',y='M-PL CPUE')
+		p2 = ggplot(perfs,aes(x=cpue_ma_pl,y=cpue_ea_gn,colour=class,shape=class)) + 
+				geom_point(size=3) + 
+				geom_abline(linetype=3) + 
+				labs(x='M-PL CPUE',y='E-GN CPUE')
+		multiplot(p1,p2)
+	figcaption
+		Correlation between the abundance performance statistics between the three main fisheries.
 
-		The following figures illustrate the trade offs between pairs of performance statistics:
-			ul
-				li {refer #figure-yield-status-all} : yield v status
-				li {refer #figure-yield-safety-all} : yield v safety
-				li {refer #figure-yield-stability-all} : yield v stability
-				li {refer #figure-yield-abundance-all} : yield v abundance
+if 0
+	> Variation within management procedure classes
 
-		figure #figure-yield-status-all
-			r format png size 17x10cm
-				plot_tradeoff(
-					perfs,
-					x = list(yield='Yield (mean annual catch, kt)'),
-					y = list(status='Status (mean of S/S0)'),
-					colour = list(class='Class'),
-					shape = list(class='Class')
-				)
-			figcaption
-				Trade-off between yield and status performance statistics across all the management procedures evaluated.
-
-		figure #figure-yield-safety-all
-			r format png size 17x10cm
-				plot_tradeoff(
-					perfs,
-					x = list(yield='Yield (mean annual catch, kt)'),
-					y = list(safety10='Safety (P(B>0.1B0))'),
-					colour = list(class='Class'),
-					shape = list(class='Class')
-				)
-			figcaption
-				Trade-off between yield and safety performance statistics across all the management procedures evaluated.
-
-		figure #figure-yield-stability-all
-			r format png size 17x10cm
-				plot_tradeoff(
-					perfs,
-					x = list(yield='Yield (mean annual catch, kt)'),
-					y = list(stability='Stability (-MAPC)'),
-					colour = list(class='Class'),
-					shape = list(class='Class')
-				)
-			figcaption
-				Trade-off between yield and stability performance statistics across all the management procedures evaluated.
-
-		There is an unsurprising performance trade off between yield and abundance ({refer #figure-yield-abundance-all}). In general, higher catches lead to higher exploitation rates and reduced biomass which in turn leads to reduced catch rates.
-
-		Generally there is a high correlation between the abundance performance statistics for each of the main fisheries ({refer #figure-abundance-corrs}). Note however, that some MPs, particularly those resulting in overall higher abundance do result in higher relative abundance for M-PL and E-GN. This is most likely a result of the lower exploitation rates under these MPs which in turn creates an increase in the biomass of larger sized skipjack which are more fully selected by these fisheries.
-
-		figure #figure-yield-abundance-all
-			r format png size 17x10cm
-				plot_tradeoff(
-					perfs,
-					x = list(yield='Yield (mean annual catch, `000 t)'),
-					y = list(cpue_ma_pl='Abundance M-PL'),
-					colour = list(class='Class'),
-					shape = list(class='Class')
-				)
-			figcaption
-				Trade-off between yield and abundance performance statistics across all the management procedures evaluated.
-
-		figure #figure-abundance-corrs
-			r format png size 17x17cm
-				p1 = ggplot(perfs,aes(x=cpue_we_ps,y=cpue_ma_pl,colour=class,shape=class)) + 
-						geom_point(size=3) + 
-						geom_abline(linetype=3) + 
-						labs(x='W-PS CPUE',y='M-PL CPUE')
-				p2 = ggplot(perfs,aes(x=cpue_ma_pl,y=cpue_ea_gn,colour=class,shape=class)) + 
-						geom_point(size=3) + 
-						geom_abline(linetype=3) + 
-						labs(x='M-PL CPUE',y='E-GN CPUE')
-				multiplot(p1,p2)
-			figcaption
-				Correlation between the abundance performance statistics between the three main fisheries.
-
-  section
-	  h1 Performance of the BRule class
-				
+					
 		figure
 			r format png size 17x10cm
 				plot_tradeoff(
@@ -97,63 +92,42 @@ section
 				  colour = list(p3='Emax'),
 				  shape = list(p4='Threshold')
 				)
-	figcaption
-				Trade-off between yield and stock status for alternative instances of the the BRule class of management procedure.
-				
-	section
-		h1 Performance of the BRule class
+		figcaption
+					Trade-off between yield and stock status for alternative instances of the the BRule class of management procedure.
 
 		figure
 			r format png size 17x10cm
-				plot_tradeoff(
+				print(plot_tradeoff(
 					subset(perfs,class=="BRule"),
 					x = list(yield='Yield (mean annual catch, `000 t)'),
 					y = list(status='Status (mean of B/B0)'),
 					colour = list(p2='Target'),
 					shape = list(p3='Threshold')
-				)
+				))
 			figcaption
 				Trade-off between yield and stock status for alternative instances of the the BRule class of management procedure.
 
-	section
-		h1 Performance of the FRange class
-
 		figure
 			r format png size 17x10cm
-				plot_tradeoff(
-					subset(perfs,class=="FRange"),
-					x = list(yield='Yield (mean annual catch, `000 t)'),
-					y = list(status='Status (mean of B/B0)'),
-					colour = list(p3='Target'),
-					shape = list(p4='Buffer')
-				)
-			figcaption
-				Trade-off between yield and stock status for alternative instances of the the FRange class of management procedure.
-
-		figure
-			r format png size 17x10cm
-				plot_tradeoff(
+				print(plot_tradeoff(
 					subset(perfs,class=="FRange"),
 					x = list(yield='Yield (mean annual catch, `000 t)'),
 					y = list(stability='Stability'),
 					colour = list(p1='Frequency'),
 					shape = list(p4='Buffer')
-				)
+				))
 			figcaption
 				Trade-off between yield and stock status for alternative instances of the the FRange class of management procedure.
 
-	section
-		h1 Performance of the IRate class
-		
 		figure
 			r format png size 17x10cm
-				plot_tradeoff(
+				print(plot_tradeoff(
 					subset(perfs,class=="IRate"),
 					x = list(yield='Yield (mean annual catch, `000 t)'),
 					y = list(status='Status (mean of B/B0)'),
 					colour = list(p3='Target'),
 					shape = list(p4='Buffer')
-				)
+				))
 			figcaption
 				Trade-off between yield and stock status for alternative instances of the the IRate class of management procedure.
 

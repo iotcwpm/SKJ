@@ -343,3 +343,40 @@ Several classes of management procedure (MP) are presented with each _class_ hav
 				td Maximum total allowable catch (thousand tonnes)
 				td 300, 400, 500, 600
 
+> Mald2016 class
+
+	In February 2016, the "Indian Ocean Coastal Meeting on Harvest Control Rules" was held in the Maldives. This two day workshop was designed to engage stakeholders in the process of narrowing down the options for a management procedure for Indian Ocean skipjack tuna. After considering alternatives, the workshop concluded that, in the short term, a management procedure similar to the `BRule` MP described above was most appropriate. This was largely because the workshop felt that none of the existing data series for the fishery were sufficiently reliable to be the sole basis for a management procedure. IOTC members were already comfortable with the assessment process which incorporated as much of the available data as possible including the data from tagging programmes.
+
+	During, and subsequent to, the meeting, the `Mald2016` management procedure was developed as a refinement of `BRule` and became the basis of ["Resolution 16/02 On harvest control rules for skipjack tuna in the IOTC area of competence"](http://www.iotc.org/cmm/resolution-1602-harvest-control-rules-skipjack-tuna-iotc-area-competence). Paragraphs 6 to 10 of that resolution form the core of the `Mald2016` MP:
+
+	ul
+
+		li The Skipjack tuna stock assessment shall be conducted every three (3) years, with the next stock assessment to occur in 2017. Estimates of 7(a–c) shall be taken from a model-based stock assessment that has been reviewed by the Working Party on Tropical Tunas and endorsed by the Scientific Committee via its advice to the Commission.
+		
+		li The Skipjack tuna HCR shall recommend a total annual catch limit using the following three (3) values estimated from each Skipjack stock assessment. For each value, the reported median from the reference case adopted by the Scientific Committee for advising the Commission shall be used.
+
+			ul
+				li a) The estimate of current spawning stock biomass (Bcurr);
+				li b) The estimate of the unfished spawning stock biomass (B0);
+				li c) The estimate of the equilibrium exploitation rate (Etarg) associated with sustaining the stock at Btarg.
+		
+		li The HCR shall have five control parameters set as follows:
+			ul
+				li a) Threshold level, the percentage of B0 below which reductions in fishing mortality are required, Bthresh = 40%B0. If biomass is estimated to be below the threshold level, then fishing mortality reductions, as output by the HCR, will occur. 
+				li b) Maximum fishing intensity, the percentage of Etarg that will be applied when the stock status is at, or above, the threshold level Imax = 100%. When the stock is at or above the threshold level, then fishing intensity (I) = Imax
+				li c) Safety level, the percentage of B0 below which non-subsistence catches are set to zero i.e. the non-subsistence  fishery is closed Bsaftey= 10%B0.
+				li d) Maximum catch limit (Cmax), the maximum recommended catch limit = 900,000t. To avoid adverse effects of potentially inaccurate stock assessments, the HCR shall not recommend a catch limit greater than Cmax. This value is based upon the estimated upper limit of the MSY range in the 2014 Skipjack stock assessment.
+				li e) Maximum change in catch limit (Dmax), the maximum percentage change in the catch limit = 30%. To enhance the stability of management measures the HCR shall not recommend a catch limit that is 30% higher, or 30% lower, than the previous recommended catch limit.
+		
+		li The recommended total annual catch limit shall be set as follows:
+			ul
+				li a) If the current spawning biomass (Bcurr) is estimated to be at or above the threshold spawning biomass i.e., Bcurr >= 0.4B0, then the catch limit shall be set at [Imax x Etarg x Bcurr ]
+				li b) If the current spawning biomass (Bcurr) is estimated to be below the threshold biomass i.e, Bcurr < 0.4B0, but greater than the safety level i.e., Bcurr > 0.1B0, then the catch limit shall be set at [I x Etarg x Bcurr].  See Table 1 in Appendix 1 for values of fishing intensity (I) for specific Bcurr/B0.
+				li c) If the spawning biomass is estimated to be at, or below, the safety level, i.e. Bcurr <= 0.1B0 then the catch limit shall be at 0 for all fisheries other than subsistence fisheries.
+				li d) In the case of (a) or (b), the recommended catch limit shall not exceed the maximum catch limit (Cmax) and shall not increase by more than 30% or decrease by more than 30% from the previous catch limit.
+				li e) In the case of (c) the recommended catch limit shall always be 0 regardless of the previous catch limit.
+		
+		li The HCR described in 8(a-e) produces a relationship between stock status (spawning biomass relative to unfished levels) and fishing intensity (exploitation rate relative to target exploitation rate) as shown below :
+
+		figure
+			img [src=mald2016.png]

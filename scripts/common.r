@@ -53,7 +53,7 @@ load <- function(names,from){
     # Convert dimensions into factors
     data = dimensions(data)
     # Assign the variable
-    assign(name,data,env=parent.frame())
+    assign(name,data,env=.GlobalEnv)
   }
 }
 

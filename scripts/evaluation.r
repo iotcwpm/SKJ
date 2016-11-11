@@ -1,11 +1,7 @@
 # Presentation of evaluation results
 
-# An "include guard" to prevent this file being sourced multiple
-# times in multiple reports that are merged into one
-if(!exists('evaluation_r_include_guard')) {
-evaluation_r_include_guard <- TRUE
-
 # Read in output files
+cat('Loading evaluation results\n')
 load(c(
 	'procedures',
 	'samples',
@@ -27,14 +23,22 @@ performances <- merge(procedures,performances)
 perfs <- ddply(performances,.(procedure),summarise,
 	yield = mean(catches_total),
 	yield_sd = sd(catches_total),
+  yield_25 = quantile(catches_total, p=0.25, na.rm=T),
+  yield_75 = quantile(catches_total, p=0.75, na.rm=T),
 	stability = -mean(catches_mapc),
 	stability_sd = sd(catches_mapc),
-	status = mean(status_mean),
+	stability_25 = quantile(catches_mapc, p=0.25, na.rm=T),
+  stability_75 = quantile(catches_mapc, p=0.75, na.rm=T),
+  status = mean(status_mean),
 	status_sd = sd(status_mean),
+  status_25 = quantile(status_mean, p=0.25, na.rm=T),
+  status_75 = quantile(status_mean, p=0.75, na.rm=T),
 	safety10 = 1-mean(status_b10),
 	safety10_sd = sd(status_b10),
 	safety20 = 1-mean(status_b20),
 	safety20_sd = sd(status_b20),
+  safety20_25 = quantile(status_b20, p=0.25, na.rm=T),
+  safety20_75 = quantile(status_b20, p=0.75, na.rm=T),
 	kobe_a = mean(kobe_a),
 	kobe_a_sd = sd(kobe_a),
 	kobe_d = mean(kobe_d),
@@ -268,5 +272,3 @@ plot_tradeoff_multi <- function(data, x, y, first, second, bars=F, ref=NULL){
     plot_tradeoff(data, x, y, second$colour, second$shape, bars=bars, ref=ref)
   )
 }
-
-} # end 'include guard'

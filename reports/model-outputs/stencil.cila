@@ -2,7 +2,7 @@
 
 #title Indian Ocean skipjack model : general outputs
 
-This section presents model outputs generated from the `run` task (i.e. `./ioskj.exe run`) which uses the reference parameter set defined in the `parameters/input` folder. Since those parameter values are user inputs the following may not reflect best parameter estimates. These summaries are primarily intended for illustrating the model struture.
+This section presents model outputs generated from the `run` task (i.e. `./ioskj.exe run`) which uses the reference parameter set defined in the `parameters/input` folder. Since those parameter values are user inputs the following may not reflect best parameter estimates. These summaries are primarily intended for illustrating the model structure.
 
 r
 	source('../../scripts/common.r',local=T)

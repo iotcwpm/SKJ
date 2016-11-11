@@ -13,18 +13,23 @@ Nokome Bentley{sup 1} and M. Shiham Adam{sup 2}
 1. Trophia Limited, New Zealand nbentley@trophia.com
 2. Marine Research Centre, Maldives msadam@mrc.gov.mv
 
-{strong} Draft {text Sys.Date()}
-
 #outline
 
-> Introduction
+> Summary
 
-	This report describes the development of an operating model of the Indian Ocean skipjack tuna fishery for use in management strategy evaluation (MSE). This work was initiated by the Maldives pole-and-line fishery in partial fulfillment of the conditions of its Marine Stewardship Council (MSC) certification (Adam et al 2013).
+	This report describes work towards Management Strategy Evaluation (MSE) for the Indian Ocean skipjack tuna (_Katsumwonus pelamis_) fishery. MSE is the simulation-based evaluation of alternative fisheries management policies. This research was initiated by the Maldives pole-and-line fishery in partial fulfillment of the conditions of its Marine Stewardship Council (MSC) certification (Adam et al 2013) and developed as part of the work programme of the Working Party on Methods (WPM) of the Indian Ocean Tuna Commission (IOTC).
 
-	This document outlines the structure of the model, describes prior probability distributions and sensitivity ranges for model parameters, lists performance statistics to be used for evaluations and introduces some example management procedures. Each section of this report is "living documentation" of the model and its outputs - most have been presented to IOTC working parties previously but where necessary, based on feedback from those working parties, have been updated and revised.
+	A simulation model of the skipjack fishery in the Indian Ocean was developed to use as the basis for MSE. The model attempts to capture the complexities of the fishery whilst remaining simple enough too be both understandable and computationally tractable. The model is spatially explicit with an age-structured fish population and four fishing gears in each of three regions (West, East and Maldives).
 
+	Several classes of management procedure were developed and preliminary evaluations done. These classes were intended to be illustrative of the diversity of potential MPs and their relative performance. These classes included MPs based on regular estimates of total mortality (e.g. from tagging), relative catch-per-unit-effort (CPUE) and estimates of stock status from stock assessments.
+
+	The development of both the simulation model and management procedures (MP) as well as preliminary evaluations were presented to IOTC Working Parties, feedback obtained and revisions made. In February 2016, a workshop of Indian Ocean coastal states was held to focus on a particular class of MP to form the basis of proposal to the Commission. That workshop concluded that, in the short term, a management procedure based on the existing triannual stock assessments was most appropriate. The "Mald2016" management procedure, which sets a annual catch limit based on the estimate of stock status from each stock assessment was subsequently developed and refined based on further feedback. Evaluations of this MP are presented.
+
+	Alongside, the IOTC's other MSE work programmes for albacore, yellowfin and bigeye tuna, this work has contributed to the establishment of fisheries management procedures within the Indian Ocean. However, this work is only the first step. We conclude with a discussion of the inadequacies of this study and highlight where more work is required.
 
 > Model
+
+	Management strategy evaluation, as a simulation based exercise, requires a simulation model of the fishery. In the MSE context, the term "operating model" is often used to describe such a model (to distinguish it from an "assessment model" which may be part of the MP itself). In this section we provide a general overview of the structure of the simulation model developed for the Indian Ocean tuna fishery.
 
 	> Structure and assumptions
 
@@ -46,14 +51,14 @@ Nokome Bentley{sup 1} and M. Shiham Adam{sup 2}
 		include ../model-outputs complete
 			delete #title
 
-	> Fits
-
-		include ../model-fits complete
-			delete #title
-
 	> Yield curve and types of reference point 
 
 		include ../yield complete
+			delete #title
+
+	> Fits
+
+		include ../model-fits complete
 			delete #title
 
 	> Conditioning
@@ -66,38 +71,47 @@ Nokome Bentley{sup 1} and M. Shiham Adam{sup 2}
 		include ../procedures complete
 			delete #title
 
-	> Evaluation methods
+> Evaluations
+
+	r
+		# Rather than repeating time consuming input of evaluation
+		# results do it once here
+		source('../../scripts/common.r', local=T)
+		source('../../scripts/evaluation.r', local=T)
+
+	> Methods
 
 		include ../eval-methods complete
 			delete #title
 
-	> Evaluation results
+	> Results
 
-		> Comparision of classes
+		> General
 
-			TODO
-
-		> IRate
-
-			TODO
-
-		> FRange
-
-			TODO
-
-		> BRule
-
-			TODO
+			include ../eval-results complete
+				delete #title
 
 		> Mald2016
 
 			include ../eval-mald2016 complete
 				delete #title
 
+> Discussion
+
+	This project established a simulation framework for the evaluation of management procedures for the Indian Ocean skipjack tuna fishery. In addition to representing a significant investment in the IOTC's scientific capabilities, alongside the IOTC's other MSE work programmes and the Management Procedure Dialogue (MPD), it also helped introduce the member states and other stakeholders to management strategy evaluation.
+
+	However, the work presented here should only be considered the start of an ongoing programme of MSE for skipjack in the Indian Ocean. There is significant potential for building upon the investments in development of an operating model and in familiarizing the Commission with MSE. 
+
+	In particular, the `Mald2016` MP adopted as part of resolution 16/02 should only be considered a starting point for continued refinement of MPs for the skipjack fishery. As previously discussed, although the MP is based on a stock assessment, the resolution does not specify the exact methods to be undertaken in each stock assessment and as such it could not be fully evaluated in this MSE. There are significant time lags associated with collecting the data, conducting and reviewing a stock assessment. For short lived, highly fluctuating species like skipjack tuna, these lags severely degrade the performance of management procedures. Instead of attempting to improve the evaluation of assessment based management procedures, it will probably be more fruitful in the long term to consider, alternative model-free, data-based management procedures for the fishery. That will require a strategic analysis of the utility of both current, and potential, data collection regimes.
+
+	The simulation model developed here does not capture the multispecies nature of the fishery. This is important because fishing effort, both industrial and artisinal, is able to switch targetting between species, especially between skipjack and yellowfin tuna. Thus, a reduction in allowable catch for one species may result in an increase in effort on another. We recommend that, in the future, a multispecies operating model be developed for management strategy evaluation of tropical tunas in the Indian Ocean.
+
 
 > Acknowledgments
 
 	This work has been funded by the International Pole and Line Foundation (IPNLF), the Maldives Seafood Processors and Exporters Association (MSPEA), the Areas Beyond National Jurisdiction Program (ABNJ) and WWF with support and oversight of the Maldives Marine Research Centre (MRC). Support for the project's Advisory Committee has been provided by the International Seafood Sustainability Foundation (ISSF).
+
+	We are indebted to members of the IOTC's Working Party on Methods and the Working Party on Tropical Tunas, in particular Alain Fonteneau, Toshi Kitakado, Dale Kolody, Gorka Merino, Hilario Murua, Iago Mosquiera, Jerry Scott, and Rishi Sharma for their invaluable insights, comments and suggestions.
 
 > References
 

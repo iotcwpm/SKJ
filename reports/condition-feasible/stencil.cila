@@ -4,14 +4,6 @@
 
 This section describes an approach to model conditioning using the Feasible Stock Trajectories (FST) algorithm (Bentley and Langley 2012). Rather than estimating parameters using full likelihoods, FST uses feasibility criterion to accept or reject sets of parameters drawn from their prior distributions. Feasibility criteria can be based on a priori beliefs about the stock or on "features" of the observed data. Although unsophisticated, this approach can provide a pragmatic means for conditioning an operating model.
 
-if 0
-	To provide consistency
-
-		// ... in 2013 must be between 0.4 and 0.8
-		// based on IOTC–2014–WPTT16 report Table 7
-		//   SB 2013 /SB 1950 (80% CI) : 0.58 (0.53–0.62)
-
-		bounds on length requencies 10, 50 & 90 percentiles
 
 r volat
 	source('../../scripts/common.r',local=T)
@@ -33,7 +25,7 @@ table
 		td text rejects[1]
 	tr
 		td 2
-		td Overall stock status must be between 40% and 80% B0 since in 2013
+		td Overall stock status must be between 40% and 80% B0 in 2013 (to provide consistency with the last stock assessment which estimated stock status to be 0.58%)
 		td text rejects[2]
 	tr
 		td 3
@@ -57,15 +49,15 @@ table
 		td text rejects[7]
 
 
-The following figures show the effect of conditioning. They compare the prior probability densities with the posterior densities obtained from the feasibility conditioning. The distributions of rejections by each of the feasibility criteria is also shown.
+The following figures show the effect of conditioning on a selection of model parameters (for many parameters, for example those concerning movement, there is litle difference betweent he prior and the posterior). They compare the prior probability densities with the posterior densities obtained from the feasibility conditioning. The distributions of rejections by each of the feasibility criteria is also shown.
 
 r
 	params <- c(
 		'spawners_unfished','spawners_ma','spawners_ea','recruits_steepness','recruits_sd','recruits_autocorr',
-		'spawning_0', 'spawning_1', 'spawning_2', 'spawning_3',
-		'maturity_inflection', 'maturity_steepness',
 		'mortality_mean',
-		'movement_we_ma', 'movement_we_ea', 'movement_ma_ea', 'movement_length_inflection', 'movement_length_steepness'
+		'spawning_0',
+		'maturity_inflection',
+		'movement_we_ma', 'movement_length_inflection'
 	)
 
 for param in params
