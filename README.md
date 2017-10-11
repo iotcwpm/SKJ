@@ -19,7 +19,7 @@ The following document the model structure and code,
 
 Several reports associated with this project are available (in reverse chronological order):
 
-- [Bentley, N and M.S. Adam  (draft). Management strategy evaluation for the Indian Ocean skipjack tuna fishery. Draft report](http://iotcwpm.github.io/SKJ/final-report-draft.pdf)
+- [Bentley, N and M.S. Adam  (2016). Management strategy evaluation for the Indian Ocean skipjack tuna fishery](https://github.com/iotcwpm/SKJ/releases/download/0.4/Management.strategy.evaluation.for.the.Indian.Ocean.skipjack.tuna.fishery.pdf)
 
 - [Bentley, N and M.S. Adam  (2015). An operating model for the Indian Ocean skipjack tuna fishery. IOTC-2015-WPTT17-35. Paper submitted to the 17th Meeting of the Working Party on Tropical Tunas, Montpellier, France, 23-28 October 2015](http://www.iotc.org/sites/default/files/documents/2015/10/IOTC-2015-WPTT17-35_-_SKJ_MSE.pdf)
 
